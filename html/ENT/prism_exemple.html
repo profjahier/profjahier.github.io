@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <title>Profjahier-Prism</title>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+  <link rel="stylesheet" type="text/css" href="../../css/prism.css" />
+</head>
+
+<body>
+  <h1>Exemples d'intégration de code en ligne</h1>
+
+  <h2>Prism : coloration syntaxique en ligne</h2>
+  <p>
+    <a href="https://prismjs.com/index.html" target="_blank">Prism</a> est un outil permettant de présenter du code avec
+    coloration syntaxique au sein de pages Web. On pourra consulter <a href="https://numerique-sciences-informatiques.discip.ac-caen.fr/coloration-syntaxique-avec-prism-js-css" target="="_blank">cette documentation</a> qui donne quelques pistes d'utlisation de Prism.</p>
+  <p>Les exemples suivants peuvent être étudiés pour voir son application.</p>
+  <h2>Ligne de commande</h2>
+  <p>Un exemple de code dans un Terminal :</p>
+  <pre class="command-line" data-user="user" data-host="machine"><code class="language-shell" >
+        git clone https://github.com/identifiant/repo.git
+        git status
+    </code></pre>
+
+
+  <pre class="command-line" data-user="chris" data-host="laptop" data-output="2,4-8"><code class="language-shell" >
+        pwd
+        /usr/home/chris/bin
+        ls -la
+        total 2
+        drwxr-xr-x   2 chris  chris     11 Jan 10 16:48 .
+        drwxr--r-x  45 chris  chris     92 Feb 14 11:10 ..
+        -rwxr-xr-x   1 chris  chris    444 Aug 25  2013 backup
+        -rwxr-xr-x   1 chris  chris    642 Jan 17 14:42 deploy
+    </code></pre>
+
+
+  <h2>Python</h2>
+  <p>Un exemple de code Python :</p>
+  <pre class="line-numbers"><code class="language-python">
+        def foo(x, y):
+          n = 0
+          while x < y:
+            x *= 2
+            n += n
+          return n
+    </code></pre>
+
+  <h2>HTML</h2>
+  <p>Un exemple de code HTML :</p>
+
+  <pre><code class="language-html">
+    &lt;!DOCTYPE html&gt;
+    &lt;html lang="fr"&gt;
+    
+    &lt;head&gt;
+        &lt;title&gt;Page test&lt;/title&gt;
+        &lt;meta charset="utf-8" /&gt;
+        &lt;link rel="stylesheet" type="text/css" href="css/style.css" /&gt;
+    &lt;/head&gt;
+    
+    &lt;body&gt;
+        &lt;h1&gt;Titre fabuleux&lt;/h1&gt;
+        &lt;p&gt;Pour une page non moins fabuleuse&lt;/p&gt;
+    &lt;/body&gt;
+    
+    &lt;/html&gt;
+  </code></pre>
+  <p>Remarque importante : pour présenter du HTML, il faut remplacer tous les &lt; et &gt; par "& l t ;" et "& g t ;"
+    car sinon le code est interprété par le navigteur !</p>
+
+
+  <h2>CSS</h2>
+  <p>Un exemple de CSS :</p>
+  <pre><code class="language-css">
+      p{ 
+        color: red; 
+        background-color: rgb(120, 12, 57); 
+      }</code></pre>
+
+  <h2>Javascript</h2>
+  <p>Un exemple de code Javascript :</p>
+  <pre><code class="language-js">
+        "use strict";
+
+        let mois = ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "aout", "septembre", "octobre", "novembre", "décembre"];
+        let jours = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"];
+
+        function foo(d){
+          let j = d.getDay();
+          let jj = d.getDate();
+          let m = d.getMonth();
+          return jours[j] + ' ' + jj + ' ' + mois[m];
+        }
+
+        let d = new Date();
+        console.log(foo(d));
+    </code></pre>
+
+
+  <script src="../../js/prism.js"></script>
+</body>
+
+</html>
