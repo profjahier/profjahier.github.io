@@ -8,4 +8,4 @@ let jj = d.getDate();
 let m = d.getMonth();
 
 let date = document.getElementById("date");
-date.textContent = jours[j] + ' ' + jj + ' ' + mois[m];
+date.textContent = jours[j-1] + ' ' + jj + ' ' + mois[m];
