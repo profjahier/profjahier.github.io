@@ -1,6 +1,12 @@
 body{
     background-color: antiquewhite;
     color: darkslategrey;
-    width: 1000px;
+    width: 1200px;
     margin:auto;
+}
+
+code{
+    background-color: black;
+    color: white;
+    padding: 3px;
 }
