@@ -1,9 +1,33 @@
+*{
+    box-sizing: border-box;
+}
+
 body{
-    background-color: antiquewhite;
-    color: darkslategrey;
-    width: 1200px;
-    margin:auto;
+    background-color: rgb(238, 231, 222);
+    color: rgb(6, 11, 41);
+   /* width: 1200px;
+    margin:auto;*/
     padding: 20px;
+}
+
+h1{
+    background-color: rgb(212, 96, 50);
+    text-align: center;
+    padding: 20px;
+    width:90%;
+    margin:auto;
+    border-bottom: solid 3px  rgb(6, 11, 41);
+    margin-bottom: 50px;
+    border-radius: 0 25px 0 25px;
+}
+
+h2{
+    margin-top: 50px;
+    padding-bottom: 10px;
+    border-bottom: solid 2px rgb(212, 96, 50);
+    width:70%;
+    padding-left: 30px;
+    border-radius: 0 0 0 15px;
 }
 
 code{
@@ -14,4 +38,30 @@ code{
 
 a{  
     text-decoration: none;
+}
+
+/* flex */
+.menu-block{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.menu-block  a{
+    display: block;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    height: 100px;
+    text-align: center;
+    background-color: rgb(212, 96, 50);
+    color: rgb(6, 11, 41);
+    margin-bottom: 20px;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+li{
+    margin-bottom: 10px;
 }
