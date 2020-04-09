@@ -76,8 +76,6 @@ function partie(){
     bouton.removeAttribute("onclick");
     status.textContent = "Cliquer sur une case pour jouer";
     grille = creerGrille(DIM, VIDE);
-    plateau.fillStyle = 'white';
-    plateau.fillRect(0, 0, largeur, hauteur);
     canvas.addEventListener("click", caseCliquee);
     dessinerPlateau();
     afficherGrille(); // retour console facultatif 
