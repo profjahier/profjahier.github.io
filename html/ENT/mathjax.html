@@ -6,9 +6,6 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="../../css/style.css" />
     <link rel="stylesheet" type="text/css" href="../../css/prism.css" />
-    <!-- <script type="text/javascript" id="MathJax-script" async
-        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script>
-     Choisir le fichier tex-mml-chtml.js pour le support des formules au foprmat MathML -->
     <script src="../../js/mathjax_config_load.js" async></script>
 </head>
 
@@ -28,13 +25,14 @@
         &lt;script type="text/javascript" id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"&gt;&lt;/script&gt;
     </code></pre>
     <p>Cette source CDN utlise une configuration pour reconnaître les formules écrites en TeX et MathML, et génère une
-        sortie fondée sur HTML et CSS (<a href="http://docs.mathjax.org/en/latest/web/components/combined.html" target="_blank">d'autres configurations</a> sont possibles).</p>
+        sortie fondée sur HTML et CSS (<a href="http://docs.mathjax.org/en/latest/web/components/combined.html"
+            target="_blank">d'autres configurations</a> sont possibles).</p>
 
     <h2>Configuration de MathJax</h2>
     <p>Tout repose sur l'objet <strong>windows.MathJax</strong>.</p>
     <p>La doc officielle propose 2 pages pour définir sa configuration <a
-        href="http://docs.mathjax.org/en/latest/web/configuration.html#web-configuration">ici</a> et <a
-        href="http://docs.mathjax.org/en/latest/options/index.html#configuring-mathjax">là</a>.</p>
+            href="http://docs.mathjax.org/en/latest/web/configuration.html#web-configuration">ici</a> et <a
+            href="http://docs.mathjax.org/en/latest/options/index.html#configuring-mathjax">là</a>.</p>
     <p>Pour ma part, j'opterais pour l'utilisation d'un fichier annexe <strong>mathjax_config_load.js</strong> contenant
         la configuration désirée et l'appel à la bibliothèque MathJax.</p>
     <pre><code class="language-javascript">
@@ -56,21 +54,28 @@
     <pre><code class="language-html">
                 &lt;script src="mathjax_config_load.js" async&gt;&lt;/script&gt;
             </code></pre>
+    Évidemment, dans ce cas, on n'inclut pas le lien indiqué dans la partie précédente !
 
     <h2>Exemples</h2>
-    <p>Voici une formule Latex inline \( a = \sqrt{\left(\dfrac{u_X}{X}\right)^2 + \left(\dfrac{u_Y}{Y}\right)^2} \) et
+    <p>Voici une formule Latex inline \( \dfrac{u_v}{v} = \sqrt{\left(\dfrac{u_d}{d}\right)^2 + \left(\dfrac{u_t}{t}\right)^2} \) et
         maintenant une blok : $$ T = 2\pi\sqrt{\dfrac{\ell}{g}} $$
-    et même de la chimie \( \ce{CH3CO2H + H2O -> CH2CO2- + H3O+} \).</p>
-    <p>Le code HTML du paragraphe ci-dessus est simplement :   </p>
+        et même de la chimie \( \ce{CH3CO2H + H2O &lt;--&gt; CH2CO2- + H3O+} \).</p>
+    <p>Le code HTML du paragraphe ci-dessus est simplement : </p>
     <pre><code class="language-html">
                 &lt;p&gt;Voici une formule Latex inline \( a = \sqrt{\left(\dfrac{u_X}{X}\right)^2 + \left(\dfrac{u_Y}{Y}\right)^2} \) et
                     maintenant une blok : $$ T = 2\pi\sqrt{\dfrac{\ell}{g}} $$ 
-                    et même de la chimie \( \ce{CH3CO2H + H2O -> CH2CO2- + H3O+} \).&lt;/p&gt;
+                    et même de la chimie \( \ce{CH3CO2H + H2O &#38;lt;--&#38;gt; CH2CO2- + H3O+} \).&lt;/p&gt;
             </code></pre>
 
-            <h2>Complément : configuration pour Tex/Latex et la physique/chimie</h2>
-            <p><a href="http://docs.mathjax.org/en/latest/options/input/tex.html">Configuration globale de la prise en charge de Tex</a> et <a href="http://docs.mathjax.org/en/latest/input/tex/extensions/index.html#extension-list">extensions</a> et les extensions utiles <a href="http://docs.mathjax.org/en/latest/input/tex/extensions/physics.html" target="_blank">physique</a> et <a href="http://docs.mathjax.org/en/latest/input/tex/extensions/mhchem.html" target="_blank">chimie</a>.</p>
-            <p>Et voici <a href="http://docs.mathjax.org/en/latest/input/tex/macros/index.html">la liste des commandes</a> Tex utilisables.</p>
+    <h2>Complément : configuration pour Tex/Latex et la physique/chimie</h2>
+    <p><a href="http://docs.mathjax.org/en/latest/options/input/tex.html">Configuration globale de la prise en charge de
+            Tex</a> et <a
+            href="http://docs.mathjax.org/en/latest/input/tex/extensions/index.html#extension-list">extensions</a> et
+        les extensions utiles <a href="http://docs.mathjax.org/en/latest/input/tex/extensions/physics.html"
+            target="_blank">physique</a> et <a href="http://docs.mathjax.org/en/latest/input/tex/extensions/mhchem.html"
+            target="_blank">chimie</a>.</p>
+    <p>Et voici <a href="http://docs.mathjax.org/en/latest/input/tex/macros/index.html">la liste des commandes</a> Tex
+        utilisables.</p>
 
     <script src="../../js/generalites.js"></script>
     <script src="../../js/prism.js"></script>
