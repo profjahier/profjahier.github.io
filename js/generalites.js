@@ -11,7 +11,7 @@ for (let a of liens){
 
 // ********************************************************************************************************************
 // Crée un menu de navigation automatique qui est inséré parès le titre h1 de chaque page automatiquement 
-let navHTML = ' <nav><a href="#" onclick="creer_menu_page()"><img src="../../img/sommaire.png" alt="Menu Sous-Site" height="30"></a> <a href="index.html"><img src="../../img/racine.png" alt="Menu Sous-Site" height="30"></a> <a href="../../index.html"><img src="../../img/sortie.png" alt="Menu profjahier" height="30"></p><div id="menu_page"></div></div></nav>';
+let navHTML = ' <nav><a href="#" onclick="creer_menu_page()"><img src="../../img/sommaire.png" alt="Menu Sous-Site" height="30"></a><a href="index.html"><img src="../../img/racine.png" alt="Menu Sous-Site" height="30"></a><a href="../../index.html"><img src="../../img/sortie.png" alt="Menu profjahier" height="30"></a><div id="menu_page"></div></nav>';
 document.querySelector('h1').insertAdjacentHTML('afterend', navHTML);
 
 // ********************************************************************************************************************

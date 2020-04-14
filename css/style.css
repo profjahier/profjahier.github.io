@@ -15,7 +15,7 @@ h1{
     width:90%;
     margin:auto;
     border-bottom: solid 3px  rgb(6, 11, 41);
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     border-radius: 0 25px 0 25px;
   /*  font-size: 2em; */
 }
@@ -68,9 +68,5 @@ li{
 }
 
 nav{
-    text-align: left;
-}
-
-nav ol{
-    text-align: left;
+    margin-left: 20px;
 }
