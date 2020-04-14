@@ -1,13 +1,13 @@
-/*
-// Le snippet ci-dessous devrait transformer tous les liens qui ne correspondant pas à ce nom  de domaine avec un attribut target à la valeur _blank.
-
+// *******************************************************************************************************************
+// Transforme tous les liens qui ne correspondant pas à ce nom  de domaine avec un attribut target à la valeur _blank.
 let liens = document.getElementsByTagName('a');
-for (let a of liens){
-  if (a.href != location.hostname){ // Attention ça ne marche plur l'instant !!!!
-    a.setAttribute("target", "_blank")
-  }
+for (let lien of liens){
+  let url = new URL(lien.href);
+  if (url.hostname != location.hostname){ 
+  lien.setAttribute("target", "_blank");
+  } 
 }
-*/  
+
 
 // ********************************************************************************************************************
 // Crée un menu de navigation automatique qui est inséré parès le titre h1 de chaque page automatiquement 
