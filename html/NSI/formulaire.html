@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>Profjahier-Formulaire</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/prism.css" />
+    <script src="../../js/mathjax_config_load.js" async></script>
+</head>
+
+<body>
+    <h1>Formulaires Web</h1>
+    <h2>Documentation externe</h2>
+    <p>Les liens suivants vous conduisent vers de la doc ou des tutos très complets et de qualité. Évidemment les
+        notions abordées dépassent le niveau de 1ère NSI mais leur lecture permet de bien ancrer les notions nécessaires
+        pour le programme et laisse la liberté d'aller plus loin pour le plaisir ou pour développer un projet.</p>
+    <ul>
+        <li>Site de la MDN :
+            <ul>
+                <li><a href="https://developer.mozilla.org/fr/docs/Web/Guide/HTML/Formulaires">Portail d'ouverture sur
+                        les formulaires</a></li>
+                <li><a
+                        href="https://developer.mozilla.org/fr/docs/Web/Guide/HTML/Formulaires/Mon_premier_formulaire_HTML">Tuto
+                        pour créer un 1er formulaire</a></li>
+                <li><a href="https://developer.mozilla.org/fr/docs/Web/HTML/Element#Formulaires">Références des éléments
+                        HTML des formulaires</a></li>
+                <li><a href="https://developer.mozilla.org/fr/docs/Web/HTML/Element/input">Les éléments input</a></li>
+            </ul>
+        <li>Site W3Schools :
+            <ul>
+                <li><a href="https://www.w3schools.com/html/html_forms.asp">Tutoriel sur
+                        les formulaires</a></li>
+                <li><a href="https://www.w3schools.com/tags/ref_byfunc.asp">Référence triée par catégorie</a> : chercher
+                    <em>Forms and Input</em>.</li>
+            </ul>
+        <li>Site Openclassroooms :
+            <ul>
+                <li><a
+                        href="https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3/1607171-creez-des-formulaires">Créer
+                        un formulaire</a> extrait du cours complet <a
+                        href="https://openclassrooms.com/fr/courses/1603881-apprenez-a-creer-votre-site-web-avec-html5-et-css3">sur
+                        la création de site Web HTML/CSS</a>.</li>
+                <li><a
+                        href="https://openclassrooms.com/fr/courses/3306901-creez-des-pages-web-interactives-avec-javascript/3514956-manipulez-les-formulaires">Formulaires
+                        en Javascript</a> extrait du cours complet <a
+                        href="https://openclassrooms.com/fr/courses/3306901-creez-des-pages-web-interactives-avec-javascript">sur
+                        la création de site Web interactif avec Javascript</a>.</li>
+            </ul>
+    </ul>
+
+    <h2>Exemple</h2>
+    <p>Le formulaire suivant a pour but d'illustrer les principales fonctionnalités d'un formulaire. Le
+        code source du formulaire est donné à la suite : à étudier soigneusement !</p>
+    <form action="#" method="GET" style="width:50%; margin-left:50px; border:solid 1px black; padding-left:15px;">
+        <h3 id="input_type">Input avec un type "enrichi"</h3>
+        <label for="text_1">Text : </label><input type="    text" name="texte" id="text_1" /> <br />
+        <label for="color_1">Color : </label><input type="color" name="couleur" id="color_1" /> <br />
+        <label for="date_1">Date : </label><input type="date" name="date" id="date_1" /> <br />
+        <label for="password_1">Password : </label><input type="password" name="mdp" id="password_1" />
+        <br />
+        <label for="email_1">email : </label><input type="email" name="email" id="email_1" /> <br />
+        <label for="url_1">url : </label><input type="url" name="url" id="url_1" /> <br />
+        <label for="tel_1">tel : </label><input type="tel" name="tel" id="tel_1" /> <br />
+        <label for="range_1">Range : </label><input type="range" name="curseur" id="range_1" /> <br />
+        <label for="search_1">Search : </label><input type="search" name="recherche" id="search_1" />
+
+        <h3 id="input_checkbox">Cases à cocher</h3>
+        <p>Cochez les aliments que vous aimez manger :</p>
+        <input type="checkbox" name="frites" id="frites" checked /> <label for="frites">Frites</label><br />
+        <input type="checkbox" name="steak" id="steak" /> <label for="steak">Steak haché</label><br />
+        <input type="checkbox" name="epinards" id="epinards" checked /> <label for="epinards">Epinards</label><br />
+        <input type="checkbox" name="huitres" id="huitres" /> <label for="huitres">Huitres</label>
+
+        <h3 id="input_radio">Boutons radio</h3>
+        <p>Veuillez indiquer la tranche d'âge dans laquelle vous vous situez :</p>
+        <!-- les boutons radio partagent le même attribut "name" -->
+        <input type="radio" name="age" value="15" id="moins15" /> <label for="moins15">Moins de 15
+            ans</label><br />
+        <input type="radio" name="age" value="15-25" id="medium15-25" checked /> <label for="medium15-25">15-25
+            ans</label><br />
+        <input type="radio" name="age" value="m25-40" id="medium25-40" /> <label for="medium25-40">25-40
+            ans</label><br />
+        <input type="radio" name="age" value="40" id="plus40" /> <label for="plus40">Encore plus
+            vieux que ça ?!</label>
+
+        <h3 id="input_select">Listes déroulantes</h3>
+        <p><label for="villes">Dans quel ville habitez-vous ?</label></p>
+        <select name="ville" id="villes">
+            <option value="caen">Caen</option>
+            <option value="paris" selected>Paris</option>
+            <option value="bordeaux">Bordeaux</option>
+            <option value="nice">Nice</option>
+        </select>
+
+        <p><label for="pays">Dans quel pays habitez-vous ?</label></p>
+        <select name="pays" id="pays">
+            <optgroup label="Europe">
+                <option value="france">France</option>
+                <option value="espagne">Espagne</option>
+                <option value="italie">Italie</option>
+                <option value="royaume-uni">Royaume-Uni</option>
+            </optgroup>
+            <optgroup label="Amérique">
+                <option value="canada">Canada</option>
+                <option value="etats-unis">Etats-Unis</option>
+            </optgroup>
+            <optgroup label="Asie">
+                <option value="chine" selected>Chine</option>
+                <option value="japon">Japon</option>
+            </optgroup>
+        </select>
+        <p>
+            <input type="submit" value="Envoyer" />
+            <input type="reset" value="RAZ" />
+            <input type="button" value="Bouton 'neutre' à gérer en JS" onclick="alerte()">
+        </p>
+    </form>
+
+    <script>
+        "use strict";
+        function alerte() {
+            alert("On m'a cliqué dessus !");
+        }
+    </script>
+    <p>Voici le code source du formulaire précédent :</p>
+    <pre><code class="language-html">
+        &lt;form action="#" method="GET" style="width:50%; margin-left:50px; border:solid 1px black; padding-left:15px;"&gt;
+            &lt;h3 id="input_type"&gt;Input avec un type "enrichi"&lt;/h3&gt;
+            &lt;label for="text_1"&gt;Text : &lt;/label&gt;&lt;input type="    text" name="texte" id="text_1" /&gt; &lt;br /&gt;
+            &lt;label for="color_1"&gt;Color : &lt;/label&gt;&lt;input type="color" name="couleur" id="color_1" /&gt; &lt;br /&gt;
+            &lt;label for="date_1"&gt;Date : &lt;/label&gt;&lt;input type="date" name="date" id="date_1" /&gt; &lt;br /&gt;
+            &lt;label for="password_1"&gt;Password : &lt;/label&gt;&lt;input type="password" name="mdp" id="password_1" /&gt;
+            &lt;br /&gt;
+            &lt;label for="email_1"&gt;email : &lt;/label&gt;&lt;input type="email" name="email" id="email_1" /&gt; &lt;br /&gt;
+            &lt;label for="url_1"&gt;url : &lt;/label&gt;&lt;input type="url" name="url" id="url_1" /&gt; &lt;br /&gt;
+            &lt;label for="tel_1"&gt;tel : &lt;/label&gt;&lt;input type="tel" name="tel" id="tel_1" /&gt; &lt;br /&gt;
+            &lt;label for="range_1"&gt;Range : &lt;/label&gt;&lt;input type="range" name="curseur" id="range_1" /&gt; &lt;br /&gt;
+            &lt;label for="search_1"&gt;Search : &lt;/label&gt;&lt;input type="search" name="recherche" id="search_1" /&gt;
+    
+            &lt;h3 id="input_checkbox"&gt;Cases à cocher&lt;/h3&gt;
+            &lt;p&gt;Cochez les aliments que vous aimez manger :&lt;/p&gt;
+            &lt;input type="checkbox" name="frites" id="frites" checked /&gt; &lt;label for="frites"&gt;Frites&lt;/label&gt;&lt;br /&gt;
+            &lt;input type="checkbox" name="steak" id="steak" /&gt; &lt;label for="steak"&gt;Steak haché&lt;/label&gt;&lt;br /&gt;
+            &lt;input type="checkbox" name="epinards" id="epinards" checked /&gt; &lt;label for="epinards"&gt;Epinards&lt;/label&gt;&lt;br /&gt;
+            &lt;input type="checkbox" name="huitres" id="huitres" /&gt; &lt;label for="huitres"&gt;Huitres&lt;/label&gt;
+    
+            &lt;h3 id="input_radio"&gt;Boutons radio&lt;/h3&gt;
+            &lt;p&gt;Veuillez indiquer la tranche d'âge dans laquelle vous vous situez :&lt;/p&gt;
+            &lt;!-- les boutons radio partagent le même attribut "name" --&gt;
+            &lt;input type="radio" name="age" value="15" id="moins15" /&gt; &lt;label for="moins15"&gt;Moins de 15
+                ans&lt;/label&gt;&lt;br /&gt;
+            &lt;input type="radio" name="age" value="15-25" id="medium15-25" checked /&gt; &lt;label for="medium15-25"&gt;15-25
+                ans&lt;/label&gt;&lt;br /&gt;
+            &lt;input type="radio" name="age" value="m25-40" id="medium25-40" /&gt; &lt;label for="medium25-40"&gt;25-40
+                ans&lt;/label&gt;&lt;br /&gt;
+            &lt;input type="radio" name="age" value="40" id="plus40" /&gt; &lt;label for="plus40"&gt;Encore plus
+                vieux que ça ?!&lt;/label&gt;
+    
+            &lt;h3 id="input_select"&gt;Listes déroulantes&lt;/h3&gt;
+            &lt;p&gt;&lt;label for="villes"&gt;Dans quel ville habitez-vous ?&lt;/label&gt;&lt;/p&gt;
+            &lt;select name="ville" id="villes"&gt;
+                &lt;option value="caen"&gt;Caen&lt;/option&gt;
+                &lt;option value="paris" selected&gt;Paris&lt;/option&gt;
+                &lt;option value="bordeaux"&gt;Bordeaux&lt;/option&gt;
+                &lt;option value="nice"&gt;Nice&lt;/option&gt;
+            &lt;/select&gt;
+    
+            &lt;p&gt;&lt;label for="pays"&gt;Dans quel pays habitez-vous ?&lt;/label&gt;&lt;/p&gt;
+            &lt;select name="pays" id="pays"&gt;
+                &lt;optgroup label="Europe"&gt;
+                    &lt;option value="france"&gt;France&lt;/option&gt;
+                    &lt;option value="espagne"&gt;Espagne&lt;/option&gt;
+                    &lt;option value="italie"&gt;Italie&lt;/option&gt;
+                    &lt;option value="royaume-uni"&gt;Royaume-Uni&lt;/option&gt;
+                &lt;/optgroup&gt;
+                &lt;optgroup label="Amérique"&gt;
+                    &lt;option value="canada"&gt;Canada&lt;/option&gt;
+                    &lt;option value="etats-unis"&gt;Etats-Unis&lt;/option&gt;
+                &lt;/optgroup&gt;
+                &lt;optgroup label="Asie"&gt;
+                    &lt;option value="chine" selected&gt;Chine&lt;/option&gt;
+                    &lt;option value="japon"&gt;Japon&lt;/option&gt;
+                &lt;/optgroup&gt;
+            &lt;/select&gt;
+            &lt;p&gt;
+                &lt;input type="submit" value="Envoyer" /&gt;
+                &lt;input type="reset" value="RAZ" /&gt;
+                &lt;input type="button" value="Bouton 'neutre' à gérer en JS" onclick="alerte()"&gt;
+            &lt;/p&gt;
+        &lt;/form&gt;
+    
+        &lt;script&gt;
+            "use strict";
+            function alerte() {
+                alert("On m'a cliqué dessus !");
+            }
+        &lt;/script&gt;
+
+    </code></pre>
+
+    <script src="../../js/generalites.js"></script>
+    <script src="../../js/prism.js"></script>
+</body>
+
+</html>
