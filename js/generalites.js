@@ -12,7 +12,7 @@ for (let a of liens){
 // ********************************************************************************************************************
 // Crée un menu de navigation automatique qui est inséré parès le titre h1 de chaque page automatiquement 
 let domaine = "https://"+location.hostname;
-let navHTML = ' <nav><a href="#" onclick="creer_menu_page()"><img src="'+domaine+'/img/sommaire.png" alt="Home" height="30"></a><a href="index.html"><img src="'+domaine+'/img/racine.png" alt="Quitter" height="30"></a><a href="../index.html"><img src="'+domaine+'/img/sortie.png" alt="Menu profjahier" height="30"></a><div id="menu_page"></div></nav>';
+let navHTML = ' <nav><a href="#" onclick="creer_menu_page()"><img src="'+domaine+'/img/sommaire.png" alt="- Sommaire -" height="30"></a><a href="index.html"><img src="'+domaine+'/img/racine.png" alt="- Home -" height="30"></a><a href="../index.html"><img src="'+domaine+'/img/sortie.png" alt="- Quitter -" height="30"></a><div id="menu_page"></div></nav>';
 document.querySelector('h1').insertAdjacentHTML('afterend', navHTML);
 
 // ********************************************************************************************************************
@@ -52,7 +52,7 @@ function fleche_up(){
   let titres = document.getElementsByTagName('h2');
   for (let i in titres){
     let titre = titres[i].textContent;
-    titres[i].innerHTML = "<a href='#'><img src='../../img/up.png' alt='retour haut de page' height='20'/></a> " + titre;
+    titres[i].innerHTML = "<a href='#'><img src='"+domaine+"/img/up.png' alt='&#8593;' height='20'/></a> " + titre;
   }
 }
 

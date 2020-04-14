@@ -10,11 +10,17 @@
 
 <body>
     <h1>Jeu du Tic-Tac-Toe</h1>
-    <h4 id="status">Cliquer sur Commencer pour démarrer la partie</h4>
 
-    <canvas id="plateau"><p>Votre navigateur ne prend pas en charge les Canvas HTML5... Dommage !</p></canvas>
+    <div id="jeu">
+        <h4 id="status">Cliquer sur Commencer pour démarrer la partie</h4>
 
-    <p><button onclick="partie()" id="bouton">Commencer</button></p>
+        <canvas id="plateau">
+            <p>Votre navigateur ne prend pas en charge les Canvas HTML5... Dommage !</p>
+        </canvas>
+
+        <p><button onclick="partie()" id="bouton">Commencer</button></p>
+    </div>
+
     <script src="script.js"></script>
     <script src="../../../js/generalites.js"></script>
 </body>

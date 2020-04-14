@@ -2,10 +2,10 @@
 
 // paramètres du jeu 
 const DIM = 3;
-const VIDE = 8;
+const VIDE = 0;
 const CASE = 150;
 const RAYON = 0.7 * CASE/2;
-const JOUEURS = [{couleur : ['blue', 'bleu']} , {couleur : ['green', 'vert']}];
+const JOUEURS = new Map([[1 , ['blue', 'bleu'] ],  [-1 , ['green', 'vert']]]); // dictionnaire
 const NB_COUPS_MAX = DIM * DIM;
 //****** fin paramètres  
 
@@ -14,18 +14,17 @@ let status = document.getElementById('status');
 let bouton = document.getElementById('bouton');
 let canvas = document.querySelector('#plateau');
 let plateau = canvas.getContext('2d'); // conserve une référence (Context) à la zone graphique pour 1 graphe 2D 
-let largeur = canvas.width = CASE * DIM;
-let hauteur = canvas.height = CASE * DIM;
-let joueur = 0;
+const largeur = canvas.width = CASE * DIM;
+const hauteur = canvas.height = CASE * DIM;
+let joueur = 1;
 let grille = [];
 let nb_coups = 0;
 //******* fin variables globales 
 
 function caseCliquee(evt){
     // récupère la position du clic sur le plateau et appelle la fonction jouer si la case est libre 
-    let positionCanvas = canvas.getBoundingClientRect(); // récupère la position du canvas dans la page 
-    let x = evt.x - positionCanvas.left;
-    let y = evt.y - positionCanvas.top;
+    let x = evt.offsetX; // Position de la souris par rapport à l'élément appelant
+    let y = evt.offsetY;
     let c = Math.trunc(x / CASE);
     let l = Math.trunc(y / CASE);
     if (grille[l][c] == VIDE){
@@ -44,13 +43,13 @@ function dessinerPion(l, c, couleur){
 function jouer(l, c){
     // moteur principal du jeu 
     nb_coups++;
-    let couleur = JOUEURS[joueur].couleur[0];
+    let couleur = JOUEURS.get(joueur)[0];
     grille[l][c] = joueur; // maj de la grille
     dessinerPion(l, c, couleur);
     afficherGrille(); // retour console facultatif 
     if (gagnant()){
         canvas.removeEventListener("click", caseCliquee);
-        status.textContent = "Gagnant : joueur "+ JOUEURS[joueur].couleur[1]+" !!!";
+        status.textContent = "Gagnant : joueur "+ JOUEURS.get(joueur)[1]+" !!!";
         bouton.textContent = "Rejouer";
         bouton.setAttribute("onclick", "partie()");
         return
@@ -62,11 +61,7 @@ function jouer(l, c){
         bouton.setAttribute("onclick", "partie()");
         return
     }
-    if (joueur == 0){ // changement de joueur
-        joueur = 1;
-    } else {
-        joueur = 0;
-    }
+    joueur = - joueur; // changement de joueur
 }
 
 function partie(){
@@ -122,7 +117,7 @@ dessinerPlateau();
 function gagnant(){
 // Renvoie true si le joueur gagne (sinon false)
     // ligne gagnante ?
-    for (let l of Array(DIM).keys()){
+    for (let l =0 ; l < DIM; l++){
         let c = 0;
         while (c < DIM && grille[l][c] == joueur){
             c++;
@@ -132,7 +127,7 @@ function gagnant(){
         }
     }
     // colonne gagnante ?
-    for (let c of Array(DIM).keys()){
+    for (let c =0 ; c < DIM; c++){
         let l = 0;
         while (l < DIM && grille[l][c] == joueur){
             l++;
