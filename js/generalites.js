@@ -12,7 +12,8 @@ for (let a of liens){
 console.log(location.hostname+'/js/generalite.js');
 // ********************************************************************************************************************
 // Crée un menu de navigation automatique qui est inséré parès le titre h1 de chaque page automatiquement 
-let navHTML = ' <nav><a href="#" onclick="creer_menu_page()"><img src="../../img/sommaire.png" alt="Home" height="30"></a><a href="index.html"><img src="../../img/racine.png" alt="Quitter" height="30"></a><a href="../../index.html"><img src="../../img/sortie.png" alt="Menu profjahier" height="30"></a><div id="menu_page"></div></nav>';
+let domaine = location.hostname;
+let navHTML = ' <nav><a href="#" onclick="creer_menu_page()"><img src="'+domaine+'/img/sommaire.png" alt="Home" height="30"></a><a href="index.html"><img src="'+domaine+'/img/racine.png" alt="Quitter" height="30"></a><a href="../../index.html"><img src="'+domaine+'/img/sortie.png" alt="Menu profjahier" height="30"></a><div id="menu_page"></div></nav>';
 document.querySelector('h1').insertAdjacentHTML('afterend', navHTML);
 
 // ********************************************************************************************************************
