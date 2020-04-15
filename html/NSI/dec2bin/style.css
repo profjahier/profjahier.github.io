@@ -1,0 +1,17 @@
+main{
+    width: 600px;
+    margin: auto;
+    background-color: antiquewhite;
+    text-align: center;
+    border: solid 1px;
+}
+
+#reponse{
+    background-color: cadetblue;
+    font-size: 1.3em;
+    margin: auto;
+    width: 90%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 10px;
+}

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>Convertisseur décimal-binaire</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../../../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../../css/prism.css" />
+</head>
+
+<body>
+    <h1>Convertisseur décimal-binaire</h1>
+    <h2>Principe</h2>
+    <p>L'exercice consiste à écrire un convertisseur de nombre écrit base décimale vers la base binaire.</p>
+    <p>Ce micro projet permet de réviser la création de page Web de niveau basique, avec l'utilisation d'un mini formulaire pour interagir avec l'utilisateur. Un traitement en Javascript est nécessaire pour effectuer la conversion. Évidemment la page peut être agrémentée d'une feuille de style pour la déco de l'ensemble.</p>
+    <p>Beaucoup d'évolutions sont possibles sur cette base, notamment ajouter des convertisseurs dans d'autres bases?</p>
+
+    <h2>Voir le projet</h2>
+    <p><a href="dec2bin.html">Démarrer le convertisseur</a> pour une démo.</p>
+
+    <h2>Le code</h2>
+    <h3>Fichier HTML</h3>
+    <pre><code class="language-html">
+        &lt;!DOCTYPE html&gt;
+        &lt;html lang="fr"&gt;
+        &lt;head&gt;
+            &lt;title&gt;Convertisseur décimal - binaire&lt;/title&gt;
+            &lt;meta charset="utf-8"&gt;
+            &lt;link rel="stylesheet" type="text/css" href="style.css"&gt;
+        &lt;/head&gt;
+        &lt;body&gt;
+            &lt;h1&gt;Convertisseur décimal - binaire&lt;/h1&gt;
+            &lt;main&gt;
+                &lt;h3&gt;Entrer le nombre décimal à convertir :&lt;/h3&gt;
+                &lt;form&gt;
+                    &lt;input type="text" id="n" name="dec" value="0"&gt;&lt;br /&gt;
+                    &lt;input type="button" value="Convertir" onclick="convertir()"&gt;
+                &lt;/form&gt;
+                &lt;p id="reponse"&gt;0&lt;/p&gt;
+            &lt;/main&gt;
+        
+            &lt;script src="script.js"&gt;&lt;/script&gt;
+        &lt;/body&gt;
+        &lt;/htmL&gt;
+</code></pre>
+
+
+    <h3>Fichier Javascript</h3>
+    <pre><code class="language-javascript">
+        "use strict";
+
+        function convertir(){
+            let n = document.getElementById("n").value;
+            n = Number(n);
+            let reste;
+            let binaire = '';
+            let signe = '';
+            if (isNaN(n)){
+                alert("Entre un nombre !");
+            } else if (!(Number.isInteger(n)) || n < 0){
+                alert("Entre un entier positif !");
+            } else if (n === 0){
+                document.getElementById("reponse").textContent = '0';
+            } else{
+                while (n !== 0){
+                    reste = n % 2;
+                    binaire = reste.toString() + binaire;
+                    n = Math.trunc(n/2);
+                    console.log(n, reste, binaire);
+                }
+                document.getElementById("reponse").textContent = signe + binaire;
+            }
+        }
+        </code></pre>
+
+    <h3>Fichier CSS</h3>
+    <pre><code class="language-css">
+        main{
+            width: 600px;
+            margin: auto;
+            background-color: antiquewhite;
+            text-align: center;
+            border: solid 1px;
+        }
+        
+        #reponse{
+            background-color: cadetblue;
+            font-size: 1.3em;
+            margin: auto;
+            width: 90%;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+    </code></pre>
+
+
+    <script src="../../../js/prism.js"></script>
+    <script src="../../../js/generalites.js"></script>
+</body>
+
+</htmL>
