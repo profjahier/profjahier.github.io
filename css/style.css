@@ -30,6 +30,21 @@ h2{
  /*   font-size: 1.6em; */
 }
 
+h3{
+    color : rgb(212, 96, 50);
+    font-style: oblique;
+    margin-top: 10px;
+    margin-left: 50px;;
+    padding-bottom: 5px;
+    margin-top: 30px;
+    font-size: 1.3em;
+   /*
+    border-bottom: solid 2px rgb(212, 96, 50);
+    border-radius: 0 0 5px 0px;
+
+    */
+}
+
 code{
     background-color: black;
     color: white;
@@ -69,4 +84,18 @@ li{
 
 nav{
     margin-left: 20px;
+}
+
+table.programme{
+    border-collapse: collapse;
+}
+
+table.programme td, th{
+    border: solid 1px black;
+    width : 400px;
+    padding:5px;
+}
+table.programme th{
+    color: white;
+    background-color: cadetblue;
 }
