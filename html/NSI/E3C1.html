@@ -6,6 +6,18 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="../../css/style.css" />
     <script src="../../js/mathjax_config_load.js" async></script>
+
+    <style>
+        table.collapse {
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        table.collapse td {
+            border: solid 1px;
+            padding: 5px;
+        }
+    </style>
 </head>
 
 <body>
@@ -1354,14 +1366,14 @@
             </ol>
             <div class="correctionE3C">
                 <p>Les possibilités pour importer des fonctions de certains modules sont :
-                    <ul>
-                        <li>import math : import du module entier : accès à la fonction sqrt sous la forme math.sqrt
-                        </li>
-                        <li>from math import sqrt : accès directement à la fonction sqrt par son nom</li>
-                        <li>import math as mt : accès à la fonction sqrt sous la forme mt.sqrt</li>
-                        <li>from math import sqrt as racine : accès à la fonction sqrt par le nom racine</li>
-                    </ul>
                 </p>
+                <ul>
+                    <li>import math : import du module entier : accès à la fonction sqrt sous la forme math.sqrt
+                    </li>
+                    <li>from math import sqrt : accès directement à la fonction sqrt par son nom</li>
+                    <li>import math as mt : accès à la fonction sqrt sous la forme mt.sqrt</li>
+                    <li>from math import sqrt as racine : accès à la fonction sqrt par le nom racine</li>
+                </ul>
             </div>
         </li>
 
@@ -1463,7 +1475,7 @@
                         if L[i] &gt; max:
                             max = L[i]
                     return max</pre>
-                On note \( n \) la taille de la liste.
+                <p>On note \( n \) la taille de la liste.
                 Quelle est la complexité en nombre d’opérations de l’algorithme ?</p>
             <ol class="E3C">
                 <li>constante, c’est-à-dire ne dépend pas de \(n\)</li>
@@ -1579,7 +1591,7 @@
                         if L[i] &gt; max:
                             max = L[i]
                     return max</pre>
-                On note \( n \) la taille de la liste.
+                <p>On note \( n \) la taille de la liste.
                 Quelle est la complexité en nombre d’opérations de l’algorithme ?</p>
             <ol class="E3C">
                 <li>constante, c’est-à-dire ne dépend pas de \(n\)</li>
@@ -1611,17 +1623,6 @@
                 <p>Par ailleurs, s contient la somme des valeurs de i pour chacune des itérations de i = 1 jusqu'à i =
                     4. Donc s = 1 + 2 + 3 + 4 = 10</p>
                 <p>On peut aussi écrire les valeurs successives de s et i (avant et après chaque itération):</p>
-                <style>
-                    table.collapse {
-                        border-collapse: collapse;
-                        text-align: center;
-                    }
-
-                    table.collapse td {
-                        border: solid 1px;
-                        padding: 5px;
-                    }
-                </style>
                 <table class="collapse">
                     <tr>
                         <td>s avant</td>
