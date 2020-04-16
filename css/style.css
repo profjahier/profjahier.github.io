@@ -6,6 +6,7 @@ body{
     background-color: rgb(238, 231, 222);
     color: rgb(6, 11, 41);
     padding: 25px;
+    width:95%;
 }
 
 h1{
@@ -98,4 +99,34 @@ table.programme td, th{
 table.programme th{
     color: white;
     background-color: cadetblue;
+}
+
+
+ol.E3C li {
+    list-style-type: upper-alpha;
+    margin-top: 7px;
+    padding-left: 15px;
+}
+ol.E3C:before {
+    content: "Réponses";
+    font-weight: bold;
+}
+
+ul.E3C > li{
+    list-style-type: none;
+    margin-bottom: 50px;
+}
+
+li.OK {
+    background-color: rgb(212, 96, 50);
+    width:20%;
+    padding:2px;
+    border-radius: 3px;;
+}
+
+.correctionE3C{
+    background-color: rgb(212, 96, 50);
+    padding-left:15px;
+    padding-right:15px;
+    padding : 3px 20px 3px 20px;
 }

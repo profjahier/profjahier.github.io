@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>Profjahier-Algo glouton</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/prism.css" />
+    <script src="../../js/mathjax_config_load.js" async></script>
+</head>
+
+<body>
+    <h1>Sujet d'entrainement E3C n°1</h1>
+    <h2>Thème A : types de base</h2>
+    <h3>Les questions brutes</h3>
+    <ul class="E3C">
+        <li><strong>Question A.1</strong>
+            <p>Combien d'entiers positifs ou nuls (entiers non signés) peut-on représenter en machine sur 32 bits ?</p>
+            <ol class="E3C">
+                <li>\( 2 ^{32} - 1 \)</li>
+                <li>\( 2 ^{32} \)</li>
+                <li>\( 2 \times {32} \)</li>
+                <li>\( 32^2 \)</li>
+            </ol>
+        </li>
+        <li><strong>Question A.2</strong>
+            <p>Quel est un avantage du codage UTF8 par rapport au codage ASCII ?</p>
+            <ol class="E3C">
+                <li>il permet de coder un caractère sur un octet au lieu de deux</li>
+                <li>il permet de coder les majuscules</li>
+                <li>il permet de coder tous les caractères</li>
+                <li>il permet de coder différentes polices de caractères</li>
+            </ol>
+        </li>
+        <li><strong>Question A.3</strong>
+            <p>Quelle est la représentation en binaire signé en complément à 2 de l’entier -1 sur un octet ?</p>
+            <ol class="E3C">
+                <li>1000 0000</li>
+                <li>1000 0001</li>
+                <li>1111 1110</li>
+                <li>1111 1111</li>
+            </ol>
+        </li>
+        <li><strong>Question A.4</strong>
+            <p>Quelle est la plage des valeurs entières (positifs ou négatifs) que l'on peut coder sur un octet (8 bits)
+                en complément à 2 ?</p>
+            <ol class="E3C">
+                <li>-127 à 128</li>
+                <li>-128 à 127</li>
+                <li>-255 à 128</li>
+                <li>-256 à 127</li>
+            </ol>
+        </li>
+        <li><strong>Question A.5</strong>
+            <p>Dans quel système de numération 3F5 représente-t-il un nombre entier ?</p>
+            <ol class="E3C">
+                <li>binaire (base 2)</li>
+                <li>octal (base 8)</li>
+                <li>décimal (base 10)</li>
+                <li>hexadécimal (base 16)</li>
+            </ol>
+        </li>
+        <li><strong>Question A.6</strong>
+            <p>Parmi les quatre propositions, quelle est celle qui correspond au résultat de l'addition en écriture
+                binaire
+                1101 1001 + 11 0110 ?</p>
+            <ol class="E3C">
+                <li>1000 1111</li>
+                <li>10 0000 1111</li>
+                <li>1 0000 1111</li>
+                <li>1 1000 0111</li>
+            </ol>
+        </li>
+    </ul>
+
+    <h3>Les questions corrigées</h3>
+    <ul class="E3C">
+        <li><strong>Question A.1</strong>
+            <p>Combien d'entiers positifs ou nuls (entiers non signés) peut-on représenter en machine sur 32 bits ?</p>
+            <ol class="E3C">
+                <li>\( 2 ^{32} - 1 \)</li>
+                <li class="OK">\( 2 ^{32} \)</li>
+                <li>\( 2 \times {32} \)</li>
+                <li>\( 32^2 \)</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>Avec \( n \) bits, on peut représenter tous les nombres entiers positifs ou nuls entre 0 et \(
+                    2^{n-1} \), soit \( 2^{n} \) nombres au total.</p>
+                <p>Par exemple, avec 3 bits, on peut représenter les \( 2^3 = 8 \) nombres suivants : </p>
+                <table style="text-align: center;">
+                    <tr>
+                        <th>décimal</th>
+                        <th>binaire</th>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>000</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>001</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>010</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>011</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>101</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>110</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>111</td>
+                    </tr>
+                </table>
+                <p>Télécharger le <a href="../../docs/P01a-donnees-types_base-entier_positif.pdf">cours sur la représentation des entiers positifs</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question A.2</strong>
+            <p>Quel est un avantage du codage UTF8 par rapport au codage ASCII ?</p>
+            <ol class="E3C">
+                <li>il permet de coder un caractère sur un octet au lieu de deux</li>
+                <li>il permet de coder les majuscules</li>
+                <li lcass="OK">il permet de coder tous les caractères</li>
+                <li>il permet de coder différentes polices de caractères</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>L'encodage des caracèteres UTF8 se fait sur 1 à 4 octets et permet de coder l'ensemble des caractères
+                    existants. L'ASCII pur est limité à 7 bits et permet d'encoder seulement \( 2^7 = 128 \) caractères.
+                    L'ASCII étendu (il en existe plusieurs) peut encoder 256 caractères sur un octet.</p>
+                    <p>Télécharger le <a href="../../docs/P01e-donnees-types_base-texte.pdf">cours sur la représentation des textes</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question A.3</strong>
+            <p>Quelle est la représentation en binaire signé en complément à 2 de l’entier -1 sur un octet ?</p>
+            <ol class="E3C">
+                <li>1000 0000</li>
+                <li>1000 0001</li>
+                <li>1111 1110</li>
+                <li class="OK">1111 1111</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>Le nombre 1 (positif) s'écrit sur 8 bits comme 0000 0001. <br/>
+                Son complément à 1 s'obtient en "inversant" tous les bits : 1111 1110.<br/>
+            Et son complément à 2s'obtient en ajoutant 1 au complément à 1 : 1111 1111.</p>
+            <p>Pour un nombre aussi simple, on peut aussi directement se demander quel est le nombre qui lorsqu'on l'ajoute à 1 donne 256 \(\left(2^8 \right)\), c'est donc 255, soit 1111 1111 en binaire.</p>
+                    <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la représentation des entiers relatifs</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question A.4</strong>
+            <p>Quelle est la plage des valeurs entières (positifs ou négatifs) que l'on peut coder sur un octet (8 bits)
+                en complément à 2 ?</p>
+            <ol class="E3C">
+                <li>-127 à 128</li>
+                <li class="OK">-128 à 127</li>
+                <li>-255 à 128</li>
+                <li>-256 à 127</li>
+            </ol>
+            <div class="correctionE3C">
+                <p><p>Avec \( n \) bits, on peut représenter tous les nombres entiers realtifs entre  \( -
+                    2^n \) et \( 2^{n-1} \) avec la technique du complément à \( \left( 2^n \right) \). Tous les nombres commençant par 0 sont positifs (ou nul) et ceux commençant par 1 sont négatifs.</p>
+                <p>Par exemple, avec 3 bits, on peut représenter les \( 2^3 = 8 \) nombres relatifs suivants : </p>
+                <table style="text-align: center;">
+                    <tr>
+                        <th>décimal</th>
+                        <th>binaire</th>
+                    </tr>
+                    <tr>
+                        <td>-4</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td>-3</td>
+                        <td>101</td>
+                    </tr>
+                    <tr>
+                        <td>-2</td>
+                        <td>110</td>
+                    </tr>
+                    <tr>
+                        <td>-1</td>
+                        <td>111</td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>000</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>001</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>010</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>011</td>
+                    </tr>
+                </table>
+                <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la représentation des entiers relatifs</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question A.5</strong>
+            <p>Dans quel système de numération 3F5 représente-t-il un nombre entier ?</p>
+            <ol class="E3C">
+                <li>binaire (base 2)</li>
+                <li>octal (base 8)</li>
+                <li>décimal (base 10)</li>
+                <li>hexadécimal (base 16)</li>
+            </ol>
+        </li>
+        <li><strong>Question A.6</strong>
+            <p>Parmi les quatre propositions, quelle est celle qui correspond au résultat de l'addition en écriture
+                binaire
+                1101 1001 + 11 0110 ?</p>
+            <ol class="E3C">
+                <li>1000 1111</li>
+                <li>10 0000 1111</li>
+                <li>1 0000 1111</li>
+                <li>1 1000 0111</li>
+            </ol>
+        </li>
+    </ul>
+    <h2>Thème B : types construits</h2>
+    <ul class="E3C">
+        <li><strong>Question B.1</strong>
+            <p>Combien d'entiers positifs ou nuls (entiers non signés) peut-on représenter en machine sur 32 bits ?</p>
+            <ol class="E3C">
+                <li> \( 2 ^{32} - 1 \)</li>
+                <li> \( 2 ^{32} \)</li>
+                <li> \( 2 \times {32} \)</li>
+                <li> \( 32^2 \)</li>
+            </ol>
+        </li>
+        <li><strong>Question B.2</strong>
+            <p>Quel est un avantage du codage UTF8 par rapport au codage ASCII ?</p>
+            <ol class="E3C">
+                <li> il permet de coder un caractère sur un octet au lieu de deux</li>
+                <li> il permet de coder les majuscules</li>
+                <li> il permet de coder tous les caractères</li>
+                <li> il permet de coder différentes polices de caractères</li>
+            </ol>
+        </li>
+        <li><strong>Question B.3</strong>
+            <p>Quel est un avantage du codage UTF8 par rapport au codage ASCII ?</p>
+            <ol class="E3C">
+                <li> il permet de coder un caractère sur un octet au lieu de deux</li>
+                <li> il permet de coder les majuscules</li>
+                <li> il permet de coder tous les caractères</li>
+                <li> il permet de coder différentes polices de caractères</li>
+            </ol>
+        </li>
+        <li><strong>Question B.4</strong>
+            <p>Quel est un avantage du codage UTF8 par rapport au codage ASCII ?</p>
+            <ol class="E3C">
+                <li> il permet de coder un caractère sur un octet au lieu de deux</li>
+                <li> il permet de coder les majuscules</li>
+                <li> il permet de coder tous les caractères</li>
+                <li> il permet de coder différentes polices de caractères</li>
+            </ol>
+        </li>
+        <li><strong>Question B.5</strong>
+            <p>Quel est un avantage du codage UTF8 par rapport au codage ASCII ?</p>
+            <ol class="E3C">
+                <li> il permet de coder un caractère sur un octet au lieu de deux</li>
+                <li> il permet de coder les majuscules</li>
+                <li> il permet de coder tous les caractères</li>
+                <li> il permet de coder différentes polices de caractères</li>
+            </ol>
+        </li>
+        <li><strong>Question B.6</strong>
+            <p>Quel est un avantage du codage UTF8 par rapport au codage ASCII ?</p>
+            <ol class="E3C">
+                <li> il permet de coder un caractère sur un octet au lieu de deux</li>
+                <li> il permet de coder les majuscules</li>
+                <li> il permet de coder tous les caractères</li>
+                <li> il permet de coder différentes polices de caractères</li>
+            </ol>
+        </li>
+    </ul>
+
+    <h2>Téléchargement</h2>
+    <p>Télécharger le <a href="../../docs/Q01-SUJET.pdf">sujet n°1</a> et son <a
+            href="../../docs/Q01-CORRIGE.pdf">corrigé</a>.</p>
+
+    <div id="sujet-origine">
+        <h2>Sujet d'origine brut</h2>
+
+
+
+
+
+
+        Thème B : types construits
+        Question B.1
+        On définit : L = [1,2,3,4,5,6]
+        Quelle est la valeur de L[3] ?
+        Réponses
+        A [1,2,3]
+        B 3
+        C 4
+        D [4,5,6]
+
+        Question B.2
+        On définit : T = [[1,2,3], [4,5,6], [7,8,9]]
+        Laquelle des expressions suivantes a pour valeur 7 ?
+        Réponses
+        A T[3,1]
+        B T[3][1]
+        C T[2,0]
+        D T[2][0]
+
+        Question B.3
+        Quelle est la valeur de l'expression [(i,i+1) for i in range(2)] ?
+        Réponses
+        A [0,1,1,2]
+        B [(1,2),(2,3)]
+        C [(0,1),(1,2)]
+        D [[0,1],[1,2]]
+
+        Question B.4
+        Quelle est l'expression qui a pour valeur la liste [1,4,9,16,25,36] ?
+        Réponses
+        A { n*n for n in range(1,7) }
+        B { n*n for n in range(6) }
+        C [ n*n for n in range(1,7) ]
+        D [ n*n for n in range(6) ]
+
+        Question B.5
+        Si la variable note est définie par  note = ["do","ré","mi","fa","sol","la","si"] alors :
+        Réponses
+        A l'index de "sol" est 5
+        B l'index de note est 0
+        C l'index de "si" est 7
+        D l'index de "mi" est 2
+
+        Question B.6
+        On définit une grille G remplie de 0, sous la forme d'une liste de listes, où toutes les sous-listes ont le même
+        nombre d'éléments.
+        G = [ [0, 0, 0, …, 0],
+        [0, 0, 0, …, 0],
+        [0, 0, 0, …, 0],
+        ……
+        [0, 0, 0, …, 0] ]
+        On appelle hauteur de la grille le nombre de sous-listes contenues dans G et largeur de la grille le nombre
+        d'éléments dans chacune de ces sous-listes. Comment peut-on les obtenir ?
+        Réponses
+        A hauteur = len(G[0])
+        largeur = len(G)
+
+        B hauteur = len(G)
+        largeur = len(G[0])
+
+        C hauteur = len(G[0])
+        largeur = len(G[1])
+
+        D hauteur = len(G[1])
+        largeur = len(G[0])
+
+
+
+
+
+        Thème C : traitement de données en tables
+        Question C.1
+        On définit :
+        T = [ {'fruit': 'banane', 'nombre': 25}, {'fruit': 'orange', 'nombre': 124},
+        {'fruit': 'pomme', 'nombre': 75}, {'fruit': 'kiwi', 'nombre': 51} ]
+        Quelle expression a-t-elle pour valeur le nombre de pommes ?
+        Réponses
+        A T[2]['nombre']
+        B T[2,'nombre']
+        C T[3]['nombre']
+        D T[3,'nombre']
+
+
+        Question C.2
+        Que réalise l'instruction suivante :
+        mon_fichier = open("exemple.txt", "r")
+        Réponses
+        A Elle permet d’ouvrir le fichier "exemple.txt" en mode lecture si le fichier est dans le même dossier que le
+        fichier du programme Python comportant cette instruction.
+        B Elle permet d’ouvrir le fichier "exemple.txt" en mode lecture même si le fichier n’est pas dans le même
+        dossier que le fichier du programme Python comportant cette instruction.
+        C Elle permet d’ouvrir le fichier "exemple.txt" en mode écriture si le fichier est dans le même dossier que le
+        fichier du programme Python comportant cette instruction.
+        D Elle permet d’ouvrir le fichier "exemple.txt" en mode écriture même si le fichier n’est pas dans le même
+        dossier que le fichier du programme Python comportant cette instruction.
+
+        Question C.3
+        Laquelle de ces affirmations est vraie ?
+        Réponses
+        A on ne peut accéder au contenu d'un fichier CSV que par l'intermédiaire d'un programme Python
+        B CSV est un format de chiffrement des données
+        C le format CSV a été conçu pour assurer la confidentialité d'une partie du code d'un programme
+        D les fichiers CSV sont composés de données séparées par des caractères comme des virgules
+
+        Question C.4
+        On considère la table suivante :
+        t = [ {'type': 'marteau', 'prix': 17, 'quantité': 32},
+        {'type': 'scie', 'prix': 24, 'quantité': 3},
+        {'type': 'tournevis', 'prix': 8, 'quantité': 45} ]
+        Quelle expression permet d'obtenir la quantié de scies ?
+        Réponses
+        A t[2]['quantité']
+        B t[1]['quantité']
+        C t['quantité'][1]
+        D t['scies']['quantité']
+
+        Question C.5
+        On considère la liste de p-uplets suivante :
+        table = [ ('Grace', 'Hopper', 'F', 1906),
+        ('Tim', 'Berners-Lee', 'H', 1955),
+        ('Ada', 'Lovelace', 'F', 1815),
+        ('Alan', 'Turing', 'H', 1912) ]
+        où chaque p-uplet représente un informaticien ou une informaticienne célèbre ; le premier élément est son
+        prénom, le deuxième élément son nom, le troisième élément son sexe (‘H’ pour un homme, ‘F’ pour une femme) et le
+        quatrième élément son année de naissance (un nombre entier entre 1000 et 2000).
+        On définit une fonction :
+        def fonctionMystere(table):
+        mystere = []
+        for ligne in table:
+        if ligne[2] == 'F':
+        mystere.append(ligne[1])
+        return mystere
+        Que vaut fonctionMystere(table)?
+        Réponses
+        A [‘Grace’, ‘Ada’]
+        B [('Grace', 'Hopper', 'F', 1906), ('Ada', 'Lovelace', 'F', 1815)]
+        C [‘Hopper’, ’Lovelace’]
+        D []
+
+        Question C.6
+        Quelle est la valeur de la variable table à la fin de l'exécution du script suivant :
+        table = [[1, 2, 3], [1, 2, 3], [1, 2, 3], [1, 2, 3]]
+        table [1][2] = 5
+        Réponses
+        A [[1, 5, 3], [1, 2, 3], [1, 2, 3], [1, 2, 3]]
+        B [[1, 2, 3], [5, 2, 3], [1, 2, 3], [1, 2, 3]]
+        C [[1, 2, 3], [1, 2, 5], [1, 2, 3], [1, 2, 3]]
+        D [[1, 2, 3], [1, 2, 3], [1, 2, 3], [1, 5, 3]]
+
+
+        Thème D : interactions entre l'homme et la machine sur le Web
+        Question D.1
+        Quel est le code HTML correct pour créer un hyperlien vers le site Eduscol ?
+        Réponses
+        A &lt;a url="https://www.eduscol.education.fr/"&gt; site Eduscol &lt;/a&gt;
+        B &lt;a name="https://www.eduscol.education.fr/"&gt; site Eduscol &lt;/a&gt;
+        C &lt;a href="https://www.eduscol.education.fr/"&gt; site Eduscol &lt;/a&gt;
+        D &lt;a&gt; https://www.eduscol.education.fr/ &lt;/a&gt; site Eduscol
+
+        Question D.2
+        Lors de la consultation d’une page HTML, contenant un bouton auquel est associée la fonction javascript
+        suivante, que se passe-t-il quand on clique sur ce bouton ?
+        function action(event) {
+        this.style.color = "red"
+        }
+        Réponses
+        A le pointeur de souris devient rouge lorsqu'il arrive sur le bouton
+        B le texte du bouton devient rouge
+        C le texte du bouton est remplacé par le mot "red"
+        D le texte de la page passe en rouge
+
+        Question D.3
+        Quelle balise HTML permet de créer des liens entre pages ?
+        Réponses
+        A &lt;r&gt;
+        B &lt;l&gt;
+        C &lt;link&gt;
+        D &lt;a&gt;
+
+        Question D.4
+        Quelle est la fonction principale d’un fichier CSS ?
+        Réponses
+        A Définir le style d’une page web
+        B Assurer l’interaction entre une page web et l’utilisateur
+        C Créer une page web dynamique
+        D Créer un bouton dans une page web
+
+        Question D.5
+        Quelle URL parmi les suivantes témoigne que l'échange entre le navigateur et le serveur est chiffré ?
+        Réponses
+        A http://www.mabanque.com/
+        B http://www.mabanque.fr/
+        C https://www.mabanque.fr/
+        D http://secure.mabanque.fr/
+
+        Question D.6
+        Quel langage est interprété ou exécuté côté serveur ?
+        Réponses
+        A JavaScript
+        B PHP
+        C HTML
+        D CSS
+        Thème E : architectures matérielles et systèmes d'exploitation
+        Question E.1
+        Dans la console Linux, quelle commande faut-il exécuter pour obtenir la documentation sur la commande pwd ?
+        Réponses
+        A man pwd
+        B cd pwd
+        C mkdir pwd
+        D ls pwd
+
+        Question E.2
+        Dans un établissement scolaire, tous les ordinateurs sont reliés au réseau local par l'intermédiaire de câbles
+        Ethernet. Il n'existe pas de liaisons sans fil. Dans chaque salle d'ordinateurs, les machines sont reliées à un
+        commutateur. Chaque commutateur est relié par un câble jusqu'à la salle où se situe le serveur contrôleur de
+        domaine et la passerelle internet (routeur).
+        Vous êtes connectés sur un ordinateur d'une de ces salles d'ordinateurs avec votre classe. Tout à coup, plus
+        personne n'a accès à Internet, mais toutes les ressources locales de l'établissement sont toujours accessibles.
+        Parmi ces quatre propositions, laquelle est la plus vraisemblable ?
+        Réponses
+        A Un de vos camarades a débranché accidentellement le câble Ethernet de votre machine.
+        B Le routeur de l'étage est indisponible (il a été débranché ou est en panne).
+        C Le commutateur de la salle est indisponible (il a été débranché ou est en panne).
+        D La passerelle internet de l'établissement est indisponible (elle a été débranchée ou est en panne).
+
+        Question E.3
+        Lequel de ces périphériques n'est pas un périphérique d'entrée ?
+        Réponses
+        A le moniteur
+        B le clavier
+        C la souris
+        D le scanner
+
+        Question E.4
+        Dans la console Linux, étant positionné dans le répertoire /home/marcelH/travail, quelle commande faut-il
+        exécuter pour remonter dans l'arborescence vers le répertoire /home/marcelH ?
+        Réponses
+        A cd .
+        B cd ..
+        C cd ...
+        D cd /../.
+
+        Question E.5
+        Dans un système Linux, on dispose d'un répertoire racine contenant deux répertoires documents et sauvegardes. On
+        se trouve dans le répertoire documents où figure un fichier NSI.txt.
+        Quelle commande permet de créer une copie nommée NSI2.txt de ce fichier dans le répertoire sauvegardes ?
+        Réponses
+        A cp NSI.txt NSI2.txt
+        B cp NSI.txt sauvegardes/NSI2.txt
+        C cp NSI.txt ../NSI2.txt
+        D cp NSI.txt ../sauvegardes/NSI2.txt
+
+        Question E.6
+        La commande suivante vient d'être exécutée en ligne de commande sous Linux :
+        cp /users/luc/interro.txt ./
+        Que réalise cette commande ?
+        Réponses
+        A copie du fichier users vers le répertoire luc
+        B copie du fichier interro.txt vers le répertoire luc
+        C copie du fichier interro.txt vers le répertoire courant
+        D copie du fichier interro.txt vers le répertoire users
+
+
+
+        Thème F : langages et programmation
+        Question F.1
+        La documentation de la bibliothèque random de Python précise :
+        random.randint(a, b)
+        Renvoie un entier aléatoire N tel que a &lt;= N &lt;= b.
+        Quelle est l’expression Python permettant de simuler le tirage d’un dé à 6 faces après avoir exécuté import
+        random ?
+        Réponses
+        A random.randint(6)
+        B random.randint(1,6)
+        C random.randint(1,7)
+        D random.randint(0,6)
+
+        Question F.2
+        On a écrit une fonction qui prend en paramètre une liste non vide et qui renvoie son plus grand élément. Combien
+        de tests faudrait-il écrire pour garantir que la fonction donne un résultat correct pour toute liste ?
+
+        Réponses
+        A deux tests : pour une liste à un élément et pour une liste à deux éléments ou plus
+        B deux tests : pour le cas où le plus grand élément est en début de liste, et pour le cas où le plus grand
+        élément n’est pas en début de liste
+        C trois tests : pour une liste vide, pour une liste à un élément, et pour une liste à deux éléments ou plus
+        D il faudrait écrire une infinité de tests : on ne peut pas prouver que cette fonction est correcte, simplement
+        en la testant
+
+        Question F.3
+        La fonction Python suivante ne calcule pas toujours correctement le résultat de pour des arguments entiers.
+        Parmi les tests suivants, lequel va permettre de détecter l’erreur ?
+        def puissance (x,y):
+        p = x
+        for i in range (y - 1):
+        p = p * x
+        return p
+        Réponses
+        A puissance(2,0)
+        B puissance(2,1)
+        C puissance(2,2)
+        D puissance(2,10)
+
+        Question F.4
+        En Python, quelle est la méthode pour charger la fonction sqrt du module math ?
+        Réponses
+        A using math.sqrt
+        B #include math.sqrt
+        C from math include sqrt
+        D from math import sqrt
+
+
+        Question F.5
+        On définit deux fonctions :
+        def f(x):
+        y = 2*x + 1
+        return y
+
+        def calcul(x):
+        y = x - 1
+        return f(y)
+        Quelle est la valeur renvoyée par l'appel calcul(5) ?
+        Réponses
+        A 4
+        B 9
+        C 11
+        D 19
+
+        Question F.6
+        Avec la définition de fonction capital_double suivante, que peut-on toujours affirmer à propos du résultat n
+        retourné par la fonction ?
+        def capital_double (capital, interet):
+        montant = capital
+        n = 0
+        while montant &lt;= 2 * capital:
+        montant = montant + interet
+        n = n + 1
+        return n
+        Réponses
+        A n == capital / interet
+        B capital * n * interet &gt; 2 * capital
+        C capital + n * interet &gt; 2 * capital
+        D n == 2 * capital / interet
+
+
+
+        Thème G : algorithmique
+        Question G.1
+        L'algorithme suivant permet de calculer la somme des N premiers entiers, où N est un nombre entier donné :
+        i =0
+        somme =0
+        while i &lt; N :
+        i = i +1
+        somme = somme + i
+        Un invariant de boucle de cet algorithme est le suivant :
+        Réponses
+        A somme = 0 + 1 + 2 + ... + i    et i &lt; N
+        B somme = 0 + 1 + 2 + ... + N    et i &lt; N
+        C somme = 0 + 1 + 2 + ... + i    et i &lt; N+1
+        D somme = 0 + 1 + 2 + ... + N    et i &lt; N+1
+
+        Question G.2
+        Quelle est la valeur de c à la fin de l'exécution du code suivant :
+        L = [1,2,3,4,1,2,3,4,0,2]
+        c = 0
+        for k in L:
+        if k == L[1]:
+        c = c+1
+        Réponses
+        A 0
+        B 2
+        C 3
+        D 10
+
+        Question G.3
+        On considère la fonction Python suivante, qui prend en argument une liste L et renvoie le maximum des éléments
+        de la liste :
+        def rechercheMaximum(L):
+        max = L[0]
+        for i in range(len(L)):
+        if L[i] &gt; max:
+        max = L[i]
+        return max
+        On note la taille de la liste.
+        Quelle est la complexité en nombre d’opérations de l’algorithme ?
+        Réponses
+        A constante, c’est-à-dire ne dépend pas de
+        B linéaire, c’est-à-dire de l’ordre de
+        C quadratique, c’est-à-dire de l’ordre de
+        D cubique, c’est-à-dire de l’ordre de
+
+
+        Question G.4
+        Quelle est la valeur du couple (s,i) à la fin de l'exécution du script suivant ?
+        s = 0
+        i = 1
+        while i &lt; 5:
+        s = s + i
+        i = i + 1
+        Réponses
+        A (4, 5)
+        B (10, 4)
+        C (10, 5)
+        D (15, 5)
+
+        Question G.5
+        Pour trier par sélection une liste de 2500 entiers, le nombre de comparaisons nécessaires à l’algorithme est de
+        l’ordre de :
+        Réponses
+        A
+        B
+        C
+        D
+
+        Question G.6
+        En utilisant une recherche dichotomique, combien faut-il de comparaisons avec l'opérateur == pour trouver une
+        valeur dans un tableau trié de 1000 nombres, dans le pire des cas ?
+        Réponses
+        A 3
+        B 10
+        C 1000
+        D 1024
+
+
+    </div>
+
+
+    <script src="../../js/generalites.js"></script>
+    <script src="../../js/prism.js"></script>
+</body>
+
+</html>
