@@ -86,10 +86,10 @@
                 <p>Avec \( n \) bits, on peut représenter tous les nombres entiers positifs ou nuls entre 0 et \(
                     2^{n-1} \), soit \( 2^{n} \) nombres au total.</p>
                 <p>Par exemple, avec 3 bits, on peut représenter les \( 2^3 = 8 \) nombres suivants : </p>
-                <table style="text-align: center;">
+                <table style="text-align: center;" class="collapse">
                     <tr>
-                        <th>décimal</th>
-                        <th>binaire</th>
+                        <td>décimal</td>
+                        <td>binaire</td>
                     </tr>
                     <tr>
                         <td>0</td>
@@ -177,10 +177,10 @@
                         2^n \) et \( 2^{n-1} \) avec la technique du complément à \( \left( 2^n \right) \). Tous les
                         nombres commençant par 0 sont positifs (ou nul) et ceux commençant par 1 sont négatifs.</p>
                     <p>Par exemple, avec 3 bits, on peut représenter les \( 2^3 = 8 \) nombres relatifs suivants : </p>
-                    <table style="text-align: center;">
+                    <table style="text-align: center;" class="collapse">
                         <tr>
-                            <th>décimal</th>
-                            <th>binaire</th>
+                            <td>décimal</td>
+                            <td>binaire</td>
                         </tr>
                         <tr>
                             <td>-4</td>
@@ -425,8 +425,10 @@
                 <li>[4,5,6]</li>
             </ol>
             <div class="correctionE3C">
-                <p>On accède à un élément de liste par son indice noté entre crochets. Attention : le 1er élément a l'indice 0 !</p>
-                <p>Télécharger le <a href="../../docs/P02b-donnees-types_construits-tableaux.pdf">cours sur les tableaux</a>.</p>
+                <p>On accède à un élément de liste par son indice noté entre crochets. Attention : le 1er élément a
+                    l'indice 0 !</p>
+                <p>Télécharger le <a href="../../docs/P02b-donnees-types_construits-tableaux.pdf">cours sur les
+                        tableaux</a>.</p>
             </div>
         </li>
         <li><strong>Question B.2</strong>
@@ -439,9 +441,11 @@
                 <li class="OK">T[2][0]</li>
             </ol>
             <div class="correctionE3C">
-                <p>On accède à un élément de liste par son indice noté entre crochets. Attention : le 1er élément a l'indice 0 !</p>
+                <p>On accède à un élément de liste par son indice noté entre crochets. Attention : le 1er élément a
+                    l'indice 0 !</p>
                 <p>Ici T[2] vaut [7, 8, 9] et donc T[2][0] vaut 7.</p>
-                <p>Télécharger le <a href="../../docs/P02b-donnees-types_construits-tableaux.pdf">cours sur les tableaux</a>.</p>
+                <p>Télécharger le <a href="../../docs/P02b-donnees-types_construits-tableaux.pdf">cours sur les
+                        tableaux</a>.</p>
             </div>
         </li>
 
@@ -454,8 +458,11 @@
                 <li>[[0,1],[1,2]]</li>
             </ol>
             <div class="correctionE3C">
-                <p>On utilise ici la création de liste en compréhension. Les éléments créés sont des tuples (notés entre parenthèses). L'étendue de l'expression de Python range(n) crée un itérable des nombres 0 à n-1 (ici range(2) --> (0, 1)).</p>
-                <p>Télécharger le <a href="../../docs/P02b-donnees-types_construits-tableaux.pdf">cours sur les tableaux</a>.</p>
+                <p>On utilise ici la création de liste en compréhension. Les éléments créés sont des tuples (notés entre
+                    parenthèses). L'étendue de l'expression de Python range(n) crée un itérable des nombres 0 à n-1 (ici
+                    range(2) --> (0, 1)).</p>
+                <p>Télécharger le <a href="../../docs/P02b-donnees-types_construits-tableaux.pdf">cours sur les
+                        tableaux</a>.</p>
             </div>
         </li>
         <li><strong>Question B.4</strong>
@@ -467,8 +474,11 @@
                 <li>[ n*n for n in range(6) ]</li>
             </ol>
             <div class="correctionE3C">
-                <p>On doit utiliser ici la création de liste en compréhension, notée entre crochets. L'étendue de l'expression de Python range(a, b) crée un itérable des nombres de a à b-1 (ici range(1, 7) --> (1, 2, 3, 4, 5, 6)). Les éléments retenus sont biens les carrés des nmbres de 1 à 6.</p>
-                <p>Télécharger le <a href="../../docs/P02b-donnees-types_construits-tableaux.pdf">cours sur les tableaux</a>.</p>
+                <p>On doit utiliser ici la création de liste en compréhension, notée entre crochets. L'étendue de
+                    l'expression de Python range(a, b) crée un itérable des nombres de a à b-1 (ici range(1, 7) --> (1,
+                    2, 3, 4, 5, 6)). Les éléments retenus sont biens les carrés des nmbres de 1 à 6.</p>
+                <p>Télécharger le <a href="../../docs/P02b-donnees-types_construits-tableaux.pdf">cours sur les
+                        tableaux</a>.</p>
             </div>
         </li>
 
@@ -481,8 +491,10 @@
                 <li class="OK">l'index de "mi" est 2</li>
             </ol>
             <div class="correctionE3C">
-                <p>On accède à un élément de liste par son indice (ou index). Attention : le 1er élément a l'indice 0 ! "mi" est le 3ème élément de la liste, et donc son indice est bien 2.</p>
-                <p>Télécharger le <a href="../../docs/P02b-donnees-types_construits-tableaux.pdf">cours sur les tableaux</a>.</p>
+                <p>On accède à un élément de liste par son indice (ou index). Attention : le 1er élément a l'indice 0 !
+                    "mi" est le 3ème élément de la liste, et donc son indice est bien 2.</p>
+                <p>Télécharger le <a href="../../docs/P02b-donnees-types_construits-tableaux.pdf">cours sur les
+                        tableaux</a>.</p>
             </div>
         </li>
         <li><strong>Question B.6</strong>
@@ -507,8 +519,11 @@
                     largeur = len(G[0])</li>
             </ol>
             <div class="correctionE3C">
-                <p>len(liste) donne la taille (le nombre d'éléments) d'une liste. Le nombre de sous-listes de G est donc len(G), soit sa hauteur. Pour avoir le nombre d'éléments d"une sous-liste, on peut par exemple accéder à la 1ere sous-liste G[0] et chercher sa taille len(G[0]) : c'est la largeur.</p>
-                <p>Télécharger le <a href="../../docs/P02b-donnees-types_construits-tableaux.pdf">cours sur les tableaux</a>.</p>
+                <p>len(liste) donne la taille (le nombre d'éléments) d'une liste. Le nombre de sous-listes de G est donc
+                    len(G), soit sa hauteur. Pour avoir le nombre d'éléments d"une sous-liste, on peut par exemple
+                    accéder à la 1ere sous-liste G[0] et chercher sa taille len(G[0]) : c'est la largeur.</p>
+                <p>Télécharger le <a href="../../docs/P02b-donnees-types_construits-tableaux.pdf">cours sur les
+                        tableaux</a>.</p>
             </div>
         </li>
     </ul>
@@ -524,7 +539,7 @@
             <pre>
                 T = [ {'fruit': 'banane', 'nombre': 25}, {'fruit': 'orange', 'nombre': 124},
                     {'fruit': 'pomme', 'nombre': 75}, {'fruit': 'kiwi', 'nombre': 51} ]</pre>
-                <p>Quelle expression a-t-elle pour valeur le nombre de pommes ?</p>
+            <p>Quelle expression a-t-elle pour valeur le nombre de pommes ?</p>
             <ol class="E3C">
                 <li>T[2]['nombre']</li>
                 <li>T[2,'nombre']</li>
@@ -534,7 +549,7 @@
         </li>
         <li><strong>Question C.2</strong>
             <p>Que réalise l'instruction suivante :</p>
-                <pre>
+            <pre>
                     mon_fichier = open("exemple.txt", "r")</pre>
             <ol class="E3C">
                 <li>Elle permet d’ouvrir le fichier "exemple.txt" en mode lecture si le fichier est dans le même dossier
@@ -567,7 +582,7 @@
                 t = [ {'type': 'marteau', 'prix': 17, 'quantité': 32},
                     {'type': 'scie', 'prix': 24, 'quantité': 3},
                     {'type': 'tournevis', 'prix': 8, 'quantité': 45} ]</pre>
-                <p>Quelle expression permet d'obtenir la quantité de scies ?</p>
+            <p>Quelle expression permet d'obtenir la quantité de scies ?</p>
             <ol class="E3C">
                 <li>t[2]['quantité']</li>
                 <li>t[1]['quantité']</li>
@@ -583,20 +598,20 @@
                         ('Tim', 'Berners-Lee', 'H', 1955),
                         ('Ada', 'Lovelace', 'F', 1815),
                         ('Alan', 'Turing', 'H', 1912) ]</pre>
-                <p>où chaque p-uplet représente un informaticien ou une informaticienne célèbre ; le premier élément est
+            <p>où chaque p-uplet représente un informaticien ou une informaticienne célèbre ; le premier élément est
                 son
                 prénom, le deuxième élément son nom, le troisième élément son sexe (‘H’ pour un homme, ‘F’ pour une
                 femme) et le
                 quatrième élément son année de naissance (un nombre entier entre 1000 et 2000).</p>
-                <p>On définit une fonction :</p>
-                <pre>
+            <p>On définit une fonction :</p>
+            <pre>
                 def fonctionMystere(table):
                     mystere = []
                     for ligne in table:
                         if ligne[2] == 'F':
                             mystere.append(ligne[1])
                     return mystere</pre>
-                <p>Que vaut fonctionMystere(table)?</p>                
+            <p>Que vaut fonctionMystere(table)?</p>
             <ol class="E3C">
                 <li>[‘Grace’, ‘Ada’]</li>
                 <li>[('Grace', 'Hopper', 'F', 1906), ('Ada', 'Lovelace', 'F', 1815)]</li>
@@ -625,7 +640,7 @@
             <pre>
                 T = [ {'fruit': 'banane', 'nombre': 25}, {'fruit': 'orange', 'nombre': 124},
                     {'fruit': 'pomme', 'nombre': 75}, {'fruit': 'kiwi', 'nombre': 51} ]</pre>
-                <p>Quelle expression a-t-elle pour valeur le nombre de pommes ?</p>
+            <p>Quelle expression a-t-elle pour valeur le nombre de pommes ?</p>
             <ol class="E3C">
                 <li class="OK">T[2]['nombre']</li>
                 <li>T[2,'nombre']</li>
@@ -633,17 +648,23 @@
                 <li>T[3,'nombre']</li>
             </ol>
             <div class="correctionE3C">
-                <p>T est une liste de dictionnaires. On accède à un élément de liste par son indice, noté entre crochets (à partir de 0), et à la valeur d'un élément de dictionnaire par sa clef, notée entre crochets.</p>
-                <p>Ici T[2] est le dictionnaire {'fruit': 'pomme', 'nombre': 75} et donc on obtient le nombre de pommes à partir de la clef 'nombre' : T[2]['nombre']</p>
-                <p>Télécharger le <a href="../../docs/P02b-donnees-types_construits-tableaux.pdf">cours sur les tableaux</a> et <a href="../../docs/P02ac-donnees-types_construits-puplets-dictionnaires.pdf">cours sur les dictionnaires</a>.</p>
+                <p>T est une liste de dictionnaires. On accède à un élément de liste par son indice, noté entre crochets
+                    (à partir de 0), et à la valeur d'un élément de dictionnaire par sa clef, notée entre crochets.</p>
+                <p>Ici T[2] est le dictionnaire {'fruit': 'pomme', 'nombre': 75} et donc on obtient le nombre de pommes
+                    à partir de la clef 'nombre' : T[2]['nombre']</p>
+                <p>Télécharger le <a href="../../docs/P02b-donnees-types_construits-tableaux.pdf">cours sur les
+                        tableaux</a> et <a
+                        href="../../docs/P02ac-donnees-types_construits-puplets-dictionnaires.pdf">cours sur les
+                        dictionnaires</a>.</p>
             </div>
         </li>
         <li><strong>Question C.2</strong>
             <p>Que réalise l'instruction suivante :</p>
-                <pre>
+            <pre>
                     mon_fichier = open("exemple.txt", "r")</pre>
             <ol class="E3C">
-                <li class="OK">Elle permet d’ouvrir le fichier "exemple.txt" en mode lecture si le fichier est dans le même dossier
+                <li class="OK">Elle permet d’ouvrir le fichier "exemple.txt" en mode lecture si le fichier est dans le
+                    même dossier
                     que le fichier du programme Python comportant cette instruction.</li>
                 <li>Elle permet d’ouvrir le fichier "exemple.txt" en mode lecture même si le fichier n’est pas dans le
                     même dossier que le fichier du programme Python comportant cette instruction.</li>
@@ -653,8 +674,13 @@
                     même dossier que le fichier du programme Python comportant cette instruction.</li>
             </ol>
             <div class="correctionE3C">
-                <p>L'instruction open(adresse_de_fichier, mode) permet d'ouvrir un fichier selon le mode choisi : 'r' pour lecture (read) ou 'w' pour écriture (write). Si on ne précise de chemin particulier pour accéder au fichier, les fichier est cherché dans le même répertoire (ou dossier) que le programme Python.</p>
-                <p>Consulter la <a href="https://docs.python.org/fr/3/tutorial/inputoutput.html#reading-and-writing-files">documentation de Python sur la lecture/écriture de fichier</a>.</p>
+                <p>L'instruction open(adresse_de_fichier, mode) permet d'ouvrir un fichier selon le mode choisi : 'r'
+                    pour lecture (read) ou 'w' pour écriture (write). Si on ne précise de chemin particulier pour
+                    accéder au fichier, les fichier est cherché dans le même répertoire (ou dossier) que le programme
+                    Python.</p>
+                <p>Consulter la <a
+                        href="https://docs.python.org/fr/3/tutorial/inputoutput.html#reading-and-writing-files">documentation
+                        de Python sur la lecture/écriture de fichier</a>.</p>
             </div>
         </li>
 
@@ -664,11 +690,14 @@
                 <li>on ne peut accéder au contenu d'un fichier CSV que par l'intermédiaire d'un programme Python</li>
                 <li>CSV est un format de chiffrement des données</li>
                 <li>le format CSV a été conçu pour assurer la confidentialité d'une partie du code d'un programme</li>
-                <li class="OK">les fichiers CSV sont composés de données séparées par des caractères comme des virgules</li>
+                <li class="OK">les fichiers CSV sont composés de données séparées par des caractères comme des virgules
+                </li>
             </ol>
             <div class="correctionE3C">
                 <p>Que dire de plus ?</p>
-                <p>Consulter <a href="https://fr.wikipedia.org/wiki/Comma-separated_values">la page Wikipedia</a>, ou bien la <a href="https://docs.python.org/fr/3/library/csv.html">documentation sur la librairie csv de Python</a> pour la lecture/écriture efficace sur ces fichiers.</p>
+                <p>Consulter <a href="https://fr.wikipedia.org/wiki/Comma-separated_values">la page Wikipedia</a>, ou
+                    bien la <a href="https://docs.python.org/fr/3/library/csv.html">documentation sur la librairie csv
+                        de Python</a> pour la lecture/écriture efficace sur ces fichiers.</p>
             </div>
         </li>
         <li><strong>Question C.4</strong>
@@ -677,7 +706,7 @@
                 t = [ {'type': 'marteau', 'prix': 17, 'quantité': 32},
                     {'type': 'scie', 'prix': 24, 'quantité': 3},
                     {'type': 'tournevis', 'prix': 8, 'quantité': 45} ]</pre>
-                <p>Quelle expression permet d'obtenir la quantité de scies ?</p>
+            <p>Quelle expression permet d'obtenir la quantité de scies ?</p>
             <ol class="E3C">
                 <li>t[2]['quantité']</li>
                 <li class="OK">t[1]['quantité']</li>
@@ -685,9 +714,14 @@
                 <li>t['scies']['quantité']</li>
             </ol>
             <div class="correctionE3C">
-                <p>t est une liste de dictionnaires. On accède à un élément de liste par son indice, noté entre crochets (à partir de 0), et à la valeur d'un élément de dictionnaire par sa clef, notée entre crochets.</p>
-                <p>Ici T[1] est le dictionnaire {'type': 'scie', 'prix': 24, 'quantité': 3} et donc on obtient le nombre de scies à partir de la clef 'quantité' : T[1]['quantité']</p>
-                <p>Télécharger le <a href="../../docs/P02b-donnees-types_construits-tableaux.pdf">cours sur les tableaux</a> et <a href="../../docs/P02ac-donnees-types_construits-puplets-dictionnaires.pdf">cours sur les dictionnaires</a>.</p>
+                <p>t est une liste de dictionnaires. On accède à un élément de liste par son indice, noté entre crochets
+                    (à partir de 0), et à la valeur d'un élément de dictionnaire par sa clef, notée entre crochets.</p>
+                <p>Ici T[1] est le dictionnaire {'type': 'scie', 'prix': 24, 'quantité': 3} et donc on obtient le nombre
+                    de scies à partir de la clef 'quantité' : T[1]['quantité']</p>
+                <p>Télécharger le <a href="../../docs/P02b-donnees-types_construits-tableaux.pdf">cours sur les
+                        tableaux</a> et <a
+                        href="../../docs/P02ac-donnees-types_construits-puplets-dictionnaires.pdf">cours sur les
+                        dictionnaires</a>.</p>
             </div>
         </li>
 
@@ -698,18 +732,18 @@
                         ('Tim', 'Berners-Lee', 'H', 1955),
                         ('Ada', 'Lovelace', 'F', 1815),
                         ('Alan', 'Turing', 'H', 1912) ]</pre>
-                <p>où chaque p-uplet représente un informaticien ou une informaticienne célèbre ; le premier élément est
+            <p>où chaque p-uplet représente un informaticien ou une informaticienne célèbre ; le premier élément est
                 son prénom, le deuxième élément son nom, le troisième élément son sexe (‘H’ pour un homme, ‘F’ pour une
-                femme) et le  quatrième élément son année de naissance (un nombre entier entre 1000 et 2000).</p>
-                <p>On définit une fonction :</p>
-                <pre>
+                femme) et le quatrième élément son année de naissance (un nombre entier entre 1000 et 2000).</p>
+            <p>On définit une fonction :</p>
+            <pre>
                 def fonctionMystere(table):
                     mystere = []
                     for ligne in table:
                         if ligne[2] == 'F':
                             mystere.append(ligne[1])
                     return mystere</pre>
-                <p>Que vaut fonctionMystere(table)?</p>                
+            <p>Que vaut fonctionMystere(table)?</p>
             <ol class="E3C">
                 <li>[‘Grace’, ‘Ada’]</li>
                 <li>[('Grace', 'Hopper', 'F', 1906), ('Ada', 'Lovelace', 'F', 1815)]</li>
@@ -717,8 +751,13 @@
                 <li>[]</li>
             </ol>
             <div class="correctionE3C">
-                <p>La table est une liste de p-uplets. La fonction parcourt la liste par élément (parcourt les tuples les uns après les autres avec la variable ligne) et si le 3ème élément d'une ligne (ligne[2], càd Homme ou Femme) vaut 'F' alors on ajoute dans la liste mystère le 2ème élement de ligne (ligne[1], càd le nom de famille). Pour résumé, cette fonction isole les noms de famille des grandes informaticiennes.</p>
-                <p>Télécharger le <a href="../../docs/P07a-algo-parcours-tableau.pdf">cours sur le parcourt séquentiel des tableaux</a>.</p>
+                <p>La table est une liste de p-uplets. La fonction parcourt la liste par élément (parcourt les tuples
+                    les uns après les autres avec la variable ligne) et si le 3ème élément d'une ligne (ligne[2], càd
+                    Homme ou Femme) vaut 'F' alors on ajoute dans la liste mystère le 2ème élement de ligne (ligne[1],
+                    càd le nom de famille). Pour résumé, cette fonction isole les noms de famille des grandes
+                    informaticiennes.</p>
+                <p>Télécharger le <a href="../../docs/P07a-algo-parcours-tableau.pdf">cours sur le parcourt séquentiel
+                        des tableaux</a>.</p>
             </div>
         </li>
         <li><strong>Question C.6</strong>
@@ -733,8 +772,11 @@
                 <li>[[1, 2, 3], [1, 2, 3], [1, 2, 3], [1, 5, 3]]</li>
             </ol>
             <div class="correctionE3C">
-                <p>On accède à un élément de liste par son indice noté entre crochets. Attention : le 1er élément a l'indice 0 ! Ici T[1] est la 2ème sous-liste, et T[1][2] est son 3ème élement, auquel on affecte la nouvelle valeur 5 (au lieu de 3).</p>
-                <p>Télécharger le <a href="../../docs/P02b-donnees-types_construits-tableaux.pdf">cours sur les tableaux</a>.</p>
+                <p>On accède à un élément de liste par son indice noté entre crochets. Attention : le 1er élément a
+                    l'indice 0 ! Ici T[1] est la 2ème sous-liste, et T[1][2] est son 3ème élement, auquel on affecte la
+                    nouvelle valeur 5 (au lieu de 3).</p>
+                <p>Télécharger le <a href="../../docs/P02b-donnees-types_construits-tableaux.pdf">cours sur les
+                        tableaux</a>.</p>
             </div>
         </li>
     </ul>
@@ -760,7 +802,7 @@
         <li><strong>Question D.2</strong>
             <p>Lors de la consultation d’une page HTML, contenant un bouton auquel est associée la fonction javascript
                 suivante, que se passe-t-il quand on clique sur ce bouton ?</p>
-                <pre>
+            <pre>
                 function action(event) {
                     this.style.color = "red"
                 }</pre>
@@ -823,15 +865,19 @@
                 <li>&lt;a&gt; https://www.eduscol.education.fr/ &lt;/a&gt; site Eduscol</li>
             </ol>
             <div class="correctionE3C">
-                <p>L'élément HTML a, permettant de créer des liens, nécessite l'attribut href qui prend comme valeur l'URL visée.</p>
+                <p>L'élément HTML a, permettant de créer des liens, nécessite l'attribut href qui prend comme valeur
+                    l'URL visée.</p>
                 <p>Télécharger le <a href="../../docs/P04a1-page_web_rappels.pdf">cours sur la
-                        création de pages Web</a> ou consulter la <a href="https://www.w3schools.com/tags/tag_a.asp">documentation sur W3school</a> ou <a href="https://developer.mozilla.org/fr/docs/Web/HTML/Element/a">la documentation sur MDN</a>.</p>
+                        création de pages Web</a> ou consulter la <a
+                        href="https://www.w3schools.com/tags/tag_a.asp">documentation sur W3school</a> ou <a
+                        href="https://developer.mozilla.org/fr/docs/Web/HTML/Element/a">la documentation sur MDN</a>.
+                </p>
             </div>
         </li>
         <li><strong>Question D.2</strong>
             <p>Lors de la consultation d’une page HTML, contenant un bouton auquel est associée la fonction javascript
                 suivante, que se passe-t-il quand on clique sur ce bouton ?</p>
-                <pre>
+            <pre>
                 function action(event) {
                     this.style.color = "red"
                 }</pre>
@@ -842,8 +888,13 @@
                 <li>le texte de la page passe en rouge</li>
             </ol>
             <div class="correctionE3C">
-                <p>Le mot clef this fait référence à l'objet qui a appelé la fonction, ici le bouton. La propriété style permet de modifier le style CSS du bouton et la propriété color fait référence à la couleur de son texte.</p>
-                <p>Télécharger le <a href="../../docs/P04a2-javascript.pdf">cours sur Javascript</a> ou consulter la <a href="https://www.w3schools.com/js/js_htmldom_css.asp">documentation sur W3school</a> ou <a href="https://developer.mozilla.org/fr/docs/Web/API/HTMLElement/style">la documentation sur MDN</a>.</p>
+                <p>Le mot clef this fait référence à l'objet qui a appelé la fonction, ici le bouton. La propriété style
+                    permet de modifier le style CSS du bouton et la propriété color fait référence à la couleur de son
+                    texte.</p>
+                <p>Télécharger le <a href="../../docs/P04a2-javascript.pdf">cours sur Javascript</a> ou consulter la <a
+                        href="https://www.w3schools.com/js/js_htmldom_css.asp">documentation sur W3school</a> ou <a
+                        href="https://developer.mozilla.org/fr/docs/Web/API/HTMLElement/style">la documentation sur
+                        MDN</a>.</p>
             </div>
         </li>
 
@@ -856,10 +907,15 @@
                 <li class="OK">&lt;a&gt;</li>
             </ol>
             <div class="correctionE3C">
-                <p>L'élément HTML a, permettant de créer des liens, nécessite l'attribut href qui prend comme valeur l'URL visée.</p>
+                <p>L'élément HTML a, permettant de créer des liens, nécessite l'attribut href qui prend comme valeur
+                    l'URL visée.</p>
                 <p>L'élément HTML link définit la relation entre le document courant et une ressource externe.</p>
                 <p>Télécharger le <a href="../../docs/P04a1-page_web_rappels.pdf">cours sur la
-                        création de pages Web</a> ou consulter la <a href="https://www.w3schools.com/tags/tag_a.asp">documentation sur W3school</a> ou <a href="https://developer.mozilla.org/fr/docs/Web/HTML/Element/a">la documentation sur MDN</a>, <a href="https://developer.mozilla.org/fr/docs/Web/HTML/Element/link"> et sur l'élément link</a>.</p>
+                        création de pages Web</a> ou consulter la <a
+                        href="https://www.w3schools.com/tags/tag_a.asp">documentation sur W3school</a> ou <a
+                        href="https://developer.mozilla.org/fr/docs/Web/HTML/Element/a">la documentation sur MDN</a>, <a
+                        href="https://developer.mozilla.org/fr/docs/Web/HTML/Element/link"> et sur l'élément link</a>.
+                </p>
             </div>
         </li>
         <li><strong>Question D.4</strong>
@@ -874,7 +930,9 @@
                 <p>Un fichier de feuille de style CSS (Cascading Style Sheet) permet de décrire la mise en forme des
                     style d'une page Web.</p>
                 <p>Télécharger le <a href="../../docs/P04a1-page_web_rappels.pdf">cours sur la
-                        structuration de page Web</a> ou consulter la <a href="https://www.w3schools.com/Css/">documentation sur W3school</a> ou <a href="https://developer.mozilla.org/fr/docs/Web/CSS">la documentation sur MDN</a>.</p>
+                        structuration de page Web</a> ou consulter la <a
+                        href="https://www.w3schools.com/Css/">documentation sur W3school</a> ou <a
+                        href="https://developer.mozilla.org/fr/docs/Web/CSS">la documentation sur MDN</a>.</p>
             </div>
         </li>
 
@@ -890,7 +948,9 @@
                 <p>Le protocole HTTPS (S pour Secure) est le protocole de communication au niveau de la couche
                     application qui chiffre les données avant leur transmission sur le réseau.</p>
                 <p>Télécharger le <a href="../../docs/P04d-formulaire_web.pdf">cours sur l'écriture et la transmission
-                        de formulaires Web</a> consulter la <a href="https://fr.wikipedia.org/wiki/HyperText_Transfer_Protocol_Secure">la page Wikipédia</a>.</p>
+                        de formulaires Web</a> consulter la <a
+                        href="https://fr.wikipedia.org/wiki/HyperText_Transfer_Protocol_Secure">la page Wikipédia</a>.
+                </p>
             </div>
         </li>
         <li><strong>Question D.6</strong>
@@ -902,7 +962,10 @@
                 <li>CSS</li>
             </ol>
             <div class="correctionE3C">
-                <p>HTML est le langage de description permettant de structurer une page Web. CSS est le langage de description permettant la mise en forme des éléments de la page Web. Javascript est le langage permettant de "dynamiser" les pages Web. Ces 3 langages sont interprétés par le navigateur du client.</p>
+                <p>HTML est le langage de description permettant de structurer une page Web. CSS est le langage de
+                    description permettant la mise en forme des éléments de la page Web. Javascript est le langage
+                    permettant de "dynamiser" les pages Web. Ces 3 langages sont interprétés par le navigateur du
+                    client.</p>
                 <p>Remarque : cependant, il est possible d'utiliser le langage Javascript côté serveur aussi. Javascript
                     étant un langage de programmation à part entière.</p>
                 <p>PHP, en revanche, est un langage de programmation qui est exécuté du côté serveur (souvent
@@ -933,11 +996,13 @@
             </ol>
         </li>
         <li><strong>Question E.2</strong>
-            <p>  Dans un établissement scolaire, tous les ordinateurs sont reliés au réseau local par l'intermédiaire de
-                câbles Ethernet. Il n'existe pas de liaisons sans fil. Dans chaque salle d'ordinateurs, les machines sont reliées à un  commutateur. Chaque commutateur est relié par un câble jusqu'à la salle où se situe le serveur  contrôleur de  domaine et la passerelle internet (routeur).<br>
+            <p> Dans un établissement scolaire, tous les ordinateurs sont reliés au réseau local par l'intermédiaire de
+                câbles Ethernet. Il n'existe pas de liaisons sans fil. Dans chaque salle d'ordinateurs, les machines
+                sont reliées à un commutateur. Chaque commutateur est relié par un câble jusqu'à la salle où se situe le
+                serveur contrôleur de domaine et la passerelle internet (routeur).<br>
                 Vous êtes connectés sur un ordinateur d'une de ces salles d'ordinateurs avec votre classe. Tout à coup,
-                plus  personne n'a accès à Internet, mais toutes les ressources locales de l'établissement sont toujours
-                accessibles.<br/>
+                plus personne n'a accès à Internet, mais toutes les ressources locales de l'établissement sont toujours
+                accessibles.<br />
                 Parmi ces quatre propositions, laquelle est la plus vraisemblable ?</p>
             <ol class="E3C">
                 <li>Un de vos camarades a débranché accidentellement le câble Ethernet de votre machine.</li>
@@ -986,7 +1051,7 @@
             <p>La commande suivante vient d'être exécutée en ligne de commande sous Linux :</p>
             <pre>
                 cp /users/luc/interro.txt ./</pre>
-                <p>Que réalise cette commande ?</p>
+            <p>Que réalise cette commande ?</p>
             <ol class="E3C">
                 <li>copie du fichier users vers le répertoire luc</li>
                 <li>copie du fichier interro.txt vers le répertoire luc</li>
@@ -1009,27 +1074,36 @@
                 <li>ls pwd</li>
             </ol>
             <div class="correctionE3C">
-                <p>La commande man est celle qui permet d'appeler les pages du manuel (man) donc la documentation sur une autre commande.</p>
+                <p>La commande man est celle qui permet d'appeler les pages du manuel (man) donc la documentation sur
+                    une autre commande.</p>
                 <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
-                        représentation des entiers relatifs</a> ou consulter <a href="https://doc.ubuntu-fr.org/tutoriel/console_commandes_de_base">la documentation sur le Wiki d'Ubuntu</a>.</p>
+                        représentation des entiers relatifs</a> ou consulter <a
+                        href="https://doc.ubuntu-fr.org/tutoriel/console_commandes_de_base">la documentation sur le Wiki
+                        d'Ubuntu</a>.</p>
             </div>
         </li>
         <li><strong>Question E.2</strong>
-            <p>  Dans un établissement scolaire, tous les ordinateurs sont reliés au réseau local par l'intermédiaire de
-                câbles Ethernet. Il n'existe pas de liaisons sans fil. Dans chaque salle d'ordinateurs, les machines sont reliées à un  commutateur. Chaque commutateur est relié par un câble jusqu'à la salle où se situe le serveur  contrôleur de  domaine et la passerelle internet (routeur).<br>
+            <p> Dans un établissement scolaire, tous les ordinateurs sont reliés au réseau local par l'intermédiaire de
+                câbles Ethernet. Il n'existe pas de liaisons sans fil. Dans chaque salle d'ordinateurs, les machines
+                sont reliées à un commutateur. Chaque commutateur est relié par un câble jusqu'à la salle où se situe le
+                serveur contrôleur de domaine et la passerelle internet (routeur).<br>
                 Vous êtes connectés sur un ordinateur d'une de ces salles d'ordinateurs avec votre classe. Tout à coup,
-                plus  personne n'a accès à Internet, mais toutes les ressources locales de l'établissement sont toujours
-                accessibles.<br/>
+                plus personne n'a accès à Internet, mais toutes les ressources locales de l'établissement sont toujours
+                accessibles.<br />
                 Parmi ces quatre propositions, laquelle est la plus vraisemblable ?</p>
             <ol class="E3C">
                 <li>Un de vos camarades a débranché accidentellement le câble Ethernet de votre machine.</li>
                 <li>Le routeur de l'étage est indisponible (il a été débranché ou est en panne).</li>
                 <li>Le commutateur de la salle est indisponible (il a été débranché ou est en panne).</li>
-                <li class="OK">La passerelle internet de l'établissement est indisponible (elle a été débranchée ou est en panne).
+                <li class="OK">La passerelle internet de l'établissement est indisponible (elle a été débranchée ou est
+                    en panne).
                 </li>
             </ol>
             <div class="correctionE3C">
-                <p>Si le câble Ethernet de votre machine est débranché accidentellement, seule votre machine n'a plus aucun accès au réseau. Si le routeur de l'étage est indisponible, ou  si le commutateur de la salle est indisponible, les accès aux ressources de l'établissement ne sont plus possibles. C'est donc la passerelle vers l'Internet qui doit avoir un problème.</p>
+                <p>Si le câble Ethernet de votre machine est débranché accidentellement, seule votre machine n'a plus
+                    aucun accès au réseau. Si le routeur de l'étage est indisponible, ou si le commutateur de la salle
+                    est indisponible, les accès aux ressources de l'établissement ne sont plus possibles. C'est donc la
+                    passerelle vers l'Internet qui doit avoir un problème.</p>
             </div>
         </li>
 
@@ -1040,7 +1114,7 @@
                 <li>le clavier</li>
                 <li>la souris</li>
                 <li>le scanner</li>
-            </ol> 
+            </ol>
             <div class="correctionE3C">
                 <p>Le moniteur est un périphérique de sortie.</p>
             </div>
@@ -1053,10 +1127,13 @@
                 <li class="OK">cd ..</li>
                 <li>cd ...</li>
                 <li>cd /../.</li>
-            </ol> 
+            </ol>
             <div class="correctionE3C">
-                <p>La commande cd permet de changer de répertoire (change directory). Le répertoire noté avec un seul point est le répertoire courant, celui noté avec deux points est le répertoire parent. Ici, il faut remonter d'un niveau dans l'arborescence. </p>
-                <p>Consulter <a href="https://doc.ubuntu-fr.org/tutoriel/console_commandes_de_base">la documentation sur le Wiki d'Ubuntu</a>.</p>
+                <p>La commande cd permet de changer de répertoire (change directory). Le répertoire noté avec un seul
+                    point est le répertoire courant, celui noté avec deux points est le répertoire parent. Ici, il faut
+                    remonter d'un niveau dans l'arborescence. </p>
+                <p>Consulter <a href="https://doc.ubuntu-fr.org/tutoriel/console_commandes_de_base">la documentation sur
+                        le Wiki d'Ubuntu</a>.</p>
             </div>
         </li>
 
@@ -1072,15 +1149,18 @@
                 <li class="OK">cp NSI.txt ../sauvegardes/NSI2.txt</li>
             </ol>
             <div class="correctionE3C">
-                <p>La commande cp permet de copier un fichier source vers une destination. Le répertoire noté avec  avec deux points est le répertoire parent. Ici, il faut remonter d'un niveau dans l'arborescence avant de redescendre dans le dossier sauvegardes. </p>
-                <p>Consulter <a href="https://doc.ubuntu-fr.org/tutoriel/console_commandes_de_base">la documentation sur le Wiki d'Ubuntu</a>.</p>
+                <p>La commande cp permet de copier un fichier source vers une destination. Le répertoire noté avec avec
+                    deux points est le répertoire parent. Ici, il faut remonter d'un niveau dans l'arborescence avant de
+                    redescendre dans le dossier sauvegardes. </p>
+                <p>Consulter <a href="https://doc.ubuntu-fr.org/tutoriel/console_commandes_de_base">la documentation sur
+                        le Wiki d'Ubuntu</a>.</p>
             </div>
         </li>
         <li><strong>Question E.6</strong>
             <p>La commande suivante vient d'être exécutée en ligne de commande sous Linux :</p>
             <pre>
                 cp /users/luc/interro.txt ./</pre>
-                <p>Que réalise cette commande ?</p>
+            <p>Que réalise cette commande ?</p>
             <ol class="E3C">
                 <li>copie du fichier users vers le répertoire luc</li>
                 <li>copie du fichier interro.txt vers le répertoire luc</li>
@@ -1088,8 +1168,10 @@
                 <li>copie du fichier interro.txt vers le répertoire users</li>
             </ol>
             <div class="correctionE3C">
-                <p>La commande cp permet de copier un fichier source vers une destination.  Le répertoire noté avec un seul point est le répertoire courant. </p>
-                <p>Consulter <a href="https://doc.ubuntu-fr.org/tutoriel/console_commandes_de_base">la documentation sur le Wiki d'Ubuntu</a>.</p>
+                <p>La commande cp permet de copier un fichier source vers une destination. Le répertoire noté avec un
+                    seul point est le répertoire courant. </p>
+                <p>Consulter <a href="https://doc.ubuntu-fr.org/tutoriel/console_commandes_de_base">la documentation sur
+                        le Wiki d'Ubuntu</a>.</p>
             </div>
         </li>
     </ul>
@@ -1107,7 +1189,8 @@
             <pre>
                 random.randint(a, b)
                     Renvoie un entier aléatoire N tel que a &lt;= N &lt;= b.</pre>
-                <p>Quelle est l’expression Python permettant de simuler le tirage d’un dé à 6 faces après avoir exécuté import random ?</p>
+            <p>Quelle est l’expression Python permettant de simuler le tirage d’un dé à 6 faces après avoir exécuté
+                import random ?</p>
             <ol class="E3C">
                 <li>random.randint(6)</li>
                 <li>random.randint(1,6)</li>
@@ -1134,7 +1217,8 @@
         </li>
 
         <li><strong>Question F.3</strong>
-            <p>La fonction Python suivante ne calcule pas toujours correctement le résultat de \( x^y \) pour des arguments entiers. Parmi les tests suivants, lequel va permettre de détecter l’erreur ?</p>
+            <p>La fonction Python suivante ne calcule pas toujours correctement le résultat de \( x^y \) pour des
+                arguments entiers. Parmi les tests suivants, lequel va permettre de détecter l’erreur ?</p>
             <pre>
                 def puissance (x,y):
                     p = x
@@ -1159,16 +1243,16 @@
         </li>
 
         <li><strong>Question F.5</strong>
-            <p>On définit deux fonctions :</p>       
+            <p>On définit deux fonctions :</p>
             <pre>
                 def f(x):
                     y = 2*x + 1
                     return y</pre>
-                <pre>
+            <pre>
                 def calcul(x):
                     y = x - 1
                     return f(y)</pre>
-                <p>Quelle est la valeur renvoyée par l'appel calcul(5) ?</p>
+            <p>Quelle est la valeur renvoyée par l'appel calcul(5) ?</p>
             <ol class="E3C">
                 <li>4</li>
                 <li>9</li>
@@ -1193,8 +1277,6 @@
                 <li>capital + n * interet &gt; 2 * capital</li>
                 <li>n == 2 * capital / interet</li>
             </ol>
-            <div clas
-        </li>
     </ul>
 
     <h3>Les questions corrigées</h3>
@@ -1205,7 +1287,8 @@
             <pre>
                 random.randint(a, b)
                     Renvoie un entier aléatoire N tel que a &lt;= N &lt;= b.</pre>
-                <p>Quelle est l’expression Python permettant de simuler le tirage d’un dé à 6 faces après avoir exécuté import random ?</p>
+            <p>Quelle est l’expression Python permettant de simuler le tirage d’un dé à 6 faces après avoir exécuté
+                import random ?</p>
             <ol class="E3C">
                 <li>random.randint(6)</li>
                 <li class="OK">random.randint(1,6)</li>
@@ -1213,12 +1296,14 @@
                 <li>random.randint(0,6)</li>
             </ol>
             <div class="correctionE3C">
-                <p>D'après la documentation, les bornes sont incluses donc pour simuluer les 6 faces possibles du dé, il faut choisir les bornes 1 et 6.</p>
+                <p>D'après la documentation, les bornes sont incluses donc pour simuluer les 6 faces possibles du dé, il
+                    faut choisir les bornes 1 et 6.</p>
             </div>
         </li>
         <li><strong>Question F.2</strong>
             <p>On a écrit une fonction qui prend en paramètre une liste non vide et qui renvoie son plus grand élément.
-                Combien  de tests faudrait-il écrire pour garantir que la fonction donne un résultat correct pour toute liste ?
+                Combien de tests faudrait-il écrire pour garantir que la fonction donne un résultat correct pour toute
+                liste ?
             </p>
             <ol class="E3C">
                 <li>deux tests : pour une liste à un élément et pour une liste à deux éléments ou plus</li>
@@ -1226,16 +1311,21 @@
                     grand élément n’est pas en début de liste</li>
                 <li>trois tests : pour une liste vide, pour une liste à un élément, et pour une liste à deux éléments ou
                     plus</li>
-                <li class="OK">il faudrait écrire une infinité de tests : on ne peut pas prouver que cette fonction est correcte, simplement en la testant</li>
+                <li class="OK">il faudrait écrire une infinité de tests : on ne peut pas prouver que cette fonction est
+                    correcte, simplement en la testant</li>
             </ol>
             <div class="correctionE3C">
                 <p>Que dire de plus ?</p>
-                <p>La preuve de correction d'un algorithme nécessite une démonstration précise s'appuyant sur l'analyse de l'algorithme. Un test ne peut pas prouver la correction d'un algorithme.</p><p>Croiser 8 milliards de cygnes blancs et aucun noir <strong>ne prouve pas</strong> qu'il n'exsite pas de cygne noir.</p>
+                <p>La preuve de correction d'un algorithme nécessite une démonstration précise s'appuyant sur l'analyse
+                    de l'algorithme. Un test ne peut pas prouver la correction d'un algorithme.</p>
+                <p>Croiser 8 milliards de cygnes blancs et aucun noir <strong>ne prouve pas</strong> qu'il n'existe pas
+                    de cygne noir.</p>
             </div>
         </li>
 
         <li><strong>Question F.3</strong>
-            <p>La fonction Python suivante ne calcule pas toujours correctement le résultat de \( x^y \) pour des arguments entiers. Parmi les tests suivants, lequel va permettre de détecter l’erreur ?</p>
+            <p>La fonction Python suivante ne calcule pas toujours correctement le résultat de \( x^y \) pour des
+                arguments entiers. Parmi les tests suivants, lequel va permettre de détecter l’erreur ?</p>
             <pre>
                 def puissance (x,y):
                     p = x
@@ -1249,7 +1339,9 @@
                 <li>puissance(2, 10)</li>
             </ol>
             <div class="correctionE3C">
-                <p>L'appel à cette fonction avec y = 0 a pour effet de ne pas rentrer dans la boucle for (for i in range(-1) ne s'exécute aucune fois) donc la valeur renvoyée est p = x = 2. Donc puissance(2, 0) vaut 2, alors que \( 2^0 \) vaut 1 !</p>
+                <p>L'appel à cette fonction avec y = 0 a pour effet de ne pas rentrer dans la boucle for (for i in
+                    range(-1) ne s'exécute aucune fois) donc la valeur renvoyée est p = x = 2. Donc puissance(2, 0) vaut
+                    2, alors que \( 2^0 \) vaut 1 !</p>
             </div>
         </li>
         <li><strong>Question F.4</strong>
@@ -1274,16 +1366,16 @@
         </li>
 
         <li><strong>Question F.5</strong>
-            <p>On définit deux fonctions :</p>       
+            <p>On définit deux fonctions :</p>
             <pre>
                 def f(x):
                     y = 2*x + 1
                     return y</pre>
-                <pre>
+            <pre>
                 def calcul(x):
                     y = x - 1
                     return f(y)</pre>
-                <p>Quelle est la valeur renvoyée par l'appel calcul(5) ?</p>
+            <p>Quelle est la valeur renvoyée par l'appel calcul(5) ?</p>
             <ol class="E3C">
                 <li>4</li>
                 <li class="OK">9</li>
@@ -1309,13 +1401,13 @@
             <ol class="E3C">
                 <li>n == capital / interet</li>
                 <li>capital * n * interet &gt; 2 * capital</li>
-                <li>capital + n * interet &gt; 2 * capital</li>
+                <li class="OK">capital + n * interet &gt; 2 * capital</li>
                 <li>n == 2 * capital / interet</li>
             </ol>
             <div class="correctionE3C">
-                <p>.</p>
-                <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
-                        représentation des entiers relatifs</a>.</p>
+                <p>La fonction renvoie n après la dernière itération de la boucle while, càd lorsque montant est devenu
+                    strictement supérieur à 2 * capital. À ce moment là, on lui a ajouté intérêt n fois. Or montant est
+                    initialisé avant la boucle à capital, on a donc capital + n * interet &gt; 2 * capital. (cqfd) </p>
             </div>
         </li>
     </ul>
@@ -1327,14 +1419,14 @@
     <h2>Thème G : algorithmique</h2>
     <h3>Les questions brutes</h3>
 
-    <h3>Les questions corrigées</h3>
+
     <ul class="E3C">
         <li><strong>Question G.1</strong>
             <p>L'algorithme suivant permet de calculer la somme des N premiers entiers, où N est un nombre entier donné
                 :</p>
             <pre>
-                i =0
-                somme =0
+                i = 0
+                somme = 0
                 while i &lt; N :
                     i = i +1
                     somme = somme + i</pre>
@@ -1345,11 +1437,6 @@
                 <li>somme = 0 + 1 + 2 + ... + i  et i &lt; N+1</li>
                 <li>somme = 0 + 1 + 2 + ... + N  et i &lt; N+1</li>
             </ol>
-            <div class="correctionE3C">
-                <p>.</p>
-                <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
-                        représentation des entiers relatifs</a>.</p>
-            </div>
         </li>
         <li><strong>Question G.2</strong>
             <p>Quelle est la valeur de c à la fin de l'exécution du code suivant :</p>
@@ -1365,11 +1452,6 @@
                 <li>3</li>
                 <li>10</li>
             </ol>
-            <div class="correctionE3C">
-                <p>.</p>
-                <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
-                        représentation des entiers relatifs</a>.</p>
-            </div>
         </li>
         <li><strong>Question G.3</strong>
             <p>On considère la fonction Python suivante, qui prend en argument une liste L et renvoie le maximum des
@@ -1389,11 +1471,6 @@
                 <li>quadratique, c’est-à-dire de l’ordre de \(n^2\)</li>
                 <li>cubique, c’est-à-dire de l’ordre de \(n^3\)</li>
             </ol>
-            <div class="correctionE3C">
-                <p>.</p>
-                <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
-                        représentation des entiers relatifs</a>.</p>
-            </div>
         </li>
         <li><strong>Question G.4</strong>
             <p>Quelle est la valeur du couple (s,i) à la fin de l'exécution du script suivant ?</p>
@@ -1409,11 +1486,6 @@
                 <li>(10, 5)</li>
                 <li>(15, 5)</li>
             </ol>
-            <div class="correctionE3C">
-                <p>.</p>
-                <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
-                        représentation des entiers relatifs</a>.</p>
-            </div>
         </li>
 
         <li><strong>Question G.5</strong>
@@ -1425,11 +1497,6 @@
                 <li>\( 2500^2 \)</li>
                 <li>\( 2^{2500} \)</li>
             </ol>
-            <div class="correctionE3C">
-                <p>.</p>
-                <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
-                        représentation des entiers relatifs</a>.</p>
-            </div>
         </li>
         <li><strong>Question G.6</strong>
             <p>En utilisant une recherche dichotomique, combien faut-il de comparaisons avec l'opérateur == pour trouver
@@ -1441,10 +1508,188 @@
                 <li>1000</li>
                 <li>1024</li>
             </ol>
+        </li>
+    </ul>
+
+    <h3>Les questions corrigées</h3>
+
+    <ul class="E3C">
+        <li><strong>Question G.1</strong>
+            <p>L'algorithme suivant permet de calculer la somme des N premiers entiers, où N est un nombre entier donné
+                :</p>
+            <pre>
+                i = 0
+                somme = 0
+                while i &lt; N :
+                    i = i + 1
+                    somme = somme + i</pre>
+            <p>Un invariant de boucle de cet algorithme est le suivant :</p>
+            <ol class="E3C">
+                <li>somme = 0 + 1 + 2 + ... + i  et i &lt; N</li>
+                <li>somme = 0 + 1 + 2 + ... + N  et i &lt; N</li>
+                <li class="OK">somme = 0 + 1 + 2 + ... + i  et i &lt; N+1</li>
+                <li>somme = 0 + 1 + 2 + ... + N  et i &lt; N+1</li>
+            </ol>
             <div class="correctionE3C">
-                <p>.</p>
-                <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
-                        représentation des entiers relatifs</a>.</p>
+                <p>Un invariant de boucle est une propriété qui si elle est vraie avant une itération de boucle reste
+                    vraie à la fin de l'itération. </p>
+                <p>Vérifions que somme = 0 + 1 + 2 + ... + i  et i &lt; N+1 est bien un invariant.</p>
+                <p>On peut vérifier qu'initialement i = 0 &lt; N + 1 et S = 0 = 0 + i. </p>
+                <p>
+                    A chaque itération i est incrémenté d'une unité et somme est incrémenté de la valeur de i. Donc tant
+                    qu'on reste dans la boucle somme = 0 + 1 + 2 + ... + i. (chaque terme de cette somme correspond à
+                    une des valeurs antérieures prises par i au cours des itérations).</p>
+                <p>(On peut remarquer aussi de façon évidente que somme ne peut pas se poursuivre pas jusqu'à N car
+                    initialement somme = 0 or N peut être aussi grand que l'on souhaite.)</p>
+                <p>Par ailleurs i est nécessairement inférieur à N, et donc aussi à N + 1, tant que la boucle n'est pas
+                    terminée puisque c'est la condition d'entrée dans la boucle. </p>
+                <p>Mais au cours de chaque itération i est incrémenté et à la fin de la dernière itération i atteint la
+                    valeur de N (i = N et la boucle s'arrête) et donc la propriété qui reste vraie à la fin de cette
+                    dernière itération est i &lt; N + 1. </p>
+            </div>
+        </li>
+        <li><strong>Question G.2</strong>
+            <p>Quelle est la valeur de c à la fin de l'exécution du code suivant :</p>
+            <pre>
+            L = [1,2,3,4,1,2,3,4,0,2]
+            c = 0
+            for k in L:
+                if k == L[1]:
+                    c = c+1 </pre>
+            <ol class="E3C">
+                <li>0</li>
+                <li>2</li>
+                <li class="OK">3</li>
+                <li>10</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>L[1] = 2 est une valeur fixe pendant l'exécution de cet algorithme.</p>
+                <p>La variable k parcourt tous les éléments de L et lorsque cet élément vaut 2 (c'est L[1]), alors la
+                    variable c est incrémenté d'une unité. Autrement dit, cet algorithme compte le nombre d'éléments de
+                    L qui sont égaux à son 2ème élement.</p>
+            </div>
+        </li>
+        <li><strong>Question G.3</strong>
+            <p>On considère la fonction Python suivante, qui prend en argument une liste L et renvoie le maximum des
+                éléments de la liste :
+                <pre>
+                def rechercheMaximum(L):
+                    max = L[0]
+                    for i in range(len(L)):
+                        if L[i] &gt; max:
+                            max = L[i]
+                    return max</pre>
+                On note \( n \) la taille de la liste.
+                Quelle est la complexité en nombre d’opérations de l’algorithme ?</p>
+            <ol class="E3C">
+                <li>constante, c’est-à-dire ne dépend pas de \(n\)</li>
+                <li class="OK">linéaire, c’est-à-dire de l’ordre de \(n\)</li>
+                <li>quadratique, c’est-à-dire de l’ordre de \(n^2\)</li>
+                <li>cubique, c’est-à-dire de l’ordre de \(n^3\)</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>La boucle for comprend \(n\) itérations pour une opération de test à chaque itération.</p>
+            </div>
+        </li>
+        <li><strong>Question G.4</strong>
+            <p>Quelle est la valeur du couple (s,i) à la fin de l'exécution du script suivant ?</p>
+            <pre>
+            s = 0 
+            i = 1 
+            while i &lt; 5: 
+                s = s + i 
+                i = i + 1 </pre>
+            <ol class="E3C">
+                <li>(4, 5)</li>
+                <li>(10, 4)</li>
+                <li class="OK">(10, 5)</li>
+                <li>(15, 5)</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>La plus grande valeur de i qui engendre une itération de boucle est 4 (&lt;5), et à la fin de cette
+                    dernière itération i = 5.</p>
+                <p>Par ailleurs, s contient la somme des valeurs de i pour chacune des itérations de i = 1 jusqu'à i =
+                    4. Donc s = 1 + 2 + 3 + 4 = 10</p>
+                <p>On peut aussi écrire les valeurs successives de s et i (avant et après chaque itération):</p>
+                <style>
+                    table.collapse {
+                        border-collapse: collapse;
+                        text-align: center;
+                    }
+
+                    table.collapse td {
+                        border: solid 1px;
+                        padding: 5px;
+                    }
+                </style>
+                <table class="collapse">
+                    <tr>
+                        <td>s avant</td>
+                        <td>i avant</td>
+                        <td>s après</td>
+                        <td>i après</td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>2</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td>3</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>3</td>
+                        <td>6</td>
+                        <td>4</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>4</td>
+                        <td>10</td>
+                        <td>5</td>
+                    </tr>
+                </table>
+            </div>
+        </li>
+
+        <li><strong>Question G.5</strong>
+            <p>Pour trier par sélection une liste de 2500 entiers, le nombre de comparaisons nécessaires à l’algorithme
+                est de l’ordre de :</p>
+            <ol class="E3C">
+                <li>\( \sqrt{2500} \)</li>
+                <li>2500</li>
+                <li class="OK">\( 2500^2 \)</li>
+                <li>\( 2^{2500} \)</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>L'algorithme de tri par sélection a un coût quadratique.</p>
+                <p>Pour chaque élément non trié du tableau, il faut faire des tests de comparaison pour tous les autres
+                    éléments non triés du tableau à la recherche du plus petit élément parmi eux.</p>
+                <p>Avec un tableau de taille \( n \), pour trier le 1er élément, il y a donc \( n-1 \) comparaisons,
+                    puis (\( n -2 \)) pour le suivant et ainsi de suite. Pour de grand nombres \( n \) l'ordre de
+                    grandeur du nombre de comparaisons est alors \( n^2 \).</p>
+                <p>Télécharger le <a href="../../docs/P07b-algo-tris.pdf">cours sur les algorithmes de tri</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question G.6</strong>
+            <p>En utilisant une recherche dichotomique, combien faut-il de comparaisons avec l'opérateur == pour trouver
+                une valeur dans un tableau trié de 1000 nombres, dans le pire des cas ?</p>
+            <ol class="E3C">
+                <li>3</li>
+                <li class="OK">10</li>
+                <li>1000</li>
+                <li>1024</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>Dans le pire des cas, il faut \( n \) comparaisons avec \(n\) tel que \(2^n > 1000 \), donc \(n =
+                    10\) car \(2^{10} = 1024\).</p>
+                <p>Consulter le cours en ligne sur <a href="algo_dicho.html">l'algorithme de recherche dichotomique</a>.
+                </p>
             </div>
         </li>
     </ul>
