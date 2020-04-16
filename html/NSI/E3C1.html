@@ -399,8 +399,7 @@
                      ……
                     [0, 0, 0, …, 0] ]</pre>
             <p>On appelle hauteur de la grille le nombre de sous-listes contenues dans G et largeur de la grille le
-                nombre
-                d'éléments dans chacune de ces sous-listes. Comment peut-on les obtenir ? </p>
+                nombre d'éléments dans chacune de ces sous-listes. Comment peut-on les obtenir ? </p>
             <ol class="E3C">
                 <li>hauteur = len(G[0])<br>
                     largeur = len(G)</li>
@@ -422,13 +421,12 @@
             <ol class="E3C">
                 <li>[1,2,3]</li>
                 <li>3</li>
-                <li>4</li>
+                <li class="OK">4</li>
                 <li>[4,5,6]</li>
             </ol>
             <div class="correctionE3C">
-                <p>.</p>
-                <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
-                        représentation des entiers relatifs</a>.</p>
+                <p>On accède à un élément de liste par son indice noté entre crochets. Attention : le 1er élément a l'indice 0 !</p>
+                <p>Télécharger le <a href="../../docs/P02b-donnees-types_construits-tableaux.pdf">cours sur les tableaux</a>.</p>
             </div>
         </li>
         <li><strong>Question B.2</strong>
@@ -438,12 +436,12 @@
                 <li>T[3,1]</li>
                 <li>T[3][1]</li>
                 <li>T[2,0]</li>
-                <li>T[2][0]</li>
+                <li class="OK">T[2][0]</li>
             </ol>
             <div class="correctionE3C">
-                <p>.</p>
-                <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
-                        représentation des entiers relatifs</a>.</p>
+                <p>On accède à un élément de liste par son indice noté entre crochets. Attention : le 1er élément a l'indice 0 !</p>
+                <p>Ici T[2] vaut [7, 8, 9] et donc T[2][0] vaut 7.</p>
+                <p>Télécharger le <a href="../../docs/P02b-donnees-types_construits-tableaux.pdf">cours sur les tableaux</a>.</p>
             </div>
         </li>
 
@@ -452,13 +450,12 @@
             <ol class="E3C">
                 <li>[0,1,1,2]</li>
                 <li>[(1,2),(2,3)]</li>
-                <li>[(0,1),(1,2)]</li>
+                <li class="OK">[(0,1),(1,2)]</li>
                 <li>[[0,1],[1,2]]</li>
             </ol>
             <div class="correctionE3C">
-                <p>.</p>
-                <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
-                        représentation des entiers relatifs</a>.</p>
+                <p>On utilise ici la création de liste en compréhension. Les éléments créés sont des tuples (notés entre parenthèses). L'étendue de l'expression de Python range(n) crée un itérable des nombres 0 à n-1 (ici range(2) --> (0, 1)).</p>
+                <p>Télécharger le <a href="../../docs/P02b-donnees-types_construits-tableaux.pdf">cours sur les tableaux</a>.</p>
             </div>
         </li>
         <li><strong>Question B.4</strong>
@@ -466,13 +463,12 @@
             <ol class="E3C">
                 <li>{ n*n for n in range(1,7) }</li>
                 <li>{ n*n for n in range(6) }</li>
-                <li>[ n*n for n in range(1,7) ]</li>
+                <li class="OK">[ n*n for n in range(1,7) ]</li>
                 <li>[ n*n for n in range(6) ]</li>
             </ol>
             <div class="correctionE3C">
-                <p>.</p>
-                <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
-                        représentation des entiers relatifs</a>.</p>
+                <p>On doit utiliser ici la création de liste en compréhension, notée entre crochets. L'étendue de l'expression de Python range(a, b) crée un itérable des nombres de a à b-1 (ici range(1, 7) --> (1, 2, 3, 4, 5, 6)). Les éléments retenus sont biens les carrés des nmbres de 1 à 6.</p>
+                <p>Télécharger le <a href="../../docs/P02b-donnees-types_construits-tableaux.pdf">cours sur les tableaux</a>.</p>
             </div>
         </li>
 
@@ -482,12 +478,11 @@
                 <li>l'index de "sol" est 5</li>
                 <li>l'index de note est 0</li>
                 <li>l'index de "si" est 7</li>
-                <li>l'index de "mi" est 2</li>
+                <li class="OK">l'index de "mi" est 2</li>
             </ol>
             <div class="correctionE3C">
-                <p>.</p>
-                <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
-                        représentation des entiers relatifs</a>.</p>
+                <p>On accède à un élément de liste par son indice (ou index). Attention : le 1er élément a l'indice 0 ! "mi" est le 3ème élément de la liste, et donc son indice est bien 2.</p>
+                <p>Télécharger le <a href="../../docs/P02b-donnees-types_construits-tableaux.pdf">cours sur les tableaux</a>.</p>
             </div>
         </li>
         <li><strong>Question B.6</strong>
@@ -500,12 +495,11 @@
                     ……
                     [0, 0, 0, …, 0] ]</pre>
             <p>On appelle hauteur de la grille le nombre de sous-listes contenues dans G et largeur de la grille le
-                nombre
-                d'éléments dans chacune de ces sous-listes. Comment peut-on les obtenir ? </p>
+                nombre d'éléments dans chacune de ces sous-listes. Comment peut-on les obtenir ? </p>
             <ol class="E3C">
                 <li>hauteur = len(G[0])<br>
                     largeur = len(G)</li>
-                <li>hauteur = len(G)<br>
+                <li class="OK">hauteur = len(G)<br>
                     largeur = len(G[0])</li>
                 <li>hauteur = len(G[0])<br>
                     largeur = len(G[1])</li>
@@ -513,9 +507,8 @@
                     largeur = len(G[0])</li>
             </ol>
             <div class="correctionE3C">
-                <p>.</p>
-                <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
-                        représentation des entiers relatifs</a>.</p>
+                <p>len(liste) donne la taille (le nombre d'éléments) d'une liste. Le nombre de sous-listes de G est donc len(G), soit sa hauteur. Pour avoir le nombre d'éléments d"une sous-liste, on peut par exemple accéder à la 1ere sous-liste G[0] et chercher sa taille len(G[0]) : c'est la largeur.</p>
+                <p>Télécharger le <a href="../../docs/P02b-donnees-types_construits-tableaux.pdf">cours sur les tableaux</a>.</p>
             </div>
         </li>
     </ul>
@@ -525,7 +518,6 @@
     <h2>Thème C : traitement de données en tables</h2>
     <h3>Les questions brutes</h3>
 
-    <h3>Les questions corrigées</h3>
     <ul class="E3C">
         <li><strong>Question C.1</strong>
             <p>On définit :</p>
@@ -539,11 +531,6 @@
                 <li>T[3]['nombre']</li>
                 <li>T[3,'nombre']</li>
             </ol>
-            <div class="correctionE3C">
-                <p>.</p>
-                <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
-                        représentation des entiers relatifs</a>.</p>
-            </div>
         </li>
         <li><strong>Question C.2</strong>
             <p>Que réalise l'instruction suivante :</p>
@@ -563,11 +550,6 @@
                     même
                     dossier que le fichier du programme Python comportant cette instruction.</li>
             </ol>
-            <div class="correctionE3C">
-                <p>.</p>
-                <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
-                        représentation des entiers relatifs</a>.</p>
-            </div>
         </li>
 
         <li><strong>Question C.3</strong>
@@ -578,11 +560,6 @@
                 <li>le format CSV a été conçu pour assurer la confidentialité d'une partie du code d'un programme</li>
                 <li>les fichiers CSV sont composés de données séparées par des caractères comme des virgules</li>
             </ol>
-            <div class="correctionE3C">
-                <p>.</p>
-                <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
-                        représentation des entiers relatifs</a>.</p>
-            </div>
         </li>
         <li><strong>Question C.4</strong>
             <p>On considère la table suivante :</p>
@@ -597,11 +574,6 @@
                 <li>t['quantité'][1]</li>
                 <li>t['scies']['quantité']</li>
             </ol>
-            <div class="correctionE3C">
-                <p>.</p>
-                <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
-                        représentation des entiers relatifs</a>.</p>
-            </div>
         </li>
 
         <li><strong>Question C.5</strong>
@@ -631,11 +603,6 @@
                 <li>[‘Hopper’, ’Lovelace’]</li>
                 <li>[]</li>
             </ol>
-            <div class="correctionE3C">
-                <p>.</p>
-                <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
-                        représentation des entiers relatifs</a>.</p>
-            </div>
         </li>
         <li><strong>Question C.6</strong>
             <p>Quelle est la valeur de la variable table à la fin de l'exécution du script suivant :</p>
@@ -648,10 +615,126 @@
                 <li>[[1, 2, 3], [1, 2, 5], [1, 2, 3], [1, 2, 3]]</li>
                 <li>[[1, 2, 3], [1, 2, 3], [1, 2, 3], [1, 5, 3]]</li>
             </ol>
+        </li>
+    </ul>
+
+    <h3>Les questions corrigées</h3>
+    <ul class="E3C">
+        <li><strong>Question C.1</strong>
+            <p>On définit :</p>
+            <pre>
+                T = [ {'fruit': 'banane', 'nombre': 25}, {'fruit': 'orange', 'nombre': 124},
+                    {'fruit': 'pomme', 'nombre': 75}, {'fruit': 'kiwi', 'nombre': 51} ]</pre>
+                <p>Quelle expression a-t-elle pour valeur le nombre de pommes ?</p>
+            <ol class="E3C">
+                <li class="OK">T[2]['nombre']</li>
+                <li>T[2,'nombre']</li>
+                <li>T[3]['nombre']</li>
+                <li>T[3,'nombre']</li>
+            </ol>
             <div class="correctionE3C">
-                <p>.</p>
-                <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
-                        représentation des entiers relatifs</a>.</p>
+                <p>T est une liste de dictionnaires. On accède à un élément de liste par son indice, noté entre crochets (à partir de 0), et à la valeur d'un élément de dictionnaire par sa clef, notée entre crochets.</p>
+                <p>Ici T[2] est le dictionnaire {'fruit': 'pomme', 'nombre': 75} et donc on obtient le nombre de pommes à partir de la clef 'nombre' : T[2]['nombre']</p>
+                <p>Télécharger le <a href="../../docs/P02b-donnees-types_construits-tableaux.pdf">cours sur les tableaux</a> et <a href="../../docs/P02ac-donnees-types_construits-puplets-dictionnaires.pdf">cours sur les dictionnaires</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question C.2</strong>
+            <p>Que réalise l'instruction suivante :</p>
+                <pre>
+                    mon_fichier = open("exemple.txt", "r")</pre>
+            <ol class="E3C">
+                <li class="OK">Elle permet d’ouvrir le fichier "exemple.txt" en mode lecture si le fichier est dans le même dossier
+                    que le fichier du programme Python comportant cette instruction.</li>
+                <li>Elle permet d’ouvrir le fichier "exemple.txt" en mode lecture même si le fichier n’est pas dans le
+                    même dossier que le fichier du programme Python comportant cette instruction.</li>
+                <li>Elle permet d’ouvrir le fichier "exemple.txt" en mode écriture si le fichier est dans le même
+                    dossier que le fichier du programme Python comportant cette instruction.</li>
+                <li>Elle permet d’ouvrir le fichier "exemple.txt" en mode écriture même si le fichier n’est pas dans le
+                    même dossier que le fichier du programme Python comportant cette instruction.</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>L'instruction open(adresse_de_fichier, mode) permet d'ouvrir un fichier selon le mode choisi : 'r' pour lecture (read) ou 'w' pour écriture (write). Si on ne précise de chemin particulier pour accéder au fichier, les fichier est cherché dans le même répertoire (ou dossier) que le programme Python.</p>
+                <p>Consulter la <a href="https://docs.python.org/fr/3/tutorial/inputoutput.html#reading-and-writing-files">documentation de Python sur la lecture/écriture de fichier</a>.</p>
+            </div>
+        </li>
+
+        <li><strong>Question C.3</strong>
+            <p>Laquelle de ces affirmations est vraie ?</p>
+            <ol class="E3C">
+                <li>on ne peut accéder au contenu d'un fichier CSV que par l'intermédiaire d'un programme Python</li>
+                <li>CSV est un format de chiffrement des données</li>
+                <li>le format CSV a été conçu pour assurer la confidentialité d'une partie du code d'un programme</li>
+                <li class="OK">les fichiers CSV sont composés de données séparées par des caractères comme des virgules</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>Que dire de plus ?</p>
+                <p>Consulter <a href="https://fr.wikipedia.org/wiki/Comma-separated_values">la page Wikipedia</a>, ou bien la <a href="https://docs.python.org/fr/3/library/csv.html">documentation sur la librairie csv de Python</a> pour la lecture/écriture efficace sur ces fichiers.</p>
+            </div>
+        </li>
+        <li><strong>Question C.4</strong>
+            <p>On considère la table suivante :</p>
+            <pre>
+                t = [ {'type': 'marteau', 'prix': 17, 'quantité': 32},
+                    {'type': 'scie', 'prix': 24, 'quantité': 3},
+                    {'type': 'tournevis', 'prix': 8, 'quantité': 45} ]</pre>
+                <p>Quelle expression permet d'obtenir la quantité de scies ?</p>
+            <ol class="E3C">
+                <li>t[2]['quantité']</li>
+                <li class="OK">t[1]['quantité']</li>
+                <li>t['quantité'][1]</li>
+                <li>t['scies']['quantité']</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>t est une liste de dictionnaires. On accède à un élément de liste par son indice, noté entre crochets (à partir de 0), et à la valeur d'un élément de dictionnaire par sa clef, notée entre crochets.</p>
+                <p>Ici T[1] est le dictionnaire {'type': 'scie', 'prix': 24, 'quantité': 3} et donc on obtient le nombre de scies à partir de la clef 'quantité' : T[1]['quantité']</p>
+                <p>Télécharger le <a href="../../docs/P02b-donnees-types_construits-tableaux.pdf">cours sur les tableaux</a> et <a href="../../docs/P02ac-donnees-types_construits-puplets-dictionnaires.pdf">cours sur les dictionnaires</a>.</p>
+            </div>
+        </li>
+
+        <li><strong>Question C.5</strong>
+            <p>On considère la liste de p-uplets suivante :</p>
+            <pre>
+                table = [ ('Grace', 'Hopper', 'F', 1906),
+                        ('Tim', 'Berners-Lee', 'H', 1955),
+                        ('Ada', 'Lovelace', 'F', 1815),
+                        ('Alan', 'Turing', 'H', 1912) ]</pre>
+                <p>où chaque p-uplet représente un informaticien ou une informaticienne célèbre ; le premier élément est
+                son prénom, le deuxième élément son nom, le troisième élément son sexe (‘H’ pour un homme, ‘F’ pour une
+                femme) et le  quatrième élément son année de naissance (un nombre entier entre 1000 et 2000).</p>
+                <p>On définit une fonction :</p>
+                <pre>
+                def fonctionMystere(table):
+                    mystere = []
+                    for ligne in table:
+                        if ligne[2] == 'F':
+                            mystere.append(ligne[1])
+                    return mystere</pre>
+                <p>Que vaut fonctionMystere(table)?</p>                
+            <ol class="E3C">
+                <li>[‘Grace’, ‘Ada’]</li>
+                <li>[('Grace', 'Hopper', 'F', 1906), ('Ada', 'Lovelace', 'F', 1815)]</li>
+                <li class="OK">[‘Hopper’, ’Lovelace’]</li>
+                <li>[]</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>La table est une liste de p-uplets. La fonction parcourt la liste par élément (parcourt les tuples les uns après les autres avec la variable ligne) et si le 3ème élément d'une ligne (ligne[2], càd Homme ou Femme) vaut 'F' alors on ajoute dans la liste mystère le 2ème élement de ligne (ligne[1], càd le nom de famille). Pour résumé, cette fonction isole les noms de famille des grandes informaticiennes.</p>
+                <p>Télécharger le <a href="../../docs/P07a-algo-parcours-tableau.pdf">cours sur le parcourt séquentiel des tableaux</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question C.6</strong>
+            <p>Quelle est la valeur de la variable table à la fin de l'exécution du script suivant :</p>
+            <pre>
+                table = [[1, 2, 3], [1, 2, 3], [1, 2, 3], [1, 2, 3]]
+                table [1][2] = 5</pre>
+            <ol class="E3C">
+                <li>[[1, 5, 3], [1, 2, 3], [1, 2, 3], [1, 2, 3]]</li>
+                <li>[[1, 2, 3], [5, 2, 3], [1, 2, 3], [1, 2, 3]]</li>
+                <li class="OK">[[1, 2, 3], [1, 2, 5], [1, 2, 3], [1, 2, 3]]</li>
+                <li>[[1, 2, 3], [1, 2, 3], [1, 2, 3], [1, 5, 3]]</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>On accède à un élément de liste par son indice noté entre crochets. Attention : le 1er élément a l'indice 0 ! Ici T[1] est la 2ème sous-liste, et T[1][2] est son 3ème élement, auquel on affecte la nouvelle valeur 5 (au lieu de 3).</p>
+                <p>Télécharger le <a href="../../docs/P02b-donnees-types_construits-tableaux.pdf">cours sur les tableaux</a>.</p>
             </div>
         </li>
     </ul>
@@ -661,9 +744,9 @@
     <!-- **********************QUESTION D                                          -->
 
     <h2>Thème D : interactions entre l'homme et la machine sur le Web</h2>
+
     <h3>Les questions brutes</h3>
 
-    <h3>Les questions corrigées</h3>
     <ul class="E3C">
         <li><strong>Question D.1</strong>
             <p>Quel est le code HTML correct pour créer un hyperlien vers le site Eduscol ?</p>
@@ -673,11 +756,6 @@
                 <li>&lt;a href="https://www.eduscol.education.fr/"&gt; site Eduscol &lt;/a&gt;</li>
                 <li>&lt;a&gt; https://www.eduscol.education.fr/ &lt;/a&gt; site Eduscol</li>
             </ol>
-            <div class="correctionE3C">
-                <p>.</p>
-                <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
-                        représentation des entiers relatifs</a>.</p>
-            </div>
         </li>
         <li><strong>Question D.2</strong>
             <p>Lors de la consultation d’une page HTML, contenant un bouton auquel est associée la fonction javascript
@@ -692,11 +770,6 @@
                 <li>le texte du bouton est remplacé par le mot "red"</li>
                 <li>le texte de la page passe en rouge</li>
             </ol>
-            <div class="correctionE3C">
-                <p>.</p>
-                <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
-                        représentation des entiers relatifs</a>.</p>
-            </div>
         </li>
 
         <li><strong>Question D.3</strong>
@@ -707,10 +780,86 @@
                 <li>&lt;link&gt;</li>
                 <li>&lt;a&gt;</li>
             </ol>
+        </li>
+        <li><strong>Question D.4</strong>
+            <p>Quelle est la fonction principale d’un fichier CSS ?</p>
+            <ol class="E3C">
+                <li>Définir le style d’une page web</li>
+                <li>Assurer l’interaction entre une page web et l’utilisateur</li>
+                <li>Créer une page web dynamique</li>
+                <li>Créer un bouton dans une page web</li>
+            </ol>
+        </li>
+
+        <li><strong>Question D.5</strong>
+            <p>Quelle URL parmi les suivantes témoigne que l'échange entre le navigateur et le serveur est chiffré ?</p>
+            <ol class="E3C">
+                <li>http://www.mabanque.com/</li>
+                <li>http://www.mabanque.fr/</li>
+                <li>https://www.mabanque.fr/</li>
+                <li>http://secure.mabanque.fr/</li>
+            </ol>
+        </li>
+        <li><strong>Question D.6</strong>
+            <p>Quel langage est interprété ou exécuté côté serveur ?</p>
+            <ol class="E3C">
+                <li>JavaScript</li>
+                <li>PHP</li>
+                <li>HTML</li>
+                <li>CSS</li>
+            </ol>
+        </li>
+    </ul>
+
+    <h3>Les questions corrigées</h3>
+
+    <ul class="E3C">
+        <li><strong>Question D.1</strong>
+            <p>Quel est le code HTML correct pour créer un hyperlien vers le site Eduscol ?</p>
+            <ol class="E3C">
+                <li>&lt;a url="https://www.eduscol.education.fr/"&gt; site Eduscol &lt;/a&gt;</li>
+                <li>&lt;a name="https://www.eduscol.education.fr/"&gt; site Eduscol &lt;/a&gt;</li>
+                <li class="OK">&lt;a href="https://www.eduscol.education.fr/"&gt; site Eduscol &lt;/a&gt;</li>
+                <li>&lt;a&gt; https://www.eduscol.education.fr/ &lt;/a&gt; site Eduscol</li>
+            </ol>
             <div class="correctionE3C">
-                <p>.</p>
-                <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
-                        représentation des entiers relatifs</a>.</p>
+                <p>L'élément HTML a, permettant de créer des liens, nécessite l'attribut href qui prend comme valeur l'URL visée.</p>
+                <p>Télécharger le <a href="../../docs/P04a1-page_web_rappels.pdf">cours sur la
+                        création de pages Web</a> ou consulter la <a href="https://www.w3schools.com/tags/tag_a.asp">documentation sur W3school</a> ou <a href="https://developer.mozilla.org/fr/docs/Web/HTML/Element/a">la documentation sur MDN</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question D.2</strong>
+            <p>Lors de la consultation d’une page HTML, contenant un bouton auquel est associée la fonction javascript
+                suivante, que se passe-t-il quand on clique sur ce bouton ?</p>
+                <pre>
+                function action(event) {
+                    this.style.color = "red"
+                }</pre>
+            <ol class="E3C">
+                <li>le pointeur de souris devient rouge lorsqu'il arrive sur le bouton</li>
+                <li class="OK">le texte du bouton devient rouge</li>
+                <li>le texte du bouton est remplacé par le mot "red"</li>
+                <li>le texte de la page passe en rouge</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>Le mot clef this fait référence à l'objet qui a appelé la fonction, ici le bouton. La propriété style permet de modifier le style CSS du bouton et la propriété color fait référence à la couleur de son texte.</p>
+                <p>Télécharger le <a href="../../docs/P04a2-javascript.pdf">cours sur Javascript</a> ou consulter la <a href="https://www.w3schools.com/js/js_htmldom_css.asp">documentation sur W3school</a> ou <a href="https://developer.mozilla.org/fr/docs/Web/API/HTMLElement/style">la documentation sur MDN</a>.</p>
+            </div>
+        </li>
+
+        <li><strong>Question D.3</strong>
+            <p>Quelle balise HTML permet de créer des liens entre pages ?</p>
+            <ol class="E3C">
+                <li>&lt;r&gt;</li>
+                <li>&lt;l&gt;</li>
+                <li>&lt;link&gt;</li>
+                <li class="OK">&lt;a&gt;</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>L'élément HTML a, permettant de créer des liens, nécessite l'attribut href qui prend comme valeur l'URL visée.</p>
+                <p>L'élément HTML link définit la relation entre le document courant et une ressource externe.</p>
+                <p>Télécharger le <a href="../../docs/P04a1-page_web_rappels.pdf">cours sur la
+                        création de pages Web</a> ou consulter la <a href="https://www.w3schools.com/tags/tag_a.asp">documentation sur W3school</a> ou <a href="https://developer.mozilla.org/fr/docs/Web/HTML/Element/a">la documentation sur MDN</a>, <a href="https://developer.mozilla.org/fr/docs/Web/HTML/Element/link"> et sur l'élément link</a>.</p>
             </div>
         </li>
         <li><strong>Question D.4</strong>
@@ -725,7 +874,7 @@
                 <p>Un fichier de feuille de style CSS (Cascading Style Sheet) permet de décrire la mise en forme des
                     style d'une page Web.</p>
                 <p>Télécharger le <a href="../../docs/P04a1-page_web_rappels.pdf">cours sur la
-                        structuration de page Web</a>.</p>
+                        structuration de page Web</a> ou consulter la <a href="https://www.w3schools.com/Css/">documentation sur W3school</a> ou <a href="https://developer.mozilla.org/fr/docs/Web/CSS">la documentation sur MDN</a>.</p>
             </div>
         </li>
 
@@ -740,8 +889,8 @@
             <div class="correctionE3C">
                 <p>Le protocole HTTPS (S pour Secure) est le protocole de communication au niveau de la couche
                     application qui chiffre les données avant leur transmission sur le réseau.</p>
-                <p>Télécharger le <a href="../../docs/P04d-formulaire_web.pdf">cours sur la'écriture et la transmission
-                        de formulaires Web</a>.</p>
+                <p>Télécharger le <a href="../../docs/P04d-formulaire_web.pdf">cours sur l'écriture et la transmission
+                        de formulaires Web</a> consulter la <a href="https://fr.wikipedia.org/wiki/HyperText_Transfer_Protocol_Secure">la page Wikipédia</a>.</p>
             </div>
         </li>
         <li><strong>Question D.6</strong>
@@ -753,13 +902,10 @@
                 <li>CSS</li>
             </ol>
             <div class="correctionE3C">
-                <p>HTML est le langage de description permettant de structurer une page Web</p>
-                <p>CSS est le langage de description permettant la mise en forme des éléments de la page Web</p>
-                <p>Javascript est le langage permettant de "dynamiser" les pages Web.</p>
-                <p>Ces 3 langages sont interprétés par le navigateur du client.</p>
+                <p>HTML est le langage de description permettant de structurer une page Web. CSS est le langage de description permettant la mise en forme des éléments de la page Web. Javascript est le langage permettant de "dynamiser" les pages Web. Ces 3 langages sont interprétés par le navigateur du client.</p>
                 <p>Remarque : cependant, il est possible d'utiliser le langage Javascript côté serveur aussi. Javascript
                     étant un langage de programmation à part entière.</p>
-                <p>PHP, en revanche, est un langage de programmation qui est toujours exécuté du côté serveur (souvent
+                <p>PHP, en revanche, est un langage de programmation qui est exécuté du côté serveur (souvent
                     couplé à une base de données stockée sur le serveur).</p>
                 <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
                         représentation des entiers relatifs</a>.</p>
@@ -774,7 +920,6 @@
     <h2>Thème E : architectures matérielles et systèmes d'exploitation</h2>
     <h3>Les questions brutes</h3>
 
-    <h3>Les questions corrigées</h3>
     <ul class="E3C">
         <li><strong>Question E.1</strong>
             <p>Dans la console Linux, quelle commande faut-il exécuter pour obtenir la documentation sur la commande pwd
@@ -786,25 +931,13 @@
                 <li>mkdir pwd</li>
                 <li>ls pwd</li>
             </ol>
-            <div class="correctionE3C">
-                <p>.</p>
-                <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
-                        représentation des entiers relatifs</a>.</p>
-            </div>
         </li>
         <li><strong>Question E.2</strong>
-            <p>
-                Dans un établissement scolaire, tous les ordinateurs sont reliés au réseau local par l'intermédiaire de
-                câbles
-                Ethernet. Il n'existe pas de liaisons sans fil. Dans chaque salle d'ordinateurs, les machines sont
-                reliées à un
-                commutateur. Chaque commutateur est relié par un câble jusqu'à la salle où se situe le serveur
-                contrôleur de
-                domaine et la passerelle internet (routeur).<br>
+            <p>  Dans un établissement scolaire, tous les ordinateurs sont reliés au réseau local par l'intermédiaire de
+                câbles Ethernet. Il n'existe pas de liaisons sans fil. Dans chaque salle d'ordinateurs, les machines sont reliées à un  commutateur. Chaque commutateur est relié par un câble jusqu'à la salle où se situe le serveur  contrôleur de  domaine et la passerelle internet (routeur).<br>
                 Vous êtes connectés sur un ordinateur d'une de ces salles d'ordinateurs avec votre classe. Tout à coup,
-                plus
-                personne n'a accès à Internet, mais toutes les ressources locales de l'établissement sont toujours
-                accessibles.
+                plus  personne n'a accès à Internet, mais toutes les ressources locales de l'établissement sont toujours
+                accessibles.<br/>
                 Parmi ces quatre propositions, laquelle est la plus vraisemblable ?</p>
             <ol class="E3C">
                 <li>Un de vos camarades a débranché accidentellement le câble Ethernet de votre machine.</li>
@@ -813,11 +946,6 @@
                 <li>La passerelle internet de l'établissement est indisponible (elle a été débranchée ou est en panne).
                 </li>
             </ol>
-            <div class="correctionE3C">
-                <p>.</p>
-                <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
-                        représentation des entiers relatifs</a>.</p>
-            </div>
         </li>
 
         <li><strong>Question E.3</strong>
@@ -829,11 +957,6 @@
                 <li>la souris</li>
                 <li>le scanner</li>
             </ol>
-            <div class="correctionE3C">
-                <p>.</p>
-                <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
-                        représentation des entiers relatifs</a>.</p>
-            </div>
         </li>
         <li><strong>Question E.4</strong>
             <p>Dans la console Linux, étant positionné dans le répertoire /home/marcelH/travail, quelle commande faut-il
@@ -844,11 +967,6 @@
                 <li>cd ...</li>
                 <li>cd /../.</li>
             </ol>
-            <div class="correctionE3C">
-                <p>.</p>
-                <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
-                        représentation des entiers relatifs</a>.</p>
-            </div>
         </li>
 
         <li><strong>Question E.5</strong>
@@ -863,11 +981,6 @@
                 <li>cp NSI.txt ../NSI2.txt</li>
                 <li>cp NSI.txt ../sauvegardes/NSI2.txt</li>
             </ol>
-            <div class="correctionE3C">
-                <p>.</p>
-                <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
-                        représentation des entiers relatifs</a>.</p>
-            </div>
         </li>
         <li><strong>Question E.6</strong>
             <p>La commande suivante vient d'être exécutée en ligne de commande sous Linux :</p>
@@ -880,10 +993,103 @@
                 <li>copie du fichier interro.txt vers le répertoire courant</li>
                 <li>copie du fichier interro.txt vers le répertoire users</li>
             </ol>
+        </li>
+    </ul>
+
+    <h3>Les questions corrigées</h3>
+    <ul class="E3C">
+        <li><strong>Question E.1</strong>
+            <p>Dans la console Linux, quelle commande faut-il exécuter pour obtenir la documentation sur la commande pwd
+                ?
+            </p>
+            <ol class="E3C">
+                <li class="OK">man pwd</li>
+                <li>cd pwd</li>
+                <li>mkdir pwd</li>
+                <li>ls pwd</li>
+            </ol>
             <div class="correctionE3C">
-                <p>.</p>
+                <p>La commande man est celle qui permet d'appeler les pages du manuel (man) donc la documentation sur une autre commande.</p>
                 <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
-                        représentation des entiers relatifs</a>.</p>
+                        représentation des entiers relatifs</a> ou consulter <a href="https://doc.ubuntu-fr.org/tutoriel/console_commandes_de_base">la documentation sur le Wiki d'Ubuntu</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question E.2</strong>
+            <p>  Dans un établissement scolaire, tous les ordinateurs sont reliés au réseau local par l'intermédiaire de
+                câbles Ethernet. Il n'existe pas de liaisons sans fil. Dans chaque salle d'ordinateurs, les machines sont reliées à un  commutateur. Chaque commutateur est relié par un câble jusqu'à la salle où se situe le serveur  contrôleur de  domaine et la passerelle internet (routeur).<br>
+                Vous êtes connectés sur un ordinateur d'une de ces salles d'ordinateurs avec votre classe. Tout à coup,
+                plus  personne n'a accès à Internet, mais toutes les ressources locales de l'établissement sont toujours
+                accessibles.<br/>
+                Parmi ces quatre propositions, laquelle est la plus vraisemblable ?</p>
+            <ol class="E3C">
+                <li>Un de vos camarades a débranché accidentellement le câble Ethernet de votre machine.</li>
+                <li>Le routeur de l'étage est indisponible (il a été débranché ou est en panne).</li>
+                <li>Le commutateur de la salle est indisponible (il a été débranché ou est en panne).</li>
+                <li class="OK">La passerelle internet de l'établissement est indisponible (elle a été débranchée ou est en panne).
+                </li>
+            </ol>
+            <div class="correctionE3C">
+                <p>Si le câble Ethernet de votre machine est débranché accidentellement, seule votre machine n'a plus aucun accès au réseau. Si le routeur de l'étage est indisponible, ou  si le commutateur de la salle est indisponible, les accès aux ressources de l'établissement ne sont plus possibles. C'est donc la passerelle vers l'Internet qui doit avoir un problème.</p>
+            </div>
+        </li>
+
+        <li><strong>Question E.3</strong>
+            <p>Lequel de ces périphériques n'est pas un périphérique d'entrée ?</p>
+            <ol class="E3C">
+                <li class="OK">le moniteur</li>
+                <li>le clavier</li>
+                <li>la souris</li>
+                <li>le scanner</li>
+            </ol> 
+            <div class="correctionE3C">
+                <p>Le moniteur est un périphérique de sortie.</p>
+            </div>
+        </li>
+        <li><strong>Question E.4</strong>
+            <p>Dans la console Linux, étant positionné dans le répertoire /home/marcelH/travail, quelle commande faut-il
+                exécuter pour remonter dans l'arborescence vers le répertoire /home/marcelH ?</p>
+            <ol class="E3C">
+                <li>cd .</li>
+                <li class="OK">cd ..</li>
+                <li>cd ...</li>
+                <li>cd /../.</li>
+            </ol> 
+            <div class="correctionE3C">
+                <p>La commande cd permet de changer de répertoire (change directory). Le répertoire noté avec un seul point est le répertoire courant, celui noté avec deux points est le répertoire parent. Ici, il faut remonter d'un niveau dans l'arborescence. </p>
+                <p>Consulter <a href="https://doc.ubuntu-fr.org/tutoriel/console_commandes_de_base">la documentation sur le Wiki d'Ubuntu</a>.</p>
+            </div>
+        </li>
+
+        <li><strong>Question E.5</strong>
+            <p>Dans un système Linux, on dispose d'un répertoire racine contenant deux répertoires documents et
+                sauvegardes. On se trouve dans le répertoire documents où figure un fichier NSI.txt.
+                Quelle commande permet de créer une copie nommée NSI2.txt de ce fichier dans le répertoire sauvegardes ?
+            </p>
+            <ol class="E3C">
+                <li>cp NSI.txt NSI2.txt</li>
+                <li>cp NSI.txt sauvegardes/NSI2.txt</li>
+                <li>cp NSI.txt ../NSI2.txt</li>
+                <li class="OK">cp NSI.txt ../sauvegardes/NSI2.txt</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>La commande cp permet de copier un fichier source vers une destination. Le répertoire noté avec  avec deux points est le répertoire parent. Ici, il faut remonter d'un niveau dans l'arborescence avant de redescendre dans le dossier sauvegardes. </p>
+                <p>Consulter <a href="https://doc.ubuntu-fr.org/tutoriel/console_commandes_de_base">la documentation sur le Wiki d'Ubuntu</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question E.6</strong>
+            <p>La commande suivante vient d'être exécutée en ligne de commande sous Linux :</p>
+            <pre>
+                cp /users/luc/interro.txt ./</pre>
+                <p>Que réalise cette commande ?</p>
+            <ol class="E3C">
+                <li>copie du fichier users vers le répertoire luc</li>
+                <li>copie du fichier interro.txt vers le répertoire luc</li>
+                <li class="OK">copie du fichier interro.txt vers le répertoire courant</li>
+                <li>copie du fichier interro.txt vers le répertoire users</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>La commande cp permet de copier un fichier source vers une destination.  Le répertoire noté avec un seul point est le répertoire courant. </p>
+                <p>Consulter <a href="https://doc.ubuntu-fr.org/tutoriel/console_commandes_de_base">la documentation sur le Wiki d'Ubuntu</a>.</p>
             </div>
         </li>
     </ul>
@@ -895,7 +1101,6 @@
     <h2>Thème F : langages et programmation</h2>
     <h3>Les questions brutes</h3>
 
-    <h3>Les questions corrigées</h3>
     <ul class="E3C">
         <li><strong>Question F.1</strong>
             <p>La documentation de la bibliothèque random de Python précise :</p>
@@ -909,11 +1114,6 @@
                 <li>random.randint(1,7)</li>
                 <li>random.randint(0,6)</li>
             </ol>
-            <div class="correctionE3C">
-                <p>.</p>
-                <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
-                        représentation des entiers relatifs</a>.</p>
-            </div>
         </li>
         <li><strong>Question F.2</strong>
             <p>On a écrit une fonction qui prend en paramètre une liste non vide et qui renvoie son plus grand élément.
@@ -931,11 +1131,6 @@
                     simplement
                     en la testant</li>
             </ol>
-            <div class="correctionE3C">
-                <p>.</p>
-                <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
-                        représentation des entiers relatifs</a>.</p>
-            </div>
         </li>
 
         <li><strong>Question F.3</strong>
@@ -952,10 +1147,109 @@
                 <li>puissance(2, 2)</li>
                 <li>puissance(2, 10)</li>
             </ol>
+        </li>
+        <li><strong>Question F.4</strong>
+            <p>En Python, quelle est la méthode pour charger la fonction sqrt du module math ?</p>
+            <ol class="E3C">
+                <li>using math.sqrt</li>
+                <li>#include math.sqrt</li>
+                <li>from math include sqrt</li>
+                <li>from math import sqrt</li>
+            </ol>
+        </li>
+
+        <li><strong>Question F.5</strong>
+            <p>On définit deux fonctions :</p>       
+            <pre>
+                def f(x):
+                    y = 2*x + 1
+                    return y</pre>
+                <pre>
+                def calcul(x):
+                    y = x - 1
+                    return f(y)</pre>
+                <p>Quelle est la valeur renvoyée par l'appel calcul(5) ?</p>
+            <ol class="E3C">
+                <li>4</li>
+                <li>9</li>
+                <li>11</li>
+                <li>19</li>
+            </ol>
+        </li>
+        <li><strong>Question F.6</strong>
+            <p>Avec la définition de fonction capital_double suivante, que peut-on toujours affirmer à propos du
+                résultat n retourné par la fonction ?</p>
+            <pre>
+                def capital_double (capital, interet):
+                    montant = capital
+                    n = 0
+                    while montant &lt;= 2 * capital:
+                        montant = montant + interet
+                        n = n + 1
+                    return n</pre>
+            <ol class="E3C">
+                <li>n == capital / interet</li>
+                <li>capital * n * interet &gt; 2 * capital</li>
+                <li>capital + n * interet &gt; 2 * capital</li>
+                <li>n == 2 * capital / interet</li>
+            </ol>
+            <div clas
+        </li>
+    </ul>
+
+    <h3>Les questions corrigées</h3>
+
+    <ul class="E3C">
+        <li><strong>Question F.1</strong>
+            <p>La documentation de la bibliothèque random de Python précise :</p>
+            <pre>
+                random.randint(a, b)
+                    Renvoie un entier aléatoire N tel que a &lt;= N &lt;= b.</pre>
+                <p>Quelle est l’expression Python permettant de simuler le tirage d’un dé à 6 faces après avoir exécuté import random ?</p>
+            <ol class="E3C">
+                <li>random.randint(6)</li>
+                <li class="OK">random.randint(1,6)</li>
+                <li>random.randint(1,7)</li>
+                <li>random.randint(0,6)</li>
+            </ol>
             <div class="correctionE3C">
-                <p>.</p>
-                <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
-                        représentation des entiers relatifs</a>.</p>
+                <p>D'après la documentation, les bornes sont incluses donc pour simuluer les 6 faces possibles du dé, il faut choisir les bornes 1 et 6.</p>
+            </div>
+        </li>
+        <li><strong>Question F.2</strong>
+            <p>On a écrit une fonction qui prend en paramètre une liste non vide et qui renvoie son plus grand élément.
+                Combien  de tests faudrait-il écrire pour garantir que la fonction donne un résultat correct pour toute liste ?
+            </p>
+            <ol class="E3C">
+                <li>deux tests : pour une liste à un élément et pour une liste à deux éléments ou plus</li>
+                <li>deux tests : pour le cas où le plus grand élément est en début de liste, et pour le cas où le plus
+                    grand élément n’est pas en début de liste</li>
+                <li>trois tests : pour une liste vide, pour une liste à un élément, et pour une liste à deux éléments ou
+                    plus</li>
+                <li class="OK">il faudrait écrire une infinité de tests : on ne peut pas prouver que cette fonction est correcte, simplement en la testant</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>Que dire de plus ?</p>
+                <p>La preuve de correction d'un algorithme nécessite une démonstration précise s'appuyant sur l'analyse de l'algorithme. Un test ne peut pas prouver la correction d'un algorithme.</p><p>Croiser 8 milliards de cygnes blancs et aucun noir <strong>ne prouve pas</strong> qu'il n'exsite pas de cygne noir.</p>
+            </div>
+        </li>
+
+        <li><strong>Question F.3</strong>
+            <p>La fonction Python suivante ne calcule pas toujours correctement le résultat de \( x^y \) pour des arguments entiers. Parmi les tests suivants, lequel va permettre de détecter l’erreur ?</p>
+            <pre>
+                def puissance (x,y):
+                    p = x
+                    for i in range (y - 1):
+                        p = p * x
+                    return p</pre>
+            <ol class="E3C">
+                <li class="OK">puissance(2,0)</li>
+                <li>puissance(2, 1)</li>
+                <li>puissance(2, 2)</li>
+                <li>puissance(2, 10)</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>L'appel à cette fonction avec y = 0 a pour effet de ne pas rentrer dans la boucle for (for i in range(-1) ne s'exécute aucune fois) donc la valeur renvoyée est p = x = 2. Donc puissance(2, 0) vaut 2, alors que \( 2^0 \) vaut 1 !</p>
             </div>
         </li>
         <li><strong>Question F.4</strong>
@@ -992,14 +1286,13 @@
                 <p>Quelle est la valeur renvoyée par l'appel calcul(5) ?</p>
             <ol class="E3C">
                 <li>4</li>
-                <li>9</li>
+                <li class="OK">9</li>
                 <li>11</li>
                 <li>19</li>
             </ol>
             <div class="correctionE3C">
-                <p>.</p>
-                <p>Télécharger le <a href="../../docs/P01b-donnees-types_base-entier_relatif.pdf">cours sur la
-                        représentation des entiers relatifs</a>.</p>
+                <p>calcul(5) affecte 4 à sa variable locale y (y = x - 1 = 5 - 1) et renvoie la valeur de f(4).</p>
+                <p>f(4) affecte 9 à sa variable locale y (y = 2*x + 1 = 8 + 1) et renvoie cette valeur !
             </div>
         </li>
         <li><strong>Question F.6</strong>
