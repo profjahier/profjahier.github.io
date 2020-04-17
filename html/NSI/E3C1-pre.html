@@ -404,13 +404,12 @@
         <li><strong>Question B.6</strong>
             <p>On définit une grille G remplie de 0, sous la forme d'une liste de listes, où toutes les sous-listes ont
                 le même nombre d'éléments.</p>
-            <p class="codeE3C">
+            <pre>
                 G = [ [0, 0, 0, …, 0],
                     [0, 0, 0, …, 0],
                     [0, 0, 0, …, 0],
                      ……
-                    [0, 0, 0, …, 0] ]
-                </p>
+                    [0, 0, 0, …, 0] ]</pre>
             <p>On appelle hauteur de la grille le nombre de sous-listes contenues dans G et largeur de la grille le
                 nombre d'éléments dans chacune de ces sous-listes. Comment peut-on les obtenir ? </p>
             <ol class="E3C">
@@ -513,13 +512,12 @@
         <li><strong>Question B.6</strong>
             <p>On définit une grille G remplie de 0, sous la forme d'une liste de listes, où toutes les sous-listes ont
                 le même nombre d'éléments.</p>
-            <p class="codeE3C">
+            <pre>
                 G = [ [0, 0, 0, …, 0],
                     [0, 0, 0, …, 0],
                     [0, 0, 0, …, 0],
                     ……
-                    [0, 0, 0, …, 0] ]
-                </p>
+                    [0, 0, 0, …, 0] ]</pre>
             <p>On appelle hauteur de la grille le nombre de sous-listes contenues dans G et largeur de la grille le
                 nombre d'éléments dans chacune de ces sous-listes. Comment peut-on les obtenir ? </p>
             <ol class="E3C">
@@ -550,10 +548,9 @@
     <ul class="E3C">
         <li><strong>Question C.1</strong>
             <p>On définit :</p>
-            <p class="codeE3C">
+            <pre>
                 T = [ {'fruit': 'banane', 'nombre': 25}, {'fruit': 'orange', 'nombre': 124},
-                    {'fruit': 'pomme', 'nombre': 75}, {'fruit': 'kiwi', 'nombre': 51} ]
-                </p>
+                    {'fruit': 'pomme', 'nombre': 75}, {'fruit': 'kiwi', 'nombre': 51} ]</pre>
             <p>Quelle expression a-t-elle pour valeur le nombre de pommes ?</p>
             <ol class="E3C">
                 <li>T[2]['nombre']</li>
@@ -564,9 +561,8 @@
         </li>
         <li><strong>Question C.2</strong>
             <p>Que réalise l'instruction suivante :</p>
-            <p class="codeE3C">
-                    mon_fichier = open("exemple.txt", "r")
-                </p>
+            <pre>
+                    mon_fichier = open("exemple.txt", "r")</pre>
             <ol class="E3C">
                 <li>Elle permet d’ouvrir le fichier "exemple.txt" en mode lecture si le fichier est dans le même dossier
                     que le
@@ -594,11 +590,10 @@
         </li>
         <li><strong>Question C.4</strong>
             <p>On considère la table suivante :</p>
-            <p class="codeE3C">
+            <pre>
                 t = [ {'type': 'marteau', 'prix': 17, 'quantité': 32},
                     {'type': 'scie', 'prix': 24, 'quantité': 3},
-                    {'type': 'tournevis', 'prix': 8, 'quantité': 45} ]
-                </p>
+                    {'type': 'tournevis', 'prix': 8, 'quantité': 45} ]</pre>
             <p>Quelle expression permet d'obtenir la quantité de scies ?</p>
             <ol class="E3C">
                 <li>t[2]['quantité']</li>
@@ -610,26 +605,24 @@
 
         <li><strong>Question C.5</strong>
             <p>On considère la liste de p-uplets suivante :</p>
-            <p class="codeE3C">
+            <pre>
                 table = [ ('Grace', 'Hopper', 'F', 1906),
                         ('Tim', 'Berners-Lee', 'H', 1955),
                         ('Ada', 'Lovelace', 'F', 1815),
-                        ('Alan', 'Turing', 'H', 1912) ]
-                    </p>
+                        ('Alan', 'Turing', 'H', 1912) ]</pre>
             <p>où chaque p-uplet représente un informaticien ou une informaticienne célèbre ; le premier élément est
                 son
                 prénom, le deuxième élément son nom, le troisième élément son sexe (‘H’ pour un homme, ‘F’ pour une
                 femme) et le
                 quatrième élément son année de naissance (un nombre entier entre 1000 et 2000).</p>
             <p>On définit une fonction :</p>
-            <p class="codeE3C">
+            <pre>
                 def fonctionMystere(table):
                     mystere = []
                     for ligne in table:
                         if ligne[2] == 'F':
                             mystere.append(ligne[1])
-                    return mystere
-                </p>
+                    return mystere</pre>
             <p>Que vaut fonctionMystere(table)?</p>
             <ol class="E3C">
                 <li>[‘Grace’, ‘Ada’]</li>
@@ -640,10 +633,9 @@
         </li>
         <li><strong>Question C.6</strong>
             <p>Quelle est la valeur de la variable table à la fin de l'exécution du script suivant :</p>
-            <p class="codeE3C">
+            <pre>
                 table = [[1, 2, 3], [1, 2, 3], [1, 2, 3], [1, 2, 3]]
-                table [1][2] = 5
-            </p>
+                table [1][2] = 5</pre>
             <ol class="E3C">
                 <li>[[1, 5, 3], [1, 2, 3], [1, 2, 3], [1, 2, 3]]</li>
                 <li>[[1, 2, 3], [5, 2, 3], [1, 2, 3], [1, 2, 3]]</li>
@@ -657,10 +649,9 @@
     <ul class="E3C">
         <li><strong>Question C.1</strong>
             <p>On définit :</p>
-            <p class="codeE3C">
+            <pre>
                 T = [ {'fruit': 'banane', 'nombre': 25}, {'fruit': 'orange', 'nombre': 124},
-                    {'fruit': 'pomme', 'nombre': 75}, {'fruit': 'kiwi', 'nombre': 51} ]
-                </p>
+                    {'fruit': 'pomme', 'nombre': 75}, {'fruit': 'kiwi', 'nombre': 51} ]</pre>
             <p>Quelle expression a-t-elle pour valeur le nombre de pommes ?</p>
             <ol class="E3C">
                 <li class="OK">T[2]['nombre']</li>
@@ -681,9 +672,8 @@
         </li>
         <li><strong>Question C.2</strong>
             <p>Que réalise l'instruction suivante :</p>
-            <p class="codeE3C">
-                    mon_fichier = open("exemple.txt", "r")
-                </p>
+            <pre>
+                    mon_fichier = open("exemple.txt", "r")</pre>
             <ol class="E3C">
                 <li class="OK">Elle permet d’ouvrir le fichier "exemple.txt" en mode lecture si le fichier est dans le
                     même dossier
@@ -724,11 +714,10 @@
         </li>
         <li><strong>Question C.4</strong>
             <p>On considère la table suivante :</p>
-            <p class="codeE3C">
+            <pre>
                 t = [ {'type': 'marteau', 'prix': 17, 'quantité': 32},
                     {'type': 'scie', 'prix': 24, 'quantité': 3},
-                    {'type': 'tournevis', 'prix': 8, 'quantité': 45} ]
-                </p>
+                    {'type': 'tournevis', 'prix': 8, 'quantité': 45} ]</pre>
             <p>Quelle expression permet d'obtenir la quantité de scies ?</p>
             <ol class="E3C">
                 <li>t[2]['quantité']</li>
@@ -750,24 +739,22 @@
 
         <li><strong>Question C.5</strong>
             <p>On considère la liste de p-uplets suivante :</p>
-            <p class="codeE3C">
+            <pre>
                 table = [ ('Grace', 'Hopper', 'F', 1906),
                         ('Tim', 'Berners-Lee', 'H', 1955),
                         ('Ada', 'Lovelace', 'F', 1815),
-                        ('Alan', 'Turing', 'H', 1912) ]
-                    </p>
+                        ('Alan', 'Turing', 'H', 1912) ]</pre>
             <p>où chaque p-uplet représente un informaticien ou une informaticienne célèbre ; le premier élément est
                 son prénom, le deuxième élément son nom, le troisième élément son sexe (‘H’ pour un homme, ‘F’ pour une
                 femme) et le quatrième élément son année de naissance (un nombre entier entre 1000 et 2000).</p>
             <p>On définit une fonction :</p>
-            <p class="codeE3C">
+            <pre>
                 def fonctionMystere(table):
                     mystere = []
                     for ligne in table:
                         if ligne[2] == 'F':
                             mystere.append(ligne[1])
-                    return mystere
-                </p>
+                    return mystere</pre>
             <p>Que vaut fonctionMystere(table)?</p>
             <ol class="E3C">
                 <li>[‘Grace’, ‘Ada’]</li>
@@ -787,10 +774,9 @@
         </li>
         <li><strong>Question C.6</strong>
             <p>Quelle est la valeur de la variable table à la fin de l'exécution du script suivant :</p>
-            <p class="codeE3C">
+            <pre>
                 table = [[1, 2, 3], [1, 2, 3], [1, 2, 3], [1, 2, 3]]
-                table [1][2] = 5
-            </p>
+                table [1][2] = 5</pre>
             <ol class="E3C">
                 <li>[[1, 5, 3], [1, 2, 3], [1, 2, 3], [1, 2, 3]]</li>
                 <li>[[1, 2, 3], [5, 2, 3], [1, 2, 3], [1, 2, 3]]</li>
@@ -828,11 +814,10 @@
         <li><strong>Question D.2</strong>
             <p>Lors de la consultation d’une page HTML, contenant un bouton auquel est associée la fonction javascript
                 suivante, que se passe-t-il quand on clique sur ce bouton ?</p>
-            <p class="codeE3C">
+            <pre>
                 function action(event) {
                     this.style.color = "red"
-                }
-            </p>
+                }</pre>
             <ol class="E3C">
                 <li>le pointeur de souris devient rouge lorsqu'il arrive sur le bouton</li>
                 <li>le texte du bouton devient rouge</li>
@@ -904,11 +889,10 @@
         <li><strong>Question D.2</strong>
             <p>Lors de la consultation d’une page HTML, contenant un bouton auquel est associée la fonction javascript
                 suivante, que se passe-t-il quand on clique sur ce bouton ?</p>
-            <p class="codeE3C">
+            <pre>
                 function action(event) {
                     this.style.color = "red"
-                }
-            </p>
+                }</pre>
             <ol class="E3C">
                 <li>le pointeur de souris devient rouge lorsqu'il arrive sur le bouton</li>
                 <li class="OK">le texte du bouton devient rouge</li>
@@ -1077,9 +1061,8 @@
         </li>
         <li><strong>Question E.6</strong>
             <p>La commande suivante vient d'être exécutée en ligne de commande sous Linux :</p>
-            <p class="codeE3C">
-                cp /users/luc/interro.txt ./
-            </p>
+            <pre>
+                cp /users/luc/interro.txt ./</pre>
             <p>Que réalise cette commande ?</p>
             <ol class="E3C">
                 <li>copie du fichier users vers le répertoire luc</li>
@@ -1187,9 +1170,8 @@
         </li>
         <li><strong>Question E.6</strong>
             <p>La commande suivante vient d'être exécutée en ligne de commande sous Linux :</p>
-            <p class="codeE3C">
-                cp /users/luc/interro.txt ./
-            </p>
+            <pre>
+                cp /users/luc/interro.txt ./</pre>
             <p>Que réalise cette commande ?</p>
             <ol class="E3C">
                 <li>copie du fichier users vers le répertoire luc</li>
@@ -1216,10 +1198,9 @@
     <ul class="E3C">
         <li><strong>Question F.1</strong>
             <p>La documentation de la bibliothèque random de Python précise :</p>
-            <p class="codeE3C">
+            <pre>
                 random.randint(a, b)
-                    Renvoie un entier aléatoire N tel que a &lt;= N &lt;= b.
-                </p>
+                    Renvoie un entier aléatoire N tel que a &lt;= N &lt;= b.</pre>
             <p>Quelle est l’expression Python permettant de simuler le tirage d’un dé à 6 faces après avoir exécuté
                 import random ?</p>
             <ol class="E3C">
@@ -1250,13 +1231,12 @@
         <li><strong>Question F.3</strong>
             <p>La fonction Python suivante ne calcule pas toujours correctement le résultat de \( x^y \) pour des
                 arguments entiers. Parmi les tests suivants, lequel va permettre de détecter l’erreur ?</p>
-            <p class="codeE3C">
+            <pre>
                 def puissance (x,y):
                     p = x
                     for i in range (y - 1):
                         p = p * x
-                    return p
-                </p>
+                    return p</pre>
             <ol class="E3C">
                 <li>puissance(2,0)</li>
                 <li>puissance(2, 1)</li>
@@ -1276,16 +1256,14 @@
 
         <li><strong>Question F.5</strong>
             <p>On définit deux fonctions :</p>
-            <p class="codeE3C">
+            <pre>
                 def f(x):
                     y = 2*x + 1
-                    return y
-                </p>
-            <p class="codeE3C">
+                    return y</pre>
+            <pre>
                 def calcul(x):
                     y = x - 1
-                    return f(y)
-                </p>
+                    return f(y)</pre>
             <p>Quelle est la valeur renvoyée par l'appel calcul(5) ?</p>
             <ol class="E3C">
                 <li>4</li>
@@ -1297,15 +1275,14 @@
         <li><strong>Question F.6</strong>
             <p>Avec la définition de fonction capital_double suivante, que peut-on toujours affirmer à propos du
                 résultat n retourné par la fonction ?</p>
-            <p class="codeE3C">
+            <pre>
                 def capital_double (capital, interet):
                     montant = capital
                     n = 0
                     while montant &lt;= 2 * capital:
                         montant = montant + interet
                         n = n + 1
-                    return n
-                </p>
+                    return n</pre>
             <ol class="E3C">
                 <li>n == capital / interet</li>
                 <li>capital * n * interet &gt; 2 * capital</li>
@@ -1319,12 +1296,11 @@
     <ul class="E3C">
         <li><strong>Question F.1</strong>
             <p>La documentation de la bibliothèque random de Python précise :</p>
-            <p class="codeE3C">
+            <pre>
                 random.randint(a, b)
-                    Renvoie un entier aléatoire N tel que a &lt;= N &lt;= b.</p>
+                    Renvoie un entier aléatoire N tel que a &lt;= N &lt;= b.</pre>
             <p>Quelle est l’expression Python permettant de simuler le tirage d’un dé à 6 faces après avoir exécuté
-                import random ?
-            </p>
+                import random ?</p>
             <ol class="E3C">
                 <li>random.randint(6)</li>
                 <li class="OK">random.randint(1,6)</li>
@@ -1362,13 +1338,12 @@
         <li><strong>Question F.3</strong>
             <p>La fonction Python suivante ne calcule pas toujours correctement le résultat de \( x^y \) pour des
                 arguments entiers. Parmi les tests suivants, lequel va permettre de détecter l’erreur ?</p>
-            <p class="codeE3C">
+            <pre>
                 def puissance (x,y):
                     p = x
                     for i in range (y - 1):
                         p = p * x
-                    return p
-                </p>
+                    return p</pre>
             <ol class="E3C">
                 <li class="OK">puissance(2,0)</li>
                 <li>puissance(2, 1)</li>
@@ -1404,16 +1379,14 @@
 
         <li><strong>Question F.5</strong>
             <p>On définit deux fonctions :</p>
-            <p class="codeE3C">
+            <pre>
                 def f(x):
                     y = 2*x + 1
-                    return y
-                </p>
-            <p class="codeE3C">
+                    return y</pre>
+            <pre>
                 def calcul(x):
                     y = x - 1
-                    return f(y)
-                </p>
+                    return f(y)</pre>
             <p>Quelle est la valeur renvoyée par l'appel calcul(5) ?</p>
             <ol class="E3C">
                 <li>4</li>
@@ -1429,15 +1402,14 @@
         <li><strong>Question F.6</strong>
             <p>Avec la définition de fonction capital_double suivante, que peut-on toujours affirmer à propos du
                 résultat n retourné par la fonction ?</p>
-            <p class="codeE3C">
+            <pre>
                 def capital_double (capital, interet):
                     montant = capital
                     n = 0
                     while montant &lt;= 2 * capital:
                         montant = montant + interet
                         n = n + 1
-                    return n
-                </p>
+                    return n</pre>
             <ol class="E3C">
                 <li>n == capital / interet</li>
                 <li>capital * n * interet &gt; 2 * capital</li>
@@ -1462,14 +1434,14 @@
 
     <ul class="E3C">
         <li><strong>Question G.1</strong>
-            <p>L'algorithme suivant permet de calculer la somme des N premiers entiers, où N est un nombre entier donné:</p>  
-            <p class="codeE3C">
+            <p>L'algorithme suivant permet de calculer la somme des N premiers entiers, où N est un nombre entier donné
+                :</p>
+            <pre>
                 i = 0
                 somme = 0
                 while i &lt; N :
                     i = i +1
-                    somme = somme + i
-                </p>
+                    somme = somme + i</pre>
             <p>Un invariant de boucle de cet algorithme est le suivant :</p>
             <ol class="E3C">
                 <li>somme = 0 + 1 + 2 + ... + i  et i &lt; N</li>
@@ -1480,13 +1452,12 @@
         </li>
         <li><strong>Question G.2</strong>
             <p>Quelle est la valeur de c à la fin de l'exécution du code suivant :</p>
-            <p class="codeE3C">
+            <pre>
             L = [1,2,3,4,1,2,3,4,0,2]
             c = 0
             for k in L:
                 if k == L[1]:
-                    c = c+1 
-                </p>
+                    c = c+1 </pre>
             <ol class="E3C">
                 <li>0</li>
                 <li>2</li>
@@ -1497,14 +1468,13 @@
         <li><strong>Question G.3</strong>
             <p>On considère la fonction Python suivante, qui prend en argument une liste L et renvoie le maximum des
                 éléments de la liste :
-                <p class="codeE3C">
+                <pre>
                 def rechercheMaximum(L):
                     max = L[0]
                     for i in range(len(L)):
                         if L[i] &gt; max:
                             max = L[i]
-                    return max
-                </p>
+                    return max</pre>
                 <p>On note \( n \) la taille de la liste.
                 Quelle est la complexité en nombre d’opérations de l’algorithme ?</p>
             <ol class="E3C">
@@ -1516,13 +1486,12 @@
         </li>
         <li><strong>Question G.4</strong>
             <p>Quelle est la valeur du couple (s,i) à la fin de l'exécution du script suivant ?</p>
-            <p class="codeE3C">
+            <pre>
             s = 0 
             i = 1 
             while i &lt; 5: 
                 s = s + i 
-                i = i + 1 
-            </p>
+                i = i + 1 </pre>
             <ol class="E3C">
                 <li>(4, 5)</li>
                 <li>(10, 4)</li>
@@ -1560,13 +1529,12 @@
         <li><strong>Question G.1</strong>
             <p>L'algorithme suivant permet de calculer la somme des N premiers entiers, où N est un nombre entier donné
                 :</p>
-            <p class="codeE3C">
+            <pre>
                 i = 0
                 somme = 0
                 while i &lt; N :
                     i = i + 1
-                    somme = somme + i
-                </p>
+                    somme = somme + i</pre>
             <p>Un invariant de boucle de cet algorithme est le suivant :</p>
             <ol class="E3C">
                 <li>somme = 0 + 1 + 2 + ... + i  et i &lt; N</li>
@@ -1594,13 +1562,12 @@
         </li>
         <li><strong>Question G.2</strong>
             <p>Quelle est la valeur de c à la fin de l'exécution du code suivant :</p>
-            <p class="codeE3C">
+            <pre>
             L = [1,2,3,4,1,2,3,4,0,2]
             c = 0
             for k in L:
                 if k == L[1]:
-                    c = c+1 
-                </p>
+                    c = c+1 </pre>
             <ol class="E3C">
                 <li>0</li>
                 <li>2</li>
@@ -1617,13 +1584,13 @@
         <li><strong>Question G.3</strong>
             <p>On considère la fonction Python suivante, qui prend en argument une liste L et renvoie le maximum des
                 éléments de la liste :
-                <p class="codeE3C">
+                <pre>
                 def rechercheMaximum(L):
                     max = L[0]
                     for i in range(len(L)):
                         if L[i] &gt; max:
                             max = L[i]
-                    return max</p>
+                    return max</pre>
                 <p>On note \( n \) la taille de la liste.
                 Quelle est la complexité en nombre d’opérations de l’algorithme ?</p>
             <ol class="E3C">
@@ -1638,13 +1605,12 @@
         </li>
         <li><strong>Question G.4</strong>
             <p>Quelle est la valeur du couple (s,i) à la fin de l'exécution du script suivant ?</p>
-            <p class="codeE3C">
+            <pre>
             s = 0 
             i = 1 
             while i &lt; 5: 
                 s = s + i 
-                i = i + 1 
-            </p>
+                i = i + 1 </pre>
             <ol class="E3C">
                 <li>(4, 5)</li>
                 <li>(10, 4)</li>
