@@ -6,13 +6,10 @@ body{
     background-color: rgb(238, 231, 222);
     color: rgb(6, 11, 41);
     padding: 25px;
-    width:80%;
+    width:90%;
     margin:auto;
 }
 
-p{
-    width:80%;
-}
 h1{
     background-color: rgb(212, 96, 50);
     text-align: center;
