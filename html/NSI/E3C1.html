@@ -240,7 +240,7 @@
                 <li class="OK">hexadécimal (base 16)</li>
             </ol>
             <div class="correctionE3C">
-                <p>Le chiffrre F n'existe pas en binaire (chiffres = 0 ou 1), ni en octal (chiffres de 0 à 7), ni en
+                <p>Le chiffre F n'existe pas en binaire (chiffres = 0 ou 1), ni en octal (chiffres de 0 à 7), ni en
                     décimal (chiffres de 0 à 9). En revanche, il existe bien en hexadécimal (chiffres allant de 0 à 9
                     puis de A à F)</p>
                 <p>Télécharger le <a href="../../docs/P01a-donnees-types_base-entier_positif.pdf">cours sur la
@@ -473,7 +473,7 @@
             <div class="correctionE3C">
                 <p>On utilise ici la création de liste en compréhension. Les éléments créés sont des tuples (notés entre
                     parenthèses). L'étendue de l'expression de Python range(n) crée un itérable des nombres 0 à n-1 (ici
-                    range(2) --> (0, 1)).</p>
+                    range(2) --> (0, 1)). Le 1er tuple créé est donc (0,1) et le 2nde (1,2).</p>
                 <p>Télécharger le <a href="../../docs/P02b-donnees-types_construits-tableaux.pdf">cours sur les
                         tableaux</a>.</p>
             </div>
@@ -489,7 +489,7 @@
             <div class="correctionE3C">
                 <p>On doit utiliser ici la création de liste en compréhension, notée entre crochets. L'étendue de
                     l'expression de Python range(a, b) crée un itérable des nombres de a à b-1 (ici range(1, 7) --> (1,
-                    2, 3, 4, 5, 6)). Les éléments retenus sont biens les carrés des nmbres de 1 à 6.</p>
+                    2, 3, 4, 5, 6)). Les éléments retenus sont biens les carrés des nombres de 1 à 6.</p>
                 <p>Télécharger le <a href="../../docs/P02b-donnees-types_construits-tableaux.pdf">cours sur les
                         tableaux</a>.</p>
             </div>
@@ -1575,25 +1575,6 @@
                 <li>somme = 0 + 1 + 2 + ... + N  et i &lt; N+1</li>
             </ol>
             <div class="correctionE3C">
-                <!--
-                <p>Un invariant de boucle est une propriété qui si elle est vraie avant une itération de boucle reste
-                    vraie à la fin de l'itération. </p>
-                <p>Vérifions que somme = 0 + 1 + 2 + ... + i  et i &lt; N+1 est bien un invariant.</p>
-                <p>On peut vérifier qu'initialement i = 0 &lt; N + 1 et S = 0 = 0 + i. </p>
-                <p>
-                    A chaque itération i est incrémenté d'une unité et somme est incrémenté de la valeur de i. Donc tant
-                    qu'on reste dans la boucle somme = 0 + 1 + 2 + ... + i. (chaque terme de cette somme correspond à
-                    une des valeurs antérieures prises par i au cours des itérations).</p>
-                <p>(On peut remarquer aussi de façon évidente que somme ne peut pas se poursuivre pas jusqu'à N car
-                    initialement somme = 0 or N peut être aussi grand que l'on souhaite.)</p>
-                <p>Par ailleurs i est nécessairement inférieur à N, et donc aussi à N + 1, tant que la boucle n'est pas
-                    terminée puisque c'est la condition d'entrée dans la boucle. </p>
-                <p>Mais au cours de chaque itération i est incrémenté et à la fin de la dernière itération i atteint la
-                    valeur de N (i = N et la boucle s'arrête) et donc la propriété qui reste vraie à la fin de cette
-                    dernière itération est i &lt; N + 1. </p>
-            </div>
--->
-            <div class="correctionE3C">
                 <p>Un invariant de boucle est une propriété qui si elle est vraie avant une itération de boucle reste
                     vraie à la fin de l'itération. </p>
                 <p>Vérifions que somme = 0 + 1 + 2 + ... + i  et i &lt; N+1 est bien un invariant.</p>
@@ -1605,7 +1586,7 @@
                         <tr><td>début d'itération</td><td>n</td><td>Vrai</td><td>0 + 1 + ... + n</td><td>Vrai</td></tr>
                         <tr><td>fin d'itération</td><td>n + 1</td><td>Vrai</td><td>0 + 1 + ... + n + (n+1)</td><td>Vrai</td></tr>
                     </table> </li>
-                    <li>À la dernière itération :</li>
+                    <li>À la dernière itération :
                     <table class="collapse">
                         <tr><td></td><td>i</td><td>i &lt; N </td><td>somme</td><td>i &lt; N + 1</td></tr>
                         <tr><td>début d'itération</td><td>N - 1 </td><td>Vrai</td><td>0 + 1 + ... + (N- 1)</td><td>Vrai</td></tr>

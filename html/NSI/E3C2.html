@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>Profjahier-E3C2</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    <script src="../../js/mathjax_config_load.js" async></script>
+
+    <style>
+        table.collapse {
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        table.collapse td {
+            border: solid 1px;
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Sujet d'entrainement E3C n°2</h1>
+
+    <h2>Thème A : types de base</h2>
+
+    <h3>Les questions brutes</h3>
+
+
+    <ul class="E3C">
+        <li><strong>Question A.1</strong>
+            <p>À quelle affectation sont équivalentes les instructions suivantes, où a, b sont des variables entières et
+                c une variable booléenne ?</p>
+            <p class="codeE3C">
+                if a==b:
+                c = True
+                elif a > b+10:
+                c = True
+                else:
+                c = False
+            </p>
+            <ol class="E3C">
+                <li>c = (a==b) or (a > b+10)</li>
+                <li>c = (a==b) and (a > b+10)</li>
+                <li>c = not(a==b)</li>
+                <li>c = not(a > b+10)</li>
+            </ol>
+        </li>
+        <li><strong>Question A.2</strong>
+            <p>Pami les noms suivants, lequel n'est pas celui d'une méthode d'encodage des caractères ?</p>
+            <ol class="E3C">
+                <li>UTF-16</li>
+                <li>ASCII</li>
+                <li>Arial</li>
+                <li>Unicode</li>
+            </ol>
+        </li>
+        <li><strong>Question A.3</strong>
+            <p>Quel est le plus grand entier positif (non signé) représentable en binaire sur 2 octets (c'est-à-dire 16
+                bits) ?</p>
+            <ol class="E3C">
+                <li>\( 2 ^{15} - 1 \)</li>
+                <li>\( 2 ^{15} \)</li>
+                <li>\( 2 ^{16} - 1 \)</li>
+                <li>\( 2 ^{16} \)</li>
+            </ol>
+        </li>
+        <li><strong>Question A.4</strong>
+            <p>Quel est le nombre minimum de bits qui permet de représenter les 7 couleurs de l'arc-en-ciel ?</p>
+            <ol class="E3C">
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+            </ol>
+        </li>
+        <li><strong>Question A.5</strong>
+            <p>Dans quel système de numération 3F5 représente-t-il un nombre entier ?</p>
+            <ol class="E3C">
+                <li>binaire (base 2)</li>
+                <li>octal (base 8)</li>
+                <li>décimal (base 10)</li>
+                <li>hexadécimal (base 16)</li>
+            </ol>
+        </li>
+        <li><strong>Question A.6</strong>
+            <p>Quelle est l'écriture en hexadécimal (base 16) du nombre entier positif qui s'écrit 1110 1101 en base 2 ?
+            </p>
+            <ol class="E3C">
+                <li>DE</li>
+                <li>ED</li>
+                <li>EDF</li>
+                <li>FEFD</li>
+            </ol>
+        </li>
+    </ul>
+
+    <h3>Les questions corrigées</h3>
+
+    <ul class="E3C">
+        <li><strong>Question A.1</strong>
+            <p>À quelle affectation sont équivalentes les instructions suivantes, où a, b sont des variables entières et
+                c une variable booléenne ?</p>
+            <p class="codeE3C">
+                if a==b:
+                c = True
+                elif a > b+10:
+                c = True
+                else:
+                c = False
+            </p>
+            <ol class="E3C">
+                <li class="OK">c = (a==b) or (a > b+10)</li>
+                <li>c = (a==b) and (a > b+10)</li>
+                <li>c = not(a==b)</li>
+                <li>c = not(a > b+10)</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>c vaut True soit parce que a = b, soit parce que a > b + 10.</p>
+                <p>Télécharger le <a href="../../docs/P01d-donnees-types_base-booleens.pdf">cours sur les booléens</a>.
+                </p>
+            </div>
+        </li>
+        <li><strong>Question A.2</strong>
+            <p>Pami les noms suivants, lequel n'est pas celui d'une méthode d'encodage des caractères ?</p>
+            <ol class="E3C">
+                <li>UTF-16</li>
+                <li>ASCII</li>
+                <li class="OK">Arial</li>
+                <li>Unicode</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>Arial est une police de caractères.</p>
+                <p>Télécharger le <a href="../../docs/P01e-donnees-types_base-texte.pdf">cours sur la représentation de
+                        texte en machine.</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question A.3</strong>
+            <p>Quel est le plus grand entier positif (non signé) représentable en binaire sur 2 octets (c'est-à-dire 16
+                bits) ?</p>
+            <ol class="E3C">
+                <li>\( 2 ^{15} - 1 \)</li>
+                <li>\( 2 ^{15} \)</li>
+                <li class="OK">\( 2 ^{16} - 1 \)</li>
+                <li>\( 2 ^{16} \)</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>Avec \( n \) bits, on peut représenter tous les nombres entiers positifs ou nuls entre 0 et \(
+                    2^n-1 \).</p>
+                <p>Par exemple, avec 3 bits, on peut représenter les nombres de 0 à 7 \(\left(2^3 - 1\right)\) : </p>
+                <table style="text-align: center;" class="collapse">
+                    <tr>
+                        <td>décimal</td>
+                        <td>binaire</td>
+                    </tr>
+                    <tr>
+                        <td>0</td>
+                        <td>000</td>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>001</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>010</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>011</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>101</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>110</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>111</td>
+                    </tr>
+                </table>
+                <p>Télécharger le <a href="../../docs/P01a-donnees-types_base-entier_positif.pdf">cours sur la
+                        représentation des entiers positifs</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question A.4</strong>
+            <p>Quel est le nombre minimum de bits qui permet de représenter les 7 couleurs de l'arc-en-ciel ?</p>
+            <ol class="E3C">
+                <li>2</li>
+                <li class="OK">3</li>
+                <li>4</li>
+                <li>5</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>Avec \( n \) bits, on peut représenter tous les nombres entiers positifs ou nuls entre 0 et \(
+                    2^n-1 \), soit \( 2^{n} \) nombres au total. Il faut 3 bits pour pouvoir représenter au moins 7
+                    valeurs différentes. On pourrait imaginer le codage suivant :</p>
+                <table style="text-align: center;" class="collapse">
+                    <tr>
+                        <td>couleur</td>
+                        <td>nombre binaire</td>
+                    </tr>
+                    <tr>
+                        <td>violet</td>
+                        <td>000</td>
+                    </tr>
+                    <tr>
+                        <td>indigo</td>
+                        <td>001</td>
+                    </tr>
+                    <tr>
+                        <td>bleu</td>
+                        <td>010</td>
+                    </tr>
+                    <tr>
+                        <td>vert</td>
+                        <td>011</td>
+                    </tr>
+                    <tr>
+                        <td>jaune</td>
+                        <td>100</td>
+                    </tr>
+                    <tr>
+                        <td>orange</td>
+                        <td>101</td>
+                    </tr>
+                    <tr>
+                        <td>rouge</td>
+                        <td>110</td>
+                    </tr>
+                    <tr>
+                        <td>inutilisé</td>
+                        <td>111</td>
+                    </tr>
+                </table>
+                <p>Télécharger le <a href="../../docs/P01a-donnees-types_base-entier_positif.pdf">cours sur la
+                        représentation des entiers positifs</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question A.5</strong>
+            <p>Dans quel système de numération 3F5 représente-t-il un nombre entier ?</p>
+            <ol class="E3C">
+                <li>binaire (base 2)</li>
+                <li>octal (base 8)</li>
+                <li>décimal (base 10)</li>
+                <li class="OK">hexadécimal (base 16)</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>Le chiffre F n'existe pas en binaire (chiffres = 0 ou 1), ni en octal (chiffres de 0 à 7), ni en
+                    décimal (chiffres de 0 à 9). En revanche, il existe bien en hexadécimal (chiffres allant de 0 à 9
+                    puis de A à F)</p>
+                <p>Télécharger le <a href="../../docs/P01a-donnees-types_base-entier_positif.pdf">cours sur la
+                        représentation des entiers positifs</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question A.6</strong>
+            <p>Quelle est l'écriture en hexadécimal (base 16) du nombre entier positif qui s'écrit 1110 1101 en base 2 ?
+            </p>
+            <ol class="E3C">
+                <li>DE</li>
+                <li class="OK">ED</li>
+                <li>EDF</li>
+                <li>FEFD</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>Un chiffre hexadécimal correspond à l'expression de 4 chiffres binaires (bits).</p>
+                <p>\(1110_2 = 2^3 + 2^2 + 2^1 = 14_{10} = E_{16}\)</p>
+                <p>\(1101_2 = 2^3 + 2^2 + 2^0 = 13_{10} = D_{16}\)</p>
+                <p>Télécharger le <a href="../../docs/P01a-donnees-types_base-entier_positif.pdf">cours sur la
+                        représentation des entiers positifs</a>.</p>
+            </div>
+        </li>
+    </ul>
+
+    <h2>Thème B : types construits</h2>
+
+    <h3>Les questions brutes</h3>
+    
+    <ul class="E3C">
+        <li><strong>Question B.1</strong>
+            <p>Quelle est la valeur de l'expression [ 2*k + 1 for k in range(4) ] ?</p>
+            <ol class="E3C">
+                <li>[1,3,5,7]</li>
+                <li>[0,1,2,3]</li>
+                <li>[3,5,7,9]</li>
+                <li>[1,2,3,4]</li>
+            </ol>
+        </li>
+        <li><strong>Question B.2</strong>
+            <p>De quelle expression la liste suivante est-elle la valeur ? </p>
+            <p>[[0,0,0,0], [1,1,1,1], [2,2,2,2]]</p>
+            <ol class="E3C">
+                <li >[[i] * 4 for i in range(4)]</li>
+                <li>[[i] * 3 for i in range(4)]</li>
+                <li>[[i] * 4 for i in range(3)]</li>
+                <li>[[i] * 3 for i in range(3)]</li>
+            </ol>
+        </li>
+        <li><strong>Question B.3</strong>
+            <p>On exécute le script suivant :</p>
+            <span class="codeE3C">
+                inventaire = {'pommes': 430, 'bananes': 312,
+                            'oranges' : 274, 'poires' : 137}
+
+                stock = 0
+                for fruit in inventaire.keys():
+                    if fruit != 'bananes':
+                        stock = stock + inventaire[fruit]</span>
+            <p>Que contient la variable stock à la fin de cette exécution ?</p>
+            <ol class="E3C">
+                <li>{430, 274, 137}</li>
+                <li>312</li>
+                <li>841</li>
+                <li>{ 'pommes', 'oranges', 'poires' }</li>
+            </ol>
+        </li>
+        <li><strong>Question B.4</strong>
+            <p>On considère le code suivant :</p>
+            <p class="codeE3C">
+                t = [0, 3, 5, 7, 9]
+                t[9] = 3 + t[5]
+            </p>
+            </p>Que vaut t à la fin de son exécution ?</p>
+            <ol class="E3C">
+                <li >[0, 3, 5, 7, 9]</li>
+                <li>[0, 3, 5, 7, 9, 3]</li>
+                <li>[0, 3, 5, 7, 9, 8]</li>
+                <li>l'exécution déclenche une erreur</li>
+            </ol>
+        </li>
+        <li><strong>Question B.5</strong>
+            <p>Quelle est la valeur de l'expression [(i,i+1) for i in range(2)] ?</p>
+            <ol class="E3C">
+                <li >[0,1,1,2]</li>
+                <li>[(1,2),(2,3)]</li>
+                <li>[(0,1),(1,2)]</li>
+                <li>[[0,1],[1,2]]</li>
+            </ol>
+        </li>
+        <li><strong>Question B.6</strong>
+            <p>On définit la variable suivante : citation = "Les nombres gouvernent le monde".
+                Quelle est la valeur de l'expression citation[5:10] ?</p>
+            <ol class="E3C">
+                <li >"ombre"</li>
+                <li>"ombres"</li>
+                <li>"nombre"</li>
+                <li>"nombres"</li>
+            </ol>
+        </li>
+    </ul>
+
+    <h3>Les questions corrigées</h3>
+    <ul class="E3C">
+        <li><strong>Question B.1</strong>
+            <p>Quelle est la valeur de l'expression [ 2*k + 1 for k in range(4) ] ?</p>
+            <ol class="E3C">
+                <li class="OK">[1,3,5,7]</li>
+                <li>[0,1,2,3]</li>
+                <li>[3,5,7,9]</li>
+                <li>[1,2,3,4]</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>On utilise ici la création de liste en compréhension. L'étendue de l'expression de Python range(n) crée un itérable des nombres 0 à n-1 (ici
+                    range(4) --> (0, 1, 2, 3)).</p>
+                    <p>Pour k = 0 --> 2*k + 1 = 1</p>
+                    <p>Pour k = 3 --> 2*k + 1 = 7</p>
+                <p>Télécharger le <a href="../../docs/P02b-donnees-types_construits-tableaux.pdf">cours sur les
+                        tableaux</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question B.2</strong>
+            <p>De quelle expression la liste suivante est-elle la valeur ? </p>
+            <p>[[0,0,0,0], [1,1,1,1], [2,2,2,2]]</p>
+            <ol class="E3C">
+                <li >[[i] * 4 for i in range(4)]</li>
+                <li>[[i] * 3 for i in range(4)]</li>
+                <li class="OK">[[i] * 4 for i in range(3)]</li>
+                <li>[[i] * 3 for i in range(3)]</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>La création d'une liste qui contient n fois le même élément peut se faire avec l'opérateur de multiplication. Par exemple [0] * 4 créé la liste [0, 0, 0, 0].<br/>
+                    On utilise aussi ici la création de liste en compréhension. Les éléments créés sont des listes avec l'utilisation de l'opérateur multiplication. L'étendue de l'expression de Python range(n) crée un itérable des nombres 0 à n-1 (ici
+                    range(3) --> (0, 1, 2)).</p>
+                <p>Télécharger le <a href="../../docs/P02b-donnees-types_construits-tableaux.pdf">cours sur les
+                        tableaux</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question B.3</strong>
+            <p>On exécute le script suivant :</p>
+            <p class="codeE3C">
+                inventaire = {'pommes': 430, 'bananes': 312,
+                            'oranges' : 274, 'poires' : 137}
+
+                stock = 0
+                for fruit in inventaire.keys():
+                    if fruit != 'bananes':
+                        stock = stock + inventaire[fruit]</p>
+            <p>Que contient la variable stock à la fin de cette exécution ?</p>
+            <ol class="E3C">
+                <li>{430, 274, 137}</li>
+                <li>312</li>
+                <li class="OK">841</li>
+                <li>{ 'pommes', 'oranges', 'poires' }</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>inventaire est un dictionnaire. La variable fruit parcourt les clefs du dictionnaires (avec inventaire.keys()). Si la clef fruit ne vaut pas 'bananes', alors le script ajoute la valeur de l'inventaire correspondant à cette clef à la variable stock.</p>
+                <p>En résumé, ce script fait la somme des quantités de fruits qui ne sont pas des bananes.</p>
+                <p>Télécharger le <a href="../../docs/P02ac-donnees-types_construits-puplets-dictionnaires.pdf">cours sur les dictionnaires</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question B.4</strong>
+            <p>On considère le code suivant :</p>
+            <p class="codeE3C">
+                t = [0, 3, 5, 7, 9]
+                t[9] = 3 + t[5]
+            </p>
+            </p>Que vaut t à la fin de son exécution ?</p>
+            <ol class="E3C">
+                <li>[0, 3, 5, 7, 9]</li>
+                <li>[0, 3, 5, 7, 9, 3]</li>
+                <li>[0, 3, 5, 7, 9, 8]</li>
+                <li class="OK">l'exécution déclenche une erreur</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>t esst une liste et la notation t[i] accède à l'élément d'indice i dans la liste (le 1er élément a l'indice 0). Donc t[5] et t[9] sont les 6ème et 10ème élément de la liste. Or la liste t n'a que 5 élément, donc t[5] ou t[9] lève une erreur d'indice.</p>
+                <p>Télécharger le <a href="../../docs/.pdf">cours sur ...</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question B.5</strong>
+            <p>Quelle est la valeur de l'expression [(i,i+1) for i in range(2)] ?</p>
+            <ol class="E3C">
+                <li>[0,1,1,2]</li>
+                <li>[(1,2),(2,3)]</li>
+                <li class="OK">[(0,1),(1,2)]</li>
+                <li>[[0,1],[1,2]]</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>On utilise ici la création de liste en compréhension. Les éléments créés sont des tuples (notés entre
+                    parenthèses). L'étendue de l'expression de Python range(n) crée un itérable des nombres 0 à n-1 (ici
+                    range(2) --> (0, 1)). Le 1er tuple créé est donc (0,1) et le 2nde (1,2).</p>
+                <p>Télécharger le <a href="../../docs/P02b-donnees-types_construits-tableaux.pdf">cours sur les
+                        tableaux</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question B.6</strong>
+            <p>On définit la variable suivante : citation = "Les nombres gouvernent le monde".
+                Quelle est la valeur de l'expression citation[5:10] ?</p>
+            <ol class="E3C">
+                <li class="OK">"ombre"</li>
+                <li>"ombres"</li>
+                <li>"nombre"</li>
+                <li>"nombres"</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>Une chaîne de caractères est un tableau de caractères, et chaque caractère est accessible par un indice i, compté à partir de 0. Par exemple citation[0] vaut 'L' (le 1er caractère de la chaine).</p>
+                <p>La notation citation[5:10] sélectionne les caractères depuis l'indice 5 jusqu'à l'indice 9 (la borne de fin [10] est exclue).</p>
+                <p>Remarque : l'espace est un caractère !</p>
+                <table class="collapse">
+                    <tr><td>L</td><td>e</td><td>s</td><td> </td><td>n</td><td><strong>o</strong></td><td><strong>m</strong></td><td><strong>b</strong></td><td><strong>r</strong></td><td><strong>e</strong></td><td>s</td><td></td><td>g</td><td>o</td><td>u</td><td>...</td></tr>
+                    <tr><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td><strong>5</strong></td><td><strong>6</strong></td><td><strong>7</strong></td><td><strong>8</strong></td><td><strong>9</strong></td><td>10</td><td>11</td><td>12</td><td>13</td><td>14</td><td>...</td></tr>
+                </table>
+                <p>Télécharger le <a href="../../docs/P02b-donnees-types_construits-tableaux.pdf">cours sur les
+                        tableaux</a>.</p>
+            </div>
+        </li>
+    </ul>
+
+    <h2>Thème C : traitement de données en tables</h2>
+
+    <h3>Les questions brutes</h3>
+
+    <ul class="E3C">
+        <li><strong>Question C.1</strong>
+            <p>Qu'est-ce qu'un fichier CSV ?</p>
+            <ol class="E3C">
+                <li >une librairie Python permettant l'affichage des images</li>
+                <li>un utilitaire de traitement d'image</li>
+                <li>un format d'image</li>
+                <li>un format de données</li>
+            </ol>
+        </li>
+        <li><strong>Question C.2</strong>
+            <p>Laquelle de ces affirmations est vraie ?</p>
+            <ol class="E3C">
+                <li >on peut ouvrir un fichier CSV à l'aide d'un tableur</li>
+                <li>un fichier CSV permet de gérer l'apparence du code dans l'éditeur</li>
+                <li>un fichier CSV permet de gérer l'apparence d'une page HTML</li>
+                <li>un fichier CSV contient un programme à compiler</li>
+            </ol>
+        </li>
+        <li><strong>Question C.3</strong>
+            <p>On exécute le script suivant :</p>
+                <p class="codeE3C">
+                notes = {"Paul": 12, "Jean": 16, "Clara": 14, "Aïssa": 18}
+                t = list(notes.keys())</p>
+               <p> Quelle est la valeur de t à la fin de cette exécution ?</p>
+            <ol class="E3C">
+                <li >Paul</li>
+                <li>["Paul", '"Jean", "Clara", "'Aïssa']</li>
+                <li>[12, 16, 14, 18]</li>
+                <li>[ "Paul": 12, "Jean": 16, "Clara": 14, "Aïssa": 18 ]</li>
+            </ol>
+        </li>
+        <li><strong>Question C.4</strong>
+            <p>On a défini deux tables de données :</p>
+            <p class="codeE3C">
+                data1 = [(‘Bruce’, ’Wayne’), (‘Chuck’, ‘Norris’), (‘Bruce’, ‘Lee’), (‘Clark’, ‘Kent’)]
+                data2 = [(‘Diana’, ’Prince’), (‘Chuck’, ‘Norris’), (‘Peter’, ‘Parker’)]</p>
+            <p> Quelle instruction permet de construire une table data regroupant l'ensemble des informations de data1 et data2 ?</p>
+            <ol class="E3C">
+                <li >data = data1 + data2</li>
+                <li>data == data1 + data2</li>
+                <li>data = [element for element in data1 or data2]</li>
+                <li>data = [data1] + [data2]</li>
+            </ol>
+        </li>
+        <li><strong>Question C.5</strong>  
+            <p>Qu'est-ce que le format de fichier CSV ?</p>
+            <ol class="E3C">
+                <li>un format de fichier mis au point par Microsoft pour Excel</li>
+                <li>un format de fichier pour décrire une base de données</li>
+                <li>un format de fichier où les données sont séparées par un caractère tel qu'une virgule</li>
+                <li>un format de fichier décrivant une page Web</li>
+            </ol>
+        </li>
+        <li><strong>Question C.6</strong>
+            <p>On a extrait les deux premières lignes de différents fichiers. 
+                Déterminer celui qui est un authentique fichier CSV :</p>
+            <ol class="E3C">
+                <li >Nom,Pays,Temps<br/>
+                    Camille Muffat,France,241.45</li>
+                <li>Nom Pays Temps<br/>
+                    Camille Muffat France 241.45</li>
+                <li>[<br/>
+                    { "Nom": "Camille Muffat", "Pays": "France", "Temps": 241.45},</li>
+                <li>[<br/>
+                    { Nom: "Camille Muffat", Pays: "France", Temps: 241.45},</li>
+            </ol>
+        </li>
+    </ul>
+
+    <h3>Les questions corrigées</h3>
+
+    <ul class="E3C">
+        <li><strong>Question C.1</strong>
+            <p>Qu'est-ce qu'un fichier CSV ?</p>
+            <ol class="E3C">
+                <li>une librairie Python permettant l'affichage des images</li>
+                <li>un utilitaire de traitement d'image</li>
+                <li>un format d'image</li>
+                <li class="OK">un format de données</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>CSV (Comma Separated Values) est un format de fichier texte permettant de stocker des données. </p>
+                <p>La 1ère ligne du fichier contient en général des descripteurs, et  les lignes suivantes sont les enregistremnt avec les données pour chaque descripteur. Les données sont séparées par un caractère spécifique, originellement une virgule (comma in English)</p>
+                <p>Consulter la <a href="https://fr.wikipedia.org/wiki/Comma-separated_values">documentation sur Wipidédia</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question C.2</strong>
+            <p>Laquelle de ces affirmations est vraie ?</p>
+            <ol class="E3C">
+                <li class="OK">on peut ouvrir un fichier CSV à l'aide d'un tableur</li>
+                <li>un fichier CSV permet de gérer l'apparence du code dans l'éditeur</li>
+                <li>un fichier CSV permet de gérer l'apparence d'une page HTML</li>
+                <li>un fichier CSV contient un programme à compiler</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>Grâce à son format précis, un fichier CSV peut être ouvert dans un tableur. Chaque donnée corrspond à une cellule du tableur.</p>
+                <p>Consulter par exemple la documentation de LibreOffice sur <a href="https://help.libreoffice.org/3.3/Calc/Importing_and_Exporting_CSV_Files/fr">l'import et l'export de fichiers CSV</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question C.3</strong>
+            <p>On exécute le script suivant :</p>
+                <p class="codeE3C">
+                notes = {"Paul": 12, "Jean": 16, "Clara": 14, "Aïssa": 18}
+                t = list(notes.keys())</p>
+               <p> Quelle est la valeur de t à la fin de cette exécution ?</p>
+            <ol class="E3C">
+                <li>Paul</li>
+                <li class="OK">["Paul", '"Jean", "Clara", "'Aïssa']</li>
+                <li>[12, 16, 14, 18]</li>
+                <li>[ "Paul": 12, "Jean": 16, "Clara": 14, "Aïssa": 18 ]</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>notes est un dictionnaire. <br/>notes.keys() est un objet permettant d'itérer sur les clefs du dictionnaire. <br/>La fonction list() permet de créer une liste à partir de notes.keys()</p>
+            </div>
+        </li>
+        <li><strong>Question C.4</strong>
+            <p>On a défini deux tables de données :</p>
+            <p class="codeE3C">
+                data1 = [(‘Bruce’, ’Wayne’), (‘Chuck’, ‘Norris’), (‘Bruce’, ‘Lee’), (‘Clark’, ‘Kent’)]
+                data2 = [(‘Diana’, ’Prince’), (‘Chuck’, ‘Norris’), (‘Peter’, ‘Parker’)]</p>
+            <p> Quelle instruction permet de construire une table data regroupant l'ensemble des informations de data1 et data2 ?</p>
+            <ol class="E3C">
+                <li class="OK">data = data1 + data2</li>
+                <li>data == data1 + data2</li>
+                <li>data = [element for element in data1 or data2]</li>
+                <li>data = [data1] + [data2]</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>La concaténation de listes permet de regrouper les éléments de plusieurs listes en une seule liste. Attention : cela n'enlève pas les doublons éventuels (ici par exemple, le tuple ('Chuck', 'Norris') sera présent 2 fois dans la liste data).</p>
+            </div>
+        </li>
+        <li><strong>Question C.5</strong>  
+            <p>Qu'est-ce que le format de fichier CSV ?</p>
+            <ol class="E3C">
+                <li>un format de fichier mis au point par Microsoft pour Excel</li>
+                <li>un format de fichier pour décrire une base de données</li>
+                <li class="OK">un format de fichier où les données sont séparées par un caractère tel qu'une virgule</li>
+                <li>un format de fichier décrivant une page Web</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>CSV (Comma Separated Values) est un format de fichier texte permettant de stocker des données. </p>
+                <p>La 1ère ligne du fichier contient en général des descripteurs, et  les lignes suivantes sont les enregistremnt avec les données pour chaque descripteur. Les données sont séparées par un caractère spécifique, originellement une virgule (comma in English)</p>
+                <p>Consulter la <a href="https://fr.wikipedia.org/wiki/Comma-separated_values">documentation sur Wipidédia</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question C.6</strong>
+            <p>On a extrait les deux premières lignes de différents fichiers. 
+                Déterminer celui qui est un authentique fichier CSV :</p>
+            <ol class="E3C">
+                <li class="OK">Nom,Pays,Temps<br/>
+                    Camille Muffat,France,241.45</li>
+                <li>Nom Pays Temps<br/>
+                    Camille Muffat France 241.45</li>
+                <li>[<br/>
+                    { "Nom": "Camille Muffat", "Pays": "France", "Temps": 241.45},</li>
+                <li>[<br/>
+                    { Nom: "Camille Muffat", Pays: "France", Temps: 241.45},</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>CSV (Comma Separated Values) est un format de fichier texte permettant de stocker des données. </p>
+                <p>La 1ère ligne du fichier contient en général des descripteurs, et  les lignes suivantes sont les enregistremnt avec les données pour chaque descripteur. Les données sont séparées par un caractère spécifique, originellement une virgule (comma in English)</p>
+                <p>Remarque : ici le 2ème fichier pourrait être un fichier CSV où le caractère de séparation est la tabulation.<br/>
+                Le 3ème fichier a une structure de fichier JSON.<br/>
+            Le dernier a une structure d'Objet Javascript.</p>
+                <p>Consulter la <a href="https://fr.wikipedia.org/wiki/Comma-separated_values">documentation sur Wipidédia</a>.</p>
+            </div>
+        </li>
+    </ul>
+
+
+    <h2>Thème D : interactions entre l'homme et la machine sur le Web</h2>
+    <h3>Les questions brutes</h3>
+
+    <ul class="E3C">
+        <li><strong>Question D.1</strong>
+            <p>Parmi les propriétés suivantes d’une balise &lt;button /&gt; dans une page HTML, laquelle doit être rédigée en langage JavaScript ?</p>
+            <ol class="E3C">
+                <li >la propriété name</li>
+                <li>la propriété type</li>
+                <li>la propriété onclick</li>
+                <li>la propriété id</li>
+            </ol>
+        </li>
+        <li><strong>Question D.2</strong>
+            <p>Par quoi commence l’URL d’une page Web sécurisée ?</p>
+            <ol class="E3C">
+                <li >http</li>
+                <li>https</li>
+                <li>fttp</li>
+                <li>smtp</li>
+            </ol>
+        </li>
+        <li><strong>Question D.3</strong>
+            <p>Quelle utilisation faut-il avoir pour garantir qu'une transmission entre un client et un serveur sera-t-elle chiffrée ?</p>
+            <ol class="E3C">
+                <li >Lorsqu'on utilise le navigateur web Firefox</li>
+                <li>Lorsqu’on utilise la méthode POST</li>
+                <li>Lorsqu’on utilise le protocole HTTPS</li>
+                <li>Lorsqu’on utilise HTML et CSS</li>
+            </ol>
+        </li>
+        <li><strong>Question D.4</strong>
+            <p>Quel est le code HTML correct pour créer un hyperlien vers le site Eduscol ?</p>
+            <ol class="E3C">
+                <li >&lt;a url="https://www.eduscol.education.fr/"&gt; site Eduscol &lt;/a&gt;</li>
+                <li>&lt;a name="https://www.eduscol.education.fr/"&gt; site Eduscol &lt;/a&gt;</li>
+                <li>&lt;a href="https://www.eduscol.education.fr/"&gt; site Eduscol &lt;/a&gt;</li>
+                <li>&lt;a&gt; https://www.eduscol.education.fr/ &lt;/a&gt; site Eduscol
+                </li>
+            </ol>
+        </li>
+        <li><strong>Question D.5</strong>
+            <p>On considère l’extrait d’un fichier « html » ci-dessous qui génère le champ de saisie d’une application web destiné à recueillir la réponse à une question.</p>
+            <p class="codeE3C">
+            &lt;form action="gestion_reponse.php" id="form_reponse" method="get"&gt;
+                &lt;input type="text" name="saisie" /&gt;
+                &lt;input type="submit" value = "Soumettre" /&gt;
+            &lt;/form&gt;
+        </p>
+            <p> Lorsque l’utilisateur clique sur le bouton de ce formulaire, que se passe-t-il ? </p>
+            <ol class="E3C">
+                <li >Le contenu du champ de saisie est transmis au serveur web en étant visible dans l’URL de la page cible.</li>
+                <li>Le contenu du champ de saisie est transmis au serveur web sans être visible dans l’URL de la page cible.</li>
+                <li>Sans communiquer avec le serveur web, le contenu du champ de saisie est passé en argument à une fonction qui s’exécute sur le client puis le contenu du champ de saisie est rendu visible dans l’URL.</li>
+                <li>Sans communiquer avec le serveur web, le contenu du champ de saisie est passé en argument à une fonction qui s’exécute sur le client sans que le contenu du champ de saisie ne soit visible dans l’URL.</li>
+            </ol>
+        </li>
+        <li><strong>Question D.6</strong>
+            <p> Dans une page web, on souhaite créer un bouton permettant l’appel de la fonction javascript traitement().
+                Quelle ligne d’instructions permettra de le faire ?</p>
+            <ol class="E3C">
+                <li >&lt;button onclick = "traitement()"&gt;Cliquez ici&lt;/button&gt;</li>
+                <li>&lt;a href = traitement()&gt;Cliquez ici&lt;/a&gt;</li>
+                <li>&lt;button&gt;Cliquez ici&lt;/button = traitement()&gt;</li>
+                <li>&lt;button&gt;Cliquez ici = traitement()&lt;/button&gt;</li>
+            </ol>
+        </li>
+    </ul>
+
+    <h3>Les questions corrigées</h3>
+    <ul class="E3C">
+        <li><strong>Question D.1</strong>
+            <p>Parmi les propriétés suivantes d’une balise &lt;button /&gt; dans une page HTML, laquelle doit être rédigée en langage JavaScript ?</p>
+            <ol class="E3C">
+                <li>la propriété name</li>
+                <li>la propriété type</li>
+                <li class="OK">la propriété onclick</li>
+                <li>la propriété id</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>commentaires</p>
+                <p>Télécharger le <a href="../../docs/.pdf">cours sur ...</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question D.2</strong>
+            <p>Par quoi commence l’URL d’une page Web sécurisée ?</p>
+            <ol class="E3C">
+                <li >http</li>
+                <li class="OK">https</li>
+                <li>fttp</li>
+                <li>smtp</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>Le protocole HTTPS (S pour Secure) est le protocole de communication au niveau de la couche
+                    application qui chiffre les données avant leur transmission sur le réseau.</p>
+                <p>Télécharger le <a href="../../docs/P04d-formulaire_web.pdf">cours sur l'écriture et la transmission
+                        de formulaires Web</a> consulter la <a
+                        href="https://fr.wikipedia.org/wiki/HyperText_Transfer_Protocol_Secure">la page Wikipédia</a>.
+                </p>
+            </div>
+        </li>
+        <li><strong>Question D.3</strong>
+            <p>Quelle utilisation faut-il avoir pour garantir qu'une transmission entre un client et un serveur sera-t-elle chiffrée ?</p>
+            <ol class="E3C">
+                <li>Lorsqu'on utilise le navigateur web Firefox</li>
+                <li>Lorsqu’on utilise la méthode POST</li>
+                <li class="OK">Lorsqu’on utilise le protocole HTTPS</li>
+                <li>Lorsqu’on utilise HTML et CSS</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>Le protocole HTTPS (S pour Secure) est le protocole de communication au niveau de la couche
+                    application qui chiffre les données avant leur transmission sur le réseau.</p>
+                <p>Télécharger le <a href="../../docs/P04d-formulaire_web.pdf">cours sur l'écriture et la transmission
+                        de formulaires Web</a> consulter la <a
+                        href="https://fr.wikipedia.org/wiki/HyperText_Transfer_Protocol_Secure">la page Wikipédia</a>.
+                </p>
+            </div>
+        </li>
+        <li><strong>Question D.4</strong>
+            <p>Quel est le code HTML correct pour créer un hyperlien vers le site Eduscol ?</p>
+            <ol class="E3C">
+                <li>&lt;a url="https://www.eduscol.education.fr/"&gt; site Eduscol &lt;/a&gt;</li>
+                <li>&lt;a name="https://www.eduscol.education.fr/"&gt; site Eduscol &lt;/a&gt;</li>
+                <li class="OK">&lt;a href="https://www.eduscol.education.fr/"&gt; site Eduscol &lt;/a&gt;</li>
+                <li>&lt;a&gt; https://www.eduscol.education.fr/ &lt;/a&gt; site Eduscol
+                </li>
+            </ol>
+            <div class="correctionE3C">
+                <p>commentaires</p>
+                <p>L'élément HTML a, permettant de créer des liens, nécessite l'attribut href qui prend comme valeur
+                    l'URL visée.</p>
+                <p>Télécharger le <a href="../../docs/P04a1-page_web_rappels.pdf">cours sur la
+                        création de pages Web</a> ou consulter la <a
+                        href="https://www.w3schools.com/tags/tag_a.asp">documentation sur W3school</a> ou <a
+                        href="https://developer.mozilla.org/fr/docs/Web/HTML/Element/a">la documentation sur MDN</a>.
+                </p>
+            </div>
+        </li>
+        <li><strong>Question D.5</strong>
+            <p>On considère l’extrait d’un fichier « html » ci-dessous qui génère le champ de saisie d’une application web destiné à recueillir la réponse à une question.</p>
+            <p class="codeE3C">
+            &lt;form action="gestion_reponse.php" id="form_reponse" method="get"&gt;
+                &lt;input type="text" name="saisie" /&gt;
+                &lt;input type="submit" value = "Soumettre" /&gt;
+            &lt;/form&gt;
+        </p>
+            <p> Lorsque l’utilisateur clique sur le bouton de ce formulaire, que se passe-t-il ?</p>
+            <ol class="E3C">
+                <li class="OK">Le contenu du champ de saisie est transmis au serveur web en étant visible dans l’URL de la page cible.</li>
+                <li>Le contenu du champ de saisie est transmis au serveur web sans être visible dans l’URL de la page cible.</li>
+                <li>Sans communiquer avec le serveur web, le contenu du champ de saisie est passé en argument à une fonction qui s’exécute sur le client puis le contenu du champ de saisie est rendu visible dans l’URL.</li>
+                <li>Sans communiquer avec le serveur web, le contenu du champ de saisie est passé en argument à une fonction qui s’exécute sur le client sans que le contenu du champ de saisie ne soit visible dans l’URL.</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>commentaires</p>
+                <p>Télécharger le <a href="../../docs/.pdf">cours sur ...</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question D.6</strong>
+            <p> Dans une page web, on souhaite créer un bouton permettant l’appel de la fonction javascript traitement().
+                Quelle ligne d’instructions permettra de le faire ?</p>
+            <ol class="E3C">
+                <li class="OK">&lt;button onclick = "traitement()"&gt;Cliquez ici&lt;/button&gt;</li>
+                <li>&lt;a href = traitement()&gt;Cliquez ici&lt;/a&gt;</li>
+                <li>&lt;button&gt;Cliquez ici&lt;/button = traitement()&gt;</li>
+                <li>&lt;button&gt;Cliquez ici = traitement()&lt;/button&gt;</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>commentaires</p>
+                <p>Télécharger le <a href="../../docs/.pdf">cours sur ...</a>.</p>
+            </div>
+        </li>
+    </ul>
+
+    <h2>Thème E : architectures matérielles et systèmes d'exploitation</h2>
+
+    <h3>Les questions brutes</h3>
+
+    <ul class="E3C">
+        <li><strong>Question E.1</strong>
+            <p>Sous Unix, que fait la commande suivante : </p>
+            <p class="codeE3C">
+                ls –a /home/pi >> toto.txt
+            </p>
+            <ol class="E3C">
+                <li >elle liste uniquement les répertoires cachés du répertoire /home/pi</li>
+                <li>elle liste tous les fichiers du répertoire /home/pi et enregistre le résultat dans un fichier toto.txt</li>
+                <li>elle liste tous les fichiers des répertoires de /home/pi et de toto.txt</li>
+                <li >elle liste tous les fichiers du répertoire courant et enregistre le résultat dans un fichier /home/pi/toto.txt</li>
+            </ol>
+        </li>
+        <li><strong>Question E.2</strong>
+            <p>L'architecture client-serveur :</p>
+            <ol class="E3C">
+                <li>est un mode de communication entre programmes</li>
+                <li >est une architecture matérielle de coopération entre machines</li>
+                <li>est un mode de communication entre routeurs</li>
+                <li>est un mode de communication entre commutateurs</li>
+            </ol>
+        </li>
+        <li><strong>Question E.3</strong>
+            <p>Depuis le répertoire /home/ubuntu/ on exécute la commande </p>
+            <p class="codeE3C">
+                mkdir ./Documents/Holidays
+            </p>
+                <p>Quel est son effet ?</p>
+            <ol class="E3C">
+                <li>supprimer le dossier Holidays situé dans Documents</li>
+                <li>changer de répertoire pour se retrouver dans le répertoire /home/Documents/Holidays</li>
+                <li >créer un dossier Holidays dans le répertoire /home/ubuntu/Documents</li>
+                <li>lister le contenu du répertoire Holidays de Documents</li>
+            </ol>
+        </li>
+        <li><strong>Question E.4</strong>
+            <p>Parmi ces composants électroniques, lequel est d'échelle microscopique dans un ordinateur ?</p>
+            <ol class="E3C">
+                <li>le bus</li>
+                <li>le radiateur</li>
+                <li >le transistor</li>
+                <li>le disque dur</li>
+            </ol>
+        </li>
+        <li><strong>Question E.5</strong>
+            <p>Sur la configuration IP d’une machine nommée MACH01 on peut lire :</p>
+            <p class="codeE3C">
+                adresse Ipv4 : 172.16.100.201
+                Masque de sous-réseau :  255.255.0.0
+                Passerelle : 172.16.0.254
+            </p>
+            <p>Sur la configuration IP d’une machine nommée MACH02 on peut lire :</p>
+            <p class="codeE3C">
+                adresse Ipv4 : 172.16.100.202
+                Masque de sous-réseau :  255.255.0.0
+                Passerelle : 172.16.0.254
+            </p>
+            <p>
+                Depuis la machine MACH02, à l'aide de quelle commande peut-on tester le dialogue entre ces deux machines ?</p>
+            <ol class="E3C">
+                <li >ping 172.16.100.201</li>
+                <li>ping 172.16.100.202</li>
+                <li>ping 172.16.100.254</li>
+                <li>ping 255.255.0.0</li>
+            </ol>
+        </li>
+        <li><strong>Question E.6</strong>
+            <p>Quelle commande permet de changer les droits d'accès d'un fichier ou d'un répertoire ?</p>
+            <ol class="E3C">
+                <li >lsmod</li>
+                <li >chmod</li>
+                <li>chown</li>
+                <li>pwd</li>
+            </ol>
+        </li>
+    </ul>
+
+    <h3>Les questions corrigées</h3>
+    <ul class="E3C">
+        <li><strong>Question E.1</strong>
+            <p>Sous Unix, que fait la commande suivante : </p>
+            <p class="codeE3C">
+                ls –a /home/pi >> toto.txt
+            </p>
+            <ol class="E3C">
+                <li >elle liste uniquement les répertoires cachés du répertoire /home/pi</li>
+                <li>elle liste tous les fichiers du répertoire /home/pi et enregistre le résultat dans un fichier toto.txt</li>
+                <li>elle liste tous les fichiers des répertoires de /home/pi et de toto.txt</li>
+                <li class="OK">elle liste tous les fichiers du répertoire courant et enregistre le résultat dans un fichier /home/pi/toto.txt</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>commentaires</p>
+                <p>Télécharger le <a href="../../docs/.pdf">cours sur ...</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question E.2</strong>
+            <p>L'architecture client-serveur :</p>
+            <ol class="E3C">
+                <li>est un mode de communication entre programmes</li>
+                <li class="OK">est une architecture matérielle de coopération entre machines</li>
+                <li>est un mode de communication entre routeurs</li>
+                <li>est un mode de communication entre commutateurs</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>commentaires</p>
+                <p>Télécharger le <a href="../../docs/.pdf">cours sur ...</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question E.3</strong>
+            <p>Depuis le répertoire /home/ubuntu/ on exécute la commande </p>
+            <p class="codeE3C">
+                mkdir ./Documents/Holidays
+            </p>
+                <p>Quel est son effet ?</p>
+            <ol class="E3C">
+                <li>supprimer le dossier Holidays situé dans Documents</li>
+                <li>changer de répertoire pour se retrouver dans le répertoire /home/Documents/Holidays</li>
+                <li class="OK">créer un dossier Holidays dans le répertoire /home/ubuntu/Documents</li>
+                <li>lister le contenu du répertoire Holidays de Documents</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>commentaires</p>
+                <p>Télécharger le <a href="../../docs/.pdf">cours sur ...</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question E.4</strong>
+            <p>Parmi ces composants électroniques, lequel est d'échelle microscopique dans un ordinateur ?</p>
+            <ol class="E3C">
+                <li>le bus</li>
+                <li>le radiateur</li>
+                <li class="OK">le transistor</li>
+                <li>le disque dur</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>commentaires</p>
+                <p>Télécharger le <a href="../../docs/.pdf">cours sur ...</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question E.5</strong>
+            <p>Sur la configuration IP d’une machine nommée MACH01 on peut lire :</p>
+            <p class="codeE3C">
+                adresse Ipv4 : 172.16.100.201
+                Masque de sous-réseau :  255.255.0.0
+                Passerelle : 172.16.0.254
+            </p>
+            <p>Sur la configuration IP d’une machine nommée MACH02 on peut lire :</p>
+            <p class="codeE3C">
+                adresse Ipv4 : 172.16.100.202
+                Masque de sous-réseau :  255.255.0.0
+                Passerelle : 172.16.0.254
+            </p>
+            <p>
+                Depuis la machine MACH02, à l'aide de quelle commande peut-on tester le dialogue entre ces deux machines ?</p>
+            <ol class="E3C">
+                <li class="OK">ping 172.16.100.201</li>
+                <li>ping 172.16.100.202</li>
+                <li>ping 172.16.100.254</li>
+                <li>ping 255.255.0.0</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>commentaires</p>
+                <p>Télécharger le <a href="../../docs/.pdf">cours sur ...</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question E.6</strong>
+            <p>Quelle commande permet de changer les droits d'accès d'un fichier ou d'un répertoire ?</p>
+            <ol class="E3C">
+                <li >lsmod</li>
+                <li class="OK">chmod</li>
+                <li>chown</li>
+                <li>pwd</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>commentaires</p>
+                <p>Télécharger le <a href="../../docs/.pdf">cours sur ...</a>.</p>
+            </div>
+        </li>
+    </ul>
+
+    <h2>Thème F : langages et programmation</h2>
+    <h3>Les questions brutes</h3>
+    <ul class="E3C">
+        <li><strong>Question F.1</strong>
+            <p>\(n \) étant un entier strictement positif, la fonction suivante calcule sa factorielle, c'est-à-dire le produit \(1 \times 2 \times 3 \times ... \times (n-1) \times n \) . Comment faut-il écrire la ligne en pointillée ci-dessous pour ce faire ?</p>
+            <p class="codeE3C">
+                def factorielle(n):
+                    f = 1
+                    .........
+                        f = f * i
+                    return f
+            </p>
+            <ol class="E3C">
+                <li >for i in range(1,n):</li>
+                <li>for i in range(n+1):</li>
+                <li>for i in range(0,n):</li>
+                <li >for i in range(1,n+1):</li>
+            </ol>
+        </li>
+        <li><strong>Question F.2</strong>
+            <p>On exécute le script suivant :</p>
+            <p class="codeE3C">
+                a = 4
+                b = 4
+                c = 4
+                while a &lt; 5:
+                    a = a - 1
+                    b = b + 1
+                    c = c * b
+            </p>
+            <p>Que peut-on dire ?</p>
+            <ol class="E3C">
+                <li >ce programme ne termine pas</li>
+                <li>à la fin de l'exécution, la variable a vaut 5</li>
+                <li>à la fin de l'exécution, la variable b vaut 34</li>
+                <li>à la fin de l'exécution, la variable c vaut 42</li>
+            </ol>
+        </li>
+        <li><strong>Question F.3</strong>
+            <p>On souhaite écrire une fonction qui renvoie le maximum d'une liste d'entiers :</p>
+            <p class="codeE3C">
+                def maximum(L):
+                    m = L[0]
+                    for i in range(1,len(L)):
+                        if .........:
+                            m = L[i]
+                    return m
+            </p>
+            <p>Par quoi faut-il remplacer les pointillés pour que cette fonction produise bien le résultat attendu ?</p>
+            <ol class="E3C">
+                <li>i > m</li>
+                <li>L[i] > m </li>
+                <li>L[i] > L[i-1]</li>
+                <li>L[i] > L[i+1]</li>
+            </ol>
+        </li>
+        <li><strong>Question F.4</strong>
+            <p>Quel est le seul langage de programmation parmi les propositions suivantes ?</p>
+            <ol class="E3C">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li >C++</li>
+                <li>WEB</li>
+            </ol>
+        </li>
+        <li><strong>Question F.5</strong>
+            <p>La fonction suivante calcule la racine carrée du double d’un nombre flottant.</p>
+                <p class="codeE3C">
+                    from math import sqrt
+
+                    def racine_du_double(x):
+                        return sqrt(2*x)
+            </p>
+            <p> Quelle est la précondition sur l'argument de cette fonction ?</p>
+            <ol class="E3C">
+                <li >x &lt; 0</li>
+                <li >x >= 0</li>
+                <li>2 * x > 0</li>
+                <li>sqrt(x) >= 0</li>
+            </ol>
+        </li>
+        <li><strong>Question F.6</strong>
+            <p>La fonction maxi ci-dessous a pour but de renvoyer la valeur maximale présente dans la liste qui lui est passée en argument.</p>
+            <p class="codeE3C">
+                def maxi(L):
+                    dernier_indice = len(L) - 1
+                    valeur_max = L[0]
+                    for i in range(1,dernier_indice):
+                        if L[i] > valeur_max:
+                            valeur_max = liste[i]
+                    return valeur_max
+                </p>
+                <p>Cette fonction a été mal programmée. On souhaite réaliser un test pour le démontrer.
+                Parmi les propositions suivantes, laquelle mettra la fonction maxi en défaut ?</p>
+            <ol class="E3C">
+                <li >maxi([1, 2, 3, 4])</li>
+                <li>maxi([4, 3, 2, 1])</li>
+                <li>maxi([1, 3, 3, 2])</li>
+                <li>maxi([1, 1, 1, 1])</li>
+            </ol>
+        </li>
+    </ul>
+
+    <h3>Les questions corrigées</h3>
+    <ul class="E3C">
+        <li><strong>Question F.1</strong>
+            <p>\(n \) étant un entier strictement positif, la fonction suivante calcule sa factorielle, c'est-à-dire le produit \(1 \times 2 \times 3 \times ... \times (n-1) \times n \) . Comment faut-il écrire la ligne en pointillée ci-dessous pour ce faire ?</p>
+            <p class="codeE3C">
+                def factorielle(n):
+                    f = 1
+                    .........
+                        f = f * i
+                    return f
+            </p>
+            <ol class="E3C">
+                <li >for i in range(1,n):</li>
+                <li>for i in range(n+1):</li>
+                <li>for i in range(0,n):</li>
+                <li class="OK">for i in range(1,n+1):</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>commentaires</p>
+                <p>Télécharger le <a href="../../docs/.pdf">cours sur ...</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question F.2</strong>
+            <p>On exécute le script suivant :</p>
+            <p class="codeE3C">
+                a = 4
+                b = 4
+                c = 4
+                while a &lt; 5:
+                    a = a - 1
+                    b = b + 1
+                    c = c * b
+            </p>
+            <p>Que peut-on dire ?</p>
+            <ol class="E3C">
+                <li class="OK">ce programme ne termine pas</li>
+                <li>à la fin de l'exécution, la variable a vaut 5</li>
+                <li>à la fin de l'exécution, la variable b vaut 34</li>
+                <li>à la fin de l'exécution, la variable c vaut 42</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>commentaires</p>
+                <p>Télécharger le <a href="../../docs/.pdf">cours sur ...</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question F.3</strong>
+            <p>On souhaite écrire une fonction qui renvoie le maximum d'une liste d'entiers :</p>
+            <p class="codeE3C">
+                def maximum(L):
+                    m = L[0]
+                    for i in range(1,len(L)):
+                        if .........:
+                            m = L[i]
+                    return m
+            </p>
+            <p>Par quoi faut-il remplacer les pointillés pour que cette fonction produise bien le résultat attendu ?</p>
+            <ol class="E3C">
+                <li>i > m</li>
+                <li class="OK">L[i] > m </li>
+                <li>L[i] > L[i-1]</li>
+                <li>L[i] > L[i+1]</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>commentaires</p>
+                <p>Télécharger le <a href="../../docs/.pdf">cours sur ...</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question F.4</strong>
+            <p>Quel est le seul langage de programmation parmi les propositions suivantes ?</p>
+            <ol class="E3C">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li class="OK">C++</li>
+                <li>WEB</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>commentaires</p>
+                <p>Télécharger le <a href="../../docs/.pdf">cours sur ...</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question F.5</strong>
+            <p>La fonction suivante calcule la racine carrée du double d’un nombre flottant.</p>
+                <p class="codeE3C">
+                    from math import sqrt
+
+                    def racine_du_double(x):
+                        return sqrt(2*x)
+            </p>
+            <p> Quelle est la précondition sur l'argument de cette fonction ?</p>
+            <ol class="E3C">
+                <li >x &lt; 0</li>
+                <li class="OK">x >= 0</li>
+                <li>2 * x > 0</li>
+                <li>sqrt(x) >= 0</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>commentaires</p>
+                <p>Télécharger le <a href="../../docs/.pdf">cours sur ...</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question F.6</strong>
+            <p>La fonction maxi ci-dessous a pour but de renvoyer la valeur maximale présente dans la liste qui lui est passée en argument.</p>
+            <p class="codeE3C">
+                def maxi(L):
+                    dernier_indice = len(L) - 1
+                    valeur_max = L[0]
+                    for i in range(1,dernier_indice):
+                        if L[i] > valeur_max:
+                            valeur_max = liste[i]
+                    return valeur_max
+                </p>
+                <p>Cette fonction a été mal programmée. On souhaite réaliser un test pour le démontrer.
+                Parmi les propositions suivantes, laquelle mettra la fonction maxi en défaut ?</p>
+            <ol class="E3C">
+                <li class="OK">maxi([1, 2, 3, 4])</li>
+                <li>maxi([4, 3, 2, 1])</li>
+                <li>maxi([1, 3, 3, 2])</li>
+                <li>maxi([1, 1, 1, 1])</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>commentaires</p>
+                <p>Télécharger le <a href="../../docs/.pdf">cours sur ...</a>.</p>
+            </div>
+        </li>
+    </ul>
+
+    <h2>Thème G : algorithmique</h2>
+
+    <h3>Les questions brutes</h3>
+    <ul class="E3C">
+        <li><strong>Question G.1</strong>
+            <p>Quelle est la valeur de c à la fin de l'exécution du code suivant :</p>
+            <p class="codeE3C">
+                L = [1,2,3,4,1,2,3,4,0,2]
+                c = 0
+                for k in L:
+                    if k == L[1]:
+                        c = c+1
+            </p>
+            <ol class="E3C">
+                <li >0</li>
+                <li>2</li>
+                <li >3</li>
+                <li>10</li>
+            </ol>
+        </li>
+        <li><strong>Question G.2</strong>
+            
+            <p>Que renvoie la fonction suivante quand on l'appelle avec un nombre entier et une liste d'entiers ?</p>
+            <p class="codeE3C">
+                def mystere(n,L):
+                    for x in L:
+                        if n == x:
+                            return True
+                    return False
+            </p>
+            <ol class="E3C">
+                <li >une valeur booléenne indiquant si le nombre n est présent au moins une fois dans la liste L</li>
+                <li>une valeur booléenne indiquant si le nombre n est présent plusieurs fois dans la liste L</li>
+                <li>une valeur booléenne indiquant si le nombre n est le plus grand de la liste L</li>
+                <li>une valeur booléenne indiquant si le nombre n est le plus petit de la liste L</li>
+            </ol>
+        </li>
+        <li><strong>Question G.3</strong>
+            <p>La fonction mystere suivante prend en argument un tableau d'entiers.</p>
+            <p class="codeE3C">
+            def mystere(t):
+                for i in range(len(t) - 1):
+                    if t[i] + 1 != t[i+1]:
+                        return False
+                return True
+            </p>
+            <p>À quelle condition la valeur renvoyée par la fonction est-elle True ?</p>
+            <ol class="E3C">
+                <li >si le tableau passé en argument est une suite d'entiers consécutifs</li>
+                <li>si le tableau passé en argument est trié en ordre croissant</li>
+                <li>si le tableau passé en argument est trié en ordre décroissant</li>
+                <li>si le tableau passé en argument contient des entiers tous identiques</li>
+            </ol>
+        </li>
+        <li><strong>Question G.4</strong>
+            <p>On exécute le script suivant :</p>
+            <p class="codeE3C">
+                liste=[48, 17, 25 , 9, 34, 12, -5, 89, 54, 12, 78, 8, 155, -85]
+
+                def recherche(liste):
+                    valeur_1 = valeur_2 = liste[0]
+                    for item in liste:
+                        if item &lt; valeur_1:
+                            valeur_1 = item
+                        elif item > valeur_2:
+                            valeur_2 = item
+                        else:
+                            pass
+                    return(valeur_1, valeur_2)
+            </p>
+            <p>Que va renvoyer l'appel recherche(liste) ?</p>
+            <ol class="E3C">
+                <li >(-85,155)</li>
+                <li>[-85,155]</li>
+                <li>(155,-85)</li>
+                <li>[155,-85]</li>
+            </ol>
+        </li>
+        <li><strong>Question G.5</strong>
+            <p>Un algorithme de recherche dichotomique dans une liste triée de taille n nécessite, dans le pire des cas, exactement k comparaisons.<br/>
+                Combien cet algorithme va-t-il utiliser, dans le pire des cas, de comparaisons sur une liste de taille 2n ?</p>
+            <ol class="E3C">
+                <li >k</li>
+                <li >k+1</li>
+                <li>2k</li>
+                <li>2k+1</li>
+            </ol>
+        </li>
+        <li><strong>Question G.6</strong>
+            <p>On considère la fonction suivante :</p>
+            <p class="codeE3C">
+            def f(x,L):
+                i = 0
+                j = len(L)-1
+                while i&lt;j:
+                    k = (i+j)//2
+                    if x &lt;= L[k]:
+                        j = k
+                    else:
+                        i = k + 1
+                return i
+            </p>
+            <p>Cette fonction implémente :</p>
+            <ol class="E3C">
+                <li >le tri par insertion</li>
+                <li>le tri par sélection</li>
+                <li >la recherche dichotomique</li>
+                <li>la recherche du plus proche voisin</li>
+            </ol>
+            </div>
+        </li>
+    </ul>
+
+    <h3>Les questions corrigées</h3>
+    <ul class="E3C">
+        <li><strong>Question G.1</strong>
+            <p>Quelle est la valeur de c à la fin de l'exécution du code suivant :</p>
+            <p class="codeE3C">
+                L = [1,2,3,4,1,2,3,4,0,2]
+                c = 0
+                for k in L:
+                    if k == L[1]:
+                        c = c+1
+            </p>
+            <ol class="E3C">
+                <li >0</li>
+                <li>2</li>
+                <li class="OK">3</li>
+                <li>10</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>L[1] = 2 est une valeur fixe pendant l'exécution de cet algorithme.</p>
+                <p>La variable k parcourt tous les éléments de L et lorsque cet élément vaut 2 (c'est L[1]), alors la
+                    variable c est incrémenté d'une unité. Autrement dit, cet algorithme compte le nombre d'éléments de
+                    L qui sont égaux à son 2ème élement.</p>
+            </div>
+        </li>
+        <li><strong>Question G.2</strong>
+            
+            <p>Que renvoie la fonction suivante quand on l'appelle avec un nombre entier et une liste d'entiers ?</p>
+            <p class="codeE3C">
+                def mystere(n,L):
+                    for x in L:
+                        if n == x:
+                            return True
+                    return False
+            </p>
+            <ol class="E3C">
+                <li class="OK">une valeur booléenne indiquant si le nombre n est présent au moins une fois dans la liste L</li>
+                <li>une valeur booléenne indiquant si le nombre n est présent plusieurs fois dans la liste L</li>
+                <li>une valeur booléenne indiquant si le nombre n est le plus grand de la liste L</li>
+                <li>une valeur booléenne indiquant si le nombre n est le plus petit de la liste L</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>commentaires</p>
+                <p>Télécharger le <a href="../../docs/.pdf">cours sur ...</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question G.3</strong>
+            <p>La fonction mystere suivante prend en argument un tableau d'entiers.</p>
+            <p class="codeE3C">
+            def mystere(t):
+                for i in range(len(t) - 1):
+                    if t[i] + 1 != t[i+1]:
+                        return False
+                return True
+            </p>
+            <p>À quelle condition la valeur renvoyée par la fonction est-elle True ?</p>
+            <ol class="E3C">
+                <li class="OK">si le tableau passé en argument est une suite d'entiers consécutifs</li>
+                <li>si le tableau passé en argument est trié en ordre croissant</li>
+                <li>si le tableau passé en argument est trié en ordre décroissant</li>
+                <li>si le tableau passé en argument contient des entiers tous identiques</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>commentaires</p>
+                <p>Télécharger le <a href="../../docs/.pdf">cours sur ...</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question G.4</strong>
+            <p>On exécute le script suivant :</p>
+            <p class="codeE3C">
+                liste=[48, 17, 25 , 9, 34, 12, -5, 89, 54, 12, 78, 8, 155, -85]
+
+                def recherche(liste):
+                    valeur_1 = valeur_2 = liste[0]
+                    for item in liste:
+                        if item &lt; valeur_1:
+                            valeur_1 = item
+                        elif item > valeur_2:
+                            valeur_2 = item
+                        else:
+                            pass
+                    return(valeur_1, valeur_2)
+            </p>
+            <p>Que va renvoyer l'appel recherche(liste) ?</p>
+            <ol class="E3C">
+                <li class="OK">(-85,155)</li>
+                <li>[-85,155]</li>
+                <li>(155,-85)</li>
+                <li>[155,-85]</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>commentaires</p>
+                <p>Télécharger le <a href="../../docs/.pdf">cours sur ...</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question G.5</strong>
+            <p>Un algorithme de recherche dichotomique dans une liste triée de taille n nécessite, dans le pire des cas, exactement k comparaisons.<br/>
+                Combien cet algorithme va-t-il utiliser, dans le pire des cas, de comparaisons sur une liste de taille 2n ?</p>
+            <ol class="E3C">
+                <li >k</li>
+                <li class="OK">k+1</li>
+                <li>2k</li>
+                <li>2k+1</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>commentaires</p>
+                <p>Télécharger le <a href="../../docs/.pdf">cours sur ...</a>.</p>
+            </div>
+        </li>
+        <li><strong>Question G.6</strong>
+            <p>On considère la fonction suivante :</p>
+            <p class="codeE3C">
+            def f(x,L):
+                i = 0
+                j = len(L)-1
+                while i&lt;j:
+                    k = (i+j)//2
+                    if x &lt;= L[k]:
+                        j = k
+                    else:
+                        i = k + 1
+                return i
+            </p>
+            <p>Cette fonction implémente :</p>
+            <ol class="E3C">
+                <li >le tri par insertion</li>
+                <li>le tri par sélection</li>
+                <li class="OK">la recherche dichotomique</li>
+                <li>la recherche du plus proche voisin</li>
+            </ol>
+            <div class="correctionE3C">
+                <p>commentaires</p>
+                <p>Télécharger le <a href="../../docs/.pdf">cours sur ...</a>.</p>
+            </div>
+        </li>
+    </ul>
+
+    <!-- ************************************************************************* -->
+    <h2>Téléchargement</h2>
+    <p>Télécharger le <a href="../../docs/Q02-SUJET.pdf">sujet n°xx</a> et son <a
+            href="../../docs/Q02-CORRIGE.pdf">corrigé</a>.</p>
+
+    <script src="../../js/generalites.js"></script>
+</body>
+
+</html>
