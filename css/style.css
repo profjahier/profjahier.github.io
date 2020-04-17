@@ -10,6 +10,9 @@ body{
     margin:auto;
 }
 
+p{
+    width:80%;
+}
 h1{
     background-color: rgb(212, 96, 50);
     text-align: center;
