@@ -6,9 +6,11 @@ body{
     background-color: rgb(238, 231, 222);
     color: rgb(6, 11, 41);
     padding: 25px;
-    width:95%;
+    width:30%;
     margin:auto;
 }
+
+p{}
 
 h1{
     background-color: rgb(212, 96, 50);
@@ -19,7 +21,6 @@ h1{
     border-bottom: solid 3px  rgb(6, 11, 41);
     margin-bottom: 30px;
     border-radius: 0 25px 0 25px;
-  /*  font-size: 2em; */
 }
 
 h2{
@@ -29,7 +30,6 @@ h2{
     width:70%;
     padding-left: 30px;
     border-radius: 0 0 0 15px;
- /*   font-size: 1.6em; */
 }
 
 h3{
@@ -40,11 +40,6 @@ h3{
     padding-bottom: 5px;
     margin-top: 30px;
     font-size: 1.3em;
-   /*
-    border-bottom: solid 2px rgb(212, 96, 50);
-    border-radius: 0 0 5px 0px;
-
-    */
 }
 
 code{
@@ -57,7 +52,6 @@ a{
     text-decoration: none;
 }
 
-/* flex */
 .menu-block{
     display: flex;
     justify-content: space-around;
@@ -120,7 +114,7 @@ ul.E3C > li{
 
 li.OK {
     background-color: rgb(212, 96, 50);
-    width:40%;
+  /*  width:40%; */
     padding:2px;
     border-radius: 3px;;
 }
