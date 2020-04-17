@@ -1462,14 +1462,14 @@
 
     <ul class="E3C">
         <li><strong>Question G.1</strong>
-            <p>L'algorithme suivant permet de calculer la somme des N premiers entiers, où N est un nombre entier donné:</p>  
+            <p>L'algorithme suivant permet de calculer la somme des N premiers entiers, où N est un nombre entier donné: </p>
             <p class="codeE3C">
                 i = 0
                 somme = 0
                 while i &lt; N :
                     i = i +1
                     somme = somme + i
-                </p>
+            </p> 
             <p>Un invariant de boucle de cet algorithme est le suivant :</p>
             <ol class="E3C">
                 <li>somme = 0 + 1 + 2 + ... + i  et i &lt; N</li>
@@ -1575,6 +1575,7 @@
                 <li>somme = 0 + 1 + 2 + ... + N  et i &lt; N+1</li>
             </ol>
             <div class="correctionE3C">
+                <!--
                 <p>Un invariant de boucle est une propriété qui si elle est vraie avant une itération de boucle reste
                     vraie à la fin de l'itération. </p>
                 <p>Vérifions que somme = 0 + 1 + 2 + ... + i  et i &lt; N+1 est bien un invariant.</p>
@@ -1590,6 +1591,29 @@
                 <p>Mais au cours de chaque itération i est incrémenté et à la fin de la dernière itération i atteint la
                     valeur de N (i = N et la boucle s'arrête) et donc la propriété qui reste vraie à la fin de cette
                     dernière itération est i &lt; N + 1. </p>
+            </div>
+-->
+            <div class="correctionE3C">
+                <p>Un invariant de boucle est une propriété qui si elle est vraie avant une itération de boucle reste
+                    vraie à la fin de l'itération. </p>
+                <p>Vérifions que somme = 0 + 1 + 2 + ... + i  et i &lt; N+1 est bien un invariant.</p>
+                <ol>
+                <li>On peut vérifier qu'initialement i = 0 &lt; N + 1 et S = 0 = 0 + i. </li>
+                <li>Puis on vérifie que si la proposition est vraie au début d'une itération, elle reste bien vraie à la fin :
+                    <table class="collapse">
+                        <tr><td></td><td>i</td><td>i &lt; N</td><td>somme</td><td>i &lt; N + 1</td></tr>
+                        <tr><td>début d'itération</td><td>n</td><td>Vrai</td><td>0 + 1 + ... + n</td><td>Vrai</td></tr>
+                        <tr><td>fin d'itération</td><td>n + 1</td><td>Vrai</td><td>0 + 1 + ... + n + (n+1)</td><td>Vrai</td></tr>
+                    </table> </li>
+                    <li>À la dernière itération :</li>
+                    <table class="collapse">
+                        <tr><td></td><td>i</td><td>i &lt; N </td><td>somme</td><td>i &lt; N + 1</td></tr>
+                        <tr><td>début d'itération</td><td>N - 1 </td><td>Vrai</td><td>0 + 1 + ... + (N- 1)</td><td>Vrai</td></tr>
+                        <tr><td>fin d'itération</td><td>N</td><td><strong>Faux</strong></td><td>0 + 1 + ... + (N-1) + N</td><td>Vrai</td></tr>
+                    </table></li></ol>
+                    <p>Cet invariant montre aussi la correction de l'algorithme puisque la valeur de la variable somme à la fin vaut bien la somme des entiers de 0 à N.</p>
+                    <p>On pourrait compléter l'analyse en vérifiant la terminaison du programme. Pour cela, on peut exhiber le variant de boucle i. <br/>
+                    C'est une variable dont la valeur augmente à chaque itération  et qui va donc forcément dépasser la borne N (<em>ce qui apparaît explicitement dans le tableau de la dernière itération</em>) et provoquer l'arrêt de la boucle et confirmer la terminaison de l'algorithme.</p>
             </div>
         </li>
         <li><strong>Question G.2</strong>
