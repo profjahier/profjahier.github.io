@@ -40,6 +40,11 @@ h3{
     font-size: 1.3em;
 }
 
+h4{
+    color: rgb(172, 86, 0);
+}
+
+
 code{
     background-color: black;
     color: white;
