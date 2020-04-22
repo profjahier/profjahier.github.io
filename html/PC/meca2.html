@@ -1,0 +1,855 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>Profjahier-Algo glouton</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/prism.css" />
+    <script src="../../js/mathjax_config_load.js" async></script>
+</head>
+
+<body>
+    <h1>Relier les actions appliquées à un système à son mouvement</h1>
+
+    <h2>Deuxième loi de Newton</h2>
+    <h3>Centre de masse</h3>
+    <p><strong>Le centre de masse G d'un système non ponctuel est le barycentre des masses du système.</strong></p>
+    <p>
+        Pour un système homogène de géométrie simple, le centre de masse est le centre du système.</p>
+    <p>
+        <em>Exemples</em> :</p>
+    <ul>
+        <li> Pour une cube ou une sphère, G est le centre du cube ou de la sphère.
+        </li>
+        <li> Pour un anneau, G est au centre de l'anneau : le centre de masse n'est pas forcément un point matériel.
+        </li>
+        <li> Pour un système constitué de deux masses ponctuelles, le centre de masse est plus proche de la masse la
+            plus lourde.<br />
+            Ex : pour le système {Soleil - planète}, le centre de masse est quasiment confondu avec le centre du Soleil.
+        </li>
+    </ul>
+
+    <h3>Référentiel galiléen</h3>
+    <p>
+        Pour décrire le mouvement d'un système, il faut d'abord préciser par rapport à quel <strong>référentiel</strong>
+        (c'est à dire par rapport à quel corps de référence), on veut décrire ce mouvement.</p>
+    <p>
+        <em>Exemple classique</em> : assis dans un train : suis-je en mouvement ou immobile ?</p>
+    <p>
+        <em>Réponse</em> : je suis immobile dans le référentiel du train, mais en mouvement dans le référentiel
+        terrestre.</p>
+    <p>
+        Il existe une classe de référentiels d'importance toute particulière, appelés <strong>référentiels
+            galiléens</strong>, qui sont <strong>tous en mouvement rectiligne uniforme les uns par rapports aux
+            autres</strong>.</p>
+    <p>
+        <strong>Dans un référentiel galiléen, le principe d'inertie s’applique</strong> : càd qu'un <strong>système
+            soumis à des forces qui se compensent est soit immobile, soit en mouvement rectiligne uniforme</strong>.</p>
+    <p>
+        <em>Rappel de 1ère</em> : si la somme des forces qui agissent sur un système est nulle, son vecteur vitesse ne
+        subit aucune variation (direction, sens, valeur constants donc MRU).</p>
+    <p>
+        En première approximation, si le référentiel d'étude peut être considéré comme étant en mouvement rectiligne
+        uniforme (dans un "vrai" référentiel galiléen), alors il est considéré comme galiléen.</p>
+    <p>
+        <em>Exemples à connaître</em> :
+        <ul>
+            <li> le référentiel terrestre est galiléen pour l'étude des mouvements à la surface terrestre.
+            </li>
+            <li> le référentiel géocentrique est galiléen pour l'étude du mouvement des satellites terrestres.
+            </li>
+            <li> le référentiel héliocentrique est galiléen pour l'étude du mouvement des planètes.</li>
+        </ul>
+
+        <h3>2ème loi de Newton :<br /> Principe fondamental de la dynamique </h3>
+        <p>On a vu en classe de 1ère que la variation du vecteur vitesse entre des instants voisins est colinéaire au
+            vecteur somme des forces extérieures appliquées au système.
+        </p>
+        <p>
+            Par ailleurs, plus la masse est grande, plus l'effet des forces est faible.</p>
+        <p>
+            Or on sait maintenant que la variation du vecteur vitesse entre des instants voisins (infiniment proches
+            même)
+            est le vecteur accélération.</p>
+        <p>
+            Tout est donc en place pour découvrir logiquement la <strong>2ème loi de Newton</strong> qui stipule que
+            dans un
+            référentiel galiléen, <strong>le vecteur accélération du centre de masse est colinéaire à la somme des
+                forces
+                extérieures appliquées au système et inversement proportionnel à la masse</strong> :
+            $$ \overrightarrow{a_G} = \dfrac{1}{m}\sum \overrightarrow{F_{ext}} $$
+            que l'on écrit plus souvent sous la forme suivante :
+            $$ \sum \overrightarrow{F_{ext}} = m\overrightarrow{a_G}$$
+            <p>
+                On en déduit en particulier quelques résultats particuliers importants :</p>
+
+            <ol>
+                <li> Si la <strong>somme des forces est nulle</strong>, alors le <strong>vecteur accélération est le
+                        vecteur nul</strong>.
+                    Il n'y a donc <strong>pas de variation du vecteur vitesse</strong>. <br />
+                    Et ce résultat est <em>réciproque</em> : si le vecteur vitesse est constant, alors c'est que la
+                    résultante des
+                    forces appliquées au système est nulle.
+                </li>
+                <li> Deux cas sont alors possibles :
+                    <ol>
+                </li>
+                <li> ( \overrightarrow{v_G} = \vec{0}( : le <strong>système</strong> est immobile, on dit qu'il est
+                    <strong>en
+                        équilibre</strong>.
+                </li>
+                <li> ( \overrightarrow{v_G} = \overrightarrow{consant}( : le système conserve un mouvement rectiligne
+                    uniforme : c'est le <strong>principe d'inertie</strong>.
+            </ol>
+            </ol>
+
+            <h2>Mouvement dans un champ uniforme</h2>
+            Pour aborder un problème de mécanique, il faut :
+            <ul>
+                <li> choisir un référentiel (+ repère et horloge).
+                </li>
+                <li> définir le système d'étude.
+                </li>
+                <li> lister les forces extérieures appliquées au système.
+                </li>
+                <li> appliquer la 2ème loi de Newton.
+                </li>
+            </ul>
+
+            <h3>Particule massique dans un champ de pesanteur</h3>
+            <h4>Modélisation du mouvement</h4>
+            <p>L’étude est réalisée dans le référentiel terrestre, considéré galiléen.
+            </p>
+            <p>
+                Le système est un solide de masse \( m \) et de centre d’inertie \( G\) .</p>
+            <p>
+                Dans le référentiel terrestre, on choisit un repère d’espace orthonormal \(
+                (O,\vec{i},\vec{j},\vec{k})\) où
+                l’axe
+                \( (O,\vec{k})\) est vertical vers le haut.</p>
+            <p>
+                <!-- (-4,-1.0)(10,3)
+    \psline{->}(0,0)(3,0)\psline{->}(0,0)(0,2)\psline{->}(0,0)(-1.5,-1)
+    \rput[l](3.1,0){( y( }\rput[b](0,2.1){( z( }\rput[tr](-1.6,-1.1){( x( }\rput[t](.1,-.1){( O( }
+    \psline[linewidth=1.5pt]{->}(1.5,1.7)(1.5,.4)\rput[l](1.6,1){( \vec{g}( }
+    \psline[linewidth=1.5pt]{->}(0,0)(-.5,-.33)\rput[rt](-.4,-.4){\small ( \vec{i}( }
+    \psline[linewidth=1.5pt]{->}(0,0)(.7,0)\rput[b](.6,.1){\small ( \vec{j}( }
+    \psline[linewidth=1.5pt]{->}(0,0)(0,.7)\rput[r](-.1,.6){\small ( \vec{k}( }
+    -->
+            </p>
+            On considère un solide en chute <strong>libre</strong>, c'est à dire qu’il n’est <strong>soumis qu’à
+                l’action de
+                son poids</strong>.
+        </p>
+        <p>
+            Au voisinage de la Terre, dans un domaine où les dimensions sont de l’ordre du kilomètre, on considère que
+            le
+            champ de pesanteur est uniforme.</p>
+        <p>
+
+            La 2( ^\text{ème}\) loi de Newton s’écrit :$$\vec{P}=m\vec{g}=m\overrightarrow{a_G}$$ $$\Rightarrow \qquad
+            \overrightarrow{a_G}=\vec{g}$$</p>
+        <p>
+            Le mouvement de <strong>chute libre est un mouvement uniformément varié</strong>.</p>
+        <p>
+            Cette relation vectorielle nous permet d’écrire les coordonnées du vecteur accélération de \(G\). On obtient
+            les
+            <em>équations horaires</em> de ( \overrightarrow{a_G}\) :</p>
+        <p>
+            $$a_x(t)=0 \qquad a_y(t)=0 \qquad a_z(t)=-g$$
+
+            <h4>Cas d’une chute libre sans vitesse initiale</h4>
+            À l’instant \( t=0\), l’objet est <strong>lâché à l'origine du repère, sans vitesse initiale</strong>. On
+            peut donc
+            écrire
+            :</p>
+        <p>
+            \( \overrightarrow{OG}(0)=\overrightarrow{OG_0}=\begin{cases}x(0)=0
+            y(0)=0
+            z(0)=0\end{cases}
+            \qquad \vec{v}_G(0)=\vec{v}_0=\begin{cases}v_x(0)=0 \) </p>
+        <p> v_y(0)=0 </p>
+        <p> v_z(0)=0\end{cases}( </p>
+        <p>
+
+
+            <ul>
+                <li> Détermination du vecteur vitesse ( \vec{v}_G(t)\) :
+        </p>
+        <p>
+            Par définition, ( \vec{a}_G=\dfrac{d\vec{v}_G}{dt}\) d'où ( \begin{cases}a_x=\dfrac{dv_x}{dt}=0 </p>
+        <p> a_y=\dfrac{dv_y}{dt}=0 </p>
+        <p> a_z=\dfrac{dv_z}{dt}=-g\end{cases}\) </p>
+        <p>donc par intégration \)\vec{v}_G(t)=\begin{cases}v_x(t)=C_1 </p>
+        <p> v_y(t)=C_2 </p>
+        <p> v_z(t)=-gt+C_3\end{cases}\) </p>
+        <p>
+            \( C_1\), \() C_2\), et \( C_3\) sont des constantes dont on détermine les valeurs en utilisant les
+            conditions
+            initiales.
+            Finalement : ( \vec{v}_G(t)=\begin{cases}v_x(t)=0 </p>
+        <p> v_y(t)=0 </p>
+        <p> v_z(t)=-gt\end{cases}( </p>
+        <p>
+
+            </li>
+            <li> De la même façon, \( \vec{v}_G=\dfrac{d\overrightarrow{OG}}{dt} \) ; en intégrant les coordonnées du
+                vecteur
+                vitesse et en utilisant les conditions initiales, on obtient celle du vecteur position :
+                <br />
+                \( \overrightarrow{OG}(t)=\begin{cases}x(t)=0
+                y(t)=0
+                z(t)=-\frac{1}{2}gt^2\end{cases}\)
+            </li>
+            </ul>
+
+
+            On pourra retenir que la distance verticale parcourue lors d'une chute libre sans vitesse initiale est : $$h
+            = \dfrac{1}{2}gt^2 $$
+
+            <h4>Cas d’une chute libre avec vitesse initiale</h4>
+            <p>On suppose maintenant qu’à la date ( t=0\), le solide est <strong>lancé avec une vitesse non
+                    nulle</strong>.
+                Le
+                vecteur ( \vec{v}_0\) fait un angle ( \alpha\) avec l'horizontal, et il est contenu dans le plan
+                vertical
+                ( (O,\vec{j},\vec{k})\).</p>
+
+            <!-- (-5,-.7)(10,2.5)
+    \psline{->}(0,0)(3.5,0)\rput[l](3.6,.1){$y$}
+    \psline{->}(0,0)(0,2)\rput[b](0,2.1){$z$}
+    \psline[linewidth=1.5pt]{->}(0,0)(2.5,1.5)\rput[bl](2.6,1.6){$\vec{v}_0$}
+    \psline[linestyle=dashed](2.5,1.5)(2.5,0)\psline[linestyle=dashed](2.5,1.5)(0,1.5)
+    \rput[r](-.1,1.5){$v_{0z}=v_0\sin \alpha$}\rput[tl](2.2,-.2){$v_{0y}=v_0\cos \alpha$}
+    \psarc(0,0){1}{0}{31}\rput[l](1.1,.3){$\alpha$}
+    -->
+
+            <ul>
+                </li>
+                <li> Détermination des <strong>équations horaires</strong>du mouvement :
+
+                    <br />
+                    Les conditions initiales sont : $$
+                    \overrightarrow{OG_0}=\begin{cases}x(0)=0
+                    y(0)=0
+                    z(0)=0\end{cases}
+                    \qquad \vec{v}_0=\begin{cases}v_x(0)=0
+                    > v_y(0)=v_0\cos\alpha
+                    v_z(0)=v_0\sin\alpha \end{cases} $$
+
+                    <p> On procède de la même manière qu’au paragraphe précédent en tenant compte des conditions
+                        initiales et on
+                        trouve
+                        :</p>$$
+                    \vec{v}_G(t)=\begin{cases}v_x(t)=0
+                    v_y(t)=v_0\cos\alpha
+                    v_z(t)=-gt+v_0\sin\alpha \end{cases} \qquad
+                    \overrightarrow{OG}(t)=\begin{cases}x(t)=0
+                    y(t)=v_0(\cos\alpha) t
+                    z(t)=-\frac{1}{2}gt^2+v_0(\sin\alpha) t\end{cases}$$
+
+                    <p>
+                        On remarque que le <strong>mouvement dans un champ uniforme est un mouvement plan</strong>.</p>
+                    <p>
+
+                </li>
+                <li> <strong>Équation de la trajectoire</strong> :
+        </p>
+        <p>
+            Il s’agit d’exprimer ( z\) en fonction de ( y\) en éliminant le paramètre ( t\).</p>
+        <p>
+            De l’équation ( y(t)\), on tire ( t=\dfrac{y}{v_0\cos\alpha}\).</p>
+        <p>
+
+            Puis on remplace ( t\) dans l’expression de ( z(t)\), pour obtenir
+            :$$z=-\dfrac{g}{2v_0^2\cos^2\alpha}y^2+(\tan\alpha) y$$
+
+            Il s’agit de l’équation d’une <strong>parabole</strong>.
+
+            </li>
+            <li> <em>Application</em> : <strong>flèche et portée</strong> :
+                <br />
+                La flèche de la trajectoire est l’altitude maximale atteinte ; elle correspond au sommet \(S\) de la
+                parabole.
+                Pour déterminer les coordonnées de ( S\), il faut utiliser le fait qu’<em>en ce point le vecteur vitesse
+                    est
+                    horizontal</em>, c’est-à-dire ( v_z(t_S)=0\).
+        </p>
+        <p>
+            </li>
+            </ul>
+
+            <h3>Particule chargée dans un champ électrique</h3>
+            <h4>Champ électrique créé par un condensateur plan</h4>
+            <p> <strong>Un condensateur plan est constitué de 2 plaques conductrices parallèles séparées par un
+                    isolant.</strong>
+            </p>
+            <p>
+                Il peut être chargé à l'aide d'un générateur continu : chaque plaque porte alors une charge opposée \(
+                +Q\)
+                et
+                \( -Q\)).</p>
+            <p>
+                Un condensateur chargé est source d'un champ électrostatique uniforme entre les plaques. Ses
+                caractéristiques
+                sont :
+                <ul>
+                    <li> direction : <strong>perpendiculaire aux plaques</strong>.
+                    </li>
+                    <li> sens : <strong>de la plaque chargée + vers la plaque chargée -</strong>.
+                    </li>
+                    <li> valeur : ( E=\dfrac{U}{d}\) : ( U\) en V (tension entre les 2 plaques); ( d\) en m (distance
+                        entre
+                        les 2 plaques); ( E\) en \voltparmetre
+                    </li>
+                </ul>
+
+
+                <h4>Étude du mouvement</h4>
+                <p> On étudie dans le référentiel terrestre galiléen, le mouvement d'une particule de charge ( q\) dans
+                    un champ
+                    électrique uniforme \( \vec{E}\) (entre les plaques d'un condensateur par exemple).</p>
+                <p>
+                    La force électrostatique \( \vec{F_e}=q\vec{E}\) est la seule force à prendre en considération si le
+                    poids de
+                    la
+                    particule est négligeable.</p>
+                <p>
+                    La 2ème loi de Newton donne : $$ \sum \vec{F}_{ext}=q\vec{E}=m\vec{a}$$
+                    $$\Rightarrow \quad \vec{a}=\dfrac{q}{m}\vec{E}$$
+
+                    On retrouve un <strong>vecteur accélération constant</strong> comme pour le mouvement de chute libre
+                    dans le
+                    champ de pesanteur \( \vec{a}=\vec{g} \). </p>
+                <p>
+                    Le mouvement est donc aussi un mouvement uniformément varié, et un mouvement plan.</p>
+                <p>
+                    On remarquera simplement que le sens du vecteur accélération \( \vec{a}\) dépend du signe de la
+                    charge \( q\).
+                </p>
+                <p>
+                    On obtient donc exactement le même type de trajectoire pour une particule chargée dans un champ
+                    électrostatique
+                    que pour une particule massique dans un champ de pesanteur :
+                    <ul>
+                        <li> Si la vitesse initiale est dans la même direction que le champ électrostatique alors la
+                            trajectoire
+                            est
+                            rectiligne (utiliser pour accélérer les particules dans les accélérateurs de particules).
+                        </li>
+                        <li> Si la vitesse initiale fait un angle ( \alpha\) avec la direction du champ électrostatique
+                            alors la
+                            trajectoire est une parabole. (exemple classique : déviation d'un faisceau d'électrons).
+                        </li>
+                    </ul>
+
+                    <h4>Accélérateur de particules</h4>
+                    Pour développer notre connaissance de la matière au niveau microscopique, il est indispensable de
+                    réaliser
+                    des
+                    collisions à haute énergie entre les particules. Cela peut se faire au sein d'accélérateurs de
+                    particules
+                    tels
+                    que le SLAC (Stanford Linear Accelerator Center) ou le LHC (Large Hadron Collider) du CERN, ou le
+                    GANIL
+                    (Grand
+                    Accélérateur National d'Ions Lourds).
+                </p>
+                <p>
+
+                    Un accélérateur linéaire peut être assimilé en 1ère approximation à un condensateur de longueur (
+                    d\) et
+                    soumis à
+                    une tension ( U\). </p>
+                <p>
+                    Au sein d'un tel accélérateur règne donc un champ électrique qui peut être utilisé pour communiquer
+                    une
+                    grande
+                    énergie à des particules chargée en les accélérant.
+
+                    <h3>Aspects énergétiques</h3>
+                    <h4>Rappel des notions abordées en 1ère spé PC à connaître !</h4>
+
+                    <table class="programme">
+                        <tr>
+                            <td>Notions et contenus </td>
+                            <td> Capacités exigibles</td>
+                        </tr>
+                        <tr>
+                            <td> Énergie cinétique d’un système
+                                modélisé par un point matériel.<br />
+                                Travail d’une force.<br />
+                                Expression du travail dans le cas
+                                d'une force constante.
+                                Théorème de l’énergie cinétique.<br />
+                                Forces conservatives. Énergie potentielle. Cas du champ de pesanteur terrestre.<br />
+                                Forces non-conservatives :
+                                exemple des frottements.<br />
+                                Énergie mécanique.<br />
+                                Conservation et non conservation de l’énergie mécanique.<br />
+                                Gain ou dissipation d’énergie.
+                            </td>
+                            <td>
+                                Utiliser l’expression de l’énergie cinétique d’un système modélisé par un point
+                                matériel.<br />
+                                Établir et utiliser l'expression de l'énergie potentielle de pesanteur pour un système
+                                au
+                                voisinage de
+                                la
+                                surface de la Terre.<br />
+                                Calculer le travail d’une force de frottement d’intensité
+                                constante dans le cas d’une trajectoire rectiligne.<br />
+                                Identifier des situations de conservation et de non
+                                conservation de l’énergie mécanique.<br />
+                                Exploiter la conservation de l’énergie mécanique dans des cas simples : chute libre en
+                                l’absence
+                                de
+                                frottement,
+                                oscillations d’un pendule en l’absence de frottement, etc.<br />
+                                Utiliser la variation de l’énergie mécanique pour
+                                déterminer le travail des forces non conservatives.</td>
+                        </tr>
+                    </table>
+
+                    <p>L'<strong>énergie cinétique</strong> est l'énergie liée au mouvement du système :
+                        $$ E_c = \dfrac{1}{2}mv^2 $$
+
+                        Le <strong>travail</strong>
+                        (unité J) d'une force constante sur un déplacement de \( A\) à \( B\) a pour
+                        expression
+                        :
+                        $$ W_{AB}(\vec{F})=\vec{F}\cdot \overrightarrow{AB}=F\times AB\times \cos \theta$$
+
+                        Le <strong>théorème de l'énergie cinétique</strong> relie la variation d'énergie cinétique du
+                        système au
+                        travail des forces extérieurs appliquées au système :
+                        $$ \Delta E_c = \sum_i W(\overrightarrow{F_i}) $$
+
+                        Une force dont le travail ne dépend que de la position du point de départ et d'arrivée, et pas
+                        du trajet
+                        pour aller de ( A\) à ( B\), est dite <strong>conservative</strong>.
+                    </p>
+                    <p>
+
+                        Exemple : Travail du poids :$$ W_{AB}(\vec{P}) = mg(z_A - z_B) $$
+
+                        Par ailleurs, il est toujours possible d'associer une <strong>énergie potentielle</strong> à une
+                        force
+                        conservative (au cours du mouvement la variation d'énergie potentielle est égale à l'opposé du
+                        travail
+                        de la
+                        force conservative).</p>
+                    <p>
+
+                        Exemple : <strong>énergie potentielle de pesanteur</strong> liée au poids :
+                        $$ E_p = m g z $$
+
+                        L'<strong>énergie mécanique</strong> est la somme des énergies cinétiques et potentielles :
+                        $$ E_m = E_c + E_p $$
+
+                        Pour un <strong>système soumis seulement à des forces conservatives, l'énergie mécanique est
+                            conservée
+                            au cours
+                            du mouvement</strong>, et on a :
+                        $$ \Delta E_c = - \Delta E_p $$
+                        L'énergie cinétique est convertie en énergie potentielle (et vice-versa) au cours du mouvement.
+                    </p>
+                    <p>
+                        Les <strong>forces de frottements</strong> sont des forces <strong>non conservatives</strong>.
+                    </p>
+                    <p>
+                        Un système qui subit des forces non conservatives voit son énergie mécanique diminuer au cours
+                        du
+                        mouvement. La
+                        perte d'énergie mécanique est égale au travail des forces non conservatives :
+                        $$ \Delta Em = W(\overrightarrow{f_{nc}}) &lt; 0 $$ On peut calculer le travail d'une force de
+                        frottement,
+                        constamment opposée au mouvement et de valeur constante, pour un mouvement rectiligne :</p>
+                    <p> $$ W_{AB}(\vec{f})=\vec{f}\cdot\overrightarrow{AB}=fAB\cos (180°)=-f\cdot AB $$
+
+                        <h3>Application : flèche d'un mouvement parabolique</h3>
+                        <p>On cherche à déterminer la hauteur maximum \( h\), ou flèche, atteinte par un projectile (en
+                            chute libre)
+                            dans le champ de pesanteur.</p>
+                        <p>
+                            On suppose que le système est lancé avec une vitesse initiale \( v_0\) (vers le haut \(
+                            \alpha > 0\)°), et
+                            on
+                            choisit l'origine des énergies potentielle de pesanteur à la hauteur initiale du système.
+                        </p>
+                        <p>
+                            Sans frottement, il y a conservation de l'énergie mécanique, et donc :
+                            $$ \Delta E_p = - \Delta E_c $$
+                            $$ mgh - 0 = -\dfrac{1}{2}m (v_S^2 - v_0^2)
+                            \qquad \Rightarrow \qquad
+                            h = \dfrac{1}{2g} (v_0^2 - v_S^2)$$
+                            Or au sommet \( S\),
+                            \( v_z(t_S) = 0 \) et \( v_y(t_S) = v_0 \cos \alpha\), donc :
+                            $$ h = \dfrac{1}{2g}v_0^2(1 - \cos^2 \alpha) = \dfrac{1}{2} \dfrac{v_0^2 \sin^2 \alpha}{g}
+                            $$
+
+                            <h3>Application : énergie acquise dans un accélérateur</h3>
+                            Un accélérateur linéaire étant assimilé à un condensateur de longueur \( d\) et soumis à une
+                            tension
+                            \(U\),
+                            on cherche à déterminer l'énergie acquise par une particule chargée qui traverse cet
+                            accélérateur.</p>
+                        <p>
+
+                            L'accélérateur crée un champ \( \vec{E}\) uniforme avec \( E=\dfrac{U}{d}\).</p>
+                        <p>
+
+                            D'après le théorème de l'énergie cinétique :
+                            $$ \Delta E_c = E_{cf} - 0 = W_{AB}(\vec{F_e}) $$
+                            $$Ec_f = \vec{F_e} \cdot \overrightarrow{AB}= qE AB \cos \theta = qEd = qU $$
+
+
+                            <h3>Application : distance de freinage</h3>
+                            On considère une voiture de \( m = 1\) t roulant à \( v = 72 \) km/h (20 m/s) subissant une
+                            force
+                            de frottement constante de \( f = 4000 \) N due au freinage.</p>
+                        <p>
+                            Calculer la distance \( d\) parcourue pour s'arrêter.</p>
+                        <p>
+
+                            D'après le théorème de l'énergie cinétique :
+                            $$ \Delta E_c = 0 - E_{cf} = W_{AB}(\vec{f}) $$
+                            $$- Ec_f = - \dfrac{1}{2}mv^2 = - f \cdot d $$
+                            $$d = \dfrac{1}{2} \dfrac{mv^2}{f} $$
+                            $$ d =\dfrac{10^3 \times 20^2}{2 \times 4000} = 50~\text{m}$$
+
+                            <h2>Mouvement dans un champ de gravitation</h2>
+
+                            <h3>Les lois de Kepler</h3>
+                            <p>Historique : Nicolas Copernic (1473-1543 - Polonais) introduit l'héliocentrisme. À l'aide
+                                des
+                                observations de Tycho Brahé (1546-1601 - Danois), Johannes Kepler (1571-1630 -
+                                Autrichien) établit 3
+                                lois empiriques sur le mouvement des planètes. Newton (1642-1727 - Anglais) expliquera
+                                ces lois à
+                                partir des lois fondamentales qu'il établira plus tard.
+
+                                <ol>
+                                    <li> <strong>Première loi de Kepler : Dans le référentiel héliocentrique, la
+                                            trajectoire d'une
+                                            planète est une ellipse dont le Soleil est un foyer.</strong>
+                            </p>
+                            <p>
+
+                                </li>
+                                <li> <strong>Deuxième loi de Kepler (loi des aires) : Le rayon vecteur qui lie le centre
+                                        d'une planète
+                                        au centre du Soleil balaie des aires égales pendant des durées égales.</strong>
+
+                                    <!-- (-5,-1.5)(10,2.0)
+    \psclip{\psset{linestyle=none}
+    \psellipse(0,0)(2,1.5)
+    \pspolygon(-1.32,0)(-1.5,1)(-2,1)(-2,-.65)(-1.8,-.65)}
+    \psframe*[linecolor=gray](-5,-1)(3,2)
+    \endpsclip
+    \psclip{\psset{linestyle=none}
+    \psellipse(0,0)(2,1.5)
+    \pspolygon(-1.32,0)(1.95,-.33)(2,1)(2,-.8)(1.7,-.8)}
+    \psframe*[linecolor=gray](-5,-1)(3,2)
+    \endpsclip
+    \psellipse(0,0)(2,1.5)
+    \psline(-2,0)(2,0)\psline(0,-1.5)(0,1.5)
+    \psdot(-1.32,0)\rput[bl](-1.32,.2){$S$}
+    \psline{<->}(2,.6)(0,.6)\rput[b](1,.7){\psframebox*[linestyle=none]{demi grand axe $a$}}
+    \psline(-1.32,0)(-1.5,1.0)\psline(-1.32,0)(-1.8,-.65)
+    \psline(-1.32,0)(1.95,-.33)\psline(-1.32,0)(1.7,-.8)
+    -->
+
+                                </li>
+                                <li> <strong>Troisième loi de Kepler : Le carré de la période de révolution d'une
+                                        planète est
+                                        proportionnel au cube du demi grand axe de son orbite : $$
+                                        \dfrac{T^2}{a^3}=k$$</strong>
+                                    La constante \( k\) est la même pour toutes les planètes du système solaire.
+                                </li>
+                                </ol>
+
+
+                                <h3>Démonstration des lois de Kepler dans le cas du mouvement circulaire</h3>
+                                <h4>Expression du vecteur accélération</h4>
+                                <p>Une planète est soumise à l’interaction gravitationnelle qui résulte du champ de
+                                    gravitation
+                                    newtonien créé par le Soleil. Cette action est modélisée par la force : $$
+                                    \vec{F}=-G\dfrac{M\times m}{R^2}\vec{u}$$
+
+
+                                    <!-- (-17,1)(10,2.5)
+    \pscircle(0,0){2}
+    \rput{*40}(0,0){
+    %\psline{->}(2,0)(2,1.5)
+    \psline{->}(2,0)(.7,0)
+    \psline{->}(0,0)(.6,0)
+    \psdot(0,0)\psdot(2,0)}
+    \rput[r](1.1,1.2){$\vec{F}$}\rput[l](.5,.15){\small $\vec{u}$}
+    \rput[tr](-.1,-.1){$M$}\rput[lb](1.6,1.3){$m$}
+    -->
+
+
+                                    <ul>
+                                        <li> \( G=6,67.10^{-11}\) SI : constante de gravitation universelle
+                                        </li>
+                                        <li> \( M\), \( m\) : masses en kg. \( M=1,99.10^{30}\) kg.
+                                        </li>
+                                        <li> \( R\) : rayon du cercle en m.
+                                        </li>
+                                        <li> \( \vec{u}\) : vecteur unitaire dirigé du soleil vers la planète.
+                                        </li>
+                                        <li> <em>remarque</em> : astre à répartition de masse sphérique.
+                                        </li>
+                                    </ul>
+                                    <p>Le référentiel héliocentrique est galiléen pour l'étude du mouvement des
+                                        planètes.</p>
+                                    <p>
+                                        En limitant notre étude aux mouvements circulaires (orbite de rayon \( R\)), la
+                                        1ère loi Kepler
+                                        s'applique
+                                        comme un cas particulier où l'ellipse se réduit à un cercle dont le Soleil est
+                                        le centre.</p>
+                                    <p>
+                                        Pour déterminer les caractéristiques du vecteur accélération du centre de masse
+                                        de la planète, nous
+                                        appliquons la 2ème loi de Newton :</p>
+                                    <p>
+                                        $$ \vec{F}=-G\dfrac{M\times m}{R^2}\vec{u}=m\vec{a} $$
+                                        $$\qquad \Rightarrow\vec{a}=-G\dfrac{M}{R^2}\vec{u}$$
+                                        Le vecteur accélération est donc <strong>radial centripète</strong> et a une
+                                        <strong>valeur
+                                            constante</strong> \( a = G\dfrac{M}{R^2}\).</p>
+                                    <p>
+
+                                        <!-- (-7,-2)(10,2.5)
+    \pscircle(0,0){2}
+    \rput{*40}(0,0){\psline{->}(2,0)(2,1.5)\psline{->}(2,0)(1,0)\psline{->}(0,0)(.6,0)
+    \psdot(0,0)\psdot(2,0)}
+    \rput(1.2,2.0){$\vec{v}$}\rput[r](1.2,1.2){$\vec{a}$}\rput[l](.5,.15){\small $\vec{u}$}
+    \rput[tr](-.1,-.1){$M$}\rput[lb](1.6,1.3){$m$}
+    -->
+                                    </p>
+                                    <p>
+
+                                        <em>Rappel</em> : pour un mouvement circulaire :
+                                        $$ \vec{a}=\dfrac{dv}{dt}\vec{t}+\dfrac{v^2}{R}\vec{n}$$ avec \(\vec{t}\) et
+                                        \(\vec{n} \) les
+                                        vecteurs du repère de Frenet.</p>
+                                    <p>
+                                        Ici, comme \( \vec{a}\) est radial (et en notant que \( \vec{n} = -\vec{u}\)),
+                                        on obtient donc : $$ a_t =
+                                        \dfrac{dv}{dt} = 0 \qquad \text{et} \qquad a_n = \dfrac{v^2}{R} =
+                                        G\dfrac{M}{R^2}$$
+
+                                        <h4>Expression du vecteur vitesse</h4>
+                                        <p>Le vecteur vitesse (tangent à la trajectoire) est donc perpendiculaire au
+                                            vecteur accélération : $$
+                                            \vec{v} = v~\vec{t} $$
+
+                                            Comme on a trouvé \( a_t = \dfrac{dv}{dt} = 0\) alors la norme de la vitesse
+                                            est constante (dérivée
+                                            nulle).</p>
+                                        <p>
+                                            <strong>Le mouvement circulaire est donc uniforme.</strong> : on retrouve
+                                            ici la 2ème loi Kepler, dans
+                                            le cas
+                                            particulier du mouvement circulaire.</p>
+                                        <p>
+
+                                            Avec \( a_n=G\dfrac{M}{R^2}=\dfrac{v^2}{R}\), on en déduit que :
+                                            $$v=\sqrt{\dfrac{GM}{R}}$$
+
+
+                                            <h4>Expression de la période de révolution</h4>
+                                            <p>La période de révolution \( T\) est le temps mis par la planète pour
+                                                faire un tour d'orbite :
+                                                $$T = \dfrac{2\pi R}{v} = \dfrac{2\pi R}{\sqrt{\dfrac{GM}{R}}} = 2\pi R
+                                                \sqrt{\dfrac{R}{GM}}$$
+                                                $$T=2\pi\sqrt{\dfrac{R^3}{GM}}$$
+
+                                                On en déduit :
+                                                $$\dfrac{T^2}{R^3}=k \qquad \text{avec} \qquad k=\dfrac{4\pi^2}{GM} $$
+                                                Cette constante ne dépend que de la masse du Soleil mais pas des
+                                                caractéristiques de la planète : on
+                                                retrouve ici la 3ème loi Kepler.
+
+
+                                                <h3>Satellites de la Terre</h3>
+                                                <p>Le référentiel <strong>géocentrique</strong> est galiléen pour
+                                                    l'étude du mouvement des satellites
+                                                    terrestres.
+                                                </p>
+                                                <p>
+                                                    L'étude est la même que précédemment en remplaçant le soleil par la
+                                                    Terre, de masse \( M_T\) , et la
+                                                    planète par le satellite étudié, de masse \( m\), qui gravite à une
+                                                    distance \( h\) de la surface de la
+                                                    Terre.
+                                                </p>
+                                                <p>
+                                                    On obtient alors :
+                                                    $$ v=\sqrt{\dfrac{GM_T}{R_T+h}} \qquad \text{et} \qquad
+                                                    T=2\pi\sqrt{\dfrac{\left(R_T+h\right)^3}{GM_T}}$$
+                                                </p>
+                                                <p>
+                                                    <em>Remarque :</em> Pour la 3ème loi de Kepler, il faut seulement
+                                                    adapter la valeur de la constante \(
+                                                    k\) (qui
+                                                    dépend de la masse de la Terre, mais du satellite considéré).</p>
+                                                <p>
+
+                                                    <strong><em>Satellite géostationnaire </em></strong>:</p>
+                                                <p>
+                                                    Un satellite <strong>géostationnaire</strong> est un satellite qui
+                                                    est <strong>immobile dans le
+                                                        référentiel
+                                                        terrestre</strong>. Bien entendu il conserve une mouvement de
+                                                    révolution dans le référentiel
+                                                    géocentrique.</p>
+                                                <p>
+
+                                                    Pour rester immobile dans le référentiel terrestre, il doit orbiter
+                                                    à <strong>vitesse constante</strong>
+                                                    (donc
+                                                    sur une trajectoire circulaire)<strong> dans le plan
+                                                        équatorial</strong> et tourner dans le <strong>même
+                                                        sens que la rotation de la Terre</strong>, et <strong>à la même
+                                                        vitesse</strong> angulaire.</p>
+                                                <p>
+
+                                                    La <strong>période de révolution</strong> d'un satellite
+                                                    géostationnaire est donc de
+                                                    <strong>24h</strong>.</p>
+                                                <p>
+
+                                                    L'altitude de l'orbite est aussi imposée pouyr satisfaire cette
+                                                    contrainte :
+                                                    $$ T=2\pi\sqrt{\dfrac{\left(R+h\right)^3}{GM}}
+                                                    \qquad \Rightarrow \qquad
+                                                    (R+h )^3 = \dfrac{G M T^2 }{4 \pi^2}
+                                                    \qquad \Rightarrow \qquad
+                                                    h = \left( \dfrac{G M T^2 }{4 \pi^2} \right)^{\frac{1}{3}} - R
+                                                    $$
+
+                                                    L'application numérique donne :
+                                                    $$ h = \left( \dfrac{G M T^2 }{4 \pi^2} \right)^{\frac{1}{3}} - R
+                                                    = \left( \dfrac{6,67.10^{-11} \times 5,98.10^{24} \times (24 \times
+                                                    3600)^2 }{4 \pi^2}
+                                                    \right)^{\frac{1}{3}} - 6,38.10^6 = 3,59.10^7~\text{m} $$
+                                                    L'<strong>altitude</strong> des satellites géostationnaires est donc
+                                                    <strong>environ 36 km</strong>.
+
+                                                    <h2>Téléchargement</h2>
+                                                    <p>Télécharger le cours <a
+                                                            href="../../docs/P2-2-mouvement-etude.pdf">P2-2.pdf</a>.</p>
+
+                                                    <h2>Extrait du programme</h2>
+
+
+                                                    <table class="programme">
+                                                        <tr>
+                                                            <th>Notions et contenus</th>
+                                                            <th>Capacités exigibles </th>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><strong>Deuxième loi de Newton</strong><br />Centre de
+                                                                masse d’un système.<br />
+
+                                                                Référentiel galiléen.<br />
+                                                                Deuxième loi de Newton.<br />
+                                                                Équilibre d'un système.
+
+                                                            </td>
+                                                            <td>
+                                                                Justifier qualitativement la position du centre de masse
+                                                                d’un système, cette
+                                                                position étant donnée.<br />
+                                                                Discuter qualitativement du caractère galiléen d’un
+                                                                référentiel donné pour le
+                                                                mouvement étudié.<br /> Utiliser la deuxième loi de
+                                                                Newton dans des situations
+                                                                variées pour en déduire :<br />
+                                                                - le vecteur accélération du centre de masse, les forces
+                                                                appliquées au système étant
+                                                                connues ;<br />
+                                                                - la somme des forces appliquées au système, le
+                                                                mouvement du centre de masse étant
+                                                                connu.
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td> <strong>Mouvement dans un champ uniforme</strong><br />
+                                                                Champ électrique créé par un condensateur plan.<br />
+                                                                Mouvement d’une particule chargée dans un champ
+                                                                électrique uniforme.<br />
+
+                                                                Principe de l’accélérateur linéaire de particules
+                                                                chargées.<br />
+                                                                Aspects énergétiques.
+                                                            </td>
+                                                            <td>
+
+                                                                Montrer que le mouvement dans un champ uniforme est
+                                                                plan.<br />
+                                                                Établir et exploiter les équations horaires du
+                                                                mouvement.
+                                                                Établir l’équation de la trajectoire.<br />
+                                                                Discuter de l’influence des grandeurs physiques sur les
+                                                                caractéristiques du champ électrique créé par un
+                                                                condensateur plan, son expression étant donnée.<br />
+                                                                Décrire le principe d’un accélérateur linéaire de
+                                                                particules chargées.<br />
+
+                                                                Exploiter la conservation de l’énergie mécanique ou le
+                                                                théorème de l’énergie cinétique dans le cas du mouvement
+                                                                dans un champ uniforme.<br />
+                                                                <em>Utiliser des capteurs ou une vidéo pour déterminer
+                                                                    les équations horaires du mouvement du centre de
+                                                                    masse d’un système dans un champ uniforme. Étudier
+                                                                    l’évolution des énergies cinétique, potentielle et
+                                                                    mécanique.</em>
+                                                                <br />
+
+                                                                <strong>Capacité numérique</strong> : Représenter, à
+                                                                partir de données expérimentales variées, l’évolution
+                                                                des grandeurs énergétiques d’un système en mouvement
+                                                                dans un champ uniforme à l’aide d’un langage de
+                                                                programmation ou d’un tableur.<br />
+                                                                <strong>Capacités mathématiques</strong> : Résoudre une
+                                                                équation différentielle, déterminer la primitive d’une
+                                                                fonction, utiliser la représentation paramétrique d’une
+                                                                courbe.
+
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <strong>Mouvement dans un champ
+                                                                    de gravitation</strong><br />
+                                                                Mouvement des satellites et des planètes. Orbite.<br />
+                                                                Lois de Kepler.<br />
+                                                                Période de révolution.<br />
+                                                                Satellite géostationnaire.
+                                                            </td>
+                                                            <td>
+
+                                                                Déterminer les caractéristiques des vecteurs vitesse et
+                                                                accélération du centre de masse d’un système en
+                                                                mouvement circulaire dans un champ de gravitation
+                                                                newtonien.<br />
+                                                                Établir et exploiter la troisième loi de Kepler dans le
+                                                                cas du mouvement circulaire.<br />
+
+                                                                <strong>Capacité numérique</strong> : Exploiter, à
+                                                                l’aide d’un langage de programmation, des données
+                                                                astronomiques ou satellitaires pour tester les deuxième
+                                                                et troisième lois de Kepler.</td>
+                                                        </tr>
+                                                    </table>
+
+                                                    <script src="../../js/generalites.js"></script>
+                                                    <script src="../../js/prism.js"></script>
+</body>
+
+</html>
