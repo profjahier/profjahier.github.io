@@ -8,7 +8,6 @@ for (let lien of liens){
   } 
 }
 
-
 // ********************************************************************************************************************
 // Crée un menu de navigation automatique qui est inséré parès le titre h1 de chaque page automatiquement 
 let domaine = "https://"+location.hostname;
