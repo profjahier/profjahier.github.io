@@ -17,11 +17,11 @@
 from PIL import Image, ImageTk
 
 imgPIL = Image.open("fichier_image.jpg") # charge le fichier image avec PIL
-imgTk = ImageTk.PhotoImage(image) # transforme cette image en image utilisable pour Tkinter
+imgTk = ImageTk.PhotoImage(imgPIL) # transforme cette image en image utilisable pour Tkinter
 
 #   cette image s'utilise partout où Tkinter attend un objet image
 
-label = Label(image=imgTk)
+label = tk.Label(image=imgTk)
 label.image = imgTk # garder une reference, ça sert parfois... ! (voir remarque sur effbot.org)
 label.pack()
   </code></pre>
