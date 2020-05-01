@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>profjahier- Doc tkinter</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../../../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../../css/prism.css" />
+</head>
+
+<body>
+  <h1>Choix d'un thème</h1>
+  <p>Pour gérer les thèmes, il faut d'abord créer une variable <em>style</em> pour agir sur les thèmes.</p>
+
+  <pre><code class="language-python">
+style = ttk.Style()
+  </code></pre>
+
+  <p>Pour connaître les thèmes disponibles.</p>
+
+  <pre><code class="language-python">
+style.theme_names()
+  </code></pre>
+
+  <p>Pour choisir un thème particulier.</p>
+
+  <pre><code class="language-python">
+style.theme_use(nom_du_theme)
+  </code></pre>
+
+
+  <h2>Compléments et détails</h2>
+  <p><a href="https://tkdocs.com/tutorial/styles.html" target="_blank">Menu</a>  : doc Tk.
+  </p>
+
+  <script src="../../../js/prism.js"></script>
+  <script src="../../../js/generalites.js"></script>
+
+
+
+
+</body>
+
+</html>

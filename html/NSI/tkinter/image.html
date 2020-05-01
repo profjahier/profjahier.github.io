@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>profjahier- Doc tkinter</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../../../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../../css/prism.css" />
+</head>
+
+<body>
+
+  <h1>Utiliser des images dans tkinter</h1>
+  <p>Mon conseil : utiliser la librairie PIL comme dans l'exemple ci-dessous :</p>
+
+  <pre><code class="language-python">
+from PIL import Image, ImageTk
+
+imgPIL = Image.open("fichier_image.jpg") # charge le fichier image avec PIL
+imgTk = ImageTk.PhotoImage(image) # transforme cette image en image utilisable pour Tkinter
+
+#   cette image s'utilise partout où Tkinter attend un objet image
+
+label = Label(image=imgTk)
+label.image = imgTk # garder une reference, ça sert parfois... ! (voir remarque sur effbot.org)
+label.pack()
+  </code></pre>
+
+
+    <h2>Compléments et détails</h2>
+    <p><a href="http://effbot.org/tkinterbook/photoimage.htm" target="_blank">Images</a>  (effbot.org)
+    </p>
+    <p><a href="http://tkinter.fdex.eu/doc/sa.html#les-images" target="_blank">Images (attributs standards)</a>  (TKinter pour ISN - Étienne FLORENT)
+    </p>
+
+  
+    <script src="../../../js/prism.js"></script>
+    <script src="../../../js/generalites.js"></script>
+</body>
+
+</html>

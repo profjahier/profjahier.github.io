@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>profjahier- Doc tkinter</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../../../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../../css/prism.css" />
+</head>
+
+<body>
+  <h1>Variables de contrôle</h1>
+  <p>Les variables de contrôle (<strong>IntVar</strong>, <strong>DoubleVar</strong> et <strong>StringVar</strong>) permettent de rendre dynamique certains affichages de tkinter (numérique ou chaine de caractères).</p>
+  <p>Un exemple classique est d'associer une StringVar à l'affichage d'un <em>Label</em>.
+    À la place de l'option <em>text</em> du Label, on utilisera l'option <strong>textvariable</strong> avec comme valeur le nom de la StringVar (définie ailleurs dans le code du programme).
+  </p>
+  <p>On définit la valeur d'une variable de contrôle avec sa méthode <strong>set()</strong>, et on récupère son contenu avec sa méthode <strong>get()</strong>.</p>
+
+  <pre><code class="language-python">
+from random import choice
+
+def modifStatus():
+    phrases = ["Je suis prêt", "Je fais l'action 1", "Encore en attente"]
+    status_nouveau = choice(phrases) # choisit un status au hasard !
+    status.set(status_nouveau) # l'affichage du Label s'actualise avec le nouveau status
+
+def compteurIncrementer():
+    compteur_actuel = compteur.get() # récupère la valeur actuelle de compteur
+    compteur_nouveau = compteur_actuel + 1
+    compteur.set(compteur_nouveau) # définit une nouvelle valeur pour le compteur
+
+interface = tk.Tk()
+
+status = tk.StringVar()
+status.set("En attente...")
+
+compteur = tk.IntVar()
+compteur.set(1)
+
+tk.Label(interface, textvariable=status).pack()
+tk.Label(interface, textvariable=compteur).pack()
+
+tk.Button(interface, text="changer de status", command=modifStatus).pack()
+tk.Button(interface, text="incrémenter le compteur", command=compteurIncrementer).pack()
+
+  </code></pre>
+
+  <p>Les autres utilisations quasi-obligatoires sont couplées à l'utilisation des widgets :</p>
+  <ul>
+    <li><strong>Entry</strong> : pour récupérer le texte saisi par l'utilisateur avec une StringVar</li>
+    <li><strong>Radiobutton</strong> : un groupe de boutons radio doit partager une variable de contrôle commune (<a href="
+      bouton_radio.html">Radiobutton</a>)</li>
+    <li><strong>Scale</strong> : pour récupérer la valeur du curseur</li>
+
+    <h2>Compléments et détails</h2>
+    <p><a href="http://tkinter.fdex.eu/doc/ctrvar.html" target="_blank">Variabels de contrôle</a> (TKinter pour ISN - Étienne FLORENT)
+    </p>
+
+  
+    <script src="../../../js/prism.js"></script>
+    <script src="../../../js/generalites.js"></script>
+</body>
+
+</html>

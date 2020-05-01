@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>profjahier- Doc tkinter</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../../../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../../css/prism.css" />
+</head>
+
+<body>
+  <h1>Bouton radio</h1>
+  <p>Le bouton radio permet un choix unique entre plusieurs options. En général les boutons sont "unifiés" dans un groupe.</p>
+  <p>Les options essentielles sont :</p>
+  <ul>
+    <li><strong>text</strong> (ou <strong>textvariable</strong>) : texte affiché près du bouton. Utliser <em>textvariable</em> pour associer un texte dynamique contrôlé par une StringVar.</li>
+    <li><strong>value</strong> : la "valeur du choix" de l'option de ce bouton.</li>
+    <li><strong>variable</strong> : la variable de contrôle (IntVar ou StringVar) commune aux différents boutons du groupe. <br/>
+      Inutile si le bouton est unique (mais dans ce cas une case à cochée (checkbox) semble plus pertinent).</li>
+    <li><strong>command</strong> : (non indispensable) commande exécutée lors du choix du bouton.</li>
+  </ul>
+
+  <pre><code class="language-python">
+interface = tk.Tk()
+
+choixEntier = tk.IntVar()
+choixEntier.set(1)
+tk.Radiobutton(interface, text="Petit", value=1, variable=choixEntier).pack()
+tk.Radiobutton(interface, text="Moyen", value=2, variable=choixEntier).pack()
+tk.Radiobutton(interface, text="Grand", value=3, variable=choixEntier).pack()
+
+  </code></pre>
+
+
+    <h2>Compléments et détails</h2>
+    <p><a href="http://tkinter.fdex.eu/doc/radbw.html#radiobutton" target="_blank">Radio button</a> (TKinter pour ISN - Étienne FLORENT)
+    </p>
+
+  
+    <script src="../../../js/prism.js"></script>
+    <script src="../../../js/generalites.js"></script>
+</body>
+
+</html>

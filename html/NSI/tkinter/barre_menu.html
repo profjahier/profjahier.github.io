@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>profjahier- Doc tkinter</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../../../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../../css/prism.css" />
+</head>
+
+<body>
+
+  <h1>Création d'une barre de menus</h1>
+  <p>Pour créer une barre de menus principale, c’est à dire sous le bord supérieur de la fenêtre de l’application, la démarche à suivre est  :</p>
+  <ol>
+    <li>Créer un widget Menu en utilisant la fenêtre principale comme premier argument du constructeur et le passer à l’option 'menu' de la fenêtre principale.</li>
+    <li>Créer un widget Menu (enfant de la barre de menus) pour chaque menu que contiendra la barre, et configuer chacun de ces menus comme un menu 'standard' (<a href="menu.html">Menu</a>).</li>
+    <li>Ajouter des choix de type cascade pour chaque menu créé dans la barre des menus.</li>
+  </ol>
+
+  <pre><code class="language-python">
+interface= tk.Tk()
+
+# étape 1 : création de la barre de menus :
+menuBar = tk.Menu(interface)
+interface['menu'] = menuBar
+
+# étape 2 : création et configuration de chaque menu de la barre :
+menuFichier= tk.Menu(menuBar)
+menuFichier.add_command(label="Ouvrir", command=ouvrirFichier)
+menuFichier.add_command(label="Quitter", command=interface.destroy)
+
+menuAide = tk.Menu(menuBar)
+menuAide.add_command(label="A propos", command=afficherAPropos)
+menuAide.add_command(label="Documentation", command=afficherDoc)
+
+# étape 3 : ajout des menus à la barre de menus :
+menuBar.add_cascade(label='Fichier', menu=menuFichier)
+menuBar.add_cascade(label='Aide', menu=menuAide)
+  </code></pre>
+
+  <h2>Compléments et détails</h2>
+  <p><a href="http://tkinter.fdex.eu/doc/menw.html" target="_blank">Menu</a>  (TKinter pour ISN - Étienne FLORENT)
+  </p>
+
+  <script src="../../../js/prism.js"></script>
+  <script src="../../../js/generalites.js"></script>
+</body>
+
+</html>

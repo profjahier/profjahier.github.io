@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>profjahier- Doc tkinter</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../../../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../../css/prism.css" />
+</head>
+
+<body>
+    <h1>Doc tkinter (ébauche brute...)</h1>
+
+
+  <h2>Brève intro</h2>
+  <p><strong>tkinter</strong> est un module python écrit pour développer des interfaces graphiques. C'est un implémentation de l'interface plus générale <strong>Tk</strong> (développée au départ pour le langage tcl).
+    L'évolution actuelle de Tk préconise d'utiliser le sous module <strong> tkinter.ttk</strong>  pour pouvoir utiliser des widgets avec thème et style (themed widgets) pour donner un aspect visuel plus moderne.
+    On peut comparer les "themed widgets" à une page web mise en forme avec un fichier css. Il est possible d'utiliser en parallèle les widgets "classiques" de tkinter et les "modernes" de ttk
+    (attention dans ce cas à l'<em>espace des noms</em>. Par défaut, ttk supplante les widgets classiques).</p>
+
+  <h2>Doc complète (liens externes)</h2>
+  <p>Voici des docs vraiment utiles et parfois complètes et complexes :</p>
+  <ul>
+    <li><a href="http://tkinter.fdex.eu/index.html" target="_blank">TKinter pour ISN - Étienne FLORENT</a>  : Super doc en français,
+      traduction (partielle, ne contient pas les <em>themed widgets ttk</em>) d'une doc plus complète encore en Anglais.</li>
+    <li><a href="https://anzeljg.github.io/rin2/book2/2405/docs/tkinter/index.html" target="_blank">Tkinter 8.5 reference: a GUI for Python</a> :
+    La doc source précédente (en Anglais, donc) : contient tout ! donc c'est un peu long...(<a href="../../../docs/tkinter-doc.pdf">version pdf</a>)</li>
+    <li><a href="https://tkdocs.com/tutorial/index.html" target="_blank">Documentation Tk</a> : Anglais. C'est la doc de Tk, donc rès bien aussi pour comprendre la philosophie de Tk et
+    et son utilisation avec d'autres langages (Tcl, Perl, Ruby). On peut sélectionner la doc spécifique pour python (onglet de droite, sélectionner <em>Show</em> Python). C'est très complet et intéressant si on a un peu de temps...</li>
+    <li><a href="https://docs.python.org/fr/3.8/library/tk.html" target="_blank">Doc officielle de Python</a> : pas indispensable, mais n'oublions pas que cette doc existe. </li>
+      <!--<li>  <li><a href="http://effbot.org/tkinterbook/" target="_blank">An Introduction to Tkinter (Work in Progress)</a>  : En Anglais, dernière maj en 2005 (mais bien quand même).</li>
+
+  <li><a href="http://thinkingtkinter.sourceforge.net/" target="_blank">Tkinter 8.5 reference: a GUI for Python</a> : à creuser aussi </li> -->
+
+
+  </ul>
+  <p>Remarque : connaître sa version de tcl/tk utilisé pour tkinter :</p>
+  <pre><code class="language-python">
+import tkinter
+tkinter.Tcl().eval('info patchlevel')
+tkinter._test()
+  </code></pre>
+
+
+  <h2>Import du module tkinter</h2>
+  <p>On supposera dans toute cette doc que le module tkinter est importé de  la manière suivante :</p>
+  <pre><code class="language-python">
+import tkinter as tk
+import tkinter.ttk as ttk
+  </code></pre>
+  <p>Ainsi, toutes les classes ou méthodes du module seront appelées en commençant par tk.nom_de_methode.</p>
+
+  <h2>Au programme...</h2>
+  <ul>
+    <li><a href="creation_fenetre.html">Fenêtre principale</a> (Tk)</li>
+      <li><a href="toplevel.html">Fenêtres supplémentaires</a> (Toplevel)</li>
+    <li><a href="barre_menu.html">Barre de menu</a> (Menubar)</li>
+    <li><a href="menu.html">Menu</a> (Menu)</li>
+    <li><a href="bouton_radio.html">Bouton radio</a> (Radiobutton)</li>
+    <li><a href="variable_controle.html">Variables de contrôle</a> (IntVar, DoubleVar et StringVar)</li>
+    <li><a href="image.html">Images</a></li>
+  </ul>
+
+  <h2>Themed Widgets ttk</h2>
+  <ul>
+    <li><a href="theme.html">Utliser un thème</a> (Tk)</li>
+  </ul>
+
+
+    <h2>Modules complémentaires</h2>
+    <p>Peuvent être utiles quand nécessaires...<a href="modules_complementaires.html">Voir cette liste</a>.</p>
+    <p>Le sous-module <strong>tkinter.ttk</strong> permet d'ajouter de nouveaux widgets, mais modifie légèrement l'utilisations des widgets de base.
+      <a href="https://tkdocs.com/tutorial/index.html" target="_blank">Voir cette doc par exemple</a>
+      .</p>
+
+
+
+
+    <script src="../../../js/prism.js"></script>
+    <script src="../../../js/generalites.js"></script>
+</body>
+
+</html>
