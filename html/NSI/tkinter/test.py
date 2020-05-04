@@ -1,5 +1,6 @@
 ######
 # test gitignore
+### avec un slash au début
 
 import tkinter as tk
 import tkinter.ttk as ttk
