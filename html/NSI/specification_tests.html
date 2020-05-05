@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>Profjahier-spécification et tests</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="../../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../css/prism.css" />
+    <script src="../../js/mathjax_config_load.js" async></script>
+</head>
+
+<body>
+    <h1>Spécification et Mise au point de programmes</h1>
+ 
+<h2>Intro Python</h2>
+<p>Il existe de multiples langages de programmation et cette année nous utiliserons principalement Python. Nous aborderons aussi un peu Javascript.<br>
+Un langage de programmation permet d'implémenter des algorithmes de façon concrète. On peut écrire le même algorithme dans différents langages de programmation.</p>
+<p>
+Python est un langage interprété et il est donc nécessaire d'installer un interpréteur sur l'ordinateur pour faire fonctionner un programme Python, fichier avec l'extension *.py.<br>
+Nous utiliserons aussi beaucoup l'environnement des cahiers Jupyter (<strong>notebook</strong>, fichier d'extension *.ipynb) qui permettent de mélanger des cellules interprétées en Python et des cellules de texte au format markdown (*.md).</p>
+
+
+<h2>Écrire une fonction en Python</h2>
+<p>Un programme complexe est construit à partir de différentes fonctions qui effectuent chacune une tache précise, assez simple.</p>
+<p>
+L'écriture d'une fonction repose sur le mot clef <code class="language-python">def</code>.<br>
+Une fonction nécessite la plupart du temps des paramètres d'entrée qui sont les données sur lesquelles travailler.<br>
+Et le résultat de sortie d'une fonction est obtenue avec le mot clef <code class="language-python">return</code>.</p>
+
+<p>Exemple simpliste : </p>
+<pre><code class="language-python">
+def somme(a, b):
+  return a + b
+</code></pre>
+
+<p>Après avoir définit une fonction, on peut appeler ailleurs dans le programme cette fonction pour qu'elle effectue sa tache élémentaire.</p>
+
+<p>Exemples : <code class="language-python">somme(-3, 7.2)</code> vaut 4.2.</p>
+
+<p>Après la suite d'instructions suivantes, b vaut 3.</p>
+<pre><code class="language-python">
+a = somme(2, 4)
+b = 9 - a
+</code></pre>
+
+<h2>Spécification d'une fonction</h2>
+<p>La <strong>spécification</strong> d'une fonction consiste  à définir ce que doit faire la fonction, ainsi que les <strong>préconditions</strong> sur les données d'entrée (leur type et leur domaine de valeur en particulier), et quelles sont les <strong>postconditions</strong> sur les données de sortie.</p>
+
+<p>Exemple : la fonction <code class="language-python">rapport</code> doit renvoyer le rapport de 2 nombres a et b.</p>
+<ul><li>préconditions : les entrées sont 2 nombres flottants (définition à voir par ailleurs) a et b. Et le nombre b n'est pas nul.
+</li><li> postcondition : la fonction renvoie le rapport a/b (nombre flottant).
+</li></ul>
+
+<p>Application : </p>
+<pre><code class="language-python">
+def rapport(a, b):
+  """ Renvoie le rapport a/b :
+  - entrée : a et b sont deux nombres, b différent de 0
+  - sortie : nombre a/b.
+  """
+  return a / b
+</code></pre>
+
+<p>On peut contrôler les préconditions ou postconditions  d'une fonction avec le mot clef <code class="language-python">assert</code>.<br>
+Cela permet de lever une exception d'Assertion (AssertionError) si la condition se révèle fausse.</p>
+
+<pre><code class="language-python, line-numbers">
+def rapport(a, b):
+  """ Renvoie le rapport a/b :
+  - entrée : a et b sont deux nombres, b différent de 0
+  - sortie : nombre a/b.
+  """
+  assert type(a) == float or type(a) == int, "a doit être un nombre"
+  assert type(b) == float or type(b) == int, "b doit être un nombre"
+  assert b != 0, "b ne doit pas être nul"
+  return a / b
+</code></pre>
+
+<p>L'ajout des ligne 6-7-8 permet d'obtenir un message d'erreur explicite lors d'un appel de la fonction qui ne respecte pas les préconditions sur a ou b (en particulier sa non nullité).</p>
+
+<p>On peut aussi contrôler des postconditions sur les valeurs de sortie en <strong>testant des appels particuliers pour les fonctions créées</strong>.</p>
+
+<p>Exemple : on peut vérifier le bon fonctionnement de la fonction <code class="language-python">rapport</code> sur 2 ou 3 cas :</p>
+<pre><code class="language-python">
+assert rapport(10, 2) == 5
+assert rapport(1, -1) == -1
+</code></pre>
+
+<h2>Utilité et limite des tests</h2>
+<p>Effectuer des tests est très important pour <strong>essayer de contrôler le bon fonctionnement d'un programme</strong>, mais il est <strong>impossible de prouver la correction d'un programme seulement avec des tests</strong>. En revanche, si un test échoue, cela assure que le programme a un problème !<br>
+La qualité d'un jeu de tests est importante pour essayer de prévoir tous les cas possibles qui pourraient intervenir dans l'utilisation d'un programme.</p>
+
+<p><em>Remarque</em> : comme  on le verra par ailleurs, il est très dangereux d'effectuer des tests d'égalité sur les nombres flottants. On préférera toujours vérifier qu'un flottant est très proche d'un nombre.</p>
+
+<p>Exemple : Voici comment tester que <code class="language-python">rapport(1, 10)</code> vaut bien 0.1 :</p>
+<pre><code class="language-python">
+precision = 0.000000001 # on peut choisir la précision désirée
+assert rapport(1, 10) - 0.1 &lt; precision
+</code></pre>
+
+
+    <h2>Téléchargement</h2>
+    <p>Télécharger le cours <a href="../../docs/P06cd-specification_tests.pdf">specification_tests.pdf</a>.</p>
+
+    <h2>Programme de 1ère NSI</h2>
+    <table class="programme">
+        <tr>
+            <th>Contenus</th>
+            <th>Capacités attendues</th>
+            <th>Commentaires</th>
+        </tr>
+        <tr>
+            <td>Spécification</td>
+            <td>Prototyper une fonction.
+                Décrire les préconditions sur
+                les arguments.
+                Décrire des postconditions sur
+                les résultats.</td>
+            <td>Des assertions peuvent être
+                utilisées pour garantir des
+                préconditions ou des
+                postconditions.</td>
+        </tr>
+        <tr>
+            <td>Mise au point de
+                programmes</td>
+            <td>Utiliser des jeux de tests.</td>
+            <td>L’importance de la qualité et du
+                nombre des tests est mise en
+                évidence.
+                Le succès d’un jeu de tests ne
+                garantit pas la correction d’un
+                programme.</td>
+        </tr>
+    </table>
+
+
+    <script src="../../js/generalites.js"></script>
+    <script src="../../js/prism.js"></script>
+</body>
+
+</html>
