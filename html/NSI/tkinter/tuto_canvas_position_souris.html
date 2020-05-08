@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>profjahier- Doc tkinter</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="../../../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../../css/prism.css" />
+</head>
+
+<body>
+
+  <h1>Tutoriel : connaître la position de la souris dans un Canvas</h1>
+  <h2>Plan du tuto</h2>
+  <p>Dans ce tuto, on va voir pas mal de choses !</p>
+  <ol>
+      <li>Créer un Canvas</li>
+      <li>Détecter la position de la souris : lier un évenement au Canvas</li>
+      <li>Ajouter des barres de défilement (Scrollbar)</li>
+      <li>Bonus : créer un grille dans un Canvas et repérer une case désignée par la souris</li>
+  </ol>
+
+  <h2>Étape 1 : Création du Canvas</h2>
+  <p><a href="http://tkinter.fdex.eu/doc/caw.html">Doc française</a>, <a href="https://anzeljg.github.io/rin2/book2/2405/docs/tkinter/canvas.html">Doc anglaise similaire</a>, <a href="https://tkdocs.com/tutorial/canvas.html">Doc anglaise tk/ttk</a>, <a href="http://www.tcl.tk/man/tcl8.6/TkCmd/canvas.htm">Doc Tcl</a>. </p>
+  <p>Petite remarque péliminaire : le widget Canvas n'existe pas en version ttk : c'est donc un widget tk.</p>
+  <p>Ses propriétés de base sont sa largeur (width) et hauteur (height). On peut aussi définir sa couleur avec la propriété bg.</p>
+
+  <pre><code class="language-python">
+    import tkinter as tk
+    import tkinter.ttk as ttk
+    
+    appli = tk.Tk()
+    appli.title("Position de la souris dans un Canvas")
+    
+    # création du Canvas
+    can = tk.Canvas(appli, width=500, height=300, bg='pink')
+    can.grid(row=10, column=10)
+    
+    appli.mainloop()
+  </code></pre>
+
+
+  <h2>Étape 2 : Détection de la position de la souris</h2>
+  
+  <p>Il faut attacher un gestionnaire d'événement au Canvas pour capter le clic de la souris (clic gauche par exemple) : pour cela on utilise la méthode bind. Cette méthode prend comme paramètres la nature de l'événement à surveiller et la fonction à appeler  lorsque l'événement est déclenché (fonction dite Callback).</p>
+  <p>Lorsque l'événement est déclenché, un objet 'evenement' est généré et passé comme paramètre à la fonction Callback. J'ai l'habitude, comme d'autres, de le nommer evt. Cet objet possède des propriétés qui dépendent de l'événement déclenché : par exemple dans le cas d'un clic de souris, evt.x et evt.y sont les cordonnées horizontale et verticale de la souris lors du clic (Attention : l'origine du repère est le coin supérieur gauche du Canvas).</p>
+  <p>Par ailleurs, dans la fenêtre appli, on ajoute un label, attaché à une StringVar, pour lire la position cliquée "en direct".</p>
+  <pre><code class="language-python">
+import tkinter as tk
+import tkinter.ttk as ttk
+    
+def afficher_position(evt):
+    # l'objet evt a deux propriétés x et y qui sont les coordonnées du clic
+    pos_x, pos_y = evt.x, evt.y
+    affichage = f"Position : abscisse = {pos_x} ; ordonnées = {pos_y}"
+    strvar_position.set(affichage)
+    
+appli = tk.Tk()
+appli.title("Position de la souris dans un Canvas")
+    
+can = tk.Canvas(appli, width=500, height=300, bg='pink')
+can.grid(row=10, column=10)
+
+# création d'une StringVar pour pouvoir actualiser la position de la souris dans le Label
+strvar_position = tk.StringVar()
+strvar_position.set('Position de la souris')
+ttk.Label(appli, textvariable=strvar_position).grid(row=20, column=10)
+
+# gestionnaire d'événement (clic gauche) lié au Canvas pour appeler fonction afficher_position
+can.bind("&lt;Button-1&gt;", afficher_position)
+    
+appli.mainloop()
+  </code></pre>
+
+  <h2>Étape 3 : Ajout de barres de défilement</h2>
+  <p>Il est possible d'avoir un Canvas plus grand que l'espace affiché dans la fenêtre de l'application. Dans ce cas, on doit définir une option scrollregion au Canvas. scrollregion prend des données sous la forme d'un tuple de 4 valeurs (xi, yi, xf, yf) définissant les coordonnées des coins supérieur gauche et inférieur droit accessibles dans le Canvas.</p>
+  <p>Pour continuer à pouvoir visualiser l'intégralité du Canvas, il faut alors lui associer des barres de défilement horizontale et verticale (leur orientation est définie par la propriété orient qui peut valoir tk.HORIZONATAL ou tk.VERTICAL). Le processus complet est un peu délicat. Les barres de défilement (Scrollbar) sont des widgets a priori indépendants : il faut donc créer une "liaison" avec le Canvas. Cela se fait en 2 étapes :</p>
+  <li>Indiquer d'une part au Canvas que ses options xscrollcommand et yscrollcommand sont liées à l'état des barres de défilement (propriété set des barres).</li>
+  <li>Indiquer d'autre part aux barres que leur option command est liée à la propriétés d'affichage du Canvas (xview et yview).</li>
+  <p>Le mieux est d'observer l'exemple pour bien assimiler tout cela.</p>
+  <p>Attention : l'ordre de définition dans le code des différents éléments est important. Les barres de défilement doivent être créées avant le Canvas pour qu'il les connaisse, et l'option command des barres doit être définie après la création du Canvas pour accéder à can.xview et can.yview.</p>
+  <p>Dernier détail : pour se rendre compte de l'effet des barres de défilement, on a ajouté un rectangle coloré en rouge de la même dimension que l'espace visible intialement du Canvas (jouez avec les barres, vous comprendrez...).</p>
+
+  <pre><code class="language-python">
+
+import tkinter as tk
+import tkinter.ttk as ttk
+
+def afficher_position(evt):
+    pos_x, pos_y = evt.x, evt.y
+    affichage = f"Position : abscisse = {pos_x} ; ordonnées = {pos_y}"
+    strvar_position.set(affichage)
+
+appli = tk.Tk()
+appli.title("Position de la souris dans un Canvas")
+
+# création des barres de défilement
+barre_horizontale = ttk.Scrollbar(appli, orient=tk.HORIZONTAL)
+barre_horizontale.grid(row=11, column=10, sticky=('e', 'w'))
+barre_verticale = ttk.Scrollbar(appli, orient=tk.VERTICAL)
+barre_verticale.grid(row=10, column=11, sticky=('n', 's'))
+
+# création du Canvas en paramétrant sa scrollregion et xscrollcommand/yscrollcommand
+can = tk.Canvas(appli, width=500, height=300, bg='pink', scrollregion=(0, 0, 800, 550), yscrollcommand=barre_verticale.set, xscrollcommand=barre_horizontale.set)
+can.grid(row=10, column=10)
+
+# définition de l'option command des barres pour les lier à l'affichage du Canvas
+barre_horizontale['command'] = can.xview
+barre_verticale['command'] = can.yview
+
+# ce rectangle permet juste d'aider la visualisation du défilement
+can.create_rectangle(0, 0, 500, 300, fill='red')
+
+strvar_position = tk.StringVar()
+strvar_position.set('Position de la souris')
+ttk.Label(appli, textvariable=strvar_position).grid(row=20, column=10)
+
+can.bind("&lt;Button-1&gt;", afficher_position)
+
+appli.mainloop()
+  </code></pre>
+
+  <h2>Étape 4 : Distinguer la position de la souris dans la zone visible du Canvas ou dans  tout l'espace défini par scrollregion</h2>
+  <p>Par défaut, l'événement clic souris détecte la position de la souris dans la zone visible du Canvas, or la plupart du temps, on préfera connaître la postion réelle de la souris au sein de l'intégralité du Canvas (tout l'espace défini par scrollregion).</p>
+  <p>La solution repose dans l'utilisation de la méthode canvasx et canvasy du Canvas qui va recalculer la position cherchée de la souris.</p>
+  <p>Observer l'exemple suivant où on a ajouté un nouveau label pour distinguer les 2 positions accessibles.</p>
+
+  <pre><code class="language-python">
+
+import tkinter as tk
+import tkinter.ttk as ttk
+
+def afficher_position(evt):
+    pos_visible_x, pos_visible_y = evt.x, evt.y
+    affichage_visible = f"Position visible : abscisse = {pos_visible_x} ; ordonnées = {pos_visible_y}"
+    strvar_position_visible.set(affichage_visible)
+
+    # Conversion de la position visible à la position réelle dans la scrollregion
+    pos_scrollregion_x, pos_scrollregion_y = can.canvasx(evt.x), can.canvasy(evt.y)
+    affichage_scrollregion = f"Position dans scrollregion : abscisse = {pos_scrollregion_x} ; ordonnées = {pos_scrollregion_y}"
+    strvar_position_scrollregion.set(affichage_scrollregion)
+
+appli = tk.Tk()
+appli.title("Position de la souris dans un Canvas")
+
+barre_horizontale = ttk.Scrollbar(appli, orient=tk.HORIZONTAL)
+barre_horizontale.grid(row=11, column=10, sticky=('e', 'w'))
+barre_verticale = ttk.Scrollbar(appli, orient=tk.VERTICAL)
+barre_verticale.grid(row=10, column=11, sticky=('n', 's'))
+
+can = tk.Canvas(appli, width=500, height=300, bg='pink', scrollregion=(0, 0, 800, 550), yscrollcommand=barre_verticale.set, xscrollcommand=barre_horizontale.set)
+can.grid(row=10, column=10)
+
+barre_horizontale['command'] = can.xview
+barre_verticale['command'] = can.yview
+
+can.create_rectangle(0, 0, 500, 300, fill='red')
+
+strvar_position_visible = tk.StringVar()
+strvar_position_visible.set('Position de la souris dans la zone visible')
+ttk.Label(appli, textvariable=strvar_position_visible).grid(row=20, column=10)
+
+strvar_position_scrollregion = tk.StringVar()
+strvar_position_scrollregion.set('Position de la souris dans la scrollregion')
+ttk.Label(appli, textvariable=strvar_position_scrollregion).grid(row=30, column=10)
+
+can.bind("&lt;Button-1&gt;", afficher_position)
+
+appli.mainloop()
+  </code></pre>
+
+  <h2>Étape 5 : Cadeau bonus : détecter la position de la souris dans une case de grille dessinée dans le Canvas</h2>
+  <p>Beaucoup de petits jeux sont développés lorsqu'on débute dans la programmation, et beaucoup nécessitent une grille (ex : puissance 4, démineur, tictactoe, sudoku...). On aura alors souvent besoin d'accéder à la case désignée par un clic de souris.</p>
+  <p>On suppose donc que l'on dessine une grille dans un Canvas dont la dimension est un multiple du nombres de cases dans la grille. Les paramètres utilisés sont les suivants :</p>
+  <ul>
+    <li>NB_L : nombre de lignes dans la grille</li>
+    <li>NB_C : nombre de colonnes dans la grille</li>
+    <li>L : largeur d'une case</li>
+    <li>H : hauteur d'une case</li>
+    <li>Lcan = NB_C * L : largeur du Canvas scrollable</li>
+    <li>Hcan = NB_L * H : hauteur du Canvas scrollable</li>
+  </ul>
+  <p>La démo présente le cas le plus complexe où toutes les dimensions sont paramétrables et avec un Canvas trop petit pour afficher toute la grille ! Pour faciliter la compréhension des tracés, on a choisi des couleurs (douteuses...) pour bien distinguer les lignes verticales et horizontales. On a aussi créé du texte dans les cases pour faciliter leur identification. Cependant, on a gardé une numérotation qui démarre à zéro dans l'esprit informatique, mais dans le cadre d'un jeu, on préferera sans doute que la case dans le coin supérieur gauche (ou inférieur gauche au choix)  soit la case (1, 1) plutôt que (0, 0).</p>
+  <p>Pour "convertir" les coordonnées de la position de la souris en colonne et ligne qui identifient une case, rien de plus simple : une simple division entière par la taille d'une case suffit ! (distinguer éventuellement largeur et hauteur d'une case).</p>
+
+  <pre><code class="language-python">
+
+import tkinter as tk
+import tkinter.ttk as ttk
+
+def afficher_position(evt):
+    pos_x, pos_y = can.canvasx(evt.x), can.canvasy(evt.y)
+    strvar_position.set(f"Position du clic : abscisse = {pos_x} ; ordonnées = {pos_y}")
+
+    colonne, ligne = pos_x // L, pos_y / /H   # ligne 'magique'
+    strvar_case.set(f"Case désignée : colonne = {colonne} ; ligne = {ligne}")
+
+appli = tk.Tk()
+appli.title("Position de la souris dans un Canvas")
+
+NB_L = 10 # nombre de lignes dans la grille 
+NB_C = 15# nombre de colonnes dans la grille 
+L = 100 # largeur d'une case 
+H = 70 # hauteur d'une case 
+Lcan = NB_C * L # largeur du Canvas 
+Hcan = NB_L * H # hauteur du Canvas 
+
+barre_horizontale = ttk.Scrollbar(appli, orient=tk.HORIZONTAL)
+barre_horizontale.grid(row=11, column=10, sticky=('e', 'w'))
+barre_verticale = ttk.Scrollbar(appli, orient=tk.VERTICAL)
+barre_verticale.grid(row=10, column=11, sticky=('n', 's'))
+can = tk.Canvas(appli, width=500, height=400, bg='pink', scrollregion=(0, 0, Lcan, Hcan), yscrollcommand=barre_verticale.set, xscrollcommand=barre_horizontale.set)
+can.grid(row=10, column=10)
+barre_horizontale['command'] = can.xview
+barre_verticale['command'] = can.yview
+
+# tracé des lignes horizontales
+for i in range(1, NB_L):
+    can.create_line(0, i*H, Lcan, i*H, fill='blue')
+# tracé des lignes verticales
+for i in range(1, NB_C): 
+    can.create_line(i*L, 0, i*L, Hcan, fill='red')
+# écriture de texte dans chaque case pour aider leur identification
+for i in range(NB_L):
+    for j in range(NB_C):
+        can.create_text((j + 0.5) * L, (i + 0.5) * H, text=f"col = {j} \n\nlig = {i}")
+
+strvar_position = tk.StringVar()
+strvar_position.set('Position de la souris dans la scrollregion')
+ttk.Label(appli, textvariable=strvar_position).grid(row=20, column=10)
+
+strvar_case = tk.StringVar()
+strvar_case.set('Case désignée')
+ttk.Label(appli, textvariable=strvar_case).grid(row=30, column=10)
+
+can.bind("&lt;Button-1&gt;", afficher_position)
+
+appli.mainloop()
+  </code></pre>
+
+    <script src="../../../js/prism.js"></script>
+    <script src="../../../js/generalites.js"></script>
+
+</body>
+
+</html>
+
+
+
