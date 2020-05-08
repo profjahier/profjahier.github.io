@@ -193,7 +193,7 @@ def afficher_position(evt):
     pos_x, pos_y = can.canvasx(evt.x), can.canvasy(evt.y)
     strvar_position.set(f"Position du clic : abscisse = {pos_x} ; ordonnées = {pos_y}")
 
-    colonne, ligne = pos_x // L, pos_y / /H   # ligne 'magique'
+    colonne, ligne = pos_x // L, pos_y // H   # ligne 'magique'
     strvar_case.set(f"Case désignée : colonne = {colonne} ; ligne = {ligne}")
 
 appli = tk.Tk()
