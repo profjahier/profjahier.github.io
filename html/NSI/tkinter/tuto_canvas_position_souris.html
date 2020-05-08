@@ -74,7 +74,7 @@ appli.mainloop()
 
   <h2>Étape 3 : Ajout de barres de défilement</h2>
   <p>Il est possible d'avoir un Canvas plus grand que l'espace affiché dans la fenêtre de l'application. Dans ce cas, on doit définir une option scrollregion au Canvas. scrollregion prend des données sous la forme d'un tuple de 4 valeurs (xi, yi, xf, yf) définissant les coordonnées des coins supérieur gauche et inférieur droit accessibles dans le Canvas.</p>
-  <p>Pour continuer à pouvoir visualiser l'intégralité du Canvas, il faut alors lui associer des barres de défilement horizontale et verticale (leur orientation est définie par la propriété orient qui peut valoir tk.HORIZONATAL ou tk.VERTICAL). Le processus complet est un peu délicat. Les barres de défilement (Scrollbar) sont des widgets a priori indépendants : il faut donc créer une "liaison" avec le Canvas. Cela se fait en 2 étapes :</p>
+  <p>Pour continuer à pouvoir visualiser l'intégralité du Canvas, il faut alors lui associer des barres de défilement horizontale et verticale (leur orientation est définie par la propriété orient qui peut valoir tk.HORIZONTAL ou tk.VERTICAL). Le processus complet est un peu délicat. Les barres de défilement (Scrollbar) sont des widgets a priori indépendants : il faut donc créer une "liaison" avec le Canvas. Cela se fait en 2 étapes :</p>
   <li>Indiquer d'une part au Canvas que ses options xscrollcommand et yscrollcommand sont liées à l'état des barres de défilement (propriété set des barres).</li>
   <li>Indiquer d'autre part aux barres que leur option command est liée à la propriétés d'affichage du Canvas (xview et yview).</li>
   <p>Le mieux est d'observer l'exemple pour bien assimiler tout cela.</p>
@@ -121,9 +121,9 @@ appli.mainloop()
   </code></pre>
 
   <h2>Étape 4 : Distinguer la position de la souris dans la zone visible du Canvas ou dans  tout l'espace défini par scrollregion</h2>
-  <p>Par défaut, l'événement clic souris détecte la position de la souris dans la zone visible du Canvas, or la plupart du temps, on préfera connaître la postion réelle de la souris au sein de l'intégralité du Canvas (tout l'espace défini par scrollregion).</p>
-  <p>La solution repose dans l'utilisation de la méthode canvasx et canvasy du Canvas qui va recalculer la position cherchée de la souris.</p>
-  <p>Observer l'exemple suivant où on a ajouté un nouveau label pour distinguer les 2 positions accessibles.</p>
+  <p>Par défaut, l'événement clic souris détecte la position de la souris dans la zone visible du Canvas, or la plupart du temps, on préfèrera connaître la position réelle de la souris au sein de l'intégralité du Canvas (tout l'espace défini par scrollregion).</p>
+  <p>La solution repose dans l'utilisation des méthodes canvasx et canvasy du Canvas quirecalculent la position cherchée de la souris.</p>
+  <p>Observez l'exemple suivant où on a ajouté un nouveau label pour distinguer les 2 positions accessibles.</p>
 
   <pre><code class="language-python">
 
