@@ -132,3 +132,8 @@ li.OK {
 .codeE3C{
     white-space: pre;
 }
+
+.source{
+    font-size: 0.7em;
+    font-style: italic;
+}
