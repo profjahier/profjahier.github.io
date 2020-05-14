@@ -1,0 +1,74 @@
+
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: rgb(238, 231, 222);
+    color: rgb(6, 11, 41);
+    padding: 25px;
+    width:90%;
+    margin:auto;
+}
+
+h1{
+    background-color: rgb(212, 96, 50);
+    text-align: center;
+    padding: 20px;
+    width:90%;
+    margin:auto;
+    border-bottom: solid 3px  rgb(6, 11, 41);
+    margin-bottom: 30px;
+    border-radius: 0 25px 0 25px;
+}
+
+h2{
+    margin-top: 50px;
+    padding-bottom: 10px;
+    border-bottom: solid 2px rgb(212, 96, 50);
+    width:70%;
+    padding-left: 30px;
+    border-radius: 0 0 0 15px;
+}
+
+h3{
+    color : rgb(212, 96, 50);
+    font-style: oblique;
+    margin-left: 50px;;
+    padding-bottom: 5px;
+    font-size: 1.3em;
+}
+
+h4{
+    color: rgb(172, 86, 0);
+}
+
+
+
+table.programme{
+    border-collapse: collapse;
+}
+
+table.programme td, th{
+    border: solid 1px black;
+    width : 500px;
+    padding:5px;
+    text-align: left;
+    padding-left: 10px;
+    padding-right: 20px;
+}
+table.programme th{
+    color: white;
+    background-color: cadetblue;
+}
+
+.contenu, .generalite, .programme{
+    display: none;
+}
+
+.toggle{
+    text-decoration: underline;
+    font-size: 0.8em;
+    font-style: normal;
+}
