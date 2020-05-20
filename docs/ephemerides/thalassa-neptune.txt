@@ -1,0 +1,84 @@
+*******************************************************************************
+ Revised: Dec 14, 2018             Thalassa / (Neptune)                     804
+
+ SATELLITE PHYSICAL PROPERTIES:
+  Radius (km)             =  40             Density (g cm^-3)   =              
+  Mass (10^20 kg )        =                 Geometric Albedo    =  0.06 
+                                            V(1,0)              = +9.1 
+
+ SATELLITE ORBITAL DATA:
+  Semi-major axis, a (km) = 50.075(10^3)    Orbital period      = 0.311485 d
+  Eccentricity, e         = 0.0             Rotational period   = 
+  Inclination, i  (deg)   = 0.21
+*******************************************************************************
+ 
+ 
+*******************************************************************************
+Ephemeris / WWW_USER Tue May 19 07:12:54 2020 Pasadena, USA      / Horizons    
+*******************************************************************************
+Target body name: Thalassa (804)                  {source: nep090_merged_DE435}
+Center body name: Neptune (899)                   {source: nep090_merged_DE435}
+Center-site name: BODY CENTER
+*******************************************************************************
+Start time      : A.D. 2020-Jan-01 00:00:00.0000 TDB
+Stop  time      : A.D. 2020-Jan-01 12:00:00.0000 TDB
+Step-size       : 60 minutes
+*******************************************************************************
+Center geodetic : 0.00000000,0.00000000,0.0000000 {W-lon(deg),Lat(deg),Alt(km)}
+Center cylindric: 0.00000000,0.00000000,0.0000000 {W-lon(deg),Dxy(km),Dz(km)}
+Center radii    : 24764.0 x 24764.0 x 24341.0 km  {Equator, meridian, pole}    
+Output units    : KM-S                                                         
+Output type     : GEOMETRIC cartesian states
+Output format   : 1 (position only)
+Reference frame : ICRF/J2000.0                                                 
+Coordinate systm: Ecliptic and Mean Equinox of Reference Epoch                 
+*******************************************************************************
+            JDTDB,            Calendar Date (TDB),                      X,                      Y,                      Z,
+**************************************************************************************************************************
+$$SOE
+2458849.500000000, A.D. 2020-Jan-01 00:00:00.0000, -4.558239094261047E+04, -1.635652766221534E+04,  1.269738617342457E+04,
+2458849.541666667, A.D. 2020-Jan-01 01:00:00.0000, -2.266903542546468E+04, -4.415031902426312E+04, -6.602951669036524E+03,
+2458849.583333333, A.D. 2020-Jan-01 02:00:00.0000,  1.534442756832682E+04, -4.253788322436129E+04, -2.150575896611562E+04,
+2458849.625000000, A.D. 2020-Jan-01 03:00:00.0000,  4.314316128054473E+04, -1.260215474300466E+04, -2.209007891347299E+04,
+2458849.666666667, A.D. 2020-Jan-01 04:00:00.0000,  4.222761340821986E+04,  2.572251325060584E+04, -7.971822984458723E+03,
+2458849.708333333, A.D. 2020-Jan-01 05:00:00.0000,  1.321041122835524E+04,  4.692928234762930E+04,  1.145121803087714E+04,
+2458849.750000000, A.D. 2020-Jan-01 06:00:00.0000, -2.459836780427453E+04,  3.689923227082162E+04,  2.325137102141945E+04,
+2458849.791666667, A.D. 2020-Jan-01 07:00:00.0000, -4.602615236114861E+04,  2.300161793070933E+03,  1.956886854760410E+04,
+2458849.833333333, A.D. 2020-Jan-01 08:00:00.0000, -3.679598594179342E+04, -3.383008838088326E+04,  2.852151228703124E+03,
+2458849.875000000, A.D. 2020-Jan-01 09:00:00.0000, -3.054693815061543E+03, -4.742578773868085E+04, -1.576452707873345E+04,
+2458849.916666667, A.D. 2020-Jan-01 10:00:00.0000,  3.272266053866180E+04, -2.943842260459148E+04, -2.388346085178878E+04,
+2458849.958333333, A.D. 2020-Jan-01 11:00:00.0000,  4.671853235316974E+04,  8.146848900389535E+03, -1.610380952127261E+04,
+2458850.000000000, A.D. 2020-Jan-01 12:00:00.0000,  2.962331534780010E+04,  4.031109032799368E+04,  2.392879632359251E+03,
+$$EOE
+**************************************************************************************************************************
+Coordinate system description:
+
+  Ecliptic and Mean Equinox of Reference Epoch
+
+    Reference epoch: J2000.0
+    XY-plane: plane of the Earth's orbit at the reference epoch
+              Note: obliquity of 84381.448 arcseconds wrt ICRF equator (IAU76)
+    X-axis  : out along ascending node of instantaneous plane of the Earth's
+              orbit and the Earth's mean equator at the reference epoch
+    Z-axis  : perpendicular to the xy-plane in the directional (+ or -) sense
+              of Earth's north pole at the reference epoch.
+
+  Symbol meaning:
+
+    JDTDB    Julian Day Number, Barycentric Dynamical Time
+      X      X-component of position vector (km)                               
+      Y      Y-component of position vector (km)                               
+      Z      Z-component of position vector (km)                               
+
+Geometric states/elements have no aberrations applied.
+
+ Computations by ...
+     Solar System Dynamics Group, Horizons On-Line Ephemeris System
+     4800 Oak Grove Drive, Jet Propulsion Laboratory
+     Pasadena, CA  91109   USA
+     Information: http://ssd.jpl.nasa.gov/
+     Connect    : telnet://ssd.jpl.nasa.gov:6775  (via browser)
+                  http://ssd.jpl.nasa.gov/?horizons
+                  telnet ssd.jpl.nasa.gov 6775    (via command-line)
+     Author     : Jon.D.Giorgini@jpl.nasa.gov
+*******************************************************************************
