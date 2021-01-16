@@ -1,23 +1,96 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 
 <head>
-    <title>Profjahier</title>
-    <meta charset="utf-8" />
-    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+    <title>Profjahier Hall</title>
 </head>
 
 <body>
-    <p id="date"></p>
+    <header class="jumbotron  bg-secondary jumbotron-fluid text-center mb-3">
+        <h1 class="display-4">Hall d'accueil</h1>
+        <p class="lead">Profjahier.
+            <span id="date"></span>
+        </p>
+        <hr class="my-4">
+        <button class="alert">À la carte</pbutton>
+    </header>
+    <main class="container">
+        <div class="row">
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                <div class="card">
+                    <!-- style="width: 18rem;">-->
+                    <img src="../img/nsi.jpeg" class="card-img-top" alt="Site NSI">
+                    <div class="card-body">
+                        <h5 class="card-title">Site NSI <span class="badge bg-info">Spé 1ère - Term</span></h5>
+                        <p class="card-text">Cours et compléments pour les classes de 1ère NSI et Terminale NSI.</p>
+                        <a href="NSI/index.html" class="btn btn-primary stretched-link">Visiter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                <div class="card">
+                    <!-- style="width: 18rem;">-->
+                    <img src="../img/pc.png" class="card-img-top" alt="Site Sciences-Physiques">
+                    <div class="card-body">
+                        <h5 class="card-title">Site Sciences-Physiques <span class="badge bg-info">Lycée</span></h5>
+                        <p class="card-text">Cours de sciences-physiques.</p>
+                        <a href="PC/index.html" class="btn btn-primary stretched-link">Visiter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                <div class="card">
+                    <!-- style="width: 18rem;">-->
+                    <img src="../img/snt.jpeg" class="card-img-top" alt="Site SNT">
+                    <div class="card-body">
+                        <h5 class="card-title">Site SNT <span class="badge bg-info">2nde</span></h5>
+                        <p class="card-text">Cours de SNT (sans contenu...).</p>
+                        <a href="SNT/index.html" class="btn btn-primary stretched-link">Visiter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                <div class="card">
+                    <!-- style="width: 18rem;">-->
+                    <img src="../img/outils.jpg" class="card-img-top" alt="outils numériques">
+                    <div class="card-body">
+                        <h5 class="card-title">Outils numériques</h5>
+                        <p class="card-text">Présentation des outils numériques que j'apprécie. Construire un
+                            environnement numérique de travail.</p>
+                        <a href="ENT/index.html" class="btn btn-primary stretched-link">Visiter</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+                <div class="card">
+                    <!-- style="width: 18rem;">-->
+                    <img src="../img/tkinter.png" class="card-img-top" alt="Doc tkinter">
+                    <div class="card-body">
+                        <h5 class="card-title">Doc tkinter</h5>
+                        <p class="card-text">Une documentation personnelle sur la librairie Tkinter et des liens vers
+                            d'autres dicuementation de qualité.</p>
+                        <a href="NSI/tkinter/index.html" class="btn btn-primary stretched-link">Visiter</a>
+                    </div>
+                </div>
 
-    <div class="menu-block">
-        <a href="ENT/index.html">Outils numériques, environnement de travail</a>
-        <a href="PC/index.html">Site Sciences-Physiques</a>
-        <a href="NSI/index.html">Site NSI</a>
-        <a href="SNT/index.html">Site SNT</a>
-        <a href="NSI/tkinter/index.html">Doc tkinter</a>
-    </div>
-    <script src="../js/date.js"></script>
+            </div>
+        </div>
+    </main>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+
+    <script src="js/date.js"></script>
+
 </body>
 
 </html>
