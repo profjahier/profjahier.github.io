@@ -1,0 +1,198 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Mirrored from tkinter.fdex.eu/doc/labw.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:00:52 GMT -->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <title>Label - Étiquettes &mdash; Tkinter pour ISN</title>
+
+  <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT: '../',
+      VERSION: '1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE: true
+    };
+  </script>
+  <script type="text/javascript" src="../_static/jquery.js"></script>
+  <script type="text/javascript" src="../_static/underscore.js"></script>
+  <script type="text/javascript" src="../_static/doctools.js"></script>
+  <script type="text/javascript" src="../_static/translations.js"></script>
+  <script type="text/javascript"
+    src="../../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="../_static/my.js"></script>
+  <link rel="top" title="Tkinter pour ISN" href="../index-2.html" />
+  <link rel="next" title="LabelFrame - Cadres étiquetés" href="lbfr.html" />
+  <link rel="prev" title="Frame - Cadres" href="frw.html" />
+</head>
+
+<body>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général" accesskey="I">index</a></li>
+      <li class="right">
+        <a href="lbfr.html" title="LabelFrame - Cadres étiquetés" accesskey="N">suivant</a> |</li>
+      <li class="right">
+        <a href="frw.html" title="Frame - Cadres" accesskey="P">précédent</a> |</li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+      <h4>Sujet précédent</h4>
+      <p class="topless"><a href="frw.html" title="Chapitre précédent"><tt
+            class="docutils literal docutils literal docutils literal"><span class="pre">Frame</span></tt> - Cadres</a>
+      </p>
+      <h4>Sujet suivant</h4>
+      <p class="topless"><a href="lbfr.html" title="Chapitre suivant"><tt class="docutils literal"><span
+              class="pre">LabelFrame</span></tt> - Cadres étiquetés</a></p>
+      
+    </div>
+  </div>
+
+  <div class="document">
+    <div class="documentwrapper">
+      <div class="bodywrapper">
+        <div class="body">
+
+          <div class="section" id="label-etiquettes">
+            <span id="label"></span>
+            <h1><tt class="docutils literal"><span class="pre">Label</span></tt> - Étiquettes<a class="headerlink"
+                href="#label-etiquettes" title="Lien permanent vers ce titre">¶</a></h1>
+            <p>Les widget <tt class="docutils literal"><span class="pre">Label</span></tt> (étiquette) servent à
+              afficher une ou plusieurs lignes de texte avec le même style, un bitmap ou une image.
+              Pour créer une étiquette dans une fenêtre principale ou dans un cadre <tt class="docutils literal"><span
+                  class="pre">parent</span></tt>:</p>
+            <dl class="class">
+              <dt id="Label">
+                <em class="property">class </em><tt class="descname">Label</tt><big>(</big><em>parent</em>,
+                <em>option</em>, <em>...</em><big>)</big><a class="headerlink" href="#Label"
+                  title="Lien permanent vers cette définition">¶</a></dt>
+              <dd>
+                <p>Le constructeur retourne l&#8217;étiquette crée. Ses options sont:</p>
+                <table class="docutils field-list" frame="void" rules="none">
+                  <col class="field-name" />
+                  <col class="field-body" />
+                  <tbody valign="top">
+                    <tr class="field-odd field">
+                      <th class="field-name">Paramètres:</th>
+                      <td class="field-body">
+                        <ul class="first last simple">
+                          <li><strong>activebackground</strong> &#8211; Couleur de fond lorsque la souris survole
+                            l&#8217;étiquette.</li>
+                          <li><strong>activeforeground</strong> &#8211; Couleur du texte lorsque la souris survole
+                            l&#8217;étiquette.</li>
+                          <li><strong>anchor</strong> &#8211; Cette option précise la postion du texte si le widget
+                            dispose de plus de place que de besoin pour le texte. La valeur par défaut est <tt
+                              class="docutils literal"><span class="pre">'center'</span></tt>, ce qui a pour effet de
+                            centrer le texte par rapport à l&#8217;espace disponible. Pour d&#8217;autres valeur, Voir
+                            <a class="reference internal" href="sa.html#ancrage"><em>Le système
+                                d&#8217;ancrage</em></a>. Par exemple, si vous utilisez <tt
+                              class="docutils literal"><span class="pre">anchor='nw'</span></tt>, le texte sera
+                            positionné dans le coin supérieur gauche de l&#8217;espace disponible.</li>
+                          <li><strong>background</strong> &#8211; (ou <strong>bg</strong>) La couleur de fond de
+                            l&#8217;étiquette. Voir <a class="reference internal" href="sa.html#couleurs"><em>Les
+                                couleurs</em></a>.</li>
+                          
+                                
+                          <li><strong>borderwidth</strong> &#8211; (ou <strong>bd</strong>) Épaisseur de la bordure
+                            autour de l&#8217;étiquette; voir <a class="reference internal"
+                              href="sa.html#dimensions"><em>Les dimensions</em></a>. La valeur par défaut est 2 pixels.
+                          </li>
+                          
+                          
+                          <li><strong>disabledforeground</strong> &#8211; La couleur d&#8217;avant plan à afficher
+                            lorsque l&#8217;étiquette est <tt class="docutils literal"><span
+                                class="pre">'disabled'</span></tt>.</li>
+                          
+                                
+                          <li><strong>foreground</strong> &#8211; (ou <strong>fg</strong>) Couleur d&#8217;avant plan de
+                            l&#8217;étiquette. Elle sera utilisée pour le texte ou pour les bits à 1 du bitmap. Voir <a
+                              class="reference internal" href="sa.html#couleurs"><em>Les couleurs</em></a>.</li>
+                          <li><strong>height</strong> &#8211; Hauteur de l&#8217;étiquette en nombre de lignes (non en
+                            pixels). Si cette option n&#8217;est pas précisée, l&#8217;étiquette s&#8217;ajuste à son
+                            contenu.</li>
+                          
+                            
+                          <li><strong>justify</strong> &#8211; Précise l&#8217;alignement du texte: &#8216;left&#8217;
+                            pour un alignement à gauche, &#8216;center&#8217; pour centrer et &#8216;right&#8217; pour
+                            un alignement à droite.</li>
+                          <li><strong>padx</strong> &#8211; Espace horizontal supplémentaire à insérer à gauche et à
+                            droite dans l&#8217;étiquette. Sa valeur par défaut est 1.</li>
+                          <li><strong>pady</strong> &#8211; Similaire à <strong>padx</strong> mais pour la direction
+                            verticale.</li>
+                          <li><strong>relief</strong> &#8211; Précise l&#8217;apparence de la bordure décorative autour
+                            de l&#8217;étiquette. Par défaut, vaut <tt class="docutils literal"><span
+                                class="pre">'flat'</span></tt>; pour d&#8217;autres valeurs, voir <a
+                              class="reference internal" href="sa.html#reliefs"><em>Les styles de relief</em></a>.</li>
+                          <li><strong>state</strong> &#8211; Par défaut, une étiquette est dans l&#8217;état
+                            &#8216;normal&#8217;. Les autres états possibles sont &#8216;disabled&#8217; et
+                            &#8216;active&#8217; (les couleurs d&#8217;arrière plan et d&#8217;avant plan pour ces états
+                            sont alors utilisées).</li>
+                         
+                            
+                          <li><strong>text</strong> &#8211; Pour afficher une ou plusieurs ligne de texte dans une
+                            étiquette, indiquer une chaîne de caractères qui contient le texte. Le caractère spécial <tt
+                              class="docutils literal"><span class="pre">'\n'</span></tt> forcera la retour à la ligne.
+                          </li>
+                          <li><strong>textvariable</strong> &#8211; Pour pouvoir faire varier le texte affiché en même
+                            temps que la valeur d&#8217;une variable de contrôle de type <tt
+                              class="docutils literal"><span class="pre">StringVar</span></tt>, régler cette option avec
+                            cette variable. Voir <a class="reference internal" href="ctrvar.html#ctrlvariables"><em>Les
+                                variables de contrôle: Les valeurs sous les widgets</em></a>.</li>
+                         
+                                
+                          <li><strong>width</strong> &#8211; Largeur de l&#8217;étiquette exprimée en nombre de
+                            caractères (non en pixels). Si cette option n&#8217;est pas précisée, l&#8217;étiquette
+                            s&#8217;ajuste à son contenu.</li>
+                         
+                        </ul>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </dd>
+            </dl>
+
+            <p>Il n&#8217;y a pas de méthodes spécifiques aux étiquettes. Voir <a class="reference internal"
+                href="uwm.html#universal"><em>Méthodes communes à tous les widgets</em></a>.</p>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  </div>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général">index</a></li>
+      <li class="right">
+        <a href="lbfr.html" title="LabelFrame - Cadres étiquetés">suivant</a> |</li>
+      <li class="right">
+        <a href="frw.html" title="Frame - Cadres">précédent</a> |</li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="footer">
+    &copy; Copyright 2013, Étienne FLORENT.
+    Créé avec <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+  </div>
+</body>
+
+<!-- Mirrored from tkinter.fdex.eu/doc/labw.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:00:52 GMT -->
+
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Mirrored from tkinter.fdex.eu/doc/panww.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:00:56 GMT -->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <title>PanedWindow - Fenêtres à paneaux &mdash; Tkinter pour ISN</title>
+
+  <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT: '../',
+      VERSION: '1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE: true
+    };
+  </script>
+  <script type="text/javascript" src="../_static/jquery.js"></script>
+  <script type="text/javascript" src="../_static/underscore.js"></script>
+  <script type="text/javascript" src="../_static/doctools.js"></script>
+  <script type="text/javascript" src="../_static/translations.js"></script>
+  <script type="text/javascript"
+    src="../../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="../_static/my.js"></script>
+  <link rel="top" title="Tkinter pour ISN" href="../index-2.html" />
+  <link rel="next" title="Radiobutton - Boutons radio" href="radbw.html" />
+  <link rel="prev" title="OptionMenu - Menus d’options" href="optmw.html" />
+</head>
+
+<body>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général" accesskey="I">index</a>
+      </li>
+      <li class="right">
+        <a href="radbw.html" title="Radiobutton - Boutons radio" accesskey="N">suivant</a> |
+      </li>
+      <li class="right">
+        <a href="optmw.html" title="OptionMenu - Menus d’options" accesskey="P">précédent</a> |
+      </li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+      <h3><a href="../index-2.html">Table des matières</a></h3>
+      <ul>
+        <li><a class="reference internal" href="#"><tt class="docutils literal"><span
+                class="pre">PanedWindow</span></tt> - Fenêtres à paneaux</a>
+          <ul>
+            <li><a class="reference internal" href="#options-de-configuration-des-enfants-d-un-panedwindow">Options de
+                configuration des enfants d&#8217;un <tt class="docutils literal"><span
+                    class="pre">PanedWindow</span></tt></a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <h4>Sujet précédent</h4>
+      <p class="topless"><a href="optmw.html" title="Chapitre précédent"><tt
+            class="docutils literal docutils literal docutils literal"><span class="pre">OptionMenu</span></tt> - Menus
+          d&#8217;options</a></p>
+      <h4>Sujet suivant</h4>
+      <p class="topless"><a href="radbw.html" title="Chapitre suivant"><tt class="docutils literal"><span
+              class="pre">Radiobutton</span></tt> - Boutons radio</a></p>
+      
+    </div>
+  </div>
+
+  <div class="document">
+    <div class="documentwrapper">
+      <div class="bodywrapper">
+        <div class="body">
+
+          <div class="section" id="panedwindow-fenetres-a-paneaux">
+            <span id="panedwindow"></span>
+            <h1><tt class="docutils literal"><span class="pre">PanedWindow</span></tt> - Fenêtres à paneaux<a
+                class="headerlink" href="#panedwindow-fenetres-a-paneaux" title="Lien permanent vers ce titre">¶</a>
+            </h1>
+            <p>Une fenêtre à paneaux ou widget <tt class="docutils literal"><span class="pre">PanedWindow</span></tt>
+              sert à donner à l&#8217;utilisateur un moyen de contrôle sur la façon dont l&#8217;espace est distribué à
+              l&#8217;intérieur de l&#8217;application.</p>
+            <p>Une fenêtre à paneaux <tt class="docutils literal"><span class="pre">PanedWindow</span></tt> est
+              similaire à un cadre (<tt class="docutils literal"><span class="pre">Frame</span></tt>): c&#8217;est un
+              conteneur pour des widgets enfants. Chaque fenêtre à paneaux contient un empilement horizontal ou vertical
+              de widgets enfants. En utilisant la souris, l&#8217;utilisateur peut déplacer les frontières situés entre
+              deux widgets enfants dans un sens ou un autre relativement à la direction d&#8217;empilement.</p>
+            <ul class="simple">
+              <li>Vous pouvez choisir d&#8217;afficher ou non des poignés à l&#8217;intérieur du widget. Une poignée est
+                figurée par un petit carré qui sert d&#8217;aide visuelle pour repérer la ligne de séparation entre deux
+                widgets.</li>
+              <li>Vous pouvez choisir de rendre les lignes de séparation - <em>sash</em> - visibles. Ces barres sont
+                placés entre deux widgets enfants et elles peuvent être déplacées à l&#8217;aide de la souris.</li>
+              <li>Un paneau est la zone de la fenêtre occupée par un widget enfant.</li>
+            </ul>
+            <p>Pour créer une nouvelle fenêtre à paneaux comme enfant d&#8217;une autre fenêtre ou d&#8217;un cadre
+              nommé <tt class="docutils literal"><span class="pre">parent</span></tt>:</p>
+            <dl class="class">
+              <dt id="PanedWindow">
+                <em class="property">class </em><tt class="descname">PanedWindow</tt><big>(</big><em>parent</em>,
+                <em>option</em>, <em>...</em><big>)</big><a class="headerlink" href="#PanedWindow"
+                  title="Lien permanent vers cette définition">¶</a>
+              </dt>
+              <dd>
+                <p>Ce constructeur retourne la nouvelle fenêtre à paneaux <tt class="docutils literal"><span
+                      class="pre">PanedWindow</span></tt> créée. Voici les options disponibles:</p>
+                <table class="docutils field-list" frame="void" rules="none">
+                  <col class="field-name" />
+                  <col class="field-body" />
+                  <tbody valign="top">
+                    <tr class="field-odd field">
+                      <th class="field-name">Paramètres:</th>
+                      <td class="field-body">
+                        <ul class="first last simple">
+                          <li><strong>bg</strong> &#8211; (ou <strong>background</strong>) La couleur d&#8217;arrière
+                            plan utilisée derrière les widgets enfants; voir <a class="reference internal"
+                              href="sa.html#couleurs"><em>Les couleurs</em></a>.</li>
+                          <li><strong>bd</strong> &#8211; (ou <strong>borderwidth</strong>) La largeur de la bordure du
+                            widget; 2 pixels par défaut. Voir <a class="reference internal"
+                              href="sa.html#dimensions"><em>Les dimensions</em></a>.</li>
+                          <li><strong>cursor</strong> &#8211; Le pointeur de souris utilisé lorsque la souris est
+                            au-dessus de la fenêtre; voir <a class="reference internal" href="sa.html#pointeurs"><em>Le
+                                pointeur de la souris</em></a>.</li>
+                          <li><strong>handlepad</strong> &#8211; Utilisez cette option pour préciser la distance à
+                            laquelle est placée la poignée (<em>handle</em>) sur sa ligne de séparation (<em>sash</em>)
+                            relativement au bord gauche de cette ligne pour un empilement vertical (<tt
+                              class="docutils literal"><span class="pre">orient='vertical'</span></tt>) ou au bord haut
+                            pour un empilement horizontal (<tt class="docutils literal"><span
+                                class="pre">orient='horizontal'</span></tt>). La valeur par défaut est 8 pixels.</li>
+                          <li><strong>handlesize</strong> &#8211; Utilisez cette option pour préciser la taille de la
+                            poignée qui a toujours une forme carrée. Sa valeur par défaut est 8 pixels.</li>
+                          <li><strong>height</strong> &#8211; La hauteur du widget. Si aucune valeur n&#8217;est
+                            indiquée, elle est déterminée par les hauteurs des widgets enfants.</li>
+                          <li><strong>opaqueresize</strong> &#8211; Cette option sert à contrôler les opérations de
+                            redistribution de l&#8217;espace. Par défaut sa valeur est <tt
+                              class="docutils literal"><span class="pre">True</span></tt> et la redistribution de
+                            l&#8217;espace est réalisée de manière continue au fur et à mesure que l&#8217;utilisateur
+                            déplace une ligne de séparation. Si cette option est réglée avec la valeur <tt
+                              class="docutils literal"><span class="pre">False</span></tt>, le redimensionnement
+                            effectif n&#8217;est réalisé que lorsque l&#8217;utilisateur relâche le bouton de la souris.
+                          </li>
+                          <li><strong>orient</strong> &#8211; Pour empiler les widgets enfants de la gauche vers la
+                            droite, utiliser la valeur <tt class="docutils literal"><span
+                                class="pre">'horizontal'</span></tt>. Pour les empiler de haut en bas, utiliser <tt
+                              class="docutils literal"><span class="pre">'vertical'</span></tt>.</li>
+                          <li><strong>relief</strong> &#8211; Sert à indiquer le relief de la bordure de la fenêtre;
+                            voir <a class="reference internal" href="sa.html#reliefs"><em>Les styles de relief</em></a>.
+                            La valeur par défaut est <tt class="docutils literal"><span class="pre">'flat'</span></tt>.
+                          </li>
+                          <li><strong>sashpad</strong> &#8211; Utilisez cette option pour réserver un espace
+                            supplémentaire de chaque côtés des lignes de séparation entre les widgets enfants. Sa valeur
+                            par défaut est 0.</li>
+                          <li><strong>sashrelief</strong> &#8211; Sert à préciser le relief des lignes de séparation
+                            (<em>sashes</em>) entre les widgets enfants; voir <a class="reference internal"
+                              href="sa.html#reliefs"><em>Les styles de relief</em></a>. Sa valeur par défaut est <tt
+                              class="docutils literal"><span class="pre">'flat'</span></tt>.</li>
+                          <li><strong>sashwidth</strong> &#8211; Sert à préciser l&#8217;épaisseur des lignes de
+                            séparations. 2 pixels par défaut.</li>
+                          <li><strong>showhandle</strong> &#8211; Utilisez <tt class="docutils literal"><span
+                                class="pre">showhandle=True</span></tt> pour afficher les poignées. La valeur par défaut
+                            est <tt class="docutils literal"><span class="pre">False</span></tt> mais
+                            l&#8217;utilisateur peut toujours déplacer les lignes de séparation entre les widgets
+                            enfants. La poignée est simplement une aide visuelle.</li>
+                          <li><strong>width</strong> &#8211; La largeur de la fenêtre. Si vous ne précisez pas sa
+                            valeur, elle sera déterminée par les largeurs des widgets enfants qu&#8217;elle contient.
+                          </li>
+                        </ul>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p>Pour ajouter des widgets enfants à un fenêtre à paneaux, créez les comme enfant de cette fenêtre,
+                  mais, au lieu de les placer en utilisant un gestionnaire de positionnement comme <tt
+                    class="docutils literal"><span class="pre">grid()</span></tt> ou <tt class="docutils literal"><span
+                      class="pre">pack()</span></tt>, utilisez la méthode add() de la fenêtre à paneaux.</p>
+                <p>Voici les méthodes disponibles pour les fenêtre à paneaux ou widget <tt
+                    class="docutils literal"><span class="pre">PanedWindow</span></tt>:</p>
+                <dl class="method">
+                  <dt id="PanedWindow.add">
+                    <tt class="descname">add</tt><big>(</big><em>enfant</em>, <em>option=valeur ...</em><big>)</big><a
+                      class="headerlink" href="#PanedWindow.add" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Utilisez cette méthode pour ajouter le widget <em>enfant</em> donné après ceux qui ont déjà été
+                      éventuellement ajoutés à cette fenêtre. Commencez par créer le widget <em>enfant</em> en utilisant
+                      cette fenêtre comme parent, mais n&#8217;utilisez aucun gestionnaire de positionnement comme <tt
+                        class="docutils literal"><span class="pre">grid()</span></tt> ou <tt
+                        class="docutils literal"><span class="pre">pack()</span></tt> pour le placer. Ensuite, appelez
+                      <tt class="docutils literal"><span class="pre">add(enfant)</span></tt> et celui-ci apparaîtra dans
+                      la fenêtre après tous les autres (s&#8217;il y en a).</p>
+                    <p>Afin de contrôler l&#8217;apparence et la position du widget <em>enfant</em>, précisez au moment
+                      de l&#8217;appel certaines options. Voir <a class="reference internal"
+                        href="#panedwconf"><em>Options de configuration des enfants d&#8217;un PanedWindow</em></a>.
+                      Vous pouvez modifier ces options de manière dynamique en utilisant la méthode <tt
+                        class="docutils literal"><span class="pre">paneconfig()</span></tt> ou récupérer leur valeur en
+                      utilisant la méthode <tt class="docutils literal"><span class="pre">panecget()</span></tt>; ces
+                      méthodes sont décrites un peu plus loin.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="PanedWindow.forget">
+                    <tt class="descname">forget</tt><big>(</big><em>enfant</em><big>)</big><a class="headerlink"
+                      href="#PanedWindow.forget" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Supprime le widget <em>enfant</em> donné en argument.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="PanedWindow.identify">
+                    <tt class="descname">identify</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a
+                      class="headerlink" href="#PanedWindow.identify" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Pour une position donnée <em>(x, y)</em> relative à la fenêtre, cette méthode retourne une valeur
+                      qui décrit l&#8217;élément graphique situé à cette position.</p>
+                    <ul class="simple">
+                      <li>si l&#8217;élément graphique est un widget enfant ou une sous-fenêtre qui le contient, la
+                        méthode retourne une chaîne vide.</li>
+                      <li>s&#8217;il s&#8217;agit d&#8217;une ligne de séparation entre deux widgets enfants, la valeur
+                        de retour est un 2-tuple <tt class="docutils literal"><span class="pre">(n,'sash')</span></tt>
+                        où <tt class="docutils literal"><span class="pre">n</span></tt> est 0 pour la première ligne, 1
+                        pour la deuxième et ainsi de suite.</li>
+                      <li>s&#8217;il s&#8217;agit d&#8217;une poignée, la valeur de retour est un 2-tuple <tt
+                          class="docutils literal"><span class="pre">(n,'handle')</span></tt> où <tt
+                          class="docutils literal"><span class="pre">n</span></tt> a la même signication que pour les
+                        lignes de démarcation.</li>
+                    </ul>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="PanedWindow.panecget">
+                    <tt class="descname">panecget</tt><big>(</big><em>enfant</em>, <em>option</em><big>)</big><a
+                      class="headerlink" href="#PanedWindow.panecget" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Sert à récupérer la valeur actuelle, pour le widget <em>enfant</em>, de l&#8217;<em>option</em>
+                      précisée en deuxième argument à l&#8217;aide d&#8217;une chaîne de carctères. Pour connaître la
+                      liste des options possibles, voir <a class="reference internal" href="#panedwconf"><em>Options de
+                          configuration des enfants d&#8217;un PanedWindow</em></a>.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="PanedWindow.paneconfig">
+                    <tt class="descname">paneconfig</tt><big>(</big><em>enfant</em>, <em>option=value</em>,
+                    <em>...</em><big>)</big><a class="headerlink" href="#PanedWindow.paneconfig"
+                      title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Sert à configurer les options du widget <em>enfant</em> pour cette fenêtre. Les options
+                      disponibles sont décrites plus loin, voir <a class="reference internal"
+                        href="#panedwconf"><em>Options de configuration des enfants d&#8217;un PanedWindow</em></a>.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="PanedWindow.panes">
+                    <tt class="descname">panes</tt><big>(</big><big>)</big><a class="headerlink"
+                      href="#PanedWindow.panes" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Retourne la liste des widgets enfants de la fenêtre (de la gauche vers la droite ou du haut vers
+                      le bas selon son orientation).</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="PanedWindow.remove">
+                    <tt class="descname">remove</tt><big>(</big><em>enfant</em><big>)</big><a class="headerlink"
+                      href="#PanedWindow.remove" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Supprime l&#8217;<em>enfant</em> donné; c&#8217;est la même action que celle qu&#8217;on obtient
+                      avec la méthode <tt class="docutils literal"><span class="pre">forget()</span></tt>.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="PanedWindow.sash_coord">
+                    <tt class="descname">sash_coord</tt><big>(</big><em>index</em><big>)</big><a class="headerlink"
+                      href="#PanedWindow.sash_coord" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Retourne la position du la ligne de séparation de numéro <em>index</em>. La ligne de démarcation
+                      d&#8217;<em>index</em> 0 est celle qui sépare les deux premiers widgets enfants, celle
+                      d&#8217;<em>index</em> 1 celle qui sépare le second et le troisième; et ainsi de suite. La valeur
+                      de retour est un tupe <em>(x, y)</em> qui contient les coordonnées du bord supérieur gauche de la
+                      ligne de démarcation (qui est en fait un rectangle très fin).</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="PanedWindow.sash_place">
+                    <tt class="descname">sash_place</tt><big>(</big><em>index</em>, <em>x</em>, <em>y</em><big>)</big><a
+                      class="headerlink" href="#PanedWindow.sash_place"
+                      title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Utilisez cette méthode pour repositionner la ligne de démarcation <em>index</em>. <em>x</em> et
+                      <em>y</em> précisent les nouvelles coordonnées du coin supérieur gauche de la ligne de démarcation
+                      <em>index</em>. Tkinter ignore la valeur de la coordonnée perpendiculaire à l&#8217;orientation de
+                      la fenêtre: <em>x</em> est la valeur utile pour repositionner une ligne de démarcation d&#8217;une
+                      fenêtre avec <tt class="docutils literal"><span class="pre">orient=horizontal</span></tt> et
+                      <em>y</em> celle qui agit effectivement pour <tt class="docutils literal"><span
+                          class="pre">orient=vertical</span></tt>.</p>
+                  </dd>
+                </dl>
+
+              </dd>
+            </dl>
+
+            <div class="section" id="options-de-configuration-des-enfants-d-un-panedwindow">
+              <span id="panedwconf"></span>
+              <h2>Options de configuration des enfants d&#8217;un <tt class="docutils literal"><span
+                    class="pre">PanedWindow</span></tt><a class="headerlink"
+                  href="#options-de-configuration-des-enfants-d-un-panedwindow"
+                  title="Lien permanent vers ce titre">¶</a></h2>
+              <p>Chaque enfant d&#8217;une fenêtre à paneaux ou <tt class="docutils literal"><span
+                    class="pre">PanedWindow</span></tt> dispose d&#8217;un jeu d&#8217;options de configuration qui
+                permet de contrôler sa position et son apparence dans la fenêtre. Ces options peuvent être précisées au
+                moment de leur ajout à l&#8217;aide de la méthode <tt class="docutils literal"><span
+                    class="pre">add()</span></tt>, ou de manière dynamique avec la méthode <tt
+                  class="docutils literal"><span class="pre">paneconfig()</span></tt>; il est aussi possible de
+                récupérer les valeurs de ces options au moyen de la méthode <tt class="docutils literal"><span
+                    class="pre">panecget()</span></tt>. Toutes ces méthodes sont décrites plus haut.</p>
+              <dl class="docutils">
+                <dt><strong>after</strong></dt>
+                <dd>Par défaut, lorsque vous ajoutez un enfant dans la fenêtre, il est ajouté à la suite des enfants
+                  précédemment ajoutés. En utilisant <tt class="docutils literal"><span class="pre">after=w</span></tt>
+                  où <tt class="docutils literal"><span class="pre">w</span></tt> désigne un enfant déjà présent dans la
+                  fenêtre, celui-ci sera ajouté à la suite de <tt class="docutils literal"><span
+                      class="pre">w</span></tt> (repoussant ainsi ceux qui viennent après).</dd>
+                <dt><strong>before</strong></dt>
+                <dd>Similaire à l&#8217;option précédente, mais place le nouvel enfant avant celui qu&#8217;on précise
+                  pour cette option.</dd>
+                <dt><strong>height</strong></dt>
+                <dd>Sert à préciser la hauteur désirée pour le widget enfant; voir <a class="reference internal"
+                    href="sa.html#dimensions"><em>Les dimensions</em></a>.</dd>
+                <dt><strong>minsize</strong></dt>
+                <dd>Utilisez cette option pour indiquer une taille minimale pour le widget enfant dans la direction
+                  d&#8217;orientation de la fenêtre à paneaux. Pour <tt class="docutils literal"><span
+                      class="pre">orient='horizontal'</span></tt>, c&#8217;est la largeur minimum; pour <tt
+                    class="docutils literal"><span class="pre">orient='vertical'</span></tt>, c&#8217;est la hauteur
+                  minimum.</dd>
+                <dt><strong>padx</strong></dt>
+                <dd>Espace supplémentaire horizontal à ajouter à gauche et à droite du widget enfant.</dd>
+                <dt><strong>pady</strong></dt>
+                <dd>Espace supplémentaire verticale à ajouter au-dessus et en dessous du widget enfant.</dd>
+                <dt><strong>sticky</strong></dt>
+                <dd>Cette option a le même rôle que l&#8217;argument de même nom de la méthode <tt
+                    class="docutils literal"><span class="pre">grid()</span></tt>. Elle sert à préciser comment
+                  positionner l&#8217;enfant si le paneau qui le contient est plus large que celui-ci. Par exemple, <tt
+                    class="docutils literal"><span class="pre">sticky=&quot;nw&quot;</span></tt> positionnera le widget
+                  dans le coin supérieur gauche (nord ouest) du paneau.</dd>
+                <dt><strong>width</strong></dt>
+                <dd>La largeur désirée pour le widget enfant.</dd>
+              </dl>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  </div>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général">index</a>
+      </li>
+      <li class="right">
+        <a href="radbw.html" title="Radiobutton - Boutons radio">suivant</a> |
+      </li>
+      <li class="right">
+        <a href="optmw.html" title="OptionMenu - Menus d’options">précédent</a> |
+      </li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="footer">
+    &copy; Copyright 2013, Étienne FLORENT.
+    Créé avec <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+  </div>
+</body>
+
+<!-- Mirrored from tkinter.fdex.eu/doc/panww.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:00:57 GMT -->
+
+</html>

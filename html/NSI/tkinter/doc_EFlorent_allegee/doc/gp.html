@@ -1,0 +1,507 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Mirrored from tkinter.fdex.eu/doc/gp.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:01:21 GMT -->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <title>Gestionnaires de positionnement &mdash; Tkinter pour ISN</title>
+
+  <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT: '../',
+      VERSION: '1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE: true
+    };
+  </script>
+  <script type="text/javascript" src="../_static/jquery.js"></script>
+  <script type="text/javascript" src="../_static/underscore.js"></script>
+  <script type="text/javascript" src="../_static/doctools.js"></script>
+  <script type="text/javascript" src="../_static/translations.js"></script>
+  <script type="text/javascript"
+    src="../../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="../_static/my.js"></script>
+  <link rel="top" title="Tkinter pour ISN" href="../index-2.html" />
+  <link rel="next" title="Les attributs standards" href="sa.html" />
+  <link rel="prev" title="Une interface graphique multiplateforme (GUI) pour Python" href="intro.html" />
+</head>
+
+<body>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général" accesskey="I">index</a></li>
+      <li class="right">
+        <a href="sa.html" title="Les attributs standards" accesskey="N">suivant</a> |</li>
+      <li class="right">
+        <a href="intro.html" title="Une interface graphique multiplateforme (GUI) pour Python"
+          accesskey="P">précédent</a> |</li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+      <h3><a href="../index-2.html">Table des matières</a></h3>
+      <ul>
+        <li><a class="reference internal" href="#">Gestionnaires de positionnement</a>
+          <ul>
+            <li><a class="reference internal" href="#la-methode-grid">La méthode <tt class="docutils literal"><span
+                    class="pre">.grid()</span></tt></a></li>
+            <li><a class="reference internal" href="#autres-methodes-du-gestionnaire-de-grille">Autres méthodes du
+                gestionnaire de grille</a></li>
+            <li><a class="reference internal"
+                href="#configuration-de-la-taille-des-lignes-et-des-colonnes">Configuration de la taille des lignes et
+                des colonnes</a></li>
+            <li><a class="reference internal" href="#rendre-la-fenetre-principable-redimensionnable">Rendre la fenêtre
+                principable redimensionnable</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <h4>Sujet précédent</h4>
+      <p class="topless"><a href="intro.html" title="Chapitre précédent">Une interface graphique multiplateforme (GUI)
+          pour Python</a></p>
+      <h4>Sujet suivant</h4>
+      <p class="topless"><a href="sa.html" title="Chapitre suivant">Les attributs standards</a></p>
+
+    </div>
+  </div>
+
+  <div class="document">
+    <div class="documentwrapper">
+      <div class="bodywrapper">
+        <div class="body">
+
+          <div class="section" id="gestionnaires-de-positionnement">
+            <span id="positionnement"></span>
+            <h1>Gestionnaires de positionnement<a class="headerlink" href="#gestionnaires-de-positionnement"
+                title="Lien permanent vers ce titre">¶</a></h1>
+            <p>Par la suite nous discuterons des composants graphiques - <em>widgets</em>, les briques de construction
+              de la GUI de votre application. Comment organiser les widgets dans une fenêtre ?</p>
+            <p>Bien qu&#8217;il y ait différents gestionnaires de positionnement (<em>geometry managers</em>) dans
+              tkinter, nous retiendrons plus spécialement le gestionnaire <tt class="docutils literal"><span
+                  class="pre">.grid()</span></tt>.
+              Ce gestionnaire «découpe» chaque fenêtre ou cadre en une grille formée de lignes et de colonnes.</p>
+            <ul class="simple">
+              <li>Une <em>cellulle</em> (<em>cell</em>) est la zone d&#8217;intersection d&#8217;une ligne et
+                d&#8217;une colonne.</li>
+              <li>La largeur de chaque colonne est la largeur de la plus large cellule qu&#8217;elle contient.</li>
+              <li>La hauteur de chaque ligne est la hauteur de la plus large ligne qu&#8217;elle contient.</li>
+              <li>Pour les composants graphiques (<em>widgets</em>) qui n&#8217;occupent pas toute la surface de leur
+                cellule, on peut indiquer quoi faire de l&#8217;espace restant : à l&#8217;extérieur du widget, ou en
+                étirant celui-ci pour le combler dans la direction horizontale ou verticale.</li>
+              <li>Il est possible de regrouper (<em>spanning</em>) plusieurs cellule en une plus large (ou plus haute).
+              </li>
+            </ul>
+            <p>Lorsqu&#8217;on crée un widget, il n&#8217;apparaît pas jusqu&#8217;à ce qu&#8217;il soit positionné au
+              moyen d&#8217;un gestionnaire de positionnement. Ainsi, construction et placement du widget se font en
+              deux temps:</p>
+            <div class="highlight-python">
+              <div class="highlight">
+                <pre><span class="n">truc</span> <span class="o">=</span> <span class="n">Constructeur</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+<span class="n">truc</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="o">...</span><span class="p">)</span>
+</pre>
+              </div>
+            </div>
+            <p>où <cite>Constructeur</cite> est l&#8217;une des classes de widget comme <tt
+                class="docutils literal"><span class="pre">Button</span></tt>, <tt class="docutils literal"><span
+                  class="pre">Frame</span></tt>, ... et <cite>parent</cite> est le widget parent dans lequel le widget
+              enfant est construit.
+              Tous les widgets dispose de la méthode <tt class="docutils literal"><span class="pre">.grid()</span></tt>
+              qui s&#8217;utilise pour préciser son emplacement dans une grille.</p>
+            <div class="section" id="la-methode-grid">
+              <h2>La méthode <tt class="docutils literal"><span class="pre">.grid()</span></tt><a class="headerlink"
+                  href="#la-methode-grid" title="Lien permanent vers ce titre">¶</a></h2>
+              <p>Pour afficher un widget <tt class="docutils literal"><span class="pre">w</span></tt> sur l&#8217;écran
+                de votre application:</p>
+              <dl class="method">
+                <dt id="w.grid">
+                  <tt class="descclassname">w.</tt><tt class="descname">grid</tt><big>(</big><em>option=valeur</em>,
+                  <em>...</em><big>)</big><a class="headerlink" href="#w.grid"
+                    title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Cette méthode enregistre le widget <tt class="docutils literal"><span class="pre">w</span></tt>
+                    dans le gestionnaire de grille.
+                    Si vous ne faites pas ça, votre widget existera sans pour autant apparaître à l&#8217;écran.
+                    Voici les options possibles:</p>
+                  <table class="docutils field-list" frame="void" rules="none">
+                    <col class="field-name" />
+                    <col class="field-body" />
+                    <tbody valign="top">
+                      <tr class="field-odd field">
+                        <th class="field-name">Paramètres:</th>
+                        <td class="field-body">
+                          <ul class="first last simple">
+                            <li><strong>column</strong> &#8211; Le numéro de la colonne où vous souhaitez placer votre
+                              widget en partant de zéro. Sa valeur par défaut est 0.</li>
+                            <li><strong>columnspan</strong> &#8211; Normalement un widget occupe seulement une cellule.
+                              Cependant, vous pouvez regrouper plusieurs cellules d&#8217;une ligne en indiquant via
+                              <strong>columnspan</strong> le nombre de cellules à regrouper. Par exemple, <tt
+                                class="docutils literal"><span class="pre">w.grid(row=0,</span> <span
+                                  class="pre">column=2,</span> <span class="pre">columnspan=3)</span></tt> aura pour
+                              effet de placer <tt class="docutils literal"><span class="pre">w</span></tt> dans une
+                              cellule qui s&#8217;étale sur les colonnes 2, 3 et 4 de la ligne 0.</li>
+                            <li><strong>in_</strong> &#8211; Pour enregistrer <tt class="docutils literal"><span
+                                  class="pre">w</span></tt> comme enfant d&#8217;un certain widget <tt
+                                class="docutils literal"><span class="pre">w2</span></tt>, utiliser <tt
+                                class="docutils literal"><span class="pre">in_=w2</span></tt>.
+                              Le nouveau parent <tt class="docutils literal"><span class="pre">w2</span></tt> doit-être
+                              un descendant du parent utilisé pour la construction du widget <tt
+                                class="docutils literal"><span class="pre">w</span></tt>.</li>
+                            <li><strong>ipadx</strong> &#8211; marge interne horizontale (en <em>x</em>). Cette
+                              dimension est ajoutée à l&#8217;intérieur du widget sur ses côtés gauche et droit.</li>
+                            <li><strong>ipady</strong> &#8211; marge interne verticale (en <em>y</em>). Cette dimension
+                              est ajoutée à l&#8217;intérieur du widget sur ses côtés haut et bas.</li>
+                            <li><strong>padx</strong> &#8211; Marge externe horizontale.</li>
+                            <li><strong>pady</strong> &#8211; Marge externe verticale.</li>
+                            <li><strong>row</strong> &#8211; Le numéro de ligne où vous souhaitez placer votre widget en
+                              partant de zéro. Sa valeur par défaut est le numéro de de la première ligne inoccupée.
+                            </li>
+                            <li><strong>rowspan</strong> &#8211; Normalement un widget occupe seulement une cellule.
+                              Cependant, vous pouvez regrouper plusieurs cellules d&#8217;une colonne en indiquant via
+                              <strong>rowspan</strong> le nombre de cellules à fusionner. Cette option peut-être
+                              utilisée en combinaison avec <strong>columnspan</strong> afin de préciser un bloc de
+                              cellules. Par exemple, <tt class="docutils literal"><span class="pre">w.grid(row=3,</span>
+                                <span class="pre">column=2,</span> <span class="pre">rowspan=4,</span> <span
+                                  class="pre">columnspan=5)</span></tt> aura pour effet de placer <tt
+                                class="docutils literal"><span class="pre">w</span></tt> dans une zone obtenue en
+                              fusionnant 20 cellules, avec les numéros de lignes 3 - 6 et les numéros de colonnes 2 - 7.
+                            </li>
+                            <li><strong>sticky</strong> &#8211; <p>Cette option détermine la façon de distribuer
+                                l&#8217;espace inoccupé par un widget à l&#8217;intérieur d&#8217;une cellule.</p>
+                              <ul>
+                                <li>Si vous ne donnez aucune valeur à l&#8217;attribut <strong>sticky</strong>, le
+                                  comportement par défaut est de centrer le widget dans sa cellule.</li>
+                                <li>Vous pouvez positionner le widget dans un des coins de la cellule en indiquant <tt
+                                    class="docutils literal"><span class="pre">sticky='ne'</span></tt> (nord-est: en
+                                  haut à droite), <tt class="docutils literal"><span class="pre">'se'</span></tt> (en
+                                  bas à droite), <tt class="docutils literal"><span class="pre">'sw'</span></tt> (en bas
+                                  à gauche), ou <tt class="docutils literal"><span class="pre">'nw'</span></tt> (en haut
+                                  à gauche).</li>
+                                <li>Vous pouvez centrer le widget contre l&#8217;un des bords de la cellule en utilisant
+                                  <tt class="docutils literal"><span class="pre">sticky='n'</span></tt> (centré en
+                                  haut), <tt class="docutils literal"><span class="pre">'e'</span></tt> (centré à
+                                  droite), <cite>&#8216;s&#8217;</cite> (centré en bas), ou <cite>&#8216;w&#8217;</cite>
+                                  (centré à gauche).</li>
+                                <li>Utilisez <tt class="docutils literal"><span class="pre">sticky='ns'</span></tt> pour
+                                  l&#8217;étirer verticalement tout en le laissant centré horizontalement.</li>
+                                <li>Utilisez <tt class="docutils literal"><span class="pre">sticky='ew'</span></tt> pour
+                                  l&#8217;étirer horizontalement tout en le laissant centré verticalement.</li>
+                                <li>Utilisez <tt class="docutils literal"><span class="pre">sticky='nesw'</span></tt>
+                                  pour l&#8217;étirer dans les deux directions afin de remplir la cellule.</li>
+                                <li>Les autres combinaisons fonctionneront aussi. Par exemple, <tt
+                                    class="docutils literal"><span class="pre">sticky='nsw'</span></tt> l&#8217;étirera
+                                  verticalement en le plaçant contre le bord gauche de la cellule.</li>
+                              </ul>
+                            </li>
+                          </ul>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </dd>
+              </dl>
+
+            </div>
+            <div class="section" id="autres-methodes-du-gestionnaire-de-grille">
+              <span id="autres-meth-grille"></span>
+              <h2>Autres méthodes du gestionnaire de grille<a class="headerlink"
+                  href="#autres-methodes-du-gestionnaire-de-grille" title="Lien permanent vers ce titre">¶</a></h2>
+              <p>Ces méthodes relatives au placement dans une grille sont définies sur tous les widgets <tt
+                  class="docutils literal"><span class="pre">w</span></tt>:</p>
+              <dl class="method">
+                <dt id="w.grid_bbox">
+                  <tt class="descclassname">w.</tt><tt class="descname">grid_bbox</tt><big>(</big><em>column=None</em>,
+                  <em>row=None</em>, <em>col2=None</em>, <em>row2=None</em><big>)</big><a class="headerlink"
+                    href="#w.grid_bbox" title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Retourne un tuple à 4 éléments qui décrit la boîte englobante (<cite>bounding box</cite>) de tout
+                    ou partie de la grille associée au widget <tt class="docutils literal"><span
+                        class="pre">w</span></tt>.
+                    Les deux premiers nombres sont les coordonnées <tt class="docutils literal"><span
+                        class="pre">x</span></tt> et <tt class="docutils literal"><span class="pre">y</span></tt> du
+                    coin supérieur gauche de la zone, et les deux autres sa largeur et sa hauteur.</p>
+                  <p>Si vous précisez les arguments <tt class="docutils literal"><span class="pre">column</span></tt> et
+                    <tt class="docutils literal"><span class="pre">row</span></tt>, la boîte englobante retournée décrit
+                    la zone de la cellule correspondante.
+                    Si vous renseignez aussi les arguments <tt class="docutils literal"><span
+                        class="pre">col2</span></tt> et <tt class="docutils literal"><span class="pre">row2</span></tt>,
+                    la boîte englobante retournée décrit la zone du grillage qui va de la colonne <tt
+                      class="docutils literal"><span class="pre">column</span></tt> à <tt class="docutils literal"><span
+                        class="pre">col2</span></tt> inclus et de la ligne <tt class="docutils literal"><span
+                        class="pre">row</span></tt> à <tt class="docutils literal"><span class="pre">row2</span></tt>
+                    inclus.</p>
+                  <p>Par exemple, <tt class="docutils literal"><span class="pre">w.grid_bbox(0,</span> <span
+                        class="pre">0,</span> <span class="pre">1,</span> <span class="pre">1)</span></tt> retourne la
+                    boîte englobante de quatre cellules et non pas une.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="w.grid_forget">
+                  <tt class="descclassname">w.</tt><tt class="descname">grid_forget</tt><big>(</big><big>)</big><a
+                    class="headerlink" href="#w.grid_forget" title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Cette méthode fait disparaître <tt class="docutils literal"><span class="pre">w</span></tt> de
+                    l&#8217;écran. Il existe toujours, il est simplement invisible. Vous pouvez utiliser <tt
+                      class="docutils literal"><span class="pre">.grid()</span></tt> pour le faire apparaître de
+                    nouveau, mais ses options de grille auront été oubliées.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="w.grid_info">
+                  <tt class="descclassname">w.</tt><tt class="descname">grid_info</tt><big>(</big><big>)</big><a
+                    class="headerlink" href="#w.grid_info" title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Retourne un dictionnaire dont les clés sont les noms des options de grille de <tt
+                      class="docutils literal"><span class="pre">w</span></tt> avec les valeurs correspondantes de ces
+                    options.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="w.grid_location">
+                  <tt class="descclassname">w.</tt><tt class="descname">grid_location</tt><big>(</big><em>x</em>,
+                  <em>y</em><big>)</big><a class="headerlink" href="#w.grid_location"
+                    title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Étant donné des coordonnées <cite>(x, y)</cite> relatives au widget conteneur, cette méthode
+                    retourne un tuple <cite>(col, row)</cite> qui décrit quelle cellule du système de grille de <tt
+                      class="docutils literal"><span class="pre">w</span></tt> contient ces coordonnées à l&#8217;écran.
+                  </p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="w.grid_propagate">
+                  <tt class="descclassname">w.</tt><tt class="descname">grid_propagate</tt><big>(</big><big>)</big><a
+                    class="headerlink" href="#w.grid_propagate" title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Normalement, tous les widgets <em>propagent</em> leurs dimensions, ce qui veut dire qu&#8217;ils
+                    s&#8217;ajustent pour s&#8217;adapter à leur contenu.
+                    Cependant, il arrive qu&#8217;on veuille forcer un widget à être d&#8217;une certaine taille
+                    indépendamment de la taille de son contenu.
+                    Pour faire cela, appeler <tt class="docutils literal"><span
+                        class="pre">w.grid_propagate(0)</span></tt> où <tt class="docutils literal"><span
+                        class="pre">w</span></tt> est le widget dont vous voulez forcer la taille.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="w.grid_remove">
+                  <tt class="descclassname">w.</tt><tt class="descname">grid_remove</tt><big>(</big><big>)</big><a
+                    class="headerlink" href="#w.grid_remove" title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Cette méthode ressemble à <tt class="docutils literal"><span
+                        class="pre">.grid_forget()</span></tt>, mais les options de grille ne sont pas perdues. Ainsi,
+                    si vous appellez <tt class="docutils literal"><span class="pre">.grid()</span></tt> à nouveau, les
+                    mêmes options de grilles seront utilisées.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="w.grid_size">
+                  <tt class="descclassname">w.</tt><tt class="descname">grid_size</tt><big>(</big><big>)</big><a
+                    class="headerlink" href="#w.grid_size" title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Retourne un tuple à deux éléments qui contient le nombre de colonnes et de lignes dans le système
+                    de grille de <tt class="docutils literal"><span class="pre">w</span></tt>.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="w.grid_slaves">
+                  <tt class="descclassname">w.</tt><tt class="descname">grid_slaves</tt><big>(</big><em>row=None</em>,
+                  <em>column=None</em><big>)</big><a class="headerlink" href="#w.grid_slaves"
+                    title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Retourne la liste des widgets gérés par <tt class="docutils literal"><span
+                        class="pre">w</span></tt>. Si aucun argument n&#8217;est fourni, la liste est exhaustive.
+                    Utilisez l&#8217;argument <tt class="docutils literal"><span class="pre">row=</span></tt> pour
+                    selectionner ceux qui se trouvent dans une ligne particulière.
+                    De même, utilisez <tt class="docutils literal"><span class="pre">column=</span></tt> pour
+                    sélectionner ceux qui se trouvent dans une colonne particulière.</p>
+                </dd>
+              </dl>
+
+            </div>
+            <div class="section" id="configuration-de-la-taille-des-lignes-et-des-colonnes">
+              <h2>Configuration de la taille des lignes et des colonnes<a class="headerlink"
+                  href="#configuration-de-la-taille-des-lignes-et-des-colonnes"
+                  title="Lien permanent vers ce titre">¶</a></h2>
+              <p>Sauf à prendre certaines précautions, la largeur d&#8217;une colonne pour un certain widget sera égal à
+                la largeur de sa plus large cellule et la hauteur d&#8217;une ligne sera égal à la hauteur de sa plus
+                haute cellule. L&#8217;attribut <cite>sticky</cite> controle seulement son emplacement dans la cellule
+                s&#8217;il ne la remplit pas complètement.</p>
+              <p>Si vous souhaitez controler plus finement cet ajustement automatique des colonnes et des lignes,
+                utilisez ces méthodes sur le widget parent qui contient la grille de positionnement.</p>
+              <dl class="method">
+                <dt id="w.columnconfigure">
+                  <tt class="descclassname">w.</tt><tt class="descname">columnconfigure</tt><big>(</big><em>N</em>,
+                  <em>option=valeur</em>, <em>...</em><big>)</big><a class="headerlink" href="#w.columnconfigure"
+                    title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Dans la grille du widget <tt class="docutils literal"><span class="pre">w</span></tt>, configure la
+                    colonne numéro N de telle sorte que les options fournies aient les valeurs indiquées (voir plus
+                    bas).</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="w.rowconfigure">
+                  <tt class="descclassname">w.</tt><tt class="descname">rowconfigure</tt><big>(</big><em>N</em>,
+                  <em>option=valeur</em>, <em>...</em><big>)</big><a class="headerlink" href="#w.rowconfigure"
+                    title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Dans la grille du widget <tt class="docutils literal"><span class="pre">w</span></tt>, configure la
+                    ligne numéro N de telle sorte que les options fournies aient les valeurs indiquées.</p>
+                  <table class="docutils field-list" frame="void" rules="none">
+                    <col class="field-name" />
+                    <col class="field-body" />
+                    <tbody valign="top">
+                      <tr class="field-odd field">
+                        <th class="field-name">Paramètres:</th>
+                        <td class="field-body">
+                          <ul class="first last simple">
+                            <li><strong>minsize</strong> &#8211; la taille minimum de la ligne (ou colonne) en pixels.
+                              Si il n&#8217;y a rien dans la ligne (ou colonne) indiquée, elle n&#8217;apparaîtra pas,
+                              même si vous utilisez cette option.</li>
+                            <li><strong>pad</strong> &#8211; marge en pixels à ajouter autour de la plus large cellule
+                              de la ligne (ou colonne).</li>
+                            <li><strong>weight</strong> &#8211; <p>Pour rendre une ligne (ou colonne) étirable lors
+                                d&#8217;un redimensionnement, utilisez cette option en fournissant une valeur qui donne
+                                le poid relatif de cette ligne (ou colonne) lors de la distribution de l&#8217;espace
+                                supplémentaire.</p>
+                              <p>Par exemple, si un widget <tt class="docutils literal"><span class="pre">w</span></tt>
+                                contient une grille, le code qui suit attribura trois quarts (3/4) de l&#8217;espace
+                                supplémentaire à la première colonne et un quart (1/4) à la seconde:</p>
+                              <div class="highlight-python">
+                                <div class="highlight">
+                                  <pre><span class="n">w</span><span class="o">.</span><span class="n">columnconfigure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">w</span><span class="o">.</span><span class="n">columnconfigure</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre>
+                                </div>
+                              </div>
+                              <p>Si cette option n&#8217;est pas utilisée, les lignes et colonnes ne seront pas étirées.
+                              </p>
+                            </li>
+                          </ul>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </dd>
+              </dl>
+
+            </div>
+            <div class="section" id="rendre-la-fenetre-principable-redimensionnable">
+              <h2>Rendre la fenêtre principable redimensionnable<a class="headerlink"
+                  href="#rendre-la-fenetre-principable-redimensionnable" title="Lien permanent vers ce titre">¶</a></h2>
+              <p>Vous souhaitez que l&#8217;utilisateur puisse redimensionner la fenêtre de l&#8217;application tout en
+                distribuant l&#8217;espace supplémentaire entre les widgets qui la composent. Cela requiert certaines
+                opérations qui ne sont pas évidentes.</p>
+              <p>Il est nécessaire d&#8217;utiliser les techniques de gestion de la taille des lignes et colonnes
+                décrites dans la section précédente pour rendre votre grille étirable. Cependant, ce n&#8217;est pas
+                suffisant.</p>
+              <p>Reprenons l&#8217;exemple de la simple application qui contenait un seul bouton.
+                Si vous la lancez et que vous redimensionnez la taille de la fenêtre, le bouton conserve la même taille.
+              </p>
+              <p>Voici une version où le bouton remplit toujours tout l&#8217;espace disponible:</p>
+              <div class="highlight-python">
+                <table class="highlighttable">
+                  <tr>
+                    <td class="linenos">
+                      <div class="linenodiv">
+                        <pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19</pre>
+                      </div>
+                    </td>
+                    <td class="code">
+                      <div class="highlight">
+                        <pre><span class="c"># Chargement du module tkinter</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="o">*</span> <span class="c"># pour Python2 se serait Tkinter</span>
+
+<span class="c"># Construction de la fenêtre principale «root»</span>
+<span class="n">root</span> <span class="o">=</span> <span class="n">Tk</span><span class="p">()</span>
+<span class="n">root</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Simple exemple&#39;</span><span class="p">)</span>
+
+<span class="c"># Configuration du gestionnaire de grille</span>
+<span class="hll"><span class="n">root</span><span class="o">.</span><span class="n">rowconfigure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span><span class="hll"><span class="n">root</span><span class="o">.</span><span class="n">columnconfigure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</span>
+<span class="c"># Construction d&#39;un simple bouton</span>
+<span class="n">qb</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s">&#39;Quitter&#39;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">root</span><span class="o">.</span><span class="n">quit</span><span class="p">)</span>
+
+<span class="c"># Placement du bouton dans «root»</span>
+<span class="hll"><span class="n">qb</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s">&quot;nsew&quot;</span><span class="p">)</span>
+</span>
+<span class="c"># Lancement de la «boucle principale»</span>
+<span class="n">root</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
+</pre>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <p>Cependant, dans la plupart des applications, les widgets sont positionnés en grille dans des cadres
+                eux-mêmes positionnés dans la fenêtre principale.
+                Dans cette situation, il ne faudra pas oublier de rendre étirable la grille de la fenêtre principale
+                ainsi que les grilles des cadres.</p>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  </div>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général">index</a></li>
+      <li class="right">
+        <a href="sa.html" title="Les attributs standards">suivant</a> |</li>
+      <li class="right">
+        <a href="intro.html" title="Une interface graphique multiplateforme (GUI) pour Python">précédent</a> |</li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="footer">
+    &copy; Copyright 2013, Étienne FLORENT.
+    Créé avec <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+  </div>
+</body>
+
+<!-- Mirrored from tkinter.fdex.eu/doc/gp.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:01:21 GMT -->
+
+</html>

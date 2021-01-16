@@ -1,0 +1,139 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from tkinter.fdex.eu/doc/lbfr.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:00:52 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>LabelFrame - Cadres étiquetés &mdash; Tkinter pour ISN</title>
+    
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/translations.js"></script>
+    <script type="text/javascript" src="../../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../_static/my.js"></script>
+    <link rel="top" title="Tkinter pour ISN" href="../index-2.html" />
+    <link rel="next" title="Listbox - Listes de sélection" href="lbw.html" />
+    <link rel="prev" title="Label - Étiquettes" href="labw.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Index général"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="lbw.html" title="Listbox - Listes de sélection"
+             accesskey="N">suivant</a> |</li>
+        <li class="right" >
+          <a href="labw.html" title="Label - Étiquettes"
+             accesskey="P">précédent</a> |</li>
+        <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Sujet précédent</h4>
+  <p class="topless"><a href="labw.html"
+                        title="Chapitre précédent"><tt class="docutils literal"><span class="pre">Label</span></tt> - Étiquettes</a></p>
+  <h4>Sujet suivant</h4>
+  <p class="topless"><a href="lbw.html"
+                        title="Chapitre suivant"><tt class="docutils literal"><span class="pre">Listbox</span></tt> - Listes de sélection</a></p>
+  
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="labelframe-cadres-etiquetes">
+<span id="labelframe"></span><h1><tt class="docutils literal"><span class="pre">LabelFrame</span></tt> - Cadres étiquetés<a class="headerlink" href="#labelframe-cadres-etiquetes" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Le widget «cadre étiqueté», <tt class="docutils literal"><span class="pre">LabelFrame</span></tt>, comme le widget <tt class="docutils literal"><span class="pre">Frame</span></tt>, est avant tout un conteneur. Il se présente comme une zone rectangulaire dans laquelle il est possible de mettre d&#8217;autres widgets. Cependant, contrairemet au cadre <tt class="docutils literal"><span class="pre">Frame</span></tt>, il vous permet d&#8217;afficher une étiquette sur sa bordure.</p>
+<p>Voici un exemple de cadre étiqueté qui contient deux boutons. Remarquez que l&#8217;étiquette “Important controls” interrompt la bordure. Cette figure illustre les valeurs par défaut du widget: un relief &#8216;groove&#8217; (Voir <a class="reference internal" href="sa.html#reliefs"><em>Les styles de relief</em></a>) et une étiquette ancrée au nord ouest, <tt class="docutils literal"><span class="pre">'nw'</span></tt>, c&#8217;est à dire en haut à gauche du cadre.</p>
+<img alt="../_images/labelframe.png" class="align-center" src="../_images/labelframe.png" />
+<p>Pour créer un cadre étiqueté dans une fenêtre mère ou un cadre <tt class="docutils literal"><span class="pre">parent</span></tt>:</p>
+<dl class="class">
+<dt id="LabelFrame">
+<em class="property">class </em><tt class="descname">LabelFrame</tt><big>(</big><em>parent</em>, <em>option</em>, <em>...</em><big>)</big><a class="headerlink" href="#LabelFrame" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Retourne le cadre étiqueté créé. Ses options sont:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><ul class="first last simple">
+<li><strong>bg</strong> &#8211; (ou <strong>background</strong>) La couleur de fond appliquée à l&#8217;intérieur du widget; Voir <a class="reference internal" href="sa.html#couleurs"><em>Les couleurs</em></a>.</li>
+<li><strong>bd</strong> &#8211; (ou <strong>borderwidth</strong>) Largeur de la bordure du cadre. Voir <a class="reference internal" href="sa.html#dimensions"><em>Les dimensions</em></a>. Sa valeur par défaut est 2 pixels.</li>
+<li><strong>cursor</strong> &#8211; Le pointeur de souris utilisé lorsque la souris est à l&#8217;intérieur du cadre; voir <a class="reference internal" href="sa.html#pointeurs"><em>Le pointeur de la souris</em></a>.</li>
+<li><strong>fg</strong> &#8211; (ou <strong>foreground</strong>) Couleur utilisée pour l&#8217;étiquette.</li>
+<li><strong>height</strong> &#8211; La hauteur du cadre. Ne sera pas prise en compte sauf si vous appelez la méthode <tt class="docutils literal"><span class="pre">grid_propagate(0)</span></tt> sur le cadre; voir <a class="reference internal" href="gp.html#autres-meth-grille"><em>Autres méthodes du gestionnaire de grille</em></a>.</li>
+<li><strong>highlightbackground</strong> &#8211; Couleur de la mise en valeur du focus lorsque le cadre ne l&#8217;a plus. Voir <a class="reference internal" href="focus.html#focus"><em>Focus: réception des saisies clavier</em></a>.</li>
+<li><strong>highlightcolor</strong> &#8211; Couleur de la ligne de focus lorsque le cadre obtient le focus.</li>
+<li><strong>highlightthickness</strong> &#8211; Épaisseur de la zone de mise en valeur du focus.</li>
+<li><strong>labelanchor</strong> &#8211; <p>Utilisez cette option pour positionner l&#8217;étiquette sur le bord du cadre. Sa position par défaut est <tt class="docutils literal"><span class="pre">'nw'</span></tt> ce qui place l&#8217;étiquette en haut à gauche. Pour les douze positions possibles:</p>
+<img alt="../_images/labelanchor.png" class="align-center" src="../_images/labelanchor.png" /></li>
+<li><strong>labelwidget</strong> &#8211; À la place d&#8217;un label texte, vous pouvez utiliser n&#8217;importe quel widget comme label en le passant à cette option. Si vous précisez à la fois un tel widget et un étiquette texte, cette dernière est ignorée.</li>
+<li><strong>padx</strong> &#8211; Normalement, un cadre s&#8217;ajuste à son contenu. Pour ajouter N pixels d&#8217;espace supplémentaire horizontalement: <tt class="docutils literal"><span class="pre">padx=N</span></tt>.</li>
+<li><strong>pady</strong> &#8211; Similaire à <strong>padx</strong> dans la direction verticale.</li>
+<li><strong>relief</strong> &#8211; Le relief par défaut est &#8216;groove&#8217;. Pour d&#8217;autres valeurs, voir <a class="reference internal" href="sa.html#reliefs"><em>Les styles de relief</em></a>.</li>
+<li><strong>takefocus</strong> &#8211; Normalement, un cadre n&#8217;obtient pas le focus (voir <a class="reference internal" href="focus.html#focus"><em>Focus: réception des saisies clavier</em></a> pour une vue d&#8217;ensemble de ce sujet). Cependant, donner la valeur 1 à cette option si vous voulez que le cadre soit sensible aux saisies clavier. Pour réagir aux saisies clavier, vous aurez besoin de créer une liaison pour les événements du clavier; voir <a class="reference internal" href="event.html#events"><em>Événements: répondre aux actions de l&#8217;utilisateur.</em></a> pour plus d&#8217;informations sur les événements et les liaisons.</li>
+<li><strong>text</strong> &#8211; Le texte de l&#8217;étiquette.</li>
+<li><strong>width</strong> &#8211; La largeur du cadre. Voir <a class="reference internal" href="sa.html#dimensions"><em>Les dimensions</em></a>. Cette valeur est ignorée sauf si vous appelez la méthode <tt class="docutils literal"><span class="pre">grid_propagate(0)</span></tt> sur le cadre; Voir <a class="reference internal" href="gp.html#autres-meth-grille"><em>Autres méthodes du gestionnaire de grille</em></a>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Index général"
+             >index</a></li>
+        <li class="right" >
+          <a href="lbw.html" title="Listbox - Listes de sélection"
+             >suivant</a> |</li>
+        <li class="right" >
+          <a href="labw.html" title="Label - Étiquettes"
+             >précédent</a> |</li>
+        <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Étienne FLORENT.
+      Créé avec <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+
+<!-- Mirrored from tkinter.fdex.eu/doc/lbfr.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:00:53 GMT -->
+</html>

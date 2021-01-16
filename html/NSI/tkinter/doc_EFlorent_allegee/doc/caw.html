@@ -1,0 +1,1672 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Mirrored from tkinter.fdex.eu/doc/caw.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:00:48 GMT -->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <title>Canvas - Canevas &mdash; Tkinter pour ISN</title>
+
+  <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT: '../',
+      VERSION: '1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE: true
+    };
+  </script>
+  <script type="text/javascript" src="../_static/jquery.js"></script>
+  <script type="text/javascript" src="../_static/underscore.js"></script>
+  <script type="text/javascript" src="../_static/doctools.js"></script>
+  <script type="text/javascript" src="../_static/translations.js"></script>
+  <script type="text/javascript"
+    src="../../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="../_static/my.js"></script>
+  <link rel="top" title="Tkinter pour ISN" href="../index-2.html" />
+  <link rel="next" title="Checkbutton - Cases à cocher" href="chw.html" />
+  <link rel="prev" title="Button - Boutons" href="bw.html" />
+</head>
+
+<body>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général" accesskey="I">index</a></li>
+      <li class="right">
+        <a href="chw.html" title="Checkbutton - Cases à cocher" accesskey="N">suivant</a> |</li>
+      <li class="right">
+        <a href="bw.html" title="Button - Boutons" accesskey="P">précédent</a> |</li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+      <h3><a href="../index-2.html">Table des matières</a></h3>
+      <ul>
+        <li><a class="reference internal" href="#"><tt class="docutils literal"><span class="pre">Canvas</span></tt> -
+            Canevas</a>
+          <ul>
+            <li><a class="reference internal" href="#le-systeme-de-coordonnees">Le système de coordonnées</a></li>
+            <li><a class="reference internal" href="#la-liste-d-affichage">La liste d&#8217;affichage</a></li>
+            <li><a class="reference internal" href="#les-identifiants-numeriques">Les identifiants numériques</a></li>
+            <li><a class="reference internal" href="#les-marques-tags">Les marques (<cite>tags</cite>)</a></li>
+            <li><a class="reference internal" href="#identification-des-items-graphiques">Identification des items
+                graphiques</a></li>
+            <li><a class="reference internal" href="#methodes-des-canevas">Méthodes des Canevas</a></li>
+            <li><a class="reference internal" href="#les-arcs">Les arcs</a></li>
+            <li><a class="reference internal" href="#les-bitmaps">Les bitmaps</a></li>
+            <li><a class="reference internal" href="#les-images">Les images</a></li>
+            <li><a class="reference internal" href="#les-lignes">Les lignes</a></li>
+            <li><a class="reference internal" href="#les-ellipses-et-cercles">Les ellipses et cercles</a></li>
+            <li><a class="reference internal" href="#les-polygones">Les polygones</a></li>
+            <li><a class="reference internal" href="#les-rectangles">Les rectangles</a></li>
+            <li><a class="reference internal" href="#les-textes">Les textes</a></li>
+            <li><a class="reference internal" href="#les-fenetres">Les fenêtres</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <h4>Sujet précédent</h4>
+      <p class="topless"><a href="bw.html" title="Chapitre précédent"><tt class="docutils literal"><span
+              class="pre">Button</span></tt> - Boutons</a></p>
+      <h4>Sujet suivant</h4>
+      <p class="topless"><a href="chw.html" title="Chapitre suivant"><tt class="docutils literal"><span
+              class="pre">Checkbutton</span></tt> - Cases à cocher</a></p>
+
+    </div>
+  </div>
+
+  <div class="document">
+    <div class="documentwrapper">
+      <div class="bodywrapper">
+        <div class="body">
+
+          <div class="section" id="canvas-canevas">
+            <span id="canevas"></span>
+            <h1><tt class="docutils literal"><span class="pre">Canvas</span></tt> - Canevas<a class="headerlink"
+                href="#canvas-canevas" title="Lien permanent vers ce titre">¶</a></h1>
+            <div class="figure align-center">
+              <img alt="../_images/pacman.png" src="../_images/pacman.png" />
+              <p class="caption">Pacman dans un Canevas de fond noir</p>
+            </div>
+            <p>Un canevas est une zone rectangulaire destinée à contenir des dessins ou d&#8217;autres figures
+              complexes. Vous pouvez y placer des graphiques, du texte, des composants graphiques (<em>widgets</em>) ou
+              des cadres (<em>frames</em>). Veuillez consulter les sections suivantes pour les méthodes qui servent à
+              créer de tels objet sur un canevas:</p>
+            <ul class="simple">
+              <li><a class="reference internal" href="#Canvas.create_arc" title="Canvas.create_arc"><tt
+                    class="xref py py-meth docutils literal"><span class="pre">create_arc()</span></tt></a> : Une
+                portion d&#8217;ellipse. Voir <a class="reference internal" href="#arcs"><em>Les arcs</em></a>.</li>
+
+
+              <li><a class="reference internal" href="#Canvas.create_image" title="Canvas.create_image"><tt
+                    class="xref py py-meth docutils literal"><span class="pre">create_image()</span></tt></a> : Une
+                image «plus riche». Voir <a class="reference internal" href="#can-images"><em>Les images</em></a>.</li>
+              <li><a class="reference internal" href="#Canvas.create_line" title="Canvas.create_line"><tt
+                    class="xref py py-meth docutils literal"><span class="pre">create_line()</span></tt></a> : Un ou
+                plusieurs segments. Voir <a class="reference internal" href="#lignes"><em>Les lignes</em></a>.</li>
+              <li><a class="reference internal" href="#Canvas.create_oval" title="Canvas.create_oval"><tt
+                    class="xref py py-meth docutils literal"><span class="pre">create_oval()</span></tt></a> : Une
+                ellipse; Utiliser cette méthode pour dessiner des cercles qui sont des cas particuliers
+                d&#8217;ellipses. Voir <a class="reference internal" href="#ellipses-et-cercles"><em>Les ellipses et
+                    cercles</em></a>.</li>
+              <li><a class="reference internal" href="#Canvas.create_polygon" title="Canvas.create_polygon"><tt
+                    class="xref py py-meth docutils literal"><span class="pre">create_polygon()</span></tt></a> : Un
+                polygone. Voir <a class="reference internal" href="#polygones"><em>Les polygones</em></a>.</li>
+              <li><a class="reference internal" href="#Canvas.create_rectangle" title="Canvas.create_rectangle"><tt
+                    class="xref py py-meth docutils literal"><span class="pre">create_rectangle()</span></tt></a> : Un
+                rectangle. Voir <a class="reference internal" href="#rectangles"><em>Les rectangles</em></a>.</li>
+              <li><a class="reference internal" href="#Canvas.create_text" title="Canvas.create_text"><tt
+                    class="xref py py-meth docutils literal"><span class="pre">create_text()</span></tt></a> : Pour
+                insérer du texte. Voir <a class="reference internal" href="#textes"><em>Les textes</em></a>.</li>
+              <li><a class="reference internal" href="#Canvas.create_window" title="Canvas.create_window"><tt
+                    class="xref py py-meth docutils literal"><span class="pre">create_window()</span></tt></a> : Une
+                fenêtre rectangulaire. Voir <a class="reference internal" href="#fenetres"><em>Les fenêtres</em></a>.
+              </li>
+            </ul>
+            <p>Pour créer un objet de type Canvas:</p>
+            <dl class="class">
+              <dt id="Canvas">
+                <em class="property">class </em><tt class="descname">Canvas</tt><big>(</big><em>parent</em>,
+                <em>option=valeur</em>, <em>...</em><big>)</big><a class="headerlink" href="#Canvas"
+                  title="Lien permanent vers cette définition">¶</a></dt>
+              <dd>
+                <p>Le constructeur retourne le nouveau widget canvas. Ses options sont:</p>
+                <table class="docutils field-list" frame="void" rules="none">
+                  <col class="field-name" />
+                  <col class="field-body" />
+                  <tbody valign="top">
+                    <tr class="field-odd field">
+                      <th class="field-name">Paramètres:</th>
+                      <td class="field-body">
+                        <ul class="first last simple">
+                          <li><strong>borderwidth</strong> &#8211; (ou <strong>bd</strong>) Largeur de la bordure du
+                            canevas. Voir <a class="reference internal" href="sa.html#dimensions"><em>Les
+                                dimensions</em></a>.
+                            La valeur par défaut est 2 pixels.</li>
+                          <li><strong>background</strong> &#8211; (ou <strong>bg</strong>) Couleur de fond du canevas.
+                            La valeur par défaut est un gris léger, à peu près <tt class="docutils literal"><span
+                                class="pre">'#E4E4E4'</span></tt>.</li>
+                          <li><strong>closeenough</strong> &#8211; Un flottant qui précise la distance minimale entre la
+                            souris et un item pour considérer qu&#8217;elle est dessus. La valeur par défaut est 1.0.
+                          </li>
+
+
+                          <li><strong>height</strong> &#8211; Hauteur du canvas. Voir <a class="reference internal"
+                              href="sa.html#dimensions"><em>Les dimensions</em></a>.</li>
+
+
+                          <li><strong>relief</strong> &#8211; Le style de relief du canvas. La valeur par défaut est <tt
+                              class="docutils literal"><span class="pre">'flat'</span></tt>. Voir <a
+                              class="reference internal" href="sa.html#reliefs"><em>Les styles de relief</em></a>.</li>
+                          <li><strong>scrollregion</strong> &#8211; Un tuple <tt class="docutils literal"><span
+                                class="pre">(w,</span> <span class="pre">n,</span> <span class="pre">e,</span> <span
+                                class="pre">s)</span></tt> qui définit la zone du canevas accessible par défilement. <tt
+                              class="docutils literal"><span class="pre">w</span></tt> désigne le côté gauche, <tt
+                              class="docutils literal"><span class="pre">n</span></tt> le bord haut, <tt
+                              class="docutils literal"><span class="pre">e</span></tt> le côté droit et <tt
+                              class="docutils literal"><span class="pre">s</span></tt> le bord bas.</li>
+                          <li><strong>selectbackground</strong> &#8211; La couleur de fond utilisée pour afficher
+                            l&#8217;item sélectionné.</li>
+                          <li><strong>selectborderwidth</strong> &#8211; L&#8217;épaisseur de la bordure de l&#8217;item
+                            sélectionné.</li>
+                          <li><strong>selectforeground</strong> &#8211; La couleur d&#8217;avant plan utilisée pour
+                            mettre en valeur l&#8217;item sélectionné.</li>
+
+
+                          <li><strong>width</strong> &#8211; Largeur du canevas. Voir <a class="reference internal"
+                              href="sa.html#dimensions"><em>Les dimensions</em></a>.</li>
+                          <li><strong>xscrollincrement</strong> &#8211; Normalement, on peut faire défiler un canevas
+                            horizontalement à n&#8217;importe quelle position. Vous pouvez obtenir ce comportement en
+                            positionnant cette option à <tt class="docutils literal"><span class="pre">0</span></tt> .
+                            Si vous donnez une valeur positive à cette option, le canevas défile en utilisant des
+                            multiples de cette valeur. Elle sera en outre utilisée comme unité de défilement horizontal
+                            comme quand l&#8217;utilisateur clique sur les flèches situées aux extrémités d&#8217;une
+                            barre de défilement. Voir <a class="reference internal"
+                              href="scrw.html#scrollbar"><em>Scrollbar - Barres de défilement</em></a>.</li>
+                          <li><strong>xscrollcommand</strong> &#8211; Si le canevas est muni d&#8217;une barre
+                            défilement, positionnez cette option en utilisant la méthode <tt
+                              class="docutils literal"><span class="pre">set()</span></tt> de la barre.</li>
+                          <li><strong>yscrollincrement</strong> &#8211; Fonctionne de manière similaire à
+                            <strong>xscrollincrement</strong>, mais pour un défilement vertical.</li>
+                          <li><strong>yscrollcommand</strong> &#8211; Fonctionne de manière similaire à
+                            <strong>xscrollcommand</strong>, mais pour une barre de défilement vertical.</li>
+                        </ul>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </dd>
+            </dl>
+
+            <div class="section" id="le-systeme-de-coordonnees">
+              <h2>Le système de coordonnées<a class="headerlink" href="#le-systeme-de-coordonnees"
+                  title="Lien permanent vers ce titre">¶</a></h2>
+              <p>Parce qu&#8217;un canevas peut être plus large que sa fenêtre de visualisation et qu&#8217;il peut être
+                équipé de barres de défilement afin de le déplacer, il y a deux systèmes de coordonnées pour chaque
+                canevas:</p>
+              <ul class="simple">
+                <li>Les coordonnées d&#8217;un point dans la fenêtre de vue; elles sont relatives au bord supérieur
+                  gauche de cette fenêtre.</li>
+                <li>Les coordonnées d&#8217;un point dans le canevas lui-même.</li>
+              </ul>
+            </div>
+            <div class="section" id="la-liste-d-affichage">
+              <h2>La liste d&#8217;affichage<a class="headerlink" href="#la-liste-d-affichage"
+                  title="Lien permanent vers ce titre">¶</a></h2>
+              <p>La liste d&#8217;affichage se réfère à la séquence de tous les items qui se trouvent sur le canevas, de
+                l&#8217;arrière plan, (<em>background</em> - le bas de la liste d&#8217;affichage) vers l&#8217;avant
+                plan, (<em>foreground</em> - le haut de cette liste).</p>
+              <p>Si deux items se recouvrent, l&#8217;item au-dessus de l&#8217;autre dans la liste d&#8217;affichage
+                désigne celui qui est le plus proche de l&#8217;avant plan, c&#8217;est à dire qui est vu comme
+                au-dessus de l&#8217;autre sur l&#8217;affichage. Par défaut, lorsqu&#8217;un item est créé, il est
+                placé tout en haut de la liste d&#8217;affichage (et donc il apparaît au dessus des items déjà
+                affichés), mais il est possible de ré-ordonner la liste d&#8217;affichage.</p>
+            </div>
+            <div class="section" id="les-identifiants-numeriques">
+              <span id="canvasidnum"></span>
+              <h2>Les identifiants numériques<a class="headerlink" href="#les-identifiants-numeriques"
+                  title="Lien permanent vers ce titre">¶</a></h2>
+              <p>Chaque item affiché sur le canevas possède un identifiant numérique (simple entier) unique, il
+                s&#8217;agit de la valeur retournée par le «constructeur» - <tt class="docutils literal"><span
+                    class="pre">create_*()</span></tt> - lors de sa création.</p>
+            </div>
+            <div class="section" id="les-marques-tags">
+              <span id="canvastags"></span>
+              <h2>Les marques (<cite>tags</cite>)<a class="headerlink" href="#les-marques-tags"
+                  title="Lien permanent vers ce titre">¶</a></h2>
+              <p>Une marque, <em>tag</em>, est une chaîne de caractères qu&#8217;on peut associer à un ou plusieurs
+                items du canevas.</p>
+              <ul class="simple">
+                <li>Une marque peut être associée à autant d&#8217;items que l&#8217;on veut sur le canvas, 0 inclus.
+                </li>
+                <li>Un item peut posséder autant de marques que souhaité, 0 inclus.</li>
+              </ul>
+              <p>Les marques, <em>tags</em>, ont de nombreux usages. Par exemple, si vous dessinez une carte sur un
+                canevas et que vous utilisez des textes pour donner le nom des rivières, vous pourriez marquer tous ces
+                items textuels avec <tt class="docutils literal"><span class="pre">'rivEtiq'</span></tt>. Cela vous
+                permettrait d&#8217;agir globalement sur les étiquettes en utilisant cette marque afin, par exemple, de
+                changer leur couleur ou de les supprimer.</p>
+            </div>
+            <div class="section" id="identification-des-items-graphiques">
+              <h2>Identification des items graphiques<a class="headerlink" href="#identification-des-items-graphiques"
+                  title="Lien permanent vers ce titre">¶</a></h2>
+              <p>Un argument <tt class="docutils literal"><span class="pre">tagOrId</span></tt> se réfère à un ou
+                plusieurs items du canevas.</p>
+              <ul class="simple">
+                <li>Si l&#8217;argument <tt class="docutils literal"><span class="pre">tagOrId</span></tt> est un
+                  entier, il est considéré comme un identifiant numérique et il s&#8217;applique à l&#8217;unique item
+                  qui le possède. Voir <a class="reference internal" href="#canvasidnum"><em>Les identifiants
+                      numériques</em></a>.</li>
+                <li>Si cet argument est une chaîne de caractères, il est interprété comme une marque et sélectionne tous
+                  les items qui ont cette marque (s&#8217;il y en a). Voir <a class="reference internal"
+                    href="#canvastags"><em>Les marques (tags)</em></a>.</li>
+              </ul>
+            </div>
+            <div class="section" id="methodes-des-canevas">
+              <span id="canvasmeth"></span>
+              <h2>Méthodes des Canevas<a class="headerlink" href="#methodes-des-canevas"
+                  title="Lien permanent vers ce titre">¶</a></h2>
+              <p>Tous les Canevas disposent de ces méthodes (outre celles qui servent à créer des items et qui sont
+                présentées plus loin):</p>
+              <table class="hlist">
+                <tr>
+                  <td>
+                    <ul class="simple">
+                      <li><a class="reference internal" href="#Canvas.addtag_above" title="Canvas.addtag_above"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">addtag_above()</span></tt></a>
+                      </li>
+                      <li><a class="reference internal" href="#Canvas.addtag_all" title="Canvas.addtag_all"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">addtag_all()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Canvas.addtag_below" title="Canvas.addtag_below"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">addtag_below()</span></tt></a>
+                      </li>
+                      <li><a class="reference internal" href="#Canvas.addtag_closest" title="Canvas.addtag_closest"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">addtag_closest()</span></tt></a>
+                      </li>
+                      <li><a class="reference internal" href="#Canvas.addtag_enclosed"
+                          title="Canvas.addtag_enclosed"><tt class="xref py py-meth docutils literal"><span
+                              class="pre">addtag_enclosed()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Canvas.addtag_overlapping"
+                          title="Canvas.addtag_overlapping"><tt class="xref py py-meth docutils literal"><span
+                              class="pre">addtag_overlapping()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Canvas.addtag_withtag" title="Canvas.addtag_withtag"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">addtag_withtag()</span></tt></a>
+                      </li>
+                      <li><a class="reference internal" href="#Canvas.bbox" title="Canvas.bbox"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">bbox()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Canvas.canvasx" title="Canvas.canvasx"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">canvasx()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Canvas.canvasy" title="Canvas.canvasy"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">canvasy()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Canvas.coords" title="Canvas.coords"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">coords()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Canvas.dchars" title="Canvas.dchars"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">dchars()</span></tt></a></li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul class="simple">
+                      <li><a class="reference internal" href="#Canvas.delete" title="Canvas.delete"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">delete()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Canvas.dtag" title="Canvas.dtag"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">dtag()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Canvas.find_above" title="Canvas.find_above"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">find_above()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Canvas.find_all" title="Canvas.find_all"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">find_all()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Canvas.find_below" title="Canvas.find_below"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">find_below()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Canvas.find_closest" title="Canvas.find_closest"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">find_closest()</span></tt></a>
+                      </li>
+                      <li><a class="reference internal" href="#Canvas.find_enclosed" title="Canvas.find_enclosed"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">find_enclosed()</span></tt></a>
+                      </li>
+                      <li><a class="reference internal" href="#Canvas.find_overlapping"
+                          title="Canvas.find_overlapping"><tt class="xref py py-meth docutils literal"><span
+                              class="pre">find_overlapping()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Canvas.find_withtag" title="Canvas.find_withtag"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">find_withtag()</span></tt></a>
+                      </li>
+                      <li><a class="reference internal" href="#Canvas.focus" title="Canvas.focus"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">focus()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Canvas.gettags" title="Canvas.gettags"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">gettags()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Canvas.icursor" title="Canvas.icursor"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">icursor()</span></tt></a></li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul class="simple">
+                      <li><a class="reference internal" href="#Canvas.index" title="Canvas.index"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">index()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Canvas.insert" title="Canvas.insert"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">insert()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Canvas.itemcget" title="Canvas.itemcget"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">itemcget()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Canvas.itemconfigure" title="Canvas.itemconfigure"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">itemconfigure()</span></tt></a>
+                      </li>
+                      <li><a class="reference internal" href="#Canvas.move" title="Canvas.move"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">move()</span></tt></a></li>
+
+
+                      <li><a class="reference internal" href="#Canvas.scale" title="Canvas.scale"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">scale()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Canvas.scan_dragto" title="Canvas.scan_dragto"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">scan_dragto()</span></tt></a>
+                      </li>
+                      <li><a class="reference internal" href="#Canvas.scan_mark" title="Canvas.scan_mark"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">scan_mark()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Canvas.select_adjust" title="Canvas.select_adjust"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">select_adjust()</span></tt></a>
+                      </li>
+                      <li><a class="reference internal" href="#Canvas.select_clear" title="Canvas.select_clear"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">select_clear()</span></tt></a>
+                      </li>
+                      <li><a class="reference internal" href="#Canvas.select_from" title="Canvas.select_from"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">select_from()</span></tt></a>
+                      </li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul class="simple">
+                      <li><a class="reference internal" href="#Canvas.select_item" title="Canvas.select_item"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">select_item()</span></tt></a>
+                      </li>
+                      <li><a class="reference internal" href="#Canvas.select_to" title="Canvas.select_to"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">select_to()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Canvas.tag_bind" title="Canvas.tag_bind"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">tag_bind()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Canvas.tag_lower" title="Canvas.tag_lower"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">tag_lower()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Canvas.tag_raise" title="Canvas.tag_raise"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">tag_raise()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Canvas.tag_unbind" title="Canvas.tag_unbind"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">tag_unbind()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Canvas.type" title="Canvas.type"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">type()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Canvas.xview_moveto" title="Canvas.xview_moveto"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">xview_moveto()</span></tt></a>
+                      </li>
+                      <li><a class="reference internal" href="#Canvas.xview_scroll" title="Canvas.xview_scroll"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">xview_scroll()</span></tt></a>
+                      </li>
+                      <li><a class="reference internal" href="#Canvas.yview_moveto" title="Canvas.yview_moveto"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">yview_moveto()</span></tt></a>
+                      </li>
+                      <li><a class="reference internal" href="#Canvas.yview_scroll" title="Canvas.yview_scroll"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">yview_scroll()</span></tt></a>
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+              </table>
+              <dl class="method">
+                <dt id="Canvas.addtag_above">
+                  <tt class="descclassname">Canvas.</tt><tt
+                    class="descname">addtag_above</tt><big>(</big><em>newTag</em>, <em>tagOrId</em><big>)</big><a
+                    class="headerlink" href="#Canvas.addtag_above" title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Appose une nouvelle marque <em>newTag</em> à l&#8217;item situé juste au-dessus de celui qui est
+                    sélectionné par <em>tagOrId</em> dans la liste d&#8217;affichage. L&#8217;argument <em>newTag</em>,
+                    donné sous la forme d&#8217;une chaîne de caractère, est la marque qu&#8217;on souhaite apposer.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.addtag_all">
+                  <tt class="descclassname">Canvas.</tt><tt
+                    class="descname">addtag_all</tt><big>(</big><em>newTag</em><big>)</big><a class="headerlink"
+                    href="#Canvas.addtag_all" title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Attache la marque donnée à tous les items qui sont présents sur le canevas.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.addtag_below">
+                  <tt class="descclassname">Canvas.</tt><tt
+                    class="descname">addtag_below</tt><big>(</big><em>newTag</em>, <em>tagOrID</em><big>)</big><a
+                    class="headerlink" href="#Canvas.addtag_below" title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Attache la nouvelle marque <em>newTag</em> à tous les items situés en-dessous de celui qui est
+                    indiqué par l&#8217;identifiant numérique ou la marque <em>tagOrId</em>. L&#8217;argument
+                    <em>newTag</em> est une chaîne de caractères.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.addtag_closest">
+                  <tt class="descclassname">Canvas.</tt><tt
+                    class="descname">addtag_closest</tt><big>(</big><em>newTag</em>, <em>x</em>, <em>y</em>,
+                  <em>halo=None</em>, <em>start=None</em><big>)</big><a class="headerlink" href="#Canvas.addtag_closest"
+                    title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Ajoute une marque à l&#8217;item le plus proche de la position indiquée par les coordonnées (de la
+                    fenêtre de vue). Si un ou plusieurs items sont à la même distance, celui qui est le plus haut dans
+                    la liste d&#8217;affichage (qui recouvre les autres) est sélectionné.
+                    Utilisez l&#8217;argument <em>halo</em> afin d&#8217;augmenter la taille effective du point. Par
+                    exemple, une valeur de 5 indique le traitement de tous les objets qui recouvrent le disque de centre
+                    <em>(x, y)</em>.</p>
+                  <p>Si l&#8217;identifiant d&#8217;un objet est utilisé pour l&#8217;argument <em>start</em>, cette
+                    méthode marque l&#8217;item qui est le plus haut dans la liste d&#8217;affichage tout en étant en
+                    dessous de celui qui est ainsi identifié.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.addtag_enclosed">
+                  <tt class="descclassname">Canvas.</tt><tt
+                    class="descname">addtag_enclosed</tt><big>(</big><em>newTag</em>, <em>x1</em>, <em>y1</em>,
+                  <em>x2</em>, <em>y2</em><big>)</big><a class="headerlink" href="#Canvas.addtag_enclosed"
+                    title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Ajoute la marque <em>newTag</em> à tous les items qui sont complètement recouvert par le rectangle
+                    dont le coin supérieur gauche est <em>(x1, y1)</em> et le coin inférieur droit est <em>(x2,
+                      y2)</em>.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.addtag_overlapping">
+                  <tt class="descclassname">Canvas.</tt><tt
+                    class="descname">addtag_overlapping</tt><big>(</big><em>newTag</em>, <em>x1</em>, <em>y1</em>,
+                  <em>x2</em>, <em>y2</em><big>)</big><a class="headerlink" href="#Canvas.addtag_overlapping"
+                    title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Comme la méthode précédente à cela près que les items marqués sont tous ceux qui ont au moins un
+                    point commun avec le rectangle.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.addtag_withtag">
+                  <tt class="descclassname">Canvas.</tt><tt
+                    class="descname">addtag_withtag</tt><big>(</big><em>newTag</em>, <em>tagOrId</em><big>)</big><a
+                    class="headerlink" href="#Canvas.addtag_withtag" title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Ajoute la marque <em>newTag</em> à ou aux objets identifiés par <em>tagOrId</em>.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.bbox">
+                  <tt class="descclassname">Canvas.</tt><tt
+                    class="descname">bbox</tt><big>(</big><em>tagOrId=None</em><big>)</big><a class="headerlink"
+                    href="#Canvas.bbox" title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Retourne un tuple <em>(x1, y1, x2, y2)</em> qui décrit un rectangle qui renferme tous les objets
+                    identifiés par <em>tagOrId</em>. Si l&#8217;argument n&#8217;est pas précisé, le rectangle retourné
+                    est le plus petit qui contient tous les items présents dans le canevas. Le coin supérieur gauche du
+                    rectangle est <em>(x1, y1)</em> et son coin inférieur droit est <em>(x2, y2)</em>.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.canvasx">
+                  <tt class="descclassname">Canvas.</tt><tt class="descname">canvasx</tt><big>(</big><em>screenx</em>,
+                  <em>gridspacing=None</em><big>)</big><a class="headerlink" href="#Canvas.canvasx"
+                    title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Retourne la coordonnée x du canevas qui correspond à la coordonnée x d&#8217;affichage précisée par
+                    <em>screenx</em>. Si l&#8217;argument <em>gridspacing</em> est précisé, la valeur de x relative au
+                    canevas est arrondi au plus proche multiple de cette valeur.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.canvasy">
+                  <tt class="descclassname">Canvas.</tt><tt class="descname">canvasy</tt><big>(</big><em>screeny</em>,
+                  <em>gridspacing=None</em><big>)</big><a class="headerlink" href="#Canvas.canvasy"
+                    title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Similaire à la méthode précédente mais pour y.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.coords">
+                  <tt class="descclassname">Canvas.</tt><tt class="descname">coords</tt><big>(</big><em>tagOrId</em>,
+                  <em>x0</em>, <em>y0</em>, <em>x1</em>, <em>y1</em>, <em>...</em>, <em>xn</em>,
+                  <em>yn</em><big>)</big><a class="headerlink" href="#Canvas.coords"
+                    title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Si vous précisez uniquement l&#8217;argument <em>tagOrId</em>, elle retourne un tuple contenant les
+                    coordonnées du plus bas ou de l&#8217;unique item précisé par cet argument. Le nombre des
+                    coordonnées dépend du type d&#8217;item. Dans la plupart des cas, il est de la forme <em>(x1, y1,
+                      x2, y2)</em> décrivant la boîte englobante (<em>bounding box</em>) de l&#8217;item.</p>
+                  <p>Vous pouvez déplacer un item en précisant ses nouvelles coordonnées.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.dchars">
+                  <tt class="descclassname">Canvas.</tt><tt class="descname">dchars</tt><big>(</big><em>tagOrId</em>,
+                  <em>first=0</em>, <em>last=first</em><big>)</big><a class="headerlink" href="#Canvas.dchars"
+                    title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Supprime des caractères du ou des items textuels sélectionnés. Tous les caractères situés entre
+                    <em>first</em> et <em>last</em> (inclus) sont supprimés, ces paramètres indiquant une position
+                    entière ou la fin du texte via la chaîne <tt class="docutils literal"><span
+                        class="pre">'end'</span></tt>. Par exemple, pour un canevas <tt class="docutils literal"><span
+                        class="pre">C</span></tt> et un item de marque <tt class="docutils literal"><span
+                        class="pre">'I'</span></tt>, <tt class="docutils literal"><span class="pre">C.dchars('I',</span>
+                      <span class="pre">1,</span> <span class="pre">1)</span></tt> supprime le second caractère.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.delete">
+                  <tt class="descclassname">Canvas.</tt><tt
+                    class="descname">delete</tt><big>(</big><em>tagOrId</em><big>)</big><a class="headerlink"
+                    href="#Canvas.delete" title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Supprime le ou les items indiqués par <em>tagOrId</em>. Il n&#8217;y a pas d&#8217;erreurs si aucun
+                    item ne correspond à <em>tagOrId</em>.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.dtag">
+                  <tt class="descclassname">Canvas.</tt><tt class="descname">dtag</tt><big>(</big><em>tagOrId</em>,
+                  <em>tagToDelete</em><big>)</big><a class="headerlink" href="#Canvas.dtag"
+                    title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Supprime la marque <em>tagToDelete</em> du ou des items sélectionnés par <em>tagOrId</em>.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.find_above">
+                  <tt class="descclassname">Canvas.</tt><tt
+                    class="descname">find_above</tt><big>(</big><em>tagOrId</em><big>)</big><a class="headerlink"
+                    href="#Canvas.find_above" title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Retourne l&#8217;identifiant numérique de l&#8217;item situé juste au dessus de celui qui est
+                    sélectionné par <em>tagOrId</em>. S&#8217;il y en a plusieurs, on utilise le plus haut dans la liste
+                    d&#8217;affichage. Si l&#8217;item précisé par <em>tagOrId</em> est le plus haut, la méthode returne
+                    un tuple vide <tt class="docutils literal"><span class="pre">()</span></tt>.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.find_all">
+                  <tt class="descclassname">Canvas.</tt><tt class="descname">find_all</tt><big>(</big><big>)</big><a
+                    class="headerlink" href="#Canvas.find_all" title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Retourne une liste qui contient tous les identifiants numériques de tous les items du canevas, du
+                    plus bas au plus haut.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.find_below">
+                  <tt class="descclassname">Canvas.</tt><tt
+                    class="descname">find_below</tt><big>(</big><em>tagOrId</em><big>)</big><a class="headerlink"
+                    href="#Canvas.find_below" title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Retourne l&#8217;identifiant numérique de l&#8217;item situé juste en dessous de celui qui est
+                    sélectionné par <em>tagOrId</em>. Si plusieurs items correspondent, on obtient le plus bas dans la
+                    liste d&#8217;affichage. Si l&#8217;item sélectionné par <em>tagOrId</em> est le plus bas, la
+                    méthode retourne un tuple vide <tt class="docutils literal"><span class="pre">()</span></tt>.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.find_closest">
+                  <tt class="descclassname">Canvas.</tt><tt class="descname">find_closest</tt><big>(</big><em>x</em>,
+                  <em>y</em>, <em>halo=None</em>, <em>start=None</em><big>)</big><a class="headerlink"
+                    href="#Canvas.find_closest" title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Retourne un tuple contenant l&#8217;identifiant numérique d&#8217;un seul item, celui qui est le
+                    plus proche du point <em>(x, y)</em>. Si plusieurs items sont sélectionnés, c&#8217;est celui qui
+                    est le plus haut dans la liste d&#8217;affichage. Si aucun item n&#8217;est sélectionné, retourne
+                    une liste vide. Utiliser l&#8217;argument <em>halo</em> afin d&#8217;augmenter la taille effective
+                    du point. Tout item situé à une distance inférieur à <em>halo</em> de <em>(x, y)</em> le coupe. Si
+                    <em>start</em> est renseigné, en utilisant une marque ou un identifiant (la marque sélectionne
+                    l&#8217;item le plus bas), l&#8217;item le plus proche et situé en-dessous de <em>start</em> est
+                    choisi.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.find_enclosed">
+                  <tt class="descclassname">Canvas.</tt><tt class="descname">find_enclosed</tt><big>(</big><em>x1</em>,
+                  <em>y1</em>, <em>x2</em>, <em>y2</em><big>)</big><a class="headerlink" href="#Canvas.find_enclosed"
+                    title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Retourne la liste des identifiants numériques des items situés entièrement à l&#8217;intérieur du
+                    rectangle déterminé par <em>(x1, y1)</em> (coin supérieur gauche) et <em>(x2, y2)</em> (coin
+                    inférieur droit).</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.find_overlapping">
+                  <tt class="descclassname">Canvas.</tt><tt
+                    class="descname">find_overlapping</tt><big>(</big><em>x1</em>, <em>y1</em>, <em>x2</em>,
+                  <em>y2</em><big>)</big><a class="headerlink" href="#Canvas.find_overlapping"
+                    title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Similaire à la méthode précédente, mais sélectionne tous les items qui ont au moins un point commun
+                    avec le rectangle.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.find_withtag">
+                  <tt class="descclassname">Canvas.</tt><tt
+                    class="descname">find_withtag</tt><big>(</big><em>tagOrId</em><big>)</big><a class="headerlink"
+                    href="#Canvas.find_withtag" title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Retourne la liste des identifiants numériques des items sélectionnés par <em>tagOrId</em>.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.focus">
+                  <tt class="descclassname">Canvas.</tt><tt
+                    class="descname">focus</tt><big>(</big><em>tagOrId=None</em><big>)</big><a class="headerlink"
+                    href="#Canvas.focus" title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Donne le focus à l&#8217;item sélectionné par <em>tagOrId</em>. Si plusieurs sont sélectionnés,
+                    donne le focus au premier de la liste d&#8217;affichage qui permet un curseur d&#8217;insertion. Si
+                    aucun item ne satisfait cette condition ou si le canevas n&#8217;a pas le focus, le focus
+                    n&#8217;est pas modifié. Si l&#8217;argument est omis, l&#8217;identifiant de l&#8217;item qui a le
+                    focus est retourné ou <tt class="docutils literal"><span class="pre">''</span></tt> si aucun ne
+                    l&#8217;a.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.gettags">
+                  <tt class="descclassname">Canvas.</tt><tt
+                    class="descname">gettags</tt><big>(</big><em>tagOrId</em><big>)</big><a class="headerlink"
+                    href="#Canvas.gettags" title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Si <em>tagOrId</em> est un identifant numérique, elle retourne la liste de toutes les marques qui
+                    sont associées à cet item. Si c&#8217;est une marque, elle retourne la liste de toutes les marques
+                    de l&#8217;item le plus bas parmi ceux qui sont sélectionnés.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.icursor">
+                  <tt class="descclassname">Canvas.</tt><tt class="descname">icursor</tt><big>(</big><em>tagOrId</em>,
+                  <em>index</em><big>)</big><a class="headerlink" href="#Canvas.icursor"
+                    title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>En supposant que l&#8217;item sélectionné permette l&#8217;insertion de texte et qu&#8217;il
+                    possède le focus, positionne le curseur d&#8217;insertion à la position <em>index</em> laquelle est
+                    soit un entier ou la chaîne <tt class="docutils literal"><span class="pre">'end'</span></tt>.
+                    N&#8217;a pas d&#8217;effet autrement.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.index">
+                  <tt class="descclassname">Canvas.</tt><tt class="descname">index</tt><big>(</big><em>tagOrId</em>,
+                  <em>specifier</em><big>)</big><a class="headerlink" href="#Canvas.index"
+                    title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Retourne l&#8217;index (entier) du <em>specifier</em> donné dans l&#8217;item textuel sélectionné
+                    par <em>tagOrId</em> (le plus bas s&#8217;il y en a plusieurs). La valeur de retour est une position
+                    dans une chaîne qui suit les convention de Python, 0 signifie avant le premier caractère.
+                    L&#8217;argument <em>specifier</em> peut être :</p>
+                  <ul class="simple">
+                    <li><tt class="docutils literal"><span class="pre">'insert'</span></tt>, pour retourner la position
+                      courante du curseur d&#8217;insertion.</li>
+                    <li><tt class="docutils literal"><span class="pre">'end'</span></tt>, pour retourner la position qui
+                      suit le dernier caractère.</li>
+                    <li>&#8216;sel.first&#8217;, pour retourner la position initiale de la zone de sélection. Si une
+                      telle zone n&#8217;existe pas, tkinter produira une exception du type <tt
+                        class="docutils literal"><span class="pre">TclError</span></tt>.</li>
+                    <li><tt class="docutils literal"><span class="pre">'sel.last'</span></tt>, pour retourner la
+                      position de la fin de la zone de sélection. De même, tkinter lève une exception si une telle zone
+                      n&#8217;existe pas.</li>
+                    <li>Une chaîne de la forme <tt class="docutils literal"><span class="pre">'&#64;x,y'</span></tt>
+                      pour retourner l&#8217;index du caractère situé à la position <em>(x, y)</em>. Si cette position
+                      est située au-dessus ou à gauche de l&#8217;item textuel, la méthode retourne 0. Si elle est
+                      située en-dessous ou à droite, la méthode retourne l&#8217;index de fin de l&#8217;item.</li>
+                  </ul>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.insert">
+                  <tt class="descclassname">Canvas.</tt><tt class="descname">insert</tt><big>(</big><em>tagOrId</em>,
+                  <em>beforeThis</em>, <em>text</em><big>)</big><a class="headerlink" href="#Canvas.insert"
+                    title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Insère la chaîne de caractères <em>text</em> dans le ou les items sélectionné par <em>tagOrId</em>,
+                    à la position déterminée par <em>beforeThis</em>: <tt class="docutils literal"><span
+                        class="pre">'insert'</span></tt>, <tt class="docutils literal"><span
+                        class="pre">'end'</span></tt>, <tt class="docutils literal"><span
+                        class="pre">'sel.first'</span></tt> et <tt class="docutils literal"><span
+                        class="pre">'sel.last'</span></tt> ou un entier (index) ou <tt class="docutils literal"><span
+                        class="pre">'&#64;x,y'</span></tt> (<em>x</em> et <em>y</em> à remplacer par des entiers).</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.itemcget">
+                  <tt class="descclassname">Canvas.</tt><tt class="descname">itemcget</tt><big>(</big><em>tagOrId</em>,
+                  <em>option</em><big>)</big><a class="headerlink" href="#Canvas.itemcget"
+                    title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Retourne la valeur de l&#8217;<em>option</em> de configuration (précisée par une chaîne de
+                    caractères) pour l&#8217;item sélectionné (ou pour l&#8217;item le plus bas si plusieurs sont
+                    sélectionnés par <em>tagOrId</em>. C&#8217;est très similaire à la méthode <tt
+                      class="docutils literal"><span class="pre">cget()</span></tt> pour les widgets.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.itemconfigure">
+                  <tt class="descclassname">Canvas.</tt><tt
+                    class="descname">itemconfigure</tt><big>(</big><em>tagOrId</em>, <em>option</em>,
+                  <em>...</em><big>)</big><a class="headerlink" href="#Canvas.itemconfigure"
+                    title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Si aucune option n&#8217;est indiquée, retourne un dictionnaire dont les clés sont les options
+                    possibles pour l&#8217;item donné par <em>tagOrId</em> (ou le plus bas s&#8217;il y en a plusieurs).
+                    Autrement, modifie la ou les options données sous la forme <tt class="docutils literal"><span
+                        class="pre">option=valeur</span></tt>.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.move">
+                  <tt class="descclassname">Canvas.</tt><tt class="descname">move</tt><big>(</big><em>tagOrId</em>,
+                  <em>dx</em>, <em>dy</em><big>)</big><a class="headerlink" href="#Canvas.move"
+                    title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Déplace les items donnés via <em>tagOrId</em> en ajoutant <em>dx</em> à leurs coordonnées
+                    <em>x</em> et <em>dy</em> à leurs coordonnées <em>y</em>.</p>
+                </dd>
+              </dl>
+
+
+
+              <dl class="method">
+                <dt id="Canvas.scale">
+                  <tt class="descclassname">Canvas.</tt><tt class="descname">scale</tt><big>(</big><em>tagOrId</em>,
+                  <em>x</em>, <em>y</em>, <em>sx</em>, <em>sy</em><big>)</big><a class="headerlink" href="#Canvas.scale"
+                    title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Mise à l&#8217;échelle de tous les objets relativement au point de référence <tt
+                      class="docutils literal"><span class="pre">P=(x,</span> <span class="pre">y)</span></tt>. Les
+                    facteurs d&#8217;échelle <em>sx</em> et <em>sy</em> sont basés sur une valeur de 1.0 qui signifie
+                    aucune mise à l&#8217;échelle. Chaque point des items sélectionnés est déplacé de façon que leurs
+                    distances en <em>x</em> (resp. en <em>y</em>) au point <tt class="docutils literal"><span
+                        class="pre">P</span></tt> sont multipliées par <em>sx</em> (resp. <em>sy</em>). Cette méthode ne
+                    modifie pas la taille des textes mais peut les déplacer.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.scan_dragto">
+                  <tt class="descclassname">Canvas.</tt><tt class="descname">scan_dragto</tt><big>(</big><em>x</em>,
+                  <em>y</em>, <em>gain=10.0</em><big>)</big><a class="headerlink" href="#Canvas.scan_dragto"
+                    title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Sert à faire défiler le canevas. voir la méthode <a class="reference internal"
+                      href="#Canvas.scan_mark" title="Canvas.scan_mark"><tt
+                        class="xref py py-meth docutils literal"><span class="pre">scan_mark()</span></tt></a>.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.scan_mark">
+                  <tt class="descclassname">Canvas.</tt><tt class="descname">scan_mark</tt><big>(</big><em>x</em>,
+                  <em>y</em><big>)</big><a class="headerlink" href="#Canvas.scan_mark"
+                    title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Cette méthode sert à réaliser des défilement rapide du canevas. L&#8217;intention est que
+                    l&#8217;utilisateur puisse faire défiler le canevas par cliquer-glisser c&#8217;est à dire en
+                    appuyant sur un bouton de la souris (sans relâcher) et en la déplaçant jusqu&#8217;au relâchement.
+                    Pour réaliser cette fonctionnalité, lier l&#8217;événement souris «bouton appuyé» à un gestionnaire
+                    qui appelle cette méthode en positionnant <em>x</em> et <em>y</em> à la position de la souris.
+                    Ensuite, lier l&#8217;événement <tt class="docutils literal"><span
+                        class="pre">'&lt;Motion&gt;'</span></tt> à un gestionnaire qui, en supposant que le bouton de la
+                    souris n&#8217;est pas relâché, appelle <tt class="xref py py-meth docutils literal"><span
+                        class="pre">scan_dragto(x,</span> <span class="pre">y,</span> <span
+                        class="pre">gain)()</span></tt> en positionnant <em>x</em> et <em>y</em> aux coordonnées de la
+                    souris ; le paramètre <em>gain</em> sert à contrôler le rythme du défilement, sa valeur par défaut
+                    est <tt class="docutils literal"><span class="pre">10.0</span></tt>. Utiliser une valeur plus grande
+                    pour accélérer le défilement.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.select_adjust">
+                  <tt class="descclassname">Canvas.</tt><tt
+                    class="descname">select_adjust</tt><big>(</big><em>tagOrId</em>, <em>index</em><big>)</big><a
+                    class="headerlink" href="#Canvas.select_adjust" title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Trouve l&#8217;extrémité de la selection courante la plus proche du caractère donné par
+                    <em>index</em> et l&#8217;ajuste de façon que la nouvelle sélection contienne ce caractère.
+                    L&#8217;autre extrémité de la sélection devient le point d&#8217;ancrage pour une utilisation
+                    ultérieure de <a class="reference internal" href="#Canvas.select_to" title="Canvas.select_to"><tt
+                        class="xref py py-meth docutils literal"><span class="pre">select_to()</span></tt></a>. Si il
+                    n&#8217;y avait aucune sélection, se comporte comme la méthode <a class="reference internal"
+                      href="#Canvas.select_to" title="Canvas.select_to"><tt
+                        class="xref py py-meth docutils literal"><span class="pre">select_to()</span></tt></a>.</p>
+                  <p>Pour les valeurs possible de <em>index</em>, voir <a class="reference internal"
+                      href="#Canvas.insert" title="Canvas.insert"><tt class="xref py py-meth docutils literal"><span
+                          class="pre">insert()</span></tt></a>.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.select_clear">
+                  <tt class="descclassname">Canvas.</tt><tt class="descname">select_clear</tt><big>(</big><big>)</big><a
+                    class="headerlink" href="#Canvas.select_clear" title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Supprime la sélection courante (pas ce qui est sélectionné) si elle existe, autrement ne fait rien.
+                  </p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.select_from">
+                  <tt class="descclassname">Canvas.</tt><tt
+                    class="descname">select_from</tt><big>(</big><em>tagOrId</em>, <em>index</em><big>)</big><a
+                    class="headerlink" href="#Canvas.select_from" title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Positionne le point d&#8217;ancrage de la sélection juste avant le caractère précisé par
+                    <em>index</em> dans le texte de l&#8217;item donné par <em>tagOrId</em>. Cette méthode ne modifie
+                    pas une sélection existante, elle positionne simplement la marque de fin de sélection pour
+                    l&#8217;utilisation ultérieur de <a class="reference internal" href="#Canvas.select_to"
+                      title="Canvas.select_to"><tt class="xref py py-meth docutils literal"><span
+                          class="pre">select_to()</span></tt></a>.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.select_item">
+                  <tt class="descclassname">Canvas.</tt><tt class="descname">select_item</tt><big>(</big><big>)</big><a
+                    class="headerlink" href="#Canvas.select_item" title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>S&#8217;il y a une sélection de texte dans ce canevas, retourne l&#8217;identiant de l&#8217;item
+                    texte qui contient la sélection. Sinon, retourne <tt class="docutils literal"><span
+                        class="pre">None</span></tt>.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.select_to">
+                  <tt class="descclassname">Canvas.</tt><tt class="descname">select_to</tt><big>(</big><em>oid</em>,
+                  <em>index</em><big>)</big><a class="headerlink" href="#Canvas.select_to"
+                    title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Positionne la sélection afin qu&#8217;elle inclut tous les caractères compris entre l&#8217;ancre
+                    de la sélection et <em>index</em>. La nouvelle sélection contient le caractère à la position
+                    <em>index</em>. Elle contient le caractère associé à l&#8217;ancre de sélection seulement si
+                    <em>index</em> est supérieur ou égal au point d&#8217;ancrage de la sélection. Le point
+                    d&#8217;ancrage de la sélection est déterminé par la dernière utilisation des méthodes <a
+                      class="reference internal" href="#Canvas.select_adjust" title="Canvas.select_adjust"><tt
+                        class="xref py py-meth docutils literal"><span class="pre">select_adjust()</span></tt></a> ou <a
+                      class="reference internal" href="#Canvas.select_from" title="Canvas.select_from"><tt
+                        class="xref py py-meth docutils literal"><span class="pre">select_from()</span></tt></a>. Si le
+                    point d&#8217;ancrage de la sélection n&#8217;est pas positionné, il est placé à la position
+                    <em>index</em>.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.tag_bind">
+                  <tt class="descclassname">Canvas.</tt><tt class="descname">tag_bind</tt><big>(</big><em>tagOrId</em>,
+                  <em>chevt=None</em>, <em>gestionnaire=None</em>, <em>add=None</em><big>)</big><a class="headerlink"
+                    href="#Canvas.tag_bind" title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Lie le gestionnaire d&#8217;événement <em>gestionnaire</em>, pour l&#8217;évenement précisé par
+                    <em>chevt</em>, à ou aux items <em>tagOrId</em>. Si l&#8217;argument <em>add</em> est une chaîne qui
+                    commence par <tt class="docutils literal"><span class="pre">'+'</span></tt>, cette liaison est
+                    ajoutée à celles qui ont déjà pu être définies pour cet événement. Autrement, les liaisons
+                    précédement définies sont remplacées par celle-ci. Pour plus d&#8217;informations, voir <a
+                      class="reference internal" href="event.html#events"><em>Événements: répondre aux actions de
+                        l&#8217;utilisateur.</em></a>. Notez que la liaison aux items n&#8217;est pas supprimée par le
+                    retrait d&#8217;une marque (ni ajoutée en cas de nouveau marquage).</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.tag_lower">
+                  <tt class="descclassname">Canvas.</tt><tt class="descname">tag_lower</tt><big>(</big><em>tagOrId</em>,
+                  <em>belowThis</em><big>)</big><a class="headerlink" href="#Canvas.tag_lower"
+                    title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Déplace les items <em>tagOrId</em> juste en-dessous du premier ou seul item indiqué par
+                    <em>belowThis</em>. S&#8217;il y en a plusieurs, leur ordre relatif n&#8217;est pas modifié. Cette
+                    méthode ne s&#8217;applique pas aux items fenêtre, <em>window</em>.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.tag_raise">
+                  <tt class="descclassname">Canvas.</tt><tt class="descname">tag_raise</tt><big>(</big><em>tagOrId</em>,
+                  <em>aboveThis</em><big>)</big><a class="headerlink" href="#Canvas.tag_raise"
+                    title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Déplace les items sélectionnés par <em>tagOrId</em> juste au-dessus du premier ou seul item
+                    sélectionné par <em>aboveThis</em>. S&#8217;il y en a plusieurs, leur ordre relatif n&#8217;est pas
+                    modifié. Cette méthode ne s&#8217;applique pas aux items fenêtre, <em>window</em>.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.tag_unbind">
+                  <tt class="descclassname">Canvas.</tt><tt
+                    class="descname">tag_unbind</tt><big>(</big><em>tagOrId</em>, <em>chEvt</em>,
+                  <em>gestId=None</em><big>)</big><a class="headerlink" href="#Canvas.tag_unbind"
+                    title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Supprime la liaison entre le ou les items <em>tagOrId</em> et le gestionnaire <em>gestId</em> pour
+                    la chaîne d&#8217;événement <em>chEvt</em>. Voir <a class="reference internal"
+                      href="event.html#events"><em>Événements: répondre aux actions de l&#8217;utilisateur.</em></a>.
+                  </p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.type">
+                  <tt class="descclassname">Canvas.</tt><tt
+                    class="descname">type</tt><big>(</big><em>tagOrId</em><big>)</big><a class="headerlink"
+                    href="#Canvas.type" title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Retourne le type du premier ou seul item sélectionné par <em>tagOrdId</em>. La valeur de retour est
+                    l&#8217;une des chaînes suivante : <tt class="docutils literal"><span class="pre">'arc'</span></tt>,
+                    <tt class="docutils literal"><span class="pre">'bitmap'</span></tt>, <tt
+                      class="docutils literal"><span class="pre">'image'</span></tt>, <tt class="docutils literal"><span
+                        class="pre">'line'</span></tt>, <tt class="docutils literal"><span
+                        class="pre">'oval'</span></tt>, <tt class="docutils literal"><span
+                        class="pre">'polygon'</span></tt>, <tt class="docutils literal"><span
+                        class="pre">'rectangle'</span></tt>, <tt class="docutils literal"><span
+                        class="pre">'text'</span></tt>, or <tt class="docutils literal"><span
+                        class="pre">'window'</span></tt>.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.xview_moveto">
+                  <tt class="descclassname">Canvas.</tt><tt
+                    class="descname">xview_moveto</tt><big>(</big><em>fraction</em><big>)</big><a class="headerlink"
+                    href="#Canvas.xview_moveto" title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Cette méthode fait défiler le canevas relativement à sa fenêtre de vue. L&#8217;intention est de
+                    faire une liaison avec l&#8217;option <em>command</em> d&#8217;une barre de défilement qui aurait
+                    été associée à ce canevas. Le défilement est horizontal jusqu&#8217;à une position entre 0 et 1
+                    (argument <em>fraction</em>): 0.0 pour sa position la plus à gauche et 1.0 pour sa position la plus
+                    à droite.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.xview_scroll">
+                  <tt class="descclassname">Canvas.</tt><tt class="descname">xview_scroll</tt><big>(</big><em>n</em>,
+                  <em>what</em><big>)</big><a class="headerlink" href="#Canvas.xview_scroll"
+                    title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Cette méthode fait défiler le canevas à gauche ou à droite. L&#8217;argument <em>what</em> précise
+                    le défilement qui peut être soit <tt class="docutils literal"><span class="pre">'units'</span></tt>
+                    soit <tt class="docutils literal"><span class="pre">'pages'</span></tt>, <em>n</em> précise le
+                    nombre d&#8217;unité du déplacement (vers la droite si positif, vers la gauche autrement). <tt
+                      class="docutils literal"><span class="pre">'units'</span></tt> se réfère à l&#8217;option
+                    <em>xscrollincrement</em> (voir <a class="reference internal"
+                      href="scrw.html#scrollbar"><em>Scrollbar - Barres de défilement</em></a>). Pour <tt
+                      class="docutils literal"><span class="pre">'pages'</span></tt>, <em>n</em> est multiplié par 90%
+                    de la largeur de la page.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.yview_moveto">
+                  <tt class="descclassname">Canvas.</tt><tt
+                    class="descname">yview_moveto</tt><big>(</big><em>fraction</em><big>)</big><a class="headerlink"
+                    href="#Canvas.yview_moveto" title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Même chose que <tt class="docutils literal"><span class="pre">xview_moveto</span></tt> mais
+                    verticalement.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Canvas.yview_scroll">
+                  <tt class="descclassname">Canvas.</tt><tt class="descname">yview_scroll</tt><big>(</big><em>n</em>,
+                  <em>what</em><big>)</big><a class="headerlink" href="#Canvas.yview_scroll"
+                    title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Même chose que <tt class="docutils literal"><span class="pre">xview_scroll</span></tt> mais
+                    verticalement.</p>
+                </dd>
+              </dl>
+
+            </div>
+            <div class="section" id="les-arcs">
+              <span id="arcs"></span>
+              <h2>Les arcs<a class="headerlink" href="#les-arcs" title="Lien permanent vers ce titre">¶</a></h2>
+              <img alt="../_images/can_arc.png" class="align-center" src="../_images/can_arc.png" />
+              <p>Un arc, dans sa forme générale, est une portion d&#8217;ellipse. Une ellipse tout entière ou un cercle
+                forment des cas particuliers. Reportez-vous à <a class="reference internal"
+                  href="#ellipses-et-cercles"><em>Les ellipses et cercles</em></a> pour en savoir plus sur la géométrie
+                des ellipses dessinées.</p>
+              <p>Pour créer un arc sur un canvas, utiliser :</p>
+              <dl class="method">
+                <dt id="Canvas.create_arc">
+                  <tt class="descclassname">Canvas.</tt><tt class="descname">create_arc</tt><big>(</big><em>x0</em>,
+                  <em>y0</em>, <em>x1</em>, <em>y1</em>, <em>option</em>, <em>...</em><big>)</big><a class="headerlink"
+                    href="#Canvas.create_arc" title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Le constructeur retourne l&#8217;identifiant numérique du nouvel arc créé.</p>
+                  <p>Le point <em>(x0, y0)</em> est le coin supérieur gauche et <em>(x1, y1)</em> le coin inférieur
+                    droit du rectangle dans lequel s&#8217;inscrit l&#8217;ellipse. Si le rectangle est un carré, vous
+                    obtenez un (arc) de cercle.</p>
+                  <p>Les options possibles sont:</p>
+                  <table class="docutils field-list" frame="void" rules="none">
+                    <col class="field-name" />
+                    <col class="field-body" />
+                    <tbody valign="top">
+                      <tr class="field-odd field">
+                        <th class="field-name">Paramètres:</th>
+                        <td class="field-body">
+                          <ul class="first last simple">
+
+                            <li><strong>extent</strong> &#8211; Largeur angulaire de l&#8217;arc en degrés. L&#8217;arc
+                              commence à l&#8217;angle précisé par l&#8217;option <strong>start</strong> et
+                              s&#8217;étend de <strong>extent</strong> degrés dans le sens direct (sens contraire des
+                              aiguilles d&#8217;une montre).</li>
+                            <li><strong>fill</strong> &#8211; Par défaut, l&#8217;intérieur de l&#8217;arc est
+                              transparent et vous pouvez obtenir ce comportement avec <tt class="docutils literal"><span
+                                  class="pre">fill=''</span></tt>. Vous pouvez aussi utiliser une couleur de
+                              remplissage. Voir <a class="reference internal" href="sa.html#couleurs"><em>Les
+                                  couleurs</em></a>.</li>
+                            <li><strong>offset</strong> &#8211; Utiliser cette option pour modifier le décalage du motif
+                              de «pointillé» de l&#8217;intérieur de l&#8217;arc. Voir <a class="reference internal"
+                                href="sa.html#nuagepts"><em>Ajuster des motifs en nuage de points</em></a>.</li>
+                            <li><strong>outline</strong> &#8211; Couleur de la bordure. Par défaut, <tt
+                                class="docutils literal"><span class="pre">outline='black'</span></tt>.</li>
+
+
+                            <li><strong>start</strong> &#8211; Angle (en degré), mesuré à partir de l&#8217;axe des
+                              <em>x</em> (dirigé horizontalement et vers la droite), qui précise le point de départ de
+                              l&#8217;arc. Si cette option n&#8217;est pas renseignée, on obtient une ellipse.</li>
+                            <li><strong>state</strong> &#8211; <tt class="docutils literal"><span
+                                  class="pre">'normal'</span></tt> par défaut. Il vaut <tt
+                                class="docutils literal"><span class="pre">'active'</span></tt> lorsque la souris le
+                              survole. Mettre cet option à <tt class="docutils literal"><span
+                                  class="pre">'disabled'</span></tt> pour l&#8217;empêcher de réagir à la souris, la
+                              mettre à <tt class="docutils literal"><span class="pre">'hidden'</span></tt> pour le
+                              rendre invisible.</li>
+
+
+                            <li><strong>style</strong> &#8211; Par défaut, l&#8217;arc est dessiné avec ses rayons;
+                              utiliser <tt class="docutils literal"><span class="pre">style='pieslice'</span></tt> pour
+                              obtenir cela. Pour dessiner l&#8217;arc sans ses rayons, utiliser <tt
+                                class="docutils literal"><span class="pre">style='arc'</span></tt>. Pour tracer
+                              l&#8217;arc et sa corde, c&#8217;est à dire le segment qui joint ses extrémtités, utiliser
+                              <tt class="docutils literal"><span class="pre">style='chord'</span></tt>.</li>
+                            <li><strong>tags</strong> &#8211; Si c&#8217;est une chaîne seule, elle sert à marquer
+                              (<em>tag</em>) l&#8217;arc. Utiliser un tuple de chaînes pour lui attribuer plusieurs
+                              marques. Voir <a class="reference internal" href="#canvastags"><em>Les marques
+                                  (tags)</em></a>.</li>
+                            <li><strong>width</strong> &#8211; Largeur de la bordure. Vaut 1 pixel par défaut. Utiliser
+                              <tt class="docutils literal"><span class="pre">width=0</span></tt> Pour rendre la bordure
+                              invisible. Voir <a class="reference internal" href="sa.html#dimensions"><em>Les
+                                  dimensions</em></a>.</li>
+                          </ul>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </dd>
+              </dl>
+
+            </div>
+
+
+            <div class="section" id="les-images">
+              <span id="can-images"></span>
+              <h2>Les images<a class="headerlink" href="#les-images" title="Lien permanent vers ce titre">¶</a></h2>
+              <img alt="../_images/can_image.png" class="align-center" src="../_images/can_image.png" />
+              <p>extrait de code utilisé:</p>
+              <div class="highlight-python">
+                <div class="highlight">
+                  <pre><span class="n">can</span> <span class="o">=</span> <span class="n">Canvas</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">w</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">h</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s">&quot;black&quot;</span><span class="p">)</span>
+<span class="c">#...</span>
+<span class="n">img</span> <span class="o">=</span> <span class="n">PhotoImage</span><span class="p">(</span><span class="nb">file</span><span class="o">=</span><span class="s">&#39;zelda.ppm&#39;</span><span class="p">)</span>
+<span class="n">can</span><span class="o">.</span><span class="n">create_image</span><span class="p">(</span><span class="n">w</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="n">img</span><span class="p">)</span>
+<span class="c">#...</span>
+</pre>
+                </div>
+              </div>
+              <p>Pour afficher une image sur un canevas, utiliser:</p>
+              <dl class="method">
+                <dt id="Canvas.create_image">
+                  <tt class="descclassname">Canvas.</tt><tt class="descname">create_image</tt><big>(</big><em>x</em>,
+                  <em>y</em>, <em>option</em>, <em>...</em><big>)</big><a class="headerlink" href="#Canvas.create_image"
+                    title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Retourne l&#8217;identifiant numérique de l&#8217;item image créé sur le canevas appelant.</p>
+                  <p>L&#8217;image est positionnée relativement au point <em>(x, y)</em>. Ces options sont :</p>
+                  <table class="docutils field-list" frame="void" rules="none">
+                    <col class="field-name" />
+                    <col class="field-body" />
+                    <tbody valign="top">
+                      <tr class="field-odd field">
+                        <th class="field-name">Paramètres:</th>
+                        <td class="field-body">
+                          <ul class="first last simple">
+                            <li><strong>activeimage</strong> &#8211; Image à afficher lorsque la souris survole
+                              l&#8217;item. Pour les valeurs possibles, voir l&#8217;option <strong>image</strong>
+                              ci-dessous.</li>
+                            <li><strong>anchor</strong> &#8211; Par défaut, vaut <tt class="docutils literal"><span
+                                  class="pre">'center'</span></tt> ce qui signifie que le texte est centré par rapport à
+                              la position <em>(x, y)</em>. Voir <a class="reference internal"
+                                href="sa.html#ancrage"><em>Le système d&#8217;ancrage</em></a> pour les valeurs
+                              possibles. Par exemple, si <tt class="docutils literal"><span
+                                  class="pre">anchor='s'</span></tt>, l&#8217;image sera positionnée de sorte que le
+                              point <em>(x, y)</em> soit situé au milieu de son bord supérieur (sud).</li>
+                            <li><strong>disabledimage</strong> &#8211; Image à afficher lorsque l&#8217;item est inactif
+                              (à l&#8217;état <tt class="docutils literal"><span class="pre">'disabled'</span></tt>).
+                              Pour les valeurs possibles, voir <strong>image</strong> ci-dessous.</li>
+                            <li><strong>image</strong> &#8211; L&#8217;image à afficher, voir <a
+                                class="reference internal" href="sa.html#images"><em>Les images</em></a>, pour avoir des
+                              informations à propos de la création d&#8217;image qui peuvent être chargées dans les
+                              canevas.</li>
+                            <li><strong>state</strong> &#8211; <tt class="docutils literal"><span
+                                  class="pre">'normal'</span></tt> par défaut. Mettre cet option à <tt
+                                class="docutils literal"><span class="pre">'disabled'</span></tt> pour l&#8217;empêcher
+                              de réagir à la souris, la mettre à <tt class="docutils literal"><span
+                                  class="pre">'hidden'</span></tt> pour la rendre invisible.</li>
+                            <li><strong>tags</strong> &#8211; Si c&#8217;est une chaîne seule, elle sert à marquer
+                              (<em>tag</em>) l&#8217;image. Utiliser un tuple de chaînes pour lui attribuer plusieurs
+                              marques. Voir <a class="reference internal" href="#canvastags"><em>Les marques
+                                  (tags)</em></a>.</li>
+                          </ul>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </dd>
+              </dl>
+
+            </div>
+            <div class="section" id="les-lignes">
+              <span id="lignes"></span>
+              <h2>Les lignes<a class="headerlink" href="#les-lignes" title="Lien permanent vers ce titre">¶</a></h2>
+              <p>En général, une ligne est une succession de segments connectés les uns aux autres. Pour créer une
+                ligne, utiliser:</p>
+              <dl class="method">
+                <dt id="Canvas.create_line">
+                  <tt class="descclassname">Canvas.</tt><tt class="descname">create_line</tt><big>(</big><em>x0</em>,
+                  <em>y0</em>, <em>x1</em>, <em>y1</em>, <em>...</em>, <em>xn</em>, <em>yn</em>, <em>option</em>,
+                  <em>...</em><big>)</big><a class="headerlink" href="#Canvas.create_line"
+                    title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>La ligne est formée de segments qui joignent les points <em>(x0, y0)</em>, <em>(x1, y1)</em>, …
+                    <em>(xn, yn)</em>. Les options possibles sont :</p>
+                  <table class="docutils field-list" frame="void" rules="none">
+                    <col class="field-name" />
+                    <col class="field-body" />
+                    <tbody valign="top">
+                      <tr class="field-odd field">
+                        <th class="field-name">Paramètres:</th>
+                        <td class="field-body">
+                          <ul class="first last simple">
+
+                            <li><strong>arrow</strong> &#8211; Par défaut, la ligne n&#8217;est pas terminée par une
+                              flèche. Utiliser <tt class="docutils literal"><span class="pre">arrow='first'</span></tt>
+                              pour obtenir une flèche au point <em>(x0, y0)</em> de la ligne. Utilisez <tt
+                                class="docutils literal"><span class="pre">arrow='last'</span></tt> pour obtenir une
+                              flèche à l&#8217;autre extrémité. Utilisez <tt class="docutils literal"><span
+                                  class="pre">arrow='both'</span></tt> pour en avoir à chaque extrémité.</li>
+
+
+                            <li><strong>fill</strong> &#8211; La couleur utilisée pour dessiner la ligne. La valeur par
+                              défaut est <tt class="docutils literal"><span class="pre">fill='black'</span></tt>.</li>
+                            
+                              
+                            <li><strong>state</strong> &#8211; <tt class="docutils literal"><span
+                                  class="pre">'normal'</span></tt> par défaut. Il vaut <tt
+                                class="docutils literal"><span class="pre">'active'</span></tt> lorsque la souris
+                              survole la ligne. Mettre cette option à <tt class="docutils literal"><span
+                                  class="pre">'disabled'</span></tt> pour l&#8217;empêcher de réagir à la souris, la
+                              mettre à <tt class="docutils literal"><span class="pre">'hidden'</span></tt> pour la
+                              rendre invisible.</li>
+                            
+                              
+                            <li><strong>tags</strong> &#8211; Si c&#8217;est une chaîne seule, elle sert à marquer
+                              (<em>tag</em>) la ligne. Utiliser un tuple de chaînes pour lui attribuer plusieurs
+                              marques. Voir <a class="reference internal" href="#canvastags"><em>Les marques
+                                  (tags)</em></a>.</li>
+                            <li><strong>width</strong> &#8211; L&#8217;épaisseur de la ligne. Vaut 1 pixel par défaut.
+                              Voir <a class="reference internal" href="sa.html#dimensions"><em>Les dimensions</em></a>
+                              pour les valeurs possibles.</li>
+                          </ul>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </dd>
+              </dl>
+
+            </div>
+            <div class="section" id="les-ellipses-et-cercles">
+              <span id="ellipses-et-cercles"></span>
+              <h2>Les ellipses et cercles<a class="headerlink" href="#les-ellipses-et-cercles"
+                  title="Lien permanent vers ce titre">¶</a></h2>
+              <img alt="../_images/can_ellipse.png" class="align-center" src="../_images/can_ellipse.png" />
+              <p>Pour créer l&#8217;ellipse (ou le cercle) qui s&#8217;inscrit dans le rectangle (ou le carré) <em>(x0,
+                  y0)</em>, <em>(x1, y1)</em> où les premières coordonnées sont celles du coin supérieur gauche et les
+                secondes celles du coin inférieur droit, utiliser:</p>
+              <dl class="method">
+                <dt id="Canvas.create_oval">
+                  <tt class="descclassname">Canvas.</tt><tt class="descname">create_oval</tt><big>(</big><em>x0</em>,
+                  <em>y0</em>, <em>x1</em>, <em>y1</em>, <em>option</em>, <em>...</em><big>)</big><a class="headerlink"
+                    href="#Canvas.create_oval" title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Retourne l&#8217;identifiant numérique de l&#8217;ellipse créée. Les options sont:</p>
+                  <table class="docutils field-list" frame="void" rules="none">
+                    <col class="field-name" />
+                    <col class="field-body" />
+                    <tbody valign="top">
+                      <tr class="field-odd field">
+                        <th class="field-name">Paramètres:</th>
+                        <td class="field-body">
+                          <ul class="first last simple">
+                           
+                            
+                            <li><strong>fill</strong> &#8211; Par défaut, l&#8217;intérieur de l&#8217;ellipse est
+                              transparent et vous pouvez obtenir ce comportement avec <tt class="docutils literal"><span
+                                  class="pre">fill=''</span></tt>. Vous pouvez aussi utiliser une couleur de
+                              remplissage. Voir <a class="reference internal" href="sa.html#couleurs"><em>Les
+                                  couleurs</em></a>.</li>
+                            
+                                  
+                            <li><strong>outline</strong> &#8211; Couleur de la bordure. Par défaut, <tt
+                                class="docutils literal"><span class="pre">outline='black'</span></tt>.</li>
+                            
+                            
+                            <li><strong>state</strong> &#8211; <tt class="docutils literal"><span
+                                  class="pre">'normal'</span></tt> par défaut. Il vaut <tt
+                                class="docutils literal"><span class="pre">'active'</span></tt> lorsque la souris le
+                              survole. Mettre cet option à <tt class="docutils literal"><span
+                                  class="pre">'disabled'</span></tt> pour l&#8217;empêcher de réagir à la souris, la
+                              mettre à <tt class="docutils literal"><span class="pre">'hidden'</span></tt> pour le
+                              rendre invisible.</li>
+                            <li><strong>tags</strong> &#8211; Si c&#8217;est une chaîne seule, elle sert à marquer
+                              (<em>tag</em>) l&#8217;ellipse. Utiliser un tuple de chaînes pour lui attribuer plusieurs
+                              marques. Voir <a class="reference internal" href="#canvastags"><em>Les marques
+                                  (tags)</em></a>.</li>
+                            <li><strong>width</strong> &#8211; Largeur de la bordure. Vaut 1 pixel par défaut. Utiliser
+                              <tt class="docutils literal"><span class="pre">width=0</span></tt> Pour rendre la bordure
+                              invisible. Voir <a class="reference internal" href="sa.html#dimensions"><em>Les
+                                  dimensions</em></a>.</li>
+                          </ul>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </dd>
+              </dl>
+
+            </div>
+            <div class="section" id="les-polygones">
+              <span id="polygones"></span>
+              <h2>Les polygones<a class="headerlink" href="#les-polygones" title="Lien permanent vers ce titre">¶</a>
+              </h2>
+              <img alt="../_images/can_polygon.png" class="align-center" src="../_images/can_polygon.png" />
+              <p>Extrait de code:</p>
+              <div class="highlight-python">
+                <div class="highlight">
+                  <pre><span class="n">can</span> <span class="o">=</span> <span class="n">Canvas</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="n">w</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">h</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s">&quot;black&quot;</span><span class="p">)</span>
+<span class="n">can</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
+<span class="n">e</span><span class="o">=</span><span class="mi">10</span>
+<span class="n">pts</span> <span class="o">=</span> <span class="p">[(</span><span class="n">e</span><span class="p">,</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">),(</span><span class="n">w</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">h</span><span class="o">-</span><span class="n">e</span><span class="p">),(</span><span class="n">w</span><span class="o">-</span><span class="n">e</span><span class="p">,</span><span class="n">h</span><span class="o">/</span><span class="mi">2</span><span class="p">),(</span><span class="n">w</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span><span class="n">e</span><span class="p">)]</span>
+<span class="n">can</span><span class="o">.</span><span class="n">create_polygon</span><span class="p">(</span><span class="n">pts</span><span class="p">,</span> <span class="n">dash</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">fill</span><span class="o">=</span><span class="s">&quot;magenta&quot;</span><span class="p">,</span> <span class="n">outline</span><span class="o">=</span><span class="s">&quot;yellow&quot;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre>
+                </div>
+              </div>
+              <p>Un polygone est une ligne fermée. Ainsi, il possède une ligne de contour (formée de segments) et une
+                zone intérieure. Pour le définir, on utilise une série de points <tt class="docutils literal"><span
+                    class="pre">[(x0,</span> <span class="pre">y0),</span> <span class="pre">(x1,</span> <span
+                    class="pre">y1),</span> <span class="pre">…</span> <span class="pre">(xn,</span> <span
+                    class="pre">yn)]</span></tt>. Le premier point et le dernier sont reliés par un segment afin de le
+                fermer. Pour créer un polygone, utiliser:</p>
+              <dl class="method">
+                <dt id="Canvas.create_polygon">
+                  <tt class="descclassname">Canvas.</tt><tt class="descname">create_polygon</tt><big>(</big><em>x0</em>,
+                  <em>y0</em>, <em>x1</em>, <em>y1</em>, <em>...</em>, <em>option</em>, <em>...</em><big>)</big><a
+                    class="headerlink" href="#Canvas.create_polygon" title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Retourne l&#8217;identifiant numérique du polygone créé. Ses options sont:</p>
+                  <table class="docutils field-list" frame="void" rules="none">
+                    <col class="field-name" />
+                    <col class="field-body" />
+                    <tbody valign="top">
+                      <tr class="field-odd field">
+                        <th class="field-name">Paramètres:</th>
+                        <td class="field-body">
+                          <ul class="first last simple">
+                            
+                            
+                            <li><strong>fill</strong> &#8211; Par défaut, l&#8217;intérieur du polygone est transparent
+                              et vous pouvez obtenir ce comportement avec <tt class="docutils literal"><span
+                                  class="pre">fill=''</span></tt>. Vous pouvez aussi utiliser une couleur de
+                              remplissage. Voir <a class="reference internal" href="sa.html#couleurs"><em>Les
+                                  couleurs</em></a>.</li>
+                           
+                                  
+                            <li><strong>outline</strong> &#8211; Couleur de la bordure; par défaut, <tt
+                                class="docutils literal"><span class="pre">outline=''</span></tt>, ce qui rend la
+                              bordure transparente.</li>
+                           
+                              
+                            <li><strong>state</strong> &#8211; <tt class="docutils literal"><span
+                                  class="pre">'normal'</span></tt> par défaut. Il vaut <tt
+                                class="docutils literal"><span class="pre">'active'</span></tt> lorsque la souris le
+                              survole. Mettre cette option à <tt class="docutils literal"><span
+                                  class="pre">'disabled'</span></tt> pour l&#8217;empêcher de réagir à la souris, la
+                              mettre à <tt class="docutils literal"><span class="pre">'hidden'</span></tt> pour le
+                              rendre invisible.</li>
+                           
+                            <li><strong>tags</strong> &#8211; Si c&#8217;est une chaîne seule, elle sert à marquer
+                              (<em>tag</em>) le polygone. Utiliser un tuple de chaînes pour lui attribuer plusieurs
+                              marques. Voir <a class="reference internal" href="#canvastags"><em>Les marques
+                                  (tags)</em></a>.</li>
+                            <li><strong>width</strong> &#8211; Largeur de la bordure. Vaut 1 pixel par défaut. Utiliser
+                              <tt class="docutils literal"><span class="pre">width=0</span></tt> Pour rendre la bordure
+                              invisible. Voir <a class="reference internal" href="sa.html#dimensions"><em>Les
+                                  dimensions</em></a>.</li>
+                          </ul>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </dd>
+              </dl>
+
+            </div>
+            <div class="section" id="les-rectangles">
+              <span id="rectangles"></span>
+              <h2>Les rectangles<a class="headerlink" href="#les-rectangles" title="Lien permanent vers ce titre">¶</a>
+              </h2>
+              <img alt="../_images/can_rectangle.png" class="align-center" src="../_images/can_rectangle.png" />
+              <p>Un rectangle est défini par deux points : <em>(x0, y0)</em> pour son coin supérieur gauche et <em>(x1,
+                  y1)</em> pour son coin inférieur droit.</p>
+              <p>Par exemple, un rectangle dont le coin supérieur gauche est <em>(100,100)</em> et le coin inférieur
+                droit est <em>(102,102)</em> est un carré de deux pixels par deux pixels qui inclut le pixel
+                <em>(101,101)</em> mais pas le pixel <em>(102,102)</em>.</p>
+              <p>Les rectangles sont formés de deux parties:</p>
+              <ul>
+                <li>
+                  <p class="first">Les bords haut et gauche de la ligne de bordure font partie du rectangle mais pas les
+                    bords bas et droit. Par défaut cette bordure est noire et a une épaisseur de 1 pixel.</p>
+                  <p>Par exemple, considérons le rectangle dont le coin supérieur gauche est <em>(10,10)</em> et le coin
+                    inférieur droit est <em>(11,11)</em>. Si vous annulez la bordure (<tt class="docutils literal"><span
+                        class="pre">width=0</span></tt>) et utilisez une couleur de remplissage verte (<tt
+                      class="docutils literal"><span class="pre">fill='green'</span></tt>), vous obtenez un pixel vert à
+                    la position <em>(10, 10)</em>. Cependant, dans les même conditions, si vous laissez par défaut la
+                    valeur de width, vous obtenez quatre pixels noirs aux positions <em>(10,10)</em>, <em>(10,11)</em>,
+                    <em>(11,10)</em>, et <em>(11,11)</em>.</p>
+                </li>
+                <li>
+                  <p class="first">L&#8217;intérieur du rectangle est la zone délimitée par la ligne de bordure. par
+                    défaut, il est transparent.</p>
+                </li>
+              </ul>
+              <p>Pour créer un rectangle sur le canevas:</p>
+              <dl class="method">
+                <dt id="Canvas.create_rectangle">
+                  <tt class="descclassname">Canvas.</tt><tt
+                    class="descname">create_rectangle</tt><big>(</big><em>x0</em>, <em>y0</em>, <em>x1</em>,
+                  <em>y1</em>, <em>option</em>, <em>...</em><big>)</big><a class="headerlink"
+                    href="#Canvas.create_rectangle" title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Retourne l&#8217;identifiant numérique du rectangle créé. Ses options sont:</p>
+                  <table class="docutils field-list" frame="void" rules="none">
+                    <col class="field-name" />
+                    <col class="field-body" />
+                    <tbody valign="top">
+                      <tr class="field-odd field">
+                        <th class="field-name">Paramètres:</th>
+                        <td class="field-body">
+                          <ul class="first last simple">
+                            
+                            
+                            <li><strong>fill</strong> &#8211; Par défaut, l&#8217;intérieur du rectangle est transparent
+                              et vous pouvez obtenir ce comportement avec <tt class="docutils literal"><span
+                                  class="pre">fill=''</span></tt>. Vous pouvez aussi utiliser une couleur de
+                              remplissage. Voir <a class="reference internal" href="sa.html#couleurs"><em>Les
+                                  couleurs</em></a>.</li>
+                           
+                                  
+                            <li><strong>outline</strong> &#8211; Couleur de la bordure. Par défaut, <tt
+                                class="docutils literal"><span class="pre">outline='black'</span></tt>.</li>
+                            
+                                
+                            <li><strong>state</strong> &#8211; <tt class="docutils literal"><span
+                                  class="pre">'normal'</span></tt> par défaut. Il vaut <tt
+                                class="docutils literal"><span class="pre">'active'</span></tt> lorsque la souris le
+                              survole. Mettre cette option à <tt class="docutils literal"><span
+                                  class="pre">'disabled'</span></tt> pour l&#8217;empêcher de réagir à la souris, la
+                              mettre à <tt class="docutils literal"><span class="pre">'hidden'</span></tt> pour le
+                              rendre invisible.</li>
+                            
+                              
+                            <li><strong>tags</strong> &#8211; Si c&#8217;est une chaîne seule, elle sert à marquer
+                              (<em>tag</em>) le rectangle. Utiliser un tuple de chaînes pour lui attribuer plusieurs
+                              marques. Voir <a class="reference internal" href="#canvastags"><em>Les marques
+                                  (tags)</em></a>.</li>
+                            <li><strong>width</strong> &#8211; Largeur de la bordure. Vaut 1 pixel par défaut. Utiliser
+                              <tt class="docutils literal"><span class="pre">width=0</span></tt> Pour rendre la bordure
+                              invisible. Voir <a class="reference internal" href="sa.html#dimensions"><em>Les
+                                  dimensions</em></a>.</li>
+                          </ul>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </dd>
+              </dl>
+
+            </div>
+            <div class="section" id="les-textes">
+              <span id="textes"></span>
+              <h2>Les textes<a class="headerlink" href="#les-textes" title="Lien permanent vers ce titre">¶</a></h2>
+              <p>Vous pouvez afficher une ou plusieurs lignes de texte sur un canevas en utilisant:</p>
+              <dl class="method">
+                <dt id="Canvas.create_text">
+                  <tt class="descclassname">Canvas.</tt><tt class="descname">create_text</tt><big>(</big><em>x</em>,
+                  <em>y</em>, <em>option</em>, <em>...</em><big>)</big><a class="headerlink" href="#Canvas.create_text"
+                    title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Retourne l&#8217;identifiant numérique de l&#8217;objet textuel ainsi créé. Ses options sont:</p>
+                  <table class="docutils field-list" frame="void" rules="none">
+                    <col class="field-name" />
+                    <col class="field-body" />
+                    <tbody valign="top">
+                      <tr class="field-odd field">
+                        <th class="field-name">Paramètres:</th>
+                        <td class="field-body">
+                          <ul class="first last simple">
+                           
+                            
+                            <li><strong>anchor</strong> &#8211; Par défaut, vaut <tt class="docutils literal"><span
+                                  class="pre">'center'</span></tt> ce qui signifie que le texte est centré par rapport à
+                              la position <em>(x,y)</em>. Notez que l&#8217;ancrage se rapporte à la position du point
+                              relativement au texte: ainsi, si anchor=&#8221;n&#8221;, le texte apparaît sous le point
+                              de façon que ce dernier soit au nord. Voir <a class="reference internal"
+                                href="sa.html#ancrage"><em>Le système d&#8217;ancrage</em></a> pour les valeurs
+                              possibles.</li>
+                            <li><strong>disabledfill</strong> &#8211; Couleur de remplissage lorsque l&#8217;item est
+                              dans l&#8217;état (state) <tt class="docutils literal"><span
+                                  class="pre">'disabled'</span></tt>.</li>
+                           
+                            <li><strong>fill</strong> &#8211; Couleur du texte, noir par défaut. Voir <a
+                                class="reference internal" href="sa.html#couleurs"><em>Les couleurs</em></a>.</li>
+                            <li><strong>font</strong> &#8211; Utiliser cette option pour changer la police de
+                              caractères. Voir <a class="reference internal" href="sa.html#polices"><em>Les polices de
+                                  caractères</em></a>.</li>
+                            <li><strong>justify</strong> &#8211; Gère l&#8217;alignement en cas d&#8217;affichage
+                              multiligne : <tt class="docutils literal"><span class="pre">'left'</span></tt> pour
+                              gauche, <tt class="docutils literal"><span class="pre">'center'</span></tt> pour centré et
+                              <tt class="docutils literal"><span class="pre">'right'</span></tt> pour droit.</li>
+                           
+                              
+                            <li><strong>state</strong> &#8211; <tt class="docutils literal"><span
+                                  class="pre">'normal'</span></tt> par défaut. Mettre cette option à <tt
+                                class="docutils literal"><span class="pre">'disabled'</span></tt> pour l&#8217;empêcher
+                              de réagir à la souris, la mettre à <tt class="docutils literal"><span
+                                  class="pre">'hidden'</span></tt> pour le rendre invisible.</li>
+                           
+                            <li><strong>tags</strong> &#8211; Si c&#8217;est une chaîne seule, elle sert à marquer
+                              (<em>tag</em>) le texte. Utiliser un tuple de chaînes pour lui attribuer plusieurs
+                              marques. Voir <a class="reference internal" href="#canvastags"><em>Les marques
+                                  (tags)</em></a>.</li>
+                            <li><strong>text</strong> &#8211; Le texte à afficher sous la forme d&#8217;une chaîne de
+                              caractères. Utiliser <tt class="docutils literal"><span class="pre">'\n'</span></tt> pour
+                              forcer les sauts de ligne.</li>
+                            <li><strong>width</strong> &#8211; Si aucune valeur n&#8217;est indiquée, le texte est
+                              affiché dans un rectangle aussi long que la plus longue ligne. Si vous indiquez
+                              explicitement une largeur, chaque ligne du texte sera coupée afin de ne pas dépasser cette
+                              largeur. Voir <a class="reference internal" href="sa.html#dimensions"><em>Les
+                                  dimensions</em></a>.</li>
+                          </ul>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </dd>
+              </dl>
+
+              <p>Vous pouvez modifier ou récupérer le texte affiché:</p>
+              <ul class="simple">
+                <li>Pour récupérer le texte d&#8217;un tel item d&#8217;identifiant <tt class="docutils literal"><span
+                      class="pre">id</span></tt> sur un canevas <tt class="docutils literal"><span
+                      class="pre">can</span></tt>, utiliser <tt class="docutils literal"><span
+                      class="pre">can.itemcget(id,</span> <span class="pre">'text')</span></tt>.</li>
+                <li>Pour remplacer le texte d&#8217;un tel item par une chaîne <tt class="docutils literal"><span
+                      class="pre">ch</span></tt>, utiliser <tt class="docutils literal"><span
+                      class="pre">can.itemconfigure(id,</span> <span class="pre">text=ch)</span></tt>.</li>
+              </ul>
+              <p>Plusieurs méthodes des canevas vous permettent d&#8217;autres manipulations du texte. Voir <a
+                  class="reference internal" href="#canvasmeth"><em>Méthodes des Canevas</em></a>, et plus
+                particulièrement <a class="reference internal" href="#Canvas.dchars" title="Canvas.dchars"><tt
+                    class="xref py py-meth docutils literal"><span class="pre">dchars()</span></tt></a>, <a
+                  class="reference internal" href="#Canvas.focus" title="Canvas.focus"><tt
+                    class="xref py py-meth docutils literal"><span class="pre">focus()</span></tt></a>, <a
+                  class="reference internal" href="#Canvas.icursor" title="Canvas.icursor"><tt
+                    class="xref py py-meth docutils literal"><span class="pre">icursor()</span></tt></a>, <a
+                  class="reference internal" href="#Canvas.index" title="Canvas.index"><tt
+                    class="xref py py-meth docutils literal"><span class="pre">index()</span></tt></a>, et <a
+                  class="reference internal" href="#Canvas.insert" title="Canvas.insert"><tt
+                    class="xref py py-meth docutils literal"><span class="pre">insert()</span></tt></a>.</p>
+            </div>
+            <div class="section" id="les-fenetres">
+              <span id="fenetres"></span>
+              <h2>Les fenêtres<a class="headerlink" href="#les-fenetres" title="Lien permanent vers ce titre">¶</a></h2>
+              <p>Il est possible de placer n&#8217;importe quel widget de tkinter sur un canevas en utilisant un item
+                fenêtre. Une fenêtre est une zone rectangulaire qui peut contenir un widget de tkinter. Le widget doit
+                être un enfant de la même fenêtre principale que le canevas, ou l&#8217;enfant d&#8217;un widget
+                lui-même situé dans cette fenêtre principale.</p>
+              <p>Si vous voulez insérer un objet composé de plusieurs widgets sur un canevas, vous pouvez utiliser cette
+                méthode pour placer un cadre (<em>frame</em>) dans le canevas et, ensuite, placer d&#8217;autres widgets
+                dans ce cadre.</p>
+              <p>Pour créer une fenêtre dans un canevas, utiliser:</p>
+              <dl class="method">
+                <dt id="Canvas.create_window">
+                  <tt class="descclassname">Canvas.</tt><tt class="descname">create_window</tt><big>(</big><em>x</em>,
+                  <em>y</em>, <em>option</em>, <em>...</em><big>)</big><a class="headerlink"
+                    href="#Canvas.create_window" title="Lien permanent vers cette définition">¶</a></dt>
+                <dd>
+                  <p>Retourne l&#8217;identifiant numérique de la fenêtre créée. Ses options sont:</p>
+                  <table class="docutils field-list" frame="void" rules="none">
+                    <col class="field-name" />
+                    <col class="field-body" />
+                    <tbody valign="top">
+                      <tr class="field-odd field">
+                        <th class="field-name">Paramètres:</th>
+                        <td class="field-body">
+                          <ul class="first last simple">
+                            <li><strong>anchor</strong> &#8211; Par défaut, vaut <tt class="docutils literal"><span
+                                  class="pre">'center'</span></tt> ce qui signifie que la fenêtre est centrée par
+                              rapport à la position <em>(x,y)</em>. Voir <a class="reference internal"
+                                href="sa.html#ancrage"><em>Le système d&#8217;ancrage</em></a> pour les valeurs
+                              possibles.</li>
+                            <li><strong>height</strong> &#8211; La hauteur de la zone réservée pour la fenêtre. Si non
+                              renseignée, la fenêtre s&#8217;ajuste à la hauteur de son contenue. Voir <a
+                                class="reference internal" href="sa.html#dimensions"><em>Les dimensions</em></a> pour
+                              les valeurs possibles.</li>
+                            <li><strong>state</strong> &#8211; <tt class="docutils literal"><span
+                                  class="pre">'normal'</span></tt> par défaut. Mettre cette option à <tt
+                                class="docutils literal"><span class="pre">'disabled'</span></tt> pour empêcher la
+                              fenêtre de réagir à la souris, la mettre à <tt class="docutils literal"><span
+                                  class="pre">'hidden'</span></tt> pour la rendre invisible.</li>
+                            <li><strong>tags</strong> &#8211; Si c&#8217;est une chaîne seule, elle sert à marquer
+                              (<em>tag</em>) la fenêtre. Utiliser un tuple de chaînes pour lui attribuer plusieurs
+                              marques. Voir <a class="reference internal" href="#canvastags"><em>Les marques
+                                  (tags)</em></a>.</li>
+                            <li><strong>width</strong> &#8211; La largeur de la zone réservée pour la fenêtre. Si non
+                              renseignée, la fenêtre s&#8217;ajuste à la largeur de son contenu.</li>
+                            <li><strong>window</strong> &#8211; Utiliser <tt class="docutils literal"><span
+                                  class="pre">window=w</span></tt> où <tt class="docutils literal"><span
+                                  class="pre">w</span></tt> est le widget que vous souhaitez placer sur le canevas.</li>
+                          </ul>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </dd>
+              </dl>
+
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  </div>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général">index</a></li>
+      <li class="right">
+        <a href="chw.html" title="Checkbutton - Cases à cocher">suivant</a> |</li>
+      <li class="right">
+        <a href="bw.html" title="Button - Boutons">précédent</a> |</li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="footer">
+    &copy; Copyright 2013, Étienne FLORENT.
+    Créé avec <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+  </div>
+</body>
+
+<!-- Mirrored from tkinter.fdex.eu/doc/caw.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:00:49 GMT -->
+
+</html>

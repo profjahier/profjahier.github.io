@@ -1,0 +1,380 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Mirrored from tkinter.fdex.eu/doc/toplww.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:00:59 GMT -->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <title>Toplevel - Fenêtres primaires &mdash; Tkinter pour ISN</title>
+
+  <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT: '../',
+      VERSION: '1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE: true
+    };
+  </script>
+  <script type="text/javascript" src="../_static/jquery.js"></script>
+  <script type="text/javascript" src="../_static/underscore.js"></script>
+  <script type="text/javascript" src="../_static/doctools.js"></script>
+  <script type="text/javascript" src="../_static/translations.js"></script>
+  <script type="text/javascript"
+    src="../../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="../_static/my.js"></script>
+  <link rel="top" title="Tkinter pour ISN" href="../index-2.html" />
+  <link rel="next" title="Méthodes communes à tous les widgets" href="uwm.html" />
+  <link rel="prev" title="Text - Les éditeurs de texte" href="textw.html" />
+</head>
+
+<body>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général" accesskey="I">index</a>
+      </li>
+      <li class="right">
+        <a href="uwm.html" title="Méthodes communes à tous les widgets" accesskey="N">suivant</a> |
+      </li>
+      <li class="right">
+        <a href="textw.html" title="Text - Les éditeurs de texte" accesskey="P">précédent</a> |
+      </li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+      <h4>Sujet précédent</h4>
+      <p class="topless"><a href="textw.html" title="Chapitre précédent"><tt
+            class="docutils literal docutils literal docutils literal"><span class="pre">Text</span></tt> - Les éditeurs
+          de texte</a></p>
+      <h4>Sujet suivant</h4>
+      <p class="topless"><a href="uwm.html" title="Chapitre suivant">Méthodes communes à tous les widgets</a></p>
+      
+    </div>
+  </div>
+
+  <div class="document">
+    <div class="documentwrapper">
+      <div class="bodywrapper">
+        <div class="body">
+
+          <div class="section" id="toplevel-fenetres-primaires">
+            <span id="toplevel"></span>
+            <h1><tt class="docutils literal"><span class="pre">Toplevel</span></tt> - Fenêtres primaires<a
+                class="headerlink" href="#toplevel-fenetres-primaires" title="Lien permanent vers ce titre">¶</a></h1>
+            <p>Une fenêtre primaire - <em>Toplevel window</em> - est une fenêtre qui possède une existence indépendante
+              pour le gestionnaire de fenêtre du système d&#8217;exploitation. Une telle fenêtre possède tous les
+              boutons ordinaires (fermeture, réduction/agrandissement) et elle peut être déplacée et redimensionnée à la
+              souris. Votre application peut utiliser autant de fenêtres «primaires» que souhaité.</p>
+            <p>Étant donné un widget w, vous pouvez récupérer la fenêtre primaire qui le contient en utilisant <tt
+                class="docutils literal"><span class="pre">w.winfo_toplevel()</span></tt>.</p>
+            <p>Pour créer une nouvelle fenêtre primaire:</p>
+            <dl class="class">
+              <dt id="Toplevel">
+                <em class="property">class </em><tt class="descname">Toplevel</tt><big>(</big><em>option</em>,
+                <em>...</em><big>)</big><a class="headerlink" href="#Toplevel"
+                  title="Lien permanent vers cette définition">¶</a>
+              </dt>
+              <dd>
+                <p>Ses options incluent:</p>
+                <table class="docutils field-list" frame="void" rules="none">
+                  <col class="field-name" />
+                  <col class="field-body" />
+                  <tbody valign="top">
+                    <tr class="field-odd field">
+                      <th class="field-name">Paramètres:</th>
+                      <td class="field-body">
+                        <ul class="first last simple">
+                          <li><strong>bg</strong> &#8211; (ou <em>background</em>) La couleur d&#8217;arrière plan de la
+                            fenêtre. Voir <a class="reference internal" href="sa.html#couleurs"><em>Les
+                                couleurs</em></a>.</li>
+                          <li><strong>bd</strong> &#8211; (ou <em>borderwidth</em>) La largeur de sa bordure en pixels;
+                            0 par défaut. Pour des valeurs possibles, voir <a class="reference internal"
+                              href="sa.html#dimensions"><em>Les dimensions</em></a>. Voir aussi l&#8217;option
+                            <strong>relief</strong> ci-dessous.</li>
+                          <li><strong>class_</strong> &#8211; <p>Vous pouvez donner à une fenêtre primaire un nom de
+                              classe. De tels noms peuvent être alors utilisés dans la base de données des options afin
+                              de récupérer les préférences de configuration des utilisateurs (comme les couleur). Par
+                              exemple, vous pourriez concevoir une série de fenêtre surgissantes (<em>pop-ups</em>)
+                              appelées &#8220;hurlantes&#8221;, et toutes les configurer avec l&#8217;option <tt
+                                class="docutils literal"><span class="pre">class_='Screamer'</span></tt>. Ensuite, vous
+                              pourriez mettre la ligne suivante dans votre base de données des options:</p>
+                            <div class="highlight-python">
+                              <pre>*Screamer*background: red</pre>
+                            </div>
+                            <p>et enfin, utiliser la méthode <tt class="docutils literal"><span
+                                  class="pre">option_readfile()</span></tt> pour lire cette base de données. Cela aurait
+                              pour effet de configurer la couleur de fond par défaut de tout les widgets ayant ce nom de
+                              classe avec la couleur rouge. Cette option est nommée <tt class="docutils literal"><span
+                                  class="pre">class_</span></tt> parce que <em>class</em> est un mot clé de Python.</p>
+                          </li>
+                          <li><strong>cursor</strong> &#8211; Le pointeur de la souris utilisée lorsqu&#8217; elle
+                            survole cette fenêtre. Voir <a class="reference internal" href="sa.html#pointeurs"><em>Le
+                                pointeur de la souris</em></a>.</li>
+                          <li><strong>height</strong> &#8211; La hauteur de la fenêtre; voir <a
+                              class="reference internal" href="sa.html#dimensions"><em>Les dimensions</em></a>.</li>
+                          <li><strong>highlightbackground</strong> &#8211; La couleur de ligne de mise en valeur du
+                            focus lorsque la fenêtre ne l&#8217;a pas. Voir <a class="reference internal"
+                              href="focus.html#focus"><em>Le focus: réception des saisies clavier</em></a>.</li>
+                          <li><strong>highlightcolor</strong> &#8211; La couleur de ligne de mise en valeur du focus
+                            lorsque la fenêtre l&#8217;obtient.</li>
+                          <li><strong>highlightthickness</strong> &#8211; L&#8217;épaisseur de la ligne de mise en
+                            valeur du focus. 1 par défaut. Pour supprimer la mise en évidence du focus, mettre cette
+                            option à 0.</li>
+                          <li><strong>menu</strong> &#8211; Pour incorporer une barre des menus principaux, configurez
+                            cette option avec un widget Menu. Sous MacOS, ce menu apparaîtra tout en haut de
+                            l&#8217;écran lorsque la fenêtre est active. Sous Window ou Unix, il apparaîtra en haut de
+                            la fenêtre.</li>
+                          <li><strong>padx</strong> &#8211; Utilisez cette option pour ajouter une marge horizontale à
+                            gauche et à droite de la fenêtre. La valeur est un nombre de pixels.</li>
+                          <li><strong>pady</strong> &#8211; Utilisez cette option pour ajouter une marge verticale en
+                            haut et en base de la fenêtre. La valeur est un nombre de pixels.</li>
+                          <li><strong>relief</strong> &#8211; Normalement, une fenêtre primaire n&#8217;a pas de bordure
+                            3d. Pour obtenir une telle bordure, réglez l&#8217;option <strong>bd</strong> avec une
+                            valeur supérieure à 0 et celle-ci avec l&#8217;une des valeurs possible pour le relief (voir
+                            <a class="reference internal" href="sa.html#reliefs"><em>Les styles de relief</em></a>).
+                          </li>
+                          <li><strong>takefocus</strong> &#8211; Normalement, une fenêtre primaire n&#8217;obtient pas
+                            le focus. Utilisez <tt class="docutils literal"><span class="pre">takefocus=True</span></tt>
+                            si vous souhaitez qu&#8217;elle puisse l&#8217;obtenir; voir <a class="reference internal"
+                              href="focus.html#focus"><em>Le focus: réception des saisies clavier</em></a>.</li>
+                          <li><strong>width</strong> &#8211; La largeur de la fenêtre. Voir <a
+                              class="reference internal" href="sa.html#dimensions"><em>Les dimensions</em></a>.</li>
+                        </ul>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p>Les méthodes des fenêtres primaires sont:</p>
+                <dl class="method">
+                  <dt id="Toplevel.aspect">
+                    <tt class="descname">aspect</tt><big>(</big><em>nmin</em>, <em>dmin</em>, <em>nmax</em>,
+                    <em>dmax</em><big>)</big><a class="headerlink" href="#Toplevel.aspect"
+                      title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Sert à contraindre le rapport largeur sur hauteur de la fenêtre dans l&#8217;intervalle [
+                      <em>nmin</em> / <em>dmin</em>, <em>nmax</em> / <em>dmax</em> ].</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Toplevel.deiconify">
+                    <tt class="descname">deiconify</tt><big>(</big><big>)</big><a class="headerlink"
+                      href="#Toplevel.deiconify" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Si la fenêtre a été réduite en une icone, cette méthode la ramène à l&#8217;écran.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Toplevel.geometry">
+                    <tt class="descname">geometry</tt><big>(</big><em>newGeometry=None</em><big>)</big><a
+                      class="headerlink" href="#Toplevel.geometry" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Sert à régler la géométrie de la fenêtre. Pour la forme de son argument, voir <a
+                        class="reference internal" href="sa.html#geometrie"><em>Les chaînes de géométrie</em></a>. Si
+                      l&#8217;argument est omis, elle retourne la chaîne qui décrit sa géométrie courante.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Toplevel.iconify">
+                    <tt class="descname">iconify</tt><big>(</big><big>)</big><a class="headerlink"
+                      href="#Toplevel.iconify" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Réduit la fenêtre en une icone.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Toplevel.lift">
+                    <tt class="descname">lift</tt><big>(</big><em>aboveThis=None</em><big>)</big><a class="headerlink"
+                      href="#Toplevel.lift" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Pour élever cette fenêtre tout en haut de la pile ordonnée des fenêtre que gère le gestionnaire
+                      de fenêtres du système, utilisez cette méthode sans argument. Vous pouvez aussi élever cette
+                      fenêtre juste au-dessus d&#8217;une autre fenêtre en précisant cette dernière comme argument.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Toplevel.lower">
+                    <tt class="descname">lower</tt><big>(</big><em>belowThis=None</em><big>)</big><a class="headerlink"
+                      href="#Toplevel.lower" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Sans aucun argument, la fenêtre est déplacée tout en bas de la pile ordonnée des fenêtres que
+                      gère le gestionnaire de fenêtre du sytème. Vous pouvez aussi la déplacer juste en dessous
+                      d&#8217;une autre en précisant cette dernière comme argument.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Toplevel.maxsize">
+                    <tt class="descname">maxsize</tt><big>(</big><em>largeur=None</em>,
+                    <em>hauteur=None</em><big>)</big><a class="headerlink" href="#Toplevel.maxsize"
+                      title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Sert à régler la taille maximale de la fenêtre. Si les arguments sont omis, elle retourne les
+                      valeurs courantes (largeur, hauteur).</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Toplevel.minsize">
+                    <tt class="descname">minsize</tt><big>(</big><em>width=None</em>, <em>height=None</em><big>)</big><a
+                      class="headerlink" href="#Toplevel.minsize" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Sert à régler la taille minimale de la fenêtre. Si les arguments sont omis, elle retourne les
+                      valeurs courantes sous la forme d&#8217;un tuple à deux éléments.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Toplevel.overrideredirect">
+                    <tt class="descname">overrideredirect</tt><big>(</big><em>flag=None</em><big>)</big><a
+                      class="headerlink" href="#Toplevel.overrideredirect"
+                      title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Lorsque cette méthode est appelée avec la valeur True, elle positionne le drapeau <em>override
+                        redirect</em>, lequel supprime toutes les décorations de la fenêtres de telle sorte
+                      qu&#8217;elle ne puisse plus être déplacée, redimensionnée ou iconifiée ou fermée. Si elle est
+                      appelée avec la valeur False, elle retrouve son aspect normal ainsi que tous ses comportements. Si
+                      elle est appelée sans argument, elle retourne le drapeau <em>override redirect</em> actuellement
+                      utilisée.</p>
+                    <p>Faites attention à appeler la méthode <a class="reference internal"
+                        href="uwm.html#update_idletasks" title="update_idletasks"><tt
+                          class="xref py py-meth docutils literal"><span class="pre">update_idletasks()</span></tt></a>
+                      (voir <a class="reference internal" href="uwm.html#universal"><em>Méthodes communes à tous les
+                          widgets</em></a>) avant de positionner ce drapeau. Si vous l&#8217;appeler avant d&#8217;être
+                      entré dans la boucle primaire, votre fenêtre sera désactivée avant même qu&#8217;elle ne puisse
+                      apparaître.</p>
+                    <p>Cette méthode peut ne pas fonctionner sur certain système Unix et MacOS.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Toplevel.resizable">
+                    <tt class="descname">resizable</tt><big>(</big><em>largeur=None</em>,
+                    <em>hauteur=None</em><big>)</big><a class="headerlink" href="#Toplevel.resizable"
+                      title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Si <em>largeur</em> est True, la fenêtre peut être agrandi horizontalement. Si hauteur est True,
+                      elle peut être agrandie verticalement. Si les arguments sont omis, cette méthode retourne la
+                      taille actuelle de la fenêtre sous la forme d&#8217;un tuple a 2 éléments.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Toplevel.state">
+                    <tt class="descname">state</tt><big>(</big><em>newstate=None</em><big>)</big><a class="headerlink"
+                      href="#Toplevel.state" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Retourne l&#8217;état actuel de la fenêtre, lequel peut être:</p>
+                    <ul class="simple">
+                      <li><tt class="docutils literal"><span class="pre">'normal'</span></tt>: S&#8217;affiche
+                        normalement.</li>
+                      <li><tt class="docutils literal"><span class="pre">'iconic'</span></tt>: A été réduite en icone.
+                      </li>
+                      <li><tt class="docutils literal"><span class="pre">'withdrawn'</span></tt>: Est cachée.</li>
+                    </ul>
+                    <p>Pour modifier cet état, utiliser l&#8217;une des chaînes ci-dessus comme argument. Par exemple,
+                      pour iconifier une fenêtre primaire T, utilisez <tt class="docutils literal"><span
+                          class="pre">T.state('iconify')</span></tt>.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Toplevel.title">
+                    <tt class="descname">title</tt><big>(</big><em>text=None</em><big>)</big><a class="headerlink"
+                      href="#Toplevel.title" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Sert à configurer le titre de la fenêtre. Si l&#8217;argument est omis, elle retourne le titre
+                      courant.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Toplevel.transient">
+                    <tt class="descname">transient</tt><big>(</big><em>parent=None</em><big>)</big><a class="headerlink"
+                      href="#Toplevel.transient" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Une fenêtre est dite <em>transient</em> si elle apparaît toujours devant son parent. Lorsque le
+                      parent est réduit en icône, la fenêtre <em>transient</em> est iconifiée en même temps.</p>
+                    <p>Cette méthode fait de la fenêtre appelante une fenêtre <em>transient</em> relativement à une
+                      autre fenêtre parent fournie en argument; the default parent window is this window&#8217;s parent.
+                    </p>
+                    <p>Cette méthode est utile pour les fenêtres surgissantes à courte durée de vie qui servent à
+                      obtenir une information de la part de l&#8217;utilisateur.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Toplevel.withdraw">
+                    <tt class="descname">withdraw</tt><big>(</big><big>)</big><a class="headerlink"
+                      href="#Toplevel.withdraw" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Cache la fenêtre. Pour la faire réapparaître, utiliser les méthodes <tt
+                        class="docutils literal"><span class="pre">deiconify()</span></tt> ou <tt
+                        class="docutils literal"><span class="pre">iconify()</span></tt>.</p>
+                  </dd>
+                </dl>
+
+              </dd>
+            </dl>
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  </div>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général">index</a>
+      </li>
+      <li class="right">
+        <a href="uwm.html" title="Méthodes communes à tous les widgets">suivant</a> |
+      </li>
+      <li class="right">
+        <a href="textw.html" title="Text - Les éditeurs de texte">précédent</a> |
+      </li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="footer">
+    &copy; Copyright 2013, Étienne FLORENT.
+    Créé avec <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+  </div>
+</body>
+
+<!-- Mirrored from tkinter.fdex.eu/doc/toplww.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:01:00 GMT -->
+
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Mirrored from tkinter.fdex.eu/doc/ctrvar.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:01:01 GMT -->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <title>Variables de contrôle: Les valeurs sous les widgets &mdash; Tkinter pour ISN</title>
+
+  <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT: '../',
+      VERSION: '1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE: true
+    };
+  </script>
+  <script type="text/javascript" src="../_static/jquery.js"></script>
+  <script type="text/javascript" src="../_static/underscore.js"></script>
+  <script type="text/javascript" src="../_static/doctools.js"></script>
+  <script type="text/javascript" src="../_static/translations.js"></script>
+  <script type="text/javascript"
+    src="../../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="../_static/my.js"></script>
+  <link rel="top" title="Tkinter pour ISN" href="../index-2.html" />
+  <link rel="next" title="Focus: réception des saisies clavier" href="focus.html" />
+  <link rel="prev" title="Connecter la logique de votre applications aux widgets" href="connapplog.html" />
+</head>
+
+<body>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général" accesskey="I">index</a>
+      </li>
+      <li class="right">
+        <a href="event.html" title="Événements: répondre aux actions de l’utilisateur." accesskey="N">suivant</a> |
+      </li>
+      <li class="right">
+        <a href="connapplog.html" title="Connecter la logique de votre applications aux widgets"
+          accesskey="P">précédent</a> |
+      </li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+      <h4>Sujet précédent</h4>
+      <p class="topless"><a href="connapplog.html" title="Chapitre précédent">Connecter la logique de votre applications
+          aux widgets</a></p>
+      <h4>Sujet suivant</h4>
+      <p class="topless"><a href="event.html" title="Chapitre suivant">Événements: répondre aux actions de l’utilisateur.</a></p>
+      
+    </div>
+  </div>
+
+  <div class="document">
+    <div class="documentwrapper">
+      <div class="bodywrapper">
+        <div class="body">
+
+          <div class="section" id="variables-de-controle-les-valeurs-sous-les-widgets">
+            <span id="ctrlvariables"></span>
+            <h1><strong>Variables de contrôle</strong>: Les valeurs sous les widgets<a class="headerlink"
+                href="#variables-de-controle-les-valeurs-sous-les-widgets" title="Lien permanent vers ce titre">¶</a>
+            </h1>
+            <p>Une variable de contrôle de tkinter est un objet spécial qui se comporte comme une variable ordinaire de
+              Python en ce sens que c&#8217;est un conteneur pour une valeur comme un nombre ou une chaîne de
+              caractères.</p>
+            <p>Tout l&#8217;intérêt des variables de contrôle, c&#8217;est qu&#8217;elles peuvent-être partagées entre
+              plusieurs widgets, et qu&#8217;elles se souviennent de tous les widgets qui les partagent à un moment
+              donné. En particulier, cela signifie que si votre programme mémorise une valeur <tt
+                class="docutils literal"><span class="pre">v</span></tt> dans une variable de contrôle <tt
+                class="docutils literal"><span class="pre">c</span></tt> en utilisant la méthode <tt
+                class="docutils literal"><span class="pre">c.set(v)</span></tt>, tous les widgets qui sont reliés à
+              cette variable de contrôle sont automatiquement mis à jour sur l&#8217;écran.</p>
+            <p>Tkinter utilise des variables de contrôles pour réaliser de nombreuses fonctionnalités, par exemple:</p>
+            <ul>
+              <li>
+                <p class="first">Les boîtes à cocher, <em>Checkbuttons</em>, utilisent une variable de contrôle pour
+                  mémoriser leur état courant (on ou off).</p>
+              </li>
+              <li>
+                <p class="first">Un groupe de boutons radio, <em>radiobuttons</em>, partage une variable de contrôle qui
+                  peut être utilisée pour connaître le bouton qui est actuellement coché. Quand l&#8217;utilisateur
+                  clique sur l&#8217;un des boutons d&#8217;un groupe, le mécanisme qui assure qu&#8217;un seul des
+                  boutons est coché à un moment donné s&#8217;appuie sur cette variable de contrôle partagée.</p>
+              </li>
+              <li>
+                <p class="first">Les variables de contrôles contiennent des textes pour de nombreuses applications.
+                  Normalement, le texte affiché dans un widget de saisie, <em>Entry</em>, est relié à une variable de
+                  contrôle. Il est aussi possible d&#8217;utiliser une telle variable de contrôle pour gérer les textes
+                  des étiquettes des cases à cocher, des boutons radio et le contenu des widgets étiquettes,
+                  <em>Label</em>.</p>
+                <p>Par exemple, vous pourriez relier un widget <tt class="docutils literal"><span
+                      class="pre">Entry</span></tt> (boîte de saisie) à un widget <tt class="docutils literal"><span
+                      class="pre">Label</span></tt> (étiquette) de telle sorte que quand l&#8217;utilisateur modifie le
+                  texte du premier, le second soit automatiquement mis à jour pour montrer le même texte.</p>
+              </li>
+            </ul>
+            <p>Pour obtenir une variable de contrôle, utilisez l&#8217;un de ces constructeurs, en fonction du type de
+              valeur que vous souhaitez mémoriser:</p>
+            <div class="highlight-python">
+              <div class="highlight">
+                <pre><span class="n">v</span> <span class="o">=</span> <span class="n">DoubleVar</span><span class="p">()</span>   <span class="c"># Mémorise un flottant; sa valeur par défaut est 0.0</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">IntVar</span><span class="p">()</span>      <span class="c"># Mémorise un entier; sa valeur par défaut est 0</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">StringVar</span><span class="p">()</span>   <span class="c"># Mémorise une chaîne de caractères; sa valeur par défaut est &#39;&#39;</span>
+</pre>
+              </div>
+            </div>
+            <p>Toutes les variables de contrôle disposent de ces méthodes:</p>
+            <dl class="method">
+              <dt id="get">
+                <tt class="descname">get</tt><big>(</big><big>)</big><a class="headerlink" href="#get"
+                  title="Lien permanent vers cette définition">¶</a>
+              </dt>
+              <dd>
+                <p>Retourne la valeur courante de la variable de contrôle.</p>
+              </dd>
+            </dl>
+
+            <dl class="method">
+              <dt id="set">
+                <tt class="descname">set</tt><big>(</big><em>valeur</em><big>)</big><a class="headerlink" href="#set"
+                  title="Lien permanent vers cette définition">¶</a>
+              </dt>
+              <dd>
+                <p>Modifie la valeur courante de la variable de contrôle. Si les options d&#8217;un ou plusieurs widgets
+                  sont reliées à cette variable, ces widgets seront automatiquement mis à jour quand la boucle
+                  principale sera à nouveau en attente; voir <a class="reference internal"
+                    href="uwm.html#update_idletasks" title="update_idletasks"><tt
+                      class="xref py py-meth docutils literal"><span class="pre">update_idletasks()</span></tt></a> dans
+                  <a class="reference internal" href="uwm.html#universal"><em>Méthodes communes à tous les
+                      widgets</em></a> pour plus d&#8217;information sur le contrôle de ce cycle de mise à jour.</p>
+              </dd>
+            </dl>
+
+            <p>Voici quelques indications sur la façon dont les variables de contrôles sont utilisées avec certains
+              widgets.</p>
+            <p><tt class="docutils literal"><span class="pre">Button</span></tt></p>
+            <blockquote>
+              <div>Vous pouvez renseigner son option <strong>textvariable</strong> avec une <tt
+                  class="docutils literal"><span class="pre">StringVar</span></tt>. À chaque fois que cette variable est
+                modifiée, le texte du bouton sera mis à jour pour afficher la nouvelle valeur. Il n&#8217;est pas
+                nécessaire d&#8217;utiliser cela sauf si le texte du bouton doit changer au cours du temps: utilisez
+                l&#8217;option <strong>text</strong> si l&#8217;étiquette du bouton ne change pas.</div>
+            </blockquote>
+            <p><tt class="docutils literal"><span class="pre">Checkbutton</span></tt></p>
+            <blockquote>
+              <div>
+                <p>Normalement, vous relierez son option <strong>variable</strong> à une <tt
+                    class="docutils literal"><span class="pre">IntVar</span></tt>, et cette variable aura la valeur 1
+                  lorsque la case est cochée, la valeur 0 lorsqu&#8217;elle ne l&#8217;est pas. </p>
+                  
+                <p>Vous pouvez encore indiquer une <tt class="docutils literal"><span class="pre">StringVar</span></tt>
+                  pour son option <strong>textvariable</strong>. Il vous suffit alors d&#8217;utiliser sa méthode <tt
+                    class="docutils literal"><span class="pre">set()</span></tt> pour actualiser l&#8217;étiquette de
+                  cette case à cocher.</p>
+              </div>
+            </blockquote>
+            <p><tt class="docutils literal"><span class="pre">Entry</span></tt></p>
+            <blockquote>
+              <div>Positionnez son option <strong>textvariable</strong> avec une <tt class="docutils literal"><span
+                    class="pre">StringVar</span></tt>. Utilisez alors sa méthode <tt class="docutils literal"><span
+                    class="pre">get()</span></tt> pour récupérer le texte actuellement affiché dans la boîte de saisie.
+                Vous pouvez aussi modifier ce texte en utilisant sa méthode <tt class="docutils literal"><span
+                    class="pre">.set()</span></tt>.</div>
+            </blockquote>
+            <p><tt class="docutils literal"><span class="pre">Label</span></tt></p>
+            <blockquote>
+              <div>Positionnez son option <strong>textvariable</strong> avec une <tt class="docutils literal"><span
+                    class="pre">StringVar</span></tt>. En appelant sa méthode <tt class="docutils literal"><span
+                    class="pre">set()</span></tt>, vous pourrez modifier le texte affiché sur cette étiquette. Il
+                n&#8217;est pas nécessaire d&#8217;utiliser cela; si vous ne prévoyez pas de changer son texte, utilisez
+                plutôt son option <strong>text</strong> pour renseigner son contenu.</div>
+            </blockquote>
+            <p><tt class="docutils literal"><span class="pre">Menubutton</span></tt></p>
+            <blockquote>
+              <div>Si vous souhaitez être capable de modifier le texte affiché sur un bouton de menu, positionnez son
+                option <strong>textvariable</strong> avec une <tt class="docutils literal"><span
+                    class="pre">StringVar</span></tt> et utilisez sa méthode <tt class="docutils literal"><span
+                    class="pre">set()</span></tt> pour modifier le texte affiché.</div>
+            </blockquote>
+            <p><tt class="docutils literal"><span class="pre">Radiobutton</span></tt></p>
+            <blockquote>
+              <div>
+                <p>Son option <strong>variable</strong> doit être réglée avec une variable de contrôle, soit une <tt
+                    class="docutils literal"><span class="pre">IntVar</span></tt> soit une <tt
+                    class="docutils literal"><span class="pre">StringVar</span></tt>. Tous les boutons radios qui
+                  forment un groupe doivent alors partager cette variable de contrôle.</p>
+                <p>Régler l&#8217;option <strong>value</strong> de chaque bouton radio du groupe à une valeur
+                  différente. Lorsque l&#8217;utilisateur coche un bouton, la variable mémorisera la valeur de
+                  l&#8217;option <strong>value</strong> de ce bouton et tous les autres boutons seront décochés.</p>
+                <p>Vous pourriez vous demander dans quel état se trouve un groupe de boutons radio lorsque leur variable
+                  de contrôle n&#8217;a pas encore reçu de valeur et que l&#8217;utilisateur n&#8217;a pas encore coché
+                  l&#8217;un des boutons ? Chaque variable de contrôle possède une valeur par défaut: <tt
+                    class="docutils literal"><span class="pre">0</span></tt> pour une <tt class="docutils literal"><span
+                      class="pre">IntVar</span></tt>, <tt class="docutils literal"><span class="pre">0.0</span></tt>
+                  pour une <tt class="docutils literal"><span class="pre">DoubleVar</span></tt>, et <tt
+                    class="docutils literal"><span class="pre">''</span></tt> pour une <tt
+                    class="docutils literal"><span class="pre">StringVar</span></tt>. Si l&#8217;un des boutons radio a
+                  cette valeur, il est coché initialement. Si aucun d&#8217;eux n&#8217;a cette valeur, aucun
+                  n&#8217;est coché.</p>
+                <p>Si vous souhaitez modifier l&#8217;étiquette d&#8217;un bouton radio pendant l&#8217;exécution du
+                  programme, régler son option <tt class="docutils literal"><span class="pre">textvariable</span></tt>
+                  avec une <tt class="docutils literal"><span class="pre">StringVar</span></tt>. Vous serez alors en
+                  mesure de la modifier en utilisant la méthode <tt class="docutils literal"><span
+                      class="pre">set()</span></tt> de cette variable de contrôle.</p>
+              </div>
+            </blockquote>
+            <p><tt class="docutils literal"><span class="pre">Scale</span></tt></p>
+            <blockquote>
+              <div>
+                <p>Pour un widget «curseur», <em>Scale</em>, positionnez son option <strong>variable</strong> avec une
+                  variable de contrôle du type voulu et réglez ses options <tt class="docutils literal"><span
+                      class="pre">from_</span></tt> et <tt class="docutils literal"><span class="pre">to</span></tt> aux
+                  valeurs limites qui apparaissent à chaque extrémité du widget.</p>
+                <p>Par exemple, vous pourriez utiliser une <tt class="docutils literal"><span
+                      class="pre">IntVar</span></tt> en combinaison avec <tt class="docutils literal"><span
+                      class="pre">from_=0</span></tt> et <tt class="docutils literal"><span
+                      class="pre">to=100</span></tt>. Alors, à chaque fois que l&#8217;utilisateur modifie la position
+                  du curseur, la variable de contrôle est mise à jour avec la valeur sélectionnée de l&#8217;intervalle
+                  <em>[0; 100]</em>.</p>
+                <p>Votre programme peut aussi déplacer le curseur du widget en utilisant la méthode <tt
+                    class="docutils literal"><span class="pre">set()</span></tt> de la variable de contrôle. Dans
+                  l&#8217;exemple précédent, l&#8217;instruction <tt class="docutils literal"><span
+                      class="pre">v.set(75)</span></tt> déplacer le curseur au 3/4 de sa barre.</p>
+                <p>Pour utiliser un widget <tt class="docutils literal"><span class="pre">Scale</span></tt> avec des
+                  valeur flottantes, utilisez une <tt class="docutils literal"><span class="pre">DoubleVar</span></tt>.
+                </p>
+                <p>Vous pouvez utiliser une <tt class="docutils literal"><span class="pre">StringVar</span></tt> comme
+                  variable de contrôle d&#8217;un widget <tt class="docutils literal"><span
+                      class="pre">Scale</span></tt>. Il sera tout de même nécessaire de préciser des valeurs numériques
+                  pour les options <em>from_</em> et <em>to</em>, Mais les valeurs numériques du widget seront
+                  converties en une chaîne de caractères pour être mémorisées dans la <tt class="docutils literal"><span
+                      class="pre">StringVar</span></tt>. Utilisez l&#8217;option <strong>digit</strong> du widget pour
+                  contrôler la précision avec laquelle cette conversion est réalisée.</p>
+              </div>
+            </blockquote>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  </div>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général">index</a>
+      </li>
+      <li class="right">
+        <a href="event.html" title="Événements: répondre aux actions de l’utilisateur.">suivant</a> |
+      </li>
+      <li class="right">
+        <a href="connapplog.html" title="Connecter la logique de votre applications aux widgets">précédent</a> |
+      </li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="footer">
+    &copy; Copyright 2013, Étienne FLORENT.
+    Créé avec <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+  </div>
+</body>
+
+<!-- Mirrored from tkinter.fdex.eu/doc/ctrvar.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:01:03 GMT -->
+
+</html>

@@ -1,0 +1,268 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Mirrored from tkinter.fdex.eu/doc/menbw.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:00:54 GMT -->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <title>Menubutton - Boutons de menu &mdash; Tkinter pour ISN</title>
+
+  <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT: '../',
+      VERSION: '1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE: true
+    };
+  </script>
+  <script type="text/javascript" src="../_static/jquery.js"></script>
+  <script type="text/javascript" src="../_static/underscore.js"></script>
+  <script type="text/javascript" src="../_static/doctools.js"></script>
+  <script type="text/javascript" src="../_static/translations.js"></script>
+  <script type="text/javascript"
+    src="../../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="../_static/my.js"></script>
+  <link rel="top" title="Tkinter pour ISN" href="../index-2.html" />
+  <link rel="next" title="Message - Messages" href="messw.html" />
+  <link rel="prev" title="Menu - Menus" href="menw.html" />
+</head>
+
+<body>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général" accesskey="I">index</a>
+      </li>
+      <li class="right">
+        <a href="messw.html" title="Message - Messages" accesskey="N">suivant</a> |
+      </li>
+      <li class="right">
+        <a href="menw.html" title="Menu - Menus" accesskey="P">précédent</a> |
+      </li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+      <h4>Sujet précédent</h4>
+      <p class="topless"><a href="menw.html" title="Chapitre précédent"><tt
+            class="docutils literal docutils literal"><span class="pre">Menu</span></tt> - Menus</a></p>
+      <h4>Sujet suivant</h4>
+      <p class="topless"><a href="messw.html" title="Chapitre suivant"><tt class="docutils literal"><span
+              class="pre">Message</span></tt> - Messages</a></p>
+     
+    </div>
+  </div>
+
+  <div class="document">
+    <div class="documentwrapper">
+      <div class="bodywrapper">
+        <div class="body">
+
+          <div class="section" id="menubutton-boutons-de-menu">
+            <span id="menubutton"></span>
+            <h1><tt class="docutils literal"><span class="pre">Menubutton</span></tt> - Boutons de menu<a
+                class="headerlink" href="#menubutton-boutons-de-menu" title="Lien permanent vers ce titre">¶</a></h1>
+            <p>Un bouton de menu, <tt class="docutils literal"><span class="pre">Menubutton</span></tt>, est la partie
+              visible d&#8217;un menu déroulant. Un tel bouton est donc associé à un widget <tt
+                class="docutils literal"><span class="pre">Menu</span></tt> (voir plus loin) qui sert à contenir (et à
+              afficher) les choix qui apparaîssent lorsque l&#8217;utilisateur clique sur le bouton.</p>
+            <p>Pour créer un bouton de menu comme enfant d&#8217;une fenêtre ou d&#8217;un cadre <tt
+                class="docutils literal"><span class="pre">parent</span></tt>:</p>
+            <dl class="class">
+              <dt id="Menubutton">
+                <em class="property">class </em><tt class="descname">Menubutton</tt><big>(</big><em>parent</em>,
+                <em>option</em>, <em>...</em><big>)</big><a class="headerlink" href="#Menubutton"
+                  title="Lien permanent vers cette définition">¶</a>
+              </dt>
+              <dd>
+                <p>Le constructeur retourne le nouveau bouton de menu. Ses options sont:</p>
+                <table class="docutils field-list" frame="void" rules="none">
+                  <col class="field-name" />
+                  <col class="field-body" />
+                  <tbody valign="top">
+                    <tr class="field-odd field">
+                      <th class="field-name">Paramètres:</th>
+                      <td class="field-body">
+                        <ul class="first last simple">
+                          <li><strong>activebackground</strong> &#8211; La couleur de fond utilisée lorsque la souris
+                            survole le widget. Voir <a class="reference internal" href="sa.html#couleurs"><em>Les
+                                couleurs</em></a>.</li>
+                          <li><strong>activeforeground</strong> &#8211; La couleur d&#8217;avant plan (texte) utilisée
+                            lorsque la souris survole le widget.</li>
+                          <li><strong>anchor</strong> &#8211; Cette option sert à préciser la position du texte du
+                            bouton si celui-ci dispose de plus de place que de besoin pour le texte. Sa valeur par
+                            défaut est <tt class="docutils literal"><span class="pre">'center'</span></tt> ce qui centre
+                            le texte sur le bouton. Pour d&#8217;autres valeur possibles, voir <a
+                              class="reference internal" href="sa.html#ancrage"><em>Le système d&#8217;ancrage</em></a>.
+                            Par exemple, si <tt class="docutils literal"><span class="pre">anchor='w'</span></tt>, le
+                            texte sera centré verticalement contre le bord gauche du bouton.</li>
+                          <li><strong>bg</strong> &#8211; (ou <strong>background</strong>) La couleur de fond utilisée
+                            lorsque la souris ne survole pas le bouton.</li>
+                          <li><strong>bitmap</strong> &#8211; Pour afficher un bitmap sur le bouton de menu, configurez
+                            cette option avec le nom de ce bitmap; voir <a class="reference internal"
+                              href="sa.html#bitmaps"><em>Les bitmaps</em></a>.</li>
+                          <li><strong>bd</strong> &#8211; (ou <strong>borderwidth</strong>) Épaisseur de la bordure
+                            dessinée autour du bouton de menu. 2 pixels par défaut. Pour les valeurs possibles, voir <a
+                              class="reference internal" href="sa.html#dimensions"><em>Les dimensions</em></a>.</li>
+                          <li><strong>compound</strong> &#8211; Si vous utilisez à la fois du texte et un graphique
+                            (soit un bitmap soit une image), cette option sert à indiquer où le graphique apparaît par
+                            rapport au texte. Les valeurs possibles sont <tt class="docutils literal"><span
+                                class="pre">'none'</span></tt> (par défaut), <tt class="docutils literal"><span
+                                class="pre">'top'</span></tt>, <tt class="docutils literal"><span
+                                class="pre">'bottom'</span></tt>, <tt class="docutils literal"><span
+                                class="pre">'left'</span></tt>, <tt class="docutils literal"><span
+                                class="pre">'right'</span></tt> et <tt class="docutils literal"><span
+                                class="pre">'center'</span></tt>. Par exemple, <tt class="docutils literal"><span
+                                class="pre">compound='right'</span></tt> positionnera le graphique à la droite du texte.
+                            Si vous conservez <tt class="docutils literal"><span
+                                class="pre">compound='none'</span></tt>, le graphique sera affiché mais pas le texte.
+                          </li>
+                          <li><strong>cursor</strong> &#8211; Le pointeur de souris utilisé lorsqu&#8217;elle survole ce
+                            widget. Voir <a class="reference internal" href="sa.html#pointeurs"><em>Le pointeur de la
+                                souris</em></a>.</li>
+                          <li><strong>direction</strong> &#8211; Normalement, le menu apparaît en dessous du bouton.
+                            Utilisez <tt class="docutils literal"><span class="pre">direction='left'</span></tt> pour
+                            afficher le menu sur le côté gauche du bouton, <tt class="docutils literal"><span
+                                class="pre">direction='right'</span></tt> pour l&#8217;afficher à sa droite; <tt
+                              class="docutils literal"><span class="pre">direction='above'</span></tt> pour
+                            l&#8217;afficher au-dessus.</li>
+                          <li><strong>disabledforeground</strong> &#8211; La couleur d&#8217;avant plan (texte) utilisée
+                            lorsque le bouton de menu est désactivé.</li>
+                          <li><strong>fg</strong> &#8211; (ou <strong>foreground</strong>) La couleur d&#8217;avant plan
+                            utilisée lorsque la souris ne survole pas le bouton.</li>
+                          <li><strong>font</strong> &#8211; Sert à préciser la police de caractères utilisée pour
+                            afficher le texte. Voir <a class="reference internal" href="sa.html#polices"><em>Les polices
+                                de caractères</em></a>.</li>
+                          <li><strong>height</strong> &#8211; La hauteur du bouton de menu exprimée en lignes de texte
+                            (non en pixels !). Par défaut, le bouton s&#8217;ajuste à son contenu.</li>
+                          <li><strong>highlightbackground</strong> &#8211; La couleur de la ligne de focus lorsque le
+                            widget n&#8217;a pas le focus. Voir <a class="reference internal"
+                              href="focus.html#focus"><em>Le focus: réception des saisies clavier</em></a>.</li>
+                          <li><strong>highlightcolor</strong> &#8211; Couleur de la ligne de focus lorsque le widget a
+                            le focus.</li>
+                          <li><strong>highlightthickness</strong> &#8211; Épaisseur de la ligne de focus.</li>
+                          <li><strong>image</strong> &#8211; Pour afficher une image sur un bouton de menu, passer la
+                            référence de l&#8217;image à cette option. Voir <a class="reference internal"
+                              href="sa.html#images"><em>Les images</em></a>.</li>
+                          <li><strong>justify</strong> &#8211; Cette option sert à indiquer l&#8217;alignement du texte
+                            s&#8217;il contient plusieurs lignes: <tt class="docutils literal"><span
+                                class="pre">justify='left'</span></tt> pour un alignement à gauche (valeur par défaut);
+                            <tt class="docutils literal"><span class="pre">justify='center'</span></tt> pour centrer, ou
+                            <tt class="docutils literal"><span class="pre">justify='right'</span></tt> pour un
+                            alignement à droite.</li>
+                          <li><strong>menu</strong> &#8211; Pour associer un ensemble de choix au bouton de menu,
+                            configurer cette option avec un widget <tt class="docutils literal"><span
+                                class="pre">Menu</span></tt> qui contient ces choix. Ce widget <tt
+                              class="docutils literal"><span class="pre">Menu</span></tt> doit être un enfant du bouton:
+                            il doit être créé en utilisant le bouton de menu comme premier argument de son constructeur.
+                            Voir plus loin pour un exemple qui montre comment associer un bouton de menu avec un menu.
+                          </li>
+                          <li><strong>padx</strong> &#8211; Sert à indiquer un espace horizontal à mettre de chaque côté
+                            (gauche et droit) du bouton. 1 pixel par défaut.</li>
+                          <li><strong>pady</strong> &#8211; Similaire à <strong>padx</strong> mais dans la direction
+                            verticale. 1 pixel par défaut.</li>
+                          <li><strong>relief</strong> &#8211; Sert à préciser le relief à utiliser pour dessiner les
+                            contours du bouton; <tt class="docutils literal"><span class="pre">'raised'</span></tt> par
+                            défaut. Pour d&#8217;autres effets, voir <a class="reference internal"
+                              href="sa.html#reliefs"><em>Les styles de relief</em></a>.</li>
+                          <li><strong>state</strong> &#8211; Normalement, un bouton de menu est réactif à la souris.
+                            Utilisez <tt class="docutils literal"><span class="pre">state='disabled'</span></tt> pour le
+                            griser et le rendre inactif.</li>
+                          <li><strong>takefocus</strong> &#8211; Normalement, les boutons de menu n&#8217;obtiennent pas
+                            le focus lorsque l&#8217;utilisateur appuie sur la touche Tab (voir <a
+                              class="reference internal" href="focus.html#focus"><em>Le focus: réception des saisies
+                                clavier</em></a>) Utilisez <tt class="docutils literal"><span
+                                class="pre">takefocus=True</span></tt> pour qu&#8217;il puisse obtenir le focus comme
+                            cela.</li>
+                          <li><strong>text</strong> &#8211; Pour afficher un texte sur le bouton de menu, configurez
+                            cette option avec le texte voulu, donné sous la forme d&#8217;une chaîne de caractères.
+                            Utiliser le caractère spécial <tt class="docutils literal"><span
+                                class="pre">'\n'</span></tt> pour faire des sauts de ligne.</li>
+                          <li><strong>textvariable</strong> &#8211; Vous pouvez associer une variable de contrôle <tt
+                              class="docutils literal"><span class="pre">StringVar</span></tt> à ce bouton de menu par
+                            l&#8217;intermédiaire de cette option. Toute modification de sa valeur est répercutée sur le
+                            bouton et vice versa. Voir <a class="reference internal"
+                              href="ctrvar.html#ctrlvariables"><em>Les variables de contrôle: Les valeurs sous les
+                                widgets</em></a>.</li>
+                          <li><strong>underline</strong> &#8211; Sert à souligner l&#8217;un des caractères du texte en
+                            précisant sa position (index) dans le texte. Par défaut, aucun caractère n&#8217;est
+                            souligné.</li>
+                          <li><strong>width</strong> &#8211; Largeur du bouton de menu en nombre de caractères (pas en
+                            pixels!). Si aucune valeur n&#8217;est précisée, le bouton s&#8217;ajuste à son contenu.
+                          </li>
+                          <li><strong>wraplength</strong> &#8211; Normalement, les lignes ne sont pas «enveloppées».
+                            Vous pouvez configurer cette option avec un nombre de caractères et toutes les lignes seront
+                            coupées de façon à ne pas avoir plus de caractères que le nombre indiqué.</li>
+                        </ul>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </dd>
+            </dl>
+
+            <p>Voici un court exemple qui illustre la création d&#8217;un bouton de menu et du menu associé lequel est
+              composé de deux cases à cocher:</p>
+            <div class="highlight-python">
+              <div class="highlight">
+                <pre><span class="n">mb</span> <span class="o">=</span> <span class="n">Menubutton</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s">&#39;condiments&#39;</span><span class="p">,</span>
+                         <span class="n">relief</span><span class="o">=</span><span class="s">&#39;raised&#39;</span><span class="p">)</span>
+<span class="n">mb</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+
+<span class="n">mb</span><span class="o">.</span><span class="n">menu</span> <span class="o">=</span> <span class="n">Menu</span><span class="p">(</span><span class="n">mb</span><span class="p">,</span> <span class="n">tearoff</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">mb</span><span class="p">[</span><span class="s">&#39;menu&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">mb</span><span class="o">.</span><span class="n">menu</span>
+
+<span class="n">mayoVar</span>  <span class="o">=</span> <span class="n">IntVar</span><span class="p">()</span>
+<span class="n">ketchVar</span> <span class="o">=</span> <span class="n">IntVar</span><span class="p">()</span>
+<span class="n">mb</span><span class="o">.</span><span class="n">menu</span><span class="o">.</span><span class="n">add_checkbutton</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;mayo&#39;</span><span class="p">,</span>
+    <span class="n">variable</span><span class="o">=</span><span class="n">mayoVar</span><span class="p">)</span>
+<span class="n">mb</span><span class="o">.</span><span class="n">menu</span><span class="o">.</span><span class="n">add_checkbutton</span><span class="p">(</span><span class="n">label</span><span class="o">=</span><span class="s">&#39;ketchup&#39;</span><span class="p">,</span>
+    <span class="n">variable</span><span class="o">=</span><span class="n">ketchVar</span><span class="p">)</span>
+</pre>
+              </div>
+            </div>
+            <p>Dans cet exemple, on crée un bouton de menu étiqueté &#8220;condiments&#8221;. Lorsque qu&#8217;on clique
+              dessus, deux cases à cocher étiquetées &#8220;mayo&#8221; et &#8220;ketchup&#8221; sont affichées en
+              dessous du bouton.</p>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  </div>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général">index</a>
+      </li>
+      <li class="right">
+        <a href="messw.html" title="Message - Messages">suivant</a> |
+      </li>
+      <li class="right">
+        <a href="menw.html" title="Menu - Menus">précédent</a> |
+      </li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="footer">
+    &copy; Copyright 2013, Étienne FLORENT.
+    Créé avec <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+  </div>
+</body>
+
+<!-- Mirrored from tkinter.fdex.eu/doc/menbw.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:00:55 GMT -->
+
+</html>

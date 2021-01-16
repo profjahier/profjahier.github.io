@@ -1,0 +1,666 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Mirrored from tkinter.fdex.eu/doc/lbw.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:00:54 GMT -->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <title>Listbox - Listes de sélection &mdash; Tkinter pour ISN</title>
+
+  <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT: '../',
+      VERSION: '1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE: true
+    };
+  </script>
+  <script type="text/javascript" src="../_static/jquery.js"></script>
+  <script type="text/javascript" src="../_static/underscore.js"></script>
+  <script type="text/javascript" src="../_static/doctools.js"></script>
+  <script type="text/javascript" src="../_static/translations.js"></script>
+  <script type="text/javascript"
+    src="../../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="../_static/my.js"></script>
+  <link rel="top" title="Tkinter pour ISN" href="../index-2.html" />
+  <link rel="next" title="Menu - Menus" href="menw.html" />
+  <link rel="prev" title="LabelFrame - Cadres étiquetés" href="lbfr.html" />
+</head>
+
+<body>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général" accesskey="I">index</a></li>
+      <li class="right">
+        <a href="menw.html" title="Menu - Menus" accesskey="N">suivant</a> |</li>
+      <li class="right">
+        <a href="lbfr.html" title="LabelFrame - Cadres étiquetés" accesskey="P">précédent</a> |</li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+      <h3><a href="../index-2.html">Table des matières</a></h3>
+      <ul>
+        <li><a class="reference internal" href="#"><tt class="docutils literal"><span class="pre">Listbox</span></tt> -
+            Listes de sélection</a>
+          <ul>
+            <li><a class="reference internal" href="#defilement-d-une-liste-de-selection">Défilement d&#8217;une liste
+                de sélection</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <h4>Sujet précédent</h4>
+      <p class="topless"><a href="lbfr.html" title="Chapitre précédent"><tt class="docutils literal"><span
+              class="pre">LabelFrame</span></tt> - Cadres étiquetés</a></p>
+      <h4>Sujet suivant</h4>
+      <p class="topless"><a href="menw.html" title="Chapitre suivant"><tt class="docutils literal"><span
+              class="pre">Menu</span></tt> - Menus</a></p>
+      
+    </div>
+  </div>
+
+  <div class="document">
+    <div class="documentwrapper">
+      <div class="bodywrapper">
+        <div class="body">
+
+          <div class="section" id="listbox-listes-de-selection">
+            <span id="listbox"></span>
+            <h1><tt class="docutils literal"><span class="pre">Listbox</span></tt> - Listes de sélection<a
+                class="headerlink" href="#listbox-listes-de-selection" title="Lien permanent vers ce titre">¶</a></h1>
+            <p>Un widget <tt class="docutils literal"><span class="pre">ListBox</span></tt> - liste de sélection - sert
+              à présenter une liste de lignes de textes dans un cadre. Généralement, il s&#8217;agit de permettre à
+              l&#8217;utilisateur de sélectionner une ou plusieurs lignes dans la liste. Toutes les lignes utilisent la
+              même police de caractère. Si vous avez besoin de quelquechose qui ressemble plus à un éditeur de texte,
+              reportez vous à <a class="reference internal" href="textw.html#text"><em>Text - Éditeurs de
+                  texte</em></a>.</p>
+            <img alt="../_images/listbox.png" class="align-center" src="../_images/listbox.png" />
+            <p>Pour créer un widget <tt class="docutils literal"><span class="pre">Listbox</span></tt> à
+              l&#8217;intérieur d&#8217;une fenêtre mère ou d&#8217;un cadre désigné par <tt
+                class="docutils literal"><span class="pre">parent</span></tt>:</p>
+            <dl class="class">
+              <dt id="Listbox">
+                <em class="property">class </em><tt class="descname">Listbox</tt><big>(</big><em>parent</em>,
+                <em>option</em>, <em>...</em><big>)</big><a class="headerlink" href="#Listbox"
+                  title="Lien permanent vers cette définition">¶</a></dt>
+              <dd>
+                <p>Ce constructeur retourne la nouvelle liste de sélection créée. Ses options incluent:</p>
+                <table class="docutils field-list" frame="void" rules="none">
+                  <col class="field-name" />
+                  <col class="field-body" />
+                  <tbody valign="top">
+                    <tr class="field-odd field">
+                      <th class="field-name">Paramètres:</th>
+                      <td class="field-body">
+                        <ul class="first last simple">
+                          <li><strong>activestyle</strong> &#8211; Cette option sert à préciser l&#8217;apparence de la
+                            ligne active. Elle peut prendre l&#8217;une de ces valeurs: <tt
+                              class="docutils literal"><span class="pre">'underline'</span></tt> - la ligne active est
+                            souslignée (valeur par défaut) ; <tt class="docutils literal"><span
+                                class="pre">'dotbox'</span></tt> - La ligne active est mise en valeur par une ligne
+                            pointillée ; <tt class="docutils literal"><span class="pre">'none'</span></tt> - aucune mise
+                            en valeur.</li>
+                          <li><strong>bg</strong> &#8211; (ou <strong>background</strong>) La couleur de fond de la
+                            liste de sélection.</li>
+                          <li><strong>bd</strong> &#8211; (ou <strong>borderwidth</strong>) La largeur de la bordure de
+                            la liste de sélection. 2 pixels par défaut. Pour les valeurs possibles, voir <a
+                              class="reference internal" href="sa.html#dimensions"><em>Les dimensions</em></a>.</li>
+                          <li><strong>cursor</strong> &#8211; La cursor utilisée lorsque la souris survole le widget.
+                            Voir <a class="reference internal" href="sa.html#pointeurs"><em>Le pointeur de la
+                                souris</em></a>.</li>
+                          <li><strong>disabledforeground</strong> &#8211; La couleur du texte lorsque l&#8217;état du
+                            widget est <tt class="docutils literal"><span class="pre">'disabled'</span></tt>.</li>
+                          <li><strong>exportselection</strong> &#8211; Par défaut, l&#8217;utilisateur peut sélectionner
+                            le texte à la souris qui est alors copier dans le presse-papier. Pour désactiver ce
+                            comportement, utiliser <tt class="docutils literal"><span
+                                class="pre">exportselection=0</span></tt>.</li>
+                          <li><strong>font</strong> &#8211; La police de caractère utilisée pour le texte de la liste de
+                            sélection. Voir <a class="reference internal" href="sa.html#polices"><em>Les polices de
+                                caractères</em></a>.</li>
+                          <li><strong>fg</strong> &#8211; (ou <strong>foreground</strong>) La couleur utilisée pour le
+                            texte. Voir <a class="reference internal" href="sa.html#couleurs"><em>Les couleurs</em></a>.
+                          </li>
+                          <li><strong>height</strong> &#8211; Nombre de lignes (pas en pixels!) montrées dans la liste
+                            de sélection. 10 par défaut.</li>
+                          <li><strong>highlightbackground</strong> &#8211; Couleur de la ligne de focus lorsque le
+                            widget ne l&#8217;a pas. Voir <a class="reference internal"
+                              href="focus.html#focus"><em>Focus: réception des saisies clavier</em></a>.</li>
+                          <li><strong>highlightcolor</strong> &#8211; Couleur de la ligne de focus lorsque le widget
+                            l&#8217;obtient.</li>
+                          <li><strong>highlightthickness</strong> &#8211; Épaisseur de la ligne de focus.</li>
+                          <li><strong>listvariable</strong> &#8211; Une <tt class="docutils literal"><span
+                                class="pre">StringVar</span></tt> qui est associée à la liste de sélection dans son
+                            ensemble (Voir <a class="reference internal" href="ctrvar.html#ctrlvariables"><em>Variables
+                                de contrôle: Les valeurs sous les widgets</em></a>). L&#8217;appel de la méthode <tt
+                              class="docutils literal"><span class="pre">get()</span></tt> de cette variable de contrôle
+                            retourne une chaîne de la forme <tt class="docutils literal"><span
+                                class="pre">&quot;('t0',</span> <span class="pre">'t1',</span> <span
+                                class="pre">...)&quot;</span></tt> où chaque ti est le contenu d&#8217;une ligne de la
+                            boîte de sélection. Pour modifier toutes les lignes de la boîte, appelez la méthode <tt
+                              class="docutils literal"><span class="pre">set(s)</span></tt> sur la variable de contrôle,
+                            où s est une chaîne qui contient les valeurs de chaque ligne séparées avec des espaces. Par
+                            exemple, si <tt class="docutils literal"><span class="pre">listCon</span></tt> est une <tt
+                              class="docutils literal"><span class="pre">StringVar</span></tt> associé à l&#8217;option
+                            <strong>listvariable</strong> d&#8217;une boîte de sélection, l&#8217;appel <tt
+                              class="docutils literal"><span class="pre">listCon.set('un</span> <span
+                                class="pre">deux</span> <span class="pre">trois')</span></tt> remplira la boîte avec
+                            trois lignes et l&#8217;appel <tt class="docutils literal"><span
+                                class="pre">listCon.get()</span></tt> retournera <tt class="docutils literal"><span
+                                class="pre">&quot;('un',</span> <span class="pre">'deux',</span> <span
+                                class="pre">'trois')&quot;</span></tt>.</li>
+                          <li><strong>relief</strong> &#8211; Sert à régler le relief de la bordure. <tt
+                              class="docutils literal"><span class="pre">'sunken'</span></tt> par défaut. Pour
+                            d&#8217;autres valeurs, voir <a class="reference internal" href="sa.html#reliefs"><em>Les
+                                styles de relief</em></a>.</li>
+                          <li><strong>selectbackground</strong> &#8211; La couleur de fond utilisée pour les lignes
+                            sélectionnées.</li>
+                          <li><strong>selectborderwidth</strong> &#8211; L&#8217;épaisseur de la bordure des lignes de
+                            texte sélectionnées. 0 par défaut. Elle est utilisée pour produire un effet de relief <tt
+                              class="docutils literal"><span class="pre">'raised'</span></tt> plus ou moins fort autour
+                            du texte sélectionné (Voir <a class="reference internal" href="sa.html#reliefs"><em>Les
+                                styles de relief</em></a>).</li>
+                          <li><strong>selectforeground</strong> &#8211; La couleur du texte sélectionné.</li>
+                          <li><strong>selectmode</strong> &#8211; Détermine le nombre d&#8217;items qu&#8217;il est
+                            possible de sélectionner et la gestion du cliquer-glisser sur la sélection. <tt
+                              class="docutils literal"><span class="pre">'browse'</span></tt> - Valeur par défaut, le
+                            cliquer-glisser modifie la sélection. <tt class="docutils literal"><span
+                                class="pre">'single'</span></tt> - Une seule ligne peut être sélectionnée et il
+                            n&#8217;est pas possible de déplacer la sélection par cliquer-glisser. <tt
+                              class="docutils literal"><span class="pre">'multiple'</span></tt> - Vous pouvez
+                            sélectionner plusieurs lignes à la fois. Le fait de cliquer sur une ligne déjà sélectionnée
+                            la déselectionne et vice versa. <tt class="docutils literal"><span
+                                class="pre">'extended'</span></tt> - vous pouvez sélectionner des lignes adjacentes par
+                            cliquer-glisser.</li>
+                          <li><strong>state</strong> &#8211; Par défaut, une liste de sélection est dans l&#8217;état
+                            <tt class="docutils literal"><span class="pre">'normal'</span></tt>. Pour désactiver la
+                            liste relativement à la souris, mettre la valeur <tt class="docutils literal"><span
+                                class="pre">'disabled'</span></tt>.</li>
+                          <li><strong>takefocus</strong> &#8211; Ce widget obtient le focus normalement. Mettre 0 pour
+                            sortir ce widget de la liste de «traversée du focus». Voir <a class="reference internal"
+                              href="focus.html#focus"><em>Focus: réception des saisies clavier</em></a>.</li>
+                          <li><strong>width</strong> &#8211; La largeur du widget mesurée en caractères (non en pixels).
+                            La largeur effective est basée sur la largeur moyenne des caractères de la fonte utilisée.
+                            20 par défaut.</li>
+                          <li><strong>xscrollcommand</strong> &#8211; Si vous souhaitez que l&#8217;utilisateur puisse
+                            faire défiler la liste horizontalement, vous pouvez lier votre liste de sélection à une
+                            barre de défilement horizontale. Configurer cette option avec la méthode <tt
+                              class="docutils literal"><span class="pre">set()</span></tt> de la barre de défilement.
+                            Voir <a class="reference internal" href="#defilsellist"><em>Défilement d&#8217;une liste de
+                                sélection</em></a> pour plus d&#8217;informations.</li>
+                          <li><strong>yscrollcommand</strong> &#8211; Similaire à l&#8217;option précédente mais pour un
+                            défilement vertical.</li>
+                        </ul>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p>Les méthodes des listes de sélection utilisent fréquement des index:</p>
+                <ul class="simple">
+                  <li>Si vous utilisez un entier comme index, il se rapporte à la ligne de la liste de sélection qui
+                    possède cet index, en comptant à partir de 0.</li>
+                  <li>L&#8217;index <tt class="docutils literal"><span class="pre">'end'</span></tt> correspond à la
+                    dernière ligne de la liste de sélection.</li>
+                  <li>L&#8217;index <tt class="docutils literal"><span class="pre">'active'</span></tt> correspond à la
+                    ligne sélectionnée. Si la liste de sélection permet la multisélection, il correspond à la dernière
+                    ligne sélectionnée.</li>
+                  <li>Un index de la forme <tt class="docutils literal"><span class="pre">'&#64;x,y'</span></tt>
+                    correspond à la ligne qui est la plus proche du point de coordonnées (x,y) relativement au coin
+                    supérieur gauche du widget.</li>
+                </ul>
+                <p>Les méthodes des listes de sélection incluent:</p>
+                <table class="hlist">
+                  <tr>
+                    <td>
+                      <ul class="simple">
+                        <li><a class="reference internal" href="#Listbox.activate" title="Listbox.activate"><tt
+                              class="xref py py-meth docutils literal"><span class="pre">activate()</span></tt></a></li>
+                        <li><a class="reference internal" href="#Listbox.bbox" title="Listbox.bbox"><tt
+                              class="xref py py-meth docutils literal"><span class="pre">bbox()</span></tt></a></li>
+                        <li><a class="reference internal" href="#Listbox.curselection" title="Listbox.curselection"><tt
+                              class="xref py py-meth docutils literal"><span class="pre">curselection()</span></tt></a>
+                        </li>
+                        <li><a class="reference internal" href="#Listbox.delete" title="Listbox.delete"><tt
+                              class="xref py py-meth docutils literal"><span class="pre">delete()</span></tt></a></li>
+                        <li><a class="reference internal" href="#Listbox.get" title="Listbox.get"><tt
+                              class="xref py py-meth docutils literal"><span class="pre">get()</span></tt></a></li>
+                        <li><a class="reference internal" href="#Listbox.index" title="Listbox.index"><tt
+                              class="xref py py-meth docutils literal"><span class="pre">index()</span></tt></a></li>
+                      </ul>
+                    </td>
+                    <td>
+                      <ul class="simple">
+                        <li><a class="reference internal" href="#Listbox.insert" title="Listbox.insert"><tt
+                              class="xref py py-meth docutils literal"><span class="pre">insert()</span></tt></a></li>
+                        <li><a class="reference internal" href="#Listbox.itemcget" title="Listbox.itemcget"><tt
+                              class="xref py py-meth docutils literal"><span class="pre">itemcget()</span></tt></a></li>
+                        <li><a class="reference internal" href="#Listbox.itemconfig" title="Listbox.itemconfig"><tt
+                              class="xref py py-meth docutils literal"><span class="pre">itemconfig()</span></tt></a>
+                        </li>
+                        <li><a class="reference internal" href="#Listbox.nearest" title="Listbox.nearest"><tt
+                              class="xref py py-meth docutils literal"><span class="pre">nearest()</span></tt></a></li>
+                        <li><a class="reference internal" href="#Listbox.scan_dragto" title="Listbox.scan_dragto"><tt
+                              class="xref py py-meth docutils literal"><span class="pre">scan_dragto()</span></tt></a>
+                        </li>
+                        <li><a class="reference internal" href="#Listbox.scan_mark" title="Listbox.scan_mark"><tt
+                              class="xref py py-meth docutils literal"><span class="pre">scan_mark()</span></tt></a>
+                        </li>
+                      </ul>
+                    </td>
+                    <td>
+                      <ul class="simple">
+                        <li><a class="reference internal" href="#Listbox.see" title="Listbox.see"><tt
+                              class="xref py py-meth docutils literal"><span class="pre">see()</span></tt></a></li>
+                        <li><a class="reference internal" href="#Listbox.selection_anchor"
+                            title="Listbox.selection_anchor"><tt class="xref py py-meth docutils literal"><span
+                                class="pre">selection_anchor()</span></tt></a></li>
+                        <li><a class="reference internal" href="#Listbox.selection_clear"
+                            title="Listbox.selection_clear"><tt class="xref py py-meth docutils literal"><span
+                                class="pre">selection_clear()</span></tt></a></li>
+                        <li><a class="reference internal" href="#Listbox.selection_includes"
+                            title="Listbox.selection_includes"><tt class="xref py py-meth docutils literal"><span
+                                class="pre">selection_includes()</span></tt></a></li>
+                        <li><a class="reference internal" href="#Listbox.selection_set"
+                            title="Listbox.selection_set"><tt class="xref py py-meth docutils literal"><span
+                                class="pre">selection_set()</span></tt></a></li>
+                        <li><a class="reference internal" href="#Listbox.size" title="Listbox.size"><tt
+                              class="xref py py-meth docutils literal"><span class="pre">size()</span></tt></a></li>
+                      </ul>
+                    </td>
+                    <td>
+                      <ul class="simple">
+                        <li><a class="reference internal" href="#Listbox.xview" title="Listbox.xview"><tt
+                              class="xref py py-meth docutils literal"><span class="pre">xview()</span></tt></a></li>
+                        <li><a class="reference internal" href="#Listbox.xview_moveto" title="Listbox.xview_moveto"><tt
+                              class="xref py py-meth docutils literal"><span class="pre">xview_moveto()</span></tt></a>
+                        </li>
+                        <li><a class="reference internal" href="#Listbox.xview_scroll" title="Listbox.xview_scroll"><tt
+                              class="xref py py-meth docutils literal"><span class="pre">xview_scroll()</span></tt></a>
+                        </li>
+                        <li><a class="reference internal" href="#Listbox.yview" title="Listbox.yview"><tt
+                              class="xref py py-meth docutils literal"><span class="pre">yview()</span></tt></a></li>
+                        <li><a class="reference internal" href="#Listbox.yview_moveto" title="Listbox.yview_moveto"><tt
+                              class="xref py py-meth docutils literal"><span class="pre">yview_moveto()</span></tt></a>
+                        </li>
+                        <li><a class="reference internal" href="#Listbox.yview_scroll" title="Listbox.yview_scroll"><tt
+                              class="xref py py-meth docutils literal"><span class="pre">yview_scroll()</span></tt></a>
+                        </li>
+                      </ul>
+                    </td>
+                  </tr>
+                </table>
+                <dl class="method">
+                  <dt id="Listbox.activate">
+                    <tt class="descname">activate</tt><big>(</big><em>index</em><big>)</big><a class="headerlink"
+                      href="#Listbox.activate" title="Lien permanent vers cette définition">¶</a></dt>
+                  <dd>
+                    <p>Sélectionne la ligne ayant l&#8217;<em>index</em> indiqué.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Listbox.bbox">
+                    <tt class="descname">bbox</tt><big>(</big><em>index</em><big>)</big><a class="headerlink"
+                      href="#Listbox.bbox" title="Lien permanent vers cette définition">¶</a></dt>
+                  <dd>
+                    <p>Retourne la boîte englobante - <em>bounding box</em> - de la ligne ayant l&#8217;<em>index</em>
+                      indiqué sous la forme d&#8217;un tuple à 4 éléments <tt class="docutils literal"><span
+                          class="pre">(x,</span> <span class="pre">y,</span> <span class="pre">largeur,</span> <span
+                          class="pre">hauteur)</span></tt>, où le pixel le plus en haut et à gauche de cette ligne est
+                      situé en <tt class="docutils literal"><span class="pre">(x,y)</span></tt> et la <em>largeur</em>
+                      et <em>hauteur</em> sont données en pixels. La <em>largeur</em> correspond à la partie de la ligne
+                      qui contient le texte.</p>
+                    <p>Si la ligne de numéro <em>index</em> n&#8217;est pas visible, cette méthode retourne <tt
+                        class="docutils literal"><span class="pre">None</span></tt>. Si elle est partiellement visible,
+                      la boîte englobante peut excéder la zone visible.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Listbox.curselection">
+                    <tt class="descname">curselection</tt><big>(</big><big>)</big><a class="headerlink"
+                      href="#Listbox.curselection" title="Lien permanent vers cette définition">¶</a></dt>
+                  <dd>
+                    <p>Retourne un tuple qui contient les numéros ou index de la ou des lignes sélectionnées, en
+                      comptant à partir de 0. Si aucune ligne n&#8217;est sélectionnée, le tuple est vide.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Listbox.delete">
+                    <tt class="descname">delete</tt><big>(</big><em>debut</em>, <em>fin=None</em><big>)</big><a
+                      class="headerlink" href="#Listbox.delete" title="Lien permanent vers cette définition">¶</a></dt>
+                  <dd>
+                    <p>Supprime les lignes dont les indices sont dans l&#8217;intervalle [<em>debut</em>, <em>fin</em>]
+                      (extrémités incluses). Si le deuxième argument est omis, seule la ligne d&#8217;index
+                      <em>debut</em> est supprimée.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Listbox.get">
+                    <tt class="descname">get</tt><big>(</big><em>debut</em>, <em>fin=None</em><big>)</big><a
+                      class="headerlink" href="#Listbox.get" title="Lien permanent vers cette définition">¶</a></dt>
+                  <dd>
+                    <p>Retourne un tuple qui contient les textes des lignes dont les indices appartiennent à
+                      l&#8217;intervalle [<em>deb</em>, <em>fin</em>]. Si le deuxième argument est omis, seul le texte
+                      de la ligne d&#8217;indice <em>debut</em> est retourné.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Listbox.index">
+                    <tt class="descname">index</tt><big>(</big><em>i</em><big>)</big><a class="headerlink"
+                      href="#Listbox.index" title="Lien permanent vers cette définition">¶</a></dt>
+                  <dd>
+                    <p>Si c&#8217;est possible, positionne la partie visible de la liste de sélection de telle sorte qui
+                      la ligne numéro <em>i</em> soit tout en haut de la liste.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Listbox.insert">
+                    <tt class="descname">insert</tt><big>(</big><em>index</em>, <em>*elements</em><big>)</big><a
+                      class="headerlink" href="#Listbox.insert" title="Lien permanent vers cette définition">¶</a></dt>
+                  <dd>
+                    <p>Insert une ou plusieurs lignes (autant que d&#8217;<em>éléments</em> fournis après le premier
+                      argument) dans la liste avant la ligne de numéro <em>index</em>. Utiliser <tt
+                        class="docutils literal"><span class="pre">'end'</span></tt> comme premier argument si vous
+                      souhaitez ajouter de nouvelles lignes à la fin de la liste.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Listbox.itemcget">
+                    <tt class="descname">itemcget</tt><big>(</big><em>index</em>, <em>option</em><big>)</big><a
+                      class="headerlink" href="#Listbox.itemcget" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Retourne l&#8217;une des valeurs d&#8217;option de la ligne de numéro <em>index</em> de la liste.
+                      Pour les options possibles, voir la méthode <tt class="docutils literal"><span
+                          class="pre">itemconfig()</span></tt> ci-dessous. Si l&#8217;option donnée n&#8217;a pas été
+                      configurée pour la ligne indiquée, la valeur de retour est une chaîne vide.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Listbox.itemconfig">
+                    <tt class="descname">itemconfig</tt><big>(</big><em>index</em>, <em>option=value</em>,
+                    <em>...</em><big>)</big><a class="headerlink" href="#Listbox.itemconfig"
+                      title="Lien permanent vers cette définition">¶</a></dt>
+                  <dd>
+                    <p>Modifie une ou des options de configuration de la ligne de numéro <em>index</em>. Les options
+                      incluent:</p>
+                    <table class="docutils field-list" frame="void" rules="none">
+                      <col class="field-name" />
+                      <col class="field-body" />
+                      <tbody valign="top">
+                        <tr class="field-odd field">
+                          <th class="field-name">Paramètres:</th>
+                          <td class="field-body">
+                            <ul class="first last simple">
+                              <li><strong>background</strong> &#8211; La couleur de fond de la ligne.</li>
+                              <li><strong>foreground</strong> &#8211; La couleur du texte de la ligne.</li>
+                              <li><strong>selectbackground</strong> &#8211; La couleur de fond utilisée lorsque la ligne
+                                est sélectionnée.</li>
+                              <li><strong>selectforeground</strong> &#8211; La couleur du texte utilisée lorsque la
+                                ligne est sélectionnée.</li>
+                            </ul>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Listbox.nearest">
+                    <tt class="descname">nearest</tt><big>(</big><em>y</em><big>)</big><a class="headerlink"
+                      href="#Listbox.nearest" title="Lien permanent vers cette définition">¶</a></dt>
+                  <dd>
+                    <p>Retourne l&#8217;index de la ligne visible la plus proche du niveau <em>y</em> (vertical) exprimé
+                      en pixels relativement au bord supérieur du widget.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Listbox.scan_dragto">
+                    <tt class="descname">scan_dragto</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a
+                      class="headerlink" href="#Listbox.scan_dragto" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Voir la méthode <tt class="docutils literal"><span class="pre">scan_mark()</span></tt>
+                      ci-dessous.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Listbox.scan_mark">
+                    <tt class="descname">scan_mark</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a
+                      class="headerlink" href="#Listbox.scan_mark" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Utilisez cette méthode pour implémenter le défilement rapide de la liste de sélection à la
+                      souris. Pour réaliser cette fonctionnalité, lier un événement «appui sur l&#8217;un des boutons de
+                      la souris» à un gestionnaire qui se chargera d&#8217;appeler la méthode <tt
+                        class="docutils literal"><span class="pre">scan_mark()</span></tt> à la position courante de la
+                      souris. Ensuite, lier l&#8217;événement «déplacement de la souris» (<em>Motion</em>) à un
+                      gestionnaire qui appelera <tt class="docutils literal"><span class="pre">scan_dragto()</span></tt>
+                      avec la position courante de la souris. La liste de sélection défilera alors à un rythme
+                      proportionnel à la distance qui sépare la position enregisrée par <tt
+                        class="docutils literal"><span class="pre">scan_mark</span></tt> et la position courante.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Listbox.see">
+                    <tt class="descname">see</tt><big>(</big><em>index</em><big>)</big><a class="headerlink"
+                      href="#Listbox.see" title="Lien permanent vers cette définition">¶</a></dt>
+                  <dd>
+                    <p>Ajuste la position de la liste de sélection de telle sorte que la ligne de numéro <em>index</em>
+                      soit visible.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Listbox.selection_anchor">
+                    <tt class="descname">selection_anchor</tt><big>(</big><em>index</em><big>)</big><a
+                      class="headerlink" href="#Listbox.selection_anchor"
+                      title="Lien permanent vers cette définition">¶</a></dt>
+                  <dd>
+                    <p>Positionne l&#8217;«ancre de sélection» sur la ligne de numéro <em>index</em>. Une fois que cette
+                      ancre a été positionnée, vous pouvez y faire référence en utilisant l&#8217;index spécial <tt
+                        class="docutils literal"><span class="pre">'anchor'</span></tt>.</p>
+                    <p>Par exemple, si votre liste est <tt class="docutils literal"><span class="pre">lbox</span></tt>,
+                      ces instructions sélectionnerons les lignes 3, 4 et 5:</p>
+                    <div class="highlight-python">
+                      <div class="highlight">
+                        <pre><span class="n">lbox</span><span class="o">.</span><span class="n">selection_anchor</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">lbox</span><span class="o">.</span><span class="n">selection_set</span><span class="p">(</span><span class="n">tk</span><span class="o">.</span><span class="n">ANCHOR</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+</pre>
+                      </div>
+                    </div>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Listbox.selection_clear">
+                    <tt class="descname">selection_clear</tt><big>(</big><em>debut</em>, <em>fin=None</em><big>)</big><a
+                      class="headerlink" href="#Listbox.selection_clear"
+                      title="Lien permanent vers cette définition">¶</a></dt>
+                  <dd>
+                    <p>Déselectionne toutes les lignes dont les index appartiennent à l&#8217;intervalle
+                      [<em>debut</em>, <em>fin</em>]. Si le second argument est omis, seule la ligne de numéro
+                      <em>debut</em> est déselectionnée.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Listbox.selection_includes">
+                    <tt class="descname">selection_includes</tt><big>(</big><em>index</em><big>)</big><a
+                      class="headerlink" href="#Listbox.selection_includes"
+                      title="Lien permanent vers cette définition">¶</a></dt>
+                  <dd>
+                    <p>Retourne 1 si la ligne d&#8217;index donné est sélectionnée et retourne 0 autrement.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Listbox.selection_set">
+                    <tt class="descname">selection_set</tt><big>(</big><em>debut</em>, <em>fin=None</em><big>)</big><a
+                      class="headerlink" href="#Listbox.selection_set"
+                      title="Lien permanent vers cette définition">¶</a></dt>
+                  <dd>
+                    <p>Sélectionne toute les lignes dont les index appartiennent à l&#8217;intervalle [<em>debut</em>,
+                      <em>fin</em>]. Si le deuxième argument est omis, seule la ligne d&#8217;index <em>debut</em> est
+                      sélectionnée.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Listbox.size">
+                    <tt class="descname">size</tt><big>(</big><big>)</big><a class="headerlink" href="#Listbox.size"
+                      title="Lien permanent vers cette définition">¶</a></dt>
+                  <dd>
+                    <p>Retourne le nombre de lignes de la liste de sélection.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Listbox.xview">
+                    <tt class="descname">xview</tt><big>(</big><big>)</big><a class="headerlink" href="#Listbox.xview"
+                      title="Lien permanent vers cette définition">¶</a></dt>
+                  <dd>
+                    <p>Pour faire défiler la liste horizontalement, configurez l&#8217;option <em>command</em> du widget
+                      barre de défilement horizontale avec cette méthode. Voir <a class="reference internal"
+                        href="#defilsellist"><em>Défilement d&#8217;une liste de sélection</em></a>.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Listbox.xview_moveto">
+                    <tt class="descname">xview_moveto</tt><big>(</big><em>fraction</em><big>)</big><a class="headerlink"
+                      href="#Listbox.xview_moveto" title="Lien permanent vers cette définition">¶</a></dt>
+                  <dd>
+                    <p>Fait défiler la liste de sélection horizontalement de telle sorte que le côté gauche de la
+                      <em>fraction</em> de sa ligne la plus longue soit placé contre le bord gauche de la zone visible.
+                      L&#8217;argument <em>fraction</em> appartient à l&#8217;intervalle [0,1].</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Listbox.xview_scroll">
+                    <tt class="descname">xview_scroll</tt><big>(</big><em>nombre</em>, <em>quoi</em><big>)</big><a
+                      class="headerlink" href="#Listbox.xview_scroll" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Fait défiler la liste de sélection horizontalement. Pour l&#8217;argument <em>quoi</em>, utiliser
+                      soit <tt class="docutils literal"><span class="pre">'units'</span></tt> pour un défilement
+                      d&#8217;unité «un caractère», ou <tt class="docutils literal"><span
+                          class="pre">'pages'</span></tt> pour un défilement où l&#8217;unité est la «largeur effective
+                      de la liste de sélection». L&#8217;argument <em>nombre</em> indique le nombre d&#8217;unités du
+                      défilement: les valeurs négatives font défiler vers la droite, les positives vers la gauche.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Listbox.yview">
+                    <tt class="descname">yview</tt><big>(</big><big>)</big><a class="headerlink" href="#Listbox.yview"
+                      title="Lien permanent vers cette définition">¶</a></dt>
+                  <dd>
+                    <p>Similaire à la méthode <tt class="docutils literal"><span class="pre">xview()</span></tt>, mais
+                      pour un défilement vertical.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Listbox.yview_moveto">
+                    <tt class="descname">yview_moveto</tt><big>(</big><em>fraction</em><big>)</big><a class="headerlink"
+                      href="#Listbox.yview_moveto" title="Lien permanent vers cette définition">¶</a></dt>
+                  <dd>
+                    <p>Similaire à la méthode <tt class="docutils literal"><span class="pre">xview_moveto()</span></tt>
+                      pour un défilement vertical.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Listbox.yview_scroll">
+                    <tt class="descname">yview_scroll</tt><big>(</big><em>nombre</em>, <em>quoi</em><big>)</big><a
+                      class="headerlink" href="#Listbox.yview_scroll" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Similaire à la méthode <tt class="docutils literal"><span class="pre">xview_scroll()</span></tt>
+                      mais pour un défilement vertical. <tt class="docutils literal"><span
+                          class="pre">'units'</span></tt> se réfère à l&#8217;unité «ligne» et <tt
+                        class="docutils literal"><span class="pre">'pages'</span></tt> à l&#8217;unité «hauteur visible
+                      de la liste».</p>
+                  </dd>
+                </dl>
+
+              </dd>
+            </dl>
+
+            <div class="section" id="defilement-d-une-liste-de-selection">
+              <span id="defilsellist"></span>
+              <h2>Défilement d&#8217;une liste de sélection<a class="headerlink"
+                  href="#defilement-d-une-liste-de-selection" title="Lien permanent vers ce titre">¶</a></h2>
+              <p>Voici un fragment de code qui illustre la création et la liaison d&#8217;une liste de sélection avec
+                des barres de défilement verticale et horizontale:</p>
+              <div class="highlight-python">
+                <div class="highlight">
+                  <pre><span class="n">yDefilB</span> <span class="o">=</span> <span class="n">Scrollbar</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s">&#39;vertical&#39;</span><span class="p">)</span>
+<span class="n">yDefilB</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s">&#39;ns&#39;</span><span class="p">)</span>
+
+<span class="n">xDefilB</span> <span class="o">=</span> <span class="n">Scrollbar</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s">&#39;horizontal&#39;</span><span class="p">)</span>
+<span class="n">xDefilB</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s">&#39;ew&#39;</span><span class="p">)</span>
+
+<span class="n">listSel</span> <span class="o">=</span> <span class="n">Listbox</span><span class="p">(</span><span class="n">root</span><span class="p">,</span>
+     <span class="n">xscrollcommand</span><span class="o">=</span><span class="n">xDefilB</span><span class="o">.</span><span class="n">set</span><span class="p">,</span>
+     <span class="n">yscrollcommand</span><span class="o">=</span><span class="n">yDefilB</span><span class="o">.</span><span class="n">set</span><span class="p">)</span>
+<span class="n">listSel</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s">&#39;nsew&#39;</span><span class="p">)</span>
+<span class="n">xDefilB</span><span class="p">[</span><span class="s">&#39;command&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">listSel</span><span class="o">.</span><span class="n">xview</span>
+<span class="n">yDefilB</span><span class="p">[</span><span class="s">&#39;command&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">listSel</span><span class="o">.</span><span class="n">yview</span>
+</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  </div>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général">index</a></li>
+      <li class="right">
+        <a href="menw.html" title="Menu - Menus">suivant</a> |</li>
+      <li class="right">
+        <a href="lbfr.html" title="LabelFrame - Cadres étiquetés">précédent</a> |</li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="footer">
+    &copy; Copyright 2013, Étienne FLORENT.
+    Créé avec <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+  </div>
+</body>
+
+<!-- Mirrored from tkinter.fdex.eu/doc/lbw.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:00:54 GMT -->
+
+</html>
