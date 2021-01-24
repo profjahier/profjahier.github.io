@@ -1,0 +1,502 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Mirrored from tkinter.fdex.eu/doc/spbw.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:00:58 GMT -->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <title>Spinbox - Saisies/sélections rotatives &mdash; Tkinter pour ISN</title>
+
+  <link rel="stylesheet" href="../static/sphinxdoc.css" type="text/css" />
+  <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT: '../',
+      VERSION: '1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE: true
+    };
+  </script>
+  <script type="text/javascript" src="../static/jquery.js"></script>
+  <script type="text/javascript" src="../static/underscore.js"></script>
+  <script type="text/javascript" src="../static/doctools.js"></script>
+  <script type="text/javascript" src="../static/translations.js"></script>
+  <script type="text/javascript"
+    src="../../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="../static/my.js"></script>
+  <link rel="top" title="Tkinter pour ISN" href="../index-2.html" />
+  <link rel="next" title="Text - Éditeurs de texte" href="textw.html" />
+  <link rel="prev" title="Scrollbar - Barres de défilement" href="scrw.html" />
+</head>
+
+<body>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général" accesskey="I">index</a>
+      </li>
+      <li class="right">
+        <a href="textw.html" title="Text - Éditeurs de texte" accesskey="N">suivant</a> |
+      </li>
+      <li class="right">
+        <a href="scrw.html" title="Scrollbar - Barres de défilement" accesskey="P">précédent</a> |
+      </li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+      <h4>Sujet précédent</h4>
+      <p class="topless"><a href="scrw.html" title="Chapitre précédent"><tt class="docutils literal"><span
+              class="pre">Scrollbar</span></tt> - Barres de défilement</a></p>
+      <h4>Sujet suivant</h4>
+      <p class="topless"><a href="textw.html" title="Chapitre suivant"><tt class="docutils literal"><span
+              class="pre">Text</span></tt> - Éditeurs de texte</a></p>
+      
+    </div>
+  </div>
+
+  <div class="document">
+    <div class="documentwrapper">
+      <div class="bodywrapper">
+        <div class="body">
+
+          <div class="section" id="spinbox-saisies-selections-rotatives">
+            <span id="spinbox"></span>
+            <h1><tt class="docutils literal"><span class="pre">Spinbox</span></tt> - Saisies/sélections rotatives<a
+                class="headerlink" href="#spinbox-saisies-selections-rotatives"
+                title="Lien permanent vers ce titre">¶</a></h1>
+            <p>Le widget <tt class="docutils literal"><span class="pre">Spinbox</span></tt> sert à donner un moyen à
+              l&#8217;utilisateur de sélectionner une valeur parmi un ensemble de valeurs données ou d&#8217;en proposer
+              une autre. Cet ensemble de valeurs peut être un intervalle de nombres ou un ensemble fixe de chaînes de
+              caractères.</p>
+            <img alt="../images/spinbox.png" class="align-center" src="../images/spinbox.png" />
+            <p>À l&#8217;écran, ce widget possède une zone de visualisation de la valeur courante ainsi qu&#8217;une
+              paire de flèches.</p>
+            <ul class="simple">
+              <li>L&#8217;utilisateur peut cliquer sur les flèches de manière à passer d&#8217;une valeur à une autre.
+                Si la valeur courante est à une extrémité de l&#8217;ensemble, vous pouvez configurer le widget de façon
+                à ce que l&#8217;appui sur une flèche adéquate positionne la valeur située à l&#8217;autre extrémité.
+              </li>
+              <li>L&#8217;utilisateur peut aussi saisir une valeur directement dans la zone de visualisation de la
+                valeur courante si le widget a le focus qu&#8217;il peut obtenir par clic sur la zone de
+                visualisation/saisie. Voir <a class="reference internal" href="focus.html#focus"><em>Focus: réception
+                    des saisies clavier</em></a>.</li>
+            </ul>
+            <p>Pour créer un tel widget comme enfant d&#8217;une fenêtre ou d&#8217;un cadre nommé <tt
+                class="docutils literal"><span class="pre">parent</span></tt>:</p>
+            <dl class="class">
+              <dt id="Spinbox">
+                <em class="property">class </em><tt class="descname">Spinbox</tt><big>(</big><em>parent</em>,
+                <em>option</em>, <em>...</em><big>)</big><a class="headerlink" href="#Spinbox"
+                  title="Lien permanent vers cette définition">¶</a>
+              </dt>
+              <dd>
+                <p>Ce constructeur retourne le nouveau widget Spinbox créé. Ses options incluent:</p>
+                <table class="docutils field-list" frame="void" rules="none">
+                  <col class="field-name" />
+                  <col class="field-body" />
+                  <tbody valign="top">
+                    <tr class="field-odd field">
+                      <th class="field-name">Paramètres:</th>
+                      <td class="field-body">
+                        <ul class="first last simple">
+                          <li><strong>activebackground</strong> &#8211; Couleur d&#8217;arrière plan utilisée lorsque la
+                            souris est au dessus du widget; voir <a class="reference internal"
+                              href="sa.html#couleurs"><em>Les couleurs</em></a>.</li>
+                          <li><strong>bg</strong> &#8211; (ou <strong>background</strong>) Couleur d&#8217;arrière plan
+                            du widget.</li>
+                          <li><strong>bd</strong> &#8211; (ou <strong>borderwidth</strong>) Épaisseur de la bordure qui
+                            entoure le widget; voir <a class="reference internal" href="sa.html#dimensions"><em>Les
+                                dimensions</em></a>. 1 pixel par défaut.</li>
+                          <li><strong>buttonbackground</strong> &#8211; La couleur d&#8217;arrière plan utilisée pour
+                            les flèches. <tt class="docutils literal"><span class="pre">'gray'</span></tt> par défaut.
+                          </li>
+                          <li><strong>buttoncursor</strong> &#8211; Le pointeur de souris à utiliser lorsque la souris
+                            est au dessus d&#8217;une flèche; voir <a class="reference internal"
+                              href="sa.html#pointeurs"><em>Le pointeur de la souris</em></a>.</li>
+                          <li><strong>buttondownrelief</strong> &#8211; Le style de relief utilisé pour l&#8217;effet
+                            d&#8217;enfoncement des flèches; voir <a class="reference internal"
+                              href="sa.html#reliefs"><em>Les styles de relief</em></a>. <tt
+                              class="docutils literal"><span class="pre">'raised'</span></tt> par défaut.</li>
+                          <li><strong>buttonup</strong> &#8211; Le style de relief utilisé pour l&#8217;effet de
+                            relâchement des flèches. <tt class="docutils literal"><span class="pre">'raised'</span></tt>
+                            par défaut.</li>
+                          <li><strong>command</strong> &#8211; Utilisez cette option pour préciser une fonction de
+                            rappel ou une méthode qui sera appelée lorsque l&#8217;utilisateur clique sur l&#8217;une
+                            des flèches. Notez que cette fonction n&#8217;est pas appelée lorsque l&#8217;utilisateur
+                            saisie la valeur directement.</li>
+                          <li><strong>cursor</strong> &#8211; Le pointeur de souris qui est affiché lorsque la souris
+                            est située au-dessus de la zone de visualisation/saisie de la valeur.</li>
+                          <li><strong>disabledbackground</strong> &#8211; Cette option et la suivante servent à préciser
+                            les couleurs d&#8217;arrière et d&#8217;avant plan utilisées lorsque le widget est dans
+                            l&#8217;état <tt class="docutils literal"><span class="pre">'disabled'</span></tt>.</li>
+                          <li><strong>disabledforeground</strong> &#8211; </li>
+                          <li><strong>exportselection</strong> &#8211; Normalement, le texte de la zone de saisie
+                            d&#8217;un <tt class="docutils literal"><span class="pre">Spinbox</span></tt> peut être
+                            coupé ou collé. Pour désactiver ce comportement, utilisez <tt class="docutils literal"><span
+                                class="pre">exportselection=True</span></tt>.</li>
+                          <li><strong>font</strong> &#8211; Fonte de caractères à utiliser dans la zone de saisie. Voir
+                            <a class="reference internal" href="sa.html#polices"><em>Les polices de caractères</em></a>.
+                          </li>
+                          <li><strong>fg</strong> &#8211; (ou <strong>foreground</strong>) Couleur du texte qui apparaît
+                            dans la zone de saisie du widget, et la couleur des flèches.</li>
+                          <li><strong>format</strong> &#8211; Utilisez cette option pour contrôler la mise en forme (ou
+                            formatage) de la valeur numérique en lien avec les options <strong>from_</strong> et
+                            <strong>to</strong>. Par exemple, <tt class="docutils literal"><span
+                                class="pre">format='%10.4f'</span></tt> affichera la valeur avec 10 caractères dont 4
+                            pour les chiffres après la virgule.</li>
+                          <li><strong>from_</strong> &#8211; Utilisez cette option avec l&#8217;option
+                            <strong>to</strong> (décrite plus loin) pour contraindre les valeurs dans un intervalle
+                            numérique. Par exemple, <tt class="docutils literal"><span class="pre">from_=1</span></tt>
+                            et <tt class="docutils literal"><span class="pre">to=9</span></tt> n&#8217;autorisera que
+                            des valeurs de l&#8217;intervalle [1,9]. Voir aussi l&#8217;option
+                            <strong>increment</strong> ci-dessous.</li>
+                          <li><strong>highlightbackground</strong> &#8211; La couleur de la ligne de mise en valeur du
+                            focus lorsque le widget ne l&#8217;a pas. Voir <a class="reference internal"
+                              href="focus.html#focus"><em>Focus: réception des saisies clavier</em></a>.</li>
+                          <li><strong>highlightcolor</strong> &#8211; La couleur de la ligne de mise en valeur du focus
+                            lorsque le widget l&#8217;obtient.</li>
+                          <li><strong>highlightthickness</strong> &#8211; L&#8217;épaisseur de la ligne de mise en
+                            valeur du focus. 1 pixels par défaut. Mettre cette valeur à 0 pour supprimer la mise en
+                            valeur du focus.</li>
+                          <li><strong>increment</strong> &#8211; Lorsque vous contraignez les valeurs dans un intervalle
+                            au moyen des options <strong>from_</strong> et <strong>to</strong>, vous pouvez utiliser
+                            cette option pour préciser de combien la valeur doit augmenter ou diminuer lorsque
+                            l&#8217;utilisateur clique sur l&#8217;une des flèches. Par exemple, si <tt
+                              class="docutils literal"><span class="pre">from_=0.0</span></tt>, <tt
+                              class="docutils literal"><span class="pre">to=2.0</span></tt>, et <tt
+                              class="docutils literal"><span class="pre">increment=0.5</span></tt>, La flèche haute fera
+                            défiler les valeurs 0.0, 0.5, 1.0, 1.5, et 2.0.</li>
+                          <li><strong>insertbackground</strong> &#8211; Sert à préciser la couleur du curseur
+                            d&#8217;insertion affiché dans la zone de saisie du widget.</li>
+                          <li><strong>insertborderwidth</strong> &#8211; Sert à contrôler l&#8217;épaisseur de la
+                            bordure du curseur d&#8217;insertion. Par défaut, il n&#8217;y a pas de bordure (0). Si vous
+                            donnez une valeur non négative à cette option, la bordure produira un effet de relief <tt
+                              class="docutils literal"><span class="pre">'raised'</span></tt>.</li>
+                          <li><strong>insertofftime</strong> &#8211; Cette option et la suivante servent à contrôler le
+                            rythme de clignotement du curseur d&#8217;insertion. Elles servent à indiquer la durée de
+                            disparition - <strong>insertofftime</strong> - et celle d&#8217;apparition -
+                            <strong>insertontime</strong> -, en millisecondes, de celui-ci.</li>
+                          <li><strong>insertontime</strong> &#8211; </li>
+                          <li><strong>insertwidth</strong> &#8211; Utilisez cette option pour préciser la largeur
+                            (horizontal) du curseur d&#8217;insertion. 2 pixels par défaut.</li>
+                          <li><strong>justify</strong> &#8211; Cette option sert à préciser l&#8217;alignement du texte
+                            dans la zone de saisie du widget. Les valeurs possibles sont <tt
+                              class="docutils literal"><span class="pre">'left'</span></tt>, <tt
+                              class="docutils literal"><span class="pre">'center'</span></tt> ou <tt
+                              class="docutils literal"><span class="pre">'right'</span></tt>.</li>
+                          <li><strong>readonlybackground</strong> &#8211; Couleur de fond du widget lorsqu&#8217;il est
+                            dans l&#8217;état <tt class="docutils literal"><span class="pre">'readonly'</span></tt>.
+                          </li>
+                          <li><strong>relief</strong> &#8211; Style de relief pour le widget. <tt
+                              class="docutils literal"><span class="pre">'sunken'</span></tt> par défaut; voir <a
+                              class="reference internal" href="sa.html#reliefs"><em>Les styles de relief</em></a>.</li>
+                          <li><strong>repeatdelay</strong> &#8211; Cette option et la suivante servent à configurer la
+                            fonction de répétition automatique qui est déclenchée lorsque l&#8217;utilisateur clique
+                            sans relâcher sur l&#8217;une des flèches. Cette fonction démarre après
+                            <strong>repeatdelay</strong> millisecondes et <strong>repeatinterval</strong> est la durée
+                            en millisecondes entre deux répétitions. Les valeurs par défaut sont respectivement 400 et
+                            100 millisecondes.</li>
+                          <li><strong>repeatinterval</strong> &#8211; </li>
+                          <li><strong>selectbackground</strong> &#8211; Couleur de fond utilisée pour l&#8217;item
+                            sélectionné.</li>
+                          <li><strong>selectborderwidth</strong> &#8211; Épaisseur de la bordure affichée autour de
+                            l&#8217;item sélectionné.</li>
+                          <li><strong>selectforeground</strong> &#8211; Couleur du texte pour l&#8217;item sélectionné.
+                          </li>
+                          <li><strong>state</strong> &#8211; État du widget. Les valeurs possibles sont <tt
+                              class="docutils literal"><span class="pre">'normal'</span></tt> (défaut), <tt
+                              class="docutils literal"><span class="pre">'disabled'</span></tt> (le widget n&#8217;est
+                            plus réactif), <tt class="docutils literal"><span class="pre">'active'</span></tt> (il est
+                            sélectionné) et <tt class="docutils literal"><span class="pre">'readonly'</span></tt>. Dans
+                            ce dernier cas, il n&#8217;est plus possible d&#8217;éditer la valeur directement mais
+                            celle-ci peut tout de même être modifiée à l&#8217;aide des flèches.</li>
+                          <li><strong>takefocus</strong> &#8211; Ce widget est susceptible d&#8217;obtenir le focus par
+                            défaut (voir <a class="reference internal" href="focus.html#focus"><em>Focus: réception des
+                                saisies clavier</em></a>). Pour supprimer le widget de la séquence de traversée du
+                            focus, utilisez <tt class="docutils literal"><span class="pre">takefocus=False</span></tt>.
+                          </li>
+                          <li><strong>textvariable</strong> &#8211; Pour récupérer la valeur actuelle du widget, vous
+                            pouvez utiliser sa méthode <tt class="docutils literal"><span class="pre">get()</span></tt>
+                            décrite plus loin, ou vous pouvez configurer cette option avec une variable de contrôle.
+                            Voir <a class="reference internal" href="ctrvar.html#ctrlvariables"><em>Variables de
+                                contrôle: Les valeurs sous les widgets</em></a>.</li>
+                          <li><strong>to</strong> &#8211; Sert à préciser la limite supérieure de l&#8217;intervalle de
+                            valeurs pour la sélection. Voir l&#8217;option <strong>from_</strong>, ci-dessus, et aussi
+                            l&#8217;option <strong>increment</strong>.</li>
+                          <li><strong>values</strong> &#8211; Il y a deux façons de préciser les valeurs possibles pour
+                            ce widget. La première est de fournir un tuple de chaînes de caractères pour cette option.
+                            Par exemple, <tt class="docutils literal"><span class="pre">values=('rouge',</span> <span
+                                class="pre">'vert',</span> <span class="pre">'bleu')</span></tt> délimitera les valeurs
+                            possibles du widget à ces trois chaînes. Pour configurer le widget avec un intervalle
+                            numérique, reportez-vous à l&#8217;option <strong>from_</strong> plus haut.</li>
+                          <li><strong>width</strong> &#8211; Utilisez cette option pour préciser le nombre de caractères
+                            qu&#8217;il est possible d&#8217;insérer dans la zone de saisie du widget.</li>
+                          <li><strong>wrap</strong> &#8211; Par défaut, lorsque le widget est à une des valeurs limites
+                            parmi celles qui ont été configurées, l&#8217;appui sur la flèche qui devrait faire sortir
+                            de l&#8217;intervalle de ces valeurs n&#8217;a aucun effet. Si vous utilisez <tt
+                              class="docutils literal"><span class="pre">wrap=True</span></tt>, cet appui permet de
+                            passer à l&#8217;autre extrémité de l&#8217;intervalle ce qui permet le parcourt
+                            «circulaire» des valeurs.</li>
+                          <li><strong>xscrollcommand</strong> &#8211; Utilisez cette option pour associer une barre de
+                            défilement à la zone de saisie de ce widget. Pour les détails, voir <a
+                              class="reference internal" href="scrw.html#assodefil"><em>Associer une barre de défilement
+                                à un autre widget</em></a>.</li>
+                        </ul>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p>Les méthodes qui suivent sont disponibles pour un widget <tt class="docutils literal"><span
+                      class="pre">Spinbox</span></tt>:</p>
+                <dl class="method">
+                  <dt id="Spinbox.bbox">
+                    <tt class="descname">bbox</tt><big>(</big><em>index</em><big>)</big><a class="headerlink"
+                      href="#Spinbox.bbox" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Cette méthode retourne la boîte englobante du caractère de position <em>index</em> dans la zone
+                      de saisie du widget. Le résultat est un 4-tuple <em>(x, y, l, h)</em> où <em>x</em> et <em>y</em>
+                      sont les coordonnées du coin supérieur gauche de cette boîte et <em>l</em> et <em>h</em> sont
+                      respectivement la largeur (<em>width</em>) et la hauteur (<em>height</em>) en pixels dudit
+                      caractère.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Spinbox.delete">
+                    <tt class="descname">delete</tt><big>(</big><em>debut</em>, <em>fin=None</em><big>)</big><a
+                      class="headerlink" href="#Spinbox.delete" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Cette méthode supprime des caractères de la zone de saisie de la <tt
+                        class="docutils literal"><span class="pre">Spinbox</span></tt>. Les valeurs <em>debut</em> et
+                      <em>fin</em> sont interprétées conformément aux conventions d&#8217;extraction de Python.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Spinbox.get">
+                    <tt class="descname">get</tt><big>(</big><big>)</big><a class="headerlink" href="#Spinbox.get"
+                      title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Retourne la valeur actuelle du <tt class="docutils literal"><span class="pre">Spinbox</span></tt>
+                      sous la forme d&#8217;une chaîne de caractères même si un intervalle numérique a été précisé pour
+                      le widget.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Spinbox.icursor">
+                    <tt class="descname">icursor</tt><big>(</big><em>index</em><big>)</big><a class="headerlink"
+                      href="#Spinbox.icursor" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Sert à positionner le curseur d&#8217;insertion à la position <em>index</em> en suivant les
+                      conventions standards de Python pour les positions.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Spinbox.identify">
+                    <tt class="descname">identify</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a
+                      class="headerlink" href="#Spinbox.identify" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Étant donné une position (<em>x</em>, <em>y</em>) à l&#8217;intérieur du widget, cette méthode
+                      retourne une chaîne de caractères qui décrit ce qui se trouve à cette position. Les valeurs
+                      possibles sont:</p>
+                    <ul class="simple">
+                      <li><tt class="docutils literal"><span class="pre">'entry'</span></tt> pour la zone de saisie.
+                      </li>
+                      <li><tt class="docutils literal"><span class="pre">'buttonup'</span></tt> pour la flèche qui
+                        pointe vers le haut.</li>
+                      <li><tt class="docutils literal"><span class="pre">'buttondown'</span></tt> pour la flèche qui
+                        pointe vers le bas.</li>
+                      <li><tt class="docutils literal"><span class="pre">''</span></tt> (une chaîne vide) si la position
+                        est en dehors du widget.</li>
+                    </ul>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Spinbox.index">
+                    <tt class="descname">index</tt><big>(</big><em>i</em><big>)</big><a class="headerlink"
+                      href="#Spinbox.index" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Cette méthode retourne la position numérique (l&#8217;index) du caractère de la zone de saisie
+                      sélectionné par <em>i</em>. Les valeurs possibles pour <em>i</em> sont:</p>
+                    <ul class="simple">
+                      <li><tt class="docutils literal"><span class="pre">'end'</span></tt> pour obtenir la position
+                        après le dernier caractère de la zone de saisie.</li>
+                      <li><tt class="docutils literal"><span class="pre">'insert'</span></tt> pour obtenir la position
+                        du curseur d&#8217;insertion.</li>
+                      <li><tt class="docutils literal"><span class="pre">'anchor'</span></tt> pour obtenir la position
+                        de l&#8217;ancre de sélection.</li>
+                      <li><tt class="docutils literal"><span class="pre">'sel.first'</span></tt> pour obtenir la
+                        position du début de la sélection. Si la sélection n&#8217;est pas dans le widget, une erreur de
+                        type <tt class="docutils literal"><span class="pre">TclError</span></tt> est lancée.</li>
+                      <li><tt class="docutils literal"><span class="pre">'sel.last'</span></tt> pour obtenir la position
+                        situé juste après la fin de la sélection. De même, une erreur de type <tt
+                          class="docutils literal"><span class="pre">TclError</span></tt> est lancée si la sélection
+                        n&#8217;est pas dans ce widget.</li>
+                      <li>Une chaîne de la forme <tt class="docutils literal"><span class="pre">'&#64;x'</span></tt>
+                        précise une coordonnée horizontale dans ce widget. La valeur de retour est la position du
+                        caractère situé à cette position. Si aucun caractère n&#8217;est situé à cette position, la
+                        position du caractère le plus proche est renvoyé.</li>
+                    </ul>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Spinbox.insert">
+                    <tt class="descname">insert</tt><big>(</big><em>index</em>, <em>text</em><big>)</big><a
+                      class="headerlink" href="#Spinbox.insert" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Cette méthode insère les caractères de la chaîne <em>text</em> à la position <em>index</em>. Pour
+                      les valeurs de l&#8217;argument <em>index</em>, reportez-vous à la méthode index() décrite plus
+                      tôt.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Spinbox.invoke">
+                    <tt class="descname">invoke</tt><big>(</big><em>element</em><big>)</big><a class="headerlink"
+                      href="#Spinbox.invoke" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>L&#8217;appel de cette méthode a le même effet que lorsque l&#8217;utilisateur clique sur
+                      l&#8217;une des flèches. Les arguments possibles sont <tt class="docutils literal"><span
+                          class="pre">'buttonup'</span></tt> pour la flèche qui pointe vers le haut et <tt
+                        class="docutils literal"><span class="pre">'buttondown'</span></tt> pour l&#8217;autre.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Spinbox.scan_dragto">
+                    <tt class="descname">scan_dragto</tt><big>(</big><em>x</em><big>)</big><a class="headerlink"
+                      href="#Spinbox.scan_dragto" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Cette méthode fonctionne de la même façon que la méthode <a class="reference internal"
+                        href="entw.html#Entry.scan_dragto" title="Entry.scan_dragto"><tt
+                          class="xref py py-meth docutils literal"><span class="pre">scan_dragto()</span></tt></a> du
+                      widget <tt class="docutils literal"><span class="pre">Entry</span></tt>.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Spinbox.scan_mark">
+                    <tt class="descname">scan_mark</tt><big>(</big><em>x</em><big>)</big><a class="headerlink"
+                      href="#Spinbox.scan_mark" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Cette méthode fonctionne de la même façon que la méthode <a class="reference internal"
+                        href="entw.html#Entry.scan_mark" title="Entry.scan_mark"><tt
+                          class="xref py py-meth docutils literal"><span class="pre">scan_mark()</span></tt></a> du
+                      widget <tt class="docutils literal"><span class="pre">Entry</span></tt>.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Spinbox.selection">
+                    <tt class="descname">selection</tt><big>(</big><em>'from'</em>, <em>index</em><big>)</big><a
+                      class="headerlink" href="#Spinbox.selection" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Positionne l&#8217;ancre de sélection de ce widget à la position <em>index</em>. Pour des valeurs
+                      possible de <em>index</em>, voir la méthode <tt class="docutils literal"><span
+                          class="pre">index()</span></tt> décrite plus haut. La valeur initiale de l&#8217;ancre de
+                      sélection est 0.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt>
+                    <tt class="descname">selection</tt><big>(</big><em>'to'</em>, <em>index</em><big>)</big>
+                  </dt>
+                  <dd>
+                    <p>Sélectionne le texte situé entre l&#8217;ancre de sélection et l&#8217;<em>index</em> indiqué.
+                    </p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt>
+                    <tt class="descname">selection</tt><big>(</big><em>'range'</em>, <em>debut</em>,
+                    <em>fin</em><big>)</big>
+                  </dt>
+                  <dd>
+                    <p>Sélectionne le texte situé entre les index <em>debut</em> et <em>fin</em>. Pour les valeurs
+                      possibles d&#8217;<em>index</em>, voir la méthode <tt class="docutils literal"><span
+                          class="pre">index()</span></tt> ci-dessus.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Spinbox.selection_clear">
+                    <tt class="descname">selection_clear</tt><big>(</big><big>)</big><a class="headerlink"
+                      href="#Spinbox.selection_clear" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Efface la sélection.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Spinbox.selection_get">
+                    <tt class="descname">selection_get</tt><big>(</big><big>)</big><a class="headerlink"
+                      href="#Spinbox.selection_get" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Retourne le texte sélectionné. S&#8217;il n&#8217;y a pas de sélection, cette méthode lève une
+                      exception de type <tt class="docutils literal"><span class="pre">TclError</span></tt>.</p>
+                  </dd>
+                </dl>
+
+              </dd>
+            </dl>
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  </div>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général">index</a>
+      </li>
+      <li class="right">
+        <a href="textw.html" title="Text - Éditeurs de texte">suivant</a> |
+      </li>
+      <li class="right">
+        <a href="scrw.html" title="Scrollbar - Barres de défilement">précédent</a> |
+      </li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="footer">
+    &copy; Copyright 2013, Étienne FLORENT.
+    Créé avec <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+  </div>
+</body>
+
+<!-- Mirrored from tkinter.fdex.eu/doc/spbw.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:00:59 GMT -->
+
+</html>

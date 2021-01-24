@@ -1,0 +1,448 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Mirrored from tkinter.fdex.eu/doc/scrw.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:00:58 GMT -->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <title>Scrollbar - Barres de défilement &mdash; Tkinter pour ISN</title>
+
+  <link rel="stylesheet" href="../static/sphinxdoc.css" type="text/css" />
+  <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT: '../',
+      VERSION: '1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE: true
+    };
+  </script>
+  <script type="text/javascript" src="../static/jquery.js"></script>
+  <script type="text/javascript" src="../static/underscore.js"></script>
+  <script type="text/javascript" src="../static/doctools.js"></script>
+  <script type="text/javascript" src="../static/translations.js"></script>
+  <script type="text/javascript"
+    src="../../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="../static/my.js"></script>
+  <link rel="top" title="Tkinter pour ISN" href="../index-2.html" />
+  <link rel="next" title="Spinbox - Saisies/sélections rotatives" href="spbw.html" />
+  <link rel="prev" title="Scale - Échelles" href="scw.html" />
+</head>
+
+<body>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général" accesskey="I">index</a>
+      </li>
+      <li class="right">
+        <a href="spbw.html" title="Spinbox - Saisies/sélections rotatives" accesskey="N">suivant</a> |
+      </li>
+      <li class="right">
+        <a href="scw.html" title="Scale - Échelles" accesskey="P">précédent</a> |
+      </li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+      <h3><a href="../index-2.html">Table des matières</a></h3>
+      <ul>
+        <li><a class="reference internal" href="#"><tt class="docutils literal"><span class="pre">Scrollbar</span></tt>
+            - Barres de défilement</a>
+          <ul>
+            <li><a class="reference internal" href="#fonction-de-rappel-d-une-barre-de-defilement">Fonction de rappel
+                d&#8217;une barre de défilement</a></li>
+            <li><a class="reference internal" href="#associer-une-barre-de-defilement-a-un-autre-widget">Associer une
+                barre de défilement à un autre widget</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <h4>Sujet précédent</h4>
+      <p class="topless"><a href="scw.html" title="Chapitre précédent"><tt
+            class="docutils literal docutils literal"><span class="pre">Scale</span></tt> - Échelles</a></p>
+      <h4>Sujet suivant</h4>
+      <p class="topless"><a href="spbw.html" title="Chapitre suivant"><tt class="docutils literal"><span
+              class="pre">Spinbox</span></tt> - Saisies/sélections rotatives</a></p>
+      
+    </div>
+  </div>
+
+  <div class="document">
+    <div class="documentwrapper">
+      <div class="bodywrapper">
+        <div class="body">
+
+          <div class="section" id="scrollbar-barres-de-defilement">
+            <span id="scrollbar"></span>
+            <h1><tt class="docutils literal"><span class="pre">Scrollbar</span></tt> - Barres de défilement<a
+                class="headerlink" href="#scrollbar-barres-de-defilement" title="Lien permanent vers ce titre">¶</a>
+            </h1>
+            <p>Bon nombre de widgets, comme par exemple les listes de sélection (<tt class="docutils literal"><span
+                  class="pre">Listbox</span></tt>) et les canevas (<tt class="docutils literal"><span
+                  class="pre">Canvas</span></tt>), peuvent se comporter comme des fenêtres de visualisation d&#8217;une
+              aire virtuelle plus large. Vous pouvez associer à de tels widgets des barres de défilement pour donner un
+              moyen à l&#8217;utilisateur de faire glisser la vue et d&#8217;accéder aux zones actuellement hors de
+              celle-ci. Voici une capture d&#8217;écran qui montre un champ de saisie (<tt
+                class="docutils literal"><span class="pre">Entry</span></tt>) muni d&#8217;une barre de défilement.</p>
+            <ul class="simple">
+              <li>Une barre de défilement peut être orientée horizontalement (comme celle montrée ci-dessus), ou
+                verticalement. Un widget qui possède deux dimensions de défilement, comme un <tt
+                  class="docutils literal"><span class="pre">Canvas</span></tt> ou une <tt
+                  class="docutils literal"><span class="pre">Listbox</span></tt>, peut être muni de deux barres de
+                défilement: horizontale et verticale.</li>
+              <li>Le curseur, ou poigné de glissement, est le petit rectangle surélevé qui indique la position courante
+                de défilement.</li>
+              <li>Les deux petits triangles à chaque extrémité de la barre sont utilisés pour modifier la position par
+                petits pas. Celui de gauche est nommé <tt class="docutils literal"><span
+                    class="pre">'arrow1'</span></tt> et celui de droite <tt class="docutils literal"><span
+                    class="pre">'arrow2'</span></tt>.</li>
+              <li>Les zones de glissements situées entre les triangles et le curseur sont appelées <tt
+                  class="docutils literal"><span class="pre">'trough1'</span></tt> et <tt class="docutils literal"><span
+                    class="pre">'trough2'</span></tt> (de la gauche vers la droite ou du haut vers le bas selon
+                l&#8217;orientation de la barre).</li>
+              <li>La taille et la position du curseur, relativement à la longueur totale de la barre, montre la taille
+                et la position de la portion actuellement visible du widget relativement à sa taille totale. Par
+                exemple, si une barre de défilement verticale est associée à une liste de sélection (<tt
+                  class="docutils literal"><span class="pre">Listbox</span></tt>) et que son curseur occupe 25% (1/4) de
+                la barre tout en ayant son extrémité haute au milieu de celle-ci, cela signife que la moitié du contenu
+                de la liste est hors de la vue au dessus, un quart est hors de la vue en dessous et un quart de ce
+                contenu est actuellement visible.</li>
+              <li>Pour une barre de défilement horizontale, cliquer sur le bouton 1 (gauche) de la souris tout en étant
+                au-dessus du triangle gauche déplace la vue vers la gauche d&#8217;une unité. Un déplacement vers la
+                droite d&#8217;une même quantité se produit si on clique sur le triangle droit. Un comportement
+                similaire a lieu pour une barre verticale. Pour connaître précisément cette quantité de mouvement,
+                reportez-vous à la documentation des widgets utilisés.</li>
+              <li>L&#8217;utilisateur peut cliquer-glisser le curseur en utilisant le bouton 1 ou 2 (gauche ou milieu)
+                de la souris afin de déplacer la vue.</li>
+              <li>Cliquer gauche sur l&#8217;aire de glissement de la barre provoque un saut d&#8217;une page de la vue
+                (dans la direction de la barre).</li>
+              <li>Cliquer avec le bouton du milieu de la souris sur l&#8217;aire de glissement amène la vue à
+                l&#8217;une de ses extrémités: tout en haut, en bas, à gauche, à droite.</li>
+            </ul>
+            <p>La position normalisée de la barre de défilement est un nombre de l&#8217;intervalle fermé [0.0, 1.0] qui
+              détermine la position du curseur. 0.0 se réfère à la position la plus à gauche d&#8217;une barre
+              horizontale, et à la position la plus haute d&#8217;une barre verticale.</p>
+            <p>Pour créer une nouvelle barre de défilement <tt class="docutils literal"><span
+                  class="pre">Scrollbar</span></tt> comme enfant d&#8217;une fenêtre ou d&#8217;un cadre nommé parent:
+            </p>
+            <dl class="class">
+              <dt id="Scrollbar">
+                <em class="property">class </em><tt class="descname">Scrollbar</tt><big>(</big><em>parent</em>,
+                <em>option</em>, <em>...</em><big>)</big><a class="headerlink" href="#Scrollbar"
+                  title="Lien permanent vers cette définition">¶</a>
+              </dt>
+              <dd>
+                <p>Le constructeur retourne le nouveau widget <tt class="docutils literal"><span
+                      class="pre">Scrollbar</span></tt> créé. Ses options incluent:</p>
+                <table class="docutils field-list" frame="void" rules="none">
+                  <col class="field-name" />
+                  <col class="field-body" />
+                  <tbody valign="top">
+                    <tr class="field-odd field">
+                      <th class="field-name">Paramètres:</th>
+                      <td class="field-body">
+                        <ul class="first last simple">
+                          <li><strong>activebackground</strong> &#8211; La couleur du curseur et des flèches lorsque la
+                            souris est au dessus de l&#8217;un d&#8217;eux. Voir <a class="reference internal"
+                              href="sa.html#couleurs"><em>Les couleurs</em></a>.</li>
+                          <li><strong>activerelief</strong> &#8211; Le relief utilisé pour afficher le curseur lorsque
+                            la souris est au dessus. Sa valeur par défaut est <tt class="docutils literal"><span
+                                class="pre">'raised'</span></tt>.</li>
+                          <li><strong>bg</strong> &#8211; (ou <strong>background</strong>) La couleur du curseur et des
+                            flèches lorsque la souris n&#8217;est pas au dessus.</li>
+                          <li><strong>bd</strong> &#8211; (ou <strong>borderwidth</strong>) La largeur de la bordure 3d
+                            qui entoure la zone de glissement et aussi celle de l&#8217;effet 3d du curseur et des
+                            flèches. Par défaut, il n&#8217;y a pas de bordure autour de la zone de glissement, et celle
+                            des flèches et du curseur vaut 2 pixels. Pour des valeurs possibles, voir <a
+                              class="reference internal" href="sa.html#dimensions"><em>Les dimensions</em></a>.</li>
+                          <li><strong>command</strong> &#8211; Une fonction à appeler à chaque fois que le curseur de la
+                            barre de défilement a été déplacé. Pour plus de détails sur la façon dont cette fonction est
+                            appelée, voir <a class="reference internal" href="#foncrappdef"><em>Fonction de rappel
+                                d&#8217;une barre de défilement</em></a>.</li>
+                          <li><strong>cursor</strong> &#8211; Le curseur utilisée lorsque la souris est au dessus de la
+                            barre. Voir <a class="reference internal" href="sa.html#pointeurs"><em>Le pointeur de la
+                                souris</em></a>.</li>
+                          <li><strong>elementborderwidth</strong> &#8211; L&#8217;épaisseur de la bordure des flèches et
+                            du curseur. Sa valeur par défaut est -1 ce qui signifie que c&#8217;est la valeur de
+                            l&#8217;option <strong>borderwidth</strong> qui est utilisée.</li>
+                          <li><strong>highlightbackground</strong> &#8211; La couleur de la ligne de mise en valeur du
+                            focus lorsque la barre de défilement ne l&#8217;a pas. Voir <a class="reference internal"
+                              href="focus.html#focus"><em>Le focus: réception des saisies clavier</em></a>.</li>
+                          <li><strong>highlightcolor</strong> &#8211; La couleur de la ligne de mise en valeur du focus
+                            lorsque la barre de défilement l&#8217;obtient.</li>
+                          <li><strong>highlightthickness</strong> &#8211; L&#8217;épaisseur de la ligne de mise en
+                            valeur du focus. 1 par défaut. Mettre cette option à 0 pour supprimer la mise en valeur du
+                            focus.</li>
+                          <li><strong>jump</strong> &#8211; Sert à contrôler ce qui arrive lorsque l&#8217;utilisateur
+                            déplace le curseur. Par défaut <tt class="docutils literal"><span
+                                class="pre">jump=0</span></tt> et chaque petit déplacement du curseur produit un appel
+                            de la fonction associée à l&#8217;option <strong>command</strong>. Si vous réglez cette
+                            option avec la valeur 1, la fonction de rappel ne sera pas appelée tant que
+                            l&#8217;utilisateur n&#8217;aura pas relâché le bouton de la souris.</li>
+                          <li><strong>orient</strong> &#8211; Configurez cette option avec la valeur <tt
+                              class="docutils literal"><span class="pre">'horizontal'</span></tt> pour une barre de
+                            défilement horizontale et <tt class="docutils literal"><span
+                                class="pre">'vertical'</span></tt> pour une barre de défilement verticale.</li>
+                          <li><strong>relief</strong> &#8211; Sert à contrôler le relief du widget; sa valeur par défaut
+                            est <tt class="docutils literal"><span class="pre">'sunken'</span></tt>. Cette option
+                            n&#8217;a pas d&#8217;effet sur le système Windows.</li>
+                          <li><strong>repeatdelay</strong> &#8211; Cette option contrôle la durée, en millisecondes, à
+                            partir de laquelle le curseur commence à être déplacé de manière répétive dans la direction
+                            d&#8217;un clic gauche tenui, à la souris, sur la zone de défilement. Sa valeur par défaut
+                            est 300 millisecondes.</li>
+                          <li><strong>repeatinterval</strong> &#8211; Cette option contrôle la durée, en millisecondes,
+                            qui s&#8217;écoule entre deux déplacements automatiques du curseur lorsque
+                            l&#8217;utilisateur fait un clic prolongé sur la zone de défilement. Sa valeur par défaut
+                            est 100 millisecondes.</li>
+                          <li><strong>takefocus</strong> &#8211; Ce widget obtient normalement le focus; voir <a
+                              class="reference internal" href="focus.html#focus"><em>Le focus: réception des saisies
+                                clavier</em></a>. Utilisez <tt class="docutils literal"><span
+                                class="pre">takefocus=0</span></tt> si vous souhaitez empêcher cela. Lorsqu&#8217;une
+                            barre de défilement obtient le focus, on peut la déplacer à l&#8217;aide des flèches du
+                            clavier.</li>
+                          <li><strong>troughcolor</strong> &#8211; La couleur de la zone de glissement de la barre.</li>
+                          <li><strong>width</strong> &#8211; La largeur de la barre, dans la direction <em>y</em> si
+                            elle est horizontale, dans la direction <em>x</em> si elle est verticale. Sa valeur par
+                            défaut est 16.</li>
+                        </ul>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p>Les méthodes d&#8217;une barre de défilement <tt class="docutils literal"><span
+                      class="pre">Scrollbar</span></tt> incluent:</p>
+                <dl class="method">
+                  <dt id="Scrollbar.activate">
+                    <tt class="descname">activate</tt><big>(</big><em>element=None</em><big>)</big><a class="headerlink"
+                      href="#Scrollbar.activate" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Si aucun argument n&#8217;est fournie, cette méthode retourne l&#8217;une des chaînes <tt
+                        class="docutils literal"><span class="pre">'arrow1'</span></tt>, <tt
+                        class="docutils literal"><span class="pre">'arrow2'</span></tt>, <tt
+                        class="docutils literal"><span class="pre">'slider'</span></tt>, ou <tt
+                        class="docutils literal"><span class="pre">''</span></tt>, selon la position courante de la
+                      souris. La chaîne vide est retourné si le curseur n&#8217;est pas actuellement au dessus du
+                      curseur ou d&#8217;une des deux flèches.</p>
+                    <p>Pour mettre en valeur un de ces éléments (en utilisant les valeurs des options
+                      <strong>activerelief</strong> et <strong>activebackground</strong>), appelez cette méthode avec
+                      l&#8217;une des chaînes indiquées plus haut.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Scrollbar.delta">
+                    <tt class="descname">delta</tt><big>(</big><em>dx</em>, <em>dy</em><big>)</big><a class="headerlink"
+                      href="#Scrollbar.delta" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Étant donné un mouvement de <em>dx</em> pixels selon <em>x</em> et de <em>dy</em> pixels selon
+                      <em>y</em>, cette méthode retourne un flottant qui devrait être ajouté à la valeur normalisée
+                      correspondante de la position courante du curseur afin qu&#8217;il effectue le même mouvement.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Scrollbar.fraction">
+                    <tt class="descname">fraction</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a
+                      class="headerlink" href="#Scrollbar.fraction" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Étant donné une position <em>(x, y)</em>, cette méthode retourne la valeur normalisée (dans
+                      l&#8217;intervalle [0.0, 1.0]) de la position du curseur qui serait la plus proche de cette
+                      position.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Scrollbar.get">
+                    <tt class="descname">get</tt><big>(</big><big>)</big><a class="headerlink" href="#Scrollbar.get"
+                      title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Retourne un 2-tuple <tt class="docutils literal"><span class="pre">(a,</span> <span
+                          class="pre">b)</span></tt> qui décrit la position courante du curseur. <tt
+                        class="docutils literal"><span class="pre">a</span></tt> appartient à [0, 1] et correspond au
+                      bord gauche ou haut du curseur selon l&#8217;orientation de la barre. <tt
+                        class="docutils literal"><span class="pre">b</span></tt> se rapporte à son bord droit ou bas.
+                      Par exemple, si le curseur s&#8217;étend de la moitié au trois quart de la barre de défilement,
+                      vous obtiendriez (0.5,0.75).</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Scrollbar.identify">
+                    <tt class="descname">identify</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a
+                      class="headerlink" href="#Scrollbar.identify" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Retourne une chaîne de caractères qui précise la partie de la barre de défilement située à la
+                      position <em>(x, y)</em>. Les valeurs de retour possibles sont <tt class="docutils literal"><span
+                          class="pre">'arrow1'</span></tt>, <tt class="docutils literal"><span
+                          class="pre">'trough1'</span></tt>, <tt class="docutils literal"><span
+                          class="pre">'slider'</span></tt>, <tt class="docutils literal"><span
+                          class="pre">'trough2'</span></tt>, <tt class="docutils literal"><span
+                          class="pre">'arrow2'</span></tt>, ou la chaîne vide <tt class="docutils literal"><span
+                          class="pre">''</span></tt> si cette position ne correpond à aucun composant de la barre.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Scrollbar.set">
+                    <tt class="descname">set</tt><big>(</big><em>deb</em>, <em>fin</em><big>)</big><a class="headerlink"
+                      href="#Scrollbar.set" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Pour munir un widget <tt class="docutils literal"><span class="pre">w</span></tt> d&#8217;une
+                      barre de défilement, configurer son option <strong>xscrollcommand</strong> ou
+                      <strong>yscrollcommand</strong> avec cette méthode. Les arguments ont la même signification que
+                      les valeurs retournées par la méthode <tt class="docutils literal"><span
+                          class="pre">get()</span></tt> décrite plus tôt. De cette façon, le widget <tt
+                        class="docutils literal"><span class="pre">w</span></tt> est en mesure d&#8217;avertir la barre
+                      de défilement de la portion de sa zone d&#8217;affichage actuellement visible afin que la barre
+                      soit ajustée en conséquence. Notez que le déplacement du curseur ne produit pas pour autant le
+                      glissement de la zone visible du widget <tt class="docutils literal"><span
+                          class="pre">w</span></tt>.</p>
+                  </dd>
+                </dl>
+
+              </dd>
+            </dl>
+
+            <div class="section" id="fonction-de-rappel-d-une-barre-de-defilement">
+              <span id="foncrappdef"></span>
+              <h2>Fonction de rappel d&#8217;une barre de défilement<a class="headerlink"
+                  href="#fonction-de-rappel-d-une-barre-de-defilement" title="Lien permanent vers ce titre">¶</a></h2>
+              <p>Lorsque l&#8217;utilisateur manipule la barre de défilement, celle-ci appelle la fonction de rappel -
+                notée <em>command</em> ci-après - qui a été associée à son option <strong>command</strong>. Les
+                arguments transmis à la fonction dépendent de ce qu&#8217;à fait l&#8217;utilisateur:</p>
+              <p>Lorsque l&#8217;utilisateur déplace le curseur d&#8217;une unité vers la gauche ou vers le haut, en
+                cliquant par exemple sur la flèche gauche ou haute, l&#8217;appel de <em>command</em> est du type:</p>
+              <div class="highlight-python">
+                <div class="highlight">
+                  <pre><span class="n">command</span><span class="p">(</span><span class="s">&#39;scroll&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;units&#39;</span><span class="p">)</span>
+</pre>
+                </div>
+              </div>
+              <p>ou qu&#8217;il déplace le curseur d&#8217;une unité vers la droite ou vers le bas, les arguments sont:
+              </p>
+              <div class="highlight-python">
+                <div class="highlight">
+                  <pre><span class="n">command</span><span class="p">(</span><span class="s">&#39;scroll&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#39;units&#39;</span><span class="p">)</span>
+</pre>
+                </div>
+              </div>
+              <p>Lorsqu&#8217;il effectue un mouvement d&#8217;une page vers la gauche ou vers le haut:</p>
+              <div class="highlight-python">
+                <div class="highlight">
+                  <pre><span class="n">command</span><span class="p">(</span><span class="s">&#39;scroll&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="s">&#39;pages&#39;</span><span class="p">)</span>
+</pre>
+                </div>
+              </div>
+              <p>vers la droite ou vers le bas:</p>
+              <div class="highlight-python">
+                <div class="highlight">
+                  <pre><span class="n">command</span><span class="p">(</span><span class="s">&#39;scroll&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="s">&#39;pages&#39;</span><span class="p">)</span>
+</pre>
+                </div>
+              </div>
+              <p>Lorqu&#8217;il déplace le curseur jusqu&#8217;à la position normalisée <em>f</em> de l&#8217;intervalle
+                [0,1] (0 tout à gauche ou tout en haut, 1 tout à droite ou tout en bas), l&#8217;appel est de la forme:
+              </p>
+              <div class="highlight-python">
+                <div class="highlight">
+                  <pre><span class="n">command</span><span class="p">(</span><span class="s">&#39;moveto&#39;</span><span class="p">,</span> <span class="n">f</span><span class="p">)</span>
+</pre>
+                </div>
+              </div>
+              <p>Ces séquences d&#8217;appels sont conformes aux arguments attendus par les méthodes <tt
+                  class="docutils literal"><span class="pre">xview()</span></tt> et <tt class="docutils literal"><span
+                    class="pre">yview()</span></tt> des canevas (<tt class="docutils literal"><span
+                    class="pre">Canvas</span></tt>), listes de sélection (<tt class="docutils literal"><span
+                    class="pre">Listbox</span></tt>), et du widget de texte (<tt class="docutils literal"><span
+                    class="pre">Text</span></tt>). Les champs de saisis n&#8217;ont pas de méthode <tt
+                  class="docutils literal"><span class="pre">xview()</span></tt>. Voir <a class="reference internal"
+                  href="entw.html#defilement"><em>Défilement du contenu d&#8217;un champ de saisie</em></a>.</p>
+            </div>
+            <div class="section" id="associer-une-barre-de-defilement-a-un-autre-widget">
+              <span id="assodefil"></span>
+              <h2>Associer une barre de défilement à un autre widget<a class="headerlink"
+                  href="#associer-une-barre-de-defilement-a-un-autre-widget" title="Lien permanent vers ce titre">¶</a>
+              </h2>
+              <p>Voici un fragment de code qui montre la création d&#8217;un canevas muni de barres de défilement
+                horizontale et verticale:</p>
+              <div class="highlight-python">
+                <div class="highlight">
+                  <pre><span class="n">canv</span> <span class="o">=</span> <span class="n">Canvas</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">600</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span>
+    <span class="n">defilregion</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1200</span><span class="p">,</span> <span class="mi">800</span><span class="p">))</span>
+<span class="n">canv</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="n">defilY</span> <span class="o">=</span> <span class="n">Scrollbar</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s">&#39;vertical&#39;</span><span class="p">,</span>
+    <span class="n">command</span><span class="o">=</span><span class="n">canv</span><span class="o">.</span><span class="n">yview</span><span class="p">)</span>
+<span class="n">defilY</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s">&#39;ns&#39;</span><span class="p">)</span>
+
+<span class="n">defilX</span> <span class="o">=</span> <span class="n">Scrollbar</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s">&#39;horizontal&#39;</span><span class="p">,</span>
+    <span class="n">command</span><span class="o">=</span><span class="n">canv</span><span class="o">.</span><span class="n">xview</span><span class="p">)</span>
+<span class="n">defilX</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s">&#39;ew&#39;</span><span class="p">)</span>
+
+<span class="n">canv</span><span class="p">[</span><span class="s">&#39;xscrollcommand&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">defilX</span><span class="o">.</span><span class="n">set</span>
+<span class="n">canv</span><span class="p">[</span><span class="s">&#39;yscrollcommand&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">defilY</span><span class="o">.</span><span class="n">set</span>
+</pre>
+                </div>
+              </div>
+              <p>Notes:</p>
+              <blockquote>
+                <div>
+                  <p>L&#8217;association fonctionne dans les deux sens. L&#8217;option <strong>xscrollcommand</strong>
+                    du canevas doit être associée à la méthode <tt class="docutils literal"><span
+                        class="pre">set()</span></tt> de la barre de défilement horizontale et l&#8217;option
+                    <strong>command</strong> de cette même barre de défilement doit être associée à la méthode <tt
+                      class="docutils literal"><span class="pre">xview()</span></tt> du canvas. Même chose pour la barre
+                    de défilement verticale.</p>
+                  <p>L&#8217;option <strong>sticky</strong> du gestionnaire de positionnement <tt
+                      class="docutils literal"><span class="pre">grid()</span></tt> utilisé pour positionner les barres
+                    de défilement les force à s&#8217;étendre assez pour s&#8217;ajuster aux dimensions du canevas.</p>
+                </div>
+              </blockquote>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  </div>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général">index</a>
+      </li>
+      <li class="right">
+        <a href="spbw.html" title="Spinbox - Saisies/sélections rotatives">suivant</a> |
+      </li>
+      <li class="right">
+        <a href="scw.html" title="Scale - Échelles">précédent</a> |
+      </li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="footer">
+    &copy; Copyright 2013, Étienne FLORENT.
+    Créé avec <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+  </div>
+</body>
+
+<!-- Mirrored from tkinter.fdex.eu/doc/scrw.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:00:58 GMT -->
+
+</html>

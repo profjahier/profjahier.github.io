@@ -1,0 +1,198 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Mirrored from tkinter.fdex.eu/doc/messw.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:00:55 GMT -->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <title>Message - Messages &mdash; Tkinter pour ISN</title>
+
+  <link rel="stylesheet" href="../static/sphinxdoc.css" type="text/css" />
+  <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT: '../',
+      VERSION: '1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE: true
+    };
+  </script>
+  <script type="text/javascript" src="../static/jquery.js"></script>
+  <script type="text/javascript" src="../static/underscore.js"></script>
+  <script type="text/javascript" src="../static/doctools.js"></script>
+  <script type="text/javascript" src="../static/translations.js"></script>
+  <script type="text/javascript"
+    src="../../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="../static/my.js"></script>
+  <link rel="top" title="Tkinter pour ISN" href="../index-2.html" />
+  <link rel="next" title="OptionMenu - Menus d’options" href="optmw.html" />
+  <link rel="prev" title="Menubutton - Boutons de menu" href="menbw.html" />
+</head>
+
+<body>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général" accesskey="I">index</a>
+      </li>
+      <li class="right">
+        <a href="optmw.html" title="OptionMenu - Menus d’options" accesskey="N">suivant</a> |
+      </li>
+      <li class="right">
+        <a href="menbw.html" title="Menubutton - Boutons de menu" accesskey="P">précédent</a> |
+      </li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+      <h4>Sujet précédent</h4>
+      <p class="topless"><a href="menbw.html" title="Chapitre précédent"><tt
+            class="docutils literal docutils literal docutils literal"><span class="pre">Menubutton</span></tt> -
+          Boutons de menu</a></p>
+      <h4>Sujet suivant</h4>
+      <p class="topless"><a href="optmw.html" title="Chapitre suivant"><tt class="docutils literal"><span
+              class="pre">OptionMenu</span></tt> - Menus d&#8217;options</a></p>
+      
+    </div>
+  </div>
+
+  <div class="document">
+    <div class="documentwrapper">
+      <div class="bodywrapper">
+        <div class="body">
+
+          <div class="section" id="message-messages">
+            <span id="message"></span>
+            <h1><tt class="docutils literal"><span class="pre">Message</span></tt> - Messages<a class="headerlink"
+                href="#message-messages" title="Lien permanent vers ce titre">¶</a></h1>
+            <p>Ce widget est semblable au widget <tt class="docutils literal"><span class="pre">Label</span></tt> (voir
+              <a class="reference internal" href="labw.html#label"><em>Label - Étiquettes</em></a>), mais il est destiné
+              à l&#8217;affichage des messages sur plusieurs lignes. Tout le texte sera affiché dans la même police, si
+              vous avez besoin d&#8217;afficher du texte avec plusieurs polices, voir <a class="reference internal"
+                href="textw.html#text"><em>Text - Éditeurs de texte</em></a>.</p>
+            <p>Pour créer un nouveau message comme enfant d&#8217;une fenêtre ou d&#8217;un cadre nommé <tt
+                class="docutils literal"><span class="pre">parent</span></tt>:</p>
+            <dl class="class">
+              <dt id="Message">
+                <em class="property">class </em><tt class="descname">Message</tt><big>(</big><em>parent</em>,
+                <em>option</em>, <em>...</em><big>)</big><a class="headerlink" href="#Message"
+                  title="Lien permanent vers cette définition">¶</a>
+              </dt>
+              <dd>
+                <p>Le constructeur renvoie le nouveau widget <tt class="docutils literal"><span
+                      class="pre">Message</span></tt>. Ses options sont:</p>
+                <table class="docutils field-list" frame="void" rules="none">
+                  <col class="field-name" />
+                  <col class="field-body" />
+                  <tbody valign="top">
+                    <tr class="field-odd field">
+                      <th class="field-name">Paramètres:</th>
+                      <td class="field-body">
+                        <ul class="first last simple">
+                          <li><strong>aspect</strong> &#8211; Utilisez cette option pour spécifier le rapport largeur
+                            sur hauteur en pourcentage. Par exemple, <tt class="docutils literal"><span
+                                class="pre">aspect=100</span></tt> vous donnerait un message en forme de texte dans un
+                            carré; avec <tt class="docutils literal"><span class="pre">aspect=200</span></tt>, la zone
+                            de texte serait deux fois plus large que haute. La valeur par défaut est 150,
+                            c&#8217;est-à-dire que le texte apparaît dans une boîte 50% plus large que haute.</li>
+                          <li><strong>bg</strong> &#8211; (ou <strong>background</strong>) La couleur de fond derrière
+                            le texte, voir <a class="reference internal" href="sa.html#couleurs"><em>Les
+                                couleurs</em></a>.</li>
+                          <li><strong>bd</strong> &#8211; (ou <strong>borderwidth</strong>) Largeur de la bordure autour
+                            du widget, voir <a class="reference internal" href="sa.html#dimensions"><em>Les
+                                dimensions</em></a>. La valeur par défaut est de deux pixels. Cette option est visible
+                            uniquement lorsque l&#8217;option de relief n&#8217;est pas <tt
+                              class="docutils literal"><span class="pre">'flat'</span></tt>.</li>
+                          <li><strong>cursor</strong> &#8211; Définit le curseur qui s&#8217;affiche lorsque la souris
+                            est sur le widget, voir <a class="reference internal" href="sa.html#pointeurs"><em>Le
+                                pointeur de la souris</em></a>.</li>
+                          <li><strong>font</strong> &#8211; Définit la police utilisée pour afficher le texte dans le
+                            widget, voir <a class="reference internal" href="sa.html#polices"><em>Les polices de
+                                caractères</em></a>.</li>
+                          <li><strong>fg</strong> &#8211; (ou <strong>foreground</strong>) Définit la couleur du texte;
+                            voir <a class="reference internal" href="sa.html#couleurs"><em>Les couleurs</em></a>.</li>
+                          <li><strong>highlightbackground</strong> &#8211; Couleur de mise en valeur du focus quand le
+                            widget l’a perdu. Voir <a class="reference internal" href="focus.html#focus"><em>Le focus:
+                                réception des saisies clavier</em></a>.</li>
+                          <li><strong>highlightcolor</strong> &#8211; Couleur de mise en valeur du focus quand le widget
+                            l’a obtenu.</li>
+                          <li><strong>highlightthickness</strong> &#8211; Épaisseur de la ligne de mise en valeur du
+                            focus.</li>
+                          <li><strong>justify</strong> &#8211; Définit l’alignement de plusieurs lignes de texte: <tt
+                              class="docutils literal"><span class="pre">'left'</span></tt> pour un alignement à gauche,
+                            <tt class="docutils literal"><span class="pre">'center'</span></tt> pour centrer et <tt
+                              class="docutils literal"><span class="pre">'right'</span></tt> pour un alignement à
+                            droite.</li>
+                          <li><strong>padx</strong> &#8211; Espace horizontal supplémentaire à insérer à gauche et à
+                            droite dans l’étiquette. Sa valeur est en pixels.</li>
+                          <li><strong>pady</strong> &#8211; Espace vertical supplémentaire à insérer au-dessus et en
+                            dessous dans l’étiquette. Sa valeur est en pixels.</li>
+                          <li><strong>relief</strong> &#8211; Précise l’apparence de la bordure décorative autour de
+                            l’étiquette. Par défaut, vaut <tt class="docutils literal"><span
+                                class="pre">'flat'</span></tt>; pour d’autres valeurs, voir <a
+                              class="reference internal" href="sa.html#reliefs"><em>Les styles de relief</em></a>.</li>
+                          <li><strong>takefocus</strong> &#8211; Normalement, un message n’obtient pas le focus; voir <a
+                              class="reference internal" href="focus.html#focus"><em>Le focus: réception des saisies
+                                clavier</em></a>. Utilisez <tt class="docutils literal"><span
+                                class="pre">takefocus=True</span></tt> pour ajouter le widget à la liste de traversée du
+                            focus.</li>
+                          <li><strong>text</strong> &#8211; La valeur de cette option est le texte qui doit être affiché
+                            à l&#8217;intérieur du widget.</li>
+                          <li><strong>textvariable</strong> &#8211; Pour pouvoir faire varier le texte affiché en même
+                            temps que la valeur d’une variable de contrôle de type <tt class="docutils literal"><span
+                                class="pre">StringVar</span></tt>, régler cette option avec cette variable. Voir <a
+                              class="reference internal" href="ctrvar.html#ctrlvariables"><em>Les variables de contrôle:
+                                Les valeurs sous les widgets</em></a>. La valeur de cette variable est le texte à
+                            afficher. Si vous spécifiez les options <strong>text</strong> et
+                            <strong>textvariable</strong>, l&#8217;option <strong>text</strong> est ignorée.</li>
+                          <li><strong>width</strong> &#8211; Utilisez cette option pour spécifier la largeur de la zone
+                            de texte dans le widget, en pixels. La largeur par défaut dépend du texte affiché et de la
+                            valeur de l&#8217;option aspect.</li>
+                        </ul>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </dd>
+            </dl>
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  </div>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général">index</a>
+      </li>
+      <li class="right">
+        <a href="optmw.html" title="OptionMenu - Menus d’options">suivant</a> |
+      </li>
+      <li class="right">
+        <a href="menbw.html" title="Menubutton - Boutons de menu">précédent</a> |
+      </li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="footer">
+    &copy; Copyright 2013, Étienne FLORENT.
+    Créé avec <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+  </div>
+</body>
+
+<!-- Mirrored from tkinter.fdex.eu/doc/messw.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:00:56 GMT -->
+
+</html>

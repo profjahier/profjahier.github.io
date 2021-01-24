@@ -1,0 +1,152 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Mirrored from tkinter.fdex.eu/doc/connapplog.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:01:01 GMT -->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <title>Connecter la logique de votre applications aux widgets &mdash; Tkinter pour ISN</title>
+
+  <link rel="stylesheet" href="../static/sphinxdoc.css" type="text/css" />
+  <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT: '../',
+      VERSION: '1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE: true
+    };
+  </script>
+  <script type="text/javascript" src="../static/jquery.js"></script>
+  <script type="text/javascript" src="../static/underscore.js"></script>
+  <script type="text/javascript" src="../static/doctools.js"></script>
+  <script type="text/javascript" src="../static/translations.js"></script>
+  <script type="text/javascript"
+    src="../../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="../static/my.js"></script>
+  <link rel="top" title="Tkinter pour ISN" href="../index-2.html" />
+  <link rel="next" title="Les variables de contrôle: Les valeurs sous les widgets" href="ctrvar.html" />
+  <link rel="prev" title="Normaliser l’apparence: la base de données des options" href="stdapp.html" />
+</head>
+
+<body>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général" accesskey="I">index</a>
+      </li>
+      <li class="right">
+        <a href="ctrvar.html" title="Les variables de contrôle: Les valeurs sous les widgets" accesskey="N">suivant</a>
+        |
+      </li>
+      <li class="right">
+        <a href="uwm.html" title="Méthodes communes à tous les widgets" accesskey="P">précédent</a>
+        |
+      </li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+      <h4>Sujet précédent</h4>
+      <p class="topless"><a href="uwm.html" title="Chapitre précédent">Méthodes communes à tous les widgets</a></p>
+      <h4>Sujet suivant</h4>
+      <p class="topless"><a href="ctrvar.html" title="Chapitre suivant">Les variables de contrôle: Les valeurs sous les
+          widgets</a></p>
+      
+    </div>
+  </div>
+
+  <div class="document">
+    <div class="documentwrapper">
+      <div class="bodywrapper">
+        <div class="body">
+
+          <div class="section" id="connecter-la-logique-de-votre-applications-aux-widgets">
+            <span id="connecting"></span>
+            <h1>Connecter la logique de votre applications aux widgets<a class="headerlink"
+                href="#connecter-la-logique-de-votre-applications-aux-widgets"
+                title="Lien permanent vers ce titre">¶</a></h1>
+            <p>Les sections précédentes vous ont appris à placer et à configurer les widgets qui forment
+              l&#8217;interface graphique de votre application.</p>
+            <p>Nous allons à présent aborder le problème de la gestion des actions de l&#8217;utilisateur sur
+              l&#8217;interface ainsi créée: Il s&#8217;agit de connecter la logique de votre application avec les
+              actions de l&#8217;utilisateur sur l&#8217;interface graphique.</p>
+            <ul>
+              <li>
+                <p class="first">Pour rendre votre application réactive à des événements comme l&#8217;appui sur un
+                  bouton de la souris ou sur une touche du clavier, il y a deux méthodes:</p>
+                <ul>
+                  <li>
+                    <p class="first">Certains widgets commes les boutons - <tt class="docutils literal"><span
+                          class="pre">Button</span></tt> - possèdent une option <strong>command</strong> qui vous permet
+                      de préciser une procédure (fonction sans arguments), appelé gestionnaire ou <em>handler</em>, qui
+                      sera appelé à chaque fois que l&#8217;utilisateur clique dessus.</p>
+                    <p>La séquence des événements pour utiliser un widget <tt class="docutils literal"><span
+                          class="pre">Button</span></tt> est très précise: l&#8217;utilisateur doit déplacer son
+                      pointeur de souris au-dessus du widget sans appuyer sur le bouton gauche de la souris, puis il
+                      doit appuyer sur ce bouton gauche et, ensuite, le relâcher tandis que le pointeur de la souris est
+                      toujours au-dessus du widget. Aucune autre séquence d&#8217;événements ne produira
+                      &#8220;l&#8217;enfoncement&#8221; du widget Button.</p>
+                  </li>
+                  <li>
+                    <p class="first">Il y a un mécanisme bien plus général qui permet de rendre votre application
+                      réactive à toute sorte d&#8217;action de la part de l&#8217;utilisateur: l&#8217;appui ou le
+                      relâchement d&#8217;une touche arbitraire du clavier ou d&#8217;un bouton de la souris; le
+                      déplacement de la souris à l&#8217;intérieur, autour, ou en dehors d&#8217;un widget; et beaucoup
+                      d&#8217;autres actions ou événements. Comme avec un gestionnaire associé à
+                      <strong>command</strong>, dans ce mécanisme vous écrivez une fonction de type gestionnaire
+                      (<em>handler</em>) qui sera appelée à chaque fois que certains types d&#8217;événements se
+                      produisent. Ce mécanisme est décrit de manière détaillé dans <a class="reference internal"
+                        href="event.html#events"><em>Les événements: répondre aux actions de
+                          l&#8217;utilisateur.</em></a>.</p>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                <p class="first">La plupart des widget attendent que vous leur fournissiez une ou plusieurs variables de
+                  contrôle; ce sont des objets spéciaux qui servent à connecter certains widgets entre eux et avec votre
+                  programme, cela afin que vous puissiez lire et modifier les propriétés de ces widgets. Voir <a
+                    class="reference internal" href="ctrvar.html#ctrlvariables"><em>Les variables de contrôle: Les
+                      valeurs sous les widgets</em></a>.</p>
+              </li>
+            </ul>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  </div>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général">index</a>
+      </li>
+      <li class="right">
+        <a href="ctrvar.html" title="Les variables de contrôle: Les valeurs sous les widgets">suivant</a> |
+      </li>
+      <li class="right">
+        <a href="uwm.html" title="Méthodes communes à tous les widgets">précédent</a> |
+      </li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="footer">
+    &copy; Copyright 2013, Étienne FLORENT.
+    Créé avec <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+  </div>
+</body>
+
+<!-- Mirrored from tkinter.fdex.eu/doc/connapplog.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:01:01 GMT -->
+
+</html>

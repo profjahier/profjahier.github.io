@@ -1,0 +1,369 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Mirrored from tkinter.fdex.eu/doc/radbw.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:00:57 GMT -->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <title>Radiobutton - Boutons radio &mdash; Tkinter pour ISN</title>
+
+  <link rel="stylesheet" href="../static/sphinxdoc.css" type="text/css" />
+  <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT: '../',
+      VERSION: '1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE: true
+    };
+  </script>
+  <script type="text/javascript" src="../static/jquery.js"></script>
+  <script type="text/javascript" src="../static/underscore.js"></script>
+  <script type="text/javascript" src="../static/doctools.js"></script>
+  <script type="text/javascript" src="../static/translations.js"></script>
+  <script type="text/javascript"
+    src="../../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="../static/my.js"></script>
+  <link rel="top" title="Tkinter pour ISN" href="../index-2.html" />
+  <link rel="next" title="Scale - Échelles" href="scw.html" />
+  <link rel="prev" title="PanedWindow - Fenêtres à paneaux" href="panww.html" />
+</head>
+
+<body>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général" accesskey="I">index</a>
+      </li>
+      <li class="right">
+        <a href="scw.html" title="Scale - Échelles" accesskey="N">suivant</a> |
+      </li>
+      <li class="right">
+        <a href="panww.html" title="PanedWindow - Fenêtres à paneaux" accesskey="P">précédent</a> |
+      </li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+      <h4>Sujet précédent</h4>
+      <p class="topless"><a href="panww.html" title="Chapitre précédent"><tt class="docutils literal"><span
+              class="pre">PanedWindow</span></tt> - Fenêtres à paneaux</a></p>
+      <h4>Sujet suivant</h4>
+      <p class="topless"><a href="scw.html" title="Chapitre suivant"><tt class="docutils literal"><span
+              class="pre">Scale</span></tt> - Échelles</a></p>
+      
+    </div>
+  </div>
+
+  <div class="document">
+    <div class="documentwrapper">
+      <div class="bodywrapper">
+        <div class="body">
+
+          <div class="section" id="radiobutton-boutons-radio">
+            <span id="radiobutton"></span>
+            <h1><tt class="docutils literal"><span class="pre">Radiobutton</span></tt> - Boutons radio<a
+                class="headerlink" href="#radiobutton-boutons-radio" title="Lien permanent vers ce titre">¶</a></h1>
+            <p>Les boutons radio servent à réaliser des ensembles de widgets connexes qui permettent à
+              l&#8217;utilisateur de sélectionner un choix (et un seul) parmi d&#8217;autres; chaque bouton radio
+              représente un choix possible et se compose de deux parties, l&#8217;indicateur et l&#8217;étiquette:</p>
+            <div class="figure align-center">
+              <img alt="../images/radb1.png" src="../images/radb1.png" />
+              <p class="caption">Apparence «normale»</p>
+            </div>
+            <div class="figure align-center">
+              <img alt="../images/radb2.png" src="../images/radb2.png" />
+              <p class="caption">Boutons «poussoirs» (<tt class="docutils literal"><span
+                    class="pre">indicatoron=0</span></tt>)</p>
+            </div>
+            <p>Voici un extrait du code qui a servit à produire l&#8217;illustration:</p>
+            <div class="highlight-python">
+              <div class="highlight">
+                <pre><span class="n">vals</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;A&#39;</span><span class="p">,</span> <span class="s">&#39;B&#39;</span><span class="p">,</span> <span class="s">&#39;C&#39;</span><span class="p">]</span>
+<span class="n">etiqs</span> <span class="o">=</span> <span class="p">[</span><span class="s">&#39;trop chaud&#39;</span><span class="p">,</span> <span class="s">&#39;trop froid&#39;</span><span class="p">,</span> <span class="s">&#39;correct&#39;</span><span class="p">]</span>
+<span class="n">varGr</span> <span class="o">=</span> <span class="n">StringVar</span><span class="p">()</span>
+<span class="n">varGr</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">vals</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">3</span><span class="p">):</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">RadioButton</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">variable</span><span class="o">=</span><span class="n">varGr</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="n">etiqs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">value</span><span class="o">=</span><span class="n">vals</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="n">b</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s">&#39;left&#39;</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre>
+              </div>
+            </div>
+            <ul class="simple">
+              <li>L&#8217;indicateur est la partie en forme de cercle ou de losange qui indique à l&#8217;utilisateur si
+                le bouton est sélectionné ou non.</li>
+              <li>L&#8217;étiquette est le texte affiché à côté de l&#8217;indicateur. Vous pouvez aussi utiliser un
+                bitmap ou une image en guise d&#8217;étiquette.</li>
+              <li>Si vous préférez, vous pouvez vous supprimez l&#8217;indicateur. Les boutons radio ressemblent alors à
+                des boutons «poussoirs» (deuxième illustration): celui qui est sélectionné semble enfoncé et les autres
+                semblent soulevés.</li>
+              <li>Pour réunir plusieurs boutons radio dans un groupe fonctionnel, créez une variable de contrôle unique
+                (voir <a class="reference internal" href="#radiobutton"><em>Radiobutton - Boutons radio</em></a>), et
+                réglez l&#8217;option <strong>variable</strong> de chaque bouton radio du groupe avec cette variable.
+              </li>
+              <li>La variable de contrôle peut être soit un <tt class="docutils literal"><span
+                    class="pre">IntVar</span></tt>, soit un <tt class="docutils literal"><span
+                    class="pre">StringVar</span></tt>. Si deux ou plusieurs boutons radio partagent la même variable de
+                contrôle, l&#8217;activation de l&#8217;un entraînera la désactivation des autres.</li>
+              <li>Chaque bouton radio d&#8217;un groupe doit être configuré avec une valeur qui lui est propre et qui
+                est du même type que celle de la variable de contrôle partagée. Pour configurer cette valeur, utiliser
+                l&#8217;option <strong>value</strong> de chaque bouton. Par exemple, un groupe de trois boutons radio
+                pourrait partager un <tt class="docutils literal"><span class="pre">IntVar</span></tt>, chaque bouton
+                ayant sont option <strong>value</strong> configurée avec l&#8217;une des valeur 0, 1 et 99. Ou, vous
+                pouvez utiliser une variable de contrôle <tt class="docutils literal"><span
+                    class="pre">StringVar</span></tt> et donner aux boutons radio des valeurs comme &#8216;A&#8217;,
+                &#8216;B&#8217; et &#8216;C&#8217;.</li>
+            </ul>
+            <p>Pour créer un nouveau widget bouton radio en tant qu&#8217;enfant d&#8217;une fenêtre ou d&#8217;un cadre
+              nommé <tt class="docutils literal"><span class="pre">parent</span></tt>:</p>
+            <dl class="class">
+              <dt id="Radiobutton">
+                <em class="property">class </em><tt class="descname">Radiobutton</tt><big>(</big><em>parent</em>,
+                <em>option</em>, <em>...</em><big>)</big><a class="headerlink" href="#Radiobutton"
+                  title="Lien permanent vers cette définition">¶</a>
+              </dt>
+              <dd>
+                <p>Ce constructeur renvoie le nouveau widget Radiobutton. Les options sont:</p>
+                <table class="docutils field-list" frame="void" rules="none">
+                  <col class="field-name" />
+                  <col class="field-body" />
+                  <tbody valign="top">
+                    <tr class="field-odd field">
+                      <th class="field-name">Paramètres:</th>
+                      <td class="field-body">
+                        <ul class="first last simple">
+                          <li><strong>activebackground</strong> &#8211; La couleur d&#8217;arrière plan utilisé quand la
+                            souris est au-dessus du widget. Voir <a class="reference internal"
+                              href="sa.html#couleurs"><em>Les couleurs</em></a>.</li>
+                          <li><strong>activeforeground</strong> &#8211; La couleur du texte lorsque la souris est
+                            au-dessus du widget.</li>
+                          <li><strong>anchor</strong> &#8211; Si le widget occupe plus de place que de besoin, cette
+                            option sert à préciser la position occupé par le bouton dans cet espace. La valeur par
+                            défaut est &#8216;center&#8217;. Pour d&#8217;autres positions, reportez-vous <a
+                              class="reference internal" href="sa.html#ancrage"><em>Le système d&#8217;ancrage</em></a>.
+                            Par exemple, si <tt class="docutils literal"><span
+                                class="pre">anchor=&quot;ne&quot;</span></tt>, le bouton sera positionné au nord-est,
+                            c&#8217;est à dire dans le coin supérieur droit.</li>
+                          <li><strong>bg</strong> &#8211; (ou <strong>background</strong>) La couleur d&#8217;arrière
+                            plan du widget.</li>
+                          <li><strong>bitmap</strong> &#8211; Pour afficher une image monochrome à côté du bouton radio,
+                            configurer cette option avec un bitmap; voir <a class="reference internal"
+                              href="sa.html#bitmaps"><em>Les bitmaps</em></a>.</li>
+                          <li><strong>bd</strong> &#8211; (ou <strong>borderwidth</strong>) L&#8217;épaisseur de la
+                            bordure de l&#8217;indicateur (c&#8217;est à dire du bouton lui-même). 2 pixels par défaut.
+                            Pour connaître les valeurs possibles, voir <a class="reference internal"
+                              href="sa.html#dimensions"><em>Les dimensions</em></a>.</li>
+                          <li><strong>command</strong> &#8211; Une fonction qui sera appelée à chaque fois que
+                            l&#8217;utilisateur modifiera l&#8217;état du bouton.</li>
+                          <li><strong>compound</strong> &#8211; Si vous souhaitez utiliser à la fois une étiquette et un
+                            graphique (soit un bitmap soit une image), cette option vous servira à indiquer la position
+                            relative du graphique par rapport à l&#8217;étiquette. Les valeurs possibles sont <tt
+                              class="docutils literal"><span class="pre">'none'</span></tt> (valeur par défaut), <tt
+                              class="docutils literal"><span class="pre">'top'</span></tt>, <tt
+                              class="docutils literal"><span class="pre">'bottom'</span></tt>, <tt
+                              class="docutils literal"><span class="pre">'left'</span></tt>, <tt
+                              class="docutils literal"><span class="pre">'right'</span></tt> et <tt
+                              class="docutils literal"><span class="pre">'center'</span></tt>. Par exemple, si
+                            compound=&#8217;bottom&#8217;, le graphique est positionné sous le texte. Si <tt
+                              class="docutils literal"><span class="pre">compound='none'</span></tt>, le graphique sera
+                            affiché, mais pas l&#8217;étiquette.</li>
+                          <li><strong>cursor</strong> &#8211; Le pointeur de souris à afficher lorsque la souris est
+                            au-dessus du bouton radio. Voir <a class="reference internal"
+                              href="sa.html#pointeurs"><em>Le pointeur de la souris</em></a>.</li>
+                          <li><strong>disabledforeground</strong> &#8211; La couleur du texte lorsque le bouton est dans
+                            l&#8217;état <tt class="docutils literal"><span class="pre">'disabled'</span></tt>. La
+                            valeur par défaut est une version en &#8220;pointillée&#8221; de la couleur par défaut de
+                            l&#8217;option <strong>foreground</strong>.</li>
+                          <li><strong>font</strong> &#8211; La fonte de caractères utilisée pour le texte. Voir <a
+                              class="reference internal" href="sa.html#polices"><em>Les polices de caractères</em></a>.
+                          </li>
+                          <li><strong>fg</strong> &#8211; (ou <strong>foreground</strong>) La couleur de
+                            l&#8217;étiquette.</li>
+                          <li><strong>height</strong> &#8211; Le nombre de ligne (non des pixels) de texte que peut
+                            contenir le widget. 1 par défaut.</li>
+                          <li><strong>highlightbackground</strong> &#8211; La couleur de la ligne de mise en valeur du
+                            focus lorsque le widget ne l&#8217;a pas. Voir <a class="reference internal"
+                              href="focus.html#focus"><em>Focus: réception des saisies clavier</em></a>.</li>
+                          <li><strong>highlightcolor</strong> &#8211; La couleur de la ligne de mise en valeur du focus
+                            lorsque le widget l&#8217;obtient.</li>
+                          <li><strong>highlightthickness</strong> &#8211; L&#8217;épaisseur de la ligne de mise en
+                            valeur du focus. 1 par défaut. Mettre cette option à 0 pour supprimer la mise en valeur du
+                            focus.</li>
+                          <li><strong>image</strong> &#8211; Pour afficher une image plutôt que du texte à côté du
+                            bouton radio, configurez cette option avec l&#8217;objet image désirée. Voir <a
+                              class="reference internal" href="sa.html#images"><em>Les images</em></a>. L&#8217;image
+                            apparaît lorsque le bouton radio est désactivé; comparez avec l&#8217;option
+                            <strong>selectimage</strong> ci-dessous.</li>
+                          <li><strong>indicatoron</strong> &#8211; Normalement un bouton radio est accompagné d&#8217;un
+                            indicateur. Si vous configurez cette option avec 0, l&#8217;indicateur n&#8217;apparaît
+                            plus, et le widget se comporte comme un bouton &#8220;poussoir&#8221;: Il semble enfoncé
+                            lorsqu&#8217;on l&#8217;active ou &#8220;émergent&#8221; sinon. Vous pouvez renforcer cet
+                            effet en augmentant la valeur de l&#8217;option <strong>borderwidth</strong> ce qui rendra
+                            l&#8217;état du bouton plus visible.</li>
+                          <li><strong>justify</strong> &#8211; Si le texte est formé de plusieurs ligne, cette option
+                            permet de contrôler l&#8217;alignement. Les valeurs possbiles sont: <tt
+                              class="docutils literal"><span class="pre">'center'</span></tt> (par défaut), <tt
+                              class="docutils literal"><span class="pre">'left'</span></tt>, ou <tt
+                              class="docutils literal"><span class="pre">'right'</span></tt>.</li>
+                          <li><strong>offrelief</strong> &#8211; Si vous supprimez l&#8217;indicateur en utilisant <tt
+                              class="docutils literal"><span class="pre">indicatoron=False</span></tt>, cette option
+                            sert à préciser le style de relief à appliquer au bouton lorsqu&#8217;il est désactivé. La
+                            valeur par défaut est <tt class="docutils literal"><span class="pre">'raised'</span></tt>.
+                          </li>
+                          <li><strong>overrelief</strong> &#8211; Le relief a utiliser lorsque la souris est au-dessus
+                            du bouton radio.</li>
+                          <li><strong>padx</strong> &#8211; Espace supplémentaire à ajouter à gauche et droite du texte
+                            et du bouton.</li>
+                          <li><strong>pady</strong> &#8211; Espace supplémentaire à ajouter en haut et en bas du texte
+                            et du bouton. 1 pixel par défaut.</li>
+                          <li><strong>relief</strong> &#8211; Par défaut, un bouton radio a un style de relief <tt
+                              class="docutils literal"><span class="pre">'flat'</span></tt> ce qui fait qu&#8217;il ne
+                            ressort pas de ce qui l&#8217;entoure. Pour d&#8217;autres style de relief, voir <a
+                              class="reference internal" href="sa.html#reliefs"><em>Les styles de relief</em></a>. Vous
+                            pouvez utiliser l&#8217;option <tt class="docutils literal"><span
+                                class="pre">relief='solid'</span></tt> afin d&#8217;afficher un cadre autour.</li>
+                          <li><strong>selectcolor</strong> &#8211; La couleur du bouton radio lorsqu&#8217;il est
+                            activé. <tt class="docutils literal"><span class="pre">'red'</span></tt> par défaut.</li>
+                          <li><strong>selectimage</strong> &#8211; Si vous utilisez l&#8217;option
+                            <strong>image</strong> pour afficher un graphique plutôt qu&#8217;une étiquette lorsque le
+                            bouton n&#8217;est pas activé, vous pouvez configurer cette option avec une image différente
+                            qui sera affichée lorsque le bouton est activé. Voir <a class="reference internal"
+                              href="sa.html#images"><em>Les images</em></a>.</li>
+                          <li><strong>state</strong> &#8211; L&#8217;état par défaut est <tt
+                              class="docutils literal"><span class="pre">'normal'</span></tt>, mais vous pouvez utiliser
+                            la valeur <tt class="docutils literal"><span class="pre">'disabled'</span></tt> pour griser
+                            le bouton et le rendre inactif. Lorsque la souris est au-dessus du bouton, son état devient
+                            <tt class="docutils literal"><span class="pre">'active'</span></tt>.</li>
+                          <li><strong>takefocus</strong> &#8211; Par défaut, ce widget reçoit le focus (voir <a
+                              class="reference internal" href="focus.html#focus"><em>Focus: réception des saisies
+                                clavier</em></a>). Si vous utilisez takefocus=0, le bouton radio ne sera plus visité par
+                            la traversée du focus.</li>
+                          <li><strong>text</strong> &#8211; L&#8217;étiquette ou texte qui est affiché à côté du bouton
+                            radio. Utiliser le caractère spacial <tt class="docutils literal"><span
+                                class="pre">'\n'</span></tt> pour faire un saut de ligne.</li>
+                          <li><strong>textvariable</strong> &#8211; Si vous avez besoin de modifier dynamiquement (au
+                            fil de l&#8217;exécution) l&#8217;étiquette d&#8217;un bouton radio, créez une variable de
+                            contrôle de classe <tt class="docutils literal"><span class="pre">StringVar</span></tt>
+                            (voir <a class="reference internal" href="ctrvar.html#ctrlvariables"><em>Variables de
+                                contrôle: Les valeurs sous les widgets</em></a>) qui servira à gérer la valeur courante
+                            de l&#8217;étiquette, et configurez cette option avec celle-ci. Lorsque la valeur de la
+                            variable de contrôle est modifiée (en utilisant sa méthode <tt
+                              class="docutils literal"><span class="pre">set</span></tt>), l&#8217;étiquette du bouton
+                            radio sera mise à jour dans le même temps.</li>
+                          <li><strong>underline</strong> &#8211; Avec la valeur par défaut, -1, aucun caractère de
+                            l&#8217;étiquette n&#8217;est souligné. Configurez cette option avec l&#8217;index (en
+                            comptant à partir de 0) du caractère de l&#8217;étiquette pour souligner ce caractère.</li>
+                          <li><strong>value</strong> &#8211; Lorsque le bouton radio est activé par l&#8217;utilisateur,
+                            sa variable de contrôle prend la valeur indiquée par cette option. Selon que la variable de
+                            contrôle est un <tt class="docutils literal"><span class="pre">IntVar</span></tt> ou un <tt
+                              class="docutils literal"><span class="pre">StringVar</span></tt>, donnez à chaque bouton
+                            radio d&#8217;un groupe une valeur différente (chaîne ou entière) à l&#8217;aide de cette
+                            option afin de reconnaître celui qui a été activé.</li>
+                          <li><strong>variable</strong> &#8211; La variable de contrôle que ce bouton partage avec les
+                            autres boutons radio du même groupe; voir <a class="reference internal"
+                              href="ctrvar.html#ctrlvariables"><em>Variables de contrôle: Les valeurs sous les
+                                widgets</em></a>. Vous pouvez utiliser une variable de type <tt
+                              class="docutils literal"><span class="pre">IntVar</span></tt> ou <tt
+                              class="docutils literal"><span class="pre">StringVar</span></tt>.</li>
+                          <li><strong>width</strong> &#8211; La largeur par défaut du widget est déterminée par celle du
+                            texte ou de l&#8217;image qui lui est associé. Vous pouvez configurez cette option avec un
+                            nombre de caractères (non des pixels) et le widget sera dimensionnée de façon à pouvoir
+                            afficher sur une ligne un tel nombre de caractères.</li>
+                          <li><strong>wraplength</strong> &#8211; Normalement, les lignes ne sont pas coupées
+                            (enveloppées). Vous pouvez configurez cette option avec un nombre de caractères et les
+                            lignes seront coupées de façon que chacune d&#8217;elle ne contienne pas plus de caractères.
+                          </li>
+                        </ul>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p>Les méthodes disponibles sur les widgets <tt class="docutils literal"><span
+                      class="pre">Radiobutton</span></tt> incluent:</p>
+                <dl class="method">
+                  <dt id="Radiobutton.deselect">
+                    <tt class="descname">deselect</tt><big>(</big><big>)</big><a class="headerlink"
+                      href="#Radiobutton.deselect" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Désactive (éteint) le bouton radio appelant.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Radiobutton.flash">
+                    <tt class="descname">flash</tt><big>(</big><big>)</big><a class="headerlink"
+                      href="#Radiobutton.flash" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Fait basculer le bouton quelques fois entre les états <tt class="docutils literal"><span
+                          class="pre">'active'</span></tt> et <tt class="docutils literal"><span
+                          class="pre">'normal'</span></tt> après quoi le bouton revient dans l&#8217;état dans lequel il
+                      était au départ.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Radiobutton.invoke">
+                    <tt class="descname">invoke</tt><big>(</big><big>)</big><a class="headerlink"
+                      href="#Radiobutton.invoke" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Produit le même effet que lorsque l&#8217;utilisateur clique sur le bouton pour changer son état.
+                    </p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Radiobutton.select">
+                    <tt class="descname">select</tt><big>(</big><big>)</big><a class="headerlink"
+                      href="#Radiobutton.select" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Active (allume) le bouton radio appelant.</p>
+                  </dd>
+                </dl>
+
+              </dd>
+            </dl>
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  </div>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général">index</a>
+      </li>
+      <li class="right">
+        <a href="scw.html" title="Scale - Échelles">suivant</a> |
+      </li>
+      <li class="right">
+        <a href="panww.html" title="PanedWindow - Fenêtres à paneaux">précédent</a> |
+      </li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="footer">
+    &copy; Copyright 2013, Étienne FLORENT.
+    Créé avec <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+  </div>
+</body>
+
+<!-- Mirrored from tkinter.fdex.eu/doc/radbw.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:00:57 GMT -->
+
+</html>

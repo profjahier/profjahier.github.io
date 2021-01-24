@@ -1,0 +1,392 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Mirrored from tkinter.fdex.eu/doc/sa.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:00:28 GMT -->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <title>Les attributs standards &mdash; Tkinter pour ISN</title>
+
+  <link rel="stylesheet" href="../static/sphinxdoc.css" type="text/css" />
+  <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT: '../',
+      VERSION: '1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE: true
+    };
+  </script>
+  <script type="text/javascript" src="../static/jquery.js"></script>
+  <script type="text/javascript" src="../static/underscore.js"></script>
+  <script type="text/javascript" src="../static/doctools.js"></script>
+  <script type="text/javascript" src="../static/translations.js"></script>
+  <script type="text/javascript"
+    src="../../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="../static/my.js"></script>
+  <link rel="top" title="Tkinter pour ISN" href="../index-2.html" />
+  <link rel="next" title="Button - Boutons" href="bw.html" />
+  <link rel="prev" title="Gestionnaire de positionnement" href="gp.html" />
+</head>
+
+<body>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général" accesskey="I">index</a></li>
+      <li class="right">
+        <a href="bw.html" title="Button - Boutons" accesskey="N">suivant</a> |</li>
+      <li class="right">
+        <a href="gp.html" title="Gestionnaire de positionnement" accesskey="P">précédent</a> |</li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+      <h3><a href="../index-2.html">Table des matières</a></h3>
+      <ul>
+        <li><a class="reference internal" href="#">Les attributs standards</a>
+          <ul>
+            <li><a class="reference internal" href="#les-dimensions">Les dimensions</a></li>
+            <li><a class="reference internal" href="#le-systeme-de-coordonnees">Le système de coordonnées</a></li>
+            <li><a class="reference internal" href="#les-couleurs">Les couleurs</a></li>
+            <li><a class="reference internal" href="#les-polices-de-caracteres">Les polices de caractères</a></li>
+            <li><a class="reference internal" href="#le-systeme-d-ancrage">Le système d&#8217;ancrage</a></li>
+            <li><a class="reference internal" href="#les-styles-de-relief">Les styles de relief</a></li>
+            <li><a class="reference internal" href="#les-bitmaps">Les bitmaps</a></li>
+            <li><a class="reference internal" href="#le-pointeur-de-la-souris">Le pointeur de la souris</a></li>
+            <li><a class="reference internal" href="#les-images">Les images</a>
+              <ul>
+                <li><a class="reference internal" href="#la-classe-bitmapimage">La classe <tt
+                      class="docutils literal"><span class="pre">BitmapImage</span></tt></a></li>
+                <li><a class="reference internal" href="#la-classe-photoimage">La classe <tt
+                      class="docutils literal"><span class="pre">PhotoImage</span></tt></a></li>
+              </ul>
+            </li>
+            <li><a class="reference internal" href="#les-chaines-de-geometrie">Les chaînes de géométrie</a></li>
+            <li><a class="reference internal" href="#le-nommage-des-fenetres-window">Le nommage des Fenêtres
+                (<cite>Window</cite>)</a></li>
+            <li><a class="reference internal" href="#style-des-extremites-cap-et-des-jointures-join">Style des
+                extrémités (<cite>cap</cite>) et des jointures (<cite>join</cite>)</a></li>
+            <li><a class="reference internal" href="#motifs-brises-dash-patterns">Motifs brisés (<cite>dash
+                  patterns</cite>)</a></li>
+            <li><a class="reference internal" href="#ajuster-des-motifs-en-nuage-de-points">Ajuster des motifs en nuage
+                de points</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <h4>Sujet précédent</h4>
+      <p class="topless"><a href="gp.html" title="Chapitre précédent">Gestionnaire de positionnement</a></p>
+      <h4>Sujet suivant</h4>
+      <p class="topless"><a href="bw.html" title="Chapitre suivant"><tt class="docutils literal"><span
+              class="pre">Button</span></tt> - Boutons</a></p>
+
+    </div>
+  </div>
+
+  <div class="document">
+    <div class="documentwrapper">
+      <div class="bodywrapper">
+        <div class="body">
+
+          <div class="section" id="les-attributs-standards">
+            <span id="stdattr"></span>
+            <h1>Les attributs standards<a class="headerlink" href="#les-attributs-standards"
+                title="Lien permanent vers ce titre">¶</a></h1>
+            <p>Avant d&#8217;examiner les widgets disponibles, prenons le temps d&#8217;observer comment certains
+              de leurs attributs communs - comme les tailles, les couleurs et les polices de caractères (fontes) - sont
+              précisés.</p>
+            <ul class="simple">
+              <li>Chaque widget possède un ensemble d&#8217;options qui affectent son apparence et son comportement -
+                des attributs comme les fontes, les couleurs, les tailles, les étiquettes textuelles, etc.</li>
+              <li>Vous pouvez préciser les options lors de l&#8217;appel du constructeur du widget en utilisant des mots
+                clés comme <tt class="docutils literal"><span class="pre">text='PANIQUE'</span></tt> ou <tt
+                  class="docutils literal"><span class="pre">height=20</span></tt>.</li>
+              <li>Après avoir créé un widget, il est encore possible de modifier chacune de ses options en utilisant sa
+                méthode <a class="reference internal" href="uwm.html#config" title="config"><tt
+                    class="xref py py-meth docutils literal"><span class="pre">config()</span></tt></a> ou la syntaxe
+                <tt class="docutils literal"><span class="pre">w['option']</span> <span class="pre">=</span> <span
+                    class="pre">valeur</span></tt>. Vous pouvez aussi récupérer la valeur courante de n&#8217;importe
+                laquelle de ses options en utilisant sa méthode <a class="reference internal" href="uwm.html#cget"
+                  title="cget"><tt class="xref py py-meth docutils literal"><span class="pre">cget()</span></tt></a> ou
+                l&#8217;écriture <tt class="docutils literal"><span class="pre">w['option']</span></tt>. Voir <a
+                  class="reference internal" href="uwm.html#universal"><em>Méthodes communes à tous les widgets</em></a>
+                pour en apprendre plus sur ces méthodes.</li>
+            </ul>
+            <div class="section" id="les-dimensions">
+              <span id="dimensions"></span>
+              <h2>Les dimensions<a class="headerlink" href="#les-dimensions" title="Lien permanent vers ce titre">¶</a>
+              </h2>
+              <p>Les différentes dimensions comme la largeur (<em>width</em>), la hauteur (<em>height</em>), etc.
+                peuvent être précisées dans différentes unités.</p>
+              <ul>
+                <li>
+                  <p class="first">Si vous indiquez une dimension par un entier, elle est supposée être en pixels.</p>
+                </li>
+                <li>
+                  <p class="first">Vous pouvez préciser une unité en utilisant une chaîne de caractères qui contient un
+                    nombre suivi d&#8217;une unité :</p>
+                  <blockquote>
+                    <div>
+                      <ul class="simple">
+                        <li><tt class="docutils literal"><span class="pre">c</span></tt> : Centimètres</li>
+                        <li><tt class="docutils literal"><span class="pre">i</span></tt> : Pousses (<cite>Inches</cite>)
+                        </li>
+                        <li><tt class="docutils literal"><span class="pre">m</span></tt> : Millimètres</li>
+                        <li><tt class="docutils literal"><span class="pre">p</span></tt> : Points d&#8217;impression
+                        </li>
+                      </ul>
+                    </div>
+                  </blockquote>
+                </li>
+              </ul>
+            </div>
+            <div class="section" id="le-systeme-de-coordonnees">
+              <span id="systeme"></span>
+              <h2>Le système de coordonnées<a class="headerlink" href="#le-systeme-de-coordonnees"
+                  title="Lien permanent vers ce titre">¶</a></h2>
+              <p>Comme dans la plupart des systèmes d&#8217;affichage, l&#8217;origine de chaque système de coordonnées
+                est
+                située à son coin supérieur gauche, les valeurs de <em>x</em> augmentant vers la droite et
+                les valeurs de <em>y</em> augmentant vers le bas.</p>
+              <img alt="../images/coords.png" class="align-center" src="../images/coords.png" />
+              <p>L&#8217;unité de base est le pixel avec le coin supérieur gauche de coordonnées <em>(0,0)</em>.
+                Les coordonnées indiquées par un entier sont toujours exprimées en pixels, mais chaque coordonnée
+                peut être indiquée via une chaîne de caractères dans une unité particulière; voir <a
+                  class="reference internal" href="#dimensions"><em>Les dimensions</em></a>.</p>
+            </div>
+            <div class="section" id="les-couleurs">
+              <span id="couleurs"></span>
+              <h2>Les couleurs<a class="headerlink" href="#les-couleurs" title="Lien permanent vers ce titre">¶</a></h2>
+              <p>Il y a deux manières générales pour indiquer une couleur dans tkinter.</p>
+              <ul>
+                <li>
+                  <p class="first">Vous pouvez utiliser une chaîne de caractères qui précise la proportion de rouge
+                    (<em>red</em>), vert (<em>green</em>) et bleu (<em>blue</em>) en hexadécimal:</p>
+                  <blockquote>
+                    <div>
+                      <ul class="simple">
+                        <li><tt class="docutils literal"><span class="pre">#rgb</span></tt> : quatre bits par couleur
+                        </li>
+                        <li><tt class="docutils literal"><span class="pre">#rrggbb</span></tt> : huit bits par couleur
+                        </li>
+                      </ul>
+                      <p>Par exemple, <tt class="docutils literal"><span class="pre">#fff</span></tt> est blanc, <tt
+                          class="docutils literal"><span class="pre">#000000</span></tt> est noir, et <tt
+                          class="docutils literal"><span class="pre">#00ffff</span></tt> est un cyan pur (vert plus
+                        bleu).</p>
+                    </div>
+                  </blockquote>
+                </li>
+                <li>
+                  <p class="first">Vous pouvez aussi utiliser n&#8217;importe quelle couleur définie localement par son
+                    nom standard. Les couleurs <tt class="docutils literal"><span class="pre">'white'</span></tt>, <tt
+                      class="docutils literal"><span class="pre">'black'</span></tt>, <tt class="docutils literal"><span
+                        class="pre">'red'</span></tt>, <tt class="docutils literal"><span
+                        class="pre">'green'</span></tt>, <tt class="docutils literal"><span
+                        class="pre">'blue'</span></tt>, <tt class="docutils literal"><span
+                        class="pre">'cyan'</span></tt>, <tt class="docutils literal"><span
+                        class="pre">'yellow'</span></tt>, and <tt class="docutils literal"><span
+                        class="pre">'magenta'</span></tt> seront toujours disponibles. D&#8217;autres noms peuvent
+                    fonctionner selon la configuration de votre ordinateur.</p>
+                </li>
+              </ul>
+            </div>
+
+
+          </div>
+          <div class="section" id="le-systeme-d-ancrage">
+            <span id="ancrage"></span>
+            <h2>Le système d&#8217;ancrage<a class="headerlink" href="#le-systeme-d-ancrage"
+                title="Lien permanent vers ce titre">¶</a></h2>
+            <p>Le module Tkinter définit un certain nombre de constantes d&#8217;ancrages que vous pouvez utiliser
+              pour contrôler l&#8217;endroit où un widget est positionné relativement à son contexte.
+              Par exemple, les ancrages peuvent préciser l&#8217;endroit où un widget est situé à l&#8217;intérieur
+              d&#8217;un cadre (<em>Frame</em>) lorsque celui-ci est plus grand que le widget.</p>
+            <p>Ces constantes sont données comme sur une boussole où le nord est en haut et l&#8217;ouest à gauche.
+              Nous prions les lecteurs de l&#8217;hémisphère sud de nous pardonner ce chauvinisme du nord.</p>
+            <p>Les constantes d&#8217;ancrages sont montrées ci-dessous:</p>
+            <img alt="../images/anchors.png" class="align-center" src="../images/anchors.png" />
+            <p>Par exemple, si vous créez un petit widget dans un large cadre et utilisez l&#8217;option <tt
+                class="docutils literal"><span class="pre">anchor='se'</span></tt>, le widget sera placé au niveau du
+              bord inférieur droit du cadre. Si vous utilisez
+              <tt class="docutils literal"><span class="pre">anchor='n'</span></tt>, il sera centré sur le bord haut
+              du cadre.</p>
+            <p>Les ancres sont aussi utilisées pour préciser où positionner un texte relativement à un point de
+              référence. Par exemple, si on utilise <tt class="docutils literal"><span class="pre">'center'</span></tt>
+              comme une ancre pour un texte, il est centré horizontalement et
+              verticalement autour du point de référence. L&#8217;ancre <tt class="docutils literal"><span
+                  class="pre">'nw'</span></tt> le positionnerait de telle sorte que le point de référence coïncide
+              avec le coin nord ouest de la boîte qui contient le texte. L&#8217;ancre <tt
+                class="docutils literal"><span class="pre">'w'</span></tt> le centrerait verticalement avec le bord
+              gauche de la boîte du texte sur le point et ainsi de suite.</p>
+          </div>
+          <div class="section" id="les-styles-de-relief">
+            <span id="reliefs"></span>
+            <h2>Les styles de relief<a class="headerlink" href="#les-styles-de-relief"
+                title="Lien permanent vers ce titre">¶</a></h2>
+            <p>Le style de relief d&#8217;un widget se réfère à la simulation de certains effets 3D autour de
+              l&#8217;extérieur du widget. Voici les différentes possibilités :</p>
+            <img alt="../images/relief.png" class="align-center" src="../images/relief.png" />
+            <p>Les valeurs peuvent être précisées par des chaînes de caractères comme <tt class="docutils literal"><span
+                  class="pre">'raised'</span></tt>, <tt class="docutils literal"><span class="pre">'sunken'</span></tt>,
+              <tt class="docutils literal"><span class="pre">'flat'</span></tt>
+              ...</p>
+            <p>La largeur des bords dépend de l&#8217;option <strong>borderwidth</strong> du widget. Ici, cette
+              largeur a été fixée à 5 pixels alors que par défaut elle vaut 2 pixels.</p>
+          </div>
+
+          <div class="section" id="les-images">
+            <span id="images"></span>
+            <h2>Les images<a class="headerlink" href="#les-images" title="Lien permanent vers ce titre">¶</a></h2>
+            <p>On propose deux méthodes pour afficher des images dans votre application tkinter.</p>
+            <ul class="simple">
+              <li>Pour afficher des images dans le format <cite>.gif</cite>, <cite>.pgm</cite> ou <cite>.ppm</cite>,
+                voir <a class="reference internal" href="#photoimage"><em>La classe PhotoImage</em></a>.</li>
+              <li>La libraire d&#8217;images de Python (PIL) offre un support pour une plus grande variété de format.
+                Sa classe <tt class="docutils literal"><span class="pre">ImageTk</span></tt> a été spécialement conçue
+                pour afficher des images dans les applications tkinter.</li>
+            </ul>
+            <div class="section" id="la-classe-photoimage">
+              <span id="photoimage"></span>
+              <h3>La classe <tt class="docutils literal"><span class="pre">PhotoImage</span></tt><a class="headerlink"
+                  href="#la-classe-photoimage" title="Lien permanent vers ce titre">¶</a></h3>
+              <p>Pour afficher une image du type <cite>.gif</cite>, <cite>.pgm</cite> ou <cite>.ppm</cite>, vous aurez
+                besoin du constructeur:</p>
+              <div class="highlight-python">
+                <div class="highlight">
+                  <pre><span class="n">PhotoImage</span><span class="p">(</span><span class="nb">file</span><span class="o">=</span><span class="n">f</span><span class="p">)</span>
+</pre>
+                </div>
+              </div>
+              <p>où <em>f</em> est le nom d&#8217;un fichier image. Le constructeur retourne une valeur qui peut être
+                utilisée partout où tkinter attend une image. Notez qu&#8217;il est nécessaire de conserver une
+                référence vers cette valeur:</p>
+              <div class="highlight-python">
+                <div class="highlight">
+                  <pre><span class="n">logo</span> <span class="o">=</span> <span class="n">PhotoImage</span><span class="p">(</span><span class="nb">file</span><span class="o">=</span><span class="s">&#39;test.gif&#39;</span><span class="p">)</span> <span class="c"># ne pas supprimer cette référence</span>
+<span class="n">Label</span><span class="p">(</span><span class="n">image</span><span class="o">=</span><span class="n">logo</span><span class="p">)</span><span class="o">.</span><span class="n">grid</span><span class="p">()</span>
+<span class="c"># Label(image=PhotoImage(file=&#39;test.gif&#39;)) ne fonctionnera pas !</span>
+</pre>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="section" id="les-chaines-de-geometrie">
+            <span id="geometrie"></span>
+            <h2>Les chaînes de géométrie<a class="headerlink" href="#les-chaines-de-geometrie"
+                title="Lien permanent vers ce titre">¶</a></h2>
+            <p>Une chaîne de géométrie est un moyen standard de décrire à la fois la taille et la localisation
+              d&#8217;une fenêtre principale sur l&#8217;écran du bureau.</p>
+            <p>Une chaîne de géométrie a la forme générale:</p>
+            <div class="highlight-python">
+              <div class="highlight">
+                <pre><span class="s">&#39;wxh±x±y&#39;</span>
+</pre>
+              </div>
+            </div>
+            <p>où :</p>
+            <ul class="simple">
+              <li><tt class="docutils literal"><span class="pre">w</span></tt> et <tt class="docutils literal"><span
+                    class="pre">h</span></tt> désignent respectivement la largeur (<em>width</em>) et la hauteur
+                (<em>height</em>) de la fenêtre en pixels. Ils sont séparés par le caractère <tt
+                  class="docutils literal"><span class="pre">'x'</span></tt>.</li>
+              <li>Si la prochaine partie a la forme <tt class="docutils literal"><span class="pre">+x</span></tt>,
+                elle indique que le bord gauche de la fenêtre doit être situé à <tt class="docutils literal"><span
+                    class="pre">x</span></tt> pixels du côté gauche du bureau. Si elle a la forme <tt
+                  class="docutils literal"><span class="pre">-x</span></tt>, elle indique que le bord droit de la
+                fenêtre doit être situé à <tt class="docutils literal"><span class="pre">x</span></tt> pixels du côté
+                droit du bureau.</li>
+              <li>Si la prochaine partie est de la forme <tt class="docutils literal"><span class="pre">+y</span></tt>,
+                elle indique que le bord haut de la fenêtre est situé à <tt class="docutils literal"><span
+                    class="pre">y</span></tt> pixels du bord haut du bureau. Si elle a la
+                forme <tt class="docutils literal"><span class="pre">-y</span></tt>, elle indique que le bord bas de
+                la fenêtre est situé à <tt class="docutils literal"><span class="pre">y</span></tt> pixels du bord bas
+                du bureau.</li>
+            </ul>
+            <p>Par exemple, une fenêtre crée avec <tt class="docutils literal"><span
+                  class="pre">geometry='120x50-0+20'</span></tt> aura une largeur de 120 pixels, une hauteur de 50
+              pixels, son bord droit sera collé à celui du bureau à 20 pixels du haut de celui-ci.</p>
+          </div>
+          <div class="section" id="le-nommage-des-fenetres-window">
+            <span id="nomfen"></span>
+            <h2>Le nommage des Fenêtres (<cite>Window</cite>)<a class="headerlink"
+                href="#le-nommage-des-fenetres-window" title="Lien permanent vers ce titre">¶</a></h2>
+            <p>Le terme fenêtre (<cite>window</cite>) se rapporte à une zone rectangulaire du bureau.</p>
+            <ul class="simple">
+              <li>Une fenêtre primaire (<cite>top-level</cite> ou <cite>root widow</cite>) est une fenêtre qui a une
+                existence indépendante pour le gestionnaire de fenêtre du système d&#8217;exploitation utilisé. Elle
+                est décorée avec les motifs et boutons habituels du système et peut être déplacée et redimensionnée.
+                Votre application peut utiliser n&#8217;importe quel nombre de fenêtre racine.</li>
+              <li>Le terme fenêtre s&#8217;applique aussi à n&#8217;importe quel widget qui fait partie d&#8217;une
+                fenêtre primaire.</li>
+            </ul>
+            <p>tkinter nomme toutes ces fenêtres en utilisant un nommage «hiérarchique» :</p>
+            <ul class="simple">
+              <li>La fenêtre principale est nommée <tt class="docutils literal"><span class="pre">'.'</span></tt></li>
+              <li>Une fenêtre enfant aura un nom de la forme <tt class="docutils literal"><span
+                    class="pre">'.n'</span></tt>, où <tt class="docutils literal"><span class="pre">n</span></tt> est
+                un entier sous la forme d&#8217;une chaîne. Par exemple, une fenêtre nommée <tt
+                  class="docutils literal"><span class="pre">'.135932060'</span></tt> est un enfant de la fenêtre
+                racine (<tt class="docutils literal"><span class="pre">'.'</span></tt>).</li>
+              <li>Les fenêtres enfants des fenêtres enfants auront des noms de la forme <tt
+                  class="docutils literal"><span class="pre">'.p.n'</span></tt> où <tt class="docutils literal"><span
+                    class="pre">p</span></tt> est le nom de la fenêtre parente et <tt class="docutils literal"><span
+                    class="pre">n</span></tt> est un certain entier. Par exemple, une fenêtre nommée <tt
+                  class="docutils literal"><span class="pre">'.135932060.137304468'</span></tt> a une fenêtre parent
+                <tt class="docutils literal"><span class="pre">'.135932060'</span></tt>, c&#8217;est donc un petit
+                enfant de la fenêtre principale.</li>
+              <li>Le nom relatif d&#8217;une fenêtre est la partie qui suit le dernier <tt
+                  class="docutils literal"><span class="pre">'.'</span></tt> dans le nom complet. En poursuivant
+                l&#8217;exemple précédent, la fenêtre petit enfant a pour nom relatif <tt class="docutils literal"><span
+                    class="pre">'137304468'</span></tt>.</li>
+            </ul>
+            <p>Pour obtenir le nom d&#8217;un widget <tt class="docutils literal"><span class="pre">w</span></tt>,
+              utilisez <tt class="docutils literal"><span class="pre">str(w)</span></tt>.</p>
+            <p>Voir aussi <a class="reference internal" href="uwm.html#universal"><em>Méthodes communes à tous les
+                  widgets</em></a> pour les méthodes que vous pouvez utiliser afin d&#8217;agir sur les noms de
+              fenêtre, plus spécialement les méthodes <a class="reference internal" href="uwm.html#winfo_name"
+                title="winfo_name"><tt class="xref py py-meth docutils literal"><span
+                    class="pre">winfo_name()</span></tt></a>, <a class="reference internal" href="uwm.html#winfo_parent"
+                title="winfo_parent"><tt class="xref py py-meth docutils literal"><span
+                    class="pre">winfo_parent()</span></tt></a>, et <a class="reference internal"
+                href="uwm.html#winfo_pathname" title="winfo_pathname"><tt class="xref py py-meth docutils literal"><span
+                    class="pre">winfo_pathname()</span></tt></a>.</p>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+  <div class="clearer"></div>
+  </div>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général">index</a></li>
+      <li class="right">
+        <a href="bw.html" title="Button - Boutons">suivant</a> |</li>
+      <li class="right">
+        <a href="gp.html" title="Gestionnaire de positionnement">précédent</a> |</li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="footer">
+    &copy; Copyright 2013, Étienne FLORENT.
+    Créé avec <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+  </div>
+</body>
+
+<!-- Mirrored from tkinter.fdex.eu/doc/sa.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:00:47 GMT -->
+
+</html>

@@ -1,0 +1,1099 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Mirrored from tkinter.fdex.eu/doc/event.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:01:03 GMT -->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <title>Événements: répondre aux actions de l’utilisateur. &mdash; Tkinter pour ISN</title>
+
+  <link rel="stylesheet" href="../static/sphinxdoc.css" type="text/css" />
+  <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT: '../',
+      VERSION: '1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE: true
+    };
+  </script>
+  <script type="text/javascript" src="../static/jquery.js"></script>
+  <script type="text/javascript" src="../static/underscore.js"></script>
+  <script type="text/javascript" src="../static/doctools.js"></script>
+  <script type="text/javascript" src="../static/translations.js"></script>
+  <script type="text/javascript"
+    src="../../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="../static/my.js"></script>
+  <link rel="top" title="Tkinter pour ISN" href="../index-2.html" />
+  <link rel="next" title="Fenêtres de dialogues" href="popdial.html" />
+  <link rel="prev" title="Focus: réception des saisies clavier" href="focus.html" />
+</head>
+
+<body>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général" accesskey="I">index</a>
+      </li>
+      <li class="right">
+        <a href="popdial.html" title="Fenêtres de dialogues" accesskey="N">suivant</a> |
+      </li>
+      <li class="right">
+        <a href="ctrvar.html" title="Variables de contrôle: Les valeurs sous les widgets" accesskey="P">précédent</a> |
+      </li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+      <h3><a href="../index-2.html">Table des matières</a></h3>
+      <ul>
+        <li><a class="reference internal" href="#"><strong>Événements</strong>: répondre aux actions de
+            l&#8217;utilisateur.</a>
+          <ul>
+            <li><a class="reference internal" href="#niveaux-de-liaisons">Niveaux de liaisons</a></li>
+            <li><a class="reference internal" href="#sequence-d-evenements">Séquence d&#8217;événements</a></li>
+            <li><a class="reference internal" href="#types-d-evenements">Types d&#8217;événements</a></li>
+            <li><a class="reference internal" href="#modificateurs-d-evenement">Modificateurs d&#8217;événement</a></li>
+            <li><a class="reference internal" href="#noms-des-touches">Noms des touches</a></li>
+            <li><a class="reference internal" href="#ecrire-son-gestionnaire-la-classe-event">Écrire son gestionnaire:
+                la classe <tt class="docutils literal"><span class="pre">Event</span></tt></a></li>
+            <li><a class="reference internal" href="#astuce-pour-des-arguments-en-plus-de-evt">Astuce pour des arguments
+                en plus de «evt»</a></li>
+            
+          </ul>
+        </li>
+      </ul>
+
+      <h4>Sujet précédent</h4>
+      <p class="topless"><a href="ctrvar.html" title="Chapitre précédent">Variables de contrôle: Les valeurs sous les widgets</a></p>
+      <h4>Sujet suivant</h4>
+      <p class="topless"><a href="popdial.html" title="Chapitre suivant">Fenêtres de dialogues</a></p>
+      
+    </div>
+  </div>
+
+  <div class="document">
+    <div class="documentwrapper">
+      <div class="bodywrapper">
+        <div class="body">
+
+          <div class="section" id="evenements-repondre-aux-actions-de-l-utilisateur">
+            <span id="events"></span>
+            <h1><strong>Événements</strong>: répondre aux actions de l&#8217;utilisateur.<a class="headerlink"
+                href="#evenements-repondre-aux-actions-de-l-utilisateur" title="Lien permanent vers ce titre">¶</a></h1>
+            <p>Un événement est la survenue de quelquechose dans votre application - par exemple, l&#8217;utilisateur
+              appuie sur une touche, clique avec sa souris ou la déplace. Votre application à certainement besoin de
+              réagir à ces actions de l&#8217;utilisateur.</p>
+            <p>Les widgets ont normalement un grand nombre de comportements prédéfinis. Par exemple, un bouton réagira à
+              un clic souris en appelant la fonction associée à son option <strong>command</strong>. Un autre exemple,
+              si vous déplacez le focus sur un widget de saisie et que vous appuyez sur une lettre, cette lettre sera
+              ajoutée au contenu du widget.</p>
+            <p>Cependant, tkinter fourni tous les moyens pour ajouter, changer ou supprimer de tels comportements.</p>
+            <p>Premièrement, quelques définitions:</p>
+            <ul class="simple">
+              <li>Un <strong>événement</strong> (<em>event</em>) est la survenue d&#8217;une action (clavier, souris)
+                dont votre application a besoin d&#8217;être informée.</li>
+              <li>Un <strong>gestionnaire d&#8217;événement</strong> (<em>event handler</em>) est une fonction de votre
+                application qui a vocation a être appelée lorsqu&#8217;un certain événement se produira.</li>
+              <li>Nous parlons de <strong>liaison</strong> lorsque votre application défini un gestionnaire
+                d&#8217;événement qui sera effectivement appelé lorsqu&#8217;un certain événement se produit sur un
+                widget.</li>
+            </ul>
+            <div class="section" id="niveaux-de-liaisons">
+              <span id="nivliaisevt"></span>
+              <h2>Niveaux de liaisons<a class="headerlink" href="#niveaux-de-liaisons"
+                  title="Lien permanent vers ce titre">¶</a></h2>
+              <p>Vous pouvez lier un gestionnaire à un événement à l&#8217;un de  ces niveaux:</p>
+              <ol class="arabic">
+                <li>
+                  <p class="first"><strong>Liaison au niveau d&#8217;un widget</strong>: Vous pouvez lier un événement à
+                    un widget particulier. Par exemple, vous pourriez lier la touche <em>PageUp</em> dans un canevas à
+                    un gestionnaire qui s&#8217;occuperait de le faire défiler d&#8217;une page vers le haut. Pour lier
+                    un événement à un widget, appelez la méthode <a class="reference internal" href="uwm.html#bind"
+                      title="bind"><tt class="xref py py-meth docutils literal"><span class="pre">bind()</span></tt></a>
+                    sur ce widget (voir <a class="reference internal" href="uwm.html#universal"><em>Méthodes communes à
+                        tous les widgets</em></a>).</p>
+                  <p>Par exemple, supposez que vous ayez un canevas référencé par <tt class="docutils literal"><span
+                        class="pre">can</span></tt> et que vous souhaitiez dessiner un disque orange sur ce canevas à
+                    chaque fois que l&#8217;utilisateur appuie sur le bouton 2 de la souris (celui du milieu). Pour
+                    définir ce comportement:</p>
+                  <div class="highlight-python">
+                    <div class="highlight">
+                      <pre><span class="n">can</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s">&#39;&lt;Button-2&gt;&#39;</span><span class="p">,</span> <span class="n">dessineDisqueOrange</span><span class="p">)</span>
+</pre>
+                    </div>
+                  </div>
+                  <p>Le premier argument, <tt class="docutils literal"><span class="pre">'&lt;Button-2&gt;'</span></tt>,
+                    est un «descripteur de séquence» qui indique à tkinter que lorsque le bouton central de la souris
+                    est pressé, il faut qu&#8217;il appelle le gestionnaire d&#8217;événement <tt
+                      class="docutils literal"><span class="pre">dessineDisqueOrange</span></tt> fourni comme deuxième
+                    argument (Voir <a class="reference internal" href="#gestevt"><em>Écrire son gestionnaire: la classe
+                        Event</em></a>, ci-dessous, pour une vue d&#8217;ensemble sur la manière d&#8217;écrire un
+                    gestionnaire comme <tt class="docutils literal"><span class="pre">dessineDisqueOrange</span></tt>).
+                    Notez qu&#8217;il faut omettre les parenthèses du gestionnaire d&#8217;événement afin que Python
+                    utilise la référence au gestionnaire plutôt que d&#8217;essayer de l&#8217;appeler sur le champ.</p>
+                </li>
+                
+                <li>
+                  <p class="first"><strong>Liaison au niveau de l&#8217;application</strong>: Vous pouvez définir une
+                    liaison d&#8217;événement de telle sorte que le gestionnaire d&#8217;événement soit appelé
+                    indépendament du widget qui a le focus ou qui se trouve sous la souris. Par exemple, vous pourriez
+                    souhaiter lier l&#8217;événement « appui sur la touche <em>ImprÉcran</em> » à tous les widgets de
+                    l&#8217;applicatoin de telle sorte que l&#8217;écran soit imprimé indépendamment du widget qui a
+                    effectivement reçu l&#8217;appui sur la touche. Pour lier un événement au niveau de
+                    l&#8217;application, appeler la méthode <a class="reference internal" href="uwm.html#bind_all"
+                      title="bind_all"><tt class="xref py py-meth docutils literal"><span
+                          class="pre">bind_all()</span></tt></a> sur n&#8217;importe quel widget (voir <a
+                      class="reference internal" href="uwm.html#universal"><em>Méthodes communes à tous les
+                        widgets</em></a>).</p>
+                  <p>Voici comment vous pourriez lier l&#8217;appui sur la touche, <em>Key</em>, ImprÉcran,
+                    <em>Print</em>, à l&#8217;effet désiré:</p>
+                  <div class="highlight-python">
+                    <div class="highlight">
+                      <pre><span class="n">w</span><span class="o">.</span><span class="n">bind_all</span><span class="p">(</span><span class="s">&#39;&lt;Key-Print&gt;&#39;</span><span class="p">,</span> <span class="n">imprimeEcran</span><span class="p">)</span>
+</pre>
+                    </div>
+                  </div>
+                </li>
+              </ol>
+            </div>
+            <div class="section" id="sequence-d-evenements">
+              <span id="seqevt"></span>
+              <h2>Séquence d&#8217;événements<a class="headerlink" href="#sequence-d-evenements"
+                  title="Lien permanent vers ce titre">¶</a></h2>
+              <p>Tkinter dispose d&#8217;une méthode générale et puissante pour vous permettre d&#8217;indiquer
+                précisément à quels événements vos gestionnaires sont liés.</p>
+              <p>En général, une séquence d&#8217;événements est une chaîne de caractères qui contient un ou plusieurs
+                <strong>motifs d&#8217;événements</strong>. Chaque motif d&#8217;événements décrit quelquechose qui peut
+                survenir pendant l&#8217;éxécution de votre application. S&#8217;il y a plus d&#8217;un motif dans une
+                séquence d&#8217;événements, le gestionnaire associé sera appelé seulement si tous les motifs de la
+                séquences se produisent en effet.</p>
+              <p>La forme générale d&#8217;un motif d&#8217;événement est la suivante:</p>
+              <blockquote>
+                <div><tt class="docutils literal"><span class="pre">&lt;[modificateur-]...type[-detail]&gt;</span></tt>
+                </div>
+              </blockquote>
+              <ul class="simple">
+                <li>Le motif est enfermé entre des chevrons &lt;…&gt;.</li>
+                <li>Le type de l&#8217;événement décrit le genre général de celui-ci, comme un appui sur une touche, <tt
+                    class="docutils literal"><span class="pre">KeyPress</span></tt>, ou un clic souris, <tt
+                    class="docutils literal"><span class="pre">Button</span></tt>. Voir <a class="reference internal"
+                    href="#typeevt"><em>Types d&#8217;événements</em></a>.</li>
+                <li>Vous pouvez indiquer un ou plusieurs modificateurs avant son type pour décrire une combinaison comme
+                  un appui sur la touche <em>Maj</em> ou <em>Control</em> pendant qu&#8217;une autre touche ou
+                  qu&#8217;un bouton de la souris est enfoncé. Voir <a class="reference internal"
+                    href="#modifevt"><em>Modificateurs d&#8217;événement</em></a>.</li>
+                <li>Vous pouvez ajouter d&#8217;autres détails après le type pour décrire la touche ou le bouton précis
+                  qui vous intéresse. Pour les boutons de la souris, <tt class="docutils literal"><span
+                      class="pre">1</span></tt> indique normalement le bouton de gauche, <tt
+                    class="docutils literal"><span class="pre">2</span></tt> celui du milieu et <tt
+                    class="docutils literal"><span class="pre">3</span></tt> celui de droite.<ul>
+                    <li>Notez qu&#8217;il est possible que les boutons de la souris soit inversés si un gaucher a
+                      effectué le réglage correspondant de son système.</li>
+                    <li>Pour les touches du clavier, il s&#8217;agit soit d&#8217;un caractère (pour un caractère unique
+                      comme pour la touche <em>A</em> ou *) ou le nom d&#8217;une touche; voir <a
+                        class="reference internal" href="#nomtouchesevt"><em>Noms des touches</em></a> pour une liste de
+                      ces noms.</li>
+                  </ul>
+                </li>
+              </ul>
+              <p>Voici quelques <strong>exemples de motifs d&#8217;événements</strong>:</p>
+              <ul class="simple">
+                <li><tt class="docutils literal"><span class="pre">&lt;Button-1&gt;</span></tt>: L&#8217;utilisateur a
+                  appuyé sur le premier bouton de la souris (celui de gauche normalement).</li>
+                <li><tt class="docutils literal"><span class="pre">&lt;KeyRelease-H&gt;</span></tt>: L&#8217;utilisateur
+                  a relâché la touche <em>H</em>.</li>
+                <li><tt class="docutils literal"><span class="pre">&lt;Control-Shift-KeyPress-H&gt;</span></tt>:
+                  L&#8217;utilisateur a appuyé simultanément sur les touches <em>Control</em>, <em>Maj</em> et
+                  <em>H</em>.</li>
+              </ul>
+              <p>Vous pouvez aussi <strong>utiliser des formes courtes pour préciser un événenemt</strong>. Voici
+                quelques exemples:</p>
+              <blockquote>
+                <div>
+                  <p><tt class="docutils literal"><span class="pre">'&lt;1&gt;'</span></tt> revient au même que <tt
+                      class="docutils literal"><span class="pre">'&lt;Button-1&gt;'</span></tt>.</p>
+                  <p><tt class="docutils literal"><span class="pre">'x'</span></tt> revient au même que <tt
+                      class="docutils literal"><span class="pre">'&lt;KeyPress-x&gt;'</span></tt>.</p>
+                </div>
+              </blockquote>
+              <p>Remarquez que vous pouvez omettre les chevrons <tt class="docutils literal"><span
+                    class="pre">'&lt;…&gt;'</span></tt> pour la plupart des caractères, mais que vous ne pouvez pas le
+                faire pour l&#8217;espace (dont le nom est <tt class="docutils literal"><span
+                    class="pre">'&lt;space&gt;'</span></tt>) ou pour le caractère inférieur à <em>&lt;</em> (dont le nom
+                est <tt class="docutils literal"><span class="pre">'&lt;less&gt;'</span></tt>).</p>
+            </div>
+            <div class="section" id="types-d-evenements">
+              <span id="typeevt"></span>
+              <h2>Types d&#8217;événements<a class="headerlink" href="#types-d-evenements"
+                  title="Lien permanent vers ce titre">¶</a></h2>
+              <p>L&#8217;ensemble complet de tous les types d&#8217;événements est très grand, mais beaucoup ne sont pas
+                utilisés fréquemment. Voici la plupart de ceux dont vous aurez besoin:</p>
+              <table border="1" class="docutils">
+                <colgroup>
+                  <col width="10%" />
+                  <col width="10%" />
+                  <col width="80%" />
+                </colgroup>
+                <thead valign="bottom">
+                  <tr class="row-odd">
+                    <th class="head">Type</th>
+                    <th class="head">Nom</th>
+                    <th class="head">Description</th>
+                  </tr>
+                </thead>
+                <tbody valign="top">
+                  <tr class="row-even">
+                    <td>36</td>
+                    <td><tt class="docutils literal"><span class="pre">Activate</span></tt></td>
+                    <td>Un widget est passé de l&#8217;état inactif à l&#8217;état actif. Se rapporte au changement de
+                      l&#8217;option <strong>state</strong> des widgets comme un bouton qui est inactif (grisé) et
+                      devient actif.</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td>4</td>
+                    <td><tt class="docutils literal"><span class="pre">Button</span></tt></td>
+                    <td>L&#8217;utilisateur a appuyé sur l&#8217;un des boutons de la souris. La partie <em>détail</em>
+                      précise le bouton. Pour la molette de la souris sous Linux, votre gestionnaire distinguera le
+                      défilement vers le haut et le défilement vers le bas en examinant l&#8217;attribut <tt
+                        class="docutils literal"><span class="pre">.num</span></tt> de l&#8217;instance
+                      d&#8217;événement qui lui est fourni; voir <a class="reference internal"
+                        href="#gestevt"><em>Écrire son gestionnaire: la classe Event</em></a>.</td>
+                  </tr>
+                  <tr class="row-even">
+                    <td>5</td>
+                    <td><tt class="docutils literal"><span class="pre">ButtonRelease</span></tt></td>
+                    <td>L&#8217;utilisateur relâche un bouton de la souris. C&#8217;est probablement un meilleur choix
+                      dans la plupart des cas d&#8217;utiliser ce type d&#8217;événement plutôt que <tt
+                        class="docutils literal"><span class="pre">Button</span></tt> parce que si l&#8217;utilsateur
+                      appuie accidentellement sur le bouton, il peut bouger la souris en-dehors du widget pour éviter de
+                      lancer l&#8217;action.</td>
+                  </tr>
+                  
+                  <tr class="row-even">
+                    <td>37</td>
+                    <td><tt class="docutils literal"><span class="pre">Deactivate</span></tt></td>
+                    <td>Un widget est passé de l&#8217;état actif à l&#8217;état inactif. Se rapporte au changment de
+                      l&#8217;option <strong>state</strong> des widgets comme pour un bouton radio qui change
+                      d&#8217;état en devenant grisé.</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td>17</td>
+                    <td><tt class="docutils literal"><span class="pre">Destroy</span></tt></td>
+                    <td>Un widget a été détruit.</td>
+                  </tr>
+                  <tr class="row-even">
+                    <td>7</td>
+                    <td><tt class="docutils literal"><span class="pre">Enter</span></tt></td>
+                    <td>L&#8217;utilisateur a bougé la souris qui est entrée dans la partie visible d&#8217;un widget.
+                      (Ne pas confondre avec la touche Entrée, qui est un événement de type <tt
+                        class="docutils literal"><span class="pre">KeyPress</span></tt> pour une touche dont le nom est
+                      <tt class="docutils literal"><span class="pre">'Return'</span></tt>).</td>
+                  </tr>
+                  
+                  
+                  <tr class="row-even">
+                    <td>2</td>
+                    <td><tt class="docutils literal"><span class="pre">KeyPress</span></tt></td>
+                    <td>L&#8217;utilisateur a appuyé sur une touche du clavier. La partie <em>détail</em> précise
+                      optionnellement une touche en particulier. Ce mot clé peut être abrégé par <tt
+                        class="docutils literal"><span class="pre">Key</span></tt>.</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td>3</td>
+                    <td><tt class="docutils literal"><span class="pre">KeyRelease</span></tt></td>
+                    <td>L&#8217;utilisateur a relâché une touche du clavier.</td>
+                  </tr>
+                  <tr class="row-even">
+                    <td>8</td>
+                    <td><tt class="docutils literal"><span class="pre">Leave</span></tt></td>
+                    <td>L&#8217;utilisateur a déplacé le pointeur de la souris en dehors d&#8217;un widget.</td>
+                  </tr>
+                  
+                  
+                  <tr class="row-even">
+                    <td>6</td>
+                    <td><tt class="docutils literal"><span class="pre">Motion</span></tt></td>
+                    <td>L&#8217;utilisateur a déplacé la souris à l&#8217;intérieur d&#8217;un widget.</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td>38</td>
+                    <td><tt class="docutils literal"><span class="pre">MouseWheel</span></tt></td>
+                    <td>L&#8217;utilisateur a tourné la molette de la souris, vers le haut ou vers le bas. Pour
+                      l&#8217;instant, cela n&#8217;est pris en compte que par Windows ou MacOS, mais pas par Linux.
+                      Pour ces systèmes, voir la discussion de l&#8217;attribut <tt class="docutils literal"><span
+                          class="pre">delta</span></tt> d&#8217;une instance d&#8217;un objet de classe <tt
+                        class="docutils literal"><span class="pre">Event</span></tt> dans <a class="reference internal"
+                        href="#gestevt"><em>Écrire son gestionnaire: la classe Event</em></a>. Pour Linux, se rapporter
+                      à la note ci-dessus pour le type <tt class="docutils literal"><span
+                          class="pre">Button</span></tt>.</td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+            </div>
+            <div class="section" id="modificateurs-d-evenement">
+              <span id="modifevt"></span>
+              <h2>Modificateurs d&#8217;événement<a class="headerlink" href="#modificateurs-d-evenement"
+                  title="Lien permanent vers ce titre">¶</a></h2>
+              <p>Les noms des modificateurs que vous pouvez utiliser dans une séquence d&#8217;événements sont, entre
+                autres:</p>
+              <ul class="simple">
+                <li><tt class="docutils literal"><span class="pre">Alt</span></tt> : Vrai si l&#8217;utilisateur est en
+                  train de maintenir enfoncée la touche <em>Alt</em>.</li>
+                <li><tt class="docutils literal"><span class="pre">Any</span></tt> : Ce modificateur généralise un type
+                  d&#8217;événement. Par exemple, le motif d&#8217;événement <tt class="docutils literal"><span
+                      class="pre">'&lt;Any-KeyPress&gt;'</span></tt> correspond à l&#8217;appui sur une touche
+                  arbitraire.</li>
+                <li><tt class="docutils literal"><span class="pre">Control</span></tt> : Vrai si l&#8217;utilisateur est
+                  en train de maintenir enfoncée la touche <em>Ctrl</em>.</li>
+                <li><tt class="docutils literal"><span class="pre">Double</span></tt> : Indique qu&#8217;un événement
+                  s&#8217;est produit 2 fois dans un cours laps de temps. Par exemple, <tt
+                    class="docutils literal"><span class="pre">&lt;Double-Button-1&gt;</span></tt> indique un double
+                  clic sur le bouton gauche (normalement) de la souris.</li>
+                <li><tt class="docutils literal"><span class="pre">Lock</span></tt> : Vrai si l&#8217;utilisateur a
+                  verrouiller le mode Majuscule.</li>
+                <li><tt class="docutils literal"><span class="pre">Shift</span></tt> : Vrai si l&#8217;utilisateur est
+                  en train de maintenir enfoncée la touche <em>Maj</em>.</li>
+                
+              </ul>
+            </div>
+            <div class="section" id="noms-des-touches">
+              <span id="nomtouchesevt"></span>
+              <h2>Noms des touches<a class="headerlink" href="#noms-des-touches"
+                  title="Lien permanent vers ce titre">¶</a></h2>
+              <p>La partie <em>detail</em> d&#8217;un motif pour un événement <tt class="docutils literal"><span
+                    class="pre">KeyPress</span></tt> ou <tt class="docutils literal"><span
+                    class="pre">KeyRelease</span></tt> précise la touche que vous souhaitez surveiller. (Voir le
+                modificateur <tt class="docutils literal"><span class="pre">Any</span></tt> ci-dessus si vous souhaitez
+                surveiller toutes les touches).</p>
+              <p>Le tableau ci-dessous montre plusieurs façons de nommer les touches. Voir <a class="reference internal"
+                  href="#gestevt"><em>Écrire son gestionnaire: la classe Event</em></a>, ci-dessous, pour plus
+                d&#8217;informations sur les objets <tt class="docutils literal"><span class="pre">Event</span></tt>,
+                dont les attributs décrivent les touches de la même manière)</p>
+              <ul class="simple">
+                <li>La colonne <tt class="docutils literal"><span class="pre">keysym</span></tt> montre le «symbole de
+                  touche», une chaîne de caractères pour la touche. Cela correpond à l&#8217;attribut <tt
+                    class="docutils literal"><span class="pre">keysym</span></tt> des objets <tt
+                    class="docutils literal"><span class="pre">Event</span></tt>.</li>
+                <li>La colonne <tt class="docutils literal"><span class="pre">keycode</span></tt> correpond au «code de
+                  touche». C&#8217;est un <em>identifiant</em> de touche (chaque touche possède un unique <tt
+                    class="docutils literal"><span class="pre">keycode</span></tt>) qui permet de savoir quelle touche a
+                  été enfoncée. Notez cependant qu&#8217;il ne permet pas de savoir si une touche modificatrice
+                  (<em>Maj</em>, <em>Ctrl</em> et <em>VerrMaj</em>) a été ou est enfoncée; ainsi, par exemple,
+                  <em>a</em> et <em>A</em> ont le même code de touche.</li>
+                <li>La colonne <tt class="docutils literal"><span class="pre">keysym_num</span></tt> montre un code
+                  numérique équivalent au symbole de la touche. Il a la particularité d&#8217;être différent selon
+                  qu&#8217;une touche modificatrice a été ou est enfoncée. Par exemple, le chiffre 2 du clavier
+                  numérique (dont le symbole de touche est <tt class="docutils literal"><span
+                      class="pre">KP_2</span></tt>) et la flèche «sud» du clavier numérique (de symbole <tt
+                    class="docutils literal"><span class="pre">KP_Down</span></tt>) ont le même code de touche (88),
+                  mais leurs codes numériques <tt class="docutils literal"><span class="pre">keysym_num</span></tt> sont
+                  différents (65433 et 65458, respectivement).</li>
+                <li>La colonne <strong>Touche</strong> montre le texte que vous trouverez habituellement sur la touche
+                  de votre clavier, comme <em>Tab</em> par exemple.</li>
+              </ul>
+              <p>Il y a beaucoup de noms de touches pour couvrir de nombreux ensembles de caractères internationaux. Ce
+                tableau montre uniquement l&#8217;ensemble «Latin-1» pour un clavier type. Pour connaître
+                l&#8217;ensemble des possibilités, reportez-vous à la page correspondante du manuel de Tk.</p>
+              <table border="1" class="docutils">
+                <colgroup>
+                  <col width="15%" />
+                  <col width="10%" />
+                  <col width="10%" />
+                  <col width="65%" />
+                </colgroup>
+                <thead valign="bottom">
+                  <tr class="row-odd">
+                    <th class="head"><tt class="docutils literal"><span class="pre">keysym</span></tt></th>
+                    <th class="head"><cite>keycode</cite></th>
+                    <th class="head"><cite>keysym_num</cite></th>
+                    <th class="head">Touche</th>
+                  </tr>
+                </thead>
+                <tbody valign="top">
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">Alt_L</span></tt></td>
+                    <td><cite>64</cite></td>
+                    <td><cite>65513</cite></td>
+                    <td>La touche <em>Alt</em> située à gauche.</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">BackSpace</span></tt></td>
+                    <td><cite>22</cite></td>
+                    <td><cite>65288</cite></td>
+                    <td>La touche <em>Retour Arrière</em></td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">Cancel</span></tt></td>
+                    <td><cite>110</cite></td>
+                    <td><cite>65387</cite></td>
+                    <td>???</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">Caps_Lock</span></tt></td>
+                    <td><cite>66</cite></td>
+                    <td><cite>65509</cite></td>
+                    <td><em>Verr Maj</em></td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">Control_L</span></tt></td>
+                    <td><cite>37</cite></td>
+                    <td><cite>65507</cite></td>
+                    <td>La touche <em>Ctrl</em> de gauche</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">Control_R</span></tt></td>
+                    <td><cite>105</cite></td>
+                    <td><cite>65508</cite></td>
+                    <td>La touche <em>Ctrl</em> de droite</td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">Delete</span></tt></td>
+                    <td><cite>119</cite></td>
+                    <td><cite>65535</cite></td>
+                    <td><em>Suppr</em></td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">Down</span></tt></td>
+                    <td><cite>116</cite></td>
+                    <td><cite>65364</cite></td>
+                    <td>↓</td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">End</span></tt></td>
+                    <td><cite>115</cite></td>
+                    <td><cite>65367</cite></td>
+                    <td><em>Fin</em></td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">Escape</span></tt></td>
+                    <td><cite>9</cite></td>
+                    <td><cite>65307</cite></td>
+                    <td><em>Echap</em></td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">Execute</span></tt></td>
+                    <td><cite>111</cite></td>
+                    <td><cite>65378</cite></td>
+                    <td>???</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">F1</span></tt></td>
+                    <td><cite>67</cite></td>
+                    <td><cite>65470</cite></td>
+                    <td>La touche fonction <em>F1</em></td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">F2</span></tt></td>
+                    <td><cite>68</cite></td>
+                    <td><cite>65471</cite></td>
+                    <td>La touche fonction <em>F2</em></td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">Fi</span></tt></td>
+                    <td><cite>66+i</cite></td>
+                    <td><cite>65469+i</cite></td>
+                    <td>La touche fonction <em>Fi</em></td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">F12</span></tt></td>
+                    <td><cite>96</cite></td>
+                    <td><cite>65481</cite></td>
+                    <td>La touche fonction <em>F12</em></td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">Home</span></tt></td>
+                    <td><cite>110</cite></td>
+                    <td><cite>65360</cite></td>
+                    <td><em>Début</em></td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">Insert</span></tt></td>
+                    <td><cite>118</cite></td>
+                    <td><cite>65379</cite></td>
+                    <td><em>Inser</em></td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">Left</span></tt></td>
+                    <td><cite>113</cite></td>
+                    <td><cite>65361</cite></td>
+                    <td>←</td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">Linefeed</span></tt></td>
+                    <td><cite>54</cite></td>
+                    <td><cite>106</cite></td>
+                    <td>??? Linefeed (control-J)</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">KP_0</span></tt></td>
+                    <td><cite>90</cite></td>
+                    <td><cite>65456</cite></td>
+                    <td>0 sur le clavier numérique</td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">KP_1</span></tt></td>
+                    <td><cite>87</cite></td>
+                    <td><cite>65457</cite></td>
+                    <td>1 sur le clavier numérique</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">KP_2</span></tt></td>
+                    <td><cite>88</cite></td>
+                    <td><cite>65458</cite></td>
+                    <td>2 sur le clavier numérique</td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">KP_3</span></tt></td>
+                    <td><cite>89</cite></td>
+                    <td><cite>65459</cite></td>
+                    <td>3 sur le clavier numérique</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">KP_4</span></tt></td>
+                    <td><cite>83</cite></td>
+                    <td><cite>65460</cite></td>
+                    <td>4 sur le clavier numérique</td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">KP_5</span></tt></td>
+                    <td><cite>84</cite></td>
+                    <td><cite>65461</cite></td>
+                    <td>5 sur le clavier numérique</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">KP_6</span></tt></td>
+                    <td><cite>85</cite></td>
+                    <td><cite>65462</cite></td>
+                    <td>6 sur le clavier numérique</td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">KP_7</span></tt></td>
+                    <td><cite>79</cite></td>
+                    <td><cite>65463</cite></td>
+                    <td>7 sur le clavier numérique</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">KP_8</span></tt></td>
+                    <td><cite>80</cite></td>
+                    <td><cite>65464</cite></td>
+                    <td>8 sur le clavier numérique</td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">KP_9</span></tt></td>
+                    <td><cite>81</cite></td>
+                    <td><cite>65465</cite></td>
+                    <td>9 sur le clavier numérique</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">KP_Add</span></tt></td>
+                    <td><cite>86</cite></td>
+                    <td><cite>65451</cite></td>
+                    <td>+ sur le clavier numérique</td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">KP_Begin</span></tt></td>
+                    <td><cite>84</cite></td>
+                    <td><cite>65437</cite></td>
+                    <td>La touche centrale (même que 5) sur le clavier numérique</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">KP_Decimal</span></tt></td>
+                    <td><cite>91</cite></td>
+                    <td><cite>65454</cite></td>
+                    <td>Symbole de la ponctuation décimale (,) sur le clavier numérique</td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">KP_Delete</span></tt></td>
+                    <td><cite>91</cite></td>
+                    <td><cite>65439</cite></td>
+                    <td><em>Suppr</em> sur le clavier numérique</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">KP_Divide</span></tt></td>
+                    <td><cite>106</cite></td>
+                    <td><cite>65455</cite></td>
+                    <td>/ sur le clavier numérique</td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">KP_Down</span></tt></td>
+                    <td><cite>88</cite></td>
+                    <td><cite>65433</cite></td>
+                    <td>↓ sur le clavier numérique</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">KP_End</span></tt></td>
+                    <td><cite>87</cite></td>
+                    <td><cite>65436</cite></td>
+                    <td><em>Fin</em> sur le clavier numérique</td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">KP_Enter</span></tt></td>
+                    <td><cite>104</cite></td>
+                    <td><cite>65421</cite></td>
+                    <td><em>Entrée</em> sur le clavier numérique</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">KP_Home</span></tt></td>
+                    <td><cite>79</cite></td>
+                    <td><cite>65429</cite></td>
+                    <td><em>Début</em> sur le clavier numérique</td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">KP_Insert</span></tt></td>
+                    <td><cite>90</cite></td>
+                    <td><cite>65438</cite></td>
+                    <td><em>Insert</em> sur le clavier numérique</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">KP_Left</span></tt></td>
+                    <td><cite>83</cite></td>
+                    <td><cite>65430</cite></td>
+                    <td>← sur le clavier numérique</td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">KP_Multiply</span></tt></td>
+                    <td><cite>63</cite></td>
+                    <td><cite>65450</cite></td>
+                    <td>× sur le clavier numérique</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">KP_Next</span></tt></td>
+                    <td><cite>89</cite></td>
+                    <td><cite>65435</cite></td>
+                    <td><em>PageDown</em> sur le clavier numérique</td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">KP_Prior</span></tt></td>
+                    <td><cite>81</cite></td>
+                    <td><cite>65434</cite></td>
+                    <td><em>PageUp</em> sur le clavier numérique</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">KP_Right</span></tt></td>
+                    <td><cite>85</cite></td>
+                    <td><cite>65432</cite></td>
+                    <td>→ sur le clavier numérique</td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">KP_Subtract</span></tt></td>
+                    <td><cite>82</cite></td>
+                    <td><cite>65453</cite></td>
+                    <td>- sur le clavier numérique</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">KP_Up</span></tt></td>
+                    <td><cite>80</cite></td>
+                    <td><cite>65431</cite></td>
+                    <td>↑ sur le clavier numérique</td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">Next</span></tt></td>
+                    <td><cite>117</cite></td>
+                    <td><cite>65366</cite></td>
+                    <td><em>PageDown</em></td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">Num_Lock</span></tt></td>
+                    <td><cite>77</cite></td>
+                    <td><cite>65407</cite></td>
+                    <td><em>Verr Num</em></td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">Pause</span></tt></td>
+                    <td><cite>127</cite></td>
+                    <td><cite>65299</cite></td>
+                    <td><em>Pause</em></td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">Print</span></tt></td>
+                    <td><cite>111</cite></td>
+                    <td><cite>65377</cite></td>
+                    <td><em>ImprÉcran</em></td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">Prior</span></tt></td>
+                    <td><cite>112</cite></td>
+                    <td><cite>65365</cite></td>
+                    <td><em>PageUp</em></td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">Return</span></tt></td>
+                    <td><cite>36</cite></td>
+                    <td><cite>65293</cite></td>
+                    <td>La touche <em>Entrée</em> (control-M). Le nom <tt class="docutils literal"><span
+                          class="pre">Enter</span></tt> se réfère à un événement associé à la souris et non au clavier;
+                      voir <a class="reference internal" href="#typeevt"><em>Types d&#8217;événements</em></a>.</td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">Right</span></tt></td>
+                    <td><cite>114</cite></td>
+                    <td><cite>65363</cite></td>
+                    <td>→</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">Scroll_Lock</span></tt></td>
+                    <td><cite>78</cite></td>
+                    <td><cite>65300</cite></td>
+                    <td>Verrouillage Défilement (<em>ScrollLock</em>)</td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">Shift_L</span></tt></td>
+                    <td><cite>50</cite></td>
+                    <td><cite>65505</cite></td>
+                    <td>La touche <em>Maj</em> de gauche</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">Shift_R</span></tt></td>
+                    <td><cite>62</cite></td>
+                    <td><cite>65506</cite></td>
+                    <td>La touche <em>Maj</em> de droite</td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">space</span></tt></td>
+                    <td><cite>65</cite></td>
+                    <td><cite>32</cite></td>
+                    <td>La barre espace</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">Tab</span></tt></td>
+                    <td><cite>23</cite></td>
+                    <td><cite>65289</cite></td>
+                    <td>La touche de Tabulation, <em>Tab</em></td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">Up</span></tt></td>
+                    <td><cite>111</cite></td>
+                    <td><cite>65362</cite></td>
+                    <td>↑</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="section" id="ecrire-son-gestionnaire-la-classe-event">
+              <span id="gestevt"></span>
+              <h2>Écrire son gestionnaire: la classe <tt class="docutils literal"><span class="pre">Event</span></tt><a
+                  class="headerlink" href="#ecrire-son-gestionnaire-la-classe-event"
+                  title="Lien permanent vers ce titre">¶</a></h2>
+              <p>Les sections précédentes vous ont expliquées comment décrire l&#8217;événement auquel vous souhaitez
+                réagir et comment le lier à l&#8217;application. À présent, intéressons-nous à l&#8217;écriture du
+                gestionnaire d&#8217;événements qui sera appelé lorsque l&#8217;événement aura lieu.</p>
+              <p>Le gestionnaire d&#8217;événements recevra un objet de type <tt class="docutils literal"><span
+                    class="pre">Event</span></tt> qui sert à décrire les circonstances de l&#8217;événement. Le
+                gestionnaire peut être une fonction ou une méthode. Voici la forme de la déclaration d&#8217;une
+                fonction:</p>
+              <div class="highlight-python">
+                <div class="highlight">
+                  <pre><span class="k">def</span> <span class="nf">nomGestionnaire</span><span class="p">(</span><span class="n">evt</span><span class="p">):</span>
+</pre>
+                </div>
+              </div>
+              <p>Et pour une méthode:</p>
+              <div class="highlight-python">
+                <div class="highlight">
+                  <pre><span class="k">class</span> <span class="nc">MaClasse</span><span class="p">:</span>
+
+        <span class="c"># ...</span>
+
+        <span class="k">def</span> <span class="nf">nomGestionnaire</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">evt</span><span class="p">):</span>
+</pre>
+                </div>
+              </div>
+              <p>Les attributs de l&#8217;objet de type <tt class="docutils literal"><span class="pre">Event</span></tt>
+                passé au gestionnaire, par l&#8217;intermédiaire de son paramètre <tt class="docutils literal"><span
+                    class="pre">evt</span></tt> (parfois noté plus explicitement <tt class="docutils literal"><span
+                    class="pre">event</span></tt>), sont décrits ci-dessous. Certains attributs possèdent toujours une
+                valeur, mais d&#8217;autres n&#8217;en possède une que pour certains types d&#8217;événements.</p>
+              <table border="1" class="docutils">
+                <colgroup>
+                  <col width="15%" />
+                  <col width="85%" />
+                </colgroup>
+                <tbody valign="top">
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">char</span></tt></td>
+                    <td>Si l&#8217;événement est produit par l&#8217;appui ou le relâchement d&#8217;une touche qui
+                      produit un caractère ASCII régulier, cet attribut est le caractère sous la forme d&#8217;une
+                      chaîne. (Pour des touches spéciales comme <em>Suppr</em>, voir l&#8217;attribut <tt
+                        class="docutils literal"><span class="pre">keysym</span></tt> ci-dessous)</td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">delta</span></tt></td>
+                    <td>Pour un événement du type <tt class="docutils literal"><span class="pre">MouseWheel</span></tt>,
+                      cet attribut contient un entier dont le signe est positif pour un déplacement vers le haut,
+                      négatif pour un déplacement vers le bas. Sous Windows, cette valeur sera un multiple de 120; par
+                      exemple, 120 désigne un défilement vers le haut en une étape et -240 un défilement vers le bas en
+                      deux étapes. Sous MacOS, on aurait obtenu les valeurs 1 et -2 dans cet exemple. Pour le support de
+                      la molette sous Linux, voir les note sur l&#8217;événement de type <tt
+                        class="docutils literal"><span class="pre">Button</span></tt> dans <a class="reference internal"
+                        href="#typeevt"><em>Types d&#8217;événements</em></a>.</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">height</span></tt></td>
+                    <td>Si l&#8217;événement est du type <tt class="docutils literal"><span
+                          class="pre">Configure</span></tt>, cet attribut porte la nouvelle hauteur du widget en pixels.
+                    </td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">keycode</span></tt></td>
+                    <td>Pour un événement de type <tt class="docutils literal"><span class="pre">KeyPress</span></tt> ou
+                      <tt class="docutils literal"><span class="pre">KeyRelease</span></tt>, cet attribut contient le
+                      code de touche. Cependant, cet entier n&#8217;identifie pas quel caractère de la touche a été
+                      produit, ainsi «x» ou «X» ne se différencient pas par leur code de touche. Pour des valeurs
+                      possibles de cet attribut, voir <a class="reference internal" href="#nomtouchesevt"><em>Noms des
+                          touches</em></a>.</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">keysym</span></tt></td>
+                    <td>Pour un événement de type <tt class="docutils literal"><span class="pre">KeyPress</span></tt> ou
+                      <tt class="docutils literal"><span class="pre">KeyRelease</span></tt> impliquant une touche
+                      spéciale, cet attribut porte le nom de touche, par exemple <tt class="docutils literal"><span
+                          class="pre">'Prior'</span></tt> pour la touche <em>PageUp</em>. Voir <a
+                        class="reference internal" href="#nomtouchesevt"><em>Noms des touches</em></a> pour une liste
+                      complète des nom de touches.</td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">keysym_num</span></tt></td>
+                    <td>Pour un événement de type <tt class="docutils literal"><span class="pre">KeyPress</span></tt> ou
+                      <tt class="docutils literal"><span class="pre">KeyRelease</span></tt>, cet attribut est une
+                      version numérique de l&#8217;attribut <tt class="docutils literal"><span
+                          class="pre">keysym</span></tt>. Pour une touche régulière qui produit un seul caractère, cet
+                      attribut prend pour valeur le code ASCII du caractère. Pour des touches spéciales, référez-vous à
+                      <a class="reference internal" href="#nomtouchesevt"><em>Noms des touches</em></a>.</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">num</span></tt></td>
+                    <td>Si l&#8217;événement est associé à un bouton de la souris, cet attribut porte la valeur entière
+                      qui indique le numéro du bouton (1, 2 ou 3). Pour le support de la molette sous linux, lier les
+                      événements <tt class="docutils literal"><span class="pre">Button-4</span></tt> et <tt
+                        class="docutils literal"><span class="pre">Button-5</span></tt>; lorsque la molette de la souris
+                      tourne vers l&#8217;avant, cet attribut prend la valeur 4, il prend la valeur 5 dans l&#8217;autre
+                      sens.</td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">serial</span></tt></td>
+                    <td>Un entier qui est incrémenté à chaque fois que le serveur répond à une requête du client. Vous
+                      pouvez utiliser cet attribut pour découvrir la séquence temporelle des événements: ceux qui ont eu
+                      lieu plus tôt ont une valeur plus petite.</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">state</span></tt></td>
+                    <td>Un entier qui décrit l&#8217;état de toutes les touches modificatrice. Reportez-vous à la table
+                      des masques des modificateurs pour l&#8217;interprétation de cette valeur.</td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">time</span></tt></td>
+                    <td>Cet attribut porte un entier qui n&#8217;a pas de signification dans l&#8217;absolu, mais qui
+                      est incrémenté chaque milliseconde. Cela permet à votre application de déterminer, par exemple, le
+                      temps écoulé entre deux clic souris.</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">type</span></tt></td>
+                    <td>Un code numérique qui décrit le type de l&#8217;événement. Pour l&#8217;interprétation de ce
+                      code, reportez-vous à <a class="reference internal" href="#typeevt"><em>Types
+                          d&#8217;événements</em></a>.</td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">widget</span></tt></td>
+                    <td>Porte toujours la référence du widget qui a causé l&#8217;événement. Par exemple, si
+                      l&#8217;événement était un clic souris sur un canevas, cet attribut serait ce canevas.</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">width</span></tt></td>
+                    <td>Si l&#8217;événement était du type <tt class="docutils literal"><span
+                          class="pre">Configure</span></tt>, cet attribut est la nouvelle largeur du widget en pixels.
+                    </td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">x</span></tt></td>
+                    <td>L&#8217;abscisse de la souris en pixels au moment de l&#8217;événement. Elle est relative au
+                      coin supérieur gauche du widget sur lequel se trouve la souris.</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">y</span></tt></td>
+                    <td>Similaire à <tt class="docutils literal"><span class="pre">x</span></tt> mais dans la direction
+                      verticale.</td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><tt class="docutils literal"><span class="pre">x_root</span></tt></td>
+                    <td>L&#8217;abscisse de la souris au moment où survient l&#8217;événement, relativement au coin
+                      supérieur gauche de l&#8217;écran.</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><tt class="docutils literal"><span class="pre">y_root</span></tt></td>
+                    <td>Similaire à <tt class="docutils literal"><span class="pre">x_root</span></tt> mais dans la
+                      direction verticale.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Utilisez ces masques pour tester les bits de la valeur de l&#8217;attribut <tt
+                  class="docutils literal"><span class="pre">state</span></tt> pour savoir quel(s) touche(s)
+                modificatrice(s) et/ou bouton(s) ont été utilisé(s) pendant l&#8217;événement.</p>
+              <table border="1" class="docutils">
+                <colgroup>
+                  <col width="25%" />
+                  <col width="75%" />
+                </colgroup>
+                <thead valign="bottom">
+                  <tr class="row-odd">
+                    <th class="head">Masque</th>
+                    <th class="head">Modificateur</th>
+                  </tr>
+                </thead>
+                <tbody valign="top">
+                  <tr class="row-even">
+                    <td><cite>0x0001</cite></td>
+                    <td><em>Maj</em>.</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><cite>0x0002</cite></td>
+                    <td><em>Verr Maj</em>.</td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><cite>0x0004</cite></td>
+                    <td><em>Control</em>.</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><cite>0x0008</cite></td>
+                    <td>Touche <em>Alt</em> de gauche.</td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><cite>0x0010</cite></td>
+                    <td><em>Verr Num</em>.</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><cite>0x0080</cite></td>
+                    <td>Touche <em>Alt</em> de droite.</td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><cite>0x0100</cite></td>
+                    <td>Bouton 1 de la souris.</td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><cite>0x0200</cite></td>
+                    <td>Bouton 2 de la souris.</td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><cite>0x0400</cite></td>
+                    <td>Bouton 3 de la souris.</td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Voici un exemple de gestionnaire d&#8217;événements. Plus haut, dans <a class="reference internal"
+                  href="#nivliaisevt"><em>Niveaux de liaisons</em></a>, vous trouverez un exemple qui vous montre
+                commment lier l&#8217;appui sur le bouton central de la souris à un gestionnaire nommé <tt
+                  class="docutils literal"><span class="pre">dessineDisqueOrange</span></tt>. Voici ce gestionnaire:</p>
+              <div class="highlight-python">
+                <div class="highlight">
+                  <pre><span class="k">def</span> <span class="nf">dessineDisqueOrange</span><span class="p">(</span><span class="n">evt</span><span class="p">):</span>
+    <span class="sd">&#39;&#39;&#39;Dessine un disque orange là où se trouve la souris</span>
+<span class="sd">    &#39;&#39;&#39;</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="mi">5</span>   <span class="c"># Son rayon</span>
+    <span class="n">can</span><span class="o">.</span><span class="n">create_oval</span><span class="p">(</span><span class="n">evt</span><span class="o">.</span><span class="n">x</span><span class="o">-</span><span class="n">r</span><span class="p">,</span> <span class="n">evt</span><span class="o">.</span><span class="n">y</span><span class="o">-</span><span class="n">r</span><span class="p">,</span>
+        <span class="n">evt</span><span class="o">.</span><span class="n">x</span><span class="o">+</span><span class="n">r</span><span class="p">,</span> <span class="n">evt</span><span class="o">.</span><span class="n">y</span><span class="o">+</span><span class="n">r</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s">&#39;orange&#39;</span><span class="p">)</span>
+</pre>
+                </div>
+              </div>
+              <p>Lorsque ce gestionnaire est appelé, la position courante de la souris est <em>(evt.x, evt.y)</em>. La
+                méthode <a class="reference internal" href="caw.html#Canvas.create_oval" title="Canvas.create_oval"><tt
+                    class="xref py py-meth docutils literal"><span class="pre">create_oval()</span></tt></a> dessine un
+                cercle dont la boîte englobante est un carré centré sur cette position et dont les côtés mesure 2*r.</p>
+            </div>
+            <div class="section" id="astuce-pour-des-arguments-en-plus-de-evt">
+              <span id="argsuppevt"></span>
+              <h2>Astuce pour des arguments en plus de «evt»<a class="headerlink"
+                  href="#astuce-pour-des-arguments-en-plus-de-evt" title="Lien permanent vers ce titre">¶</a></h2>
+              <p>Parfois, vous souhaiterez passer d&#8217;autres arguments à un gestionnaire (en plus de l&#8217;objet
+                <tt class="docutils literal"><span class="pre">Event</span></tt>)</p>
+              <p>Voici un exemple. Supposez que votre application comporte un tableau de cases à cocher dont les widgets
+                sont mémorisés dans une liste <tt class="docutils literal"><span class="pre">ccList</span></tt>, indexée
+                par le numéro de la case à cocher situé dans <tt class="docutils literal"><span
+                    class="pre">range(10)</span></tt>.</p>
+              <p>Supposez en outre que vous souhaitiez n&#8217;écrire qu&#8217;un gestionnaire <tt
+                  class="docutils literal"><span class="pre">ccGest</span></tt> pour l&#8217;événement <tt
+                  class="docutils literal"><span class="pre">'&lt;Button-1&gt;'</span></tt> sur l&#8217;une de ces 10
+                cases. Votre gestionnaire peut connaître la case sur laquelle a eu lieu le clic en utilisant
+                l&#8217;attribut <tt class="docutils literal"><span class="pre">widget</span></tt> de l&#8217;objet <tt
+                  class="docutils literal"><span class="pre">Event</span></tt>, mais comment faire pour retrouver son
+                index dans la liste <tt class="docutils literal"><span class="pre">ccList</span></tt> ?</p>
+              <p>Il serait commode d&#8217;écrire notre gestionnaire avec un argument supplémentaire pour le numéro de
+                la case à cocher, quelquechose comme:</p>
+              <div class="highlight-python">
+                <div class="highlight">
+                  <pre><span class="k">def</span> <span class="nf">ccGest</span><span class="p">(</span><span class="n">evt</span><span class="p">,</span> <span class="n">ccNb</span><span class="p">):</span>
+</pre>
+                </div>
+              </div>
+              <p>Mais un gestionnaire d&#8217;événement ne reçoit qu&#8217;un argument, l&#8217;objet de type <tt
+                  class="docutils literal"><span class="pre">Event</span></tt>. Il n&#8217;est donc pas possible
+                d&#8217;utiliser la fonction ci-dessus qui comporte un argument de trop.</p>
+              <p>Heureusement, il est possible d&#8217;exploiter les valeurs par défaut des fonctions pour parvenir à
+                l&#8217;objectif. Observer le code suivant:</p>
+              <div class="highlight-python">
+                <div class="highlight">
+                  <pre> <span class="n">ccListe</span> <span class="o">=</span> <span class="p">[]</span>
+ <span class="k">def</span> <span class="nf">creerWidgets</span><span class="p">():</span>
+    <span class="c">#...</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+        <span class="n">cc</span> <span class="o">=</span> <span class="n">Checkbutton</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+        <span class="n">ccList</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">cc</span><span class="p">)</span>
+        <span class="n">cc</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
+        <span class="k">def</span> <span class="nf">gest</span><span class="p">(</span><span class="n">evt</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="p">):</span>   <span class="mi">1</span>
+            <span class="k">return</span> <span class="n">ccGest</span><span class="p">(</span><span class="n">evt</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+        <span class="n">cc</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s">&#39;&lt;Button-1&gt;&#39;</span><span class="p">,</span> <span class="n">gest</span><span class="p">)</span>
+    <span class="c">#...</span>
+<span class="k">def</span> <span class="nf">ccGest</span><span class="p">(</span><span class="n">evt</span><span class="p">,</span> <span class="n">ccNb</span><span class="p">):</span>
+    <span class="c">#...</span>
+</pre>
+                </div>
+              </div>
+              <p>Ces lignes définissent un gestionnaire, <tt class="docutils literal"><span
+                    class="pre">gest()</span></tt> qui attend deux arguments. Le premier est l&#8217;objet de type <tt
+                  class="docutils literal"><span class="pre">Event</span></tt> habituel et le second a une valeur par
+                défaut qui est exactement celle que nous avons besoin de connaître. Il suffit ensuite de définir le
+                gestionnaire d&#8217;événement «réel», <tt class="docutils literal"><span
+                    class="pre">ccGest()</span></tt> pour atteindre le but que nous nous étions fixé.</p>
+              <p>Cette technique peut être étendue pour fournir autant d&#8217;arguments que souhaités à un gestionnaire
+                d&#8217;événements.</p>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  </div>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général">index</a>
+      </li>
+      <li class="right">
+        <a href="popdial.html" title="Fenêtres de dialogues">suivant</a> |
+      </li>
+      <li class="right">
+        <a href="ctrvar.html" title="Variables de contrôle: Les valeurs sous les widgets">précédent</a> |
+      </li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="footer">
+    &copy; Copyright 2013, Étienne FLORENT.
+    Créé avec <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+  </div>
+</body>
+
+<!-- Mirrored from tkinter.fdex.eu/doc/event.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:01:03 GMT -->
+
+</html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Mirrored from tkinter.fdex.eu/doc/scw.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:00:57 GMT -->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <title>Scale - Échelles &mdash; Tkinter pour ISN</title>
+
+  <link rel="stylesheet" href="../static/sphinxdoc.css" type="text/css" />
+  <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT: '../',
+      VERSION: '1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE: true
+    };
+  </script>
+  <script type="text/javascript" src="../static/jquery.js"></script>
+  <script type="text/javascript" src="../static/underscore.js"></script>
+  <script type="text/javascript" src="../static/doctools.js"></script>
+  <script type="text/javascript" src="../static/translations.js"></script>
+  <script type="text/javascript"
+    src="../../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="../static/my.js"></script>
+  <link rel="top" title="Tkinter pour ISN" href="../index-2.html" />
+  <link rel="next" title="Scrollbar - Barres de défilement" href="scrw.html" />
+  <link rel="prev" title="Radiobutton - Boutons radio" href="radbw.html" />
+</head>
+
+<body>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général" accesskey="I">index</a>
+      </li>
+      <li class="right">
+        <a href="scrw.html" title="Scrollbar - Barres de défilement" accesskey="N">suivant</a> |
+      </li>
+      <li class="right">
+        <a href="radbw.html" title="Radiobutton - Boutons radio" accesskey="P">précédent</a> |
+      </li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+      <h4>Sujet précédent</h4>
+      <p class="topless"><a href="radbw.html" title="Chapitre précédent"><tt class="docutils literal"><span
+              class="pre">Radiobutton</span></tt> - Boutons radio</a></p>
+      <h4>Sujet suivant</h4>
+      <p class="topless"><a href="scrw.html" title="Chapitre suivant"><tt class="docutils literal"><span
+              class="pre">Scrollbar</span></tt> - Barres de défilement</a></p>
+      
+    </div>
+  </div>
+
+  <div class="document">
+    <div class="documentwrapper">
+      <div class="bodywrapper">
+        <div class="body">
+
+          <div class="section" id="scale-echelles">
+            <span id="scale"></span>
+            <h1><tt class="docutils literal"><span class="pre">Scale</span></tt> - Échelles<a class="headerlink"
+                href="#scale-echelles" title="Lien permanent vers ce titre">¶</a></h1>
+            <p>La finalité du widget de type <tt class="docutils literal"><span class="pre">Scale</span></tt> - ou
+              intervalle de sélection - est de permettre à l&#8217;utilisateur de choisir un entier ou un flottant situé
+              à l&#8217;intérieur d&#8217;un intervalle précis. Voici deux widgets de ce type, l&#8217;un orienté
+              horizontalement et l&#8217;autre verticalement.</p>
+            <img alt="../images/scales.png" class="align-center" src="../images/scales.png" />
+            <p>Dans la figure:</p>
+            <ul>
+              <li>
+                <p class="first">le premier widget <tt class="docutils literal"><span class="pre">Scale</span></tt>
+                  possède le jeu d&#8217;options:</p>
+                <div class="highlight-python">
+                  <div class="highlight">
+                    <pre><span class="n">Scale</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s">&#39;horizontal&#39;</span><span class="p">,</span> <span class="n">from_</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+      <span class="n">resolution</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">tickinterval</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">350</span><span class="p">,</span>
+      <span class="n">label</span><span class="o">=</span><span class="s">&#39;Volume (db)&#39;</span><span class="p">)</span>
+</pre>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <p class="first">et le second:</p>
+                <div class="highlight-python">
+                  <div class="highlight">
+                    <pre><span class="n">Scale</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s">&#39;vertical&#39;</span><span class="p">,</span> <span class="n">from_</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">to</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+      <span class="n">resolution</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">tickinterval</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+      <span class="n">label</span><span class="o">=</span><span class="s">&#39;Puissance&#39;</span><span class="p">)</span>
+</pre>
+                  </div>
+                </div>
+              </li>
+            </ul>
+            <p>Chaque widget affiche un curseur que l&#8217;utilisateur peut déplacer pour modifier la valeur:</p>
+            <ul class="simple">
+              <li>Vous pouvez déplacer le curseur en utilisant le bouton gauche de la souris.</li>
+              <li>Si vous cliquez avec le bouton gauche dans la zone de glissement, le curseur est déplacé d&#8217;une
+                unité dans la direction du clic. En maintenant le bouton gauche enfoncé, après un délai, ce comportement
+                est répété automatiquement.</li>
+              <li>Si le widget <tt class="docutils literal"><span class="pre">Scale</span></tt> possède le focus, les
+                flèches du clavier peuvent être utilisées pour faire glisser le curseur.</li>
+            </ul>
+            <p>Pour créer un nouveau widget <tt class="docutils literal"><span class="pre">Scale</span></tt> comme
+              enfant d&#8217;une fenêtre ou d&#8217;un cadre nommé <tt class="docutils literal"><span
+                  class="pre">parent</span></tt>:</p>
+            <dl class="class">
+              <dt id="Scale">
+                <em class="property">class </em><tt class="descname">Scale</tt><big>(</big><em>parent</em>,
+                <em>option</em>, <em>...</em><big>)</big><a class="headerlink" href="#Scale"
+                  title="Lien permanent vers cette définition">¶</a>
+              </dt>
+              <dd>
+                <p>Le constructeur retourne le widget <tt class="docutils literal"><span class="pre">Scale</span></tt>
+                  créé. Ses options incluent:</p>
+                <table class="docutils field-list" frame="void" rules="none">
+                  <col class="field-name" />
+                  <col class="field-body" />
+                  <tbody valign="top">
+                    <tr class="field-odd field">
+                      <th class="field-name">Paramètres:</th>
+                      <td class="field-body">
+                        <ul class="first last simple">
+                          <li><strong>activebackground</strong> &#8211; La couleur du curseur lorsque la souris est
+                            au-dessus. Voir <a class="reference internal" href="sa.html#couleurs"><em>Les
+                                couleurs</em></a>.</li>
+                          <li><strong>bg</strong> &#8211; (ou <strong>background</strong>) La couleur d&#8217;arrière
+                            plan de la partie du widget qui est située en dehors de l&#8217;aire de glissement.</li>
+                          <li><strong>bd</strong> &#8211; (ou <strong>borderwidth</strong>) La largeur de la bordure 3d
+                            qui forme le contour de l&#8217;aire de glissement et du curseur. Sa valeur est 2 pixels par
+                            défaut. Pour des valeurs acceptables, voir <a class="reference internal"
+                              href="sa.html#dimensions"><em>Les dimensions</em></a>.</li>
+                          <li><strong>command</strong> &#8211; Une fonction qui sera appelée à chaque fois que le
+                            curseur sera déplacé. Cette fonction reçoit un argument qui est la nouvelle valeur
+                            sélectionnée dans l&#8217;intervalle. Si le curseur est déplacé rapidement, la fonction ne
+                            sera pas pour autant appelée pour toutes les positions possibles, mais elle le sera sans
+                            aucun doute lorsque le curseur sera positionné.</li>
+                          <li><strong>cursor</strong> &#8211; Le pointeur de souris utilisé lorsque la souris est
+                            au-dessus du widget. Voir <a class="reference internal" href="sa.html#pointeurs"><em>Le
+                                pointeur de la souris</em></a>.</li>
+                          <li><strong>digits</strong> &#8211; Contrôle le nombre de chiffres à utiliser lorsque la
+                            valeur sélectionnée est convertie en une chaîne de caractères, ce qui arrive si
+                            l&#8217;option <strong>variable</strong> décrite plus loin a reçu une variable de contrôle
+                            de classe <tt class="docutils literal"><span class="pre">StringVar</span></tt>. Voir <a
+                              class="reference internal" href="ctrvar.html#ctrlvariables"><em>Variables de contrôle: Les
+                                valeurs sous les widgets</em></a>.</li>
+                          <li><strong>font</strong> &#8211; La fonte de caractères utilisée pour l&#8217;étiquette et
+                            les graduations. Voir <a class="reference internal" href="sa.html#polices"><em>Les polices
+                                de caractères</em></a>.</li>
+                          <li><strong>fg</strong> &#8211; (ou <strong>foreground</strong>) La couleur du texte de
+                            l&#8217;étiquette et des graduations.</li>
+                          <li><strong>from_</strong> &#8211; Un flottant qui définie l&#8217;une des extrémités de
+                            l&#8217;intervalle de sélection. Pour un widget orienté verticalement, c&#8217;est celle qui
+                            apparaît tout en haut; pour un widget orienté horizontalement, c&#8217;est celle qui
+                            apparaît tout à gauche. Le caractère de soulignement (_) qui apparaît à la fin de cette
+                            option n&#8217;est pas une faute de frappe: le mot <em>from</em> est un mot clé de Python.
+                            Sa valeur par défaut est 0.0. Voir l&#8217;option <strong>to</strong> plus loin pour
+                            préciser l&#8217;autre extrémité de l&#8217;intervalle.</li>
+                          <li><strong>highlightbackground</strong> &#8211; La couleur de la ligne de mise en valeur du
+                            focus lorsque le widget ne l&#8217;a pas. Voir <a class="reference internal"
+                              href="focus.html#focus"><em>Focus: réception des saisies clavier</em></a>.</li>
+                          <li><strong>highlightcolor</strong> &#8211; La couleur de la ligne de mise en valeur du focus
+                            lorsque le widget l&#8217;obtient.</li>
+                          <li><strong>highlightthickness</strong> &#8211; L&#8217;épaisseur de la ligne de mise en
+                            valeur du focus. 1 par défaut. Utilisez <tt class="docutils literal"><span
+                                class="pre">highlightthickness=0</span></tt> pour supprimer la mise en valeur du focus.
+                          </li>
+                          <li><strong>label</strong> &#8211; Vous pouvez afficher une étiquette à l&#8217;intérieur de
+                            ce widget en réglant cette option avec le texte souhaité. L&#8217;étiquette apparaît dans le
+                            coin supérieur gauche si le widget est orienté horizontalement et dans le coin supérieur
+                            droit s&#8217;il est orienté verticalement. Il n&#8217;y a pas d&#8217;étiquette par défaut.
+                          </li>
+                          <li><strong>length</strong> &#8211; La longueur du widget dans la direction où celui-ci est
+                            orienté. La valeur par défaut est 100 pixels. Pour les valeurs permises, voir <a
+                              class="reference internal" href="sa.html#dimensions"><em>Les dimensions</em></a>.</li>
+                          <li><strong>orient</strong> &#8211; Utilisez <tt class="docutils literal"><span
+                                class="pre">'horizontal'</span></tt> pour l&#8217;orienter horizontalement ou <tt
+                              class="docutils literal"><span class="pre">'vertical'</span></tt> pour l&#8217;orienter
+                            verticalement. L&#8217;orientation par défaut est <tt class="docutils literal"><span
+                                class="pre">'vertical'</span></tt>.</li>
+                          <li><strong>relief</strong> &#8211; Avec la valeur par défaut <tt
+                              class="docutils literal"><span class="pre">'flat'</span></tt>, le widget n&#8217;a pas de
+                            bordure visible. Vous pouvez utiliser la valeur <tt class="docutils literal"><span
+                                class="pre">'solid'</span></tt> pour l&#8217;entourer d&#8217;un cadre noir, ou utiliser
+                            un des autres reliefs fournit pas Tkinter; voir <a class="reference internal"
+                              href="sa.html#reliefs"><em>Les styles de relief</em></a>.</li>
+                          <li><strong>repeatdelay</strong> &#8211; Cette option contrôle la durée (en millisecondes)
+                            pendant laquelle le bouton gauche de la souris doit être enfoncé (sur la zone de glissement)
+                            avant que le curseur ne soit déplacé de manière répétitive dans cette direction. La valeur
+                            par défaut est <tt class="docutils literal"><span class="pre">repeatdelay=300</span></tt>.
+                          </li>
+                          <li><strong>repeatinterval</strong> &#8211; Cette option sert à contrôler l&#8217;intervalle
+                            de temps entre deux répétitions du déplacement du curseur lorsque l&#8217;utilisateur clique
+                            en laissant le bouton enfoncé dans l&#8217;aire de glissement. Par exemple, <tt
+                              class="docutils literal"><span class="pre">repeatinterval=100</span></tt> signifie que le
+                            curseur se déplace toutes les 100 millisecondes (1 dixième de seconde).</li>
+                          <li><strong>resolution</strong> &#8211; Sert à modifier l&#8217;incrément (écart entre deux
+                            valeurs consécutives). Sa valeur par défaut est 1.0. Par exemple, si <tt
+                              class="docutils literal"><span class="pre">from_=-1.0</span></tt>, <tt
+                              class="docutils literal"><span class="pre">to=1.0</span></tt>, et si <tt
+                              class="docutils literal"><span class="pre">resolution=0.5</span></tt>, l&#8217;utilisateur
+                            pourra obtenir 5 valeurs: -1.0, -0.5, 0.0, +0.5, et +1.0. Utilisez une valeur négative, par
+                            exemple <tt class="docutils literal"><span class="pre">resolution=-1</span></tt> , pour
+                            empêcher l&#8217;arrondi automatique des valeurs.</li>
+                          <li><strong>showvalue</strong> &#8211; Par défaut, la valeur courante du curseur est affichée
+                            (au-dessus du curseur s&#8217;il est horizontal, à gauche s&#8217;il est vertical). Mettre
+                            cette option à 0 pour supprimer cet affichage.</li>
+                          <li><strong>sliderlength</strong> &#8211; Sert à modifier la longueur du curseur qui vaut 30
+                            pixels par défaut. Voir <a class="reference internal" href="sa.html#dimensions"><em>Les
+                                dimensions</em></a>.</li>
+                          <li><strong>sliderrelief</strong> &#8211; Sert à modifier le relief utilisé pour le curseur.
+                            Sa valeur par défaut est <tt class="docutils literal"><span
+                                class="pre">'raised'</span></tt>, Voir <a class="reference internal"
+                              href="sa.html#reliefs"><em>Les styles de relief</em></a>.</li>
+                          <li><strong>state</strong> &#8211; Sert à preciser l&#8217;état du widget: <tt
+                              class="docutils literal"><span class="pre">'normal'</span></tt>, <tt
+                              class="docutils literal"><span class="pre">'active'</span></tt> ou <tt
+                              class="docutils literal"><span class="pre">'disabled'</span></tt>. Pour empêcher
+                            l&#8217;utilisateur de modifier sa valeur, utilisez <tt class="docutils literal"><span
+                                class="pre">'disabled'</span></tt>.</li>
+                          <li><strong>takefocus</strong> &#8211; Normalement, ce widget obtient le focus. Mettre cette
+                            option à 0 pour désactiver ce comportement. Voir <a class="reference internal"
+                              href="focus.html#focus"><em>Focus: réception des saisies clavier</em></a>.</li>
+                          <li><strong>tickinterval</strong> &#8211; Par défaut, sa valeur est 0 ce qui a pour effet de
+                            ne pas afficher de graduation le long de l&#8217;intervalle. Pour afficher une telle
+                            graduation, réglez cette option avec un flottant qui correspond au pas de la graduation,
+                            c&#8217;est à dire à l&#8217;écart entre deux valeurs successives. Par exemple, si <tt
+                              class="docutils literal"><span class="pre">from_=0.0</span></tt>, <tt
+                              class="docutils literal"><span class="pre">to=1.0</span></tt>, et <tt
+                              class="docutils literal"><span class="pre">tickinterval=0.25</span></tt>, une graduation
+                            est affichée avec les valeurs 0.0, 0.25, 0.50, 0.75, et 1.00. Elles apparaissent en dessous
+                            de l&#8217;intervalle de sélection si l&#8217;orientation du widget est horizontale, à sa
+                            gauche si l&#8217;orientation est verticale.</li>
+                          <li><strong>to</strong> &#8211; Un flottant qui indique une extrémité de l&#8217;intervalle de
+                            sélection des valeurs. L&#8217;autre extrémité est définie en utilisant l&#8217;option
+                            <strong>from_</strong> présentée plus haut. Cette valeur peut être supérieure ou inférieure
+                            à celle de l&#8217;option <strong>from_</strong>. Dans tous les cas, elle correspond à
+                            l&#8217;extrémité droite du widget si il est orienté horizontalement; à son extrémité basse
+                            autrement. Sa valeur par défaut est 100.0.</li>
+                          <li><strong>troughcolor</strong> &#8211; La couleur de l&#8217;aire de glissement du curseur.
+                          </li>
+                          <li><strong>variable</strong> &#8211; Sert à préciser la variable de contrôle éventuellement
+                            associée à ce widget (Voir <a class="reference internal"
+                              href="ctrvar.html#ctrlvariables"><em>Variables de contrôle: Les valeurs sous les
+                                widgets</em></a>). Cette variable peut être de classe <tt class="docutils literal"><span
+                                class="pre">IntVar</span></tt>, <tt class="docutils literal"><span
+                                class="pre">DoubleVar</span></tt> (pour les flottants) ou <tt
+                              class="docutils literal"><span class="pre">StringVar</span></tt>. Dans le cas d&#8217;une
+                            <tt class="docutils literal"><span class="pre">StringVar</span></tt>, les valeurs numériques
+                            seront converties en chaînes de caractères; voir l&#8217;option <strong>digits</strong>
+                            ci-dessus pour plus d&#8217;information sur cette conversion.</li>
+                          <li><strong>width</strong> &#8211; Sert à préciser la largeur de l&#8217;aire de glissement du
+                            curseur. Si le widget est orienté horizontalement, il s&#8217;agit de la dimension en
+                            <em>y</em>; sinon de sa dimension en <em>x</em>. La valeur par défaut est 15 pixels.</li>
+                        </ul>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p>Les intervalles de sélection ou widget <tt class="docutils literal"><span
+                      class="pre">Scale</span></tt> disposent de ces méthodes:</p>
+                <dl class="method">
+                  <dt id="Scale.coords">
+                    <tt class="descname">coords</tt><big>(</big><em>valeur=None</em><big>)</big><a class="headerlink"
+                      href="#Scale.coords" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Retourne les coordonnées, sous la forme d&#8217;un 2-tuple <em>(x, y)</em>, qui correspondent à
+                      une certaine <em>valeur</em> de l&#8217;intervalle de sélection relativement au coin supérieur
+                      gauche du widget. Si l&#8217;argument est omis, on obtient les coordonnées du centre du curseur
+                      dans sa position actuelle.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Scale.get">
+                    <tt class="descname">get</tt><big>(</big><big>)</big><a class="headerlink" href="#Scale.get"
+                      title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Retourne la valeur courante du curseur.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Scale.identify">
+                    <tt class="descname">identify</tt><big>(</big><em>x</em>, <em>y</em><big>)</big><a
+                      class="headerlink" href="#Scale.identify" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Sert à identifier la partie du widget située à la position <em>(x, y)</em> relative à son coin
+                      supérieur gauche. Les valeurs de retour possibles sont:</p>
+                    <ul class="simple">
+                      <li><tt class="docutils literal"><span class="pre">'slider'</span></tt> : Le curseur.</li>
+                      <li><tt class="docutils literal"><span class="pre">'trough1'</span></tt> : l&#8217;aire de
+                        glissement à gauche ou au-dessus du curseur selon l&#8217;orientation de la barre.</li>
+                      <li><tt class="docutils literal"><span class="pre">'trough2'</span></tt> : l&#8217;aire de
+                        glissement à droite ou en dessous du curseur selon l&#8217;orientation de la barre.</li>
+                      <li><tt class="docutils literal"><span class="pre">''</span></tt> : Sur aucune des parties
+                        indiquées plus tôt.</li>
+                    </ul>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Scale.set">
+                    <tt class="descname">set</tt><big>(</big><em>valeur</em><big>)</big><a class="headerlink"
+                      href="#Scale.set" title="Lien permanent vers cette définition">¶</a>
+                  </dt>
+                  <dd>
+                    <p>Sert à positionner la <em>valeur</em> du widget.</p>
+                  </dd>
+                </dl>
+
+              </dd>
+            </dl>
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  </div>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général">index</a>
+      </li>
+      <li class="right">
+        <a href="scrw.html" title="Scrollbar - Barres de défilement">suivant</a> |
+      </li>
+      <li class="right">
+        <a href="radbw.html" title="Radiobutton - Boutons radio">précédent</a> |
+      </li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="footer">
+    &copy; Copyright 2013, Étienne FLORENT.
+    Créé avec <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+  </div>
+</body>
+
+<!-- Mirrored from tkinter.fdex.eu/doc/scw.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:00:58 GMT -->
+
+</html>

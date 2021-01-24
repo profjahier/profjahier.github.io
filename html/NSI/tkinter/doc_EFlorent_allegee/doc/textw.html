@@ -1,0 +1,1627 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Mirrored from tkinter.fdex.eu/doc/textw.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:00:59 GMT -->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <title>Text - Éditeurs de texte &mdash; Tkinter pour ISN</title>
+
+  <link rel="stylesheet" href="../static/sphinxdoc.css" type="text/css" />
+  <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT: '../',
+      VERSION: '1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE: true
+    };
+  </script>
+  <script type="text/javascript" src="../static/jquery.js"></script>
+  <script type="text/javascript" src="../static/underscore.js"></script>
+  <script type="text/javascript" src="../static/doctools.js"></script>
+  <script type="text/javascript" src="../static/translations.js"></script>
+  <script type="text/javascript"
+    src="../../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="../static/my.js"></script>
+  <link rel="top" title="Tkinter pour ISN" href="../index-2.html" />
+  <link rel="next" title="Toplevel - Fenêtres primaires" href="toplww.html" />
+  <link rel="prev" title="Spinbox - Saisies/sélections rotatives" href="spbw.html" />
+</head>
+
+<body>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général" accesskey="I">index</a>
+      </li>
+      <li class="right">
+        <a href="toplww.html" title="Toplevel - Fenêtres primaires" accesskey="N">suivant</a> |
+      </li>
+      <li class="right">
+        <a href="spbw.html" title="Spinbox - Saisies/sélections rotatives" accesskey="P">précédent</a> |
+      </li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+      <h3><a href="../index-2.html">Table des matières</a></h3>
+      <ul>
+        <li><a class="reference internal" href="#"><tt class="docutils literal"><span class="pre">Text</span></tt> -
+            Éditeurs de texte</a>
+          <ul>
+            <li><a class="reference internal" href="#les-index">Les index</a></li>
+            <li><a class="reference internal" href="#les-marques">Les marques</a></li>
+            <li><a class="reference internal" href="#les-images">Les images</a></li>
+            <li><a class="reference internal" href="#les-fenetres">Les fenêtres</a></li>
+            <li><a class="reference internal" href="#les-tags">Les tags</a></li>
+            <li><a class="reference internal" href="#regler-les-tabulations">Régler les tabulations</a></li>
+            <li><a class="reference internal" href="#gestion-de-l-historique">Gestion de l&#8217;historique</a></li>
+            <li><a class="reference internal" href="#methodes-du-widget-text">Méthodes du widget <tt
+                  class="docutils literal"><span class="pre">Text</span></tt></a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <h4>Sujet précédent</h4>
+      <p class="topless"><a href="spbw.html" title="Chapitre précédent"><tt
+            class="docutils literal docutils literal docutils literal"><span class="pre">Spinbox</span></tt> -
+          Saisies/sélections rotatives</a></p>
+      <h4>Sujet suivant</h4>
+      <p class="topless"><a href="toplww.html" title="Chapitre suivant"><tt class="docutils literal"><span
+              class="pre">Toplevel</span></tt> - Fenêtres primaires</a></p>
+      
+    </div>
+  </div>
+
+  <div class="document">
+    <div class="documentwrapper">
+      <div class="bodywrapper">
+        <div class="body">
+
+          <div class="section" id="text-editeurs-de-texte">
+            <span id="text"></span>
+            <h1><tt class="docutils literal"><span class="pre">Text</span></tt> - Éditeurs de texte<a class="headerlink"
+                href="#text-editeurs-de-texte" title="Lien permanent vers ce titre">¶</a></h1>
+            <p>Un widget de type <tt class="docutils literal"><span class="pre">Text</span></tt> est une manière bien
+              plus générale de traiter un texte multiligne que celle qu&#8217;offre un widget étiquette (<tt
+                class="docutils literal"><span class="pre">Label</span></tt>). Ce widget ressemble plus à un éditeur de
+              texte complet dans une fenêtre.</p>
+            <ul class="simple">
+              <li>Vous pouvez mélanger différentes fontes, couleurs de texte et couleurs d&#8217;arrière plan.</li>
+              <li>Vous pouvez intercaler des images dans le texte. Une image est traitée comme un caractère unique. Voir
+                <a class="reference internal" href="#textimages"><em>Les images</em></a>.</li>
+              <li>Un index est un entier qui sert à préciser une position entre deux caractères. Voir <a
+                  class="reference internal" href="#textindex"><em>Les index</em></a>.</li>
+              <li>Un widget <tt class="docutils literal"><span class="pre">Text</span></tt> peut contenir des marqueurs
+                invisibles situés entre deux caractères. Voir <a class="reference internal" href="#textmarques"><em>Les
+                    marques</em></a>.</li>
+              <li>Un widget <tt class="docutils literal"><span class="pre">Text</span></tt> vous permet de définir des
+                noms pour des portions de textes appelés <em>tags</em>. Vous pouvez modifier l&#8217;apparence de telles
+                portions de textes en utilisant ces <em>tags</em>, en modifiant sa fonte, sa couleur d&#8217;avant plan
+                ou d&#8217;arrière plan et d&#8217;autres options de présentation. Voir <a class="reference internal"
+                  href="#texttags"><em>Les tags</em></a>.</li>
+              <li>Vous pouvez aussi lier des gestionnaire d&#8217;événement sur des portions de textes marqués (à
+                l&#8217;aide d&#8217;un <em>tag</em>). Voir <a class="reference internal"
+                  href="event.html#events"><em>Les événements: répondre aux actions de l&#8217;utilisateur.</em></a>.
+              </li>
+              <li>Vous pouvez même insérer une «fenêtre» dans le contenu qui peut contenir n&#8217;importe quel widget
+                de Tkinter - même un cadre qui en englobent plusieurs. Une fenêtre est aussi traitée comme un simple
+                caractère. Voir <a class="reference internal" href="#textfen"><em>Les fenêtres</em></a>.</li>
+            </ul>
+            <p>Pour créer un widget <tt class="docutils literal"><span class="pre">Text</span></tt> comme enfant
+              d&#8217;une fenêtre ou d&#8217;un cadre <tt class="docutils literal"><span class="pre">parent</span></tt>:
+            </p>
+            <dl class="class">
+              <dt id="Text">
+                <em class="property">class </em><tt class="descname">Text</tt><big>(</big><em>parent</em>,
+                <em>option</em>, <em>...</em><big>)</big><a class="headerlink" href="#Text"
+                  title="Lien permanent vers cette définition">¶</a>
+              </dt>
+              <dd>
+                <p>Ce constructeur retourne le nouveau widget <tt class="docutils literal"><span
+                      class="pre">Text</span></tt> créé. Ses options incluent:</p>
+                <table class="docutils field-list" frame="void" rules="none">
+                  <col class="field-name" />
+                  <col class="field-body" />
+                  <tbody valign="top">
+                    <tr class="field-odd field">
+                      <th class="field-name">Paramètres:</th>
+                      <td class="field-body">
+                        <ul class="first last simple">
+                          <li><strong>autoseparators</strong> &#8211; Si l&#8217;option <strong>undo</strong> est
+                            positionné, l&#8217;option <strong>autoseparators</strong> contrôle si des séparateurs sont
+                            automatiquement ajoutés à la pile de l&#8217;historique de retour (<em>undo</em>) après
+                            chaque insertion ou suppression (si <tt class="docutils literal"><span
+                                class="pre">autoseparators=True</span></tt>) ou non (si <tt
+                              class="docutils literal"><span class="pre">autoseparator=False</span></tt>). Pour une vue
+                            d&#8217;ensemble du mécanisme d&#8217;historique, voir <a class="reference internal"
+                              href="#texthisto"><em>Gestion de l&#8217;historique</em></a>.</li>
+                          <li><strong>bg</strong> &#8211; (ou <strong>background</strong>) La couleur d&#8217;arrière
+                            plan du widget. Voir <a class="reference internal" href="sa.html#couleurs"><em>Les
+                                couleurs</em></a>.</li>
+                          <li><strong>bd</strong> &#8211; (ou <strong>borderwidth</strong>) L&#8217;épaisseur de la
+                            bordure du widget. 2 pixels par défaut. Voir <a class="reference internal"
+                              href="sa.html#dimensions"><em>Les dimensions</em></a>.</li>
+                          <li><strong>cursor</strong> &#8211; Le pointeur de souris utilisée lorsque celle-ci est au
+                            dessus du widget. Voir <a class="reference internal" href="sa.html#pointeurs"><em>Le
+                                pointeur de la souris</em></a>.</li>
+                          <li><strong>exportselection</strong> &#8211; Par défaut, le texte sélectionné à
+                            l&#8217;intérieur du widget est exporté vers le presse-papier du sytème. Utilisez <tt
+                              class="docutils literal"><span class="pre">exportselection=0</span></tt> pour supprimer ce
+                            comportement.</li>
+                          <li><strong>font</strong> &#8211; La fonte de caractères par défaut utilisées pour le texte
+                            saisi dans le widget. Notez que vous pouvez utiliser plusieurs polices de caractères dans ce
+                            widget en utilisant les <em>tags</em> pour modifier les propriétés de portions de texte.
+                            Voir <a class="reference internal" href="sa.html#polices"><em>Les polices de
+                                caractères</em></a>.</li>
+                          <li><strong>fg</strong> &#8211; (ou <strong>foreground</strong>) La couleur utilisée pour le
+                            texte (et les bitmaps) dans le widget. Vous pouvez modifier la couleur pour des portions de
+                            textes tagués; cette option fournie juste une couleur par défaut.</li>
+                          <li><strong>height</strong> &#8211; La hauteur du widget en nombre de lignes (non en pixels!).
+                            La mesure dépend de la fonte de caractère courante.</li>
+                          <li><strong>highlightbackground</strong> &#8211; La couleur de la ligne de mise en valeur du
+                            focus lorsque le widget ne l&#8217;a pas. Voir <a class="reference internal"
+                              href="focus.html#focus"><em>Le focus: réception des saisies clavier</em></a>.</li>
+                          <li><strong>highlightcolor</strong> &#8211; La couleur de la ligne de mise en valeur du focus
+                            lorsque le widget l&#8217;obtient.</li>
+                          <li><strong>highlightthickness</strong> &#8211; L&#8217;épaisseur de la ligne de mise en
+                            valeur du focus. 1 pixel pas défaut. Utilisez <tt class="docutils literal"><span
+                                class="pre">highlightthickness=0</span></tt> pour supprimer la mise en valeur du focus.
+                          </li>
+                          <li><strong>insertbackground</strong> &#8211; La couleur du curseur d&#8217;insertion. <tt
+                              class="docutils literal"><span class="pre">'black'</span></tt> par défaut.</li>
+                          <li><strong>insertborderwidth</strong> &#8211; L&#8217;épaisseur de la bordure 3d autour du
+                            curseur d&#8217;insertion. 0 par défaut.</li>
+                          <li><strong>insertofftime</strong> &#8211; Cette option et la suivante contrôle le
+                            clignotement du curseur d&#8217;insertion. la première est la durée en millisecondes de
+                            disparition et la seconde sa durée d&#8217;apparition dans le clignotement. Les valeurs par
+                            défaut sont respectivement 300 et 600.</li>
+                          <li><strong>insertontime</strong> &#8211; </li>
+                          <li><strong>insertwidth</strong> &#8211; La largeur du curseur d&#8217;insertion (sa hauteur
+                            est déterminée par le plus haut élément de la ligne courante). 2 pixels par défaut.</li>
+                          <li><strong>maxundo</strong> &#8211; Cette option sert à régler le nombre maximum
+                            d&#8217;opérations mémorisées dans l&#8217;historique. Pour une vue d&#8217;ensemble du
+                            mécanisme de gestion de l&#8217;historique, voir <a class="reference internal"
+                              href="#texthisto"><em>Gestion de l&#8217;historique</em></a>. Utilisez la valeur -1 pour
+                            préciser un nombre illimité d&#8217;opérations mémorisées.</li>
+                          <li><strong>padx</strong> &#8211; La taille des marges internes gauche et droite de la zone de
+                            texte. 1 pixels par défaut. Voir <a class="reference internal"
+                              href="sa.html#dimensions"><em>Les dimensions</em></a>.</li>
+                          <li><strong>pady</strong> &#8211; La taille des marges internes haute et basse de la zone de
+                            texte. 1 pixels par défaut.</li>
+                          <li><strong>relief</strong> &#8211; Le style de la bordure 3d du widget. <tt
+                              class="docutils literal"><span class="pre">'sunken'</span></tt> par défaut. Pour
+                            d&#8217;autre valeurs, voir <a class="reference internal" href="sa.html#reliefs"><em>Les
+                                styles de relief</em></a>.</li>
+                          <li><strong>selectbackground</strong> &#8211; La couleur d&#8217;arrière plan utilisée pour le
+                            texte sélectionné.</li>
+                          <li><strong>selectborderwidth</strong> &#8211; L&#8217;épaisseur de la bordure qui entoure le
+                            texte sélectionné.</li>
+                          <li><strong>selectforeground</strong> &#8211; La couleur du texte sélectionné.</li>
+                          <li><strong>spacing1</strong> &#8211; Cette option précise la quantité d&#8217;espace vertical
+                            supplémentaire à mettre au dessus de chaque ligne de texte. Si la ligne est enveloppée
+                            (<em>wrap</em>) c&#8217;est à dire qu&#8217;un ou des retours de ligne sont automatiquement
+                            insérés pour que la ligne n&#8217;excède pas la largeur de la fenêtre, cet espace est ajouté
+                            avant la première ligne seulement. Sa valeur par défaut est 0.</li>
+                          <li><strong>spacing2</strong> &#8211; Cette option précise la quantité d&#8217;espace vertical
+                            a ajouter entre deux lignes «logique» lorsque la ligne «physique» dont elles font partie a
+                            été enveloppée (<em>wrap</em> - voir l&#8217;option précédente pour les détails). Sa valeur
+                            par défaut est 0.</li>
+                          <li><strong>spacing3</strong> &#8211; Cette option précise la quantité d&#8217;espace vertical
+                            supplémentaire à mettre en dessous de chaque «vrai» ligne de texte. Sa valeur par défaut est
+                            0.</li>
+                          <li><strong>state</strong> &#8211; Par défaut, un widget <tt class="docutils literal"><span
+                                class="pre">Text</span></tt> réagit aux saisies clavier ainsi qu&#8217;à la souris,
+                            c&#8217;est l&#8217;état <tt class="docutils literal"><span
+                                class="pre">'normal'</span></tt>. Si vous utilisez <tt class="docutils literal"><span
+                                class="pre">state='disabled'</span></tt>, le widget ne réagira plus et
+                            l&#8217;utilisateur ne pourra plus ajouter de contenu (ni vous par programmation).</li>
+                          <li><strong>tabs</strong> &#8211; Cette option contrôle la façon dont le caractère Tab
+                            positionne le texte. Voir <a class="reference internal" href="#texttabuls"><em>Régler les
+                                tabulations</em></a>.</li>
+                          <li><strong>takefocus</strong> &#8211; Par défaut, ce widget obtient le focus normalement
+                            (voir <a class="reference internal" href="focus.html#focus"><em>Le focus: réception des
+                                saisies clavier</em></a>). Utilisez <tt class="docutils literal"><span
+                                class="pre">takefocus=0</span></tt> si vous souhaitez désactiver ce comportement.</li>
+                          <li><strong>undo</strong> &#8211; Mettre cette option à <tt class="docutils literal"><span
+                                class="pre">True</span></tt> pour activer le mécanisme d&#8217;historique, ou à <tt
+                              class="docutils literal"><span class="pre">False</span></tt> pour le désactiver. Voir <a
+                              class="reference internal" href="#texthisto"><em>Gestion de l&#8217;historique</em></a>.
+                          </li>
+                          <li><strong>width</strong> &#8211; La largeur du widget exprimée en nombre de caractères (non
+                            en pixels!), conformément à la police de caractères courante.</li>
+                          <li><strong>wrap</strong> &#8211; Cette option contrôle l&#8217;affichage des lignes trop
+                            longues. Le comportement par défaut, <tt class="docutils literal"><span
+                                class="pre">wrap='char'</span></tt>, est d&#8217;insérer des sauts de ligne «logique» au
+                            niveau d&#8217;un caractère arbitraire. Utilisez <tt class="docutils literal"><span
+                                class="pre">wrap='word'</span></tt> et les sauts de lignes seront insérés après le
+                            dernier mot qui tient dans la ligne. Enfin, utilisez <tt class="docutils literal"><span
+                                class="pre">wrap='none'</span></tt> si vous ne souhaitez pas que des sauts de ligne soit
+                            insérés, équipez alors le widget d&#8217;une barre de défilement horizontale.</li>
+                          <li><strong>xscrollcommand</strong> &#8211; Pour associer à ce widget une barre de défilement
+                            horizontale, configurez cette option avec la méthode <tt class="docutils literal"><span
+                                class="pre">set()</span></tt> de la barre de défilement.</li>
+                          <li><strong>yscrollcommand</strong> &#8211; Similaire à l&#8217;option précédente mais pour un
+                            défilement vertical.</li>
+                        </ul>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </dd>
+            </dl>
+
+            <div class="section" id="les-index">
+              <span id="textindex"></span>
+              <h2>Les index<a class="headerlink" href="#les-index" title="Lien permanent vers ce titre">¶</a></h2>
+              <p>Un <strong>index</strong> est une chaîne de caractère qui sert à préciser une position dans le contenu
+                d&#8217;un widget <tt class="docutils literal"><span class="pre">Text</span></tt>. Cette chaîne de
+                caractères est de la forme:</p>
+              <dl class="docutils">
+                <dt><tt class="docutils literal"><span class="pre">'ligne.colonne'</span></tt></dt>
+                <dd>La position située juste avant la <em>colonne</em> indiquée (en comptant à partir de 0) sur la
+                  <em>ligne</em> donnée (en comptant à partir de 1). Par exemples: <tt class="docutils literal"><span
+                      class="pre">'1.0'</span></tt> est la position de démarrage du texte; <tt
+                    class="docutils literal"><span class="pre">'2.3'</span></tt> est la position située juste avant le
+                  quatrième caractère de la deuxième ligne.</dd>
+                <dt><tt class="docutils literal"><span class="pre">'ligne.end'</span></tt></dt>
+                <dd>La position située juste avant le caractère de saut de ligne de la <em>ligne</em> indiquée (en
+                  comptant à partir de 1). Ainsi, par exemple, l&#8217;index <tt class="docutils literal"><span
+                      class="pre">'10.end'</span></tt> est la position situé à la fin de la dixième ligne de texte.</dd>
+                <dt><tt class="docutils literal"><span class="pre">'insert'</span></tt></dt>
+                <dd>La position du curseur d&#8217;insertion.</dd>
+                <dt><tt class="docutils literal"><span class="pre">'current'</span></tt></dt>
+                <dd>La position du caractère qui est le plus proche de la position du pointeur de la souris.</dd>
+                <dt><tt class="docutils literal"><span class="pre">'end'</span></tt></dt>
+                <dd>La position située juste après le dernier caractère du texte.</dd>
+                <dt><tt class="docutils literal"><span class="pre">'sel.first'</span></tt></dt>
+                <dd>Si une portion de texte est actuellement sélectionnée (comme en cliquant-glissant la souris sur
+                  celui-ci), il s&#8217;agit de la position située juste avant le début de la sélection. Si vous essayez
+                  d&#8217;utiliser cet index et que rien n&#8217;est sélectionné, une exception de type <tt
+                    class="docutils literal"><span class="pre">TclError</span></tt> est levée.</dd>
+                <dt><tt class="docutils literal"><span class="pre">'sel.last'</span></tt></dt>
+                <dd>La position située juste après la fin de la sélection s&#8217;il y en a une. Une exception du même
+                  type que pour <tt class="docutils literal"><span class="pre">'sel.first'</span></tt> est levée
+                  s&#8217;il n&#8217;y en a pas.</dd>
+                <dt><tt class="docutils literal"><span class="pre">'nom_marque'</span></tt></dt>
+                <dd>Vous pouvez utiliser une marque comme index; utilisez simplement son nom là où un index est attendu.
+                  Voir <a class="reference internal" href="#textmarques"><em>Les marques</em></a>.</dd>
+                <dt><tt class="docutils literal"><span class="pre">'tag.first'</span></tt></dt>
+                <dd>La position avant le premier caractère de la région de texte taguée avec <em>tag</em>. Voir <a
+                    class="reference internal" href="#texttags"><em>Les tags</em></a>.</dd>
+                <dt><tt class="docutils literal"><span class="pre">'tag.last'</span></tt></dt>
+                <dd>La position après le dernier caractère de la région de texte taguée avec <em>tag</em>.</dd>
+                <dt><tt class="docutils literal"><span class="pre">'&#64;x,y'</span></tt></dt>
+                <dd>La position située juste avant le caractère le plus proche de la position (<em>x</em>, <em>y</em>).
+                </dd>
+                <dt><tt class="docutils literal"><span class="pre">objet-embarque</span></tt></dt>
+                <dd>Si vous avez embarqué une image ou une fenêtre dans le widget <tt class="docutils literal"><span
+                      class="pre">Text</span></tt>, vous pouvez utilisez son nom comme un index. Voir <a
+                    class="reference internal" href="#textimages"><em>Les images</em></a> et <a
+                    class="reference internal" href="#textfen"><em>Les fenêtres</em></a>.</dd>
+              </dl>
+              <p>En supplément de ces différents moyens de base pour préciser un <strong>index</strong>, vous pouvez
+                construire des expressions arbitrairement complexes en ajoutant l&#8217;un de ces suffixes à un index
+                basique ou à une «expression d&#8217;index»:</p>
+              <dl class="docutils">
+                <dt><tt class="docutils literal"><span class="pre">+</span> <span class="pre">n</span> <span
+                      class="pre">chars</span></tt></dt>
+                <dd>Pour l&#8217;index donné, se déplacer vers l&#8217;avant de <em>n</em> caractères. Cette opération
+                  peut faire changer de ligne. Par exemple, supposez que la première ligne soit «abcdef»,
+                  l&#8217;expression d&#8217;index <tt class="docutils literal"><span class="pre">'1.0</span> <span
+                      class="pre">+</span> <span class="pre">5</span> <span class="pre">chars'</span></tt> désigne la
+                  position située entre le «e» et le «f». Vous pouvez abbréger les mots clés et omettre les blancs dans
+                  de telles expressions tant que le résultat n&#8217;est pas ambigu. Cette expression d&#8217;index
+                  pourrait s&#8217;abbréger <tt class="docutils literal"><span class="pre">'1.0+5c'</span></tt>.</dd>
+                <dt><tt class="docutils literal"><span class="pre">-</span> <span class="pre">n</span> <span
+                      class="pre">chars</span></tt></dt>
+                <dd>Similaire à la forme précédente mais le mouvement se fait vers l&#8217;arrière.</dd>
+                <dt><tt class="docutils literal"><span class="pre">+</span> <span class="pre">n</span> <span
+                      class="pre">lines</span></tt></dt>
+                <dd>Déplacement de <em>n</em> lignes vers le bas par rapport à l&#8217;index donné. Tkinter essais de
+                  laisser la nouvelle position dans la même colonne que celle qu&#8217;elle avait dans la ligne de
+                  départ, mais si la ligne de la nouvelle position est trop courte, la nouvelle position sera en fin de
+                  ligne.</dd>
+                <dt><tt class="docutils literal"><span class="pre">-</span> <span class="pre">n</span> <span
+                      class="pre">lines</span></tt></dt>
+                <dd>Similaire à la précédente, mais le déplacement se fait vers le haut.</dd>
+                <dt><tt class="docutils literal"><span class="pre">linestart</span></tt></dt>
+                <dd>Déplacement à la position située avant le premier caractère de la ligne d&#8217;index donné. Par
+                  exemple, la position <tt class="docutils literal"><span class="pre">'current</span> <span
+                      class="pre">linestart'</span></tt> se rapporte au début de la ligne qui est la plus proche de la
+                  position actuelle de la souris.</dd>
+                <dt><tt class="docutils literal"><span class="pre">lineend</span></tt></dt>
+                <dd>Déplacement à la position situé après le dernier caractère (qui n&#8217;est pas un saut de ligne) de
+                  la ligne d&#8217;index donné. Par exemple, <tt class="docutils literal"><span
+                      class="pre">'sel.last</span> <span class="pre">lineend'</span></tt> se rapporte à la fin de la
+                  ligne qui possède le caractère de fin de la sélection courante.</dd>
+                <dt><tt class="docutils literal"><span class="pre">wordstart</span></tt></dt>
+                <dd>La position située avant le début du mot qui contient la position d&#8217;index donné. Par exemple,
+                  <tt class="docutils literal"><span class="pre">'11.44</span> <span class="pre">wordstart'</span></tt>
+                  se rapporte à la position située juste avant le premier caractère du mot qui contient le 45ème
+                  caractères de la ligne 11. Dans ce contexte, un mot est soit une chaîne composée de lettres, de
+                  chiffres ou du caractère (_) ou un seule caractère qui n&#8217;est d&#8217;aucun de ces types.</dd>
+              </dl>
+            </div>
+            <div class="section" id="les-marques">
+              <span id="textmarques"></span>
+              <h2>Les marques<a class="headerlink" href="#les-marques" title="Lien permanent vers ce titre">¶</a></h2>
+              <p>Une marque représente une position flottante (ou glissante) quelquepart dans le contenu d&#8217;un
+                widget <tt class="docutils literal"><span class="pre">Text</span></tt>.</p>
+              <ul class="simple">
+                <li>Pour gérer chaque marque, vous lui donnez un nom. Ce nom peut être n&#8217;importe quelle chaîne de
+                  caractères qui ne contient ni espace, ni point.</li>
+                <li>Il y a deux marques spéciales. <tt class="docutils literal"><span class="pre">'insert'</span></tt>
+                  qui est la position courante du curseur et <tt class="docutils literal"><span
+                      class="pre">'current'</span></tt> qui est la position la plus proche du pointeur de la souris.
+                </li>
+                <li>Les marques glissent en même temps que le contenu adjacent: Si vous ajoutez du texte en amont
+                  d&#8217;une marque, la marque conserve la même position relativement aux contenus immédiatement
+                  voisins.</li>
+                <li>Les marques possèdent une propriété appelée «<strong>gravité</strong>» qui contrôle ce qui arrive
+                  lorsque vous insérez du texte à la position marquée. La gravité par défaut est <tt
+                    class="docutils literal"><span class="pre">'right'</span></tt>, ce qui signifie que lorsque vous
+                  insérez du texte sur la marque, celle-ci reste à la fin du texte inséré. Si vous réglez la gravité à
+                  <tt class="docutils literal"><span class="pre">'left'</span></tt> (en utilisant la méthode <a
+                    class="reference internal" href="#Text.mark_gravity" title="Text.mark_gravity"><tt
+                      class="xref py py-meth docutils literal"><span class="pre">Text.mark_gravity()</span></tt></a> du
+                  widget de texte), la marque restera à la position située juste avant le texte inséré sur celle-ci.
+                </li>
+                <li>Supprimer du texte autour d&#8217;une marque ne supprime pas la marque. Pour supprimer une marque,
+                  utilisez la méthode <a class="reference internal" href="#Text.mark_unset" title="Text.mark_unset"><tt
+                      class="xref py py-meth docutils literal"><span class="pre">Text.mark_unset()</span></tt></a> du
+                  widget texte.</li>
+              </ul>
+              <p>Reportez-vous à <a class="reference internal" href="#textmeths"><em>Méthodes du widget Text</em></a>,
+                ci-desssous, pour comprendre comment manipuler les marques.</p>
+            </div>
+            <div class="section" id="les-images">
+              <span id="textimages"></span>
+              <h2>Les images<a class="headerlink" href="#les-images" title="Lien permanent vers ce titre">¶</a></h2>
+              <p>Vous pouvez mettre une image ou un bitmap à l&#8217;intérieur du widget <tt
+                  class="docutils literal"><span class="pre">Text</span></tt>. Elle sera traitée comme un caractère
+                unique dont la taille est celle de l&#8217;objet. Voir <a class="reference internal"
+                  href="sa.html#images"><em>Les images</em></a> et <a class="reference internal"
+                  href="sa.html#bitmaps"><em>Les bitmaps</em></a>.</p>
+              <p>Les images sont placées dans le texte en appelant la méthode <a class="reference internal"
+                  href="#Text.image_create" title="Text.image_create"><tt class="xref py py-meth docutils literal"><span
+                      class="pre">image_create()</span></tt></a> du widget <tt class="docutils literal"><span
+                    class="pre">Text</span></tt>. Voir plus loin pour la séquence d&#8217;appel et d&#8217;autres
+                méthodes pour manipuler les images.</p>
+              <p>On manipule les images en fournissant leur nom à des méthodes du widget <tt
+                  class="docutils literal"><span class="pre">Text</span></tt>. Vous pouvez préciser à Tkinter le nom
+                d&#8217;une image ou le laisser en produire un par défaut.</p>
+              <p>Une image peut apparaître un nombre arbitraire de fois dans le même widget de texte. Chaque instance de
+                l&#8217;image aura un nom unique. Ces nom peuvent être utilisés comme index.</p>
+            </div>
+            <div class="section" id="les-fenetres">
+              <span id="textfen"></span>
+              <h2>Les fenêtres<a class="headerlink" href="#les-fenetres" title="Lien permanent vers ce titre">¶</a></h2>
+              <p>Vous pouvez mettre (ou embarquer) n&#8217;importe quel widget de Tkinter - même un cadre qui contient
+                d&#8217;autres widgets - à l&#8217;intérieur du widget <tt class="docutils literal"><span
+                    class="pre">Text</span></tt>. Par exemple, vous pouvez y mettre un bouton parfaitement opérationnel
+                ou un ensemble de boutons radios.</p>
+              <p>Pour cela, utilisez la méthode <a class="reference internal" href="#Text.window_create"
+                  title="Text.window_create"><tt class="xref py py-meth docutils literal"><span
+                      class="pre">window_create()</span></tt></a> du widget texte. Pour la séquence d&#8217;appel et
+                d&#8217;autres méthodes utiles dans ce contexte, voir <a class="reference internal"
+                  href="#textmeths"><em>Méthodes du widget Text</em></a>.</p>
+            </div>
+            <div class="section" id="les-tags">
+              <span id="texttags"></span>
+              <h2>Les tags<a class="headerlink" href="#les-tags" title="Lien permanent vers ce titre">¶</a></h2>
+              <p>Il y a un grand nombre de moyens pour changer à la fois l&#8217;apparence et les fonctionnalités des
+                éléments qui se trouvent dans un widget <tt class="docutils literal"><span class="pre">Text</span></tt>.
+                Pour le texte, vous pouvez modifier sa fonte, sa taille et sa couleur. De plus, vous pouvez rendre des
+                portions de texte, les widgets ou les images embarquées réactives au clavier ou aux actions de la
+                souris.</p>
+              <p>Afin de contrôler ces caractéristiques relatives à l&#8217;apparence ou aux fonctionnalités, vous
+                associez à chaque caractéristique un <strong>tag</strong>. Vous pouvez associer un même
+                <strong>tag</strong> avec autant de portions de texte que souhaitées.</p>
+              <ul class="simple">
+                <li>Le nom d&#8217;un tag peut être n&#8217;importe quelle chaîne de caractères pourvu qu&#8217;elle ne
+                  contienne ni espace, ni point.</li>
+                <li>Il y a un tag prédéfini nommé <tt class="docutils literal"><span class="pre">'sel'</span></tt>. Il
+                  se rapporte à la région définie par la sélection courante s&#8217;il y en a une.</li>
+                <li>Puisque chaque caractère peut faire partie d&#8217;une ou plusieurs régions de texte taguées, ces
+                  tags sont ordonnés dans une liste. Chaque nouveau tag est ajouté à la fin de cette liste de sorte que
+                  les derniers entrés ont la priorité sur ceux qui ont été insérés plus tôt.</li>
+                <li>Ainsi, par exemple, si un caractère <tt class="docutils literal"><span class="pre">c</span></tt>
+                  fait partie de deux régions taguées <tt class="docutils literal"><span class="pre">t1</span></tt> et
+                  <tt class="docutils literal"><span class="pre">t2</span></tt>, que <tt class="docutils literal"><span
+                      class="pre">t1</span></tt> est situé avant <tt class="docutils literal"><span
+                      class="pre">t2</span></tt> dans la liste ordonnée des tags, et que <tt
+                    class="docutils literal"><span class="pre">t1</span></tt> défini une couleur de texte verte tandis
+                  que <tt class="docutils literal"><span class="pre">t2</span></tt> défini une couleur bleue, alors <tt
+                    class="docutils literal"><span class="pre">c</span></tt> sera affiché en bleu car <tt
+                    class="docutils literal"><span class="pre">t2</span></tt> a la priorité sur <tt
+                    class="docutils literal"><span class="pre">t1</span></tt>.</li>
+                <li>Vous pouvez modifier à tout moment l&#8217;ordre des tags dans la liste des tags.</li>
+              </ul>
+              <p>Les tags sont créés en utilisant la méthode <a class="reference internal" href="#Text.tag_add"
+                  title="Text.tag_add"><tt class="xref py py-meth docutils literal"><span
+                      class="pre">tag_add()</span></tt></a> du widget texte. Reportez-vous à <a
+                  class="reference internal" href="#textmeths"><em>Méthodes du widget Text</em></a>, ci-dessous, pour
+                des informations sur cela et d&#8217;autres méthodes utiles dans ce contexte.</p>
+            </div>
+            <div class="section" id="regler-les-tabulations">
+              <span id="texttabuls"></span>
+              <h2>Régler les tabulations<a class="headerlink" href="#regler-les-tabulations"
+                  title="Lien permanent vers ce titre">¶</a></h2>
+              <p>L&#8217;utilisation de la touche tabulation permet de faire avancer le curseur jusqu&#8217;à une
+                position déterminée par un taquet de tabulation ou, à défaut, de créer une certaine quantité
+                d&#8217;espaces blanches.</p>
+              <p>L&#8217;option <strong>tabs</strong> du widget <tt class="docutils literal"><span
+                    class="pre">Text</span></tt> vous donne plusieurs possibilités pour déterminer l&#8217;emplacement
+                des taquets de tabulation à l&#8217;intérieur du widget texte.</p>
+              <ul class="simple">
+                <li>Le comportement par défaut est de placer un taquet de tabulation tous les 8 caractères.</li>
+                <li>Pour préciser un jeu de taquets de tabulation, réglez cette option avec un tuple contenant une ou
+                  plusieurs mesures. Par exemple, le réglage <tt class="docutils literal"><span
+                      class="pre">tabs=('3c',</span> <span class="pre">'5c',</span> <span class="pre">'12c')</span></tt>
+                  place des taquets de tabulations à 3, 5 et 12 cm du bord gauche de la page. Après le dernier taquet de
+                  tabulation que vous avez explicitement positionné, l&#8217;espace entre deux taquets de tabulation
+                  sera le même que celui qui sépare les deux derniers taquets du réglage. Ainsi, pour continuer notre
+                  exemple, et parcque 12c-5c=7cm, si l&#8217;utilisateur appuie de nouveau sur la touche tab, le curseur
+                  sera positionné à 19cm, puis à 26cm, 33cm et ainsi de suite.</li>
+                <li>Normalement, le texte situé après un caractère de tabulation est aligné de sorte que son côté gauche
+                  soit sur le taquet de tabulation, mais vous pouvez inclure l&#8217;un des mots clés qui suivent dans
+                  cette liste afin de modifier la position du texte situé après une tabulation:<ul>
+                    <li>Un taquet de tabulation avec <tt class="docutils literal"><span class="pre">'left'</span></tt> a
+                      le comportement par défaut.</li>
+                    <li>Avec <tt class="docutils literal"><span class="pre">'right'</span></tt> , le texte sera
+                      positionné de telle sorte que son bord droit soit sur le taquet de tabulation.</li>
+                    <li>Avec <tt class="docutils literal"><span class="pre">'center'</span></tt>, le texte est centré
+                      sur le taquet de tabulation.</li>
+                    <li>Avec <tt class="docutils literal"><span class="pre">'numeric'</span></tt>, le texte est
+                      positionné en plaçant le premier &#8221;.&#8221; qu&#8217;il contient sur le taquet de tabulation.
+                    </li>
+                  </ul>
+                </li>
+                <li>Par exemple, le réglage <tt class="docutils literal"><span class="pre">tabs=('2c',</span> <span
+                      class="pre">'4.5c',</span> <span class="pre">'right',</span> <span class="pre">'9c',</span> <span
+                      class="pre">'center',</span> <span class="pre">'13c',</span> <span
+                      class="pre">'numeric')</span></tt> positionnera quatre taquets de tabulation: le premier à 2 cm du
+                  bord gauche de la page avec un alignement à gauche du texte, le second à 4.5 cm du bord avec un texte
+                  aligné à droite, le troisième à 9cm du bord avec un alignement au centre et le quatrième à 13cm du
+                  bord avec un alignement sur le séparateur décimal. Si l&#8217;utilisateur insère de nouvelles
+                  tabulations, leurs taquets apparaîtront à 13-9=4cm les unes des autres avec le dernier alignement de
+                  la liste c&#8217;est à dire <tt class="docutils literal"><span class="pre">'numeric'</span></tt>.</li>
+              </ul>
+            </div>
+            <div class="section" id="gestion-de-l-historique">
+              <span id="texthisto"></span>
+              <h2>Gestion de l&#8217;historique<a class="headerlink" href="#gestion-de-l-historique"
+                  title="Lien permanent vers ce titre">¶</a></h2>
+              <p>Le widget <tt class="docutils literal"><span class="pre">Text</span></tt> possède un mécanisme intégré
+                qui vous permet d&#8217;implémenter un historique et ses opérations de «retour arrière» ou de «retour
+                avant». Ces opérations servent à annuler ou à remettre en l&#8217;état les modifications du contenu du
+                widget.</p>
+              <p>Voici comment fonctionne la pile d&#8217;historique:</p>
+              <ul class="simple">
+                <li>Chaque modification du contenu est enregistré en insérant une entrée en haut de la pile qui décrit
+                  la modification comme une insertion ou une suppression. Ces entrées enregistrent l&#8217;état passé du
+                  contenu aussi bien que son état présent: Le texte supprimé ou inséré est enregistré avec sa position
+                  et la modalité: suppression ou insertion.</li>
+                <li>Votre programme peut aussi mettre en haut de la pile une entrée spéciale appelée séparateur.</li>
+                <li>Une opération «retour arrière» (<em>undo</em>) modifie le contenu de l&#8217;éditeur jusqu&#8217;à
+                  ce qu&#8217;il soit dans l&#8217;état où il se trouvait à un certain point. Pour réaliser cela,
+                  l&#8217;éditeur reprend une à une les entrées de la pile (du haut vers le bas) et les «rejoue à
+                  l&#8217;envers» jusqu&#8217;à ce qu&#8217;il tombe sur un séparateur ou sur le fond de la pile.</li>
+                <li>Il faut ajouter que Tkinter mémorise combien d&#8217;entrées de la pile ont été rétablies dans
+                  l&#8217;opération de retour arrière, jusqu&#8217;à ce que d&#8217;autres opérations d&#8217;édition
+                  aient modifié le contenu de l&#8217;éditeur.</li>
+                <li>Une opération de «retour avant» ne peut fonctionner que si l&#8217;éditeur n&#8217;a pas été modifié
+                  depuis la dernière opération de «retour arrière». Dans ce cas, il réapplique toutes les opérations
+                  précédemment annulées.</li>
+              </ul>
+              <p>Les méthodes utilisées pour implémenter la pile d&#8217;historique sont principalement <a
+                  class="reference internal" href="#Text.edit_redo" title="Text.edit_redo"><tt
+                    class="xref py py-meth docutils literal"><span class="pre">edit_redo()</span></tt></a>, <a
+                  class="reference internal" href="#Text.edit_separator" title="Text.edit_separator"><tt
+                    class="xref py py-meth docutils literal"><span class="pre">edit_separator()</span></tt></a>, et <a
+                  class="reference internal" href="#Text.edit_undo" title="Text.edit_undo"><tt
+                    class="xref py py-meth docutils literal"><span class="pre">edit_undo()</span></tt></a>; elles sont
+                détaillées dans <a class="reference internal" href="#textmeths"><em>Méthodes du widget Text</em></a>. Le
+                mécanisme d&#8217;historique n&#8217;est pas activé par défaut; vous devez mettre à <tt
+                  class="docutils literal"><span class="pre">True</span></tt> l&#8217;option <strong>undo</strong> du
+                widet <tt class="docutils literal"><span class="pre">Text</span></tt> pour l&#8217;activer.</p>
+            </div>
+            <div class="section" id="methodes-du-widget-text">
+              <span id="textmeths"></span>
+              <h2>Méthodes du widget <tt class="docutils literal"><span class="pre">Text</span></tt><a
+                  class="headerlink" href="#methodes-du-widget-text" title="Lien permanent vers ce titre">¶</a></h2>
+              <p>Les méthodes qui suivent sont disponibles sur tout widget de type <tt class="docutils literal"><span
+                    class="pre">Text</span></tt>:</p>
+              <table class="hlist">
+                <tr>
+                  <td>
+                    <ul class="simple">
+                      <li><a class="reference internal" href="#Text.bbox" title="Text.bbox"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">bbox()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Text.compare" title="Text.compare"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">compare()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Text.delete" title="Text.delete"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">delete()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Text.dlineinfo" title="Text.dlineinfo"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">dlineinfo()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Text.edit_modified" title="Text.edit_modified"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">edit_modified()</span></tt></a>
+                      </li>
+                      <li><a class="reference internal" href="#Text.edit_redo" title="Text.edit_redo"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">edit_redo()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Text.edit_reset" title="Text.edit_reset"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">edit_reset()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Text.edit_separator" title="Text.edit_separator"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">edit_separator()</span></tt></a>
+                      </li>
+                      <li><a class="reference internal" href="#Text.edit_undo" title="Text.edit_undo"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">edit_undo()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Text.image_create" title="Text.image_create"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">image_create()</span></tt></a>
+                      </li>
+                      <li><a class="reference internal" href="#Text.get" title="Text.get"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">get()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Text.image_cget" title="Text.image_cget"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">image_cget()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Text.image_configure" title="Text.image_configure"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">image_configure()</span></tt></a>
+                      </li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul class="simple">
+                      <li><a class="reference internal" href="#Text.image_names" title="Text.image_names"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">image_names()</span></tt></a>
+                      </li>
+                      <li><a class="reference internal" href="#Text.index" title="Text.index"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">index()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Text.insert" title="Text.insert"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">insert()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Text.mark_gravity" title="Text.mark_gravity"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">mark_gravity()</span></tt></a>
+                      </li>
+                      <li><a class="reference internal" href="#Text.mark_names" title="Text.mark_names"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">mark_names()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Text.mark_next" title="Text.mark_next"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">mark_next()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Text.mark_previous" title="Text.mark_previous"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">mark_previous()</span></tt></a>
+                      </li>
+                      <li><a class="reference internal" href="#Text.mark_set" title="Text.mark_set"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">mark_set()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Text.mark_unset" title="Text.mark_unset"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">mark_unset()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Text.scan_dragto" title="Text.scan_dragto"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">scan_dragto()</span></tt></a>
+                      </li>
+                      <li><a class="reference internal" href="#Text.scan_mark" title="Text.scan_mark"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">scan_mark()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Text.search" title="Text.search"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">search()</span></tt></a></li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul class="simple">
+                      <li><a class="reference internal" href="#Text.see" title="Text.see"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">see()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Text.tag_add" title="Text.tag_add"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">tag_add()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Text.tag_bind" title="Text.tag_bind"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">tag_bind()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Text.tag_cget" title="Text.tag_cget"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">tag_cget()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Text.tag_config" title="Text.tag_config"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">tag_config()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Text.tag_delete" title="Text.tag_delete"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">tag_delete()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Text.tag_lower" title="Text.tag_lower"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">tag_lower()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Text.tag_names" title="Text.tag_names"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">tag_names()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Text.tag_nextrange" title="Text.tag_nextrange"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">tag_nextrange()</span></tt></a>
+                      </li>
+                      <li><a class="reference internal" href="#Text.tag_prevrange" title="Text.tag_prevrange"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">tag_prevrange()</span></tt></a>
+                      </li>
+                      <li><a class="reference internal" href="#Text.tag_raise" title="Text.tag_raise"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">tag_raise()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Text.tag_ranges" title="Text.tag_ranges"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">tag_ranges()</span></tt></a></li>
+                    </ul>
+                  </td>
+                  <td>
+                    <ul class="simple">
+                      <li><a class="reference internal" href="#Text.tag_remove" title="Text.tag_remove"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">tag_remove()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Text.tag_unbind" title="Text.tag_unbind"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">tag_unbind()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Text.window_cget" title="Text.window_cget"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">window_cget()</span></tt></a>
+                      </li>
+                      <li><a class="reference internal" href="#Text.window_configure" title="Text.window_configure"><tt
+                            class="xref py py-meth docutils literal"><span
+                              class="pre">window_configure()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Text.window_create" title="Text.window_create"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">window_create()</span></tt></a>
+                      </li>
+                      <li><a class="reference internal" href="#Text.window_names" title="Text.window_names"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">window_names()</span></tt></a>
+                      </li>
+                      <li><a class="reference internal" href="#Text.xview" title="Text.xview"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">xview()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Text.xview_moveto" title="Text.xview_moveto"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">xview_moveto()</span></tt></a>
+                      </li>
+                      <li><a class="reference internal" href="#Text.xview_scroll" title="Text.xview_scroll"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">xview_scroll()</span></tt></a>
+                      </li>
+                      <li><a class="reference internal" href="#Text.yview" title="Text.yview"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">yview()</span></tt></a></li>
+                      <li><a class="reference internal" href="#Text.yview_moveto" title="Text.yview_moveto"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">yview_moveto()</span></tt></a>
+                      </li>
+                      <li><a class="reference internal" href="#Text.yview_scroll" title="Text.yview_scroll"><tt
+                            class="xref py py-meth docutils literal"><span class="pre">yview_scroll()</span></tt></a>
+                      </li>
+                    </ul>
+                  </td>
+                </tr>
+              </table>
+              <dl class="method">
+                <dt id="Text.bbox">
+                  <tt class="descclassname">Text.</tt><tt
+                    class="descname">bbox</tt><big>(</big><em>index</em><big>)</big><a class="headerlink"
+                    href="#Text.bbox" title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Retourne la boîte englobante du caractère d&#8217;<em>index</em> donné, comme un 4-tuple <em>(x, y,
+                      largeur, hauteur)</em>. Si le caractère n&#8217;est pas visible, la valeur de retour est <tt
+                      class="docutils literal"><span class="pre">None</span></tt>. Remarquez que cette méthode peut
+                    retourner une valeur imprécise tant que vous n&#8217;avez pas appelé la méthode <a
+                      class="reference internal" href="uwm.html#update_idletasks" title="update_idletasks"><tt
+                        class="xref py py-meth docutils literal"><span class="pre">update_idletasks()</span></tt></a>
+                    (voir <a class="reference internal" href="uwm.html#universal"><em>Méthodes communes à tous les
+                        widgets</em></a>).</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.compare">
+                  <tt class="descclassname">Text.</tt><tt class="descname">compare</tt><big>(</big><em>index1</em>,
+                  <em>op</em>, <em>index2</em><big>)</big><a class="headerlink" href="#Text.compare"
+                    title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Compare les position de deux index du widget texte, et retourne <tt class="docutils literal"><span
+                        class="pre">True</span></tt> si la relation précisé par <em>op</em> entre les deux index est
+                    vérifiée. L&#8217;argument <em>op</em> sert à préciser la comparaison à effectuer: <tt
+                      class="docutils literal"><span class="pre">'&lt;'</span></tt>, <tt class="docutils literal"><span
+                        class="pre">'&lt;='</span></tt>, <tt class="docutils literal"><span
+                        class="pre">'=='</span></tt>, <tt class="docutils literal"><span class="pre">'!='</span></tt>,
+                    <tt class="docutils literal"><span class="pre">'&gt;='</span></tt>, ou <tt
+                      class="docutils literal"><span class="pre">'&gt;'</span></tt>.</p>
+                  <p>Par exemple, pour un widget de texte <tt class="docutils literal"><span class="pre">t</span></tt>,
+                    <tt class="docutils literal"><span class="pre">t.compare('2.0',</span> <span
+                        class="pre">'&lt;=',</span> <span class="pre">'end')</span></tt> retourne <tt
+                      class="docutils literal"><span class="pre">True</span></tt> si le début de la deuxième ligne est
+                    situé avant la fin du texte contenu dans <tt class="docutils literal"><span
+                        class="pre">t</span></tt>.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.delete">
+                  <tt class="descclassname">Text.</tt><tt class="descname">delete</tt><big>(</big><em>index1</em>,
+                  <em>index2=None</em><big>)</big><a class="headerlink" href="#Text.delete"
+                    title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Supprime le texte qui situé juste après <em>index1</em>. Si le deuxième argument est omis, seul un
+                    caractère est supprimé. Sinon, la suppression porte sur tout les caractères situés strictement entre
+                    les positions <em>index1</em> et <em>index2</em>. Notez bien qu&#8217;un index désigne une position
+                    entre deux caractères.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.dlineinfo">
+                  <tt class="descclassname">Text.</tt><tt
+                    class="descname">dlineinfo</tt><big>(</big><em>index</em><big>)</big><a class="headerlink"
+                    href="#Text.dlineinfo" title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Retourne la boîte englobante pour la ligne qui contient la position d&#8217;<em>index</em> donné.
+                    Voir la méthode <a class="reference internal" href="#Text.index" title="Text.index"><tt
+                        class="xref py py-meth docutils literal"><span class="pre">index()</span></tt></a> ci-dessus
+                    pour prendre connaissance de la forme de la valeur de retour ainsi que du besoin éventuel de
+                    rafraîchir certaines tâches assoupies (<em>idle tasks</em>).</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.edit_modified">
+                  <tt class="descclassname">Text.</tt><tt
+                    class="descname">edit_modified</tt><big>(</big><em>arg=None</em><big>)</big><a class="headerlink"
+                    href="#Text.edit_modified" title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Récupére, positionne ou efface le drapeau des modifications. Ce drapeau est utilisé pour surveiller
+                    les modifications éventuelles du contenu. Par exemple, si vous programmez un éditeur de texte, vous
+                    pourriez utiliser le drapeau des modification pour déterminer si le contenu a été modifié depuis la
+                    dernière fois où il a été sauvegardé dans un fichier.</p>
+                  <p>Lorsque cette méthode est appelée sans argument, elle retourne <tt class="docutils literal"><span
+                        class="pre">True</span></tt> si le drapeau des modifications a été positionné, <tt
+                      class="docutils literal"><span class="pre">False</span></tt> sinon. Vous pouvez explicitement
+                    positionner ce drapeau en utilisant <tt class="docutils literal"><span class="pre">True</span></tt>
+                    comme argument ou le désactiver en utilisant <tt class="docutils literal"><span
+                        class="pre">False</span></tt>.</p>
+                  <p>Toute opération qui modifie le contenu de l&#8217;éditeur positionne ce drapeau, que ce soit une
+                    insertion ou suppression de texte, de manière programmée ou suite aux actions de l&#8217;utilisateur
+                    ou encore à un retour arrière dans l&#8217;historique.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.edit_redo">
+                  <tt class="descclassname">Text.</tt><tt class="descname">edit_redo</tt><big>(</big><big>)</big><a
+                    class="headerlink" href="#Text.edit_redo" title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Annule un retour arrière dans l&#8217;historique (<em>redo</em>). Pour plus de détails, voir <a
+                      class="reference internal" href="#texthisto"><em>Gestion de l&#8217;historique</em></a>.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.edit_reset">
+                  <tt class="descclassname">Text.</tt><tt class="descname">edit_reset</tt><big>(</big><big>)</big><a
+                    class="headerlink" href="#Text.edit_reset" title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Efface l&#8217;historique.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.edit_separator">
+                  <tt class="descclassname">Text.</tt><tt class="descname">edit_separator</tt><big>(</big><big>)</big><a
+                    class="headerlink" href="#Text.edit_separator" title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Ajoute un séparateur sur la pile de gestion de l&#8217;historique. Ce séparateur limite le champ
+                    d&#8217;application d&#8217;une opération de retour arrière dans l&#8217;historique de façon à
+                    inclure les seuls changements qui se sont produits après que le séparateur a été placé dans la pile.
+                    Pour plus de détails, voir <a class="reference internal" href="#texthisto"><em>Gestion de
+                        l&#8217;historique</em></a>.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.edit_undo">
+                  <tt class="descclassname">Text.</tt><tt class="descname">edit_undo</tt><big>(</big><big>)</big><a
+                    class="headerlink" href="#Text.edit_undo" title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Annule toute les modifications du contenu de l&#8217;éditeur qui ont eu lieu après
+                    l&#8217;insertion d&#8217;un séparateur dans la pile de gestion de l&#8217;historique (ou
+                    jusqu&#8217;au debut de la pile s&#8217;il n&#8217;y a pas de séparateur). Pour plus de détails,
+                    voir <a class="reference internal" href="#texthisto"><em>Gestion de l&#8217;historique</em></a>. Une
+                    erreur est levée si la pile était vide au moment de l&#8217;appel.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.image_create">
+                  <tt class="descclassname">Text.</tt><tt class="descname">image_create</tt><big>(</big><em>index</em>,
+                  <em>option=valeur</em>, <em>...</em><big>)</big><a class="headerlink" href="#Text.image_create"
+                    title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Cette méthode sert à insérer une image dans l&#8217;éditeur juste après la position précisée par
+                    l&#8217;<em>index</em>. Une image est traitée de la même façon qu&#8217;un caractère dont la taille
+                    serait celle de l&#8217;image.</p>
+                  <p>Les options pour cette méthode sont données ci-après. Vous pouvez transmettre une série
+                    d&#8217;arguments de la forme <em>option=valeur</em>, ou un dictionnaire que qui contient les noms
+                    d&#8217;options comme clés.</p>
+                  <dl class="docutils">
+                    <dt><strong>align</strong></dt>
+                    <dd>Cette option précise l&#8217;alignement vertical de son image si sa hauteur est inférieure à la
+                      hauteur de la ligne qui la contient. Les valeurs possibles sont <tt class="docutils literal"><span
+                          class="pre">'top'</span></tt> pour un alignement en haut, <tt class="docutils literal"><span
+                          class="pre">'center'</span></tt> pour un centrage vertical; <tt class="docutils literal"><span
+                          class="pre">'bottom'</span></tt> pour la placer tout en bas; ou <tt
+                        class="docutils literal"><span class="pre">'baseline'</span></tt> pour aligner le bas de
+                      l&#8217;image avec la ligne de base du texte.</dd>
+                    <dt><strong>image</strong></dt>
+                    <dd>L&#8217;image à utiliser. Voir <a class="reference internal" href="sa.html#images"><em>Les
+                          images</em></a>.</dd>
+                    <dt><strong>name</strong></dt>
+                    <dd>Vous pouvez donner un nom à cette instance de l&#8217;image. Si vous ne renseignez pas cette
+                      option, Tkinter produira un nom unique pour cette instance. Si vous créez de multiples instances
+                      d&#8217;une même image dans le même widget de texte, Tkinter produira un nom unique en ajoutant la
+                      lettre &#8220;#&#8221; suivi d&#8217;un nombre.</dd>
+                    <dt><strong>padx</strong></dt>
+                    <dd>Sert à indiquer un espace supplémentaire (en pixels) à ajouter à gauche et à droite de
+                      l&#8217;image.</dd>
+                    <dt><strong>pady</strong></dt>
+                    <dd>Sert à indiquer un espace supplémentaire (en pixels) à ajouter au dessus et en dessous de
+                      l&#8217;image.</dd>
+                  </dl>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.get">
+                  <tt class="descclassname">Text.</tt><tt class="descname">get</tt><big>(</big><em>index1</em>,
+                  <em>index2=None</em><big>)</big><a class="headerlink" href="#Text.get"
+                    title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Utilisez cette méthode pour récupérer le texte situé actuellement entre les positions
+                    <em>index1</em> et <em>index2</em>. Si le deuxième argument est omis, la méthode retourne le
+                    caractère situé juste après la position <em>index1</em>. Les images ou fenêtres embarquées sont
+                    ignorées. Si l&#8217;intervalle contient plusieurs lignes, elles sont séparées par des caractères
+                    spéciaux <tt class="docutils literal"><span class="pre">'\n'</span></tt>.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.image_cget">
+                  <tt class="descclassname">Text.</tt><tt class="descname">image_cget</tt><big>(</big><em>index</em>,
+                  <em>option</em><big>)</big><a class="headerlink" href="#Text.image_cget"
+                    title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Sert à récupérer la valeur d&#8217;une option (précisée sous la forme d&#8217;une chaîne)
+                    d&#8217;une image embarquée de position <em>index</em> (rappel: le nom d&#8217;une image est un
+                    index)</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.image_configure">
+                  <tt class="descclassname">Text.</tt><tt
+                    class="descname">image_configure</tt><big>(</big><em>index</em>, <em>option=valeur</em>,
+                  <em>...</em><big>)</big><a class="headerlink" href="#Text.image_configure"
+                    title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Sert à configurer une ou plusieurs options de l&#8217;image embarquée qui est identifiée par
+                    <em>index</em>.</p>
+                  <p>Si aucune option n&#8217;est précisée, la méthode retournera un dicitionnaire qui contient toutes
+                    les options et les valeurs correspondantes définies pour cette image.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.image_names">
+                  <tt class="descclassname">Text.</tt><tt class="descname">image_names</tt><big>(</big><big>)</big><a
+                    class="headerlink" href="#Text.image_names" title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Retourne un tuple qui contient les noms de toutes les images embarquées dans le widget <tt
+                      class="docutils literal"><span class="pre">Text</span></tt> appelant.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.index">
+                  <tt class="descclassname">Text.</tt><tt
+                    class="descname">index</tt><big>(</big><em>i</em><big>)</big><a class="headerlink"
+                    href="#Text.index" title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Étant donné un index <em>i</em>, retourne la position équivalente sous la forme <tt
+                      class="docutils literal"><span class="pre">'ligne.colonne'</span></tt>.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.insert">
+                  <tt class="descclassname">Text.</tt><tt class="descname">insert</tt><big>(</big><em>index</em>,
+                  <em>text</em>, <em>tags=None</em><big>)</big><a class="headerlink" href="#Text.insert"
+                    title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Insère le texte donné à la position <em>index</em>.</p>
+                  <p>Si vous ne précisez pas l&#8217;argument <em>tags</em>, le texte inséré aura le ou les tags qui
+                    s&#8217;appliquent éventuellement aux caractères qui entourent le point d&#8217;insertion.</p>
+                  <p>Si vous souhaitez appliquer un ou plusieurs tags au texte à insérer, utilisez un tuple de chaînes
+                    de tag comme troisième arguments. Chaque tag qui s&#8217;applique aux caractères qui entourent le
+                    point d&#8217;insertion est alors ignoré. Notez que le troisième argument doit être un tuple: si
+                    vous fournissez une liste de tags, tkinter n&#8217;en appliquera aucun silencieusement; si vous
+                    utilisez une chaîne de caractères, chaque caractère de la chaîne est traité comme un tag.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.mark_gravity">
+                  <tt class="descclassname">Text.</tt><tt class="descname">mark_gravity</tt><big>(</big><em>mark</em>,
+                  <em>gravity=None</em><big>)</big><a class="headerlink" href="#Text.mark_gravity"
+                    title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Modifie ou récupère la propriété de gravité d&#8217;une marque existante; voir <a
+                      class="reference internal" href="#textmarques"><em>Les marques</em></a>, pour plus
+                    d&#8217;informations sur la propriété de gravité.</p>
+                  <p>Pour régler la propriété de gravité d&#8217;une marque <em>mark</em>, utilisez les valeurs <tt
+                      class="docutils literal"><span class="pre">'left'</span></tt> ou <tt
+                      class="docutils literal"><span class="pre">'right'</span></tt> comme deuxième argument. Pour
+                    récupérer la propriété de gravité de la marque <em>mark</em>, ne renseignez pas le second argument
+                    et la méthode retournera <tt class="docutils literal"><span class="pre">'left'</span></tt> ou <tt
+                      class="docutils literal"><span class="pre">'right'</span></tt>.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.mark_names">
+                  <tt class="descclassname">Text.</tt><tt class="descname">mark_names</tt><big>(</big><big>)</big><a
+                    class="headerlink" href="#Text.mark_names" title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Retourne la liste de toutes les marques de l&#8217;éditeur, <tt class="docutils literal"><span
+                        class="pre">'insert'</span></tt> et <tt class="docutils literal"><span
+                        class="pre">'current'</span></tt> inclus.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.mark_next">
+                  <tt class="descclassname">Text.</tt><tt
+                    class="descname">mark_next</tt><big>(</big><em>index</em><big>)</big><a class="headerlink"
+                    href="#Text.mark_next" title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Retourne le nom de la marque située après la position d&#8217;<em>index</em> donné; s&#8217;il
+                    n&#8217;y en a pas, une chaîne vide est retournée.</p>
+                  <p>Si l&#8217;index est sous forme numérique, la méthode retourne la première marque située à cette
+                    position. Si <em>index</em> est une marque, la méthode retourne la prochaîne marque qui la suit,
+                    laquelle peut être à la même position numérique.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.mark_previous">
+                  <tt class="descclassname">Text.</tt><tt
+                    class="descname">mark_previous</tt><big>(</big><em>index</em><big>)</big><a class="headerlink"
+                    href="#Text.mark_previous" title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Retourne le nom de la marque qui est situé en amont de la position d&#8217;<em>index</em> donné.
+                    S&#8217;il n&#8217;y en a pas, une chaîne vide est retournée.</p>
+                  <p>Si l&#8217;<em>index</em> est numérique, la méthode retourne la dernière marque située à cette
+                    position. Si l&#8217;<em>index</em> est une marque, la méthode retourne la marque qui la précèsde,
+                    laquelle peut être à la même position numérique.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.mark_set">
+                  <tt class="descclassname">Text.</tt><tt class="descname">mark_set</tt><big>(</big><em>mark</em>,
+                  <em>index</em><big>)</big><a class="headerlink" href="#Text.mark_set"
+                    title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Si aucune marque de nom <em>mark</em> n&#8217;existe, une marque est crée avec sa propriété de
+                    gravité à <tt class="docutils literal"><span class="pre">'right'</span></tt> et elle est placée à la
+                    position d&#8217;<em>index</em> donné. Si la marque existe déjà, elle est déplacée à cette position.
+                  </p>
+                  <p>Cette méthode peut modifier la position des marques <tt class="docutils literal"><span
+                        class="pre">'insert'</span></tt> et <tt class="docutils literal"><span
+                        class="pre">'current'</span></tt>.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.mark_unset">
+                  <tt class="descclassname">Text.</tt><tt
+                    class="descname">mark_unset</tt><big>(</big><em>mark</em><big>)</big><a class="headerlink"
+                    href="#Text.mark_unset" title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Supprime la marque <em>mark</em>. Cette méthode ne peut pas être utilisée pour supprimer les
+                    marques <tt class="docutils literal"><span class="pre">'insert'</span></tt> et <tt
+                      class="docutils literal"><span class="pre">'current'</span></tt>.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.scan_dragto">
+                  <tt class="descclassname">Text.</tt><tt class="descname">scan_dragto</tt><big>(</big><em>x</em>,
+                  <em>y</em><big>)</big><a class="headerlink" href="#Text.scan_dragto"
+                    title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Voir la méthode <tt class="docutils literal"><span class="pre">scan_mark()</span></tt> ci-dessous.
+                  </p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.scan_mark">
+                  <tt class="descclassname">Text.</tt><tt class="descname">scan_mark</tt><big>(</big><em>x</em>,
+                  <em>y</em><big>)</big><a class="headerlink" href="#Text.scan_mark"
+                    title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Cette méthode sert à implémenter le défilement rapide de la zone visible du widget <tt
+                      class="docutils literal"><span class="pre">Text</span></tt>. Typiquement, un utilisateur enfonce
+                    un bouton de la souris puis la déplace sans relâcher le bouton dans la direction désirée, et la zone
+                    visible est déplacée dans cette direction à un rythme proportionnel à la distance parcourue par la
+                    souris depuis le clic. Le mouvement peut réaliser un défilement oblique.</p>
+                  <p>Pour implémenter cette fonctionnalité, liez l&#8217;événement «appui sur le bouton de la souris» à
+                    un gestionnaire chargé d&#8217;appeler <tt class="docutils literal"><span
+                        class="pre">scan_mark(x,</span> <span class="pre">y)</span></tt>, où <em>x</em> et <em>y</em>
+                    représentent la position de la souris au moment de l&#8217;appui. Ensuite, liez l&#8217;événement
+                    <tt class="docutils literal"><span class="pre">'&lt;Motion&gt;'</span></tt> (déplacement de la
+                    souris) à un gestionnaire qui appelera la méthode <tt class="docutils literal"><span
+                        class="pre">scan_dragto(x,</span> <span class="pre">y)</span></tt> où <em>x</em> et <em>y</em>
+                    désignent la nouvelle position de la souris.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.search">
+                  <tt class="descclassname">Text.</tt><tt class="descname">search</tt><big>(</big><em>pattern</em>,
+                  <em>index</em>, <em>option=valeur</em>, <em>...</em><big>)</big><a class="headerlink"
+                    href="#Text.search" title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Recherche le motif <em>pattern</em> (lequel peut être une chaîne ou une expression régulière) dans
+                    la fenêtre en commençant à l&#8217;<em>index</em> indiqué. Si le motif est trouvé, la méthode
+                    retourne un index de la forme <tt class="docutils literal"><span
+                        class="pre">'ligne.colonne'</span></tt>; sinon, elle retourne une chaîne vide.</p>
+                  <p>Les options disponibles pour cette méthode sont:</p>
+                  <dl class="docutils">
+                    <dt><strong>backwards</strong></dt>
+                    <dd>Mettre cette option à <tt class="docutils literal"><span class="pre">True</span></tt> pour faire
+                      une recherche vers l&#8217;arrière à partir de la position <em>index</em>. Par défaut la recherche
+                      se fait en avant.</dd>
+                    <dt><strong>count</strong></dt>
+                    <dd>Si vous réglez cette option avec une variable de contrôle de type <tt
+                        class="docutils literal"><span class="pre">IntVar</span></tt>, lorsque la recherche réussit vous
+                      pouvez récupérer la longueur du texte qui correspondait au motif <em>pattern</em> en utilisant la
+                      méthode <tt class="docutils literal"><span class="pre">get()</span></tt> sur cette variable après
+                      le retour de la méthode <tt class="docutils literal"><span class="pre">search</span></tt>.</dd>
+                    <dt><strong>exact</strong></dt>
+                    <dd>Mettre cette option à <tt class="docutils literal"><span class="pre">True</span></tt> pour que
+                      la chaîne trouvée soit la réplique exacte de la chaîne de motif <em>pattern</em>. C&#8217;est la
+                      valeur par défaut. Comparez avec l&#8217;option <em>regex</em> ci-dessous.</dd>
+                    <dt><strong>forwards</strong></dt>
+                    <dd>Mettre cette option à <tt class="docutils literal"><span class="pre">True</span></tt> pour faire
+                      une recherche vers l&#8217;avant. C&#8217;est la valeur par défaut de l&#8217;option.</dd>
+                    <dt><strong>regexp</strong></dt>
+                    <dd>Mettre cette option à <tt class="docutils literal"><span class="pre">True</span></tt> pour
+                      interpréter la chaîne <em>pattern</em> comme une expression régulière dans le style du langage
+                      <em>Tcl</em>. Par défaut la recherche se fait de manière exacte (voir l&#8217;option
+                      <strong>exact</strong>). Les expressions régulières dans le style <em>Tcl</em> forment un
+                      sous-ensemble des expressions régulières de Python; elles supportent ces caractères spéciaux: . ^
+                      [c1…] (…) * + ? e1|e2</dd>
+                    <dt><strong>nocase</strong></dt>
+                    <dd>Mettre cette option à 1 pour une recherche insensible à la casse (majuscule/minuscule). Par
+                      défaut, la recherche y est sensible .</dd>
+                    <dt><strong>stopindex</strong></dt>
+                    <dd>Pour limiter la recherche, utiliser un index pour préciser une position au delà de laquelle la
+                      recherche ne doit pas continuer.</dd>
+                  </dl>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.see">
+                  <tt class="descclassname">Text.</tt><tt
+                    class="descname">see</tt><big>(</big><em>index</em><big>)</big><a class="headerlink"
+                    href="#Text.see" title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Si le texte situé à la position d&#8217;<em>index</em> donné n&#8217;est pas visible, la méthode
+                    fait défiler la vue du widget de façon à ce que le texte devienne visible.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.tag_add">
+                  <tt class="descclassname">Text.</tt><tt class="descname">tag_add</tt><big>(</big><em>tagName</em>,
+                  <em>index1</em>, <em>index2=None</em><big>)</big><a class="headerlink" href="#Text.tag_add"
+                    title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Cette méthode associe le tag nommé <em>tagName</em> avec la région du contenu qui est située entre
+                    la position d&#8217;<em>index1</em> et d&#8217;<em>index2</em>. Si <em>index2</em> est omis, seul le
+                    caractère situé juste après la position <em>index1</em> est tagué.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.tag_bind">
+                  <tt class="descclassname">Text.</tt><tt class="descname">tag_bind</tt><big>(</big><em>tagName</em>,
+                  <em>sequence</em>, <em>func</em>, <em>add=None</em><big>)</big><a class="headerlink"
+                    href="#Text.tag_bind" title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Cette méthode lie la séquence d&#8217;événements <em>sequence</em> à la région de texte taguée avec
+                    <em>tagName</em>. Voir <a class="reference internal" href="event.html#events"><em>Les événements:
+                        répondre aux actions de l&#8217;utilisateur.</em></a> pour plus d&#8217;informations sur la
+                    gestion des événements.</p>
+                  <p>Pour créer une nouvelle liaison pour un texte tagué, utilisez les trois premiers arguments:
+                    <em>sequence</em> sert à identifier l&#8217;événement, <em>gest</em> est la fonction qui sera
+                    appelée lorsque l&#8217;événement ciblé se produira.</p>
+                  <p>Pour ajouter d&#8217;autres liaisons à un texte tagué, utiliser <tt class="docutils literal"><span
+                        class="pre">'+'</span></tt> pour l&#8217;argument <em>add</em>.</p>
+                  <p>Pour connaître le gestionnaire d&#8217;événement associé à un texte tagué pour un événement donné,
+                    n&#8217;utilisez que les deux premiers arguments et la méthode retournera le gestionnaire
+                    correspondant.</p>
+                  <p>Pour connaître tous les événements associés à un texte tagué, n&#8217;utilisez que le premier
+                    argument; la méthode retourne alors une liste qui contient toutes les séquences d&#8217;événement
+                    positionnées.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.tag_cget">
+                  <tt class="descclassname">Text.</tt><tt class="descname">tag_cget</tt><big>(</big><em>tagName</em>,
+                  <em>option</em><big>)</big><a class="headerlink" href="#Text.tag_cget"
+                    title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Utilisez cette méthode pour récupérer la valeur d&#8217;une option (précisée à l&#8217;aide
+                    d&#8217;une chaîne) pour un texte tagué avec <em>tagName</em>.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.tag_config">
+                  <tt class="descclassname">Text.</tt><tt class="descname">tag_config</tt><big>(</big><em>tagName</em>,
+                  <em>option=valeur</em>, <em>...</em><big>)</big><a class="headerlink" href="#Text.tag_config"
+                    title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Pour modifier la valeur des options d&#8217;un texte tagué avec <em>tagName</em>, utilisez une ou
+                    plusieurs déclarations <em>option=valeur</em> séparées par des virgules.</p>
+                  <p>Si vous ne précisez aucune option, la méthode retourne un dictionnaire qui contient toutes les
+                    options actuellement configurées pour ce texte tagué.</p>
+                  <p>Voici les options de configuration pour un texte tagué:</p>
+                  <dl class="docutils">
+                    <dt><strong>background</strong></dt>
+                    <dd>La couleur d&#8217;arrière plan du texte tagué. Notez que vous ne pouvez pas utiliser
+                      l&#8217;abbréviation <em>bg</em>.</dd>
+                    <dt><strong>bgstipple</strong></dt>
+                    <dd>Pour griser la couleur de fond, précisez l&#8217;un des bitmaps standards (voir <a
+                        class="reference internal" href="sa.html#bitmaps"><em>Les bitmaps</em></a>). Cela n&#8217;a
+                      aucun effet si la couleur d&#8217;arrière plan n&#8217;a pas été spécifiée.</dd>
+                    <dt><strong>borderwidth</strong></dt>
+                    <dd>Épaisseur de la bordure autour du texte tagué. 0 par défaut. Notez que vous ne pouvez pas
+                      utiliser <em>bd</em> comme abbréviation.</dd>
+                    <dt><strong>fgstipple</strong></dt>
+                    <dd>Pour griser un texte, utiliser un bitmap.</dd>
+                    <dt><strong>font</strong></dt>
+                    <dd>La police de caractères utilisée pour afficher le texte tagué. Voir <a
+                        class="reference internal" href="sa.html#polices"><em>Les polices de caractères</em></a>.</dd>
+                    <dt><strong>foreground</strong></dt>
+                    <dd>La couleur utilisée pour le texte tagué. Notez que vous ne pouvez pas utiliser
+                      l&#8217;abbréviation <em>bd</em>.</dd>
+                    <dt><strong>justify</strong></dt>
+                    <dd>Cette option, qui est positionnée pour chaque nouvelle ligne de texte du contenu, sert à
+                      préciser son alignement; les valeurs possibles sont <tt class="docutils literal"><span
+                          class="pre">'left'</span></tt>, <tt class="docutils literal"><span
+                          class="pre">'right'</span></tt>, <tt class="docutils literal"><span
+                          class="pre">'center'</span></tt>.</dd>
+                    <dt><strong>lmargin1</strong></dt>
+                    <dd>Taille du retrait (indentation) à appliquer au début de la première ligne de la portion de texte
+                      tagué. 0 par défaut. Voir <a class="reference internal" href="sa.html#dimensions"><em>Les
+                          dimensions</em></a> pour les valeurs permises.</dd>
+                    <dt><strong>lmargin2</strong></dt>
+                    <dd>Taille du retrait (indentation) à appliquer au début de chaque ligne de la portion de texte
+                      tagué. 0 par défaut.</dd>
+                    <dt><strong>offset</strong></dt>
+                    <dd>De combien élever (valeur positive) ou abaisser (valeur négative) le texte tagué relativement à
+                      la ligne de base. Utilisez cela pour créer des «indices» ou des «exposants» par exemple.</dd>
+                    <dt><strong>overstrike</strong></dt>
+                    <dd>Mettre à 1 pour «barrer» le texte tagué (une ligne horizontale le parcourt en son centre).</dd>
+                    <dt><strong>relief</strong></dt>
+                    <dd>Sert à préciser le style de relief de la bordure du texte tagué. Sa valeur par défaut est <tt
+                        class="docutils literal"><span class="pre">'flat'</span></tt>. Voir <a
+                        class="reference internal" href="sa.html#reliefs"><em>Les styles de relief</em></a> pour
+                      d&#8217;autres valeurs possibles.</dd>
+                    <dt><strong>rmargin</strong></dt>
+                    <dd>Largeur de la marge droite à appliquer pour le texte tagué. Sa valeur par défaut est 0.</dd>
+                    <dt><strong>spacing1</strong></dt>
+                    <dd>Cette option précise la quantité d&#8217;espace vertical supplémentaire à ajouter au dessus de
+                      chaque ligne de la portion de texte tagué. Si certaines lignes sont enveloppées (saut de ligne
+                      logique pour éviter le débordement à droite), cet espace supplémentaire n&#8217;est appliqué
+                      qu&#8217;à la première ligne. Sa valeur par défaut est 0.</dd>
+                    <dt><strong>spacing2</strong></dt>
+                    <dd>Quantité d&#8217;espace vertical supplémentaire à ajouter entre deux lignes qui font partie
+                      d&#8217;une seule ligne physique qui a été coupée pour éviter un débordement à droite. Sa valeur
+                      par défaut est 0.</dd>
+                    <dt><strong>spacing3</strong></dt>
+                    <dd>Quantité d&#8217;espace vertical supplémentaire à ajouter en dessous d&#8217;une ligne physique
+                      (par opposition à une ligne enveloppée). Sa valeur par défaut est 0.</dd>
+                    <dt><strong>tabs</strong></dt>
+                    <dd>Sert à préciser le traitement des tabulations pour la portion de texte taguée comme
+                      l&#8217;option de même nom du widget <tt class="docutils literal"><span
+                          class="pre">Text</span></tt>. Voir <a class="reference internal" href="#texttabuls"><em>Régler
+                          les tabulations</em></a>.</dd>
+                    <dt><strong>underline</strong></dt>
+                    <dd>Mettre à 1 pour souligner la portion de texte taguée.</dd>
+                    <dt><strong>wrap</strong></dt>
+                    <dd>Longueur maximale d&#8217;une ligne de texte au-dessus de quoi elle est coupée (logiquement)
+                      afin de ne pas excéder cette longueur. Voir la description de l&#8217;option <strong>wrap</strong>
+                      du widget <tt class="docutils literal"><span class="pre">Text</span></tt> plus haut.</dd>
+                  </dl>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.tag_delete">
+                  <tt class="descclassname">Text.</tt><tt class="descname">tag_delete</tt><big>(</big><em>tagName</em>,
+                  <em>...</em><big>)</big><a class="headerlink" href="#Text.tag_delete"
+                    title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Pour supprimer un ou plusieurs tags, donnez leurs noms à cette méthode. Leurs options et liaisons
+                    sont perdues, et les différentes portions de texte taguées avec ce tag le perdent.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.tag_lower">
+                  <tt class="descclassname">Text.</tt><tt class="descname">tag_lower</tt><big>(</big><em>tagName</em>,
+                  <em>sousLui=None</em><big>)</big><a class="headerlink" href="#Text.tag_lower"
+                    title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Utilisez cette méthode pour modifier l&#8217;ordre des tags dans la pile des tags (voir <a
+                      class="reference internal" href="#texttags"><em>Les tags</em></a>, pour une description de cette
+                    «pile»). Si vous précisez deux arguments, le tag de nom <em>tagName</em> est déplacé juste en
+                    dessous du tag de nom <em>sousLui</em>. Si vous n&#8217;utilisez que le premier argument, le tag est
+                    déplacé tout en bas de la pile.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.tag_names">
+                  <tt class="descclassname">Text.</tt><tt
+                    class="descname">tag_names</tt><big>(</big><em>index=None</em><big>)</big><a class="headerlink"
+                    href="#Text.tag_names" title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Si vous précisez <em>index</em>, cette méthode retourne la liste de tous les tags qui sont associés
+                    au caractère situé immédiatement après la position <em>index</em>. Sans argument, vous obtenez la
+                    liste de tous les tags définis pour le widget <tt class="docutils literal"><span
+                        class="pre">Text</span></tt> appelant.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.tag_nextrange">
+                  <tt class="descclassname">Text.</tt><tt
+                    class="descname">tag_nextrange</tt><big>(</big><em>tagName</em>, <em>index1</em>,
+                  <em>index2=None</em><big>)</big><a class="headerlink" href="#Text.tag_nextrange"
+                    title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Recherche le texte tagué avec <em>tagName</em> et dont le premier caractère n&#8217;est pas situé
+                    avant le caractère d&#8217;index <em>index1</em> ni après le caractère situé juste avant celui
+                    d&#8217;index <em>index2</em>. Si <em>index2</em> n&#8217;est pas précisé, la recherche se poursuit
+                    jusqu&#8217;à la fin du texte.</p>
+                  <p>Si la recherche aboutit, la méthode retourne une liste <em>[i0, i1]</em>, où <em>i0</em> est
+                    l&#8217;index du premier caractère tagué et <em>i1</em> la position situé juste après le dernier
+                    caractère tagué. Si plusieurs étendus de texte taguées existent, seul la première trouvée est pris
+                    en considération.</p>
+                  <p>Si rien n&#8217;est trouvé, la méthode retourne une chaîne vide.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.tag_prevrange">
+                  <tt class="descclassname">Text.</tt><tt
+                    class="descname">tag_prevrange</tt><big>(</big><em>tagName</em>, <em>index1</em>,
+                  <em>index2=None</em><big>)</big><a class="headerlink" href="#Text.tag_prevrange"
+                    title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Cette méthode est similaire à la précédente, mais le premier caractère tagué avec <em>tagName</em>
+                    ne doit pas être situé après le caractère d&#8217;index <em>index1</em> ni avant le caractère
+                    d&#8217;index <em>index2</em>. Si plusieurs étendus de texte correspondent, celle qui est la plus
+                    proche d&#8217;<em>index1</em> est choisie. Si <em>index2</em> n&#8217;est pas précisé, alors par
+                    défaut il correspond au début du texte.</p>
+                  <p>La valeur de retour est similaire à celle retournée par <a class="reference internal"
+                      href="#Text.tag_nextrange" title="Text.tag_nextrange"><tt
+                        class="xref py py-meth docutils literal"><span class="pre">tag_nextrange()</span></tt></a>.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.tag_raise">
+                  <tt class="descclassname">Text.</tt><tt class="descname">tag_raise</tt><big>(</big><em>tagName</em>,
+                  <em>surLui=None</em><big>)</big><a class="headerlink" href="#Text.tag_raise"
+                    title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Utilisez cette méthode pour modifier l&#8217;ordre des tags dans la pile des tags (voir <a
+                      class="reference internal" href="#texttags"><em>Les tags</em></a> pour plus d&#8217;explications
+                    sur cette pile). Si vous utilisez deux arguments, le tag <em>tagName</em> est déplacé juste
+                    au-dessus du tag <em>surLui</em>. Si vous n&#8217;utilisez qu&#8217;un argument, le tag indiqué est
+                    placé tout en haut de la pile.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.tag_ranges">
+                  <tt class="descclassname">Text.</tt><tt
+                    class="descname">tag_ranges</tt><big>(</big><em>tagName</em><big>)</big><a class="headerlink"
+                    href="#Text.tag_ranges" title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Cette méthode trouve tous les intervalles de texte tagués avec <em>tagName</em> et retourne une
+                    liste <em>[d0, f0, d1, f1, …]</em>, où chaque <tt class="docutils literal"><span
+                        class="pre">di</span></tt> est l&#8217;index juste avant le premier caractère de
+                    l&#8217;intervalle tagué et <tt class="docutils literal"><span class="pre">fi</span></tt> est
+                    l&#8217;index juste après le dernier caractère de cet intervalle. Si rien n&#8217;est trouvé, une
+                    chaîne vide est retournée.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.tag_remove">
+                  <tt class="descclassname">Text.</tt><tt class="descname">tag_remove</tt><big>(</big><em>tagName</em>,
+                  <em>index1</em>, <em>index2=None</em><big>)</big><a class="headerlink" href="#Text.tag_remove"
+                    title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Supprime le tag <em>tagName</em> de tous les caractères situés entre <em>index1</em> et juste avant
+                    <em>index2</em>. Si <em>index2</em> est omis, seul le tag du caractère situé juste après
+                    <em>index1</em> est supprimé.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.tag_unbind">
+                  <tt class="descclassname">Text.</tt><tt class="descname">tag_unbind</tt><big>(</big><em>tagName</em>,
+                  <em>sequence</em>, <em>funcid=None</em><big>)</big><a class="headerlink" href="#Text.tag_unbind"
+                    title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Supprime la liaison entre l&#8217;événement précisé par <em>sequence</em> et la portion de texte
+                    taguée avec <em>tagName</em>. Si vous avez plusieurs gestionnaires pour l&#8217;événement précisé
+                    par <em>sequence</em>, vous pouvez en enlever un seul en l&#8217;indiquant comme troisième argument.
+                  </p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.window_cget">
+                  <tt class="descclassname">Text.</tt><tt class="descname">window_cget</tt><big>(</big><em>index</em>,
+                  <em>option</em><big>)</big><a class="headerlink" href="#Text.window_cget"
+                    title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Retourne la valeur de l&#8217;<em>option</em> précisée par une chaîne pour le widget embarqué situé
+                    à la position précisé par <em>index</em>.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.window_configure">
+                  <tt class="descclassname">Text.</tt><tt
+                    class="descname">window_configure</tt><big>(</big><em>index</em>, <em>option=valeur</em>,
+                  <em>...</em><big>)</big><a class="headerlink" href="#Text.window_configure"
+                    title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Sert à modfier une ou plusieurs options d&#8217;un widget embarquéi, à la position précisé par
+                    <em>index</em>, en donnant une ou plusieurs paires <em>option=valeur</em>.</p>
+                  <p>Si vous n&#8217;indiquez aucune option, la méthode retourne un dictionnaire qui contient les
+                    options et leurs valeurs courantes.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.window_create">
+                  <tt class="descclassname">Text.</tt><tt class="descname">window_create</tt><big>(</big><em>index</em>,
+                  <em>option</em>, <em>...</em><big>)</big><a class="headerlink" href="#Text.window_create"
+                    title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Cette méthode crée une fenêtre par l&#8217;intermédiaire de laquelle un widget peut être inséré
+                    dans le contenu du texte. Il y a deux moyens d&#8217;embarquer un widget:</p>
+                  <ul class="simple">
+                    <li>vous pouvez passer le widget à l&#8217;option <em>window</em> de cette méthode, ou</li>
+                    <li>vous pouvez définir une fonction sans argument (procédure) qui créera le widget et la passer à
+                      son option <em>create</em>.</li>
+                  </ul>
+                  <p>Les options pour cette méthode sont:</p>
+                  <dl class="docutils">
+                    <dt><strong>align</strong></dt>
+                    <dd>Précise comment positionner verticalement le widget embarqué dans sa ligne, s&#8217;il
+                      n&#8217;est pas aussi haut que le texte de cette ligne. Les valeurs incluent: <tt
+                        class="docutils literal"><span class="pre">'center'</span></tt> (par défaut), ce qui a pour
+                      effet de centrer le texte verticalement dans sa ligne; <tt class="docutils literal"><span
+                          class="pre">'top'</span></tt>, ce qui place son bord haut sur le haut de la ligne; <tt
+                        class="docutils literal"><span class="pre">'bottom'</span></tt>, ce qui place son bord bas sur
+                      le bas de la ligne; et <tt class="docutils literal"><span class="pre">'baseline'</span></tt>, ce
+                      qui aligne son bord bas avec la ligne de base du texte.</dd>
+                    <dt><strong>create</strong></dt>
+                    <dd>Une fonction sans argument (procédure) qui sera chargée de créer le widget embarqué à la
+                      demande. Cette fonction doit créer le widget comme enfant du widget <tt
+                        class="docutils literal"><span class="pre">Text</span></tt> appelant et retourner ce widget.
+                    </dd>
+                    <dt><strong>padx</strong></dt>
+                    <dd>Espace supplémentaire à ajouter à gauche et à droite du widget dans la ligne de texte. 0 par
+                      défaut.</dd>
+                    <dt><strong>pady</strong></dt>
+                    <dd>Espace supplémentaire à ajouter au dessus et en dessous du widget à l&#8217;intérieur de la
+                      ligne de texte. 0 par défaut.</dd>
+                    <dt><strong>stretch</strong></dt>
+                    <dd>Sert à préciser ce qui arrive dans le cas où la ligne est plus haute que le widget embarqué. Sa
+                      valeur par défaut est 0, ce qui signifie que le widget conserve sa taille normale. Si <tt
+                        class="docutils literal"><span class="pre">stretch=1</span></tt>, le widget est étiré
+                      verticalement de manière à remplir la hauteur de la ligne et l&#8217;option <em>align</em> est
+                      ignorée.</dd>
+                    <dt><strong>window</strong></dt>
+                    <dd>Le widget à embarquer. Ce widget doit être un enfant du widget <tt
+                        class="docutils literal"><span class="pre">Text</span></tt> appelant.</dd>
+                  </dl>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.window_names">
+                  <tt class="descclassname">Text.</tt><tt class="descname">window_names</tt><big>(</big><big>)</big><a
+                    class="headerlink" href="#Text.window_names" title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Retourne une liste qui contient les noms de tous les widgets actuellement embarqués dans le texte.
+                  </p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.xview">
+                  <tt class="descclassname">Text.</tt><tt class="descname">xview</tt><big>(</big><em>'moveto'</em>,
+                  <em>fraction</em><big>)</big><a class="headerlink" href="#Text.xview"
+                    title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Cette méthode fait défiler l&#8217;éditeur horizontalement pour amener le bord gauche de la vue (si
+                    possible) à la position précisée par <em>fraction</em> (appartient à [0.0,1.0]). Par exemple, si <tt
+                      class="docutils literal"><span class="pre">fraction=0.5</span></tt>, le bord gauche de la vue
+                    correspond à 50% de la largeur totale de l&#8217;éditeur. Cette méthode peut être transmise à
+                    l&#8217;option <em>command</em> d&#8217;une barre de défilement horizontale associée à
+                    l&#8217;éditeur.</p>
+                  <p>Si <tt class="docutils literal"><span class="pre">fraction=0.0</span></tt>, le bord gauche de la
+                    vue coincide avec le bord gauche de l&#8217;éditeur. Si <tt class="docutils literal"><span
+                        class="pre">fraction=1.0</span></tt>, le bord droit de la vue coincide avec le bord droit de
+                    l&#8217;éditeur.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt>
+                  <tt class="descclassname">Text.</tt><tt class="descname">xview</tt><big>(</big><em>'scroll'</em>,
+                  <em>n</em>, <em>quoi</em><big>)</big>
+                </dt>
+                <dd>
+                  <p>Dans cette deuxième forme, la vue défile de <em>n</em> fois <em>quoi</em> lequel peut prendre la
+                    valeur <tt class="docutils literal"><span class="pre">'units'</span></tt> (1 caractère) ou <tt
+                      class="docutils literal"><span class="pre">'pages'</span></tt> (largeur de la vue). Le sens du
+                    déplacement dépend du signe de <em>n</em> (positif vers la droite, négatif vers la gauche)</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.xview_moveto">
+                  <tt class="descclassname">Text.</tt><tt
+                    class="descname">xview_moveto</tt><big>(</big><em>fraction</em><big>)</big><a class="headerlink"
+                    href="#Text.xview_moveto" title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Fait défiler la vue de la même façon que <tt class="docutils literal"><span
+                        class="pre">xview('moveto',</span> <span class="pre">fraction)</span></tt>.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.xview_scroll">
+                  <tt class="descclassname">Text.</tt><tt class="descname">xview_scroll</tt><big>(</big><em>n</em>,
+                  <em>quoi</em><big>)</big><a class="headerlink" href="#Text.xview_scroll"
+                    title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Pareil que <tt class="docutils literal"><span class="pre">xview('scroll',</span> <span
+                        class="pre">n,</span> <span class="pre">quoi)</span></tt>.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.yview">
+                  <tt class="descclassname">Text.</tt><tt class="descname">yview</tt><big>(</big><em>'moveto'</em>,
+                  <em>fraction</em><big>)</big><a class="headerlink" href="#Text.yview"
+                    title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Pareil que <tt class="docutils literal"><span class="pre">xview('moveto',…)</span></tt>, mais pour
+                    un défilement vertical.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt>
+                  <tt class="descclassname">Text.</tt><tt class="descname">yview</tt><big>(</big><em>'scroll'</em>,
+                  <em>n</em>, <em>quoi</em><big>)</big>
+                </dt>
+                <dd>
+                  <p>Pareil que <tt class="docutils literal"><span class="pre">xview('scroll',…)</span></tt>. Dans ce
+                    cas <tt class="docutils literal"><span class="pre">'units'</span></tt> désigne une ligne.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.yview_moveto">
+                  <tt class="descclassname">Text.</tt><tt
+                    class="descname">yview_moveto</tt><big>(</big><em>fraction</em><big>)</big><a class="headerlink"
+                    href="#Text.yview_moveto" title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Similaire à <tt class="docutils literal"><span class="pre">xview_moveto()</span></tt> dans la
+                    direction verticale.</p>
+                </dd>
+              </dl>
+
+              <dl class="method">
+                <dt id="Text.yview_scroll">
+                  <tt class="descclassname">Text.</tt><tt class="descname">yview_scroll</tt><big>(</big><em>n</em>,
+                  <em>quoi</em><big>)</big><a class="headerlink" href="#Text.yview_scroll"
+                    title="Lien permanent vers cette définition">¶</a>
+                </dt>
+                <dd>
+                  <p>Similaire à <tt class="docutils literal"><span class="pre">xview_scroll()</span></tt> dans la
+                    direction verticale.</p>
+                </dd>
+              </dl>
+
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  </div>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général">index</a>
+      </li>
+      <li class="right">
+        <a href="toplww.html" title="Toplevel - Fenêtres primaires">suivant</a> |
+      </li>
+      <li class="right">
+        <a href="spbw.html" title="Spinbox - Saisies/sélections rotatives">précédent</a> |
+      </li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="footer">
+    &copy; Copyright 2013, Étienne FLORENT.
+    Créé avec <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+  </div>
+</body>
+
+<!-- Mirrored from tkinter.fdex.eu/doc/textw.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:00:59 GMT -->
+
+</html>

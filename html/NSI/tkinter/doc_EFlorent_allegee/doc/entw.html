@@ -1,0 +1,411 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  
+<!-- Mirrored from tkinter.fdex.eu/doc/entw.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:00:51 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Entry - Champs de saisie &mdash; Tkinter pour ISN</title>
+    
+    <link rel="stylesheet" href="../static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '1',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../static/jquery.js"></script>
+    <script type="text/javascript" src="../static/underscore.js"></script>
+    <script type="text/javascript" src="../static/doctools.js"></script>
+    <script type="text/javascript" src="../static/translations.js"></script>
+    <script type="text/javascript" src="../../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../static/my.js"></script>
+    <link rel="top" title="Tkinter pour ISN" href="../index-2.html" />
+    <link rel="next" title="Frame - Cadres" href="frw.html" />
+    <link rel="prev" title="Checkbutton - Cases à cocher" href="chw.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Index général"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="frw.html" title="Frame - Cadres"
+             accesskey="N">suivant</a> |</li>
+        <li class="right" >
+          <a href="chw.html" title="Checkbutton - Cases à cocher"
+             accesskey="P">précédent</a> |</li>
+        <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index-2.html">Table des matières</a></h3>
+  <ul>
+<li><a class="reference internal" href="#"><tt class="docutils literal"><span class="pre">Entry</span></tt> - Champs de saisie</a><ul>
+<li><a class="reference internal" href="#defilement-du-contenu-d-un-champ-de-saisie">Défilement du contenu d&#8217;un champ de saisie</a></li>
+<li><a class="reference internal" href="#gerer-la-validation">Gérer la validation</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Sujet précédent</h4>
+  <p class="topless"><a href="chw.html"
+                        title="Chapitre précédent"><tt class="docutils literal docutils literal docutils literal"><span class="pre">Checkbutton</span></tt> - Cases à cocher</a></p>
+  <h4>Sujet suivant</h4>
+  <p class="topless"><a href="frw.html"
+                        title="Chapitre suivant"><tt class="docutils literal"><span class="pre">Frame</span></tt> - Cadres</a></p>
+  
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="entry-champs-de-saisie">
+<span id="saisie"></span><h1><tt class="docutils literal"><span class="pre">Entry</span></tt> - Champs de saisie<a class="headerlink" href="#entry-champs-de-saisie" title="Lien permanent vers ce titre">¶</a></h1>
+<p>Un champs de saisie <tt class="docutils literal"><span class="pre">Entry</span></tt> est utile pour permettre à l&#8217;utilisateur de modifier une ligne de texte.</p>
+<ul class="simple">
+<li>Si vous souhaitez afficher plusieurs lignes de textes modifiables, voir <a class="reference internal" href="textw.html#text"><em>Text - Éditeurs de texte</em></a>.</li>
+<li>Si vous souhaitez afficher une ou plusieurs lignes de textes qui ne peuvent pas être directement modifiées par l&#8217;utilisateur, voir <a class="reference internal" href="labw.html#label"><em>Label - Étiquettes</em></a>.</li>
+</ul>
+<p>Quelques définitions:</p>
+<ul>
+<li><p class="first">La <strong>sélection</strong> est la région du texte mise en valeur (surlignement) dans un champs de saisie, s&#8217;il y en a une.</p>
+<p>Typiquement, la selection est réalisée par l&#8217;utilisateur avec la souris, et le texte sélectionné est copié dans le  presse-papiers du système. Cependant, Tkinter vous permet de choisir si oui ou non, la sélection doit être copiée dans le presse-papiers. Vous pouvez aussi réaliser des sélections contrôlées par le programme.</p>
+</li>
+<li><p class="first">Le <strong>curseur d&#8217;insertion</strong> indique où le texte sera inséré. Il est affiché lorsque l&#8217;utilisateur clique sur le champ saisie. Il apparaît normalement comme une ligne verticale qui clignote dans le composant. Vous pouvez régler finement son apparence de plusieurs façons.</p>
+</li>
+<li><p class="first">Les positions à l&#8217;intérieur du texte affiché dans le champs sont précisées à l&#8217;aide d&#8217;un <strong>index</strong>. Il y a plusieurs façons d&#8217;exprimer un index:</p>
+<ul class="simple">
+<li>En utilisant un entier qui débute à 0 comme pour les chaînes de caractère de Python.</li>
+<li>La constante <tt class="docutils literal"><span class="pre">'end'</span></tt> qui se réfère à la position située après le texte.</li>
+<li>La constante <tt class="docutils literal"><span class="pre">'insert'</span></tt> qui se réfère à la position courante du curseur d&#8217;insertion.</li>
+<li>La constante <tt class="docutils literal"><span class="pre">'anchor'</span></tt> qui se réfère au premier caractère de la sélection courante, s&#8217;il y en a une.</li>
+<li>Vous pouvez avoir besoin de récupérer le caractère qui se trouve à une position déterminée par la souris. Pour simplifier cela, vous pouvez utiliser un index à l&#8217;aide d&#8217;une chaîne de caractères de la forme <tt class="docutils literal"><span class="pre">'&#64;n'</span></tt> où n est la distance horizontale en pixels entre le côté gauche du champ de saisie et la souris. Un tel index déterminera le caractère situé à cette distance horizontale du côté gauche du champ de saisie.</li>
+</ul>
+</li>
+</ul>
+<p>Pour créer une nouveau champ de saisie dans une fenêtre principale ou dans un cadre <tt class="docutils literal"><span class="pre">parent</span></tt>:</p>
+<dl class="class">
+<dt id="Entry">
+<em class="property">class </em><tt class="descname">Entry</tt><big>(</big><em>parent</em>, <em>option</em>, <em>...</em><big>)</big><a class="headerlink" href="#Entry" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Ce constructeur retourne le nouveau champ de saisie. Ses options incluent:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Paramètres:</th><td class="field-body"><ul class="first last simple">
+<li><strong>bg</strong> &#8211; (ou <strong>background</strong>) La couleur de fond de la zone de saisie. C&#8217;est un gris léger par défaut.</li>
+<li><strong>bd</strong> &#8211; (ou <strong>borderwidth</strong>) L&#8217;épaisseur de la bordure qui entoure la zone de saisie. Voir <a class="reference internal" href="sa.html#dimensions"><em>Les dimensions</em></a>. Sa valeur est 2 pixels par défaut.</li>
+<li><strong>cursor</strong> &#8211; Pour indiquer le pointeur de souris à afficher lorsqu&#8217;on survole le bouton. Voir <a class="reference internal" href="sa.html#pointeurs"><em>Le pointeur de la souris</em></a>.</li>
+<li><strong>disabledbackground</strong> &#8211; La couleur d&#8217;arrière plan qui est utilisée lorsque le widget est dans l&#8217;état <tt class="docutils literal"><span class="pre">'disabled'</span></tt>.</li>
+<li><strong>disabledforeground</strong> &#8211; Couleur du texte lorsque le champ de saisie est dans l&#8217;état <tt class="docutils literal"><span class="pre">'disabled'</span></tt>.</li>
+
+
+<li><strong>fg</strong> &#8211; (ou <strong>foreground</strong>) La couleur utilisée pour afficher le texte. Noir par défaut.</li>
+
+
+<li><strong>relief</strong> &#8211; Sert à indiquer le relief utilisé pour dessiner le contour du champ de saisie. Voir <a class="reference internal" href="sa.html#reliefs"><em>Les styles de relief</em></a>. La valeur par défaut est <tt class="docutils literal"><span class="pre">'sunken'</span></tt>.</li>
+<li><strong>selectbackground</strong> &#8211; La couleur de fond utilisée pour mettre en valeur le texte sélectionné. Voir <a class="reference internal" href="sa.html#couleurs"><em>Les couleurs</em></a>.</li>
+
+<li><strong>selectforeground</strong> &#8211; La couleur du texte sélectionné.</li>
+<li><strong>show</strong> &#8211; Normalement, le texte que l&#8217;utilisateur saisi apparaît dans la zone de saisie. Pour une saisie de type mot de passe, indiquer le caractère de remplacement à afficher, souvent <tt class="docutils literal"><span class="pre">show='*'</span></tt>.</li>
+<li><strong>state</strong> &#8211; Utilisez cette option pour désactiver le champ de saisie de telle sorte que l&#8217;utilisateur ne puisse plus y insérer de texte.``state=&#8217;disabled&#8217;`` pour le désactiver, <tt class="docutils literal"><span class="pre">state='normal'</span></tt> pour le réactiver. Votre programme peut savoir si la souris survole le champ de saisie en interrogeant cette option qui devrait alors avoir la valeur <tt class="docutils literal"><span class="pre">'active'</span></tt>.</li>
+
+<li><strong>textvariable</strong> &#8211; Pour pouvoir récupérer le texte courant du champ de saisie, vous devez configurer cette option avec une instance de <tt class="docutils literal"><span class="pre">StringVar</span></tt>; voir <a class="reference internal" href="ctrvar.html#ctrlvariables"><em>Les variables de contrôle: Les valeurs sous les widgets</em></a>. Vous pouvez alors récupérer ou modifier le texte en utilisant les méthodes <tt class="docutils literal"><span class="pre">get()</span></tt> ou <tt class="docutils literal"><span class="pre">set()</span></tt> de cette variable de contrôle <tt class="docutils literal"><span class="pre">StringVar</span></tt>.</li>
+<li><strong>validate</strong> &#8211; Vous pouvez utiliser cette option pour indiquer que le champ de saisie utilise une fonction de validation qui sera appelée automatiquement à certains instants. Voir <a class="reference internal" href="#validation"><em>Gérer la validation</em></a>.</li>
+<li><strong>validatecommand</strong> &#8211; Une fonction de validation pour le champ de saisie. Voir <a class="reference internal" href="#validation"><em>Gérer la validation</em></a>.</li>
+<li><strong>width</strong> &#8211; La taille du champ de saisie mesurée en nombre de caractères. La valeur par défaut est 20. Pour les polices de caractères à chasse variable (fontes proportionnelles), la taille du champ de saisie s&#8217;obtient en multipliant la moyenne de la largeur des caractères de la fonte multipliée par la valeur de cette option.</li>
+<li><strong>xscrollcommand</strong> &#8211; Si vous vous attendez à ce que les utilisateurs saisissent plus de texte que la partie visible du champ de saisie ne peut en contenir, vous pouvez lier votre champ de saisie à une barre de défilement <tt class="docutils literal"><span class="pre">Scrollbar</span></tt>. Configurez alors cette option avec la méthode <tt class="docutils literal"><span class="pre">set()</span></tt> de la barre de défilement. Pour plus d&#8217;information, voir <a class="reference internal" href="#defilement"><em>Défilement du contenu d&#8217;un champ de saisie</em></a>.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<p>Les méthodes disponibles pour les champs de saisie <tt class="docutils literal"><span class="pre">Entry</span></tt> incluent:</p>
+<table class="hlist"><tr><td><ul class="simple">
+<li><a class="reference internal" href="#Entry.delete" title="Entry.delete"><tt class="xref py py-meth docutils literal"><span class="pre">delete()</span></tt></a></li>
+<li><a class="reference internal" href="ctrvar.html#get" title="get"><tt class="xref py py-meth docutils literal"><span class="pre">get()</span></tt></a></li>
+<li><a class="reference internal" href="#Entry.icursor" title="Entry.icursor"><tt class="xref py py-meth docutils literal"><span class="pre">icursor()</span></tt></a></li>
+<li><a class="reference internal" href="#Entry.index" title="Entry.index"><tt class="xref py py-meth docutils literal"><span class="pre">index()</span></tt></a></li>
+</ul>
+</td><td><ul class="simple">
+<li><a class="reference internal" href="#Entry.insert" title="Entry.insert"><tt class="xref py py-meth docutils literal"><span class="pre">insert()</span></tt></a></li>
+<li><a class="reference internal" href="#Entry.scan_dragto" title="Entry.scan_dragto"><tt class="xref py py-meth docutils literal"><span class="pre">scan_dragto()</span></tt></a></li>
+<li><a class="reference internal" href="#Entry.scan_mark" title="Entry.scan_mark"><tt class="xref py py-meth docutils literal"><span class="pre">scan_mark()</span></tt></a></li>
+<li><a class="reference internal" href="#Entry.select_adjust" title="Entry.select_adjust"><tt class="xref py py-meth docutils literal"><span class="pre">select_adjust()</span></tt></a></li>
+</ul>
+</td><td><ul class="simple">
+<li><a class="reference internal" href="#Entry.select_clear" title="Entry.select_clear"><tt class="xref py py-meth docutils literal"><span class="pre">select_clear()</span></tt></a></li>
+<li><a class="reference internal" href="#Entry.select_from" title="Entry.select_from"><tt class="xref py py-meth docutils literal"><span class="pre">select_from()</span></tt></a></li>
+<li><a class="reference internal" href="#Entry.select_present" title="Entry.select_present"><tt class="xref py py-meth docutils literal"><span class="pre">select_present()</span></tt></a></li>
+<li><a class="reference internal" href="#Entry.select_range" title="Entry.select_range"><tt class="xref py py-meth docutils literal"><span class="pre">select_range()</span></tt></a></li>
+</ul>
+</td><td><ul class="simple">
+<li><a class="reference internal" href="#Entry.select_to" title="Entry.select_to"><tt class="xref py py-meth docutils literal"><span class="pre">select_to()</span></tt></a></li>
+<li><a class="reference internal" href="#Entry.xview" title="Entry.xview"><tt class="xref py py-meth docutils literal"><span class="pre">xview()</span></tt></a></li>
+<li><a class="reference internal" href="#Entry.xview_moveto" title="Entry.xview_moveto"><tt class="xref py py-meth docutils literal"><span class="pre">xview_moveto()</span></tt></a></li>
+<li><a class="reference internal" href="#Entry.xview_scroll" title="Entry.xview_scroll"><tt class="xref py py-meth docutils literal"><span class="pre">xview_scroll()</span></tt></a></li>
+</ul>
+</td></tr></table>
+<dl class="method">
+<dt id="Entry.delete">
+<tt class="descname">delete</tt><big>(</big><em>first</em>, <em>last=None</em><big>)</big><a class="headerlink" href="#Entry.delete" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Supprime les caractères de la position <tt class="docutils literal"><span class="pre">first</span></tt> jusqu&#8217;à, mais sans inclure, la position <tt class="docutils literal"><span class="pre">last</span></tt>. Si le deuxième argument est omis, seul le caractère à la position <tt class="docutils literal"><span class="pre">first</span></tt> est supprimé.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Entry.get">
+<tt class="descname">get</tt><big>(</big><big>)</big><a class="headerlink" href="#Entry.get" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Retourne le texte que contient le champ de saisie lors de son appel.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Entry.icursor">
+<tt class="descname">icursor</tt><big>(</big><em>index</em><big>)</big><a class="headerlink" href="#Entry.icursor" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Déplace le curseur d&#8217;insertion juste avant le caractère ayant la position <tt class="docutils literal"><span class="pre">index</span></tt>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Entry.index">
+<tt class="descname">index</tt><big>(</big><em>index</em><big>)</big><a class="headerlink" href="#Entry.index" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fait défiler le contenu du champ de saisie de telle sorte que le caractère de position <tt class="docutils literal"><span class="pre">index</span></tt> soit à la première position visible à gauche. N&#8217;a pas d&#8217;effet si le texte tient tout entier dans le champ de saisie.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Entry.insert">
+<tt class="descname">insert</tt><big>(</big><em>index</em>, <em>s</em><big>)</big><a class="headerlink" href="#Entry.insert" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Insère la chaîne de caractères <tt class="docutils literal"><span class="pre">s</span></tt> juste avant le caractère situé à la position <tt class="docutils literal"><span class="pre">index</span></tt>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Entry.scan_dragto">
+<tt class="descname">scan_dragto</tt><big>(</big><em>x</em><big>)</big><a class="headerlink" href="#Entry.scan_dragto" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Voir la méthode <tt class="docutils literal"><span class="pre">scan_mark</span></tt> ci-dessous.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Entry.scan_mark">
+<tt class="descname">scan_mark</tt><big>(</big><em>x</em><big>)</big><a class="headerlink" href="#Entry.scan_mark" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Utilisez cette méthode pour initialiser le défilement rapide du contenu d&#8217;un champ de saisie munie d&#8217;une barre de défilement horizontale.</p>
+<p>Pour réaliser cela, lier l&#8217;événement «bouton de la souris enfoncé» à un gestionnaire d&#8217;événement qui appelera <tt class="docutils literal"><span class="pre">scan_mark(x)</span></tt>, où x représente la position horizontale courante de la souris. Ensuite, lier l&#8217;événement <tt class="docutils literal"><span class="pre">'&lt;Motion&gt;'</span></tt> (déplacement de la souris) à un gestionnaire qui appelera <tt class="docutils literal"><span class="pre">scan_dragto(x)</span></tt>, où x représente la position horizontale courante de la souris. La méthode <tt class="docutils literal"><span class="pre">scan_dragto</span></tt> fait défiler le contenu du champ de saisie de manière continue et à un rythme proportionnel à la distance (horizontale) entre la position lors de l&#8217;appel de <tt class="docutils literal"><span class="pre">scan_mark</span></tt> et la position courante.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Entry.select_adjust">
+<tt class="descname">select_adjust</tt><big>(</big><em>index</em><big>)</big><a class="headerlink" href="#Entry.select_adjust" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Cette méthode sert à ajuster la sélection pour être sûr qu&#8217;elle contient le caractère situé à la position précisée par <tt class="docutils literal"><span class="pre">index</span></tt>. Si la sélection contient déjà le caractère, rien ne se produit. Autrement, la sélection est étendue à partir de sa position courante (s&#8217;il y en a une) pour inclure la position ayant l&#8217;index indiqué.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Entry.select_clear">
+<tt class="descname">select_clear</tt><big>(</big><big>)</big><a class="headerlink" href="#Entry.select_clear" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Éfface la sélection (sans supprimer son contenu). N&#8217;a pas d&#8217;effet si il n&#8217;y a aucune sélection courante.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Entry.select_from">
+<tt class="descname">select_from</tt><big>(</big><em>index</em><big>)</big><a class="headerlink" href="#Entry.select_from" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Positionne l&#8217;index de l&#8217;ancre de sélection, <tt class="docutils literal"><span class="pre">'anchor'</span></tt>, à la position du caractère sélectionné par <tt class="docutils literal"><span class="pre">index</span></tt> et sélectionne ce caractère.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Entry.select_present">
+<tt class="descname">select_present</tt><big>(</big><big>)</big><a class="headerlink" href="#Entry.select_present" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Retourne <tt class="docutils literal"><span class="pre">True</span></tt> s&#8217;il y a une sélection, <tt class="docutils literal"><span class="pre">False</span></tt> autrement.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Entry.select_range">
+<tt class="descname">select_range</tt><big>(</big><em>start</em>, <em>end</em><big>)</big><a class="headerlink" href="#Entry.select_range" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Pour régler la sélection depuis l&#8217;application. Sélectionne le texte de la position <tt class="docutils literal"><span class="pre">start</span></tt> jusqu&#8217;à, mais sans inclure, la position <tt class="docutils literal"><span class="pre">end</span></tt>. la position <tt class="docutils literal"><span class="pre">start</span></tt> doit être avant la position <tt class="docutils literal"><span class="pre">end</span></tt>.</p>
+<p>Pour sélectionner tout le texte du champ de saisie <tt class="docutils literal"><span class="pre">e</span></tt>, utiliser <tt class="docutils literal"><span class="pre">e.select_range(0,'end')</span></tt>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Entry.select_to">
+<tt class="descname">select_to</tt><big>(</big><em>index</em><big>)</big><a class="headerlink" href="#Entry.select_to" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Sélection tout le texte à partir de la position <tt class="docutils literal"><span class="pre">'anchor'</span></tt> jusqu&#8217;à, mais sans inclure, le caractère de position <tt class="docutils literal"><span class="pre">index</span></tt>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Entry.xview">
+<tt class="descname">xview</tt><big>(</big><em>index</em><big>)</big><a class="headerlink" href="#Entry.xview" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Fait défiler le texte de telle sorte que le caractère de position <tt class="docutils literal"><span class="pre">index</span></tt> soit situé au début du champ de saisie. Cette méthode est très utile dans la liaison entre un champ de saisie et une barre de défilement. Voir <a class="reference internal" href="#defilement"><em>Défilement du contenu d&#8217;un champ de saisie</em></a>.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Entry.xview_moveto">
+<tt class="descname">xview_moveto</tt><big>(</big><em>f</em><big>)</big><a class="headerlink" href="#Entry.xview_moveto" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Positionne le texte dans le champ de saisie de telle sorte que le caractère situé à la position relative <tt class="docutils literal"><span class="pre">f</span></tt> (par rapport à l&#8217;intégralité du texte) soit positionné sur le bord gauche du champ. L&#8217;argument <tt class="docutils literal"><span class="pre">f</span></tt> doit appartenir à l&#8217;intervalle [0;1], où 0 signifie tout à gauche et 1 tout à droite.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="Entry.xview_scroll">
+<tt class="descname">xview_scroll</tt><big>(</big><em>nb</em>, <em>quoi</em><big>)</big><a class="headerlink" href="#Entry.xview_scroll" title="Lien permanent vers cette définition">¶</a></dt>
+<dd><p>Sert à faire défiler le contenu du champ de saisie horizontalement. L&#8217;argument <tt class="docutils literal"><span class="pre">quoi</span></tt> est soit <tt class="docutils literal"><span class="pre">'units'</span></tt>, pour indiquer un défilement caractères par caractères, <tt class="docutils literal"><span class="pre">'page'</span></tt> pour un défilement par largeur du champ de saisie. Si l&#8217;argument <tt class="docutils literal"><span class="pre">nb</span></tt> est positif, le défilement se fait de la gauche vers la droite, s&#8217;il est négatif, le défilement se fait de la droite vers la gauche. Par exemple, pour un champ de saisie <tt class="docutils literal"><span class="pre">e</span></tt>, <tt class="docutils literal"><span class="pre">e.xview_scroll(-1,'pages')</span></tt> fera bouger le texte d&#8217;une «page» vers la droite et <tt class="docutils literal"><span class="pre">e.xview_scroll(4,</span> <span class="pre">'units')</span></tt> le fait défiler de 4 caractères vers la gauche.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="section" id="defilement-du-contenu-d-un-champ-de-saisie">
+<span id="defilement"></span><h2>Défilement du contenu d&#8217;un champ de saisie<a class="headerlink" href="#defilement-du-contenu-d-un-champ-de-saisie" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Pour pouvoir faire défiler le contenu d&#8217;un champ de saisie, il faudra ajouter un peu de code en plus afin d&#8217;adapter la fonction de rappel d&#8217;une barre de défilement <tt class="docutils literal"><span class="pre">Scrollbar</span></tt> aux méthodes fournies par le champ de saisie. Voici quelques fragments de code qui illustrent un tel réglage. Premièrement, la création et la liaison de la barre de défilement et du champ de saisie:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">saisi</span> <span class="o">=</span> <span class="n">Entry</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+<span class="n">saisi</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s">&#39;ew&#39;</span><span class="p">)</span>
+
+<span class="n">saisiDefil</span> <span class="o">=</span> <span class="n">Scrollbar</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">orient</span><span class="o">=</span><span class="s">&#39;horizontal&#39;</span><span class="p">,</span>
+    <span class="n">command</span><span class="o">=</span><span class="n">defilGest</span><span class="p">)</span>
+<span class="n">saisiDefil</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sticky</span><span class="o">=</span><span class="s">&#39;ew&#39;</span><span class="p">)</span>
+
+<span class="n">saisi</span><span class="p">[</span><span class="s">&#39;xscrollcommand&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">saisiDefil</span><span class="o">.</span><span class="n">set</span>
+</pre></div>
+</div>
+<p>Ensuite, la définition de la fonction de rappel du code précédent:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">defilGest</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+    <span class="n">op</span><span class="p">,</span> <span class="n">deCombien</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">L</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">op</span> <span class="o">==</span> <span class="s">&#39;scroll&#39;</span><span class="p">:</span>
+        <span class="n">units</span> <span class="o">=</span> <span class="n">L</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
+        <span class="n">saisi</span><span class="o">.</span><span class="n">xview_scroll</span><span class="p">(</span><span class="n">deCombien</span><span class="p">,</span> <span class="n">units</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">op</span> <span class="o">==</span> <span class="s">&#39;moveto&#39;</span><span class="p">:</span>
+        <span class="n">saisi</span><span class="o">.</span><span class="n">xview_moveto</span><span class="p">(</span><span class="n">deCombien</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="gerer-la-validation">
+<span id="validation"></span><h2>Gérer la validation<a class="headerlink" href="#gerer-la-validation" title="Lien permanent vers ce titre">¶</a></h2>
+<p>Dans certaines applications, vous souhaiterez vérifier le contenu d&#8217;un champ de saisie pour vous assurez qu&#8217;il est valide selon certains critères nécessaires au bon fonctionnement de votre application. Pour préciser ce qui est valide ou non, vous définirez une fonction de rappel qui vérifiera ce contenu et signalera s&#8217;il est oui ou non valide.</p>
+<p>Voici la procédure à suivre pour mettre en oeuvre une telle validation.</p>
+<ul>
+<li><p class="first">Écrire une fonction de rappel qui vérifie le contenu du champ de saisie et retourne <tt class="docutils literal"><span class="pre">True</span></tt> s&#8217;il est considéré comme valide, ou <tt class="docutils literal"><span class="pre">False</span></tt> sinon. Si la fonction de rappel retourne <tt class="docutils literal"><span class="pre">False</span></tt>, les tentatives de l&#8217;utilisateur pour modifier le contenu du champ de saisie seront refusées et le texte restera inchangé.</p>
+</li>
+<li><p class="first">Enregistrez cette fonction de rappel: cela consiste à produire un «emballage Tcl» autour de votre fonction Python.</p>
+<p>Supposez que votre fonction de rappel soit <tt class="docutils literal"><span class="pre">estOk</span></tt>. Pour pouvoir associer cette fonction au champ de saisie, vous devez utilisez la méthode universelle (valable pour tout widget) <tt class="docutils literal"><span class="pre">register(estOk)</span></tt>. Cette méthode crée «l&#8217;emballage Tcl» voulu et retourne une chaîne de caractères que tkinter peut utiliser pour appeler votre fonction.</p>
+</li>
+<li><p class="first">Lorsque vous appelez le constructeur du champ de saisie <tt class="docutils literal"><span class="pre">Entry</span></tt>, utilisez son option <strong>validatecommand</strong> pour préciser votre fonction de validation (par l&#8217;intermédiaire de la chaîne retournée par <tt class="docutils literal"><span class="pre">register()</span></tt>), et utilisez son option <strong>validate</strong> pour préciser les circonstances de l&#8217;appel de la fonction de validation. Les valeurs de ces options sont discutées avec plus de détails ci-dessous.</p>
+</li>
+</ul>
+<p>Voici les valeurs admissibles pour l&#8217;option <strong>validate</strong> et leur signification.</p>
+<p><tt class="docutils literal"><span class="pre">'focus'</span></tt></p>
+<blockquote>
+<div>La validation est déclenchée à chaque fois que le champ de saisie obtient ou perd le focus (voir <a class="reference internal" href="focus.html#focus"><em>Le focus: réception des saisies clavier</em></a>).</div></blockquote>
+<p><tt class="docutils literal"><span class="pre">'focusin'</span></tt></p>
+<blockquote>
+<div>Elle est déclenchée lorsque le champ de saisie obtient le focus.</div></blockquote>
+<p><tt class="docutils literal"><span class="pre">'focusout'</span></tt></p>
+<blockquote>
+<div>Elle est déclenchée lorsque le champ de saisie perd le focus.</div></blockquote>
+<p><tt class="docutils literal"><span class="pre">'key'</span></tt></p>
+<blockquote>
+<div>Elle est déclenchée à chaque fois que l&#8217;appui sur une touche modifie le contenu.</div></blockquote>
+<p><tt class="docutils literal"><span class="pre">'all'</span></tt></p>
+<blockquote>
+<div>Lorsque l&#8217;une quelconque des situations précédentes a lieu.</div></blockquote>
+<p><tt class="docutils literal"><span class="pre">'none'</span></tt></p>
+<blockquote>
+<div>Désactive la validation. C&#8217;est la valeur par défaut de l&#8217;option. Notez que c&#8217;est la chaîne de caractère <tt class="docutils literal"><span class="pre">'none'</span></tt>, non la valeur spéciale de Python <tt class="docutils literal"><span class="pre">None</span></tt>.</div></blockquote>
+<p>La valeur de l&#8217;option <strong>validatecommand</strong> dépend des arguments que vous souhaitez voir transmis à la fonction de validation.</p>
+<ul>
+<li><p class="first">Peut-être que la seule chose dont à besoin votre fonction de validation est le texte qui apparaît actuellement dans le champ de saisie. Si c&#8217;est le cas, elle peut utiliser la méthode <tt class="docutils literal"><span class="pre">get()</span></tt> de la variable de contrôle qui a servi à configuer l&#8217;option <strong>textvariable</strong> du champ de saisie.</p>
+<p>Dans ce cas, il suffit d&#8217;indiquer <tt class="docutils literal"><span class="pre">validatecommand=f</span></tt>, où <tt class="docutils literal"><span class="pre">f</span></tt> est le nom de votre fonction de validation.</p>
+</li>
+<li><p class="first">Tkinter peut aussi fournir un certain nombre d&#8217;informations à votre fonction de validation. Si vous souhaitez utiliser cela, lors de l&#8217;appel du constructeur du champ de saisie, utilisez l&#8217;option <tt class="docutils literal"><span class="pre">validatecommand=(f,</span> <span class="pre">s1,</span> <span class="pre">s2,</span> <span class="pre">...)</span></tt>, où <tt class="docutils literal"><span class="pre">f</span></tt> est le nom «enregistré» de votre fonction de rappel (avec la méthode <a class="reference internal" href="uwm.html#register" title="register"><tt class="xref py py-meth docutils literal"><span class="pre">register()</span></tt></a>, voir plus loin pour un exemple), et chaque élément <tt class="docutils literal"><span class="pre">si</span></tt> additionnel un <strong>code de substitution</strong>. Pour chaque code de substitution fourni, la fonction de rappel reçoit un argument positionnel qui contient la valeur appropriée.</p>
+</li>
+</ul>
+<p>Voici les <strong>codes de substitution</strong> possibles.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">'%d'</span></tt></td>
+<td>Code d&#8217;action: 0 pour une tentative de suppression, 1 pour une tentative d&#8217;insertion ou -1 si l&#8217;appel a eu lieu par gain ou perte du focus, ou par modification de la variable de contrôle <strong>textvariable</strong>.</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">'%i'</span></tt></td>
+<td>Lorque l&#8217;utilisateur tente d&#8217;insérer ou de supprimer du texte, cet argument sera la position (index) du début (cas d&#8217;une sélection) de l&#8217;insertion ou suppression. Si l&#8217;appel a eu lieu par gain ou perte de focus, ou par modification de la variable de contrôle <strong>textvariable</strong>, l&#8217;argument vaut -1.</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">'%P'</span></tt></td>
+<td>La valeur que le texte aurait si la modification avait lieu.</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">'%s'</span></tt></td>
+<td>Le texte du champ de saisie avant le changement.</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">'%S'</span></tt></td>
+<td>Si l&#8217;appel est du à une insertion ou une suppression, l&#8217;argument sera le texte à insérer ou à supprimer.</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">'%v'</span></tt></td>
+<td>The current value of the widget&#8217;s validate option.</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">'%V'</span></tt></td>
+<td>La raison de l&#8217;appel, parmi: <tt class="docutils literal"><span class="pre">'focusin'</span></tt>, <tt class="docutils literal"><span class="pre">'focusout'</span></tt>, <tt class="docutils literal"><span class="pre">'key'</span></tt>, ou <tt class="docutils literal"><span class="pre">'forced'</span></tt> si la variable de contrôle <strong>textvariable</strong> a été modifiée.</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">'%W'</span></tt></td>
+<td>Le nom du champ de saisie.</td>
+</tr>
+</tbody>
+</table>
+<p>Voici un petit exemple. Supposez que vous souhaitiez que votre fonction de validation reçoive le <tt class="docutils literal"><span class="pre">'%d'</span></tt> pour déterminer les circonstances de son appel; <tt class="docutils literal"><span class="pre">'%i'</span></tt> pour déterminer où l&#8217;ajout ou la suppression doit avoir lieu; et <tt class="docutils literal"><span class="pre">'%S'</span></tt> pour déterminer ce qui doit être inséré ou supprimé. Votre fonction pourrait ressembler à cela:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">estOK</span><span class="p">(</span><span class="n">pourquoi</span><span class="p">,</span> <span class="n">ou</span><span class="p">,</span> <span class="n">quoi</span><span class="p">):</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>Ensuite, vous utilisez la méthode universelle <a class="reference internal" href="uwm.html#register" title="register"><tt class="xref py py-meth docutils literal"><span class="pre">register()</span></tt></a> pour «emballer» cette fonction. Nous supposons que <tt class="docutils literal"><span class="pre">w</span></tt> est un widget arbitraire:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">okCommand</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">register</span><span class="p">(</span><span class="n">estOK</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Pour activer cette fonction de rappel, vous aurez besoin d&#8217;utiliser ces deux options du constructeur <tt class="docutils literal"><span class="pre">Entry</span></tt>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">saisi</span> <span class="o">=</span> <span class="n">Entry</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">validate</span><span class="o">=</span><span class="s">&#39;all&#39;</span><span class="p">,</span>
+     <span class="n">validatecommand</span><span class="o">=</span><span class="p">(</span><span class="n">okCommand</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%d</span><span class="s">&#39;</span><span class="p">,</span> <span class="s">&#39;</span><span class="si">%i</span><span class="s">&#39;</span><span class="p">,</span> <span class="s">&#39;%S&#39;</span><span class="p">),</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Supposez que le champ de saisie contienne actuellement la chaîne <tt class="docutils literal"><span class="pre">'abcdefg'</span></tt>, et que l&#8217;utilisateur sélectionne <tt class="docutils literal"><span class="pre">'cde'</span></tt> puis appuie sur la touche Retour Arrière. Il s&#8217;ensuivrait l&#8217;appel <tt class="docutils literal"><span class="pre">estOK(0,2,'cde')</span></tt>: 0 pour indiquer la suppression, 2 pour la position avant le <tt class="docutils literal"><span class="pre">'c'</span></tt> et <tt class="docutils literal"><span class="pre">'cde'</span></tt> pour la chaîne à détruire. Si <tt class="docutils literal"><span class="pre">estOK()</span></tt> retourne <tt class="docutils literal"><span class="pre">True</span></tt>, le nouveau texte est <tt class="docutils literal"><span class="pre">'abfg'</span></tt>; sinon, le texte est inchangé.</p>
+<p>Le widget <tt class="docutils literal"><span class="pre">Entry</span></tt> possède aussi une option <strong>invalidcommand</strong> qui sert à préciser une fonction de rappel qui est appelée à chaque fois que la fonction de validation retourne False. Cette commande peut modifier le texte du champ de saisie en utilisant la méthode <tt class="docutils literal"><span class="pre">set()</span></tt> de la variable de contrôle qui a servi à configurer l&#8217;option <tt class="docutils literal"><span class="pre">textvariable</span></tt>. Le réglage de cette option fonctionne de la même façon que celle de l&#8217;option <strong>validatecommand</strong>. Vous devez utiliser la méthode universelle <tt class="docutils literal"><span class="pre">register()</span></tt> pour envelopper votre fonction; cette méthode retourne le nom de la fonction enveloppée sous la forme d&#8217;une chaîne de caractères. Ensuite, passez cette valeur à l&#8217;option <strong>invalidcommand</strong> soit directement, soit comme le premier élément d&#8217;un tuple qui contient les codes de substitution qui vous intéressent.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="Index général"
+             >index</a></li>
+        <li class="right" >
+          <a href="frw.html" title="Frame - Cadres"
+             >suivant</a> |</li>
+        <li class="right" >
+          <a href="chw.html" title="Checkbutton - Cases à cocher"
+             >précédent</a> |</li>
+        <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2013, Étienne FLORENT.
+      Créé avec <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+
+<!-- Mirrored from tkinter.fdex.eu/doc/entw.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:00:52 GMT -->
+</html>

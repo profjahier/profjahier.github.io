@@ -1,0 +1,23 @@
+div.highlight {
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.3);
+    display: block;
+    font-family: monospace;
+    font-size: 0.55em;
+    line-height: 1.2em;
+    margin: 15px auto;
+    position: relative;
+    text-align: left;
+    width: 90%;
+    word-wrap: break-word;
+}
+
+.highlight pre {
+    background: none repeat scroll 0 0 #3F3F3F;
+    padding: 0.5em;
+    max-height: 400px;
+    overflow: auto;
+    padding: 5px;
+    word-wrap: normal;
+    width: 100%;
+    font-size: inherit
+}

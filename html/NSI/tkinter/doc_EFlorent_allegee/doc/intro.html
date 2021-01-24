@@ -1,0 +1,174 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Mirrored from tkinter.fdex.eu/doc/intro.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:01:20 GMT -->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <title>Une interface graphique multiplateforme (GUI) pour Python &mdash; Tkinter pour ISN</title>
+
+  <link rel="stylesheet" href="../static/sphinxdoc.css" type="text/css" />
+  <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT: '../',
+      VERSION: '1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE: true
+    };
+  </script>
+  <script type="text/javascript" src="../static/jquery.js"></script>
+  <script type="text/javascript" src="../static/underscore.js"></script>
+  <script type="text/javascript" src="../static/doctools.js"></script>
+  <script type="text/javascript" src="../static/translations.js"></script>
+  <script type="text/javascript"
+    src="../../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="../static/my.js"></script>
+  <link rel="top" title="Tkinter pour ISN" href="../index-2.html" />
+  <link rel="next" title="Gestionnaires de positionnement" href="gp.html" />
+  <link rel="prev" title="ISN : Documentation de tkinter" href="../index-2.html" />
+</head>
+
+<body>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général" accesskey="I">index</a></li>
+      <li class="right">
+        <a href="gp.html" title="Gestionnaires de positionnement" accesskey="N">suivant</a> |</li>
+      <li class="right">
+        <a href="../index-2.html" title="ISN : Documentation de tkinter" accesskey="P">précédent</a> |</li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+      <h3><a href="../index-2.html">Table des matières</a></h3>
+      <ul>
+        <li><a class="reference internal" href="#">Une interface graphique multiplateforme (GUI) pour Python</a>
+          <ul>
+            <li><a class="reference internal" href="#un-exemple-simple">Un exemple simple</a></li>
+            <li><a class="reference internal" href="#definitions">Définitions</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <h4>Sujet précédent</h4>
+      <p class="topless"><a href="../index-2.html" title="Chapitre précédent">ISN : Documentation de tkinter</a></p>
+      <h4>Sujet suivant</h4>
+      <p class="topless"><a href="gp.html" title="Chapitre suivant">Gestionnaires de positionnement</a></p>
+    </div>
+  </div>
+
+  <div class="document">
+    <div class="documentwrapper">
+      <div class="bodywrapper">
+        <div class="body">
+
+          <div class="section" id="une-interface-graphique-multiplateforme-gui-pour-python">
+            <span id="intro"></span>
+            <h1>Une interface graphique multiplateforme (GUI) pour Python<a class="headerlink"
+                href="#une-interface-graphique-multiplateforme-gui-pour-python"
+                title="Lien permanent vers ce titre">¶</a></h1>
+            <p>Tkinter sert à réaliser des interfaces graphiques pour l&#8217;utilisateur (GUI)
+              à l&#8217;aide d&#8217;un ensemble de composants graphiques (widgets).</p>
+
+            <p>Nous commencerons par la part visible de tkinter en créant des composants
+              graphiques (widgets) puis en les disposant sur l&#8217;écran. Ensuite, nous expliquerons comment connecter
+              cette «façade graphique» de l&#8217;application à la logique qui se trouve
+              derrière.</p>
+            <div class="section" id="un-exemple-simple">
+              <h2>Un exemple simple<a class="headerlink" href="#un-exemple-simple"
+                  title="Lien permanent vers ce titre">¶</a></h2>
+              <p>Voici un programme «tkinter» minimal qui contient un seul bouton «Quitter».</p>
+              <img alt="../images/intro.png" class="align-center" src="../images/intro.png" />
+              <div class="highlight-python">
+                <div class="highlight">
+                  <pre><span class="c"># Chargement du module tkinter</span>
+<span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="o">*</span> <span class="c"># pour Python2 ce serait Tkinter</span>
+
+<span class="c"># Construction de la fenêtre principale «root»</span>
+<span class="n">root</span> <span class="o">=</span> <span class="n">Tk</span><span class="p">()</span>
+<span class="n">root</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Simple exemple&#39;</span><span class="p">)</span>
+<span class="c"># Construction d&#39;un simple bouton</span>
+<span class="n">qb</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">root</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s">&#39;Quitter&#39;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="n">root</span><span class="o">.</span><span class="n">quit</span><span class="p">)</span>
+
+<span class="c"># Placement du bouton dans «root»</span>
+<span class="n">qb</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
+
+<span class="c"># Lancement de la «boucle principale»</span>
+<span class="n">root</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
+</pre>
+                </div>
+              </div>
+              <p>La dernière instruction <tt class="docutils literal"><span class="pre">root.mainloop()</span></tt>
+                permet à l&#8217;application
+                de recevoir des informations de la souris et du clavier (entre autres).</p>
+             
+            </div>
+            <div class="section" id="definitions">
+              <h2>Définitions<a class="headerlink" href="#definitions" title="Lien permanent vers ce titre">¶</a></h2>
+              <p>Avant d&#8217;entrer dans le coeur du sujet, voici quelques termes utilisés
+                fréquemment ensuite:</p>
+              <dl class="glossary docutils">
+                <dt id="term-fenetre-window"><strong>Fenêtre</strong> (<em>window</em>)</dt>
+                <dd>Ce terme prend des sens différents suivant le contexte, mais
+                  en général il renvoie à une aire rectangulaire quelque part sur votre écran.</dd>
+                <dt id="term-fenetre-mere-top-level-window"><strong>Fenêtre mère</strong> (<em>top-level window</em>)
+                </dt>
+                <dd>Une fenêtre qui existe de manière indépendante sur l&#8217;écran.
+                  Elle sera décorée conformément à votre gestionnaire de bureau et munie des petits boutons habituels.
+                  On peut la déplacer et généralement la redimensionner même si votre application peut limiter cela.
+                </dd>
+                <dt id="term-composant-graphique-widget"><strong>Composant graphique</strong> (<em>widget</em>)</dt>
+                <dd>terme générique désignant tous les éléments qui forment l&#8217;interface
+                  graphique utilisateur. Par exemple, les boutons (<em>buttons</em>), les boutons «radio»
+                  (<em>radiobuttons</em>), les champs de saisie (<em>entry</em>),
+                  les étiquettes (<em>labels</em>), les cadres (<em>frames</em>) ...</dd>
+                <dt id="term-cadre-frame"><strong>Cadre</strong> (<em>frame</em>)</dt>
+                <dd>Dans tkinter, c&#8217;est l&#8217;unité de base pour l&#8217;organisation d&#8217;une mise en forme
+                  complexe.
+                  Un cadre est une zone rectangulaire qui peut contenir d&#8217;autres composants graphiques
+                  (<em>widgets</em>).</dd>
+                <dt id="term-enfant-parent"><strong>enfant, parent</strong></dt>
+                <dd>Lorsqu&#8217;un composant graphique est créé, une relation parent/enfant est établie.
+                  Par exemple, si on place une étiquette (<em>label</em>) dans un cadre (<em>frame</em>), le cadre est
+                  le parent de l&#8217;étiquette.</dd>
+              </dl>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  </div>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général">index</a></li>
+      <li class="right">
+        <a href="gp.html" title="Gestionnaires de positionnement">suivant</a> |</li>
+      <li class="right">
+        <a href="../index-2.html" title="ISN : Documentation de tkinter">précédent</a> |</li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="footer">
+    &copy; Copyright 2013, Étienne FLORENT.
+    Créé avec <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+  </div>
+</body>
+
+<!-- Mirrored from tkinter.fdex.eu/doc/intro.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:01:20 GMT -->
+
+</html>

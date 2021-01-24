@@ -1,0 +1,280 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Mirrored from tkinter.fdex.eu/doc/chw.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:00:50 GMT -->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <title>Checkbutton - Cases à cocher &mdash; Tkinter pour ISN</title>
+
+  <link rel="stylesheet" href="../static/sphinxdoc.css" type="text/css" />
+  <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT: '../',
+      VERSION: '1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE: true
+    };
+  </script>
+  <script type="text/javascript" src="../static/jquery.js"></script>
+  <script type="text/javascript" src="../static/underscore.js"></script>
+  <script type="text/javascript" src="../static/doctools.js"></script>
+  <script type="text/javascript" src="../static/translations.js"></script>
+  <script type="text/javascript"
+    src="../../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="../static/my.js"></script>
+  <link rel="top" title="Tkinter pour ISN" href="../index-2.html" />
+  <link rel="next" title="Entry - Champs de saisie" href="entw.html" />
+  <link rel="prev" title="Canvas - Canevas" href="caw.html" />
+</head>
+
+<body>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général" accesskey="I">index</a></li>
+      <li class="right">
+        <a href="entw.html" title="Entry - Champs de saisie" accesskey="N">suivant</a> |</li>
+      <li class="right">
+        <a href="caw.html" title="Canvas - Canevas" accesskey="P">précédent</a> |</li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+      <h4>Sujet précédent</h4>
+      <p class="topless"><a href="caw.html" title="Chapitre précédent"><tt class="docutils literal"><span
+              class="pre">Canvas</span></tt> - Canevas</a></p>
+      <h4>Sujet suivant</h4>
+      <p class="topless"><a href="entw.html" title="Chapitre suivant"><tt class="docutils literal"><span
+              class="pre">Entry</span></tt> - Champs de saisie</a></p>
+
+    </div>
+  </div>
+
+  <div class="document">
+    <div class="documentwrapper">
+      <div class="bodywrapper">
+        <div class="body">
+
+          <div class="section" id="checkbutton-cases-a-cocher">
+            <span id="cocher"></span>
+            <h1><tt class="docutils literal"><span class="pre">Checkbutton</span></tt> - Cases à cocher<a
+                class="headerlink" href="#checkbutton-cases-a-cocher" title="Lien permanent vers ce titre">¶</a></h1>
+            <p>Les cases à cocher (parfois appelé «checkbox») permettent à l&#8217;utilisateur d&#8217;effectuer des
+              choix. L&#8217;illustration ci-dessous montre trois cases à cocher dont deux sont cochées (état
+              &#8220;on&#8221;: 1) et une est décochée (état &#8220;off&#8221;: 0).</p>
+            <img alt="../images/chckb.png" class="align-center" src="../images/chckb.png" />
+            <p>L&#8217;indicateur est la partie de la case à cocher qui indique son état, et l&#8217;étiquette est le
+              texte qui apparaît à côté.</p>
+            <ul class="simple">
+              <li>Vous aurez besoin de créer une variable de contrôle de classe <tt class="docutils literal"><span
+                    class="pre">IntVar</span></tt> afin que votre programme puisse interroger et/ou définir l&#8217;état
+                de la case à cocher. Voir <a class="reference internal" href="ctrvar.html#ctrlvariables"><em>Variables
+                    de contrôle: Les valeurs sous les widgets</em></a>.</li>
+              <li>Vous pouvez également utiliser des liaisons d&#8217;événements pour réagir aux actions de
+                l&#8217;utilisateur sur la case à cocher, voir <a class="reference internal"
+                  href="event.html#events"><em>Événements: répondre aux actions de l&#8217;utilisateur.</em></a>.</li>
+              <li>Vous pouvez désactiver une case à cocher. Cela modifie son apparence (qui est alors
+                &#8220;grisé&#8221;) et la rend insensible à la souris.</li>
+              <li>Vous pouvez supprimer l&#8217;indicateur de case à cocher en utilisant l&#8217;option
+                <strong>indicatoron</strong>. Le widget ressemble alors à un bouton «poussoir» qui paraît enfoncé quand
+                il est activé, et soulevé quand il est désactivé.</li>
+            </ul>
+            <p>Pour créer une case à cocher dans une fenêtre ou un cadre nommé <tt class="docutils literal"><span
+                  class="pre">parent</span></tt>:</p>
+            <dl class="class">
+              <dt id="Checkbutton">
+                <em class="property">class </em><tt class="descname">Checkbutton</tt><big>(</big><em>parent</em>,
+                <em>option</em>, <em>...</em><big>)</big><a class="headerlink" href="#Checkbutton"
+                  title="Lien permanent vers cette définition">¶</a></dt>
+              <dd>
+                <p>Le constructeur renvoie un nouveau widget Checkbutton. Les options incluent:</p>
+                <table class="docutils field-list" frame="void" rules="none">
+                  <col class="field-name" />
+                  <col class="field-body" />
+                  <tbody valign="top">
+                    <tr class="field-odd field">
+                      <th class="field-name">Paramètres:</th>
+                      <td class="field-body">
+                        <ul class="first last simple">
+                          <li><strong>activebackground</strong> &#8211; La couleur de fond lorsque la case à cocher est
+                            sous le curseur. Voir <a class="reference internal" href="sa.html#couleurs"><em>Les
+                                couleurs</em></a>.</li>
+                          <li><strong>activeforeground</strong> &#8211; La couleur du premier plan lorsque la case à
+                            cocher est sous le curseur.</li>
+                          <li><strong>anchor</strong> &#8211; Si le widget se situe dans un espace plus grand que
+                            nécessaire, cette option spécifie où la case à cocher va se placer dans cet espace. La
+                            valeur par défaut est <tt class="docutils literal"><span
+                                class="pre">anchor='center'</span></tt>. Voir <a class="reference internal"
+                              href="sa.html#ancrage"><em>Le système d&#8217;ancrage</em></a> pour les valeurs permises.
+                            Par exemple, si vous utilisez <tt class="docutils literal"><span
+                                class="pre">anchor='nw'</span></tt>, le widget sera placé dans le coin supérieur gauche
+                            de l&#8217;espace.</li>
+                          <li><strong>bg</strong> &#8211; (ou ** background**) La couleur de fond normale
+                            s&#8217;affiche derrière l&#8217;étiquette et indicateur. Voir <a class="reference internal"
+                              href="sa.html#couleurs"><em>Les couleurs</em></a>.
+                              
+                          <li><strong>bd</strong> &#8211; or borderwidth
+                            La taille de la bordure autour de l&#8217;indicateur. Elle est par défaut de deux pixels.
+                            Pour les valeurs possibles, voir <a class="reference internal"
+                              href="sa.html#bitmaps"><em>Les bitmaps</em></a>.</li>
+                          <li><strong>command</strong> &#8211; Pour appeler une procédure à chaque fois que
+                            l&#8217;utilisateur change l&#8217;état de cette case à cocher.</li>
+                          
+                            
+                          <li><strong>disabledforeground</strong> &#8211; La couleur de premier plan utilisée pour
+                            afficher le texte d&#8217;une case à cocher désactivée. La valeur par défaut est une version
+                            pointillée de la couleur de premier plan par défaut.</li>
+                          
+                          <li><strong>fg</strong> &#8211; or foreground
+                            La couleur utilisée pour afficher le texte. Pour l&#8217;option bitmap, ceci spécifie la
+                            couleur affichée pour le bit 1 dans le bitmap.</li>
+                          <li><strong>height</strong> &#8211; Le nombre de lignes de texte sur la case à cocher. La
+                            valeur par défaut est 1.</li>
+                        
+                          
+                          
+                            
+                          <li><strong>padx</strong> &#8211; Combien d&#8217;espace à laisser à gauche et à droite de la
+                            case à cocher et du texte. La valeur par défaut est de 1 pixel. Pour les valeurs possibles,
+                            voir <a class="reference internal" href="sa.html#dimensions"><em>Les dimensions</em></a>.
+                          </li>
+                          <li><strong>pady</strong> &#8211; Combien d&#8217;espace à laisser au-dessus et en dessous de
+                            la case à cocher et du texte. La valeur par défaut est de 1 pixel.</li>
+                          <li><strong>relief</strong> &#8211; Avec la valeur par défaut, <tt
+                              class="docutils literal"><span class="pre">relief='flat'</span></tt>, la case à cocher ne
+                            se distingue pas de son arrière-plan. Vous pouvez configurer cette option pour l&#8217;un
+                            des autres styles (voir <a class="reference internal" href="sa.html#reliefs"><em>Les styles
+                                de relief</em></a>), ou utiliser <tt class="docutils literal"><span
+                                class="pre">relief='solid'</span></tt>, ce qui vous donne un cadre noir fixe autour de
+                            lui.</li>
+                          <li><strong>selectcolor</strong> &#8211; La couleur utilisée pour indiquer que la case à
+                            cocher est activée. Sa valeur par défaut est <tt class="docutils literal"><span
+                                class="pre">selectcolor='red'</span></tt>.</li>
+                         
+                                
+                          <li><strong>state</strong> &#8211; La valeur par défaut est <tt class="docutils literal"><span
+                                class="pre">state='normal'</span></tt>, mais vous pouvez utiliser <tt
+                              class="docutils literal"><span class="pre">state='disabled'</span></tt> pour griser le
+                            composant et le rendre inactif. Si la souris se trouve sur la case à cocher, son état est
+                            <tt class="docutils literal"><span class="pre">'active'</span></tt>.</li>
+                         
+                            
+                          <li><strong>text</strong> &#8211; L&#8217;étiquette affichée après la case à cocher. Utiliser
+                            le caractère retour chariot <tt class="docutils literal"><span class="pre">'\n'</span></tt>
+                            pour afficher plusieurs lignes de texte.</li>
+                          <li><strong>textvariable</strong> &#8211; Si vous avez besoin de modifier l&#8217;étiquette de
+                            la case à cocher pendant l&#8217;exécution du programme, créez une variable de contrôle <tt
+                              class="docutils literal"><span class="pre">StringVar</span></tt> (voir <a
+                              class="reference internal" href="ctrvar.html#ctrlvariables"><em>Variables de contrôle: Les
+                                valeurs sous les widgets</em></a>) pour gérer sa valeur courante, et affectez cette
+                            variable de contrôle à l&#8217;option. À chaque fois que le texte de cette variable est
+                            modifié, l&#8217;étiquette du bouton est mise à jour.</li>
+                         
+                            
+                          <li><strong>variable</strong> &#8211; La variable de contrôle qui suit l&#8217;état de la case
+                            à cocher. Voir <a class="reference internal" href="ctrvar.html#ctrlvariables"><em>Variables
+                                de contrôle: Les valeurs sous les widgets</em></a>. Cette variable est un
+                            <tt class="docutils literal"><span class="pre">IntVar</span></tt> : 0 indique que la case
+                            est désactivée, 1 qu&#8217;elle est activée.</li>
+                          <li><strong>width</strong> &#8211; La largeur par défaut d&#8217;une case à cocher est
+                            déterminée par la taille du texte ou de l&#8217;image affichée. Vous pouvez régler cette
+                            option avec un nombre de caractères afin de réserver la place nécessaire à leur affichage.
+                          </li>
+                          
+                        </ul>
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p>Les cases à cocher incluent les méthodes suivantes:</p>
+                <dl class="method">
+                  <dt id="Checkbutton.deselect">
+                    <tt class="descname">deselect</tt><big>(</big><big>)</big><a class="headerlink"
+                      href="#Checkbutton.deselect" title="Lien permanent vers cette définition">¶</a></dt>
+                  <dd>
+                    <p>Décoche la case à cocher (off).</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Checkbutton.flash">
+                    <tt class="descname">flash</tt><big>(</big><big>)</big><a class="headerlink"
+                      href="#Checkbutton.flash" title="Lien permanent vers cette définition">¶</a></dt>
+                  <dd>
+                    <p>Fait clignoter la case à cocher quelques fois (entre les couleurs des états <tt
+                        class="docutils literal"><span class="pre">'active'</span></tt> et <tt
+                        class="docutils literal"><span class="pre">'normal'</span></tt>). Elle retrouve son état initial
+                      après le clignotement.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Checkbutton.invoke">
+                    <tt class="descname">invoke</tt><big>(</big><big>)</big><a class="headerlink"
+                      href="#Checkbutton.invoke" title="Lien permanent vers cette définition">¶</a></dt>
+                  <dd>
+                    <p>Utilisez cette méthode si vous souhaitez réaliser la même action que celle qui consiste à cliquer
+                      sur la case pour changer son état.</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Checkbutton.select">
+                    <tt class="descname">select</tt><big>(</big><big>)</big><a class="headerlink"
+                      href="#Checkbutton.select" title="Lien permanent vers cette définition">¶</a></dt>
+                  <dd>
+                    <p>Coche la case à cocher (on).</p>
+                  </dd>
+                </dl>
+
+                <dl class="method">
+                  <dt id="Checkbutton.toggle">
+                    <tt class="descname">toggle</tt><big>(</big><big>)</big><a class="headerlink"
+                      href="#Checkbutton.toggle" title="Lien permanent vers cette définition">¶</a></dt>
+                  <dd>
+                    <p>Coche ou décoche la case à cocher selon son état courant.</p>
+                  </dd>
+                </dl>
+
+              </dd>
+            </dl>
+
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  </div>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général">index</a></li>
+      <li class="right">
+        <a href="entw.html" title="Entry - Champs de saisie">suivant</a> |</li>
+      <li class="right">
+        <a href="caw.html" title="Canvas - Canevas">précédent</a> |</li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="footer">
+    &copy; Copyright 2013, Étienne FLORENT.
+    Créé avec <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+  </div>
+</body>
+
+<!-- Mirrored from tkinter.fdex.eu/doc/chw.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:00:50 GMT -->
+
+</html>

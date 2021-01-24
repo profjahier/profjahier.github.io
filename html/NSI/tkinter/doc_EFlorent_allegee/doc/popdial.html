@@ -1,0 +1,477 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<!-- Mirrored from tkinter.fdex.eu/doc/popdial.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:01:03 GMT -->
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+  <title>Fenêtres de dialogues &mdash; Tkinter pour ISN</title>
+
+  <link rel="stylesheet" href="../static/sphinxdoc.css" type="text/css" />
+  <link rel="stylesheet" href="../static/pygments.css" type="text/css" />
+
+  <script type="text/javascript">
+    var DOCUMENTATION_OPTIONS = {
+      URL_ROOT: '../',
+      VERSION: '1',
+      COLLAPSE_INDEX: false,
+      FILE_SUFFIX: '.html',
+      HAS_SOURCE: true
+    };
+  </script>
+  <script type="text/javascript" src="../static/jquery.js"></script>
+  <script type="text/javascript" src="../static/underscore.js"></script>
+  <script type="text/javascript" src="../static/doctools.js"></script>
+  <script type="text/javascript" src="../static/translations.js"></script>
+  <script type="text/javascript"
+    src="../../cdn.mathjax.org/mathjax/latest/MathJaxdda6.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <script type="text/javascript" src="../static/my.js"></script>
+  <link rel="top" title="Tkinter pour ISN" href="../index-2.html" />
+  <link rel="prev" title="Événements: répondre aux actions de l’utilisateur." href="event.html" />
+</head>
+
+<body>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général" accesskey="I">index</a>
+      </li>
+      <li class="right">
+        <a href="event.html" title="Événements: répondre aux actions de l’utilisateur." accesskey="P">précédent</a> |
+      </li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="sphinxsidebar">
+    <div class="sphinxsidebarwrapper">
+      <h3><a href="../index-2.html">Table des matières</a></h3>
+      <ul>
+        <li><a class="reference internal" href="#">Fenêtres de dialogues</a>
+          <ul>
+            <li><a class="reference internal" href="#le-sous-module-messagebox">Le sous-module <tt
+                  class="docutils literal"><span class="pre">messagebox</span></tt></a></li>
+            <li><a class="reference internal" href="#le-sous-module-filedialog">Le sous-module <tt
+                  class="docutils literal"><span class="pre">filedialog</span></tt></a></li>
+            <li><a class="reference internal" href="#le-sous-module-colorchooser">Le sous-module <tt
+                  class="docutils literal"><span class="pre">colorchooser</span></tt></a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <h4>Sujet précédent</h4>
+      <p class="topless"><a href="event.html" title="Chapitre précédent"><strong>Événements</strong>: répondre aux
+          actions de l&#8217;utilisateur.</a></p>
+      
+    </div>
+  </div>
+
+  <div class="document">
+    <div class="documentwrapper">
+      <div class="bodywrapper">
+        <div class="body">
+
+          <div class="section" id="fenetres-de-dialogues">
+            <span id="dialogs"></span>
+            <h1>Fenêtres de dialogues<a class="headerlink" href="#fenetres-de-dialogues"
+                title="Lien permanent vers ce titre">¶</a></h1>
+            <p>Tkinter fournit trois sous-modules qui servent à créer des fenêtres de «dialogue» préfonconfigurées. Ces
+              fenêtres sont utiles pour transmettre une information à l&#8217;utilisateur ou pour lui demander quelque
+              chose. Ces sont des fenêtres popups ou «surgissantes» car leur durée de vie est limitée: elles sont
+              détruites dès que l&#8217;utilisateur clique sur un bouton de validation.</p>
+            <ul class="simple">
+              <li><tt class="docutils literal"><span class="pre">tkinter.messagebox</span></tt>: fournit un assortiment
+                de fenêtres de dialogue pour des tâches simples.</li>
+              <li><tt class="docutils literal"><span class="pre">tkinter.filedialog</span></tt>: fournit un navigateur
+                de fichiers.</li>
+              <li><tt class="docutils literal"><span class="pre">tkinter.colorchooser</span></tt>: fournit une fenêtre
+                qui sert à sélectionner une couleur.</li>
+            </ul>
+            <p>Pour utiliser un sous-module, il faut l&#8217;importer. Par exemple, si votre application propose
+              d&#8217;ouvrir un fichier, vous utiliserez sans doute une fenêtre de navigation du sous-module
+              <em>tkinter.filedialog</em>. L&#8217;entête de votre programme ressemblera alors à:</p>
+            <div class="highlight-python">
+              <div class="highlight">
+                <pre><span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">tkinter.filedialog</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="o">...</span>
+</pre>
+              </div>
+            </div>
+            <div class="section" id="le-sous-module-messagebox">
+              <h2>Le sous-module <tt class="docutils literal"><span class="pre">messagebox</span></tt><a
+                  class="headerlink" href="#le-sous-module-messagebox" title="Lien permanent vers ce titre">¶</a></h2>
+              <p>Après avoir importé le sous-module <tt class="docutils literal"><span
+                    class="pre">messagebox</span></tt>, vous pouvez créer simplement huit sortes de fenêtres popups en
+                appelant les fonctions données ci-après.</p>
+              <table border="1" class="docutils">
+                <colgroup>
+                  <col width="50%" />
+                  <col width="50%" />
+                </colgroup>
+                <tbody valign="top">
+                  <tr class="row-odd">
+                    <td><img alt="../images/askokcancel.png" class="first last" src="../images/askokcancel.png" />
+                    </td>
+                    <td>
+                      <dl class="first last function">
+                        <dt id="askokcancel">
+                          <tt class="descname">askokcancel</tt><big>(</big><em>titre</em>, <em>message</em>,
+                          <em>option=valeur</em>, <em>...</em><big>)</big><a class="headerlink" href="#askokcancel"
+                            title="Lien permanent vers cette définition">¶</a>
+                        </dt>
+                        <dd></dd>
+                      </dl>
+
+                    </td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><img alt="../images/askquestion.png" class="first last" src="../images/askquestion.png" />
+                    </td>
+                    <td>
+                      <dl class="first last function">
+                        <dt id="askquestion">
+                          <tt class="descname">askquestion</tt><big>(</big><em>titre</em>, <em>message</em>,
+                          <em>option=valeur</em>, <em>...</em><big>)</big><a class="headerlink" href="#askquestion"
+                            title="Lien permanent vers cette définition">¶</a>
+                        </dt>
+                        <dd></dd>
+                      </dl>
+
+                    </td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><img alt="../images/askretrycancel.png" class="first last"
+                        src="../images/askretrycancel.png" />
+                    </td>
+                    <td>
+                      <dl class="first last function">
+                        <dt id="askretrycancel">
+                          <tt class="descname">askretrycancel</tt><big>(</big><em>titre</em>, <em>message</em>,
+                          <em>option=valeur</em>, <em>...</em><big>)</big><a class="headerlink" href="#askretrycancel"
+                            title="Lien permanent vers cette définition">¶</a>
+                        </dt>
+                        <dd></dd>
+                      </dl>
+
+                    </td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><img alt="../images/askyesno.png" class="first last" src="../images/askyesno.png" />
+                    </td>
+                    <td>
+                      <dl class="first last function">
+                        <dt id="askyesno">
+                          <tt class="descname">askyesno</tt><big>(</big><em>titre</em>, <em>message</em>,
+                          <em>option=valeur</em>, <em>...</em><big>)</big><a class="headerlink" href="#askyesno"
+                            title="Lien permanent vers cette définition">¶</a>
+                        </dt>
+                        <dd></dd>
+                      </dl>
+
+                    </td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><img alt="../images/askyesnocancel.png" class="first last"
+                        src="../images/askyesnocancel.png" />
+                    </td>
+                    <td>
+                      <dl class="first last function">
+                        <dt id="askyesnocancel">
+                          <tt class="descname">askyesnocancel</tt><big>(</big><em>titre</em>, <em>message</em>,
+                          <em>option=valeur</em>, <em>...</em><big>)</big><a class="headerlink" href="#askyesnocancel"
+                            title="Lien permanent vers cette définition">¶</a>
+                        </dt>
+                        <dd></dd>
+                      </dl>
+
+                    </td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><img alt="../images/showerror.png" class="first last" src="../images/showerror.png" />
+                    </td>
+                    <td>
+                      <dl class="first last function">
+                        <dt id="showerror">
+                          <tt class="descname">showerror</tt><big>(</big><em>titre</em>, <em>message</em>,
+                          <em>option=valeur</em>, <em>...</em><big>)</big><a class="headerlink" href="#showerror"
+                            title="Lien permanent vers cette définition">¶</a>
+                        </dt>
+                        <dd></dd>
+                      </dl>
+
+                    </td>
+                  </tr>
+                  <tr class="row-odd">
+                    <td><img alt="../images/showinfo.png" class="first last" src="../images/showinfo.png" />
+                    </td>
+                    <td>
+                      <dl class="first last function">
+                        <dt id="showinfo">
+                          <tt class="descname">showinfo</tt><big>(</big><em>titre</em>, <em>message</em>,
+                          <em>option=valeur</em>, <em>...</em><big>)</big><a class="headerlink" href="#showinfo"
+                            title="Lien permanent vers cette définition">¶</a>
+                        </dt>
+                        <dd></dd>
+                      </dl>
+
+                    </td>
+                  </tr>
+                  <tr class="row-even">
+                    <td><img alt="../images/showwarning.png" class="first last" src="../images/showwarning.png" />
+                    </td>
+                    <td>
+                      <dl class="first last function">
+                        <dt id="showwarning">
+                          <tt class="descname">showwarning</tt><big>(</big><em>titre</em>, <em>message</em>,
+                          <em>option=valeur</em>, <em>...</em><big>)</big><a class="headerlink" href="#showwarning"
+                            title="Lien permanent vers cette définition">¶</a>
+                        </dt>
+                        <dd></dd>
+                      </dl>
+
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              <p>Dans chaque cas, l&#8217;argument <em>titre</em> permet de donner un titre à la fenêtre et
+                l&#8217;argument <em>message</em> est une chaîne qui sera affichée dans le corps de la fenêtre; vous
+                pouvez y insérer des sauts de ligne en utilisant le caractère spécial <tt class="docutils literal"><span
+                    class="pre">'\n'</span></tt>.</p>
+              <p>Les options sont:</p>
+              <blockquote>
+                <div>
+                  <p><strong>default</strong></p>
+                  <blockquote>
+                    <div>
+                      <p>Sert à indiquer le bouton qui représente le choix par défaut. Si vous ne précisez pas cette
+                        option, c&#8217;est le bouton le plus à gauche qui est choisi.</p>
+                      <p>Pour préciser un bouton par défaut, utilisez l&#8217;une des valeurs <tt
+                          class="docutils literal"><span class="pre">'cancel'</span></tt>, <tt
+                          class="docutils literal"><span class="pre">'ignore'</span></tt>, <tt
+                          class="docutils literal"><span class="pre">'ok'</span></tt>, <tt
+                          class="docutils literal"><span class="pre">'no'</span></tt>, <tt
+                          class="docutils literal"><span class="pre">'retry'</span></tt> ou <tt
+                          class="docutils literal"><span class="pre">'yes'</span></tt>.</p>
+                    </div>
+                  </blockquote>
+                  <p><strong>icon</strong></p>
+                  <blockquote>
+                    <div>Sert à sélectionner l&#8217;icône affichée sur la fenêtre de dialogue. Les valeurs possibles
+                      sont <tt class="docutils literal"><span class="pre">'error'</span></tt>, <tt
+                        class="docutils literal"><span class="pre">'info'</span></tt>, <tt
+                        class="docutils literal"><span class="pre">'question'</span></tt> ou <tt
+                        class="docutils literal"><span class="pre">'warning'</span></tt>.</div>
+                  </blockquote>
+                  <p><strong>parent</strong></p>
+                  <blockquote>
+                    <div>Si vous ne configurez pas cette option, la fenêtre surgissante apparaîtra au-dessus de votre
+                      fenêtre principale. Pour la faire apparaître au-dessus d&#8217;une fenêtre arbitraire <tt
+                        class="docutils literal"><span class="pre">w</span></tt>, utilisez <tt
+                        class="docutils literal"><span class="pre">parent=w</span></tt>.</div>
+                  </blockquote>
+                </div>
+              </blockquote>
+              <p>Chacune des fonctions <tt class="docutils literal"><span class="pre">ask...</span></tt> retourne une
+                valeur qui dépend du bouton sur lequel l&#8217;utilisateur a cliqué afin de mettre fin au «dialogue».
+              </p>
+              <ul class="simple">
+                <li><tt class="docutils literal"><span class="pre">askokcancel</span></tt>, <tt
+                    class="docutils literal"><span class="pre">askretrycancel</span></tt>, et <tt
+                    class="docutils literal"><span class="pre">askyesno</span></tt> retournent toutes un booléen: <tt
+                    class="docutils literal"><span class="pre">True</span></tt> si l&#8217;utilisateur a cliqué sur le
+                  bouton &#8220;Ok&#8221;, &#8220;Oui&#8221; ou &#8220;Ré-essayer&#8221;, <tt
+                    class="docutils literal"><span class="pre">False</span></tt> s&#8217;il a cliqué sur
+                  &#8220;Non&#8221; ou sur &#8220;Annuler&#8221;.</li>
+                <li><tt class="docutils literal"><span class="pre">askyesnocancel</span></tt> retourne <tt
+                    class="docutils literal"><span class="pre">True</span></tt>, <tt class="docutils literal"><span
+                      class="pre">False</span></tt>, ou <tt class="docutils literal"><span class="pre">None</span></tt>
+                  selon que l&#8217;utilisateur a cliqué sur le bouton &#8220;Oui&#8221;, &#8220;Non&#8221; ou
+                  &#8220;Annuler&#8221;.</li>
+                <li><tt class="docutils literal"><span class="pre">askquestion</span></tt> retourne une chaîne <tt
+                    class="docutils literal"><span class="pre">'yes'</span></tt> pour &#8220;Oui&#8221;, ou <tt
+                    class="docutils literal"><span class="pre">'no'</span></tt> pour &#8220;Non&#8221;.</li>
+              </ul>
+            </div>
+            <div class="section" id="le-sous-module-filedialog">
+              <h2>Le sous-module <tt class="docutils literal"><span class="pre">filedialog</span></tt><a
+                  class="headerlink" href="#le-sous-module-filedialog" title="Lien permanent vers ce titre">¶</a></h2>
+              <p>Le sous-module <tt class="docutils literal"><span class="pre">filedialog</span></tt> fournit des
+                fonctions qui servent à créer des fenêtres popups pour permettre à l&#8217;utilisateur de choisir un
+                fichier. Une fois que l&#8217;utilisateur a fait son choix, la fonction retourne le chemin complet du
+                fichier. Voici à quoi ressemble une telle fenêtre:</p>
+              <img alt="../images/asksaveasfilename.png" class="align-center" src="../images/asksaveasfilename.png" />
+              <p>Les fonctions disponibles sont:</p>
+              <blockquote>
+                <div>
+                  <dl class="function">
+                    <dt id="askopenfilename">
+                      <tt class="descname">askopenfilename</tt><big>(</big><em>option=valeur</em>,
+                      <em>...</em><big>)</big><a class="headerlink" href="#askopenfilename"
+                        title="Lien permanent vers cette définition">¶</a>
+                    </dt>
+                    <dd>
+                      <p>Produit une fenêtre popup qui permet à l&#8217;utilisateur de sélectionner un fichier existant.
+                        Cela fait, la fonction retourne le chemin complet du fichier (dans l&#8217;arborescence) sous la
+                        forme d&#8217;une chaîne (vide si l&#8217;utilisateur a appuyé sur &#8220;annuler&#8221;).</p>
+                      <p>Si l&#8217;utilisateur sélectionne un fichier qui n&#8217;existe pas, une nouvelle popup
+                        apparaîtra pour lui indiquer ce fait.</p>
+                    </dd>
+                  </dl>
+
+                  <dl class="function">
+                    <dt id="asksaveasfilename">
+                      <tt class="descname">asksaveasfilename</tt><big>(</big><em>option=valeur</em>,
+                      <em>...</em><big>)</big><a class="headerlink" href="#asksaveasfilename"
+                        title="Lien permanent vers cette définition">¶</a>
+                    </dt>
+                    <dd>
+                      <p>Produit une fenêtre popup qui permet à l&#8217;utilisateur de sélectionner un répertoire et
+                        d&#8217;indiquer le nom d&#8217;un fichier qu&#8217;il souhaite créer ou qu&#8217;il souhaite
+                        remplacer s&#8217;il existe déjà. Dans ce dernier cas, une popup apparaît pour le mettre en
+                        garde sur le fait que le fichier existe déjà et pour lui demander si il souhaite vraiment le
+                        remplacer. i</p>
+                      <p>La fonction retourne le chemin complet du fichier à créer ou à remplacer sous la forme
+                        d&#8217;une chaîne (éventuellement vide).</p>
+                    </dd>
+                  </dl>
+
+                </div>
+              </blockquote>
+              <p>Les options des deux fonctions sont les mêmes:</p>
+              <blockquote>
+                <div>
+                  <p><strong>defaultextension</strong></p>
+                  <blockquote>
+                    <div>
+                      <p>L&#8217;extension du fichier par défaut, c&#8217;est à une chaîne qui commence par un point
+                        «.». Si l&#8217;utilisateur utilise un point dans le nom de fichier, cette option n&#8217;a pas
+                        d&#8217;effet. Autrement, l&#8217;extension donnée est concaténée au nom de fichier fourni par
+                        l&#8217;utilisateur.</p>
+                      <p>Par exemple, si vous utilisez <tt class="docutils literal"><span
+                            class="pre">defaultextension='.jpg'</span></tt> et que l&#8217;utilisateur saisi <tt
+                          class="docutils literal"><span class="pre">'gojiro'</span></tt>, le nom de fichier utilisé
+                        sera au final <tt class="docutils literal"><span class="pre">'gojiro.jpg'</span></tt>.</p>
+                    </div>
+                  </blockquote>
+                  <p><strong>filetypes</strong></p>
+                  <blockquote>
+                    <div>
+                      <p>Une liste de la forme <tt class="docutils literal"><span class="pre">[(nom1,</span> <span
+                            class="pre">motif1),</span> <span class="pre">(nom2,</span> <span
+                            class="pre">motif2),</span> <span class="pre">...]</span></tt> dont les éléments sont des
+                        2-tuples qui contiennent, d&#8217;une part le nom d&#8217;un type de fichiers, d&#8217;autre
+                        part un motif de sélection qui servira à filtrer les fichiers selon que leur nom corresponde ou
+                        non au motif. Le nom est affiché sur le bouton de sélection «Type de fichiers» afin
+                        d&#8217;aider l&#8217;utilisateur à comprendre quels sont les fichiers filtrés.</p>
+                      <p>Par exemple, pour permettre à l&#8217;utilisateur d&#8217;afficher uniquement les fichiers dont
+                        le nom se termine par <tt class="docutils literal"><span class="pre">'.png'</span></tt>, vous
+                        pourriez utiliser <tt class="docutils literal"><span
+                            class="pre">filetypes=[(&quot;PNG&quot;,&quot;*.png&quot;)]</span></tt>. Le caractère <tt
+                          class="docutils literal"><span class="pre">*</span></tt> est une sorte de joker qui symbolise
+                        tous les caractères situés avant le point.</p>
+                      <p>En précisant plus de tuples de ce genre dans la liste, on donne à l&#8217;utilisateur le choix
+                        du filtre qu&#8217;il peut sélectionner en utilisant le bouton «Type de fichiers» (voir
+                        l&#8217;illustration).</p>
+                    </div>
+                  </blockquote>
+                  <p><strong>initialdir</strong></p>
+                  <blockquote>
+                    <div>Le chemin du dossier dont il faut afficher le contenu initialement. Le dossier par défaut est
+                      le dossier de travail actuel (probablement celui qui contient le fichier de votre programme).
+                    </div>
+                  </blockquote>
+                  <p><strong>initialfile</strong></p>
+                  <blockquote>
+                    <div>Le nom de fichier à afficher initialement dans le champ &#8220;Nom de fichier:&#8221;.</div>
+                  </blockquote>
+                  <p><strong>parent</strong></p>
+                  <blockquote>
+                    <div>Pour faire en sorte que la fenêtre popup apparaîsse au-dessus d&#8217;une fenêtre <tt
+                        class="docutils literal"><span class="pre">w</span></tt> , utilisez <tt
+                        class="docutils literal"><span class="pre">parent=w</span></tt>. Par défaut, la fenêtre popup
+                      apparaît au-dessus de la fenêtre principale de votre application.</div>
+                  </blockquote>
+                  <p><strong>title</strong></p>
+                  <blockquote>
+                    <div>Sert à donner un titre explicite à la fenêtre popup.</div>
+                  </blockquote>
+                </div>
+              </blockquote>
+            </div>
+            <div class="section" id="le-sous-module-colorchooser">
+              <h2>Le sous-module <tt class="docutils literal"><span class="pre">colorchooser</span></tt><a
+                  class="headerlink" href="#le-sous-module-colorchooser" title="Lien permanent vers ce titre">¶</a></h2>
+              <img alt="../images/colorchooser.png" class="align-center" src="../images/colorchooser.png" />
+              <p>Pour fournir à l&#8217;utilisateur de votre application un moyen simple de sélectionner une couleur,
+                importez le sous-module <tt class="docutils literal"><span class="pre">colorchooser</span></tt> et
+                appelez cette fonction:</p>
+              <div class="highlight-python">
+                <div class="highlight">
+                  <pre><span class="n">couleur</span> <span class="o">=</span> <span class="n">askcolor</span><span class="p">(</span><span class="n">couleur</span><span class="p">,</span> <span class="n">option</span><span class="o">=</span><span class="n">valeur</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</pre>
+                </div>
+              </div>
+              <p>L&#8217;argument <em>couleur</em> sert à préciser la couleur sélectionnée par défaut au moment où la
+                fenêtre popup s&#8217;ouvre. C&#8217;est un gris léger par défaut.</p>
+              <p>Les options sont:</p>
+              <blockquote>
+                <div>
+                  <p><strong>title</strong></p>
+                  <blockquote>
+                    <div>Le titre de la fenêtre. &#8220;Couleur&#8221; par défaut.</div>
+                  </blockquote>
+                  <p><strong>parent</strong></p>
+                  <blockquote>
+                    <div>Pour faire apparaître la popup au-dessus d&#8217;une fenêtre <tt class="docutils literal"><span
+                          class="pre">w</span></tt>, utiliser <tt class="docutils literal"><span
+                          class="pre">parent=w</span></tt>. Le comportement par défaut est de la faire apparaître
+                      au-dessus de la fenêtre principale du programme.</div>
+                  </blockquote>
+                </div>
+              </blockquote>
+              <p>Si l&#8217;utilisateur clique sur le bouton &#8220;Ok&#8221; de la popup, la valeur de retour est un
+                tuple de la forme <tt class="docutils literal"><span class="pre">(triple,</span> <span
+                    class="pre">couleur)</span></tt>. Le nom <tt class="docutils literal"><span
+                    class="pre">triple</span></tt> représente un tuple <tt class="docutils literal"><span
+                    class="pre">(R,</span> <span class="pre">V,</span> <span class="pre">B)</span></tt> qui contient les
+                composantes Rouge, Vert et Bleu de la couleur sélectionnée; chaque composante est un entier de
+                l&#8217;intervalle [0,255]. Enfin, le nom <tt class="docutils literal"><span
+                    class="pre">couleur</span></tt> représente une chaîne qui contient le code hexadécimal <tt
+                  class="docutils literal"><span class="pre">'#RRVVBB'</span></tt> de la couleur choisie.</p>
+              <p>Si l&#8217;utilisateur clique sur &#8220;Annuler&#8221;, la fonction retourne <tt
+                  class="docutils literal"><span class="pre">(None,</span> <span class="pre">None)</span></tt>.</p>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  </div>
+  <div class="related">
+    <h3>Navigation</h3>
+    <ul>
+      <li class="right" style="margin-right: 10px">
+        <a href="../genindex.html" title="Index général">index</a>
+      </li>
+      <li class="right">
+        <a href="event.html" title="Événements: répondre aux actions de l’utilisateur.">précédent</a> |
+      </li>
+      <li><a href="../index-2.html">Tkinter pour ISN</a> &raquo;</li>
+    </ul>
+  </div>
+  <div class="footer">
+    &copy; Copyright 2013, Étienne FLORENT.
+    Créé avec <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+  </div>
+</body>
+
+<!-- Mirrored from tkinter.fdex.eu/doc/popdial.html by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:01:08 GMT -->
+
+</html>

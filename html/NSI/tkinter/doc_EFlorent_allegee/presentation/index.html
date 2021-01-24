@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+
+
+<html lang="fr">
+  
+<!-- Mirrored from tkinter.fdex.eu/presentation/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:01:11 GMT -->
+<head>
+    <meta charset="UTF-8" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Tkinter &mdash; introduction  documentation</title>
+
+    
+
+    
+<link rel="stylesheet" href="_static/css/reveal.min.css">
+<link rel="stylesheet" href="_static/css/theme/default.css" id="theme">
+<link rel="stylesheet" href="_static/lib/css/zenburn.css">
+<link rel="stylesheet" href="_static/test.css" type="text/css" />
+<link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+    <!-- If the query includes 'print-pdf', use the PDF print sheet -->
+    <script>
+      document.write('<link rel="stylesheet" href="_static/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="_static/lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        
+  <div class="section" id="tkinter">
+<h1>Tkinter<a class="headerlink" href="#tkinter" title="Permalink to this headline">¶</a></h1>
+<section>
+<h2>tkinter</h2>
+<p class="first">Module standard de Python</p>
+<p class="fragment roll-in"><strong>objectif</strong>: composer des <em>interfaces graphiques</em> - <cite>IHM</cite></p>
+<p class="fragment roll-in last"><a class="reference external" href="../index.html">Documentation</a></p>
+</section>
+<section>
+<section class="first">
+<h2>Exemple 1 - Salutation</h2>
+<p class="first">Lancer l&#8217;interpréteur interactif - console - python (version 3 ou plus)</p>
+<p>Vous obtenez quelquechose comme</p>
+<div class="last highlight-text"><div class="highlight"><pre>Python 3.2.3 (default, Feb 27 2014, 21:31:18)
+[GCC 4.6.3] on linux2
+Type &quot;help&quot;, &quot;copyright&quot;, &quot;credits&quot; or &quot;license&quot; for more information.
+&gt;&gt;&gt;
+</pre></div>
+</div>
+</section>
+<section>
+<h2>fenêtre principale</h2>
+<div class="fragment roll-in first highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fen</span> <span class="o">=</span> <span class="n">Tk</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># configuration du titre</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fen</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;première fenêtre&#39;</span><span class="p">)</span>
+<span class="go">&#39;&#39;</span>
+</pre></div>
+</div>
+<img alt="_images/ill1-1.png" class="fragment roll-in last" src="_images/ill1-1.png" />
+</section>
+<section>
+<h2>Widgets - composants graphiques</h2>
+<p class="fragment roll-in first">Création d&#8217;un widget <em>w</em></p>
+<div class="fragment roll-in last highlight-python"><div class="highlight"><pre><span class="n">w</span> <span class="o">=</span> <span class="n">Widget</span><span class="p">(</span><span class="n">parent</span><span class="p">,</span> <span class="n">opt1</span><span class="o">=</span><span class="n">val1</span><span class="p">,</span> <span class="n">opt2</span><span class="o">=</span><span class="n">val2</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section>
+<h2>Label - étiquette</h2>
+<p class="first"><a class="reference external" href="../doc/labw.html">Label</a></p>
+<p>Afficher du texte</p>
+<div class="fragment roll-in highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">salut</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">fen</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s">&quot;Bonjour tout l&#39;monde!&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="fragment roll-in last">Argh! Rien ne se produit!</p>
+</section>
+<section>
+<h2>positionnement</h2>
+<p class="fragment roll-in first">Tout widget <em>w</em> doit être positionné dans son conteneur</p>
+<div class="fragment roll-in highlight-python"><div class="highlight"><pre><span class="n">w</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">opt1</span><span class="o">=</span><span class="n">v1</span><span class="p">,</span> <span class="n">opt2</span><span class="o">=</span><span class="n">v2</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="fragment roll-in">Testons</p>
+<div class="fragment roll-in highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">salut</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
+</pre></div>
+</div>
+<img alt="_images/ill1-2.png" class="fragment roll-in last" src="_images/ill1-2.png" />
+</section>
+<section>
+<h2>Button - bouton</h2>
+<p class="first"><a class="reference external" href="../doc/bw.html">Button</a></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">fen</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s">&#39;Action&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<img alt="_images/ill1-3.png" class="fragment roll-in last" src="_images/ill1-3.png" />
+</section>
+<section>
+<h2>obtenir des informations</h2>
+<p class="fragment roll-in first">Obtenir la liste des options du widget <em>w</em></p>
+<div class="fragment roll-in highlight-python"><div class="highlight"><pre><span class="n">w</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="c"># ou Widget.keys()</span>
+</pre></div>
+</div>
+<p class="fragment roll-in">Obtenir la liste des méthodes (ou attributs) de <em>w</em></p>
+<div class="fragment roll-in highlight-python"><div class="highlight"><pre><span class="nb">dir</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="c"># ou dir(Widget)</span>
+</pre></div>
+</div>
+<p class="fragment roll-in">Testons</p>
+<div class="fragment roll-in last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">salut</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="c"># ou Label.keys()</span>
+<span class="go">[&#39;activebackground&#39;, &#39;activeforeground&#39;, ...]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">dir</span><span class="p">(</span><span class="n">salut</span><span class="p">)</span> <span class="c"># ou dir(Label)</span>
+<span class="go">[&#39;_Misc__winfo_getint&#39;, ...]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">help</span><span class="p">(</span><span class="n">Label</span><span class="o">.</span><span class="n">pack</span><span class="p">)</span> <span class="c"># «q» pour sortir de l&#39;aide en ligne</span>
+</pre></div>
+</div>
+</section>
+<section>
+<h2>Récupérer/modifier une option</h2>
+<ol class="fragment roll-in first arabic simple">
+<li>Récupérer la valeur d&#8217;une option <em>o</em> d&#8217;un widget <em>w</em></li>
+</ol>
+<div class="fragment roll-in highlight-python"><div class="highlight"><pre><span class="n">w</span><span class="p">[</span><span class="s">&#39;o&#39;</span><span class="p">]</span> <span class="c"># ou w.cget(&#39;o&#39;) -&gt; str</span>
+</pre></div>
+</div>
+<ol class="fragment roll-in arabic simple" start="2">
+<li>Modifier une option</li>
+</ol>
+<div class="fragment roll-in highlight-python"><div class="highlight"><pre><span class="n">w</span><span class="p">[</span><span class="s">&#39;o&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">valeur</span>
+<span class="c"># ou w.config(o1=v1, o2=v2, ...)</span>
+<span class="c"># ou w.configure(o1=v1, o2=v2, ...)</span>
+</pre></div>
+</div>
+<p class="fragment roll-in">Testons</p>
+<div class="fragment roll-in last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">salut</span><span class="p">[</span><span class="s">&#39;bg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;black&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">salut</span><span class="p">[</span><span class="s">&#39;fg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;green&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">salut</span><span class="p">[</span><span class="s">&#39;width&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">salut</span><span class="p">[</span><span class="s">&#39;height&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">salut</span><span class="p">[</span><span class="s">&#39;anchor&#39;</span><span class="p">]</span>
+<span class="go">&#39;center&#39;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">salut</span><span class="p">[</span><span class="s">&#39;anchor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;sw&#39;</span> <span class="c"># s ? w ?</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">salut</span><span class="p">[</span><span class="s">&#39;anchor&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;center&#39;</span>
+</pre></div>
+</div>
+</section>
+<section>
+<h2>agir avec le bouton</h2>
+<ol class="fragment roll-in first arabic simple">
+<li>Définir une fonction <em>sans argument</em> qui réalise l&#8217;action,</li>
+</ol>
+<ol class="fragment roll-in arabic simple" start="2">
+<li>Associer cette fonction à l&#8217;option <em>command</em> du bouton.</li>
+</ol>
+<div class="fragment roll-in highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">action</span><span class="p">():</span>
+    <span class="c"># ...</span>
+
+<span class="c"># ...</span>
+<span class="n">b</span><span class="p">[</span><span class="s">&#39;command&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">action</span> <span class="c"># b -&gt; bouton</span>
+</pre></div>
+</div>
+<p class="fragment roll-in"><strong>Exercice</strong></p>
+<p class="fragment roll-in last">Le bouton bascule la couleur du texte: vert &lt;-&gt; rouge</p>
+</section>
+<section>
+<h2>Solution</h2>
+<img alt="_images/ill1-4.png" class="first" src="_images/ill1-4.png" />
+<div class="last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">action</span><span class="p">():</span>
+<span class="gp">... </span>    <span class="n">et</span> <span class="o">=</span> <span class="n">salut</span>
+<span class="gp">... </span>    <span class="n">et</span><span class="p">[</span><span class="s">&#39;fg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;red&#39;</span> <span class="k">if</span> <span class="n">et</span><span class="p">[</span><span class="s">&#39;fg&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s">&#39;green&#39;</span> <span class="k">else</span> <span class="s">&#39;green&#39;</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="p">[</span><span class="s">&#39;command&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">action</span>
+</pre></div>
+</div>
+</section>
+<section class="last">
+<h2>Complément sur «pack»</h2>
+<p class="fragment roll-in first">Quatre widgets <a class="reference external" href="../doc/frw.html">Frame</a> - f1, f2, f3, f4 - «packer» dans cet ordre</p>
+<img alt="_images/ill1-5.png" class="fragment roll-in" src="_images/ill1-5.png" />
+<p class="fragment roll-in">Code complet</p>
+<div class="fragment roll-in last highlight-python"><div class="highlight"><pre><span class="n">Frame</span><span class="p">(</span><span class="n">fen</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">fill</span><span class="o">=</span><span class="s">&#39;both&#39;</span><span class="p">)</span>
+<span class="n">Frame</span><span class="p">(</span><span class="n">fen</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s">&#39;red&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s">&#39;left&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s">&#39;both&#39;</span><span class="p">)</span>
+<span class="n">Frame</span><span class="p">(</span><span class="n">fen</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s">&#39;green&#39;</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s">&#39;bottom&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s">&#39;both&#39;</span><span class="p">)</span>
+<span class="n">Frame</span><span class="p">(</span><span class="n">fen</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s">&#39;white&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span><span class="o">=</span><span class="s">&#39;right&#39;</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s">&#39;both&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section>
+<section class="first">
+<h2>Exemple 2 : gestionnaire de tâches</h2>
+<img alt="_images/ill2-1.png" class="first" src="_images/ill2-1.png" />
+<p class="last">Récupérer l&#8217;<a class="reference external" href="_images/todolist.gif">icone</a> (clic droit -&gt; enregistrer ...)</p>
+</section>
+<section>
+<h2>Construction de la GUI</h2>
+<div class="fragment roll-in first highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">fen</span> <span class="o">=</span> <span class="n">Tk</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fen</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;«todo» liste&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">et1</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">fen</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s">&#39;Nouvelle tâche&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="fragment roll-in">Utilisons une image - <a class="reference external" href="../doc/sa.html#la-classe-photoimage">PhotoImage</a> - pour la seconde étiquette.</p>
+<div class="fragment roll-in highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">icone</span> <span class="o">=</span> <span class="n">PhotoImage</span><span class="p">(</span><span class="nb">file</span><span class="o">=</span><span class="s">&#39;todolist.gif&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># l&#39;image doit être dans le répertoire courant de la console</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># pour le connaître: import os puis os.getcwd()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">et2</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">fen</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="n">icone</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="fragment roll-in">Il nous faut encore un champ de saisi, <a class="reference external" href="../doc/entw.html">Entry</a>  et une liste, <a class="reference external" href="../doc/lbw.html">Listbox</a> .</p>
+<div class="fragment roll-in highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">saisi</span> <span class="o">=</span> <span class="n">Entry</span><span class="p">(</span><span class="n">fen</span><span class="p">)</span> <span class="c"># pour une boîte de saisie</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">liste</span> <span class="o">=</span> <span class="n">Listbox</span><span class="p">(</span><span class="n">fen</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> <span class="c"># et une simple liste</span>
+</pre></div>
+</div>
+<div class="fragment roll-in last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">fen</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s">&#39;Vider&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section>
+<h2>Positionnement</h2>
+<p class="fragment roll-in first">Cette fois-ci, nous utiliserons le gestionnaire de grille, <a class="reference external" href="../gp.html#la-methode-grid">grid</a></p>
+<div class="fragment roll-in highlight-python"><div class="highlight"><pre><span class="n">w</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="n">ligne</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="n">col</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+<span class="c"># ligne, col: entier à partir de 0</span>
+</pre></div>
+</div>
+<p class="fragment roll-in">Pour nous, une grille à 3 ligne et 2 colonnes avec fusion des deux colonnes de la dernière ligne.</p>
+<div class="fragment roll-in last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">et1</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">saisi</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">et2</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">liste</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section>
+<h2>Gestion des événements</h2>
+<p class="first"><a class="reference external" href="../doc/event.html">Event</a></p>
+<p class="fragment roll-in">Événement: l&#8217;utilisateur agit sur l&#8217;interface</p>
+<p class="fragment roll-in">Pour réagir à un événement</p>
+<ol class="fragment roll-in arabic simple">
+<li>Définir un gestionnaire d&#8217;événement - <em>event handler</em></li>
+</ol>
+<div class="fragment roll-in highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">gestEvt</span><span class="p">(</span><span class="n">evt</span><span class="p">):</span>
+    <span class="c"># evt: objet de type Event qui sert à obtenir</span>
+    <span class="c"># des informations sur les circonstances de l&#39;appel</span>
+    <span class="c"># du gestionnaire ...</span>
+
+    <span class="c"># code qui réalise l&#39;action</span>
+</pre></div>
+</div>
+<ol class="fragment roll-in arabic simple" start="2">
+<li>Lier le widget et l&#8217;événement surveillé au gestionnaire</li>
+</ol>
+<div class="fragment roll-in last highlight-python"><div class="highlight"><pre><span class="n">w</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s">&#39;&lt;description_evt&gt;&#39;</span><span class="p">,</span> <span class="n">gestEvt</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section>
+<h2>Ajouter des tâches</h2>
+<p class="first">&lt;Return&gt; : insère le contenu de <em>saisi</em> à la fin de <em>liste</em></p>
+<div class="fragment roll-in last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">inserer</span><span class="p">(</span><span class="n">evt</span><span class="p">):</span> <span class="c"># définition du gestionnaire</span>
+<span class="gp">... </span>    <span class="n">tache</span> <span class="o">=</span> <span class="n">saisi</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+<span class="gp">... </span>    <span class="n">liste</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s">&#39;end&#39;</span><span class="p">,</span> <span class="n">tache</span><span class="p">)</span>
+<span class="gp">... </span>    <span class="n">saisi</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&#39;end&#39;</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">saisi</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s">&#39;&lt;Return&gt;&#39;</span><span class="p">,</span> <span class="n">inserer</span><span class="p">)</span> <span class="c"># liaison</span>
+</pre></div>
+</div>
+</section>
+<section>
+<h2>Vider la liste</h2>
+<p class="first">Fonction <em>lambda</em>: fonction <em>anonyme</em> composée d&#8217;une unique instruction possédant une valeur (expression)</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">lambda</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="o">...</span><span class="p">:</span> <span class="n">expression</span>
+<span class="c"># x,y,... sont les paramètres de la fonction</span>
+<span class="c"># valeur de retour: la valeur de l&#39;expression</span>
+</pre></div>
+</div>
+<p>Exemple</p>
+<div class="fragment roll-in highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">L</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">:</span> <span class="p">(</span><span class="n">x</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">y</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mf">0.5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># RAPPEL x ** n signifie « x puissance n »</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">L</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="go">5</span>
+</pre></div>
+</div>
+<p class="fragment roll-in">Application</p>
+<div class="fragment roll-in last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">b</span><span class="p">[</span><span class="s">&#39;command&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="k">lambda</span> <span class="p">:</span> <span class="n">liste</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&#39;end&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section>
+<h2>Exercice 1</h2>
+<p class="first">En utilisant une fonction «lambda», permettre à l&#8217;utilisateur de supprimer l&#8217;élément courant de la <a class="reference external" href="../doc/lbw.html">liste</a> en appuyant sur la touche <em>Suppr</em>.</p>
+<ol class="fragment roll-in arabic simple">
+<li>Supprimer un élément de la liste</li>
+</ol>
+<div class="fragment roll-in highlight-python"><div class="highlight"><pre><span class="n">liste</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="c"># où i est l&#39;index de l&#39;élément à supprimer</span>
+</pre></div>
+</div>
+<ol class="fragment roll-in arabic simple" start="2">
+<li>Récupérer l&#8217;index <em>i</em> de l&#8217;élément courant</li>
+</ol>
+<div class="fragment roll-in highlight-python"><div class="highlight"><pre><span class="n">i</span> <span class="o">=</span> <span class="n">liste</span><span class="o">.</span><span class="n">curselection</span><span class="p">()</span>
+</pre></div>
+</div>
+<ol class="fragment roll-in arabic simple" start="3">
+<li>Nom de l&#8217;événement «appui sur la touche <em>Suppr</em>»</li>
+</ol>
+<div class="fragment roll-in highlight-python"><div class="highlight"><pre><span class="s">&#39;&lt;Delete&gt;&#39;</span>
+</pre></div>
+</div>
+<p class="fragment roll-in">SOLUTION</p>
+<div class="fragment roll-in last highlight-python"><div class="highlight"><pre><span class="n">liste</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s">&#39;&lt;Delete&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">evt</span><span class="p">:</span> <span class="n">liste</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">liste</span><span class="o">.</span><span class="n">curselection</span><span class="p">()))</span>
+</pre></div>
+</div>
+</section>
+<section>
+<h2>Exercice 2</h2>
+<p class="first">Permettre à l&#8217;utilisateur de modifier l&#8217;ordre des éléments dans la liste par «cliquer-glisser-relâcher»</p>
+<p class="fragment roll-in">Éléments de la solution</p>
+<div class="fragment roll-in last highlight-python"><div class="highlight"><pre><span class="n">index</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="c"># pour mémoriser l&#39;index de l&#39;item à déplacer</span>
+
+<span class="k">def</span> <span class="nf">selclic</span><span class="p">(</span><span class="n">evt</span><span class="p">):</span>
+   <span class="k">global</span> <span class="n">index</span> <span class="c"># nécessaire pour modifier la variable globale index</span>
+   <span class="c"># ???</span>
+
+<span class="k">def</span> <span class="nf">selrel</span><span class="p">(</span><span class="n">evt</span><span class="p">):</span>
+   <span class="c"># ???</span>
+
+<span class="c"># l&#39;utilisateur appuie sur le bouton gauche de la souris</span>
+<span class="n">liste</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s">&#39;&lt;Button-1&gt;&#39;</span><span class="p">,</span> <span class="n">selclic</span><span class="p">,</span> <span class="s">&#39;+&#39;</span><span class="p">)</span>
+<span class="c"># lorsqu&#39;il relâche ce bouton</span>
+<span class="n">liste</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s">&#39;&lt;ButtonRelease-1&gt;&#39;</span><span class="p">,</span> <span class="n">selrel</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section>
+<h2>Aide pour l'exercice</h2>
+<ol class="fragment roll-in first arabic simple">
+<li>Position verticale courante de la souris</li>
+</ol>
+<div class="fragment roll-in highlight-python"><div class="highlight"><pre><span class="n">evt</span><span class="o">.</span><span class="n">y</span>
+</pre></div>
+</div>
+<ol class="fragment roll-in arabic simple" start="2">
+<li>Index de l&#8217;item de liste le plus proche de la position <em>y</em></li>
+</ol>
+<div class="fragment roll-in highlight-python"><div class="highlight"><pre><span class="n">indexElt</span> <span class="o">=</span> <span class="n">liste</span><span class="o">.</span><span class="n">nearest</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="fragment roll-in arabic simple" start="3">
+<li>Récupérer l&#8217;élément d&#8217;index i</li>
+</ol>
+<div class="fragment roll-in highlight-python"><div class="highlight"><pre><span class="n">elt</span> <span class="o">=</span> <span class="n">liste</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="fragment roll-in arabic simple" start="4">
+<li>Insérer elt à la position i dans la liste</li>
+</ol>
+<div class="fragment roll-in last highlight-python"><div class="highlight"><pre><span class="n">liste</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">i</span><span class="p">,</span> <span class="n">elt</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section>
+<h2>Faire cela dans un fichier</h2>
+<p class="first">Sortir de l&#8217;interpréteur - <em>exit()</em>, ouvrir Geany, créer le fichier <em>exemple2.py</em> et y coller le code suivant</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="k">def</span> <span class="nf">ajout</span><span class="p">(</span><span class="n">evt</span><span class="p">):</span>
+   <span class="n">text</span> <span class="o">=</span> <span class="n">saisi</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
+   <span class="n">liste</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s">&#39;end&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+   <span class="n">saisi</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s">&#39;end&#39;</span><span class="p">)</span>
+
+<span class="n">index</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+
+<span class="k">def</span> <span class="nf">selclic</span><span class="p">(</span><span class="n">evt</span><span class="p">):</span>
+   <span class="k">global</span> <span class="n">index</span>
+   <span class="k">pass</span> <span class="c"># à coder</span>
+
+<span class="k">def</span> <span class="nf">selrel</span><span class="p">(</span><span class="n">evt</span><span class="p">):</span>
+   <span class="k">pass</span> <span class="c"># à coder</span>
+
+<span class="c"># Construction de la fenêtre principale ...</span>
+<span class="n">fen</span> <span class="o">=</span> <span class="n">Tk</span><span class="p">()</span>
+<span class="n">fen</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;«todo» liste&#39;</span><span class="p">)</span>
+
+<span class="c"># ... et des différents widgets qui la composent ...</span>
+<span class="n">et1</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">fen</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s">&#39;Nouvelle tâche:&#39;</span><span class="p">)</span>
+<span class="n">saisi</span> <span class="o">=</span> <span class="n">Entry</span><span class="p">(</span><span class="n">fen</span><span class="p">)</span>
+<span class="n">icon</span> <span class="o">=</span> <span class="n">PhotoImage</span><span class="p">(</span><span class="nb">file</span><span class="o">=</span><span class="s">&#39;todolist.gif&#39;</span><span class="p">)</span>
+<span class="c"># ATTENTION: todolist.gif doit être dans le même répertoire que ce programme !</span>
+<span class="n">et2</span> <span class="o">=</span> <span class="n">Label</span><span class="p">(</span><span class="n">fen</span><span class="p">,</span> <span class="n">image</span><span class="o">=</span><span class="n">icon</span><span class="p">)</span>
+<span class="c"># EN cas de pb: Remplacer image=icon par text=&#39;à faire&#39; ET commenter la ligne icon = ....</span>
+<span class="n">liste</span> <span class="o">=</span> <span class="n">Listbox</span><span class="p">(</span><span class="n">fen</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">Button</span><span class="p">(</span><span class="n">fen</span><span class="p">,</span> <span class="n">text</span><span class="o">=</span><span class="s">&quot;Vider&quot;</span><span class="p">,</span> <span class="n">command</span><span class="o">=</span><span class="k">lambda</span><span class="p">:</span> <span class="n">liste</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="s">&#39;end&#39;</span><span class="p">))</span>
+
+<span class="c"># ... qu&#39;on positionne dans une grille.</span>
+<span class="n">et1</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">saisi</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">et2</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">liste</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">column</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">b</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="n">row</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">column</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">columnspan</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c"># On définit le comportement de la GUI</span>
+<span class="n">saisi</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s">&#39;&lt;Return&gt;&#39;</span><span class="p">,</span> <span class="n">ajout</span><span class="p">)</span>
+<span class="n">liste</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s">&#39;&lt;Delete&gt;&#39;</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">evt</span><span class="p">:</span> <span class="n">liste</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">liste</span><span class="o">.</span><span class="n">curselection</span><span class="p">()))</span>
+<span class="n">liste</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s">&#39;&lt;Button-1&gt;&#39;</span><span class="p">,</span> <span class="n">selclic</span><span class="p">,</span> <span class="s">&#39;+&#39;</span><span class="p">)</span> <span class="c"># &#39;+&#39; ? voir NOTE tout à la fin</span>
+<span class="n">liste</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s">&#39;&lt;ButtonRelease-1&gt;&#39;</span><span class="p">,</span> <span class="n">selrel</span><span class="p">)</span>
+
+<span class="c"># On lance la boucle principale (cela est automatique dans la console)</span>
+<span class="c"># Cette boucle est responsable de la gestion des événements</span>
+<span class="n">fen</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
+
+<span class="c"># NOTE: tkinter gère déjà l&#39;événement «clic gauche» dans la liste</span>
+<span class="c">#  afin de positionner la sélection courante.</span>
+<span class="c">#  Pour ne pas supprimer son gestionnaire, nous devons ajouter le</span>
+<span class="c">#  nôtre : liste.bind(..., ..., &#39;+&#39;)</span>
+</pre></div>
+</div>
+</section>
+<section class="last">
+<h2>Solution</h2>
+<ol class="fragment roll-in first arabic simple">
+<li>Mémoriser l&#8217;index de l&#8217;item le plus proche de la souris lors du clic</li>
+</ol>
+<div class="fragment roll-in highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">selclic</span><span class="p">(</span><span class="n">evt</span><span class="p">):</span>
+   <span class="k">global</span> <span class="n">index</span> <span class="c"># pour pouvoir modifier index qui est «globale»</span>
+   <span class="n">index</span> <span class="o">=</span> <span class="n">liste</span><span class="o">.</span><span class="n">nearest</span><span class="p">(</span><span class="n">evt</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+<ol class="fragment roll-in arabic simple" start="2">
+<li>L&#8217;échanger avec celui qui est le plus proche de la souris au relâchement du clic</li>
+</ol>
+<div class="fragment roll-in last highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">selrel</span><span class="p">(</span><span class="n">evt</span><span class="p">):</span>
+   <span class="n">item1</span> <span class="o">=</span> <span class="n">liste</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">index</span><span class="p">)</span>
+   <span class="n">index2</span> <span class="o">=</span> <span class="n">liste</span><span class="o">.</span><span class="n">nearest</span><span class="p">(</span><span class="n">evt</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+   <span class="k">if</span> <span class="n">index2</span> <span class="o">==</span> <span class="n">index</span><span class="p">:</span> <span class="c"># rien à faire !</span>
+        <span class="k">return</span>
+   <span class="n">item2</span> <span class="o">=</span> <span class="n">liste</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">index2</span><span class="p">)</span>
+   <span class="n">liste</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="c"># on supprime le premier item ...</span>
+   <span class="n">liste</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">index</span><span class="p">,</span> <span class="n">item2</span><span class="p">)</span> <span class="c"># qu&#39;on remplace par le second</span>
+   <span class="n">liste</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="n">index2</span><span class="p">)</span> <span class="c"># et vice versa</span>
+   <span class="n">liste</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="n">index2</span><span class="p">,</span> <span class="n">item1</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section>
+<section class="first">
+<h2>Exemple 3 - Dessiner, animer</h2>
+<p class="first">Widget <a class="reference external" href="../doc/caw.html">Canvas</a>: zone rectangulaire dans laquelle on peut dessiner</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">tkinter</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fen</span> <span class="o">=</span> <span class="n">Tk</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fen</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;Un canevas pour dessiner&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">can</span> <span class="o">=</span> <span class="n">Canvas</span><span class="p">(</span><span class="n">fen</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">500</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">can</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">padx</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">can</span><span class="p">[</span><span class="s">&#39;bg&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&#39;white&#39;</span>
+</pre></div>
+</div>
+</section>
+<section>
+<h2>«Items» graphiques</h2>
+<p class="fragment roll-in first">Pour créer un item graphique dans un canevas <em>can</em>,</p>
+<div class="fragment roll-in highlight-python"><div class="highlight"><pre><span class="nb">id</span> <span class="o">=</span> <span class="n">can</span><span class="o">.</span><span class="n">create_</span><span class="o">&lt;</span><span class="n">item</span><span class="o">&gt;</span><span class="p">(</span><span class="n">points</span><span class="p">,</span> <span class="n">option</span><span class="o">=</span><span class="n">valeur</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+<span class="c"># où &lt;item&gt; est à remplacer par rectangle, line, polygon, oval ...</span>
+<span class="c"># la valeur de retour est l&#39;identifiant numérique de l&#39;item créé</span>
+</pre></div>
+</div>
+<p class="fragment roll-in">le supprimer,</p>
+<div class="fragment roll-in highlight-python"><div class="highlight"><pre><span class="n">can</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="fragment roll-in">le déplacer,</p>
+<div class="fragment roll-in highlight-python"><div class="highlight"><pre><span class="n">can</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="fragment roll-in">récupérer la liste de ses coordonnées,</p>
+<div class="fragment roll-in highlight-python"><div class="highlight"><pre><span class="n">pts</span> <span class="o">=</span> <span class="n">can</span><span class="o">.</span><span class="n">coords</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span> <span class="c"># pts de la forme [x1, y1, x2, y2, ...]</span>
+</pre></div>
+</div>
+<p class="fragment roll-in">modifier/récupérer une de ses options.</p>
+<div class="fragment roll-in highlight-python"><div class="highlight"><pre><span class="n">can</span><span class="o">.</span><span class="n">itemconfig</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="n">opt</span><span class="o">=</span><span class="n">val</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span>
+<span class="n">val</span> <span class="o">=</span> <span class="n">can</span><span class="o">.</span><span class="n">itemcget</span><span class="p">(</span><span class="nb">id</span><span class="p">,</span> <span class="s">&#39;option&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="fragment roll-in last"><a class="reference external" href="../doc/caw.html#methodes-des-canevas">les méthodes du canevas</a></p>
+</section>
+<section>
+<h2>Expérimentation ...</h2>
+<div class="fragment roll-in first highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">pt1</span> <span class="o">=</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">200</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pt2</span> <span class="o">=</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">300</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">can</span><span class="o">.</span><span class="n">create_rectangle</span><span class="p">(</span><span class="n">pt1</span><span class="p">,</span> <span class="n">pt2</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s">&#39;black&#39;</span><span class="p">)</span>
+<span class="go">1</span>
+</pre></div>
+</div>
+<div class="fragment roll-in highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">idc</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">can</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="n">idc</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="fragment roll-in highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">pts</span> <span class="o">=</span> <span class="n">can</span><span class="o">.</span><span class="n">coords</span><span class="p">(</span><span class="n">idc</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pts</span>
+</pre></div>
+</div>
+<div class="fragment roll-in highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">can</span><span class="o">.</span><span class="n">itemconfig</span><span class="p">(</span><span class="n">idc</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">outline</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="fragment roll-in last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">annul</span> <span class="o">=</span> <span class="n">can</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s">&#39;&lt;Button-3&gt;&#39;</span><span class="p">,</span>
+<span class="gp">... </span><span class="k">lambda</span> <span class="n">e</span><span class="p">:</span> <span class="k">print</span><span class="p">(</span><span class="s">&#39;({},{})&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">x</span><span class="p">,</span> <span class="n">e</span><span class="o">.</span><span class="n">y</span><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># clic droit sur le canevas</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">can</span><span class="o">.</span><span class="n">unbind</span><span class="p">(</span><span class="s">&#39;&lt;Button-3&gt;&#39;</span><span class="p">,</span> <span class="n">annul</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section>
+<h2>... Expérimentation</h2>
+<div class="fragment roll-in first highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">ido</span> <span class="o">=</span> <span class="n">can</span><span class="o">.</span><span class="n">create_oval</span><span class="p">(</span><span class="n">pts</span><span class="p">,</span> <span class="n">fill</span><span class="o">=</span><span class="s">&#39;white&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="fragment roll-in">Pour déplacer une figure formée de plusieurs items, on les marque (<em>tag</em>) avec une chaîne</p>
+<div class="fragment roll-in highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">can</span><span class="o">.</span><span class="n">itemconfig</span><span class="p">(</span><span class="n">idc</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="s">&#39;fig&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">can</span><span class="o">.</span><span class="n">itemconfig</span><span class="p">(</span><span class="n">ido</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="s">&#39;fig&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">can</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="s">&#39;fig&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="fragment roll-in">Transformations disponibles: translation, homothétie (<em>scale</em>)</p>
+<div class="fragment roll-in last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">can</span><span class="o">.</span><span class="n">coords</span><span class="p">(</span><span class="s">&#39;fig&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">can</span><span class="o">.</span><span class="n">scale</span><span class="p">(</span><span class="n">ido</span><span class="p">,</span> <span class="p">(</span><span class="n">x1</span><span class="o">+</span><span class="n">x2</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">y1</span><span class="o">+</span><span class="n">y2</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># .scale(idOuTag, x_centre, y_centre, facteur_x, facteur_y)</span>
+</pre></div>
+</div>
+</section>
+<section>
+<h2>Animation avec after ...</h2>
+<p class="fragment roll-in first">Pour réaliser une action après un certain délai</p>
+<div class="fragment roll-in highlight-python"><div class="highlight"><pre><span class="n">fen</span><span class="o">.</span><span class="n">after</span><span class="p">(</span><span class="n">delai_en_millisecondes</span><span class="p">,</span> <span class="n">fonction_a_appeler_alors</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="fragment roll-in highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">fen</span><span class="o">.</span><span class="n">after</span><span class="p">(</span><span class="mi">5000</span><span class="p">,</span> <span class="k">lambda</span> <span class="p">:</span> <span class="k">print</span><span class="p">(</span><span class="s">&#39;action&#39;</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># noter le retour immédiat de la méthode: pas de blocage</span>
+</pre></div>
+</div>
+<p class="fragment roll-in">Animer = agir périodiquement</p>
+<div class="fragment roll-in last highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">animation</span><span class="p">():</span>
+     <span class="n">fen</span><span class="o">.</span><span class="n">after</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="n">animation</span><span class="p">)</span>
+     <span class="c"># code de l&#39;action à effectuer</span>
+     <span class="k">print</span><span class="p">(</span><span class="s">&#39;action&#39;</span><span class="p">)</span>
+
+<span class="c"># lancer l&#39;animation</span>
+<span class="n">animation</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section>
+<h2>... Animer avec after</h2>
+<div class="first last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">ok</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span> <span class="o">=</span> <span class="bp">True</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">animation</span><span class="p">():</span>
+<span class="gp">... </span>  <span class="k">if</span> <span class="n">ok</span><span class="p">:</span> <span class="n">fen</span><span class="o">.</span><span class="n">after</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="n">animation</span><span class="p">)</span>
+<span class="gp">... </span>  <span class="n">can</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="s">&#39;fig&#39;</span><span class="p">,</span> <span class="n">dx</span><span class="p">,</span> <span class="n">dy</span><span class="p">)</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">animation</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c"># puis jouer avec dx et dy pour contrôler le mvt</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">ok</span> <span class="o">=</span> <span class="bp">False</span> <span class="c"># met fin à l&#39;animation</span>
+</pre></div>
+</div>
+</section>
+<section>
+<h2>pilotage au clavier</h2>
+<p class="fragment roll-in first">Commençons par définir les actions élémentaires</p>
+<div class="fragment roll-in highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">gauche</span> <span class="o">=</span> <span class="k">lambda</span> <span class="p">:</span> <span class="n">can</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="s">&#39;fig&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">droite</span> <span class="o">=</span> <span class="k">lambda</span> <span class="p">:</span> <span class="n">can</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="s">&#39;fig&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bas</span> <span class="o">=</span> <span class="k">lambda</span> <span class="p">:</span> <span class="n">can</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="s">&#39;fig&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">haut</span> <span class="o">=</span> <span class="k">lambda</span> <span class="p">:</span> <span class="n">can</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="s">&#39;fig&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p class="fragment roll-in">Puis associons chaque symbole de touche (<em>keysym</em>) avec l&#8217;action correspondante</p>
+<div class="fragment roll-in highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">touches</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;Left&#39;</span><span class="p">:</span> <span class="n">gauche</span><span class="p">,</span> <span class="s">&#39;Right&#39;</span><span class="p">:</span> <span class="n">droite</span><span class="p">,</span> <span class="s">&#39;Down&#39;</span><span class="p">:</span> <span class="n">bas</span><span class="p">,</span> <span class="s">&#39;Up&#39;</span><span class="p">:</span> <span class="n">haut</span><span class="p">}</span>
+</pre></div>
+</div>
+<p class="fragment roll-in">Définissons le gestionnaire qui s&#8217;occupera d&#8217;invoquer l&#8217;action en fonction de la touche enfoncée</p>
+<div class="fragment roll-in last highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">depl</span><span class="p">(</span><span class="n">evt</span><span class="p">):</span>
+<span class="gp">... </span>   <span class="n">t</span> <span class="o">=</span> <span class="n">evt</span><span class="o">.</span><span class="n">keysym</span>
+<span class="gp">... </span>   <span class="k">if</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">touches</span><span class="p">:</span>
+<span class="gp">... </span>      <span class="n">action</span> <span class="o">=</span> <span class="n">touches</span><span class="p">[</span><span class="n">t</span><span class="p">]</span>
+<span class="gp">... </span>      <span class="n">action</span><span class="p">()</span>
+<span class="gp">...</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fen</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s">&#39;&lt;Key&gt;&#39;</span><span class="p">,</span> <span class="n">depl</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section>
+<h2>Mouvement fluide</h2>
+<p class="first">Le mouvement est plutôt «saccadé» ; voyons d&#8217;où vient le problème.</p>
+<p>Copier-coller le code suivant dans un fichier <em>test_touches.py</em></p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">tkinter</span> <span class="kn">as</span> <span class="nn">tk</span>
+
+<span class="k">def</span> <span class="nf">appui</span><span class="p">(</span><span class="n">evt</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&#39;APPUI  = touche: {e.keysym}, temps: {e.time}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="o">=</span><span class="n">evt</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">relache</span><span class="p">(</span><span class="n">evt</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">&#39;RELACHE= touche: {e.keysym}, temps: {e.time}&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">e</span><span class="o">=</span><span class="n">evt</span><span class="p">))</span>
+
+
+<span class="n">fen</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">()</span>
+
+<span class="n">fen</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s">&#39;&lt;KeyPress&gt;&#39;</span><span class="p">,</span> <span class="n">appui</span><span class="p">)</span> <span class="c"># équivalent à &#39;&lt;Key&gt;&#39;</span>
+<span class="n">fen</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s">&#39;&lt;KeyRelease&gt;&#39;</span><span class="p">,</span> <span class="n">relache</span><span class="p">)</span>
+
+<span class="n">fen</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section>
+<h2>répétition automatique</h2>
+<p class="first">On obtient par exemple</p>
+<div class="highlight-text"><div class="highlight"><pre>RELACHE= touche: f, temps: 872580888
+APPUI  = touche: a, temps: 872593933
+RELACHE= touche: a, temps: 872594433
+APPUI  = touche: a, temps: 872594433
+RELACHE= touche: a, temps: 872594471
+APPUI  = touche: a, temps: 872594471
+RELACHE= touche: a, temps: 872594504
+</pre></div>
+</div>
+<small class="last">
+APPUI - 1/2 sec - RELACHE/APPUI - ~ 40 ms - RELACHE/APPUI ...</small>
+</section>
+<section>
+<h2>résolution du «problème» ...</h2>
+<ol class="first arabic simple">
+<li>Mémoriser l&#8217;état des touches à surveiller</li>
+</ol>
+<div class="last highlight-python"><div class="highlight"><pre><span class="n">touches</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s">&#39;nom_touche1&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;etat&#39;</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span> <span class="c"># True si cette touche est enfoncée</span>
+        <span class="s">&#39;action&#39;</span><span class="p">:</span> <span class="n">action1</span> <span class="c"># ref vers fonction</span>
+    <span class="p">},</span>
+    <span class="s">&#39;nom_touche2&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s">&#39;etat&#39;</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
+        <span class="s">&#39;action&#39;</span><span class="p">:</span> <span class="n">action2</span>
+    <span class="p">},</span>
+    <span class="c"># ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section>
+<h2>... résolution ...</h2>
+<ol class="first arabic simple" start="2">
+<li>Lier les événements <em>&lt;Key&gt;</em> et <em>&lt;KeyPress&gt;</em> à des gestionnaires chargés de mettre à jour l&#8217;état des touches,</li>
+</ol>
+<div class="last highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">appui</span><span class="p">(</span><span class="n">evt</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">evt</span><span class="o">.</span><span class="n">keysym</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">touches</span><span class="p">:</span> <span class="n">touches</span><span class="p">[</span><span class="n">t</span><span class="p">][</span><span class="s">&#39;etat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+
+<span class="k">def</span> <span class="nf">relache</span><span class="p">(</span><span class="n">evt</span><span class="p">):</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">evt</span><span class="o">.</span><span class="n">keysym</span>
+    <span class="k">if</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">touches</span><span class="p">:</span> <span class="n">touches</span><span class="p">[</span><span class="n">t</span><span class="p">][</span><span class="s">&#39;etat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+
+<span class="n">fen</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s">&#39;&lt;Key&gt;&#39;</span><span class="p">,</span> <span class="n">appui</span><span class="p">)</span>
+<span class="n">fen</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s">&#39;&lt;KeyRelease&gt;&#39;</span><span class="p">,</span> <span class="n">relache</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section>
+<h2>... du «problème»</h2>
+<ol class="first arabic simple" start="3">
+<li>Controler périodiquement l&#8217;état des touches et agir en conséquence</li>
+</ol>
+<div class="last highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">controleur</span><span class="p">():</span>
+     <span class="n">fen</span><span class="o">.</span><span class="n">after</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">controleur</span><span class="p">)</span>
+     <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">touches</span><span class="p">:</span>
+        <span class="n">v</span> <span class="o">=</span> <span class="n">touches</span><span class="p">[</span><span class="n">t</span><span class="p">]</span>
+        <span class="k">if</span> <span class="n">v</span><span class="p">[</span><span class="s">&#39;etat&#39;</span><span class="p">]:</span>
+            <span class="n">action</span> <span class="o">=</span> <span class="n">v</span><span class="p">[</span><span class="s">&#39;action&#39;</span><span class="p">]</span>
+            <span class="n">action</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section>
+<h2>Exercice</h2>
+<p class="first">Mettre en oeuvre cette solution pour déplacer &#8216;fig&#8217; de manière fluide</p>
+<p>Partir de l&#8217;ébauche suivante:</p>
+<div class="last highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">tkinter</span> <span class="kn">as</span> <span class="nn">tk</span>
+
+<span class="c"># Déclarations générales</span>
+
+<span class="n">gauche</span> <span class="o">=</span> <span class="k">lambda</span> <span class="p">:</span> <span class="n">can</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="s">&#39;fig&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">droite</span> <span class="o">=</span> <span class="k">lambda</span> <span class="p">:</span> <span class="n">can</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="s">&#39;fig&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">bas</span> <span class="o">=</span> <span class="k">lambda</span> <span class="p">:</span> <span class="n">can</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="s">&#39;fig&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">haut</span> <span class="o">=</span> <span class="k">lambda</span> <span class="p">:</span> <span class="n">can</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="s">&#39;fig&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c"># ...</span>
+
+<span class="c"># GUI</span>
+<span class="n">fen</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">()</span>
+<span class="n">fen</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&quot;mouvement fluide&quot;</span><span class="p">)</span>
+<span class="n">can</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Canvas</span><span class="p">(</span><span class="n">fen</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s">&quot;white&quot;</span><span class="p">)</span>
+<span class="n">can</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">padx</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="c"># dessin de la figure</span>
+<span class="n">can</span><span class="o">.</span><span class="n">create_rectangle</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span>
+                     <span class="n">fill</span><span class="o">=</span><span class="s">&#39;black&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">outline</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">,</span>
+                     <span class="n">tags</span><span class="o">=</span><span class="s">&#39;fig&#39;</span><span class="p">)</span>
+<span class="n">can</span><span class="o">.</span><span class="n">create_oval</span><span class="p">(</span><span class="mi">225</span><span class="p">,</span> <span class="mi">225</span><span class="p">,</span> <span class="mi">275</span><span class="p">,</span> <span class="mi">275</span><span class="p">,</span>
+                <span class="n">fill</span><span class="o">=</span><span class="s">&#39;white&#39;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="s">&#39;fig&#39;</span><span class="p">)</span>
+
+<span class="c"># liaisons d&#39;événements et controleur ...</span>
+
+
+<span class="c"># boucle principale</span>
+<span class="n">fen</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section class="last">
+<h2>solution complète</h2>
+<div class="first last highlight-python"><div class="highlight"><pre>   <span class="kn">import</span> <span class="nn">tkinter</span> <span class="kn">as</span> <span class="nn">tk</span>
+
+   <span class="c"># Déclarations générales</span>
+
+   <span class="n">gauche</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">can</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="s">&#39;fig&#39;</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+   <span class="n">droite</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">can</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="s">&#39;fig&#39;</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+   <span class="n">bas</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">can</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="s">&#39;fig&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+   <span class="n">haut</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">can</span><span class="o">.</span><span class="n">move</span><span class="p">(</span><span class="s">&#39;fig&#39;</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="hll">   <span class="n">touches</span> <span class="o">=</span> <span class="p">{</span>
+</span><span class="hll">       <span class="s">&#39;Left&#39;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class="hll">           <span class="s">&#39;etat&#39;</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
+</span><span class="hll">           <span class="s">&#39;action&#39;</span><span class="p">:</span> <span class="n">gauche</span>
+</span><span class="hll">       <span class="p">},</span>
+</span><span class="hll">       <span class="s">&#39;Right&#39;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class="hll">           <span class="s">&#39;etat&#39;</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
+</span><span class="hll">           <span class="s">&#39;action&#39;</span><span class="p">:</span> <span class="n">droite</span>
+</span><span class="hll">       <span class="p">},</span>
+</span><span class="hll">       <span class="s">&#39;Down&#39;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class="hll">           <span class="s">&#39;etat&#39;</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
+</span><span class="hll">           <span class="s">&#39;action&#39;</span><span class="p">:</span> <span class="n">bas</span>
+</span><span class="hll">       <span class="p">},</span>
+</span><span class="hll">       <span class="s">&#39;Up&#39;</span><span class="p">:</span> <span class="p">{</span>
+</span><span class="hll">           <span class="s">&#39;etat&#39;</span><span class="p">:</span> <span class="bp">False</span><span class="p">,</span>
+</span><span class="hll">           <span class="s">&#39;action&#39;</span><span class="p">:</span> <span class="n">haut</span>
+</span><span class="hll">       <span class="p">},</span>
+</span><span class="hll">   <span class="p">}</span>
+</span><span class="hll">
+</span><span class="hll">   <span class="k">def</span> <span class="nf">appui</span><span class="p">(</span><span class="n">evt</span><span class="p">):</span>
+</span><span class="hll">       <span class="n">t</span> <span class="o">=</span> <span class="n">evt</span><span class="o">.</span><span class="n">keysym</span>
+</span><span class="hll">       <span class="k">if</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">touches</span><span class="p">:</span> <span class="n">touches</span><span class="p">[</span><span class="n">t</span><span class="p">][</span><span class="s">&#39;etat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">True</span>
+</span><span class="hll">
+</span><span class="hll">   <span class="k">def</span> <span class="nf">relache</span><span class="p">(</span><span class="n">evt</span><span class="p">):</span>
+</span><span class="hll">       <span class="n">t</span> <span class="o">=</span> <span class="n">evt</span><span class="o">.</span><span class="n">keysym</span>
+</span><span class="hll">       <span class="k">if</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">touches</span><span class="p">:</span> <span class="n">touches</span><span class="p">[</span><span class="n">t</span><span class="p">][</span><span class="s">&#39;etat&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="bp">False</span>
+</span><span class="hll">
+</span><span class="hll">   <span class="k">def</span> <span class="nf">controleur</span><span class="p">():</span>
+</span><span class="hll">       <span class="n">fen</span><span class="o">.</span><span class="n">after</span><span class="p">(</span><span class="mi">40</span><span class="p">,</span> <span class="n">controleur</span><span class="p">)</span>
+</span><span class="hll">       <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">touches</span><span class="p">:</span>
+</span><span class="hll">           <span class="n">t</span> <span class="o">=</span> <span class="n">touches</span><span class="p">[</span><span class="n">t</span><span class="p">]</span>
+</span><span class="hll">           <span class="k">if</span> <span class="n">t</span><span class="p">[</span><span class="s">&#39;etat&#39;</span><span class="p">]:</span>
+</span><span class="hll">               <span class="n">t</span><span class="p">[</span><span class="s">&#39;action&#39;</span><span class="p">]()</span>
+</span><span class="hll">
+</span>   <span class="c"># GUI</span>
+   <span class="n">fen</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">()</span>
+   <span class="n">fen</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&quot;mouvement fluide&quot;</span><span class="p">)</span>
+   <span class="n">can</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Canvas</span><span class="p">(</span><span class="n">fen</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">bg</span><span class="o">=</span><span class="s">&quot;white&quot;</span><span class="p">)</span>
+   <span class="n">can</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">padx</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">pady</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+
+   <span class="c"># dessin de la figure</span>
+   <span class="n">can</span><span class="o">.</span><span class="n">create_rectangle</span><span class="p">(</span><span class="mi">200</span><span class="p">,</span> <span class="mi">200</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">300</span><span class="p">,</span>
+                        <span class="n">fill</span><span class="o">=</span><span class="s">&#39;black&#39;</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">outline</span><span class="o">=</span><span class="s">&#39;blue&#39;</span><span class="p">,</span>
+                        <span class="n">tags</span><span class="o">=</span><span class="s">&#39;fig&#39;</span><span class="p">)</span>
+   <span class="n">can</span><span class="o">.</span><span class="n">create_oval</span><span class="p">(</span><span class="mi">225</span><span class="p">,</span> <span class="mi">225</span><span class="p">,</span> <span class="mi">275</span><span class="p">,</span> <span class="mi">275</span><span class="p">,</span>
+                   <span class="n">fill</span><span class="o">=</span><span class="s">&#39;white&#39;</span><span class="p">,</span> <span class="n">tags</span><span class="o">=</span><span class="s">&#39;fig&#39;</span><span class="p">)</span>
+
+   <span class="c"># liaisons d&#39;événements et controleur ...</span>
+<span class="hll">   <span class="n">fen</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s">&#39;&lt;Key&gt;&#39;</span><span class="p">,</span> <span class="n">appui</span><span class="p">)</span>
+</span><span class="hll">   <span class="n">fen</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s">&#39;&lt;KeyRelease&gt;&#39;</span><span class="p">,</span> <span class="n">relache</span><span class="p">)</span>
+</span><span class="hll">   <span class="n">controleur</span><span class="p">()</span>
+</span><span class="hll">
+</span>   <span class="c"># boucle principale</span>
+   <span class="n">fen</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+</section>
+</div>
+
+
+      </div>
+    </div>
+    
+<script src="../../ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="_static/lib/js/head.min.js"></script>
+<script src="_static/js/reveal.js"></script>
+    <script>
+
+      // change DOM for reveal.js
+      $("div.section h1").remove();
+      var content = $("div.section").html();
+      $("div.section").remove();
+      $("div.slides").html(content);
+
+      Reveal.initialize({
+        width: 960,
+        height: 700,
+
+        margin: 0.1,
+
+        minScale: 0.2,
+        maxScale: 1.0,
+
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        keyboard : true,
+        overview: true,
+        touch: true,
+        loop: false,
+        rtl: false,
+        fragments: true,
+
+        autoSlide: 0,
+        mouseWheel: false,
+        rollingLinks: true,
+        previewLinks: false,
+
+        transitionSpeed: "default",
+        backgroundTransition: "default",
+
+        theme: Reveal.getQueryHash().theme || "default", // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || "default", // default/cube/page/concave/zoom/linear/fade/none
+
+        dependencies: [
+        { src: '_static/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+        { src: '_static/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '_static/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+        { src: '_static/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+        { src: '_static/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+        { src: '_static/plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } },
+        
+        { src: '_static/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+    </script>
+  </body>
+
+<!-- Mirrored from tkinter.fdex.eu/presentation/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 15 Jan 2021 11:01:18 GMT -->
+</html>
