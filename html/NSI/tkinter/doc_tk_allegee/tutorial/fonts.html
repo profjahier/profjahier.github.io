@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+
+<!-- Mirrored from tkdocs.com/tutorial/fonts.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 07:05:58 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>TkDocs Tutorial - Fonts, Colors, Images</title>
+    <meta http-equiv="Content-Language" content="English" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="Fonts, Colors, Images: Part of a Modern Tk Tutorial for Python, Tcl, Ruby, and Perl" />
+    <meta name="keywords" content="TkDocs, Tk, Tkinter, Tkx, GUI, Tcl, Python, Perl, Ruby" />	
+  
+   <link rel="stylesheet" href="../../stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <link rel="stylesheet" href="../../maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">  
+    <link rel="stylesheet" type="text/css" href="../tkc.css" media="screen,print" /> 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="../../external.html?link=https://www.googletagmanager.com/gtag/js?id=UA-2043168-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-2043168-3');
+</script>
+
+
+</head>
+<body>
+
+
+<div class="container-fluid">
+
+<div class=tutorial>
+<nav><ul class="pagination justify-content-center"><li class="page-item"><a class="page-link" href="complex.html">Previous: Organizing Complex Interfaces</a></li><li class="page-item"><a class="page-link" href="index.html">Contents</a></li><li class="page-item"><a class="page-link" href="onepage.html">Tutoriel complet en une page</a></li><li class="page-item"><a class="page-link" href="canvas.html">Next: Canvas</a></li></ul></nav>
+<h1>Fonts, Colors, Images</h1>
+
+
+<p>This chapter describes how Tk handles fonts, colors, and images.  We've touched on all of these before, but here we'll
+provide a more in-depth treatment.</p>
+
+
+ <a name="fonts"></a><h2>Fonts</h2>
+
+<p>Tk's label widget allows you to change the font used to display text via the <code>font</code> configuration option.
+  The canvas and text widgets, covered in the following chapters, also allow you to specify fonts.
+  Other themed widgets that display text may not have a <code>font</code> configuration option, but their fonts can be 
+  changed using styles.</p>
+  
+  <div class=fyi><p>We'll cover styles in detail later. In essence, they replace the old way of tweaking multiple configuration options on 
+    individual widgets. Instead, fonts, colors, and other settings that control appearance can be bundled together in
+    a style. That style can then be applied to multiple widgets. It's akin to the difference between hardcoding
+    display-oriented markup inside HTML pages vs. using CSS to keep display-specific information separate.</p></div>
+    
+<p>As with many things in Tk, the default fonts are usually a good choice. If you need to make changes, this section 
+  shows you the best way to do so, using <em>named fonts</em>. Tk includes named fonts suitable for use in all different
+  components of your user interface. They take into account the conventions of the specific platform you're running on.
+  You can also specify your own fonts when you need additional flexibility.</p>
+  
+<p>The <a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/font.htm">font command reference</a> provides full details on specifying fonts, as well as
+other font-related operations.</p>
+
+
+
+<div class=upgrade><p>Many older Tk programs hardcoded fonts, using either the "family size style" format we'll see below,
+X11 font names, or the older and more arcane X11 font specification strings.  These applications looked increasingly
+dated as platforms evolved.  Worse, fonts were often specified on a per-widget basis, leaving font decisions spread 
+throughout the code.  Named fonts, particularly the standard fonts that Tk provides, are a far better solution.  
+Reviewing and updating font decisions is an easy and important change to make in any existing applications.</p></div>
+
+<h3>Standard Fonts</h3>
+<p>Each platform defines specific fonts that should be used for standard user interface elements.  Tk encapsulates many 
+  of these decisions into a standard set of named fonts. They are available on all platforms, though the exact font used
+  will vary. This helps abstract away platform differences. Of course, the standard widgets use these named fonts.
+  The predefined fonts are:</p>
+
+<dl class="row ml-sm-1">
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>TkDefaultFont</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">Default for items not otherwise specified.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>TkTextFont</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">Used for entry widgets, listboxes, etc.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>TkFixedFont</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">A standard fixed-width font.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>TkMenuFont</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">The font used for menu items.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>TkHeadingFont</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">Font for column headings in lists and tables.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>TkCaptionFont</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">A font for window and dialog caption bars.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>TkSmallCaptionFont</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">A smaller caption font for tool dialogs.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>TkIconFont</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">A font for icon captions.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>TkTooltipFont</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">A font for tooltips.</dd>
+</dl>
+
+<h3>Platform-Specific Fonts</h3>
+
+<p>Tk provides additional named fonts to help you comply with less common situations on specific platforms.
+  Individual platform guidelines detail how and where these fonts should be used. These fonts are only defined on 
+  specific platforms. You'll need to take that into account if your application is portable across platforms.</p>
+
+<p>Tk on X11 recognizes any valid X11 font name (see, e.g., the <code>xlsfonts</code> command).  However, these can vary
+  with the operating system, installed software, and the configuration of the individual machine. There is no guarantee
+  that a font available on your X11 system has been installed on any other X11 system.</p>
+
+<p>On Windows, Tk provides named fonts for all the fonts that can be set in the "Display" Control Panel.
+  It recognizes the following font names: <code>system</code>, <code>ansi</code>, <code>device</code>, <code>systemfixed</code>, <code>ansifixed</code>, and <code>oemfixed</code>.</p>
+
+On macOS, the Apple Human Interface Guidelines (HIG) specifies a number of additional fonts. 
+Tk recognizes the following names: <code>systemSystemFont</code>,
+<code>systemSmallSystemFont</code>, <code>systemApplicationFont</code>, <code>systemViewsFont</code>, <code>systemMenuItemFont</code>,
+<code>systemMenuItemCmdKeyFont</code>, <code>systemPushButtonFont</code>, <code>systemAlertHeaderFont</code>, <code>systemMiniSystemFont</code>,
+<code>systemDetailEmphasizedSystemFont</code>, <code>systemEmphasizedSystemFont</code>, <code>systemSmallEmphasizedSystemFont</code>,
+<code>systemLabelFont</code>, <code>systemMenuTitleFont</code>, <code>systemMenuItemMarkFont</code>, <code>systemWindowTitleFont</code>,
+<code>systemUtilityWindowTitleFont</code>, <code>systemToolbarFont</code>, and <code>systemDetailSystemFont</code>.</p>
+
+
+<h3>Working with Named Fonts</h3>
+
+<p>Tk provides several operations that help you work with named fonts. You can start by getting a list of all the
+  currently defined named fonts.</p>
+  
+<div class=python><pre>from tkinter import font
+font.names()</pre></div>
+
+<p>You can find out the actual system font represented by an abstract named font. 
+  This consists of the <code>family</code> (e.g., <code>Times</code> or <code>Helvetica</code>), 
+  the <code>size</code> (in points if positive, in pixels if negative), 
+  the <code>weight</code> (<code>normal</code> or <code>bold</code>),
+  the <code>slant</code> (<code>roman</code> or <code>italic</code>), 
+  and boolean attributes for <code>underline</code> and <code>overstrike</code>. 
+  You can find out the font's <code>metrics</code> (how tall characters in the font can be and whether it is monospaced),
+  and even <code>measure</code> how many pixels wide a piece of text rendered in the font would be.</p>
+  
+<div class=python><pre>>>> <b>from tkinter import font</b>
+>>> <b>f = font.nametofont('TkTextFont')</b>
+>>> <b>f.actual()</b>
+{'family': '.AppleSystemUIFont', 'size': 13, 'weight': 'normal', 'slant': 'roman', 'underline': 0, 'overstrike': 0}
+>>> <b>f.metrics()</b>
+{'ascent': 13, 'descent': 3, 'linespace': 16, 'fixed': 0}
+>>> <b>f.measure('The quick brown fox')</b>
+124</pre>
+<p>Tkinter provides a <code>Font</code> class to hold information about a named font. You can create an instance of this
+  class from the name of a font using the <code>nametofont</code> function. When you use named fonts in your application 
+  (e.g., via a label's <code>font</code> configuration option), you can supply either the font name (as a string) or a
+  <code>Font</code> instance.</p>
+</div>
+
+  
+<div class=tip><p>Trying these in an interactive shell and got an error? Even though we're not displaying anything onscreen,
+  you need to initialize Tk before using the various font functions.</p></div>
+     
+<p>You can also create your own fonts, which can then be used exactly like the predefined ones.  To do so, choose
+  a name for the font and specify its font attributes as above.</p>
+
+<div class=python><pre>from tkinter import font
+highlightFont = font.Font(family='Helvetica', name='appHighlightFont', size=12, weight='bold')
+ttk.Label(root, text='Attention!', font=highlightFont).grid()
+</pre>
+<p>If you don't supply a name, Tkinter will generate one, which you can retrieve via <code><em>font</em>.name</code> or 
+  <code>str(<em>font</em>)</code>. It's usually best to supply one.</p>
+</div>
+
+
+<p>The <code>family</code> attribute specifies the font family. Tk ensures the names <code>Courier</code>, <code>Times</code>,
+   and <code>Helvetica</code> are available, though they may be mapped to an appropriate monospaced, serif, or sans-serif font).
+   Other fonts installed on your system can be used, but the usual caveats about portability apply. 
+   You can get the names of all available families with: </p>
+
+<div class=python><pre>font.families()</pre></div>
+
+<div class=tip><p>You can change the attributes of a named font using its <code>configure</code> method. You might do this in response
+  to menu options allowing users to zoom in or out, i.e., increasing or decreasing font sizes.</p></div>
+
+
+<h3>Font Descriptions</h3>
+
+<p>Another way to specify fonts is via a list of attributes. starting with the font family, and then optionally
+includes a size, and one or more style options.  Some examples of this are <code>Helvetica</code>, <code>Helvetica 12</code>,
+<code>Helvetica 12 bold</code>, and <code>Helvetica 12 bold italic</code>.  These font descriptions can be used 
+anywhere you'd use a named font, e.g., a <code>font</code> configuration option.</p>
+
+
+ <a name="colors"></a><h2>Colors</h2>
+
+<p>As with fonts, there are various ways to specify colors.  Full details can be found in the
+<a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/colors.htm">colors command reference</a>.</p>
+
+
+<p>In general, Tk widgets default to the right colors for most situations.  If you'd like to 
+  change colors, you'll do so via widget-specific commands or options, e.g., the
+  label's <code>foreground</code> and <code>background</code> configuration options. For most themed 
+  widgets, color changes are specified through styles, not by changing the widget directly.</p>
+  
+<p>You can specify colors via RGB, as you would in HTML or CSS, e.g. <code>#3FF</code> or <code>#FF016A</code>.
+  Tk also recognizes names such as <code>red</code>, <code>black</code>, <code>grey50</code>, <code>light blue</code>, etc.</p>
+  
+<div class=fyi><p>Tk recognizes the standard names for colors defined by X11. You can find a complete list in the 
+  command reference (noted above).</p></div>
+  
+<p>As with fonts, both macOS and Windows specify many system-specific abstract color names (again,
+  see the reference). The actual color these correspond to may depend on system settings and can change
+  over time, e.g., dark mode, text highlight colors, default backgrounds.</p>
+  
+<p>If needed, you can find the RGB values (each between 0 and 65535) for a color using the <code>winfo_rgb</code> method on any widget.</p>
+
+
+<div class=python><pre>root.winfo_rgb('red')</pre></div>
+
+<div class=tip><p>It should probably go without saying, but restraint in the use of colors is highly advisable!</p></div>
+
+
+ <a name="images"></a><h2>Images</h2>
+
+<p>We've seen the basics of how to use images already, displaying them in labels or buttons,
+for example.  We create an image object, usually from a file on disk.</p>
+
+<div class=python><pre>imgobj = PhotoImage(file='myimage.gif')
+label['image'] = imgobj</pre></div>
+
+<p>Out of the box, Tk 8.5 includes support for GIF and PPM/PNM images. Tk 8.6 added PNG to this short list. However, there is a Tk
+extension library called <code>Img</code>, which adds support for many others: BMP, XBM, XPM, JPEG, PNG (if you're using 8.5),
+TIFF, etc.  Though not included directly in the Tk core, Img is usually included with
+other packaged distributions (e.g., ActiveTcl).  </p>
+
+<div class=python><p>Instead of using Tk's Img extension, Tkinter uses a made-for-Python image library called <code>PIL</code> (Python Imaging Library).
+More specifically, we'll use a more up-to-date fork of PIL called <code>pillow</code>. As it doesn't come bundled with Python, you'll normally
+need to install it. You should be able to do so via, e.g., <code>pip install Pillow</code>.</p>
+<pre>from PIL import ImageTk, Image
+myimg = ImageTk.PhotoImage(Image.open('myimage.png'))</pre>
+<p>The <code>ImageTk.PhotoImage</code> call provides a drop-in replacement for Tk's <code>PhotoImage</code> but supports the broader range of image types.</p>
+</div>
+
+
+<p>Tk's images are actually quite powerful and sophisticated and provide a wide variety of ways to 
+inspect and modify images.  You can find out more from the <a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/image.htm">image command
+reference</a> and the <a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/photo.htm">photo command reference</a>.</p>
+
+
+    <script src="../../code.jquery.com/jquery-3.4.1.min.js" integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh" crossorigin="anonymous"></script>
+    <script src="../../stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+    <script src="../tkdocs.js"></script>
+    <script type='text/javascript'>setDefaultLang()</script>
+</body>
+
+<!-- Mirrored from tkdocs.com/tutorial/fonts.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 07:05:58 GMT -->
+</html>
+
+
+

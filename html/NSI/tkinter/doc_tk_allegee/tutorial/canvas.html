@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="en">
+
+<!-- Mirrored from tkdocs.com/tutorial/canvas.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 07:05:58 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>TkDocs Tutorial - Canvas</title>
+    <meta http-equiv="Content-Language" content="English" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="Canvas: Part of a Modern Tk Tutorial for Python, Tcl, Ruby, and Perl" />
+    <meta name="keywords" content="TkDocs, Tk, Tkinter, Tkx, GUI, Tcl, Python, Perl, Ruby" />	
+  
+   <link rel="stylesheet" href="../../stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <link rel="stylesheet" href="../../maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">  
+    <link rel="stylesheet" type="text/css" href="../tkc.css" media="screen,print" /> 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="../../external.html?link=https://www.googletagmanager.com/gtag/js?id=UA-2043168-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-2043168-3');
+</script>
+
+
+</head>
+<body>
+
+
+
+<div class=tutorial>
+<nav><ul class="pagination justify-content-center"><li class="page-item"><a class="page-link" href="fonts.html">Previous: Fonts, Colors, Images</a></li><li class="page-item"><a class="page-link" href="index.html">Contents</a></li><li class="page-item"><a class="page-link" href="onepage.html">Tutoriel complet en une page</a></li><li class="page-item"><a class="page-link" href="text.html">Next: Text</a></li></ul></nav>
+<h1>Canvas</h1>
+
+
+<ul class=menu>
+<li><a href="../../external.html?link=https://tkdocs.com/widgets/canvas.html">Widget Roundup</a></li>
+<li><a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/canvas.htm">Reference Manual</a></li>
+</ul>
+
+<p>A <b>canvas</b> widget manages a 2D collection of graphical objects &#8212; lines, circles,
+text, images, other widgets, and more.   Tk's canvas is an incredibly powerful and flexible widget,
+and truly one of Tk's highlights.  It is suitable for a wide range of uses, including drawing
+or diagramming, CAD tools, displaying or monitoring simulations or actual equipment, and
+building more complex widgets out of simpler ones.</p>
+<p>Note: Canvas widgets are part of the classic Tk widgets, not the themed Tk widgets.</p>
+
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/w_canvas_all.png' alt='screen shot'><br />
+Canvas widgets.</p>
+
+<div class=python><p>Canvas widgets are created using the <code><b>Canvas</b></code> class:</p>
+	<pre>canvas = Canvas(<em>parent</em>, width=500, height=400, background='gray75')</pre></div>
+
+
+<p>You'll often provide a width and height, either in pixels or any of the other standard distance units. 
+  As always, you can ask the geometry manager to expand it to fill the available space in the window.
+  You might provide a default background color for the canvas, specifying colors in any of the ways
+  you learned about in the last chapter. Canvas widgets also support other appearance options like <code>relief</code> and
+  <code>borderwidth</code> that we've used before.</p>
+
+
+
+
+<p>Canvas widgets have a tremendous number of features, and we won't cover everything here.
+Instead, we'll start with a simple example, a freehand sketching tool, and incrementally
+add new pieces to it, each showing another new feature of canvas widgets.</p>
+
+
+ <a name="creating"></a><h2>Creating Items</h2>
+
+<p>When you create a new canvas widget, it is essentially a large rectangle with nothing on it,
+truly a blank canvas in other words.  To do anything useful with it, you'll need to add <em>items</em>
+to it.  There are a wide variety of different <em>types</em> of items you can add.  Here, we'll
+add a simple <em>line</em> item to the canvas.</p>
+
+<p>To create a line, you need to specify its starting and ending <em>coordinates</em>. 
+  Coordinates are expressed as the number of pixels away from the top-left corner, both horizontally
+  and vertically, i.e. (<em>x</em>,<em>y</em>). 
+  The pixel at the top-left corner, known as the <em>origin</em>, has coordinates (0,0).
+  The <em>"x"</em> value increases as you move to the right and the <em>"y"</em> value increases as you move down.
+  A line is described by two points, which we'd refer to as (<em>x0</em>,<em>y0</em>) and (<em>x1</em>,<em>y1</em>).
+  This code creates a line from (10,5) to (200,50):</p>
+
+<div class=python><pre>canvas.create_line(10, 5, 200, 50)</pre>
+<p>The <code>create_line</code> method returns an item <em>id</em> (an integer) that uniquely refers to this item.
+  We'll see how it can be used shortly.
+  Often, we don't need to refer to the item later and can ignore the returned id.</p>
+</div>
+  
+
+<h3>A Simple Sketchpad</h3>
+
+<p>Let's start our simple sketchpad example.  For now, we'll implement freehand drawing on the canvas with the mouse.
+ We create a canvas widget and attach event bindings to it to capture mouse clicks and drags.  When the mouse is first pressed,
+ we'll remember that location as the "start" coordinates of our next line. As the mouse is moved with the mouse button 
+ held down, we create a line item from this "start" position to the current mouse location. 
+ This current location becomes the "start" position for the next line item. Every mouse drag creates a new line item.</p>
+
+<div class=python><pre>from tkinter import *
+from tkinter import ttk
+
+def savePosn(event):
+    global lastx, lasty
+    lastx, lasty = event.x, event.y
+
+def addLine(event):
+    canvas.create_line((lastx, lasty, event.x, event.y))
+    savePosn(event)
+
+root = Tk()
+root.columnconfigure(0, weight=1)
+root.rowconfigure(0, weight=1)
+
+canvas = Canvas(root)
+canvas.grid(column=0, row=0, sticky=(N, W, E, S))
+canvas.bind("&lt;Button-1&gt;", savePosn)
+canvas.bind("&lt;B1-Motion&gt;", addLine)
+
+root.mainloop()</pre>
+
+<p>Again, in this simple example, we're using global variables to store the start position. In practice, we'd encapsulate all of this in a Python
+  class. Here's one way we could do that. Note that this example creates a subclass of <code>Canvas</code>, which is treated like
+  any other widget in the code. We could have equally well used a standalone class, as we did with the "feet to meters" example.</p>
+<pre>from tkinter import *
+from tkinter import ttk
+
+class Sketchpad(Canvas):
+    def __init__(self, parent, **kwargs):
+        super().__init__(parent, **kwargs)
+        self.bind("&lt;Button-1&gt;", self.save_posn)
+        self.bind("&lt;B1-Motion&gt;", self.add_line)
+        
+    def save_posn(self, event):
+        self.lastx, self.lasty = event.x, event.y
+
+    def add_line(self, event):
+        self.create_line((self.lastx, self.lasty, event.x, event.y))
+        self.save_posn(event)
+
+root = Tk()
+root.columnconfigure(0, weight=1)
+root.rowconfigure(0, weight=1)
+
+sketch = Sketchpad(root)
+sketch.grid(column=0, row=0, sticky=(N, W, E, S))
+
+root.mainloop()
+</pre>
+</div>
+
+
+
+<p>Try it out - drag the mouse around the canvas to create your masterpiece.</p>
+
+
+<h3>Item Attributes</h3>
+
+<p>When creating items, you can also specify one or more <em>attributes</em> for the item, 
+affecting how it is displayed.  For example, here we'll specify that the line should be red and three
+pixels wide.</p>
+
+<div class=python><pre>canvas.create_line(10, 10, 200, 50, fill='red', width=3)</pre></div>
+
+<p>The exact set of attributes will vary according to the type of item. Some commonly used ones are:</p>
+<dl class="row ml-sm-1">
+  <dt class="col-lg-3 col-xl-2 font-weight-normal"><code>fill</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">color to draw the object</dd>
+  <dt class="col-lg-3 col-xl-2 font-weight-normal"><code>width</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">line width of the item (or its outline)</dd>
+  <dt class="col-lg-3 col-xl-2 font-weight-normal"><code>outline</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">for filled shapes like rectangles, the color to draw the item's outline</dd>
+  <dt class="col-lg-3 col-xl-2 font-weight-normal"><code>dash</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">draw a dashed line instead of a solid one, e.g., <code>2 4 6 4</code> alternates short (2 pixels) and long (6 pixels) dashes with 4 pixels between</dd>
+  <dt class="col-lg-3 col-xl-2 font-weight-normal"><code>stipple</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">instead of a solid fill color, use a pattern, typically <code>gray75</code>, <code>gray50</code>, <code>gray25</code>, or <code>gray12</code>; stippling is currently not supported on macOS</dd>
+  <dt class="col-lg-3 col-xl-2 font-weight-normal"><code>state</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">assign a state of <code>normal</code> (default), <code>disabled</code> (item event bindings are ignored), or <code>hidden</code> (removed from display)</dd>
+  <dt class="col-lg-3 col-xl-2 font-weight-normal"><code>disabledfill, disabledwidth, ...</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">if the item's <code>state</code> is set to <code>disabled</code>, the item will display using these variants of the usual attributes</dd>
+  <dt class="col-lg-3 col-xl-2 font-weight-normal"><code>activefill, activewidth, ...</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">when the mouse pointer is over the item, it will display using these variants of the usual attributes</dd>
+</dl>
+
+<div class=tip><p>If you have canvas items that change state, creating the item with both the regular and <code>disabled<em>*</em></code> attribute variants can simplify your code.
+  You simply need to change the item's <code>state</code>, rather than writing code to change multiple display attributes. 
+  The same applies to the <code>active<em>*</em></code>. Both encourage a more declarative style that can remove a lot of boilerplate code.</p></div>
+  
+<p>Akin to Tk widgets, changing attributes for canvas items after we've already created them is easily accomplished.</p>
+
+<div class=python><pre>id = canvas.create_line(0, 0, 10, 10, fill='red')
+...
+canvas.itemconfigure(id, fill='blue', width=2)
+</pre></div>
+
+
+<h3>Item Types</h3>
+
+<p>Canvas widgets support a wide variety of item types.</p>
+
+<h4>Line</h4>
+
+<p>Our sketchpad created simple line items, each a single segment with a start point and an end point. Lines items can also consist of multiple segments.</p>
+
+<div class=python><pre>canvas.create_line(10, 10, 200, 50, 90, 150, 50, 80)</pre></div>
+
+<p>Lines have several interesting additional attributes, allowing for drawing curves, arrows, and more.</p>
+<dl class="row ml-sm-1">
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>arrow</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">place an arrowhead at the start (<code>first</code>), end (<code>last</code>), or both ends (<code>both</code>); default is <code>none</code></dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>arrowshape</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">allows changing the appearance of any arrowheads</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>capstyle</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">for wide lines without arrowheads, this controls how the end of lines are drawn; one of <code>butt</code> (default), <code>projecting</code>, or <code>round</code></dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>joinstyle</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">for wide lines with multiple segments, this controls drawings of each vertex; one of <code>round</code> (default), <code>bevel</code>, or <code>miter</code></dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>smooth</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">if specified as <code>true</code> (or <code>bezier</code>), draws a smooth curve (via quadratic splines) between multiple segments rather than using straight lines; <code>raw</code> specifies a different type of curve (cubic splines)</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>splinesteps</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">controls the smoothness of curved lines, i.e., those with the <code>smooth</code> option set</dd>
+</dl>
+
+
+
+<h4>Rectangle</h4>
+
+
+<p>Rectangles are specified by the coordinates of opposing corners, e.g., top-left and bottom-right. They can be filled in (via <code>fill</code>) with one color, 
+  and the <code>outline</code> given a different color.</p>
+<div class=python><pre>canvas.create_rectangle(10, 10, 200, 50, fill='red', outline='blue')</pre></div>
+
+<h4>Oval</h4>
+
+
+<p>Ovals items work exactly the same as rectangles.</p>
+<div class=python><pre>canvas.create_oval(10, 10, 200, 150, fill='red', outline='blue')</pre></div>
+
+<h4>Polygon</h4>
+
+
+<p>Polygon items allow you to create arbitrary shapes as defined by a series of points. The coordinates are given in the same way as multipoint lines. 
+  Tk ensures the polygon is "closed," attaching the last point to the first if needed. Like ovals and rectangles, they can have separate
+  <code>fill</code> and <code>outline</code> colors. They also support the <code>joinstyle</code>, <code>smooth</code>, and <code>splinesteps</code>
+  attributes of line items.</p>
+  
+<div class=python><pre>canvas.create_polygon(10, 10, 200, 50, 90, 150, 50, 80, 120, 55, fill='red', outline='blue')</pre></div>
+
+<h4>Arc</h4>
+
+
+<p>Arc items draw a portion of an oval; think of one piece of a pie chart. It's display is controlled by three attributes:
+<ul> 
+  <li><code>start</code>: how far along the oval the arc should start, in degrees (0 is the 3-o'clock position)</li>
+  <li>The <code>extent</code>: how many degrees "wide" the arc should be, positive for counter-clockwise from the start, negative for clockwise</li>
+  <li><code>style</code>: one of <code>pieslice</code> (the default), <code>arc</code> (draws just the outer perimeter), or <code>chord</code> (draws the area between a line
+    connecting the start and end points of the arc, and the outer perimeter).</ul>
+</ul>
+  
+<div class=python><pre>canvas.create_arc(10, 10, 200, 150, fill='yellow', outline='black', start=45, extent=135, width=5)</pre></div>
+
+
+<h4>Image</h4>
+
+
+<p>Image items can display arbitrary images. By default, the item is centered at the coordinates you specify, but this can be changed with the <code>anchor</code>
+  option, e.g., <code>nw</code> means the coordinates are where to put the top-left of the image.</p>
+  
+<div class=python><pre>myimg = PhotoImage(file='pretty.png')
+canvas.create_image(10, 10, image=myimg, anchor='nw')</pre></div>
+
+
+<p>There's also a <code>bitmap</code> item type for images having only two colors, which can be changed via <code>foreground</code> and <code>background</code>.
+  It's not something that would commonly be used these days.</p>
+
+<h4>Text</h4>
+
+
+<p>Text items can display a block of text. Positioning the text works the same as with image items. 
+  Specify the text to display using the <code>text</code> attribute. 
+  All of the text in the item will have the same color (specified by the <code>fill</code> attribute) and the same font (specified by a <code>font</code> attribute). </p>
+<p>The text item can display multiple lines of text if you embed <code>\n</code> in the text.
+   Alternatively, you can have the item automatically wrapped into multiple lines by providing a <code>width</code> attribute to represent the maximum width of a line.
+   The alignment of multiple lines of text can be set using the <code>justify</code> attribute, which can be one of <code>left</code> (the default), <code>right</code>, 
+   or <code>center</code>.</p>
+
+<div class=python><pre>canvas.create_text(100, 100, text='A wonderful story', anchor='nw', font='TkMenuFont', fill='red')</pre></div>
+
+   
+   
+<h4>Widget</h4>
+
+
+<p>One of the coolest things you can do with the canvas widget is to embed <em>other widgets</em> inside it. This can be a lowly button, an entry (think in-place
+  editing of text items), a listbox, a frame itself containing a complex set of widgets... anything! Remember when we said way back when that a canvas widget
+  could act as a geometry manager? This is what we meant.</p>
+<p>Canvas items that display other widgets are known as <em>window</em> items (Tk's longstanding terminology for widgets). They are positioned like text and image items.
+  You can give them explicit <code>width</code> and <code>height</code> attributes; they default to the widget's preferred size. Finally, it's important that 
+  the widget you're placing on the canvas (via the <code>window</code>) attribute be a child widget of the canvas.</p>
+  
+<div class=python><pre>b = ttk.Button(camvas, text='Implode!')
+canvas.create_image(10, 10, anchor='nw', window=b)</pre></div>
+ 
+  
+<h3>Modifying Items</h3>
+
+<p>We've seen how you can modify the configuration options on an item &#8212; its color, width, etc.
+There are several other things you can do with items.</p>
+
+<p>To delete items, use the <code>delete</code> method.</p>
+<p>To change an item's size and position, you can use the <code>coords</code> method. You supply
+new coordinates for the item, specified the same way as when you first created it.  Calling this method
+without a new set of coordinates will return the current coordinates of the item.  To move one or more items
+by a particular horizontal or vertical amount from their current location, you can use the <code>move</code>
+method.</p>
+
+<p>All items are ordered from top to bottom in what's called the stacking order.  If an item later in the
+stacking order overlaps an item below it, the first item will be drawn on top of the second.  
+The <code>raise</code> (<code>lift</code> in Tkinter)
+and <code>lower</code> methods allow you to adjust an item's position in the stacking order.</p>
+
+<p>There are several more operations detailed in the reference manual. They describe more ways to modify items and  
+retrieve information about them.</p>
+  
+
+ <a name="bindings"></a><h2>Event Bindings</h2>
+
+
+<p>We've already seen that the canvas widget as a whole, like any other Tk widget, can capture events
+using the <code>bind</code> command.</p>
+
+<p>You can also attach bindings to individual items in the canvas (or groups of them, as we'll see in the
+next section using tags).  So if you want to know whether or not a particular item has been clicked on,
+you don't need to watch for mouse click events for the canvas as a whole, and then figure out if that
+click happened on your item.  Tk will take care of all this for you.</p>
+
+<p>To capture these events, you use a bind command built into the canvas.  It works exactly like the
+regular bind command, taking an event pattern and a callback.  The only difference is you  
+specify the canvas item this binding applies to.</p>
+
+
+<div class=python><pre>canvas.tag_bind(id, '<1>', ...)</pre>
+	<div class=tip><p>Note the difference between the item-specific <code>tag_bind</code> method 
+	and the widget-level <code>bind</code> method.</p></div></div>
+<p>Let's add some code to our sketchpad example to allow changing the drawing color.  We'll first create a few
+different rectangle items, each filled with a different color. We'll then
+attach a binding to each of these. When they're clicked on, they'll set a global variable to the
+new drawing color.  Our mouse motion binding will look at that variable when creating the line segments.</p>
+
+<div class=python><pre>color = "black"
+def setColor(newcolor):
+    global color
+    color = newcolor
+
+def addLine(event):
+    global lastx, lasty
+    canvas.create_line((lastx, lasty, event.x, event.y), fill=color)
+    lastx, lasty = event.x, event.y
+
+id = canvas.create_rectangle((10, 10, 30, 30), fill="red")
+canvas.tag_bind(id, "&lt;Button-1&gt;", lambda x: setColor("red"))
+id = canvas.create_rectangle((10, 35, 30, 55), fill="blue")
+canvas.tag_bind(id, "&lt;Button-1&gt;", lambda x: setColor("blue"))
+id = canvas.create_rectangle((10, 60, 30, 80), fill="black")
+canvas.tag_bind(id, "&lt;Button-1&gt;", lambda x: setColor("black"))	
+</pre></div>
+
+ <a name="tags"></a><h2>Tags</h2>
+
+<p>We've seen that every canvas item has a unique id number, but there is another very useful and
+powerful way to refer to items on a canvas, and that is using <em>tags</em>.</p>
+
+<p>A tag is just an identifier of your creation, something meaningful to your program.  You can attach
+tags to canvas items; each item can have any number of tags.  Unlike item id numbers, which are unique
+for each item, many items can have the same tag.  </p>
+
+<p>What can you do with tags?  We saw that you can use the item id to modify a canvas item (and we'll see
+soon there are other things you can do to items, like move them around, delete them, etc.).  Any time
+you can use an item id, you can use a tag.  For example, you can change the color of all items having
+a specific tag.  </p>
+
+<p>Tags are a good way to identify certain types of items in your canvas (items that are part of a drawn
+line, items that are part of the palette, etc.).  You can use tags to correlate canvas items to particular
+objects in your application (for example, tag all canvas items that are part of the robot with id #37
+with the tag "robot37").  With tags, you don't have to keep track of the ids of canvas items to refer to
+groups of items later; tags let Tk do that for you.</p>
+
+<p>You can assign tags when creating an item using the <code>tags</code> item configuration option.  You
+can add tags later with the <code>addtag</code> method, or remove them with the <code>dtags</code> method.
+You can get the list of tags for an item with the <code>gettags</code> method, or return a list of item
+id numbers having the given tag with the <code>find</code> command.</p>
+
+<p>For example:</p>
+
+<div class=python>
+<pre>
+&gt;&gt;&gt; <b>c = Canvas(root)</b>
+&gt;&gt;&gt; <b>c.create_line(10, 10, 20, 20, tags=('firstline', 'drawing'))</b>
+1
+&gt;&gt;&gt; <b>c.create_rectangle(30, 30, 40, 40, tags=('drawing'))</b>
+2
+&gt;&gt;&gt; <b>c.addtag('rectangle', 'withtag', 2)</b>
+&gt;&gt;&gt; <b>c.addtag('polygon', 'withtag', 'rectangle')</b>
+&gt;&gt;&gt; <b>c.gettags(2)</b>
+('drawing', 'rectangle', 'polygon')
+&gt;&gt;&gt; <b>c.dtag(2, 'polygon')</b>
+&gt;&gt;&gt; <b>c.gettags(2)</b>
+('drawing', 'rectangle')	
+&gt;&gt;&gt; <b>c.find_withtag('drawing')</b>
+(1, 2)
+</pre>	
+</div>
+
+<p>As you can see, things like <code>withtag</code> will take either an individual item or a tag; in the latter
+case, they will apply to all items having that tag (which could be none).  The <code>addtag</code>
+and <code>find</code> have many other options, allowing you to specify items near a point, overlapping
+a particular area, etc.</p>
+
+<p>Let's use tags first to put a border around whichever item in our color palette is currently selected.</p>
+
+<div class=python><pre>def setColor(newcolor):
+    global color
+    color = newcolor
+    canvas.dtag('all', 'paletteSelected')
+    canvas.itemconfigure('palette', outline='white')
+    canvas.addtag('paletteSelected', 'withtag', 'palette%s' % color)
+    canvas.itemconfigure('paletteSelected', outline='#999999')
+
+id = canvas.create_rectangle((10, 10, 30, 30), fill="red", tags=('palette', 'palettered'))
+id = canvas.create_rectangle((10, 35, 30, 55), fill="blue", tags=('palette', 'paletteblue'))
+id = canvas.create_rectangle((10, 60, 30, 80), fill="black", tags=('palette', 'paletteblack', 'paletteSelected'))
+
+setColor('black')
+canvas.itemconfigure('palette', width=5)
+
+</pre></div>
+
+
+<p>Let's also use tags to make the current stroke being drawn appear more prominent. When the mouse button is released,
+we'll return the line to normal.</p>
+
+<div class=python><pre>def addLine(event):
+    global lastx, lasty
+    canvas.create_line((lastx, lasty, event.x, event.y), fill=color, width=5, tags='currentline')
+    lastx, lasty = event.x, event.y
+
+def doneStroke(event):
+    canvas.itemconfigure('currentline', width=1)        
+
+canvas.bind("&lt;B1-ButtonRelease&gt;", doneStroke)
+</pre></div>
+
+
+ <a name="scrolling"></a><h2>Scrolling</h2>
+
+<p>In many applications, you'll want the canvas to be larger than what appears on the screen.  You can attach
+horizontal and vertical scrollbars to the canvas in the usual way, via the <code>xview</code> and <code>yview</code>
+methods.  </p>
+
+<p>You can specify both how large you'd like it to be on screen and its full size (which would require scrolling to see).
+The <code>width</code> and <code>height</code> configuration options for the canvas widget will request the given amount of space
+from the geometry manager.  The <code>scrollregion</code> configuration option tells Tk how large the canvas surface is by 
+specifying its left, top, right, and bottom coordinates, e.g., <code>0 0 1000 1000</code>.</p>
+
+<p>You should be able to modify the sketchpad program to add scrolling, given what you already know.  Give it a try.</p>
+
+<p>Once you've done that, scroll the canvas down just a little bit, and then try drawing.  You'll see that the
+line you're drawing appears <em>above</em> where the mouse is pointing!  Surprised?</p>
+
+<p>What's going on is that the global <code>bind</code> command doesn't know that the canvas is scrolled (it doesn't
+know the details of any particular widget).  So if you've scrolled the canvas down by 50 pixels, and you click
+on the top left corner, bind will report that you've clicked at (0,0).  But we know that because of the scrolling,
+that position should really be (0,50).</p>
+
+<p>The <code>canvasx</code> and <code>canvasy</code> methods translate the position onscreen (which bind reports)
+into the actual point on the canvas (taking into account scrolling).</p>
+
+<div class=tip><p>Be careful if you're adding <code>canvasx</code> and <code>canvasy</code> methods directly to the event binding scripts.
+You need to watch the quoting and substitutions to ensure the conversions are done when the event fires.
+As always, it's better to place that code in a procedure separate from the event binding itself.</p></div>
+
+<p>Here then, is our complete example.  We probably don't want the palette to be scrolled away when the canvas is
+scrolled, but we'll leave that for another day.</p>
+
+<div class=python><pre>from tkinter import *
+from tkinter import ttk
+root = Tk()
+
+h = ttk.Scrollbar(root, orient=HORIZONTAL)
+v = ttk.Scrollbar(root, orient=VERTICAL)
+canvas = Canvas(root, scrollregion=(0, 0, 1000, 1000), yscrollcommand=v.set, xscrollcommand=h.set)
+h['command'] = canvas.xview
+v['command'] = canvas.yview
+
+canvas.grid(column=0, row=0, sticky=(N,W,E,S))
+h.grid(column=0, row=1, sticky=(W,E))
+v.grid(column=1, row=0, sticky=(N,S))
+root.grid_columnconfigure(0, weight=1)
+root.grid_rowconfigure(0, weight=1)
+
+lastx, lasty = 0, 0
+
+def xy(event):
+    global lastx, lasty
+    lastx, lasty = canvas.canvasx(event.x), canvas.canvasy(event.y)
+
+def setColor(newcolor):
+    global color
+    color = newcolor
+    canvas.dtag('all', 'paletteSelected')
+    canvas.itemconfigure('palette', outline='white')
+    canvas.addtag('paletteSelected', 'withtag', 'palette%s' % color)
+    canvas.itemconfigure('paletteSelected', outline='#999999')
+
+def addLine(event):
+    global lastx, lasty
+    x, y = canvas.canvasx(event.x), canvas.canvasy(event.y)
+    canvas.create_line((lastx, lasty, x, y), fill=color, width=5, tags='currentline')
+    lastx, lasty = x, y
+
+def doneStroke(event):
+    canvas.itemconfigure('currentline', width=1)        
+        
+canvas.bind("&lt;Button-1&gt;", xy)
+canvas.bind("&lt;B1-Motion&gt;", addLine)
+canvas.bind("&lt;B1-ButtonRelease&gt;", doneStroke)
+
+id = canvas.create_rectangle((10, 10, 30, 30), fill="red", tags=('palette', 'palettered'))
+canvas.tag_bind(id, "&lt;Button-1&gt;", lambda x: setColor("red"))
+id = canvas.create_rectangle((10, 35, 30, 55), fill="blue", tags=('palette', 'paletteblue'))
+canvas.tag_bind(id, "&lt;Button-1&gt;", lambda x: setColor("blue"))
+id = canvas.create_rectangle((10, 60, 30, 80), fill="black", tags=('palette', 'paletteblack', 'paletteSelected'))
+canvas.tag_bind(id, "&lt;Button-1&gt;", lambda x: setColor("black"))
+
+setColor('black')
+canvas.itemconfigure('palette', width=5)
+root.mainloop()</pre></div>
+
+
+    <script src="../../code.jquery.com/jquery-3.4.1.min.js" integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh" crossorigin="anonymous"></script>
+    <script src="../../stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+    <script src="../tkdocs.js"></script>
+    <script type='text/javascript'>setDefaultLang()</script>
+</body>
+
+<!-- Mirrored from tkdocs.com/tutorial/canvas.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 07:05:59 GMT -->
+</html>
+
+
+

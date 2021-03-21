@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="en">
+
+<!-- Mirrored from tkdocs.com/tutorial/morewidgets.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 07:05:33 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>TkDocs Tutorial - More Widgets</title>
+    <meta http-equiv="Content-Language" content="English" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="More Widgets: Part of a Modern Tk Tutorial for Python, Tcl, Ruby, and Perl" />
+    <meta name="keywords" content="TkDocs, Tk, Tkinter, Tkx, GUI, Tcl, Python, Perl, Ruby" />	
+  
+   <link rel="stylesheet" href="../../stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <link rel="stylesheet" href="../../maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">  
+    <link rel="stylesheet" type="text/css" href="../tkc.css" media="screen,print" /> 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="../../external.html?link=https://www.googletagmanager.com/gtag/js?id=UA-2043168-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-2043168-3');
+</script>
+
+
+</head>
+<body>
+
+
+<div class="container-fluid">
+
+
+<div class=tutorial>
+<nav><ul class="pagination justify-content-center"><li class="page-item"><a class="page-link" href="grid.html">Previous: The Grid Geometry Manager</a></li><li class="page-item"><a class="page-link" href="index.html">Contents</a></li><li class="page-item"><a class="page-link" href="onepage.html">Tutoriel complet en une page</a></li><li class="page-item"><a class="page-link" href="eventloop.html">Next: Event Loop</a></li></ul></nav>
+<h1>More Widgets</h1>
+
+
+<p>This chapter carries on introducing several more widgets: listbox, scrollbar, text, 
+scale, spinbox, and progressbar.  Some of these are starting to be a bit more powerful than the basic ones
+we looked at before.  Here we'll also see a few instances of using the classic Tk widgets, in
+cases where there isn't (or there isn't a need for) a themed counterpart.</p>
+
+
+ <a name="listbox"></a><h2>Listbox</h2>
+
+<ul class=menu>
+<li><a href="../../external.html?link=https://tkdocs.com/widgets/listbox.html">Widget Roundup</a></li>
+<li><a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/listbox.htm">Reference Manual</a></li>
+</ul>
+
+<p>A <b>listbox</b> widget displays a list of single-line text items, usually lengthy, and allows users
+to browse through the list, selecting one or more.</p>
+
+<p>Listboxes are part of the classic Tk widgets; there is not presently a listbox in the
+themed Tk widget set.</p>
+
+<div class=tip><p>Tk's treeview widget (which is themed) can also be used as a listbox (a one level deep tree),
+allowing you to use icons and styles with the list.  It's also likely that a multi-column
+(table) list widget will make it into Tk at some point, whether based on treeview or one of the available
+extensions.</p></div>
+
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/w_listbox_all.png' alt='screen shot'><br />
+Listbox widgets.</p>
+
+
+
+<div class=python><p>Listboxes are created using the <code><b>Listbox</b></code> class. A height configuration option can specify the number of lines the listbox will display at a time without scrolling:</p>
+	<pre>l = Listbox(<em>parent</em>, height=10)</pre></div>
+
+<h3>Populating the Listbox Items</h3>
+
+<p>There's an easy way and a hard way to populate and manage all the items in the listbox.  </p>
+
+<p>Here's the easy way.  Each listbox has a <code>listvariable</code> configuration option, which allows you to 
+link a variable (which must hold a list) to the listbox.  Each element of this list
+is a string representing one item in the listbox.  To add, remove, or rearrange
+items in the listbox, you can simply modify this variable as you would any other
+list.  Similarly, to find out, e.g., which item is on the third line of the listbox, just
+look at the third element of the list variable.</p>
+
+<div class=python>
+It's actually not quite <em>that</em> easy. Tkinter doesn't allow you to link regular Python lists to a <code>listbox</code>.
+As we saw with widgets like <code>entry</code>, we need to use a <code>StringVar</code> as an intermediary. It provides a
+mapping between Python's lists and a string representation that the underlying Tk widgets can use. It also means that anytime we change the list, we need to update the <code>StringVar</code>.
+<pre>
+choices = ["apple", "orange", "banana"]
+choicesvar = StringVar(value=choices)
+l = Listbox(parent, listvariable=choicesvar)
+...
+choices.append("peach")
+choicesvar.set(choices)
+</pre>
+</div>
+
+<p>The older, harder way to do things is to use a set of methods that are part of the listbox
+widget itself. They operate on the (internal) list of items maintained by the widget:</p>
+
+<ul>
+<li> The <code>insert <em>idx</em> <em>item</em> <em>?item...?</em></code> method is used to add one or more items
+	 to the list; <code><em>idx</em></code> is a 0-based index indicating the position of the item before
+	 which the item(s) should be added; specify <code>end</code> to put the new items at the end of
+	 the list.
+<li> Use the <code>delete <em>first</em> <em>?last?</em></code> method to delete one or more items from the
+	 list; <code><em>first</em></code> and <code><em>last</em></code> are indices as per the <code>insert</code> method.
+<li> Use the <code>get <em>first</em> <em>?last?</em></code> method to return the contents of a single item at the 
+	 given position, or a list of the items between <code><em>first</em></code> and <code><em>last</em></code>.
+<li> The <code>size</code> method returns the number of items in the list.
+</ul>
+
+<h3>Selecting Items</h3>
+
+<p>You can choose whether users can select only a 
+single item at a time from the <code>listbox</code>, or if multiple items can simultaneously be selected.  This is 
+controlled by the <code>selectmode</code> option: the default is only being able to select
+a single item (<code>browse</code>), while a <code>selectmode</code> of <code>extended</code> allows users to select 
+multiple items.</p>
+
+<div class=yuck><p>The names <code>browse</code> and <code>extended</code>, again for backward compatibility reasons, are truly awful.  
+This is made worse by the fact that there are two other modes, <code>single</code> and <code>multiple</code>, which 
+you <b>should not use</b> (they use an old interaction style that is inconsistent with modern
+user interface and platform conventions).</p></div>
+
+<p>To find out which item or items in the listbox are currently selected, use the <code>curselection</code>
+method. It returns a list of indices of all items currently selected; this may be an
+empty list. For lists with a <code>selectmode</code> of <code>browse</code>, it will never be longer than one item.  You
+can also use the <code>selection_includes <em>index</em></code> method to check if the item with the given 
+index is currently selected.</p>
+
+<div class=python><pre>if lbox.selection_includes(2): ...</pre></div>
+
+<p>To programmatically change the selection, you can use the <code>selection_clear <em>first</em> <em>?last?</em></code>
+method to deselect either a single item or any within the range of indices specified.  To select
+an item or all items in a range, use the <code>selection_set <em>first</em> <em>?last?</em></code> method.  Both of 
+these will not touch the selection of any items outside the range specified.</p>
+
+<p>If you change the selection, you should also make sure that the newly selected item is visible
+ (i.e., it is not scrolled out of view).  To do this, use the <code>see <em>index</em></code> method.</p>
+
+<div class=python><pre>lbox.selection_set(idx)
+lbox.see(idx)</pre></div>
+
+
+<p>When a user changes the selection, a <code>&lt;&lt;ListboxSelect&gt;&gt;</code> virtual event is generated.
+You can bind to this to take any action you need.  Depending on your application, you may also want to bind
+to a double-click <code>&lt;Double-1&gt;</code> event and use it to invoke an action with the currently selected item.</p>
+
+<div class=python><pre>lbox.bind("&lt;&lt;ListboxSelect&gt;&gt;", lambda e: updateDetails(lbox.curselection()))
+lbox.bind("&lt;Double-1&gt;", lambda e: invokeAction(lbox.curselection()))</pre></div>
+
+
+<h3>Stylizing the List</h3>
+
+<p>Like most of the "classic" Tk widgets, you have immense flexibility in modifying the appearance of a listbox.
+As described in the <a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/listbox.htm">reference manual</a>, you can
+modify the font the listbox items are displayed in, the foreground (text) and background colors for items
+in their normal state, when selected, when the widget is disabled, etc.  There is also an
+<code>itemconfigure</code> method that allows you to change the foreground and background colors of
+individual items.</p>
+
+<p>As is often the case, restraint is useful.  Generally, the default values will be entirely suitable and a 
+good match for platform conventions.  In the example we'll get to momentarily, we'll show how restrained
+use of these options can be put to good effect, in this case displaying alternate lines of the listbox in
+slightly different colors.</p>
+
+
+<h3>Keeping Extra Item Data</h3>
+
+<p>The <code>listvariable</code> (or the internal list, if you're managing things the old way) holds 
+the strings that will be shown in the listbox.  It's often the case, though, that each string you're displaying is
+associated with some other data item. This might bean internal object that is meaningful to your program, but not
+meant to be displayed to users. In other words, what you're really interested in is not so much the string
+displayed in the listbox, but the associated data item.  For example, a listbox may display a list of names
+to users, but your program is really interested in the underlying user object (or id number)
+for each one, not the particular name.  </p>
+
+<p>How can we associate this underlying value with the name that is displayed?  Unfortunately, the listbox widget itself doesn't
+offer any facilities, so it's something we'll have to manage separately.  There are a couple of obvious
+approaches.  First, if the displayed strings are guaranteed unique, you could use a hash table to map each
+name to its associated underlying object.  This wouldn't work well for peoples' names, where
+duplicates are possible, but could work for countries, which are unique.</p>
+
+<p>A second approach is to keep a second list, parallel to the list of strings displayed in the listbox.
+This second list will hold the underlying object associated with each item that is displayed.
+So the first item in the displayed strings list corresponds to the first item in
+the underlying objects list, the second to the second, etc.  Any changes that you make in one list (insert, delete,
+reorder), you must make in the other.  You can then easily map from the displayed list item to the underlying
+object, based on their position in the list.</p>
+
+
+<h3>Example</h3>
+
+<p>Here is a silly example showing several of these listbox techniques.  We'll have a list of countries
+displayed.  We'll be able to select only a single country at a time. As we do so, a status bar will display the population of the country.  
+You can press a button to send one of several gifts to the selected country's head of state (well, not really, but use your imagination).
+Sending a gift can also be triggered by double-clicking the list or hitting the Return key.</p>
+
+<p>Behind the scenes, we maintain two lists in parallel. The first is a list of two-letter country codes. The other is the corresponding name
+  for each country that we will display in the listbox. We also have a simple hash table that contains the population of each country, indexed by 
+  the two-letter country code.</p>
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/country_w.png' alt='screen shot'><br />
+Country selector listbox example.</p>
+
+<div class=python><pre>from tkinter import *
+from tkinter import ttk
+root = Tk()
+
+<em># Initialize our country "databases":</em>
+<em>#  - the list of country codes (a subset anyway)</em>
+<em>#  - parallel list of country names, same order as the country codes</em>
+<em>#  - a hash table mapping country code to population</em>
+countrycodes = ('ar', 'au', 'be', 'br', 'ca', 'cn', 'dk', 'fi', 'fr', 'gr', 'in', 'it', 'jp', 'mx', 'nl', 'no', 'es', 'se', 'ch')
+countrynames = ('Argentina', 'Australia', 'Belgium', 'Brazil', 'Canada', 'China', 'Denmark', \
+        'Finland', 'France', 'Greece', 'India', 'Italy', 'Japan', 'Mexico', 'Netherlands', 'Norway', 'Spain', \
+        'Sweden', 'Switzerland')
+cnames = StringVar(value=countrynames)
+populations = {'ar':41000000, 'au':21179211, 'be':10584534, 'br':185971537, \
+        'ca':33148682, 'cn':1323128240, 'dk':5457415, 'fi':5302000, 'fr':64102140, 'gr':11147000, \
+        'in':1131043000, 'it':59206382, 'jp':127718000, 'mx':106535000, 'nl':16402414, \
+        'no':4738085, 'es':45116894, 'se':9174082, 'ch':7508700}
+
+<em># Names of the gifts we can send</em>
+gifts = { 'card':'Greeting card', 'flowers':'Flowers', 'nastygram':'Nastygram'}
+
+<em># State variables</em>
+gift = StringVar()
+sentmsg = StringVar()
+statusmsg = StringVar()
+
+<em># Called when the selection in the listbox changes; figure out</em>
+<em># which country is currently selected, and then lookup its country</em>
+<em># code, and from that, its population.  Update the status message</em>
+<em># with the new population.  As well, clear the message about the</em>
+<em># gift being sent, so it doesn't stick around after we start doing</em>
+<em># other things.</em>
+def showPopulation(*args):
+    idxs = lbox.curselection()
+    if len(idxs)==1:
+        idx = int(idxs[0])
+        code = countrycodes[idx]
+        name = countrynames[idx]
+        popn = populations[code]
+        statusmsg.set("The population of %s (%s) is %d" % (name, code, popn))
+    sentmsg.set('')
+
+<em># Called when the user double clicks an item in the listbox, presses</em>
+<em># the "Send Gift" button, or presses the Return key.  In case the selected</em>
+<em># item is scrolled out of view, make sure it is visible.</em>
+#
+<em># Figure out which country is selected, which gift is selected with the </em>
+<em># radiobuttons, "send the gift", and provide feedback that it was sent.</em>
+def sendGift(*args):
+    idxs = lbox.curselection()
+    if len(idxs)==1:
+        idx = int(idxs[0])
+        lbox.see(idx)
+        name = countrynames[idx]
+        <em># Gift sending left as an exercise to the reader</em>
+        sentmsg.set("Sent %s to leader of %s" % (gifts[gift.get()], name))
+
+<em># Create and grid the outer content frame</em>
+c = ttk.Frame(root, padding=(5, 5, 12, 0))
+c.grid(column=0, row=0, sticky=(N,W,E,S))
+root.grid_columnconfigure(0, weight=1)
+root.grid_rowconfigure(0,weight=1)
+
+<em># Create the different widgets; note the variables that many</em>
+<em># of them are bound to, as well as the button callback.</em>
+<em># We're using the StringVar() 'cnames', constructed from 'countrynames'</em>
+<b>lbox</b> = Listbox(c, <b>listvariable=cnames</b>, height=5)
+lbl = ttk.Label(c, text="Send to country's leader:")
+g1 = ttk.Radiobutton(c, text=gifts['card'], <b>variable=gift</b>, value='card')
+g2 = ttk.Radiobutton(c, text=gifts['flowers'], <b>variable=gift</b>, value='flowers')
+g3 = ttk.Radiobutton(c, text=gifts['nastygram'], <b>variable=gift</b>, value='nastygram')
+send = ttk.Button(c, text='Send Gift', <b>command=sendGift</b>, default='active')
+sentlbl = ttk.Label(c, <b>textvariable=sentmsg</b>, anchor='center')
+status = ttk.Label(c, <b>textvariable=statusmsg</b>, anchor=W)
+
+<em># Grid all the widgets</em>
+lbox.grid(column=0, row=0, rowspan=6, sticky=(N,S,E,W))
+lbl.grid(column=1, row=0, padx=10, pady=5)
+g1.grid(column=1, row=1, sticky=W, padx=20)
+g2.grid(column=1, row=2, sticky=W, padx=20)
+g3.grid(column=1, row=3, sticky=W, padx=20)
+send.grid(column=2, row=4, sticky=E)
+sentlbl.grid(column=1, row=5, columnspan=2, sticky=N, pady=5, padx=5)
+status.grid(column=0, row=6, columnspan=2, sticky=(W,E))
+c.grid_columnconfigure(0, weight=1)
+c.grid_rowconfigure(5, weight=1)
+
+<em># Set event bindings for when the selection in the listbox changes,</em>
+<em># when the user double clicks the list, and when they hit the Return key</em>
+lbox.bind('<&lt;ListboxSelect>&gt;', showPopulation)
+lbox.bind('&lt;Double-1&gt;', sendGift)
+root.bind('&lt;Return&gt;', sendGift)
+
+<em># Colorize alternating lines of the listbox</em>
+for i in range(0,len(countrynames),2):
+    lbox.itemconfigure(i, background='#f0f0ff')
+
+<em># Set the starting state of the interface, including selecting the</em>
+<em># default gift to send, and clearing the messages.  Select the first</em>
+<em># country in the list; because the &lt;&lt;ListboxSelect&gt;&gt; event is only</em>
+<em># fired when users makes a change, we explicitly call showPopulation.</em>
+gift.set('card')
+sentmsg.set('')
+statusmsg.set('')
+lbox.selection_set(0)
+showPopulation()
+
+root.mainloop()
+</pre></div>
+
+
+<p>One obvious thing missing from this example was that while the list of countries could be quite
+long, only part of it fits on the screen at once.  To show countries further down in the list, you
+had to either drag with your mouse or use the down arrow key.  A scrollbar would have been nice.
+Let's fix that.</p>
+
+
+ <a name="scrollbar"></a><h2>Scrollbar</h2>
+
+<ul class=menu>
+<li><a href="../../external.html?link=https://tkdocs.com/widgets/scrollbar.html">Widget Roundup</a></li>
+<li><a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/ttk_scrollbar.htm">Reference Manual</a></li>
+</ul>
+
+
+<p>A <b>scrollbar</b> widget helps users see all parts of another widget, whose content is typically
+much larger than what can be shown in the available screen space.</p>
+
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/w_scrollbar_all.png' alt='screen shot'><br />
+Scrollbar widgets.</p>
+
+
+<div class=python><p>Scrollbars are created using the <code><b>ttk.Scrollbar</b></code> class:</p>
+	<pre>s = ttk.Scrollbar( <em>parent</em>, orient=VERTICAL, command=listbox.yview)
+listbox.configure(yscrollcommand=s.set)</pre>
+</div>
+
+
+<p>Unlike in some user interface toolkits, Tk scrollbars are not a part of another widget (e.g., a listbox), but are a
+separate widget altogether.  Instead, scrollbars communicate with the <em>scrolled widget</em> by calling
+methods on the scrolled widget; as it turns out, the scrolled widget also needs to call methods 
+on the scrollbar.  </p>
+
+
+<p>The <code>orient</code> configuration option determines whether the scrollbar will 
+scroll the scrolled widget in the <code>horizontal</code> or <code>vertical</code> dimension.  You then need to use the
+<code>command</code> configuration option to specify how to communicate with the scrolled widget.  This is the 
+method to call on the scrolled widget when the scrollbar moves.</p>
+
+<p>Every widget that can be scrolled vertically includes a method named <code>yview</code>, while those that
+can be scrolled horizontally have a method named <code>xview</code>).  As long as this method is
+present, the scrollbar doesn't need to know anything else about the scrolled widget.  When the
+scrollbar is manipulated, it appends several parameters to the method call, indicating
+how it was scrolled, to what position, etc.</p>
+
+<p>The scrolled widget also needs to communicate back to the scrollbar, telling it what percentage
+of the entire content area is now visible.  Besides the <code>yview</code> and/or <code>xview</code> methods,
+every scrollable widget also has a <code>yscrollcommand</code> and/or <code>xscrollcommand</code>
+configuration option.  This is used to specify a method call, which must be the scrollbar's
+<code>set</code> method.  Again, additional parameters will be automatically tacked onto the method
+call.</p>
+
+<h3>Example</h3>
+
+<p>Listboxes are one of several types of widgets that are scrollable.  Here, we'll build a very simple user
+interface, consisting of a vertically scrollable listbox that takes up the entire window, with
+just a status line at the bottom.</p>
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/scrollbar_l.png' alt='screen shot'><br />
+Scrolling a listbox.</p>
+
+<div class=python><pre>from tkinter import *
+from tkinter import ttk
+
+root = Tk()
+l = Listbox(root, height=5)
+l.grid(column=0, row=0, sticky=(N,W,E,S))
+s = ttk.Scrollbar(root, orient=VERTICAL, <b>command=l.yview</b>)
+s.grid(column=1, row=0, sticky=(N,S))
+<b>l['yscrollcommand'] = s.set</b>
+ttk.Label(root, text="Status message here", anchor=(W)).grid(column=0, columnspan=2, row=1, sticky=(W,E))
+root.grid_columnconfigure(0, weight=1)
+root.grid_rowconfigure(0, weight=1)
+for i in range(1,101):
+    l.insert('end', 'Line %d of 100' % i)
+root.mainloop()</pre></div>
+
+
+
+ <a name="text"></a><h2>Text</h2>
+
+<ul class=menu>
+<li><a href="../../external.html?link=https://tkdocs.com/widgets/text.html">Widget Roundup</a></li>
+<li><a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/text.htm">Reference Manual</a></li>
+</ul>
+
+<p>A <b>text</b> widget provides users with an area so that they can enter multiple lines of text.
+Text widgets are part of the classic Tk widgets, not the themed Tk widgets.<br>&nbsp;</p>
+
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/w_text_all.png' alt='screen shot'><br />
+Text widgets.</p>
+
+
+<div class=python>	<p>Text widgets are created using the <code><b>Text</b></code> class:</p>
+  <pre>t = Text(<em>parent</em>, width=40, height=10)</pre></div>
+
+<p>The <code>width</code> and <code>height</code> options specify the requested screen size of the text 
+widget, in characters and rows, respectively.  The contents of the text can be arbitrarily large.
+You can use the <code>wrap</code> configuration option to control how line wrapping is handled:
+values are <code>none</code> (no wrapping, text may horizontally scroll), <code>char</code> (wrap at any
+character), and <code>word</code> (wrapping will only occur at word boundaries).</p>
+
+<p>A text widget can be disabled so that no editing can occur. Because text is not a themed widget,
+the usual <code>state</code> and <code>instate</code> methods are not available.  Instead, use the
+configuration option <code>state</code>, setting it to either <code>disabled</code> or <code>normal</code>.</p>
+
+<div class=python><pre>txt['state'] = 'disabled'</pre></div>
+
+
+<p>Scrolling works the same way as in listboxes.  The <code>xscrollcommand</code> and <code>yscrollcommand</code>
+configuration options attach the text widget to horizontal and/or vertical scrollbars,
+and the <code>xview</code> and <code>yview</code> methods are called from scrollbars.
+To ensure that a given line is visible (i.e., not scrolled out of view), you can use the <code>see <em>index</em></code>
+method, where <code><em>index</em></code> is in the form <code><em>linenum.charnum</em></code>, e.g.,
+<code>5.0</code> for the first (0-based) character of line 5 (1-based). </p>
+
+
+<h3>Contents</h3>
+
+<p>Text widgets do not have a linked variable associated with them like, for example, entry widgets do.
+To retrieve the contents of the entire text widget, call the method <code>get 1.0 end</code>; the <code>1.0</code>
+is an index into the text, and means the first character of the first line, and <code>end</code> is a shortcut
+for the index of the last character in the last line.  Other indices could be provided to retrieve smaller ranges of
+text if needed.</p>
+
+  
+<p>Text can be added to the widget using the <code>insert <em>index</em> <em>string</em></code> method; again <code><em>index</em></code>
+is in the form <code><em>line.char</em></code> and marks the character before which text is inserted; use <code>end</code> 
+to add text to the end of the widget.  You can delete a range of text using the <code>delete <em>start</em> <em>end</em></code>
+method, where both <code><em>start</em></code> and <code><em>end</em></code> are text indices as already described.</p>
+
+<p>We'll get into the text widget's many additional advanced features in a later chapter.</p>
+
+
+
+ <a name="scale"></a><h2>Scale</h2>
+
+<ul class=menu>
+<li><a href="../../external.html?link=https://tkdocs.com/widgets/scale.html">Widget Roundup</a></li>
+<li><a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/ttk_scale.htm">Reference Manual</a></li>
+</ul>
+
+<p>A <b>scale</b> widget allows users to choose a numeric value through direct manipulation.<br>&nbsp;</p>
+
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/w_scale_all.png' alt='screen shot'><br />
+Scale widgets.</p>
+
+
+<div class=python><p>Scale widgets are created using the <code><b>ttk.Scale</b></code> class:</p>
+	<pre>s = ttk.Scale(<em>parent</em>, orient=HORIZONTAL, length=200, from_=1.0, to=100.0)</pre>
+	<div class=tip><p>Because 'from' is a reserved keyword in Python, we need to add a trailing underscore when using it as a configuration option.</p></div>
+</div>
+
+
+<p>The <code>orient</code> option may be either <code>horizontal</code> or <code>vertical</code>.  The <code>length</code>
+option, which represents the longer axis of either horizontal or vertical scales, is specified in screen
+units (e.g., pixels).  You should also define the range of the number that 
+the scale allows users to choose; to do this, set a floating-point number for each of the 
+<code>from</code> and <code>to</code> configuration options.</p>
+
+<p>There are several different ways you can set the current value of the scale (which must be a floating-point
+value between the <code>from</code> and <code>to</code> values).  
+You can set (or read, to get the current value)
+the scale's <code>value</code> configuration option.  You can link the scale to a variable using the <code>variable</code>
+option.  Or, you can call the scale's <code>set <em>value</em></code> method to change the value, or the <code>get</code>
+method to read the current value.</p>
+
+<p>A <code>command</code> configuration option lets you specify a script to call whenever the
+scale is changed.  Tk will append the current value of the scale as a parameter each time it
+calls this script (we saw a similar thing with extra parameters being added to scrollbar callbacks).</p>
+
+<div class=python><pre><em># label tied to the same variable as the scale, so auto-updates</em>
+num = StringVar()
+ttk.Label(root, textvariable=num).grid(column=0, row=0, sticky='we')
+
+<em># label that we'll manually update via the scale's command callback</em>
+manual = ttk.Label(root)
+manual.grid(column=0, row=1, sticky='we')
+
+def update_lbl(val):
+   manual['text'] = "Scale at " + val
+
+scale = ttk.Scale(root, orient='horizontal', length=200, from_=1.0, to=100.0, variable=num, command=update_lbl)
+scale.grid(column=0, row=2, sticky='we')
+scale.set(20)
+</pre></div>
+
+
+<p>As with other themed widgets, you can use the <code>state disabled</code>, <code>state !disabled</code>, and
+<code>instate disabled</code> methods to prevent users from modifying the scale.</p>
+
+<div class=tip><p>As the scale widget does not display the actual values, you may want to add those separately, e.g., using label widgets.</p></div>
+
+
+ <a name="spinbox"></a><h2>Spinbox</h2>
+
+
+<ul class=menu>
+<li><a href="../../external.html?link=https://tkdocs.com/widgets/spinbox.html">Widget Roundup</a></li>
+<li><a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/ttk_spinbox.htm">Reference Manual</a></li>
+</ul>
+
+<p>A <b>spinbox</b> widget allows users to choose numbers (or, in fact, items from an arbitrary list).  It does
+this by combining an entry-like widget showing the current value with a pair of small up/down arrows, which
+can be used to step through the range of possible choices.</p>
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/w_spinbox_all.png' alt='screen shot'><br />
+Spinbox widgets.</p>
+
+
+<div class=python><p>Spinbox widgets are created using the <code><b>ttk.Spinbox</b></code> class:</p>
+	<pre>spinval = StringVar()<br>s = ttk.Spinbox(<em>parent</em>, from_=1.0, to=100.0, textvariable=spinval)</pre></div>
+
+
+<p>Like scale widgets, spinboxes let user choose a number between a certain range
+(specified using the <code>from</code> and <code>to</code> configuration options), 
+though through a very different user interface.  You can also specify an <code>increment</code>, which controls how much the value changes every time you click
+the up or down button. </p>
+
+<p>Like a listbox or combobox, spinboxes can also be used to let users choose an item from an arbitrary list of strings;
+these can be specified using the <code>values</code> configuration option. This works in the same way it does for comboboxes;
+specifying a list of values will override to <code>from</code> and <code>to</code> settings.</p>
+
+<p>In their default state, spinboxes allow users to select values either via the up and down buttons, or by typing them directly into the
+  entry area that displays the current value. If you'd like to disable the latter feature, so that only the up and down buttons are available,
+  you can set the <code>readonly</code> state flag. 
+  
+<div class=python><pre>s.state(['readonly'])</pre></div>
+
+<p>Like other themed widgets, you can also disable spinboxes, via the <code>disabled</code> state flag, or check the state via the <code>instate</code> method.
+  Spinboxes also support validation in the same manner as entry widgets, using the <code>validate</code> and <code>validatecommand</code>
+  configuration options.</p>
+
+<div class=tip><p>You might be puzzled about when to choose a scale, listbox, combobox, entry, or a spinbox. Often, several of 
+these can be used for the same types of data.  The answer really depends on what you want users to
+select, platform user interface conventions, and the role the value plays in your user interface.
+</p><p>
+For example, both a combobox and a spinbox take up fairly small amounts of space compared with a listbox.
+They might make sense for a more peripheral setting. A more primary and prominent choice in a user interface may warrant the extra space a listbox
+occupies.  Spinboxes don't make much sense when items don't have a natural and obvious ordering to them.  
+Be careful about putting too many items in both comboboxes and spinboxes. 
+This can make it more time consuming to select an item.</p></div>
+
+<p>There is a boolean <code>wrap</code> option that determines whether 
+the value should wrap around when it goes beyond the starting or ending values.  You can also specify a <code>width</code>
+for the entry holding the current value of the spinbox.</p>
+
+<p>Again there are choices as to how to set or get the current value in the spinbox.  Normally, you would specify a linked 
+variable with the <code>textvariable</code> configuration option. As usual, any changes to the variable are reflected in the spinbox,
+while any changes in the spinbox are reflected in the linked variable.  As well, the <code>set <em>value</em></code> and <code>get</code>
+methods allow you to set or get the value directly.</p>
+
+<p>Spinboxes generate virtual events when users press up (<code>&lt;&lt;Increment&gt;&gt;</code>) or down (<code>&lt;&lt;Decrement&gt;&gt;</code>).
+  A <code>command</code> configuration option allows you to provide a callback that is invoked on any changes.</p>
+
+
+    <script src="../../code.jquery.com/jquery-3.4.1.min.js" integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh" crossorigin="anonymous"></script>
+    <script src="../../stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+    <script src="../tkdocs.js"></script>
+    <script type='text/javascript'>setDefaultLang()</script>
+</body>
+
+<!-- Mirrored from tkdocs.com/tutorial/morewidgets.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 07:05:41 GMT -->
+</html>
+
+
+

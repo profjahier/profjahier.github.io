@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+
+<!-- Mirrored from tkdocs.com/tutorial/tree.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 07:06:00 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>TkDocs Tutorial - Treeview</title>
+    <meta http-equiv="Content-Language" content="English" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="Treeview: Part of a Modern Tk Tutorial for Python, Tcl, Ruby, and Perl" />
+    <meta name="keywords" content="TkDocs, Tk, Tkinter, Tkx, GUI, Tcl, Python, Perl, Ruby" />	
+  
+   <link rel="stylesheet" href="../../stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <link rel="stylesheet" href="../../maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">  
+    <link rel="stylesheet" type="text/css" href="../tkc.css" media="screen,print" /> 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="../../external.html?link=https://www.googletagmanager.com/gtag/js?id=UA-2043168-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-2043168-3');
+</script>
+
+
+</head>
+<body>
+
+
+<div class="container-fluid">
+
+
+<div class=tutorial>
+<nav><ul class="pagination justify-content-center"><li class="page-item"><a class="page-link" href="text.html">Previous: Text</a></li><li class="page-item"><a class="page-link" href="index.html">Contents</a></li><li class="page-item"><a class="page-link" href="onepage.html">Tutoriel complet en une page</a></li><li class="page-item"><a class="page-link" href="styles.html">Next: Styles and Themes</a></li></ul></nav>
+<h1>Treeview</h1>
+
+
+<ul class=menu>
+<li><a href="../../external.html?link=https://tkdocs.com/widgets/treeview.html">Widget Roundup</a></li>
+<li><a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/ttk_treeview.htm">Reference Manual</a></li>
+</ul>
+
+<p>A <b>treeview</b> widget displays a hierarchy of items and allows users to browse through it. 
+One or more attributes of each item can be displayed as columns to the right of the tree.  It can be used to
+build user interfaces similar to the tree display you'd find in file managers like the macOS Finder
+or Windows Explorer.  As with most Tk widgets, it offers incredible flexibility so it can be 
+customized to suit a wide range of situations.</p>
+
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/w_treeview_all.png' alt='screen shot'><br />
+Treeview widgets.</p>
+
+
+
+<div class=python><p>Treeview widgets are created using the <code><b>ttk.Treeview</b></code> class:</p>
+	<pre>tree = ttk.Treeview(<em>parent</em>)</pre></div>
+
+<p>Horizontal and vertical scrollbars can be added in the usual manner if desired.</p>
+
+
+ <a name="adding"></a><h2>Adding Items to the Tree</h2>
+
+<p>To do anything useful with the treeview, we'll need to add one or more <em>items</em> to it.  Each item
+represents a single node in the tree, whether a leaf node or an internal node containing other nodes.  
+Items are referred to by a unique id. You can assign this id when the item is first created, or the widget can
+automatically generate one.</p>
+
+<p>Items are created by inserting them into the tree, using the treeview's <code>insert</code> method.  To
+insert an item, we need to know where to insert it. That means specifying the parent item
+and where within the list of the parent's existing children the new item should be inserted.</p>
+
+<p>The treeview widget automatically creates a root node (which is not displayed). Its id is the empty string.
+It serves as the parent of the first level of items that are added.  Positions
+within the list of a node's children are specified by index (0 being the first, and <code>end</code>
+meaning insert after all existing children).  </p>
+
+<p>Normally, you'll also specify the <em>name</em> of each item, which is the text displayed in the tree.  
+Other options allow you to add an image beside the name, specify whether the node is open or closed, etc.</p>
+
+<div class=python><pre><em># Inserted at the root, program chooses id:</em>
+tree.insert('', 'end', 'widgets', text='Widget Tour')
+ 
+<em># Same thing, but inserted as first child:</em>
+tree.insert('', 0, 'gallery', text='Applications')
+
+<em># Treeview chooses the id:</em>
+id = tree.insert('', 'end', text='Tutorial')
+
+<em># Inserted underneath an existing node:</em>
+tree.insert('widgets', 'end', text='Canvas')
+tree.insert(id, 'end', text='Tree')
+</pre>
+<p>Inserting the item returns the id of the newly created item.</p>
+</div>
+
+
+ <a name="rearranging"></a><h2>Rearranging Items</h2>
+
+<p>A node (and its descendants, if any) can be moved to a different location in the tree. The only restriction
+is that a node cannot be moved underneath one of its descendants, for obvious reasons.  As before, the target location is 
+specified via an existing parent node, and a position within its list of children.</p>
+
+<div class=python><pre>tree.move('widgets', 'gallery', 'end')  <em># move widgets under gallery</em></pre></div>
+
+<p>Items can be <em>detached</em> from the tree, which removes the item and its descendants from the hierarchy,
+but does not destroy the items. This allows us to later reinsert them with <code>move</code>.</p>
+
+<div class=python><pre>tree.detach('widgets')</pre></div>
+
+<p>Items can also be <em>deleted</em>, which does completely destroy the item and its descendants.</p>
+
+<div class=python><pre>tree.delete('widgets')</pre></div>
+
+<p>To traverse the hierarchy, there are methods to find the parent of an item (<code>parent <em>item</em></code>),
+its next or previous sibling (<code>next <em>item</em></code> and <code>prev <em>item</em></code>), and return the list of children
+of an item (<code>children <em>item</em></code>).</p>
+
+
+<p>We can control whether or not the item is open and shows its children by modifying the <code>open</code> item 
+configuration option.</p>
+
+<div class=python><pre>tree.item('widgets', open=TRUE)
+isopen = tree.item('widgets', 'open')
+</pre></div>
+
+ <a name="iteminfo"></a><h2>Displaying Information for each Item</h2>
+
+<p>The treeview can display one or more additional pieces of information about each item. These are shown
+as columns to the right of the main tree display.</p>
+
+<p>Each column is referenced by a symbolic name that we assign.  We can specify the list of columns
+using the <code>columns</code> configuration option of the treeview widget, either when first creating the
+widget, or later on.</p>
+
+<div class=python><pre>tree = ttk.Treeview(root, columns=('size', 'modified'))
+tree['columns'] = ('size', 'modified', 'owner')
+</pre></div>
+
+<p>We can specify the width of the column, how the display of item information in the column is aligned,
+and more.  We can also provide information about the heading of the column, such as the text to display,
+an optional image, alignment, and a script to invoke when the item is clicked (e.g. to sort the tree).</p>
+
+<div class=python><pre>tree.column('size', width=100, anchor='center')
+tree.heading('size', text='Size')
+</pre></div>
+
+<p>What to display in each column for each item can be specified individually by using the <code>set</code> 
+method. You can also provide a list describing what to display in all the columns for the item.
+This is done using the <code>values</code> item configuration option. It can be used either when first inserting
+the item or to update it later). It takes a list of values. The order of the list must be the same as the order 
+in the <code>columns</code> widget configuration option.</p>
+
+<div class=python><pre>tree.set('widgets', 'size', '12KB')
+size = tree.set('widgets', 'size')
+tree.insert('', 'end', text='Listbox', values=('15KB', 'Yesterday', 'mark'))
+</pre></div>
+
+ <a name="appearance"></a><h2>Item Appearance and Events</h2>
+
+<p>Like the text and canvas widgets, the treeview widget uses <em>tags</em> to modify the
+appearance of items in the tree.  We can assign a list of tags to each item using the <code>tags</code>
+item configuration option (again, when creating the item or later on).</p>
+
+<p>Configuration options can then be specified on the tag, which will then apply to all items having that
+tag.  Valid tag options include <code>foreground</code> (text color), <code>background</code>,
+<code>font</code>, and <code>image</code> (not used if the item specifies its own image).</p>
+
+<p>We can also create event bindings on tags, which lets us capture mouse clicks, keyboard events etc.</p>
+
+<div class=python><pre>tree.insert('', 'end', text='button', tags=('ttk', 'simple'))
+tree.tag_configure('ttk', background='yellow')
+tree.tag_bind('ttk', '<1>', itemClicked)  
+<em># the item clicked can be found via tree.focus()</em></pre></div>
+
+<p>The treeview will generate virtual events <code>&lt;&lt;TreeviewSelect&gt;&gt;</code>, <code>&lt;&lt;TreeviewOpen&gt;&gt;</code>, and
+<code>&lt;&lt;TreeviewClose&gt;&gt;</code>, which allow us to monitor changes to the widget made by users.
+We can use the <code>selection</code> method to determine the current selection (the selection can also be changed
+from your program).</p>
+
+
+ <a name="display"></a><h2>Customizing the Display</h2>
+
+<p>There are many aspects of how the treeview widget is displayed that we can customize.  We've already seen some of them, 
+such as the text of items, fonts and colors, names of column headings, and more.  Here are a few additional ones.</p>
+
+<ul>
+<li> Specify the desired number of rows to show using the <code>height</code> widget configuration option.
+<li> Control the width of each column using the column's <code>width</code> or <code>minwidth</code> options.
+	 The column holding the tree can be accessed with the symbolic name <code>#0</code>.  The overall requested
+	 width for the widget is based on the sum of the column widths.
+<li> Choose which columns to display and the order to display them in using the <code>displaycolumns</code>
+	 widget configuration option.
+<li> You can optionally hide one or both of the column headings or the tree itself (leaving just the columns)
+	 using the <code>show</code> widget configuration option (default is "tree headings" to show both).
+<li> You can specify whether a single item or multiple items can be selected by users via the
+	 <code>selectmode</code> widget configuration option, passing <code>browse</code> (single item), 
+	 <code>extended</code> (multiple items, the default), or <code>none</code>.  
+</ul>
+
+
+    <script src="../../code.jquery.com/jquery-3.4.1.min.js" integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh" crossorigin="anonymous"></script>
+    <script src="../../stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+    <script src="../tkdocs.js"></script>
+    <script type='text/javascript'>setDefaultLang()</script>
+</body>
+
+<!-- Mirrored from tkdocs.com/tutorial/tree.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 07:06:01 GMT -->
+</html>
+
+
+

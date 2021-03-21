@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+
+<!-- Mirrored from tkdocs.com/tutorial/grid.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 07:05:28 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>TkDocs Tutorial - The Grid Geometry Manager</title>
+    <meta http-equiv="Content-Language" content="English" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="The Grid Geometry Manager: Part of a Modern Tk Tutorial for Python, Tcl, Ruby, and Perl" />
+    <meta name="keywords" content="TkDocs, Tk, Tkinter, Tkx, GUI, Tcl, Python, Perl, Ruby" />	
+  
+   <link rel="stylesheet" href="../../stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <link rel="stylesheet" href="../../maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">  
+    <link rel="stylesheet" type="text/css" href="../tkc.css" media="screen,print" /> 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="../../external.html?link=https://www.googletagmanager.com/gtag/js?id=UA-2043168-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-2043168-3');
+</script>
+
+
+</head>
+<body>
+
+
+<div class="container-fluid">
+
+<div class=tutorial>
+<nav><ul class="pagination justify-content-center"><li class="page-item"><a class="page-link" href="widgets.html">Previous: Basic Widgets</a></li><li class="page-item"><a class="page-link" href="index.html">Contents</a></li><li class="page-item"><a class="page-link" href="onepage.html">Tutoriel complet en une page</a></li><li class="page-item"><a class="page-link" href="morewidgets.html">Next: More Widgets</a></li></ul></nav>
+<h1>The Grid Geometry Manager</h1>
+
+
+<p>We'll take a bit of a break from talking about different widgets (what to put onscreen) and
+focus instead on geometry management (where to put those widgets).  We introduced the general idea of 
+geometry management in the "Tk Concepts" chapter. Here, we focus on one specific geometry manager: <code>grid</code>.</p>
+
+<p>As we've seen, <code>grid</code> lets you layout widgets in columns and rows.  If you're familiar with using
+HTML tables to do layout, you'll feel right at home here.  This chapter illustrates the various ways
+you can tweak grid to give you all the control you need for your user interface.</p>
+
+<p>Grid is one of several geometry managers available in Tk, but its mix of power, flexibility, and ease of use make it the best choice
+for general use.   Its constraint model is a natural fit with today's layouts that rely on the alignment of widgets.
+There are other geometry managers in Tk: <code>pack</code> is also quite powerful, but harder to
+use and understand, while <code>place</code> gives you complete control of positioning each element. 
+Even widgets like paned windows, notebooks, canvas, and text that we'll explore later can act as geometry managers.</p>
+
+
+<div class=upgrade><p>It's worth noting that <code>grid</code> was first introduced to Tk in 1996, several years after Tk became popular, and it took a while to catch on.
+Before that, developers had always used <code>pack</code> to do constraint-based geometry management.  When <code>grid</code> came
+out, many developers kept using <code>pack</code>, and you'll still find it used in many Tk programs and documentation.
+While there's nothing technically wrong with <code>pack</code>, the algorithm's behavior is often hard to understand.
+More importantly, because the order that widgets are packed is significant in determining layout, modifying
+existing layouts can be more difficult.  Aligning widgets in different parts of the user interface is also much trickier.
+</p><p>
+Grid has all the power of pack, produces nicer layouts (that align widgets both horizontally and vertically), and is easier to learn and use.
+Because of that, we think grid is the right choice for most developers most of the time.  Start
+your new programs using grid, and switch old ones to grid as you're making changes to an existing user interface.</p></div>
+
+<p>The <a href="https://tcl.tk/man/tcl8.6/TkCmd/grid.htm">reference documentation for grid</a> provides an
+exhaustive description of grid, its behaviors and all options.</p>
+
+
+
+ <a name="colsrows"></a><h2>Columns and Rows</h2>
+
+<p>In grid, widgets are assigned a <code>column</code> number and a <code>row</code> number. These indicate each widget's position
+relative to other widgets. All widgets in the same column will be above or below each other.
+Those in the same row will be to the left or right of each other.</p>
+
+<p>Column and row numbers must be positive integers (i.e., 0, 1, 2, ...). You don't have to start at 0 and can
+leave gaps in column and row numbers (e.g., column 1, 2, 10, 11, 12, 20, 21). This is useful
+if you plan to add more widgets in the middle of the user interface later.</p>
+
+<p>The width of each column will vary depending on the width of the widgets contained within the column.
+  Ditto for the height of each row.  This means when sketching out your user interface and 
+dividing it into rows and columns, you don't need to worry about each column or row being
+equal width.</p>
+
+
+ <a name="span"></a><h2>Spanning Multiple Cells</h2>
+
+<p>Widgets can take up more than a single cell in the grid; to do this, we'll use the <code>columnspan</code>
+and <code>rowspan</code> options when gridding the widget.  These are analogous to the "colspan" and "rowspan"
+attribute of HTML tables. </p>
+
+<p>Here is an example of creating a user interface with multiple widgets, some that take up
+more than a single cell.</p>
+
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/gridexample1.png' alt='screen shot'><br />
+Gridding multiple widgets.</p>
+
+<div class=python><pre>from tkinter import *
+from tkinter import ttk
+
+root = Tk()
+
+content = ttk.Frame(root)
+frame = ttk.Frame(content, borderwidth=5, relief="ridge", width=200, height=100)
+namelbl = ttk.Label(content, text="Name")
+name = ttk.Entry(content)
+
+onevar = BooleanVar(value=True)
+twovar = BooleanVar(value=False)
+threevar = BooleanVar(value=True)
+
+one = ttk.Checkbutton(content, text="One", variable=onevar, onvalue=True)
+two = ttk.Checkbutton(content, text="Two", variable=twovar, onvalue=True)
+three = ttk.Checkbutton(content, text="Three", variable=threevar, onvalue=True)
+ok = ttk.Button(content, text="Okay")
+cancel = ttk.Button(content, text="Cancel")
+
+content.grid(column=0, row=0)
+frame.grid(column=0, row=0, columnspan=3, rowspan=2)
+namelbl.grid(column=3, row=0, columnspan=2)
+name.grid(column=3, row=1, columnspan=2)
+one.grid(column=0, row=3)
+two.grid(column=1, row=3)
+three.grid(column=2, row=3)
+ok.grid(column=3, row=3)
+cancel.grid(column=4, row=3)
+
+root.mainloop()
+</pre></div>
+
+ <a name="incell"></a><h2>Layout within the Cell</h2>
+
+
+<p>Because the width of a column (and height of a row) depends on all the widgets that have been
+added to it, the odds are that at least some widgets will have a smaller width or height than
+has been allocated for the cell its been placed in.  So the question becomes, where exactly 
+should it be put within the cell?</p>
+
+<p>By default, if a cell is larger than the widget contained in it, the widget will be centered
+within it, both horizontally and vertically. The master's background will display
+in the empty space around it. In the figure below, the widget in the top right is smaller than the
+cell allocated to it. The (white) background of the master fills the rest of the cell.</p>
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/gridlayout.png' alt='screen shot'><br />
+Layout within the cell and the 'sticky' option.</p>
+
+<p>The <code>sticky</code> option can change this default behavior.
+Its value is a string of 0 or more of the compass directions <code>nsew</code>, 
+specifying which edges of the cell the widget should be "stuck" to.  For example, a
+value of <code>n</code> (north) will jam the widget up against the top side, with any extra vertical
+space on the bottom; the widget will still be centered horizontally.  A value of <code>nw</code> (north-west)
+means the widget will be stuck to the top left corner, with extra space on the bottom and right.</p>
+
+<div class=tip><p>In Tkinter, you can also specify this as a list containing any of <code>N</code>, <code>S</code>, <code>E</code>, and <code>W</code>.
+It's a stylistic choice, and we'll tend to use the list format in this book. 
+</p></div>
+
+<p>Specifying two opposite edges, such as <code>we</code> (west, east) means that the widget will be stretched.
+In this case, it will be stuck to both the left and right edge of the cell.  So the widget will then be wider
+than its "ideal" size.</p>	
+
+<p>If you want the widget to expand to fill up the entire cell, grid it with a sticky value of <code>nsew</code>
+(north, south, east, west), meaning it will stick to every side. This is shown in the bottom left widget in the above figure.</p>
+
+<div class=tip><p>
+Most widgets have options that can control how they are displayed if
+they are larger than needed.  For example, a label widget has an <code>anchor</code> option that
+controls where the label's text will be positioned within the widget's boundaries. The bottom left label 
+in the figure above uses the default anchor (<code>w</code>, i.e., left side, vertically centered). 
+</p><p>
+If you're having trouble getting things to line up the way you want them to,
+first make sure you know large the widget is. As we discussed with the
+<code>label</code> widget in the previous chapter, changing the widget's background or border can help.
+the </p></div>
+
+
+ <a name="resize"></a><h2>Handling Resize</h2>
+
+<p>If you've tried to resize the example, you'll notice that nothing moves at all, as shown below.</p>
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/gridnoresize.png' alt='screen shot'><br />
+Resizing the window.</p>
+
+<p>
+Even if you took a peek below and added the extra <code>sticky</code> options to our example, you'd still see the
+same thing. It looks like <code>sticky</code> may tell Tk <em>how</em> to react if the cell's row or column does resize, 
+but doesn't actually say that the row or columns <em>should</em> resize if extra room becomes available.  
+Let's fix that. </p>
+
+<p>Every column and row in the grid has a <code>weight</code> option associated with it. This tells <code>grid</code> how much 
+the column or row should grow if there is extra room in the master to fill.  By default, the weight of each column or
+row is 0, meaning it won't expand to fill any extra space.</p>
+
+<p>For the user interface to resize then, we'll need to specify a positive weight to the columns that
+we'd like to expand.  This is done using the <code>columnconfigure</code> and <code>rowconfigure</code> methods of <code>grid</code>.
+This weight is relative. If two columns have the same weight, they'll expand at the same rate.
+In our example, we'll give the three leftmost columns (holding the checkbuttons) a weight of 3, and the two rightmost columns
+a weight of 1. For every one pixel the right columns grow, the left columns will grow by three pixels. So as the window grows
+larger, most of the extra space will go to the left side. </p>
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/gridresize.png' alt='screen shot'><br />
+Resizing the window after adding weights.</p>
+
+<p>Both <code>columnconfigure</code> and <code>rowconfigure</code> also take a <code>minsize</code> grid option,
+which specifies a minimum size which you really don't want the column or row to shrink beyond.</p>
+
+
+ <a name="padding"></a><h2>Padding</h2>
+
+
+<p>Normally, each column or row will be directly adjacent to the next, so that widgets will be
+right next to each other.  This is sometimes what you want (think of a listbox and its scrollbar),
+but often you want some space between widgets.  In Tk, this is called padding, and there are
+several ways you can choose to add it.</p>
+
+<p>We've already actually seen one way, and that is using a widget's own options to add the extra
+space around it.  Not all widgets have this, but one that does is a frame; this is useful because
+frames are most often used as the master to grid other widgets.  The frame's <code>padding</code>
+option lets you specify a bit of extra padding inside the frame, whether the same amount for
+each of the four sides or even different for each.</p>
+
+<p>A second way is using the <code>padx</code> and <code>pady</code> grid options when adding the widget.  As you'd
+expect, <code>padx</code> puts a bit of extra space to the left and right, while <code>pady</code>
+adds extra space top and bottom.  A single value for the option puts the same padding on
+both left and right (or top and bottom), while a two-value list lets you put different amounts
+on left and right (or top and bottom).  Note that this extra padding is within the grid cell
+containing the widget.</p>
+
+<p>If you want to add padding around an entire row or column, the <code>columnconfigure</code> and <code>rowconfigure</code>
+methods accept a <code>pad</code> option, which will do this for you.</p>
+
+<p>Let's add the extra sticky, resizing, and padding behavior to our example (additions in bold).</p>
+
+<div class=python><pre>from tkinter import *
+from tkinter import ttk
+
+root = Tk()
+
+content = ttk.Frame(root, <b>padding=(3,3,12,12)</b>)
+frame = ttk.Frame(content, borderwidth=5, relief="ridge", width=200, height=100)
+namelbl = ttk.Label(content, text="Name")
+name = ttk.Entry(content)
+
+onevar = BooleanVar()
+twovar = BooleanVar()
+threevar = BooleanVar()
+
+onevar.set(True)
+twovar.set(False)
+threevar.set(True)
+
+one = ttk.Checkbutton(content, text="One", variable=onevar, onvalue=True)
+two = ttk.Checkbutton(content, text="Two", variable=twovar, onvalue=True)
+three = ttk.Checkbutton(content, text="Three", variable=threevar, onvalue=True)
+ok = ttk.Button(content, text="Okay")
+cancel = ttk.Button(content, text="Cancel")
+
+content.grid(column=0, row=0, <b>sticky=(N, S, E, W)</b>)
+frame.grid(column=0, row=0, columnspan=3, rowspan=2, <b>sticky=(N, S, E, W)</b>)
+namelbl.grid(column=3, row=0, columnspan=2, <b>sticky=(N, W), padx=5</b>)
+name.grid(column=3, row=1, columnspan=2, <b>sticky=(N,E,W),</b> <b>pady=5,</b> <b>padx=5</b>)
+one.grid(column=0, row=3)
+two.grid(column=1, row=3)
+three.grid(column=2, row=3)
+ok.grid(column=3, row=3)
+cancel.grid(column=4, row=3)
+
+<b>root.columnconfigure(0, weight=1)</b>
+<b>root.rowconfigure(0, weight=1)</b>
+<b>content.columnconfigure(0, weight=3)</b>
+<b>content.columnconfigure(1, weight=3)</b>
+<b>content.columnconfigure(2, weight=3)</b>
+<b>content.columnconfigure(3, weight=1)</b>
+<b>content.columnconfigure(4, weight=1)</b>
+<b>content.rowconfigure(1, weight=1)</b>
+
+root.mainloop()</pre></div>
+
+
+<p>This looks more promising.  Play around with the example to get a feel for the resize behavior.</p>
+
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/gridexample2.png' alt='screen shot'><br />
+Grid example, handling in-cell layout and resize.</p>
+
+
+
+ <a name="morefeatures"></a><h2>Additional Grid Features</h2>
+
+<p>If you look at the <a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/grid.htm">reference documentation</a> for <code>grid</code>, you'll see
+many other things you can do with grid.  Here are a few of the more useful ones.</p>
+
+
+
+<h3>Querying and Changing Grid Options</h3>
+
+<p>Like widgets themselves, it's easy to introspect the various grid options or change them.
+Setting options when you first grid the widget is certainly convenient, but you can change
+them anytime you'd like.</p>
+
+<p>The <code>slaves</code> method will tell you all the widgets that have been gridded inside a master, or optionally
+those within just a certain column or row.  The <code>info</code> method will return a list of all the grid
+options for a widget and their values.  Finally, the <code>configure</code> method lets you change one or more
+grid options on a widget. </p>
+
+<p>These are illustrated in this interactive session:</p>
+
+<div class=python><pre>
+&gt;&gt;&gt; <b>content.grid_slaves()</b>
+[&lt;tkinter.ttk.Button object .!frame.!button2&gt;, &lt;tkinter.ttk.Button object .!frame.!button&gt;,
+&lt;tkinter.ttk.Checkbutton object .!frame.!checkbutton3&gt;, &lt;tkinter.ttk.Checkbutton object .!frame.!checkbutton2&gt;,
+&lt;tkinter.ttk.Checkbutton object .!frame.!checkbutton&gt;, &lt;tkinter.ttk.Entry object .!frame.!entry&gt;, 
+&lt;tkinter.ttk.Label object .!frame.!label&gt;, &lt;tkinter.ttk.Frame object .!frame.!frame&gt;]
+&gt;&gt;&gt; <b>for w in content.grid_slaves(): print(w)</b>
+...
+.!frame.!button2
+.!frame.!button
+.!frame.!checkbutton3
+.!frame.!checkbutton2
+.!frame.!checkbutton
+.!frame.!entry
+.!frame.!label
+.!frame.!frame
+&gt;&gt;&gt; <b>for w in content.grid_slaves(row=3): print(w)</b>
+...
+.!frame.!button2
+.!frame.!button
+.!frame.!checkbutton3
+.!frame.!checkbutton2
+.!frame.!checkbutton
+&gt;&gt;&gt; <b>for w in content.grid_slaves(column=0): print(w)</b>
+...
+.!frame.!checkbutton
+.!frame.!frame
+&gt;&gt;&gt; <b>namelbl.grid_info()</b>
+{'in': &lt;tkinter.ttk.Frame object .!frame&gt;, 'column': 3, 'row': 0, 'columnspan': 2, 'rowspan': 1, 
+'ipadx': 0, 'ipady': 0, 'padx': 5, 'pady': 0, 'sticky': 'nw'}
+&gt;&gt;&gt; <b>namelbl.grid_configure(sticky=(E,W))</b>
+&gt;&gt;&gt; <b>namelbl.grid_info()</b>
+{'in': &lt;tkinter.ttk.Frame object .!frame&gt;, 'column': 3, 'row': 0, 'columnspan': 2, 'rowspan': 1, 
+'ipadx': 0, 'ipady': 0, 'padx': 5, 'pady': 0, 'sticky': 'ew'}</pre></div>
+
+
+<h3>Internal Padding</h3>
+
+<p>You saw how the <code>padx</code> and <code>pady</code> grid options added extra space around the outside of a widget.
+There's also a less used type of padding called "internal padding" controlled by the
+grid options <code>ipadx</code> and <code>ipady</code>.</p>
+
+<p>The difference can be subtle.  Let's say you have a frame that's 20x20, and specify normal (external)
+padding of 5 pixels on each side.  The frame will request a 20x20 rectangle (its natural size) from
+the geometry manager.  Normally, that's what it will be granted, so it'll get a 20x20 rectangle for
+the frame, surrounded by a 5-pixel border.</p>
+
+<p>With internal padding, the geometry manager will effectively add the extra padding to the widget when
+figuring out its natural size, as if the widget has requested a 30x30 rectangle.  If the frame is
+centered, or attached to a single side or corner (using <code>sticky</code>), we'll end up with a 20x20 frame
+with extra space around it.  If, however, the frame is set to stretch (i.e., a <code>sticky</code> value of <code>we</code>,
+<code>ns</code>, or <code>nwes</code>), it will fill the extra space, resulting in a 30x30 frame, with no border.</p>
+
+
+<h3>Forget and Remove</h3>
+
+<p>The <code>forget</code> method of grid removes slaves from the grid they're currently part of.  
+It takes a list of one or more slave widgets as arguments. This does not destroy the widget altogether but takes it off the
+screen as if it had not been gridded in the first place.  You can grid it again later, though any grid options
+you'd originally assigned will have been lost. </p>
+
+<p>The <code>remove</code> method of grid works the same, except that the grid options will be remembered if you <code>grid</code> it again later.</p>
+
+	
+ <a name="nestedlayout"></a><h2>Nested Layouts</h2>
+
+
+<p>As your user interface gets more complicated, the grid that you're using to organize all your widgets can
+get increasingly complicated.  This can make changing and maintaining your program
+very difficult.</p>
+
+<p>Luckily, you don't have to manage your entire user interface with a single grid.  If you have one area of
+your user interface that is fairly independent of others, create a new frame to hold that area and grid
+the widgets in area within that frame.  For example, if you were building a graphics editor with
+multiple palettes, toolbars, etc., each one of those areas might be a candidate for putting in its
+own frame.</p>
+
+<p>In theory, these frames, each with its own grid, can be nested arbitrarily deep, though, in practice, this
+usually doesn't go beyond a few levels.  This can be a big help in modularizing your program.  If, for 
+example, you have a palette of drawing tools, you can create the whole thing in a separate function or class. It would
+be responsible for creating all the component widgets, gridding them together, setting up event bindings, etc.
+The details of how things work inside that palette can be contained in that one piece of code.
+From the point of view of your main program, all it needs to know about is the single frame widget containing
+your palette.  </p>
+
+<p>Our examples have shown just a hint of this, where a content frame was gridded into the main window,
+and then all the other widgets gridded into the content frame.</p>
+
+<p>As your own programs grow larger, you'll likely run into situations where making a change in the layout of
+one part of your interface requires code changes to the layout of another part. That may be a clue to reconsider
+how you're using <code>grid</code> and if splitting out components into separate frames would help.</p>
+
+
+    <script src="../../code.jquery.com/jquery-3.4.1.min.js" integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh" crossorigin="anonymous"></script>
+    <script src="../../stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+    <script src="../tkdocs.js"></script>
+    <script type='text/javascript'>setDefaultLang()</script>
+</body>
+
+<!-- Mirrored from tkdocs.com/tutorial/grid.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 07:05:33 GMT -->
+</html>
+
+
+

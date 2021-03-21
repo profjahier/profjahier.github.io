@@ -1,0 +1,570 @@
+<!doctype html>
+<html lang="en">
+
+<!-- Mirrored from tkdocs.com/tutorial/windows.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 07:05:47 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>TkDocs Tutorial - Windows and Dialogs</title>
+    <meta http-equiv="Content-Language" content="English" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="Windows and Dialogs: Part of a Modern Tk Tutorial for Python, Tcl, Ruby, and Perl" />
+    <meta name="keywords" content="TkDocs, Tk, Tkinter, Tkx, GUI, Tcl, Python, Perl, Ruby" />	
+  
+   <link rel="stylesheet" href="../../stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <link rel="stylesheet" href="../../maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">  
+    <link rel="stylesheet" type="text/css" href="../tkc.css" media="screen,print" /> 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="../../external.html?link=https://www.googletagmanager.com/gtag/js?id=UA-2043168-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-2043168-3');
+</script>
+
+
+</head>
+<body>
+
+
+<div class="container-fluid">
+
+<div class=tutorial>
+<nav><ul class="pagination justify-content-center"><li class="page-item"><a class="page-link" href="menus.html">Previous: Menus</a></li><li class="page-item"><a class="page-link" href="index.html">Contents</a></li><li class="page-item"><a class="page-link" href="onepage.html">Tutoriel complet en une page</a></li><li class="page-item"><a class="page-link" href="complex.html">Next: Organizing Complex Interfaces</a></li></ul></nav>
+<h1>Windows and Dialogs</h1>
+
+
+<p>Everything we've done up until now has been in a single window.  In this chapter, we'll cover how to use multiple windows,
+changing various attributes of windows, and use some of the standard dialog boxes that are available in Tk.</p>
+
+
+ <a name="createdestroy"></a><h2>Creating and Destroying Windows</h2>
+
+<p>We've seen that all Tk programs start out with a root toplevel window, and then widgets are created as children of 
+that root window.  Creating new toplevel windows works almost exactly the same as creating new widgets.</p>
+
+<div class=python>
+<p>Toplevel windows are created using the <code><b>Toplevel</b></code> class:</p>
+<pre>t = Toplevel(<em>parent</em>)</pre>
+</div>
+
+<p>Note: Toplevels are part of the classic Tk widgets, not the themed widgets.</p>
+
+<p>Unlike regular widgets, we don't have to <code>grid</code> a toplevel for it to appear onscreen.  
+  Once we've created a new toplevel, we can create other widgets as children of that toplevel, and <code>grid</code> them inside the toplevel.  
+The new toplevel behaves exactly like the automatically created root window.</p>
+
+<div class=python><p>To destroy a window, use its <code><b>destroy</b></code> method:</p><pre><em>window</em>.destroy()</pre></div>
+
+<p>Note that you can use <code>destroy</code> on any widget, not just a toplevel window.  When you destroy a window, all windows (widgets) that
+are children of that window are also destroyed.  Be careful! If you destroy the root window 
+(that all other widgets are descended from), that will terminate your application.</p>
+
+<div class=tip><p>In a typical document-oriented application, we want to be able to close any windows while leaving the others open.
+  In that case, we may want to create a new toplevel for every window, and not put anything directly inside the root window at all.
+  While we can't just destroy the root window, we can remove it entirely from the screen using its <code>withdraw</code> method, which
+  we'll see shortly.
+</p></div>
+
+
+ <a name="wm"></a><h2>Window Behavior and Styles</h2>
+
+<p>There are lots of things about how windows behave and how they look that can be changed.</p>
+
+<h4>Window Title</h4>
+<p>To examine or change the title of the window:</p>
+
+<div class=python><pre>oldtitle = <em>window</em>.title()<br><em>window</em>.title('New title')</pre></div>
+
+<h4>Size and Location</h4>
+
+<p>In Tk, a window's position and size on the screen are known as its <em>geometry</em>.  A full geometry specification
+looks like this: <code><em>width</em><b>x</b><em>height</em><b>&plusmn;</b><em>x</em><b>&plusmn;</b><em>y</em></code>.</p>
+
+<p>Width and height (usually in pixels) are pretty self-explanatory.  The <code><em>x</em></code> (horizontal position) is specified with
+a leading plus or minus, so <code>+25</code> means the left edge of the window should be 25 pixels from the left edge 
+of the screen, while <code>-50</code> means the right edge of the window should be 50 pixels from the right edge of
+the screen.  Similarly, a <code><em>y</em></code> (vertical) position of <code>+10</code> means the top edge of the window should be ten pixels
+below the top of the screen, while <code>-100</code> means the bottom edge of the window should be 100 pixels above the bottom of
+the screen.</p>
+
+<div class=tip><p>Geometry specifies the actual coordinates on the screen. It doesn't make allowances for
+systems like macOS with a menubar along the top or a dock along the bottom.  So specifying a
+position of <code>+0+0</code> would actually place the top part of the window under the system menu bar.  It's a good idea
+to leave a healthy margin (at least 30 pixels) from the screen's edge. 
+</p><p>
+Screen positions can be different than you might expect when you have multiple monitors on your system. We'll cover that shortly.
+</p></div>
+
+<p>Here is an example of changing the size and position. It places the window towards the top righthand corner
+of the screen:</p>
+
+<div class=python><pre><em>window</em>.geometry('300x200-5+40')</pre></div>
+
+<p>You can retrieve the current geometry the same way; just don't provide a new geometry value.
+  However, if you try it immediately after changing the geometry, you'll find it doesn't match.
+  Remember that all drawing effectively occurs in the background, in response to idle times via the event loop. 
+  Until that drawing occurs, the internal geometry of the window won't be updated. If you do want to force things to
+  update immediately, you can.</p>
+
+<div class=python><pre><em>window</em>.update_idletasks()
+print(<em>window</em>.geometry())</pre></div>
+
+<div class=tip><p>We've seen that the window defaults to the size requested by the widgets that are gridded into it.
+  If we're creating and adding new widgets interactively in the interpreter, or if our program adds new widgets
+  in response to other events, the window size adjusts. This behavior continues until either we explicitly provide
+  the window's geometry as above <em>or</em> a user resizes the window. At that point, even if we add more widgets,
+  the window won't change size. You'll want to be sure you're using all of <code>grid</code>'s features
+  (e.g., <code>sticky</code>, <code>weight</code>) to make everything fit nicely.</p></div>
+
+
+<h4>Resizing Behavior</h4>
+
+<p>By default, toplevel windows, including the root window, can be resized by users.
+However, sometimes you may want to prevent users from resizing the window.
+You can do this via the <code>resizable</code> method. It's first parameter controls whether users can change the
+width, and the second if they can change the height. So to disable all resizing:</p>
+
+<div class=python><pre><em>window</em>.resizable(FALSE,FALSE)</pre></div>
+<p>If a window is resizable, you can specify a minimum and/or maximum size that you'd like the window's size 
+constrained to (again, parameters are width and height):</p>
+
+<div class=python><pre><em>window</em>.minsize(200,100)
+<em>window</em>.maxsize(500,500)</pre></div>
+
+<p>You saw earlier how to obtain the current size of the window via its geometry. Wondering how large it would be if you
+  didn't specify its geometry, or a user didn't resize it? You can retrieve the window's <em>requested size</em>, i.e., how much
+  space it requests from the geometry manager. Like with drawing, geometry calculations are only done at idle time in the event
+  loop, so you won't get a useful response until the widget has appeared onscreen.</p>
+  
+<div class=python><pre><em>window</em>.winfo_reqwidth()   <em># or winfo_reqheight</em></pre></div>
+
+<div class=fyi><p>You can use the <code>reqwidth</code> and <code>reqheight</code> methods on any widget, not just toplevel windows.
+  There are other <code>winfo</code> methods you can call on any widget, such as <code>width</code> and <code>height</code>,
+  to get the actual (not requested) width and height. For more, see the <a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/winfo.htm"><code>winfo</code></a> command reference.
+  </p></div>
+
+<h4>Intercepting the Close Button</h4>
+
+<p>Most windows have a close button in their title bar. By default, Tk will destroy the window if users click on that button.
+  You can, however, provide a callback that will be run instead. A common use is to prompt the user to save an open file if 
+  modifications have been made.</p>
+  
+<div class=python><pre><em>window</em>.protocol("WM_DELETE_WINDOW", <em>callback</em>)</pre></div>
+
+<div class=fyi><p>The somewhat obscurely-named <code>WM_DELETE_PROTOCOL</code> originated with X11 window manager protocols.</p></div>
+
+ 
+<h4>Transparency</h4>
+
+<p>Windows can be made partially transparent by specifying an alpha channel, ranging from <code>0.0</code> (fully transparent) to <code>1.0</code> (fully opqaque).</p>
+
+<div class=python><pre><em>window</em>.attributes("-alpha", 0.5)</pre>
+  <div class=yuck><p>Tkinter's wrapper to the underlying <code>wm attributes</code> command doesn't do any interpretation of options, handle keyword arguments, etc.</p></div></div>
+
+<p>On macOS, you can additionally specify a <code>-transparent</code> attribute (using the same mechanism as with <code>-alpha</code>), 
+  which allows you to make the background of the window transparent, and remove the window's
+  show. You should also set the <code>background</code> configuration option for the window and any frames to the color <code>ssytemTransparent</code>.</p>
+
+
+<h4>Full Screen</h4>
+
+<p>You can make a window expand to take up the full screen:</p>
+
+<div class=python><pre><em>window</em>.attributes("-fullscreen", 1)</pre></div>
+
+<h3>Iconifying and Withdrawing</h3>
+
+<p>On most systems, you can temporarily remove the window from the screen by iconifying it.  In Tk, whether
+or not a window is iconified is referred to as the window's <em>state</em>.  The possible states for a 
+window include <code>normal</code> and <code>iconic</code> (for an iconified window), and several
+others: <code>withdrawn</code>, <code>icon</code> or <code>zoomed</code>.</p>
+
+<p>You can query or set the current window state directly. There are also methods <code>iconify</code>,
+<code>deiconify</code>, and <code>withdraw</code>, which are shortcuts for setting the <code>iconic</code>, <code>normal</code>,
+and <code>withdrawn</code> states, respectively.</p>
+
+<div class=python><pre>thestate = <em>window</em>.state()
+<em>window</em>.state('normal')
+<em>window</em>.iconify()
+<em>window</em>.deiconify()
+<em>window</em>.withdraw()</pre></div>
+
+<div class=tip><p>For document-centric applications, where you want to allow closing any window without the application exiting
+  (as would happen if you destroy the root window), use <code>withdraw</code> on the root window to remove it from
+  the screen, use new toplevel windows for your user interface.</p></div>
+  
+	
+<h3>Stacking Order</h3>
+
+<p>Stacking order refers to the order that windows are "placed" on the screen, from bottom to top.  When
+the positions of two windows overlap each other, the one closer to the top of the stacking order will
+obscure or overlap the one lower in the stacking order.</p>
+
+<p>You can ensure that a window is always at the top of the stacking order (or at least above all others where this attribute isn't set):</p>
+
+<div class=python><pre><em>window</em>.attributes("-topmost", 1)</pre></div>
+<p>You can find the current stacking order, listed from lowest to highest:</p>
+
+<div class=python><pre>root.tk.eval('wm stackorder '+str(<em>window</em>))</pre><div class=yuck><p>This method isn't exposed cleanly in Tkinter. It returns the internal names of each window, not the window object.</p></div></div>
+
+<p>You can also just check if one window is above or below another:</p>
+
+<div class=python><pre>if (root.tk.eval('wm stackorder '+str(<em>window</em>)+' isabove '+str(<em>otherwindow</em>))=='1') ...
+if (root.tk.eval('wm stackorder '+str(<em>window</em>)+' isbelow '+str(<em>otherwindow</em>))=='1') ...</pre></div>
+
+<p>You can also raise or lower windows, either to the very top (bottom) of the stacking order, or just
+above (below) a designated window:</p>
+
+<div class=python><pre><em>window</em>.lift()
+<em>window</em>.lift(<em>otherwin</em>)
+<em>window</em>.lower()
+<em>window</em>.lower(<em>otherwin</em>)</pre>
+<div class=fyi><p>Tkinter uses the name <code>lift</code> since <code>raise</code> is a reserved keyword in Python.</p></div></div>
+
+<p>Why do you need to pass a window to get the stacking order?  
+Stacking order applies not only for toplevel windows, but for any <em>sibling</em>
+widgets (those with the same parent).  If you have several widgets gridded together but
+overlapping, you can raise and lower them relative to each other:</p>	
+
+<div class=python><pre>from tkinter import *
+from tkinter import ttk
+root = Tk()
+little = ttk.Label(root, text="Little")
+bigger = ttk.Label(root, text='Much bigger label')
+little.grid(column=0,row=0)
+bigger.grid(column=0,row=0)
+root.after(2000, lambda: little.lift())
+root.mainloop()</pre></div>
+
+<div class=fyi><p>This uses timer events, which we covered in the event loop chapter.
+  The <code>after</code> command schedules a script to run at a certain number of
+milliseconds in the future, but leaves the event loop to continue.</p></div>
+
+
+<h3>Screen Information</h3>
+
+<p></p>
+
+
+<p>We've previously used the <code>winfo</code> command to find out information about specific widgets. It can also provide information about the
+  entire display or <em>screen</em>. As usual, see the <a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/winfo.htm"><code>winfo</code></a> command reference 
+  for full details.</p>
+  
+  
+<p>For example, you can determine the screen's color depth (how many bits per pixel) and color model (usually <code>truecolor</code> on modern displays), 
+  it's pixel density, and resolution.</p>
+  
+<div class=python><pre>print("color depth=" + str(root.winfo_screendepth())+ " (" + root.winfo_screenvisual() + ")")
+print("pixels per inch=" + str(root.winfo_pixels('1i')))
+print("width=", str(root.winfo_screenwidth()) + " height=", str(root.winfo_screenheight()))
+</pre></div>
+  
+<h4>Multiple Monitors</h4>
+
+<p>While normally you shouldn't have to pay attention to it, if you do have multiple monitors on your system and want to customize things a
+  bit, there are some tools in Tk to help.</p>
+  
+<p>First, there are two ways that multiple monitors can be represented. The first is with logically separate displays. This is often the
+  case on X11 systems, though it can be changed, e.g., using the <code>xrandr</code> system utility. A downside of this model is that once a
+  window is created on a screen, it can't be moved to a different one. You can determine the screen that a Tk
+  window is running on, which looks something like <code>:0.0</code> (an X11-formatted display name).</p>  
+
+<div class=python><pre>root.winfo_screen()</pre></div>
+  
+<p>When first creating a <code>toplevel</code> you can specify the screen it should be created on using the <code>screen</code> configuration option.</p>
+
+<div class=fyi><p>Different monitors may have different resolutions, color depths, etc. You'll notice that all the screen information calls we just covered
+  are methods invoked on a specific widget. They will return information about whatever screen that window is located on.</p></div>
+  
+<p>Alternatively, multiple monitors can also be represented as one big virtual display, which is the case on macOS and Windows.  
+  When you ask for information about the screen, Tk will return information on the <em>primary monitor</em>.  For example, if you have two Full HD
+  monitors side-by-side, the screen resolution will be reported as 1920 x 1080, not 3840 x 1080. This is probably a good thing; it means that if
+  we're positioning or sizing windows, we don't need to worry about multiple monitors, and everything will just show up correctly on the primary
+  monitor.</p>
+  
+<p>What if a user moves a window from the primary monitor to a different one? If you ask for its position, it will be relative to the primary monitor. 
+  So in our side-by-side FHD monitor setup, if you call the <code>winfo_x</code> method on a window positioned near the left edge of a monitor, it
+  might return <code>100</code> (if it's on the primary monitor), <code>-1820</code> (if it's on a monitor to the left of the primary monitor), 
+  or <code>2020</code> (if it's on a monitor to the right of the primary monitor). You can still use the <code>geometry</code> method we saw
+  a bit earlier to position the window on a different monitor, even though the geometry specification may look a bit odd,
+  e.g., <code>+-1820+100</code>.</p>
+  
+<p>You can find out approximately how large the entire display is, spanning multiple monitors. To do so, check a toplevel widget's maximum size,
+  i.e., how large the user can resize it (you can't do this after you've already changed it, of course). This may be a bit smaller than the full
+  size of the display. For example, on macOS, it will be reduced by the size of the menubar at the top of the screen.</p>
+
+<div class=python><pre>root.wm_maxsize()</pre></div>
+  
+  
+  
+ <a name="dialogs"></a><h2>Dialog Windows</h2>
+
+<p>Dialog boxes are a type of window used in applications to get some information from users, 
+inform them that some event has occurred, confirm an action, and more.  The appearance and usage
+of dialog boxes are usually quite specifically detailed in a platform's style guide.  Tk comes
+with several dialog boxes built-in for common tasks. These help you conform to platform-specific style guidelines.</p>
+
+
+<h4>Selecting Files and Directories</h4>
+
+
+<p>Tk provides several dialogs to let users select files or directories.  On Windows and macOS,
+these invoke the underlying operating system dialogs directly.  The "open" variant on the
+dialog is used when you want users to select an existing file (like in a <code>"File | Open..."</code>
+menu command), while the "save" variant is used to choose a file to save into (usually used
+by the <code>"File | Save As..."</code> menu command).</p>
+
+<div class=python><pre>from tkinter import filedialog
+filename = filedialog.askopenfilename()
+filename = filedialog.asksaveasfilename()
+dirname = filedialog.askdirectory()</pre></div>
+
+<p>All of these commands produce <em>modal</em> dialogs. This means that the commands will not complete
+   until a user submits the dialog.  These commands
+return the full pathname of the file or directory a user has chosen, or an empty
+string if a user cancels out of the dialog.</p>
+
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/getopenfile_all.png' alt='screen shot'><br />
+Open file dialogs.</p>
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/getsavefile_all.png' alt='screen shot'><br />
+Save file dialogs.</p>
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/choosedir_all.png' alt='screen shot'><br />
+Choose directory dialogs.</p>
+
+
+<p>Various options can be passed to these dialogs, allowing you to set the
+allowable file types, initial directory, default filename, and many more.  These are detailed
+in the <a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/getOpenFile.htm">getOpenFile</a> (includes <code>getSaveFile</code>) and 
+<a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/chooseDirectory.htm">chooseDirectory</a> reference manual pages.</p>
+
+
+
+<h4>Selecting Colors</h4>
+
+<p>Another modal dialog lets users select a color.  It will return a color value, e.g. <code>#ff62b8</code>.
+The dialog takes an optional <code>initialcolor</code> option to specify an existing color, i.e., that users
+might want to replace. More information is available in the 
+<a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/chooseDirectory.htm">chooseColor</a> reference manual pages.</p>
+
+
+
+<div class=python><pre>from tkinter import colorchooser
+colorchooser.askcolor(initialcolor='#ff0000')</pre></div>
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/choosecolor_all.png' alt='screen shot'><br />
+Choose color dialogs.</p>
+
+
+<h4>Selecting Fonts</h4>
+
+
+<p>Tk 8.6 added support for another system dialog: a font chooser. While the file dialogs and color chooser were modal dialogs,
+ that block until the dialog is dismissed and then return a result, the font chooser doesn't work like that.</p>
+
+<div class=tip><p>As the font chooser isn't available in Tk 8.5, if your code needs to support older Tk versions, you'll need to
+  take that into account.</p></div>
+ 
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/fontchooser_all.png' alt='screen shot'><br />
+Font chooser dialogs.</p>
+ 
+ 
+ <p>While the system font dialog is modal on some platforms, e.g., Windows, that's not the case everywhere. On macOS, the system font chooser works more
+ like a floating tool palette in a drawing program, remaining available to change the font for whatever text is selected in your main application window. 
+ The Tk font dialog API has to accommodate both models. To do so, it uses callbacks (and virtual events) to notify your application of font changes.
+ Additional details can be found in the  <a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/fontchooser.htm">fontchooser</a> reference manual pages.</p>
+
+
+
+<p>To use the font dialog, first provide it with an initial font and a callback which will be invoked when a font is chosen. For illustration, we'll
+  have the callback change the font on a label.</p>
+
+<div class=python><pre>l = ttk.Label(root, text="Hello World", font="helvetica 24")
+l.grid(padx=10, pady=10)
+
+def font_changed(font):
+    l['font'] = font
+
+root.tk.call('tk', 'fontchooser', 'configure', '-font', 'helvetica 24', '-command', root.register(font_changed))
+root.tk.call('tk', 'fontchooser', 'show')
+</pre>
+<p>Tkinter has not yet added a convenient way to use this new dialog, so this example code uses the Tcl API directly. You can see the latest
+  work towards a proper Python API and download code at [<a href='../../external.html?link=http://bugs.python.org/issue28694'>Issue#28694</a>].</p>
+</div>
+
+
+<div class=tip><p>You can query or change the font that is (or will be) displayed in the dialog at any time.</p></div>
+
+<p>Next, put the dialog onscreen via the <code>show</code> method. On platforms where the font dialog is modal, your program will block at this point until the dialog is
+  dismissed. On other platforms, <code>show</code> returns immediately; the dialog remains onscreen while your program continues. At this point, a font has not been chosen.  
+  There's also a <code>hide</code> method to remove it from the screen (not terribly useful when the font dialog is modal).</p>
+
+<div class=python><pre>root.tk.call('tk', 'fontchooser', 'show')
+root.tk.call('tk', 'fontchooser', 'hide')
+</pre></div>
+
+<p>If the font dialog was modal, and the user chose a font, the dialog would have invoked your callback, passing it a font specification. If they cancelled out of the 
+  dialog, there'd be no callback. When the dialog isn't modal, and the user chooses a font, it will invoke your callback. A &lt;&lt;TkFontchooserFontChanged&gt;&gt;
+  virtual event is also generated; you can retrieve the current font via the dialog's <code>font</code> configuration option. If the font dialog is closed,
+  a &lt;&lt;TkFontchooserVisibility&gt;&gt; virtual event is generated. You can also find out if the font dialog is currently visible onscreen via the
+  <code>visible</code> configuration option (though changing it is an error; use the <code>show</code> and <code>hide</code> methods instead).</p>
+  
+<div class=tip><p>Because of the significant differences between them, providing a good user experience on all platforms takes a bit of work. On platforms where the 
+  font dialog is modal,it's likely to be invoked from a button or menu item that says, e.g., <code>Font...</code>. On other platforms, the button or menu
+  item should toggle between <code>Show Fonts</code> and <code>Hide Fonts</code>.
+  </p><p>
+  If you have several text widgets in your application that can be given
+  different fonts, when one of them gains focus, it should update the font chooser with its current font. This also means that a callback from the font
+  dialog may apply to a different text widget than the one you initially called <code>show</code> from! Finally, be aware that the font chooser itself may 
+  gain the keyboard focus on some platforms. </p></div>
+
+<div class=yuck><p>
+  As of Tk 8.6.10, there are a few bugs in the font chooser on various platforms. Here's a quick rundown including workarounds:
+  <ul>
+    <li> on macOS, if you don't provide a font via the <code>font</code> configuration option, your callbacks won't be invoked &#8658; always provide an initial font</li>
+    <li> on X11, if you don't provide values for all configuration options, those you don't include will be reset to their default values &#8658; whenever you change any option, change all of them, even if it's just to their current value</li>
+    <li> on X11, the font dialog includes an <code>Apply</code> button when you provide a callback, but omits it when you don't (and just watch for virtual events); however,
+      other bugs mean those virtual events are never generated &#8658; always provide a command callback
+    <li> on Windows, you can also leave off the <code>Apply</code> button by not providing a callback; while virtual events are generated on font changes, the <code>font</code>
+      configuration option is never updated &#8658; always provide a command callback, and hold onto the font yourself, rather than trying to ask the font dialog
+      for it later</li>
+    <li> on Windows, a font change virtual event is not generated if you change the <code>font</code> configuration option in your code, though it is on macOS and X11 &#8658; take
+      any necessary actions when you change the font in your code rather than in a virtual event handler
+  </ul>
+  <p>Because of the differences between platforms and the various bugs, testing is far more important when using the font chooser than the other system dialogs.
+</p></div>
+
+
+
+<h4>Alert and Confirmation Dialogs</h4>
+
+<p>Many applications use various simple modal alerts or dialogs to notify users of an event, ask them
+to confirm an action, or make another similar choice via clicking on a button.  Tk provides
+a versatile "message box" that encapsulates all these different types of dialogs.</p>
+
+<div class=python><pre>from tkinter import messagebox
+messagebox.showinfo(message='Have a good day')</pre></div>
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/alert_all.png' alt='screen shot'><br />
+Simple message boxes.</p>
+
+
+
+<div class=python><pre>messagebox.askyesno(
+	   message='Are you sure you want to install SuperVirus?'
+	   icon='question' title='Install')</pre></div>
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/messagebox_all.png' alt='screen shot'><br />
+Example message boxes.</p>
+
+
+<p>Like the previous dialogs that we've seen, these are modal and return the result of a user's
+action to the caller.  The exact return value will depend on the <code>type</code> option passed to
+the command, as shown here:</p>
+
+<dl class="row ml-sm-1">
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>ok <em>(default)</em></code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">&#8658; <code>ok</code></dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>okcancel</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">&#8658; <code>ok</code> or <code>cancel</code></dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>yesno</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">&#8658; <code>yes</code> or <code>no</code></dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>yesnocancel</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">&#8658; <code>yes</code>, <code>no</code> or <code>cancel</code></dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>retrycancel</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">&#8658; <code>retry</code> or <code>cancel</code></dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>abortretryignore</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">&#8658; <code>abort</code>, <code>retry</code> or <code>ignore</code></dd>
+</dl>
+
+
+<div class=python>
+<p>
+  
+  Rather than using a <code>type</code> option, Tkinter uses a different method name for each type of dialog.
+  The return values vary with the method:</p>
+
+<dl class="row ml-sm-1">
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>showinfo</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">&#8658; <code>"ok"</code></dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>showwarning</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">&#8658; <code>"ok"</code></dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>showerror</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">&#8658; <code>"ok"</code></dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>askokcancel</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">&#8658; <code>True</code> (on ok) or <code>False</code> (on cancel)</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>askyesno</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">&#8658; <code>True</code> (on yes) or <code>False</code> (on no)</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>askretrycancel</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">&#8658; <code>True</code> (on retry) or <code>False</code> (on cancel)</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>askquestion</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">&#8658; <code>"yes"</code> or <code>"no"</code></dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>askyesnocancel</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">&#8658; <code>True</code> (on yes), <code>False</code> (on no), or <code>None</code> (on cancel)</dd>
+</dl>
+  
+  <div class=yuck><p>Admittedly, the Tkinter <code>messagebox</code> API isn't the most consistent. It mixes return types (strings or booleans),
+    there is some duplication (<code>askyesno</code> and <code>askquestion</code>), and one underlying dialog 
+    type (<code>abortretryignore</code>) is omitted.</p></div>
+</div>
+
+
+<p>The full list of possible options is shown here:</p>
+
+<dl class="row ml-sm-1">
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>type</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">As described above.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>message</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">The main message displayed inside the alert.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>detail</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">A secondary message (if needed).</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>title</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">Title for the dialog window.  Not used on macOS.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>icon</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">Icon, one of <code>info</code> (default), <code>error</code>, <code>question</code> or <code>warning</code>.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>default</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">Default button, e.g. <code>ok</code> or <code>cancel</code> for a <code>okcancel</code> dialog.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>parent</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">Window of your application this dialog is being posted for.</dd>
+</dl>
+
+<p>Additional details can be found in the <a href="https://tcl.tk/man/tcl8.6/TkCmd/messageBox.htm">reference manual</a>. </p>
+  
+
+<h3>Rolling Your Own</h3>
+
+<p>If you need to create your own modal dialogs, there are a few things you'll need to take care of. We've covered most
+  of them earlier in the chapter, e.g. setting up window styles, positioning the window, etc.</p>
+
+<p>First, you need to ensure that users can only interact with your dialog. You can use <code>grab_set</code> to do this.</p>
+
+<p>If you want your dialog function to block your application (i.e., the call to create the dialog shouldn't return until the
+  dialog is dismissed), this is also possible. There's no reason you'd <em>need</em> to do this, as you can respond to
+  callbacks, event bindings, etc. while running the normal event loop, destroy the dialog and move on.</p> 
+
+<p>This somewhat cryptic example includes the main steps needed to create a modal dialog.</p>
+
+<div class=python><pre>ttk.Entry(root).grid()   <em># something to interact with</em>
+def dismiss ():
+    dlg.grab_release()
+    dlg.destroy()
+
+dlg = Toplevel(root)
+ttk.Button(dlg, text="Done", command=dismiss).grid()
+dlg.protocol("WM_DELETE_WINDOW", dismiss) <em># intercept close button</em>
+dlg.transient(root)   <em># dialog window is related to main</em>
+dlg.wait_visibility() <em># can't grab until window appears, so we wait</em>
+dlg.grab_set()        <em># ensure all input goes to our window</em>
+dlg.wait_window()     <em># block until window is destroyed</em></pre></div>
+
+<div class=tip><p>Application code blocking like this is an example of running a nested event loop that we generally recommend against,
+  though it may be more convenient in certain circumstances.</p></div>  
+
+<div class=python><p>Tkinter's standard library includes a <code>simpledialog</code>  module that helps with building your own
+  dialogs. Because it uses the classic Tk widgets rather than the newer themed widgets, we don't recommend using it
+  directly. However, it does illustrate how to use some of the techniques for making dialogs behave that we just covered.</p>
+</div>
+
+
+    <script src="../../code.jquery.com/jquery-3.4.1.min.js" integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh" crossorigin="anonymous"></script>
+    <script src="../../stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+    <script src="../tkdocs.js"></script>
+    <script type='text/javascript'>setDefaultLang()</script>
+</body>
+
+<!-- Mirrored from tkdocs.com/tutorial/windows.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 07:05:54 GMT -->
+</html>
+
+
+

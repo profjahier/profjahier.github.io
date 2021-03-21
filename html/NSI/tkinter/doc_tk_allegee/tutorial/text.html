@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="en">
+
+<!-- Mirrored from tkdocs.com/tutorial/text.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 07:05:59 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>TkDocs Tutorial - Text</title>
+    <meta http-equiv="Content-Language" content="English" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="Text: Part of a Modern Tk Tutorial for Python, Tcl, Ruby, and Perl" />
+    <meta name="keywords" content="TkDocs, Tk, Tkinter, Tkx, GUI, Tcl, Python, Perl, Ruby" />	
+  
+   <link rel="stylesheet" href="../../stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <link rel="stylesheet" href="../../maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">  
+    <link rel="stylesheet" type="text/css" href="../tkc.css" media="screen,print" /> 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="../../external.html?link=https://www.googletagmanager.com/gtag/js?id=UA-2043168-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-2043168-3');
+</script>
+
+
+</head>
+<body>
+
+<div class="container-fluid">
+
+<div class=tutorial>
+<nav><ul class="pagination justify-content-center"><li class="page-item"><a class="page-link" href="canvas.html">Previous: Canvas</a></li><li class="page-item"><a class="page-link" href="index.html">Contents</a></li><li class="page-item"><a class="page-link" href="onepage.html">Tutoriel complet en une page</a></li><li class="page-item"><a class="page-link" href="tree.html">Next: Treeview</a></li></ul></nav>
+<h1>Text</h1>
+
+
+<ul class=menu>
+<li><a href="../../external.html?link=https://tkdocs.com/widgets/text.html">Widget Roundup</a></li>
+<li><a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/text.htm">Reference Manual</a></li>
+</ul>
+
+<p>A <b>text</b> widget manages a multi-line text area.  Like the canvas widget, Tk's text widget is
+an immensely flexible and powerful tool which can be used for a wide variety of tasks.  It can  
+provide a simple multi-line text area as part of a form. But text widgets can also form the basis for a 
+stylized code editor, an outliner, a web browser, and much more.</p>
+<p>Note: Text widgets are part of the classic Tk widgets, not the themed Tk widgets.</p>
+
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/w_textfull_all.png' alt='screen shot'><br />
+Text widgets.</p>
+
+<p>While we briefly introduced text widgets in an earlier chapter, we'll go into much more detail here.
+You'll get a better sense of the level of sophistication they allow.  Still, for any significant work with 
+the text widget, the <a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/text.htm">reference manual</a> is well-organized, useful, and a 
+highly-recommended read.</p>
+
+
+
+<div class=python><p>Text widgets are created using the <code><b>Text</b></code> class:</p>
+	<pre>text = Text(<em>parent</em>, width=40, height=10)</pre></div>
+
+<p>You'll often provide a width (in characters) and height (in lines). As always, you can ask the geometry
+  manager to expand it to fill the available space in the window.</p>
+  
+
+ <a name="basics"></a><h2>The Basics</h2>
+
+<p>If you simply need a multi-line text field for a form, there are only a few things to worry about: 
+  creating and sizing the widget (check), providing an initial value, and retrieving the text after
+a user has submitted the form.</p>
+
+<h3>Providing Initial Content</h3>
+
+<p>Text widgets start with nothing in them, so we'll need to add any initial content ourselves.
+  Because text widgets can hold a lot more than plain text, a simple mechanism (like the entry widget's
+  <code>textvariable</code> configuration option) isn't sufficient.</p>
+
+<p>Instead, we'll use the widget's <code>insert</code> method:</p>
+
+<div class=python><pre>text.insert('1.0', 'here is my\ntext to insert')</pre></div>
+
+
+<p>The "1.0" here is the position where to insert the text, and can be read as "line 1, character 0".  This
+refers to the first character of the first line. Historically, especially on Unix, programmers tend to think about
+line numbers as 1-based and character positions as 0-based.</p>
+
+<p>The text to insert is just a string.  Because the widget can hold multi-line text, the string we
+supply can be multi-line as well.  To do this, simply embed <code>\n</code> (newline) characters in the
+string at the appropriate locations.</p>
+
+
+<h3>Retrieving the Text</h3>
+
+<p>After users have made any changes and submitted the form (for example), your program can 
+retrieve the contents of the widget via the <code>get</code> method:</p>
+
+<div class=python><pre>thetext = text.get('1.0', 'end')</pre></div>
+
+
+<p>The two parameters are the start and end position; <code>end</code> has the obvious meaning.
+  You can provide different start and end positions if you want to obtain only part of the text.
+  You'll see more on positions shortly.</p>
+
+<h3>Customizing Appearance</h3>
+
+<p>We previously saw the <code>width</code> and <code>height</code> configuration options for text widgets.  
+  Several others control its overall appearance. The most useful are:</p>
+  
+<dl class="row ml-sm-1">
+  <dt class="col-lg-3 col-xl-2 font-weight-normal"><code>foreground</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">color to draw the text in</dd>
+  <dt class="col-lg-3 col-xl-2 font-weight-normal"><code>background</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">background color of the widget</dd>
+  <dt class="col-lg-3 col-xl-2 font-weight-normal"><code>padx, pady</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">extra padding along the inside border of the widget</dd>
+  <dt class="col-lg-3 col-xl-2 font-weight-normal"><code>borderwidth</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">width of the border around widget</dd>
+  <dt class="col-lg-3 col-xl-2 font-weight-normal"><code>relief</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">border style: <code>flat</code>, <code>raised</code>, <code>sunken</code>, <code>solid</code>, <code>ridge</code>, <code>groove</code></dd>
+</dl>
+  
+
+<h3>Wrapping and Scrolling</h3>
+
+<p>What if some lines of text in the widget are very long, longer than the width of the widget?  By default,
+the text wraps around to the next line. This behavior can be changed with the 
+<code>wrap</code> configuration option.  It defaults to <code>char</code>, meaning wrap lines at any character.
+Other options are <code>word</code> to wrap lines only at
+word breaks (e.g., spaces), and <code>none</code> meaning to not wrap lines at all.  In the latter case,
+some text of longer lines won't be visible unless we attach a horizontal scrollbar to the widget.
+(Users can also scroll through the text using arrow keys, even if scrollbars aren't present).</p>
+
+<p>Scrollbars, both horizontal and vertical, can be attached to the text widget in the 
+same way as with other widgets, e.g., canvas, listbox.</p>
+
+<div class=python><pre>t = Text(root, width = 40, height = 5, <b>wrap = "none"</b>)
+<b>ys = ttk.Scrollbar(root, orient = 'vertical', command = t.yview)</b>
+<b>xs = ttk.Scrollbar(root, orient = 'horizontal', command = t.xview)</b>
+<b>t['yscrollcommand'] = ys.set</b>
+<b>t['xscrollcommand'] = xs.set</b>
+t.insert('end', "Lorem ipsum...\n...\n...")
+t.grid(column = 0, row = 0, sticky = 'nwes')
+xs.grid(column = 0, row = 1, sticky = 'we')
+ys.grid(column = 1, row = 0, sticky = 'ns')
+root.grid_columnconfigure(0, weight = 1)
+root.grid_rowconfigure(0, weight = 1)
+</pre></div>
+
+
+<p>We can also ask the widget to ensure that a certain part of the text is visible.  For example, let's say
+we've added more text to the widget than will fit onscreen (so it will scroll). However, we want to ensure
+that the top of the text rather than the bottom is visible. We can use the <code>see</code> method.</p>
+
+<div class=python><pre>text.see('1.0')</pre></div>
+
+<h3>Disabling the Widget</h3>
+
+<p>Some forms will temporarily disable editing in particular widgets unless certain conditions are met 
+(e.g., some other options are set to a certain value).  To prevent users from changing
+a text widget, set the <code>state</code> configuration option to <code>disabled</code>. Re-enable editing
+by setting this option back to <code>normal</code>.</p>
+
+<div class=python><pre>text['state'] = 'disabled'</pre></div>
+
+
+<div class=fyi><p>As text widgets are part of the classic widgets, the usual <code>state</code> and <code>instate</code>
+  methods are not available.</p></div>
+
+ <a name="modifying"></a><h2>Modifying the Text in Code</h2>
+
+<p>While users can modify the text in the text widget interactively, your program can also make
+changes.  Adding text is done with the <code>insert</code> method, which we used above to provide an
+initial value for the text widget.</p>
+
+<h3>Text Positions and Indices</h3>
+
+<p>When we specified a position of <code>1.0</code> (first line, first character), this was an example of an <em>index</em>.
+It tells the <code>insert</code> method where to put the new text (just before the first line, first character, i.e., at the
+very start of the widget).  Indices can be specified in a variety of ways. We used another one with the <code>get</code> method:
+<code>end</code> means <em>just past</em> the end of the text. (Why "just past?" Text is inserted right
+<em>before</em> the given index, so inserting at <code>end</code> will add text to the end of the widget).
+Note that Tk will <em>always</em> add a newline at the very end of the text widget.</p>
+
+<p>Here are a few additional examples of indices and how to interpret them:</p>
+
+<dl class="row ml-sm-1">
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>3.end</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">The newline at the end of line 3.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>1.0 + 3 chars</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">Three characters past the start of line 1.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>2.end -1 chars</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">The last character before the new line in line 2.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>end -1 chars</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">The newline that Tk always adds at the end of the text.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>end -2 chars</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">The actual last character of the text.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>end -1 lines</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">The start of the last actual line of text.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>2.2 + 2 lines</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">The third character (index 2) of the fourth line of text.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>2.5 linestart</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">The first character of line 2.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>2.5 lineend</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">The position of the newline at the end of line 2.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>2.5 wordstart</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">First char. of the word with the char. at index 2.5.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>2.5 wordend</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">First char. after the word with the char. at index 2.5.</dd>
+</dl>
+
+<p>Some additional things to keep in mind:</p>
+<ul>
+<li> The term <code>chars</code> can be abbreviated as <code>c</code>, and <code>lines</code> as <code>l</code>.
+<li> Spaces between terms can be omitted, e.g., <code>1.0+3c</code>.
+<li> An index past the end of the text (e.g., <code>end + 100c</code>) is interpreted as <code>end</code>.
+<li> Indices wrap to subsequent lines as needed; e.g., <code>1.0 + 10 chars</code> on a line with only five
+	 characters will refer to a position on the second line.
+<li> Line numbers in indices are interpreted as <em>logical lines,</em> i.e.,
+	 each line ends only at the "\n."  With long lines and wrapping enabled, one logical line may represent 
+	 multiple <em>display lines</em>. If you'd like to move up or down a single line on the display, you can
+	 specify this as, e.g., "1.0 + 2 display lines".
+<li> When indices contain multiple words, make sure they are quoted appropriately so that Tk sees
+	   the entire index as one argument.
+</ul>
+
+<p> To determine the <em>canonical position</em> of an index, use the <code>index <em>idx</em></code> method. Pass it any
+	 index expression, and it returns the corresponding index in the form <code><em>line</em>.<em>char</em></code>. For example,
+   to find the position of the last character (ignoring the automatic newline at the end), use:</p>
+   
+<div class=python><pre>text.index('end')</pre></div>
+
+<p> You can compare two indices using the <code>compare</code> method, which lets you check for equality, 
+	 whether one index is later in the text than the other, etc.</p>
+
+<div class=python><pre>if text.compare(<em>idx1</em>, "==", <em>idx2</em>"): <em># same position</em></pre></div>
+
+<p>Valid operators are <code>==</code>, <code>!=</code>, <code>&lt;</code>, <code>&lt;=</code>, <code>&gt;</code>, and <code>&gt;=</code>.</p>
+
+<h3>Deleting Text</h3>
+
+<p>While the <code>insert</code> method adds new text anywhere in the widget, the <code>delete <em>start</em> <em>?end?</em></code> method removes it.
+We can delete either a single character (specified by index) or a <em>range</em> of characters (specified by 
+start and end indices).  In the latter case, characters from (and including) the start index through to <em>just before</em>
+the end index will be deleted (so the character at the end index is not deleted).  So if we assume for each of these
+we start off with <code>"abcd\nefgh"</code> in the text widget:</p>
+
+<div class=python><pre>text.delete('1.2') <em>&#8658;</em> "abd\nefgh"
+text.delete('1.1', '1.2') <em>&#8658;</em> "acd\nefgh"
+text.delete('1.0', '2.0') <em>&#8658;</em> "efgh"
+text.delete('1.2', '2.1') <em>&#8658;</em> "abfgh"
+</pre></div>
+
+
+<p>There is also a <code>replace</code> method that performs a <code>delete</code> followed by an <code>insert</code> 
+  at the same location.</p>
+
+
+<h3>Example: Logging Window</h3>
+<p>Here's a short example that illustrates using a text widget as an 80x24 logging window for an application.
+Users don't edit the text widget at all. Instead, the program writes log messages to it.  We'd like
+to display more than 24 lines (so no scrolling). If the log is full, old messages are removed from the top
+before new ones are added at the end.</p>
+
+<div class=python><pre>from tkinter import *
+from tkinter import ttk
+
+root = Tk()
+log = Text(root, state='disabled', width=80, height=24, wrap='none')
+log.grid()
+
+def writeToLog(msg):
+    numlines = int(log.index('end - 1 line').split('.')[0])
+    log['state'] = 'normal'
+    if numlines==24:
+        log.delete(1.0, 2.0)
+    if log.index('end-1c')!='1.0':
+        log.insert('end', '\n')
+    log.insert('end', msg)
+    log['state'] = 'disabled'
+</pre></div>
+
+<div class=tip><p>Note that because the program placed the widget in a disabled state, we had to re-enable it to make any 
+  changes, even from our program.</p></div>
+
+
+
+ <a name="tags"></a><h2>Formatting with Tags</h2>
+
+<p>So far, we've used text widgets when all the text is in a single font.  Now it's time to look at how to add special formatting,
+such as bold, italic, strikethrough, background colors, font sizes, and much more.  Tk's text widget
+implements these using a feature called <em>tags</em>.	</p>
+
+<p>Tags are objects associated with the text widget.  Each tag is referred to via a name chosen by the programmer.
+Each tag has several configuration options. These are things like fonts and colors that control formatting.
+Though tags are objects having state, they don't need to be explicitly created.
+They are automatically created the first time the tag name is used.</p>
+
+<h3>Adding Tags to Text</h3>
+
+<p>Tags can be associated with one or more ranges of text in the widget.  As before, ranges are specified via indices.
+A single index represents a single character, and a pair of indices represent a range from the start
+character to just before the end character.  Tags are added to a range of text using the 
+<code>tag_add</code> method.</p>
+
+<div class=python><pre>text.tag_add('highlightline', '5.0', '6.0')</pre></div>
+
+<p>Tags can also be provided when first inserting text. The <code>insert</code> method supports an optional parameter
+containing a list of one or more tags to add to the text being inserted.</p>
+
+<div class=python><pre>text.insert('end', 'new material to insert', ('highlightline', 'recent', 'warning'))</pre></div>
+
+<p>As the text in the widget is modified, whether by a user or your program, the tags will adjust automatically.
+For example, if we tagged the text "the quick brown fox" with the tag "nounphrase", and then replaced
+the word "quick" with "speedy," the tag still applies to the entire phrase.</p>
+
+<h3>Applying Formatting to Tags</h3>
+
+<p>Formatting is applied to tags via configuration options; these work similarly to configuration options for
+the entire widget.  As an example:</p>
+
+<div class=python><pre>text.tag_configure('highlightline', background='yellow', font='TkFixedFont', relief='raised')</pre></div>
+
+
+<p>Tags support the following configuration options: <code>background</code>, <code>bgstipple</code>, <code>borderwidth</code>, 
+<code>elide</code>, <code>fgstipple</code>, <code>font</code>, <code>foreground</code>, <code>justify</code>, <code>lmargin1</code>, <code>lmargin2</code>, 
+<code>offset</code>, <code>overstrike</code>, <code>relief</code>, <code>rmargin</code>, <code>spacing1</code>, <code>spacing2</code>, 
+<code>spacing3</code>, <code>tabs</code>, <code>tabstyle</code>, <code>underline</code>, and <code>wrap</code>.
+Check the reference manual for detailed descriptions of these.  The <code>tag_cget <em>tag</em> <em>option</em></code> method allows us to query the configuration options of a tag.</p>
+
+
+<p>Because multiple tags can apply to the same range of text, there is the possibility of conflict (e.g., two tags
+specifying different fonts).  A priority order is used to resolve these; the most recently created tags have
+the highest priority, but priorities can be rearranged using the <code>tag_raise <em>tag</em></code> and <code>tag_lower <em>tag</em></code> 
+methods.</p>
+
+
+<h3>More Tag Manipulations</h3>
+
+<p>To delete one or more tags altogether, we can use the <code>tag_delete <em>tags</em></code> method.  This also, of course, 
+removes any references to the tag in the text.  We can also remove a tag from a range of text using the 
+<code>tag_remove <em>tag</em> <em>start</em> <em>?end?</em></code> method. 
+Even if that leaves no ranges of text with that tag, the tag object itself still exists.</p>
+
+<p>The <code>tag_ranges <em>tag</em></code> method will return a list of ranges in the text that the tag has been applied to.  There
+are also <code>tag_nextrange <em>tag</em> <em>start</em> <em>?end?</em></code> and <code>tag_prevrange <em>tag</em> <em>start</em> <em>?end?</em></code> methods to 
+search forward or backward for the first such range from a given position.</p>
+
+<p>The <code>tag_names <em>?idx?</em></code> method, called with no additional parameters, will return a list of all tags currently
+defined in the text widget (including those that may not be presently used).  If we pass the method an index,
+it will return the list of tags applied to just the character at the index.</p>
+
+<p>Finally, we can use the first and last characters in the text having a given tag as indices, the same way we
+can use "end" or "2.5".  To do so, just specify <code><em>tagname</em>.first</code> or <code><em>tagname</em>.last</code>.</p>
+
+
+<h3>Differences between Tags in Canvas and Text Widgets</h3>
+<p>Both canvas and text widgets support "tags" that can be applied to several objects, style them, etc.
+However, canvas and text tags are not the same.  There are important differences to take note of.</p>
+
+<p>In canvas widgets, only individual canvas items have configuration options that control their appearance.  When we refer
+to a tag in a canvas, the meaning of that is identical to "all canvas items presently having that tag."  The tag 
+itself doesn't exist as a separate object.  So in the following snippet, the last rectangle added will <em>not</em>
+be colored red.  </p>
+
+<div class=python><pre>canvas.itemconfigure('important', fill='red')
+canvas.create_rectangle(10, 10, 40, 40, tags=('important'))</pre></div>
+
+<p>In contrast, with text widgets, it's not the individual characters that retain the state information about appearance,
+but tags, which are objects in their own right.  So in this snippet, the newly added text <em>will</em> be colored
+red.</p>
+
+<div class=python><pre>text.insert('end', 'first text', ('important'))
+text.tag_configure('important', foreground='red')
+text.insert('end', 'second text', ('important'))</pre></div>
+
+
+ <a name="bindings"></a><h2>Events and Bindings</h2>
+
+<p>One very cool thing we can do is define event bindings on tags.  That allows us to do things like easily
+recognize mouse clicks on particular ranges of text, and popup up a menu or dialog in response.  Different
+tags can have different bindings. This saves the hassle of sorting out questions like "what does a click
+at this location mean?".  Bindings on tags are implemented using the <code>tag_bind</code> method:</p>
+
+<div class=python><pre>text.tag_bind('important', '&lt;1&gt;', popupImportantMenu)</pre></div>
+
+<p>Widget-wide event bindings continue to work as they do for every other widget, e.g., to capture a mouse click
+anywhere in the text.  Besides the normal low-level events, the text widget generates a
+<code>&lt;&lt;Modified&gt;&gt;</code> virtual event whenever a change is made to the
+content of the widget, and a <code>&lt;&lt;Selection&gt;&gt;</code> virtual event
+whenever there is a change made to which text is selected.</p>
+
+ <a name="selection"></a><h2>Selecting Text</h2>
+
+<p>We can identify the range of text selected by a user, if any.  
+For example, an editor may have a toolbar button to bold the selected text.  While you can tell when
+the selection has changed (e.g., to update whether or not the bold button is active) via the <code>&lt;&lt;Selection&gt;&gt;</code>
+virtual event, that doesn't tell you what has been selected.</p>
+
+<p>The text widget automatically maintains a tag named <code>sel</code>, which refers to the selected text.  Whenever the
+selection changes, the <code>sel</code> tag will be updated.  So we can find the range of text selected using the
+<code>tag_ranges <em>?tag?</em></code> method, passing it <code>sel</code> as the tag to report on.</p>
+
+<p>Similarly, we can change the selection by using <code>tag_add</code> to set a new selection, or <code>tag_remove</code>
+to remove the selection.  The <code>sel</code> tag cannot be deleted, however.</p>
+
+<div class=tip><p>Though the default widget bindings prevent this from happening, <code>sel</code> is like any other tag in that it can support
+multiple ranges, i.e., disjoint selections.  To prevent this from happening, when changing the selection from your
+code, make sure to remove any old selection before adding a new one.</p></div>
+
+<p>The text widget manages the concept of the insertion cursor (where newly typed text will appear) separate from
+the selection.  It does so using a new concept called a <em>mark</em>.</p>
+
+
+ <a name="marks"></a><h2>Marks</h2>
+
+<p>Marks indicate a particular place in the text.  In that respect, they are like indices. However, as
+the text is modified, the mark will adjust to be in the same relative location.  In that way, they resemble
+tags, but refer to a single position rather than a range of text.  Marks actually don't refer to a position occupied
+by a character in the text but specify a position <em>between</em> two characters.</p>
+
+<p>Tk automatically maintains two different marks.  The first, named <code>insert</code>, is the present location of the
+insertion cursor.  As the cursor is moved (via mouse or keyboard), the mark moves with it.  The second mark, 
+named <code>current</code>, tracks the position of the character underneath the current mouse position.</p>
+
+<p>To create your own marks, use the widget's <code>mark_set <em>name</em> <em>idx</em></code> method, passing it the name of the mark and an index
+(the mark is positioned just before the character at the given index).  This is also used to move an existing mark to
+a different position.  Marks can be removed using the <code>mark_unset <em>name</em></code> method, passing it the name of the mark.
+If you delete a range of text containing a mark, that also removes the mark.</p>
+
+<p>The name of a mark can also be used as an index (in the same way <code>1.0</code> or <code>end-1c</code> are indices).  
+You can find the next mark (or previous one) from a given index in the text using the <code>mark_next <em>idx</em></code> or 
+<code>mark_previous <em>idx</em></code> methods.  The <code>mark_names</code> method will return a list of the names of all marks.</p>
+
+<p>Marks also have a <em>gravity</em>, which can be modified with the <code>mark_gravity <em>name</em> <em>?direction?</em></code> method, 
+which affects what happens when text is inserted at the mark.  Suppose we have the text "ac" with a mark in between that
+we'll symbolize with a pipe, i.e., "a|c."   If the gravity of that mark is <code>right</code> (the default), the mark 
+attaches itself to the "c."  If the new text "b" is inserted at the mark, the mark will remain stuck to the "c,"
+and so the new text will be inserted before the mark, i.e., "ab|c."  If the gravity is instead <code>left</code>, the mark
+attaches itself to the "a," and so new text will be inserted after the mark, i.e., "a|bc."</p>
+
+
+ <a name="images"></a><h2>Images and Widgets</h2>
+
+<p>Like canvas widgets, text widgets can contain not only text but also images and any other Tk widgets (including a frame, itself
+containing many other widgets).  In a sense, this allows the text widget to work as a geometry manager in its own right.
+The ability to add images and widgets within the text opens up a world of possibilities for your program.</p>
+
+<p>Images are added to a text widget at a particular index, with the image specified as an existing Tk image.  
+Other options that allow you to fine-tune padding, etc.</p>
+
+<div class=python><pre>flowers = PhotoImage(file='flowers.gif')
+text.image_create('sel.first', image=flowers)</pre></div>
+
+<p>Other widgets are added to a text widget in much the same way as images.  The widget
+being added must be a descendant of the text widget in the widget hierarchy.</p>
+
+<div class=python><pre>b = ttk.Button(text, text='Push Me')
+text.window_create('1.0', window=b)</pre></div>
+
+
+ <a name="more"></a><h2>Even More</h2>
+
+<p>Text widgets can do many more things. Here, we'll briefly mention just a few more of them.  
+  For details on any of these, see the reference manual.</p>
+
+<h3>Search</h3>
+
+<p>The text widget includes a powerful <code>search</code> method that allows you to locate a piece of text within the 
+widget. This is useful for a "Find" dialog, as one obvious example.  You can search backward or forward from a
+particular position or within a given range, specify the search term using exact text, case insensitive, or via
+regular expressions, find one or all occurrences of the search term, etc.</p>
+
+<h3>Modifications, Undo and Redo</h3>
+
+<p>The text widget keeps track of whether changes have been made to the text (useful to know whether it needs to be
+saved to a file, for example). We can query (or change) using the <code>edit_modified <em>?bool?</em></code> method.  There is also
+a complete multi-level undo/redo mechanism, managed automatically by the widget when we set its <code>undo</code> 
+configuration option to <code>true</code>.  Calling <code>edit_undo</code> or <code>edit_redo</code> modifies the current
+text using information stored on the undo/redo stack.</p>
+
+<h3>Eliding Text</h3>
+
+<p>Text widgets can include text that is not displayed. This is known as "elided" text, and is made
+available using the <code>elide</code> configuration option for tags.  It can be used to implement
+an outliner, a "folding" code editor, or even to bury extra meta-data intermixed with displayed text.
+When specifying positions within elided text, you have to be a bit more careful. Methods that work with
+positions have extra options to either include or ignore the elided text.</p>
+
+<h3>Introspection</h3>
+
+<p>Like most Tk widgets, the text widget goes out of its way to expose information about its internal state. We've
+seen this in terms of the <code>get</code> method, widget configuration options, <code>names</code> and
+<code>cget</code> for both tags and marks, etc.  There is even more information available that can be useful
+for a wide variety of tasks.  Check out the <code>debug</code>, <code>dlineinfo</code>, <code>bbox</code>, 
+<code>count</code>, and <code>dump</code> methods in the reference manual.</p>
+
+<h3>Peering</h3>
+
+<p>The Tk text widget allows the same underlying text data structure (containing all the text, marks, tags, images, etc.) to be
+shared between two or more different text widgets.  This is known as <em>peering</em> and is controlled via the
+<code>peer</code> method.</p>
+
+    <script src="../../code.jquery.com/jquery-3.4.1.min.js" integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh" crossorigin="anonymous"></script>
+    <script src="../../stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+    <script src="../tkdocs.js"></script>
+    <script type='text/javascript'>setDefaultLang()</script>
+</body>
+
+<!-- Mirrored from tkdocs.com/tutorial/text.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 07:06:00 GMT -->
+</html>
+
+
+
