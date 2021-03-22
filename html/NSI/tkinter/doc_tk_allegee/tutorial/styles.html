@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="en">
+
+<!-- Mirrored from tkdocs.com/tutorial/styles.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 07:06:01 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>TkDocs Tutorial - Styles and Themes</title>
+    <meta http-equiv="Content-Language" content="English" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="Styles and Themes: Part of a Modern Tk Tutorial for Python, Tcl, Ruby, and Perl" />
+    <meta name="keywords" content="TkDocs, Tk, Tkinter, Tkx, GUI, Tcl, Python, Perl, Ruby" />	
+  
+   <link rel="stylesheet" href="../../stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <link rel="stylesheet" href="../../maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">  
+    <link rel="stylesheet" type="text/css" href="../tkc.css" media="screen,print" /> 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="../../external.html?link=https://www.googletagmanager.com/gtag/js?id=UA-2043168-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-2043168-3');
+</script>
+
+
+</head>
+<body>
+
+
+<div class="container-fluid">
+
+
+<div class=tutorial>
+<nav><ul class="pagination justify-content-center"><li class="page-item"><a class="page-link" href="tree.html">Previous: Treeview</a></li><li class="page-item"><a class="page-link" href="index.html">Contents</a></li><li class="page-item"><a class="page-link" href="onepage.html">Tutoriel complet en une page</a></li></ul></nav>
+<h1>Styles and Themes</h1>
+
+
+<p>The <em>themed</em> aspect of the modern Tk widgets is one of the most powerful and exciting aspects of the newer
+widget set.  Yet, it's also one of the most confusing.</p>
+
+<p>This chapter explains styles (which control how widgets like buttons look) and themes (which are a collection
+  of styles that define how all the widgets in your application look). Changing themes can give your application an
+  entirely different look.</p>
+  
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/themes.png' alt='screen shot'><br />
+Applying different themes.</p>  
+
+<p>Note that it's not just colors that have changed, but the actual shape of individual widgets. Styles and themes are <em>extremely</em> flexible.</p>
+
+  
+<h3>Why?</h3>
+
+<p>However, before you get carried away, very few applications will benefit from switching themes like this. Some games or educational
+programs might be exceptions. Using the standard Tk theme for a given platform will display widgets the way that people expect to see them, 
+particularly if they're running macOS and Windows.</p>
+
+<div class=fyi><p>On Linux systems, there's far less standardization of look and feel. Users expect (and are more comfortable with) some
+  variability and "coolness." Because different widget sets (typically GTK and QT) are used by window managers, control panels, and other system 
+  utilities, Tk can't seamlessly blend in with the current settings on any particular system. Most of the Linux screenshots in this
+  tutorial use Tk's <code>alt</code> theme. Despite users being accustomed to variability, there are limits to what most users will accept.
+  The styling of core widgets in Tk's classic widget set, matching circa-1992 OSF/Motif, is a prime example.</p></div>
+
+<p>Styles and themes, used in a more targeted manner and with significant restraint, can have a role to play in modern applications.
+  This chapter explains why and when you might want to use them and how to go about doing so. We'll begin by drawing a parallel 
+  between Tk's styles and themes and another realm of software development.</p>
+
+<h3>Understanding Styles and Themes</h3>
+
+
+<p>If you're familiar with web development, you know about cascading stylesheets (CSS). There are two ways it can be used to customize
+  the appearance of an element in your HTML page. In the first way, you add a bunch of style attributes (fonts, colors, borders, etc.) directly 
+  to an element in your HTML code via the <code>style</code> attribute. For example:</p>
+<pre>
+&lt;label style="color:red; font-size:14pt; font-weight:bold; background-color:yellow;"&gt;Meltdown imminent!&lt;/label&gt;
+</pre>  
+
+<p>The other way to use CSS is to attach a <em>class</em> to each widget via the <code>class</code> attribute. 
+  The details of how elements of that class appear are provided elsewhere, often in a separate CSS file.  
+  You can attach the same class to many elements, and they will all have the same appearance. You don't need to repeat
+  the full details for every element. More importantly, you separate the logical content of your site (HTML) from its
+  appearance (CSS).</p>
+
+<pre>
+&lt;label class="danger"&gt;Meltdown imminent!&lt;/label&gt;
+...
+&lt;style type="text/css"&gt;
+label.danger {color:red; font-size:14pt; font-weight:bold; background-color:yellow;}
+&lt;/style&gt;
+</pre>
+  
+<p>Back to Tk.</p>
+<ul><li>In the classic Tk widgets, all appearance customizations require specifying each detail on individual widgets,
+  akin to <em>always</em> using the <code>style</code> HTML attribute.</li>
+  <li>In the themed Tk widgets, <em>all</em> appearance customizations are made via attaching a style to a widget, akin to using
+    the <code>class</code> HTML attribute. Separately, you define how widgets with that style will appear, akin to writing CSS.</li>
+  <li>Unlike with HTML, <em>you can't freely mix and match.</em> You can't customize some themed entries or buttons with styles, and others
+    by directly changing appearance options.</li> 
+</ul>
+
+<div class=fyi><p>Yes, there are a few exceptions, like labels where you can customize the font and colors through both styles and configuration options.</p></div>
+
+<h3>Benefits</h3>
+
+<p>So why use styles and themes in Tk? They take the fine-grained details of appearance decisions away from individual instances of widgets.</p>
+
+<p>That makes for cleaner code and less repetition. If you have 20 entry widgets in your application, you don't need to repeat the same 
+  appearance details every time you create one (or write a wrapper function). You just assign them a style.</p>
+  
+<p>Styles also put all appearance decisions in one place. And because styles for a button and styles for a widget can share common elements, it
+  promotes consistency and improves reuse.</p>
+
+<div class=fyi><p>Styles also have many benefits for widget authors. Widgets can delegate most appearance decisions to styles.
+  A widget author no longer has to hardcode logic to the effect of "when the state is disabled, consult the 'disabledforeground' 
+  configuration option and use that for the foreground color."  Not only did that make coding widgets longer (and more repetitive),
+  but it also restricted how a widget could be changed based on its state. If the widget author hadn't coded in logic to change the font 
+  when the state changed, you as an application developer using the widget were out of luck.
+</p><p>
+  Using styles, widget authors don't need to provide code for every possible appearance option. That not only simplifies the widget but 
+  paradoxically ensures that a wider range of appearances <b>can</b> be set, including those the widget author may not have anticipated.
+</p></div>
+
+
+
+ <a name="usetheme"></a><h2>Using Existing Themes</h2>
+
+<p>Before delving into the weightier matters of tastefully and selectively modifying and applying styles to improve the usability of
+  your application and cleanliness of your code, let's deal with the fun bits: using existing themes to completely reskin your application.</p>
+
+<p>Themes are identified by a name.  You can obtain the names of all available themes:</p>
+
+<div class=python><pre>>>> <b>s = ttk.Style()</b>
+>>> <b>s.theme_names()</b>
+('aqua', 'step', 'clam', 'alt', 'default', 'classic')</pre>
+<div class=fyi><p>Tkinter encapsulates all style manipulations in the <code>ttk.Style</code> class. We'll therefore need an instance of that
+  class for this and other operations.</p></div>
+</div>
+
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/w_several_themes.png' alt='screen shot'><br />
+Built-in themes.</p>
+
+<p>Besides the built-in themes (<code>alt</code>, <code>default</code>, <code>clam</code>, and <code>classic</code>), macOS includes a theme named
+  <code>aqua</code> to match the system-wide style, while Windows includes themes named <code>vista</code>, <code>winxpnative</code>, and 
+  <code>winnative</code>.</p>
+
+<p>Only one theme can ever be active at a time.  To obtain the name of the theme currently in use, use the following:</p>
+
+
+<div class=python><pre>>>> <b>s.theme_use()</b>
+'aqua'</pre></div>
+
+
+<div class=fyi><p>This API, which was originally targeted for Tk 8.6, was back-ported to Tk 8.5.9.  If you're using an earlier version of Tk
+getting this info is a bit trickier.</p></div>
+
+<p>Switching to a new theme can be done with:</p>
+
+<div class=python><pre>s.theme_use('<em>themename</em>')</pre></div>
+
+
+<p>What does this actually do?  Obviously, it sets the current theme to the indicated theme.  Doing this,
+therefore, replaces all the currently available styles with the set of styles defined by the theme.
+Finally, it refreshes all widgets, so that they take on the appearance described by the new theme.</p>
+
+  
+ <a name="usingstyles"></a><h2>Using Styles</h2>
+
+<p>We'll now tackle the more difficult issue of how to take full advantage of styles and themes within your application, not just reskinning it
+  with an existing theme.</p>
+
+<h3>Definitions</h3>
+
+<p>We first need to introduce a few essential concepts.</p>
+
+<h4>Widget Class</h4>
+	
+<p>A <em>widget class</em> identifies the type of a particular widget, whether
+it is a button, a label, a canvas, etc. All themed widgets have a default class. Buttons have the class <code>TButton</code>,
+labels <code>TLabel</code>, etc.</p>
+
+
+<h4>Widget State</h4>
+
+<p>A <em>widget state</em> allows a single widget to have more than one appearance or behavior,
+depending on things like mouse position, different state options set by the application, and so on.</p>
+
+<p>As you'll recall, all themed widgets maintain a set of binary state flags, accessed by the <code>state</code> and <code>instate</code> methods.
+The flags are: <code>active</code>, <code>disabled</code>, <code>focus</code>, <code>pressed</code>,
+<code>selected</code>, <code>background</code>, <code>readonly</code>, <code>alternate</code>, and <code>invalid</code>.
+All widgets have the same set of state flags, though they may ignore some of them (e.g., a label widget would
+likely ignore an <code>invalid</code> state flag). See the <a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/ttk_widget.htm">themed widget</a> page 
+in the reference manual for the exact meaning of each state flag.</p>
+
+
+
+<h4>Style</h4>
+
+<p>A <em>style</em> describes the appearance (or appearance<em>s</em>) of a widget class.  
+  All themed widgets having the same widget class will have the same appearance(s).</p>
+<p>Styles are referred to by the name of the widget class they describe. For example,
+  the style <code>TButton</code> defines the appearance of all widgets with the class <code>TButton</code>.
+
+<p>Styles know about different states, and one style can define different appearances based on a widget's state.
+For example, a style can specify how a widget's appearance should change if the <code>pressed</code> state flag is set.</p>
+
+<h4>Theme</h4>
+
+<p>A <em>theme</em> is a collection of styles.  While each style is widget-specific (one for buttons, one for
+entries, etc.), a theme collects many styles together.  All styles in the same theme will be designed to 
+visually "fit" together with each other. (Tk doesn't technically restrict bad design or judgment, unfortunately!)</p>
+
+<p>Using a particular theme in an application really means that, by default, the appearance of each
+  widget will be controlled by the style within that theme responsible for that widget class.</p>
+
+
+
+<h3>Style Names</h3>
+<p>Every style has a name.  If you're going to modify a style, create a new one, or use a style for a widget,
+you need to know its name.</p>
+
+<p>How do you know what the names of the styles are?  If you have a particular widget, and you want to know
+what style it is currently using, you can first check the value of its <code>style</code> configuration option.  If
+that is empty, it means the widget is using the <em>default</em> style for the widget.  You can retrieve
+that via the widget's class.  For example:</p>
+
+<div class=python><pre>>>> <b>b = ttk.Button()</b>
+>>> <b>b['style']</b>
+''
+>>> <b>b.winfo_class()</b>
+'TButton'</pre></div>
+
+
+<p>In this case, the style that is being used is <code>TButton</code>.  The default styles for other themed widgets
+are named similarly, e.g., <code>TEntry</code>, <code>TLabel</code>, etc.</p>
+
+<div class=tip><p>It's always wise to check the specifics. For example, the treeview widget's class is <code>Treeview</code>, <b>not</b> <code>TTreeview</code>.</p></div>
+
+<p>Beyond the default styles, though, styles can be named pretty much anything.  You might create your own style
+(or use a theme that has a style) named <code>FunButton</code>, <code>NuclearReactorButton</code>, or even <code>GuessWhatIAm</code> (not a 
+smart choice).</p>
+
+<p>More often, you'll find names like <code>Fun.TButton</code> or <code>NuclearReactor.TButton</code>, which suggest
+variations of a base style; as you'll see, this is something Tk supports for creating and modifying styles.</p>
+
+<div class=yuck><p>The ability to retrieve a list of all currently available styles is currently not supported.
+  This will likely appear in Tk 8.7 in the form of a new command, <code>ttk::style theme styles</code>
+  to return the list of styles implemented by a theme. It also proposes adding a <code>style</code> method
+  for all widgets, so you don't have to examine both the widget's <code>style</code> configuration option and
+  its class. See <a href="../../external.html?link=https://tip.tcl.tk/584">TIP #584</a>.
+</p></div>
+
+
+<h3>Applying a Style</h3>
+
+<p>To use a style means to apply that style to an individual widget.  If you know the name of the style you
+want to use, and which widget to apply it to, it's easy.  Setting the style can be done at creation time:</p>
+
+<div class=python><pre>b = ttk.Button(<em>parent</em>, text='Hello', style='Fun.TButton')</pre></div>
+
+<p>As well, a widget's style can be changed at any time with the <code>style</code> configuration option:</p>
+
+<div class=python><pre>b['style'] = 'Emergency.TButton'</pre></div>
+
+
+<h3>Creating a Simple Style</h3>
+
+<p>So how do we create a new style like <code>Emergency.TButton</code>?</p>
+
+<p>In situations like this, you're creating a new style similar to an existing one but varies
+in a certain aspect. This is the most common reason for creating new styles.</p>
+
+<p>For example, you want most of the buttons in your application to keep their normal appearance, but have
+  certain "emergency" buttons highlighted differently.  Creating a new style (e.g., <code>Emergency.TButton</code>),
+  derived from the base style (<code>TButton</code>), is the appropriate thing to do.</p>
+
+<p>Prepending another name (<code>Emergency</code>) followed  by a dot onto an existing style creates a new style  
+  derived from the existing one. The new style will have exactly the same options as the existing one except for the indicated differences:</p>
+
+<div class=python><pre>s.configure('Emergency.TButton', font='helvetica 24', foreground='red', padding=10)</pre></div>
+
+<p>You could then apply that style to an individual button widget using its <code>style</code> configuration option,
+  as shown earlier. Every other button widget would retain its normal appearance.</p>
+
+<p>How do you know what options are available to change for a given style? That requires diving a little deeper inside styles.</p> 
+
+ <a name="styleoptions"></a><h2>Manipulating Styles</h2>
+
+<p>In this section, we'll see how to change the style's appearance by modifying style options.
+You can do this either by modifying an existing style, or more typically, by creating a new style.
+We saw how to create a simple style that was derived from another one earlier:</p>
+
+<div class=python><pre>s.configure('Emergency.TButton', font='helvetica 24', foreground='red', padding=10)</pre></div>
+
+
+<h3>Modifying a Style Option</h3>
+
+<p>Modifying an option for an existing style is done in a similar fashion as modifying any other
+configuration option, by specifying the style, name of the option, and new value:</p>
+
+<div class=python><pre>s.configure('TButton', font='helvetica 24')</pre></div>
+
+<p>You'll learn more about what the valid options are shortly.</p>
+
+<div class=tip><p>If you modify an existing style, like we've done here with <code>TButton</code>, that modification will apply to all widgets using
+that style (so by default, all buttons).  That may well be what you want to do.</p></div>
+
+<p>To retrieve the current value of an option, use the <code>lookup</code> method:</p>
+
+<div class=python><pre>>>> <b>s.lookup('TButton', 'font')</b>
+'helvetica 24'</pre></div>
+
+
+
+<h3>State Specific Style Options</h3>
+<p>Besides the normal configuration options for the style, the widget author may have specified different options to 
+use when the widget is in a particular widget state.  For example, when a button is disabled, it may change 
+the button's label to grey.</p>
+
+<div class=tip><p>Remember that the state is composed of one or more state flags (or their negation), as set by the widget's <code>state</code> method,
+or queried via the <code>instate</code> method.</p></div>
+
+<p>You can specify state-specific variations for one or more of a style's configuration options with a <em>map.</em> 
+  For each configuration option, you can specify a list of widget states, along with
+the value that option should be assigned when the widget is in that state. </p>
+
+
+<p>The following example provides for the following variations from a button's normal appearance:
+<ul>
+<li> when the widget is in the disabled state, the background color should be set to <code>#d9d9d9</code>
+<li> when the widget is in the active state (mouse over it), the background color should be set to <code>#ececec</code>
+<li> when the widget is in the disabled state, the foreground color should be set to <code>#a3a3a3</code> (this is in addition to the background color change we already noted)
+<li> when the widget is in the state where the button is pressed, and the widget is not disabled, the relief should be set to <code>sunken</code>
+</ul>
+<div class=python><pre>s.map('TButton', 
+    background=[('disabled','#d9d9d9'), ('active','#ececec')],
+    foreground=[('disabled','#a3a3a3')],
+    relief=[('pressed', '!disabled', 'sunken')])</pre></div>
+
+</p>
+
+
+<div class=fyi><p>Because widget states can contain multiple flags, more than one state may match an option
+(e.g., <code>pressed</code> and <code>pressed !disabled</code> will both match if the widget's <code>pressed</code> state flag is set).	The list
+of states is evaluated in the order you provide in the map command. The first state in the list that matches is used.</p></div>
+
+
+    <script src="../../code.jquery.com/jquery-3.4.1.min.js" integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh" crossorigin="anonymous"></script>
+    <script src="../../stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+    <script src="../tkdocs.js"></script>
+    <script type='text/javascript'>setDefaultLang()</script>
+</body>
+
+<!-- Mirrored from tkdocs.com/tutorial/styles.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 07:06:05 GMT -->
+</html>
+
+
+

@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en">
+
+<!-- Mirrored from tkdocs.com/tutorial/complex.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 07:05:54 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>TkDocs Tutorial - Organizing Complex Interfaces</title>
+    <meta http-equiv="Content-Language" content="English" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="Organizing Complex Interfaces: Part of a Modern Tk Tutorial for Python, Tcl, Ruby, and Perl" />
+    <meta name="keywords" content="TkDocs, Tk, Tkinter, Tkx, GUI, Tcl, Python, Perl, Ruby" />	
+  
+   <link rel="stylesheet" href="../../stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <link rel="stylesheet" href="../../maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">  
+    <link rel="stylesheet" type="text/css" href="../tkc.css" media="screen,print" /> 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="../../external.html?link=https://www.googletagmanager.com/gtag/js?id=UA-2043168-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-2043168-3');
+</script>
+
+
+</head>
+<body>
+
+<div class="container-fluid">
+
+
+<div class=tutorial>
+<nav><ul class="pagination justify-content-center"><li class="page-item"><a class="page-link" href="windows.html">Previous: Windows and Dialogs</a></li><li class="page-item"><a class="page-link" href="index.html">Contents</a></li><li class="page-item"><a class="page-link" href="onepage.html">Tutoriel complet en une pag</a></li><li class="page-item"><a class="page-link" href="fonts.html">Next: Fonts, Colors, Images</a></li></ul></nav>
+<h1>Organizing Complex Interfaces</h1>
+
+
+<p>If you have a complex user interface, you'll need to find ways to organize it that don't overwhelm your
+users.  There are several different approaches to doing this. Both general-purpose and
+platform-specific human interface guidelines are good resources when designing your user interface.</p>
+
+<p>When we talk about complexity in this chapter, we don't mean the underlying technical complexity
+of how the program is implemented. Instead, we mean how it's presented to users.  A user interface can be pulled
+together from many different modules, built from hundreds of widgets combined in a deeply nested hierarchy,
+but that doesn't mean users need to perceive it as complex.</p>
+
+<h4>Multiple windows</h4>
+<p>One benefit of using multiple windows in an application can be to simplify the user interface.
+  Done well, it can require users to focus only on the contents of one window at a time to complete a task.
+  Forcing them to focus on or switch between several windows can also have the opposite effect.  
+  Similarly, showing only the widgets relevant to the current task (i.e., via <code>grid</code>) can 
+  help simplify the user interface.</p>
+
+
+<h4>White space</h4>
+<p>If you do need to display a large number of widgets onscreen at the same time, think about
+how to organize them visually.  We've seen how <code>grid</code> makes it easy to align 
+widgets with each other.  White space is another useful aid.  Place related widgets close
+to each other (possibly with an explanatory label immediately above) and separate them from other
+widgets by white space. This helps users organize the user interface in their own minds.</p>
+
+<div class=tip><p>The recommended amount of white space around different widgets, between groups of widgets, around borders, etc.
+is highly platform-specific.  While you can do an adequate job without worrying about exact pixel numbers,
+if you want a highly polished user interface, you'll need to tune this for each platform.</p></div>
+
+
+ <a name="separator"></a><h2>Separator</h2>
+
+<ul class=menu>
+<li><a href="../../external.html?link=https://tkdocs.com/widgets/separator.html">Widget Roundup</a></li>
+<li><a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/ttk_separator.htm">Reference Manual</a></li>
+</ul>
+
+
+<p>A second approach to grouping widgets in one display is to place a thin horizontal or vertical rule between 
+groups of widgets; often, this can be more space-efficient than using white space, which may be relevant for a
+tight display.  Tk provides a simple <b>separator</b> widget for this purpose.</p>
+
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/w_separator_all.png' alt='screen shot'><br />
+Separator widgets.</p>
+
+
+<div class=python><p>Separators are created using the <code><b>ttk.Separator</b></code> class:</p>
+	<pre>s = ttk.Separator(<em>parent</em>, orient=HORIZONTAL)</pre></div>
+
+<p>The <code>orient</code> option may be specified as either <code>horizontal</code> or <code>vertical</code>.</p>
+
+
+ <a name="labelframe"></a><h2>Label Frames</h2>
+
+<ul class=menu>
+<li><a href="../../external.html?link=https://tkdocs.com/widgets/labelframe.html">Widget Roundup</a></li>
+<li><a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/ttk_labelframe.htm">Reference Manual</a></li>
+</ul>
+
+<p>A <b>labelframe</b> widget, also commonly known as a <em>group box</em>, provides another way to group
+related components.  It acts like a normal <code>ttk::frame</code>, in that it contains other widgets that you 
+<code>grid</code> inside it.  However, it is visually set off from the rest of the user interface.  
+You can optionally provide a text label to be displayed outside the labelframe.</p>
+
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/w_labelframe_all.png' alt='screen shot'><br />
+Labelframe widgets.</p>
+
+
+<div class=python><p>Labelframes are created using the <code><b>ttk.Labelframe</b></code> class:</p>
+	<pre>lf = ttk.Labelframe(<em>parent</em>, text='Label')</pre></div>
+
+
+ <a name="panedwindow"></a><h2>Paned Windows</h2>
+
+<ul class=menu>
+<li><a href="../../external.html?link=https://tkdocs.com/widgets/panedwindow.html">Widget Roundup</a></li>
+<li><a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/ttk_panedwindow.htm">Reference Manual</a></li>
+</ul>
+
+<p>A <b>panedwindow</b> widget lets you stack two or more resizable widgets above and below each
+other (or to the left and right).  Users can adjust the relative heights (or widths) of
+each pane by dragging a <em>sash</em> located between them.  Typically the widgets you're adding 
+to a panedwindow will be frames containing many other widgets.</p>
+
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/w_panedwindow_all.png' alt='screen shot'><br />
+Panedwindow widgets  (shown here managing several labelframes).</p>
+
+
+
+<div class=python>Panedwindows are created using the <code><b>ttk.Panedwindow</b></code> class:</p>
+	<pre>p = ttk.Panedwindow(<em>parent</em>, orient=VERTICAL)
+<em># two panes, each of which would get widgets gridded into it:</em>
+f1 = ttk.Labelframe(p, text='Pane1', width=100, height=100)
+f2 = ttk.Labelframe(p, text='Pane2', width=100, height=100)   
+p.add(f1)
+p.add(f2)
+</pre></div>
+
+
+<p>A panedwindow is either <code>vertical</code> (its panes are stacked vertically on top of each other)
+or <code>horizontal</code>.  Importantly, each pane you add to the panedwindow must be a
+<em>direct child</em> of the panedwindow itself.</p>
+
+<p>Calling the <code>add</code> method adds a new pane at the end of the list of panes. The
+<code>insert <em>position</em> <em>subwindow</em></code> method allows you to place the pane at the given position
+in the list of panes (0..n-1). If the pane is already managed by the panedwindow, it will be moved
+to the new position.  You can use the <code>forget <em>subwindow</em></code> to remove a pane from the
+panedwindow (you can also pass a position instead of a subwindow).</p>
+
+<p>You can assign relative weights to each pane so that if the overall panedwindow resizes,
+certain panes will be allocated more space than others.  As well, you can adjust the position of each sash
+between items in the panedwindow.  See the 
+<a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/ttk_panedwindow.htm">command reference</a> for details.</p>
+
+
+ <a name="notebook"></a><h2>Notebook</h2>
+
+<ul class=menu>
+<li><a href="../../external.html?link=https://tkdocs.com/widgets/notebook.html">Widget Roundup</a></li>
+<li><a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/ttk_notebook.htm">Reference Manual</a></li>
+</ul>
+
+<p>A <b>notebook</b> widget uses the metaphor of a tabbed notebook to let users switch between
+one of several <em>pages</em>, using an index <em>tab</em>.  Unlike with paned
+windows, users only see a single page (akin to a pane) at a time.</p>
+
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/w_notebook_all.png' alt='screen shot'><br />
+Notebook widgets.</p>
+
+
+
+<div class=python><p>Notebooks are created using the <code><b>ttk.Notebook</b></code> class:</p>
+	<pre>n = ttk.Notebook(<em>parent</em>)
+f1 = ttk.Frame(n)   <em># first page, which would get widgets gridded into it</em>
+f2 = ttk.Frame(n)   <em># second page</em>
+n.add(f1, text='One')
+n.add(f2, text='Two')
+</pre></div>
+
+
+<p>The operations on tabbed notebooks are similar to those on panedwindows.  Each page is typically
+a frame and again must be a direct child (subwindow) of the notebook itself.  A new page and its associated tab are
+added after the last tab with the <code>add <em>subwindow</em> <em>?option</em> <em>value...?</em></code> method.
+The <code>text</code> tab option sets the label on the tab; also useful is the <code>state</code>
+tab option, which can have the value <code>normal</code>, <code>disabled</code> (not selectable), or
+<code>hidden</code>.  </p>
+
+<p>To insert a tab at somewhere other than the end of the list, use the 
+<code>insert <em>position</em> <em>subwindow</em> <em>?option</em> <em>value...?</em></code>, and to remove a given tab, use the <code>forget</code> method,
+passing it either the position (0..n-1) or the tab's subwindow.  You can retrieve the list of all
+subwindows contained in the notebook via the <code>tabs</code> method.</p>
+
+<div class=python>
+<p>To retrieve the subwindow that is currently selected, call the <code>select</code> method, and change the selected tab by 
+passing it either the tab's position or the subwindow itself as a parameter.</p>
+
+<p>To change a tab option (like the text label on the tab or its state), you can use the <code>tab(<em>tabid</em>, <em>option</em>=<em>value</em>)</code>
+method (where <code><em>tabid</em></code> is again the tab's position or subwindow); omit the <code>=<em>value</em></code> to return the current
+value of the option.</p>
+</div>
+
+
+
+<p>Notebook widgets generate a <code>&lt;&lt;NotebookTabChanged&gt;&gt;</code> virtual event whenever a new tab is selected.</p>
+
+<p>Again, there are a variety of less frequently used options and commands detailed in the
+<a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/ttk_notebook.htm">command reference</a>.</p>
+
+
+    <script src="../../code.jquery.com/jquery-3.4.1.min.js" integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh" crossorigin="anonymous"></script>
+    <script src="../../stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+    <script src="../tkdocs.js"></script>
+    <script type='text/javascript'>setDefaultLang()</script>
+</body>
+
+<!-- Mirrored from tkdocs.com/tutorial/complex.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 07:05:58 GMT -->
+</html>
+
+
+

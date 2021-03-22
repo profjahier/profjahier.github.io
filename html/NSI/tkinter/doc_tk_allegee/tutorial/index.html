@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en">
+
+<!-- Mirrored from tkdocs.com/tutorial/index.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 07:04:45 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>TkDocs Tutorial</title>
+    <meta http-equiv="Content-Language" content="English" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="Modern Tk Tutorial for Python, Tcl, Ruby, and Perl" />
+    <meta name="keywords" content="TkDocs, Tk, Tkinter, Tkx, GUI, Tcl, Python, Perl, Ruby" />	
+  
+   <link rel="stylesheet" href="../../stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <link rel="stylesheet" href="../../maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">  
+    <link rel="stylesheet" type="text/css" href="../tkc.css" media="screen,print" /> 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="../../external.html?link=https://www.googletagmanager.com/gtag/js?id=UA-2043168-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-2043168-3');
+</script>
+
+
+</head>
+<body>
+
+<div class=tutorial>
+<nav><ul class="pagination justify-content-center"><li class="page-item"><a class="page-link" href="onepage.html">Tutoriel complet en une page</a><li><li class="page-item"><a class="page-link" href="install.html">Next: Intro</a></li></ul></nav>
+<ol id=toc>
+
+
+<li><a href="install.html">Intro</a></li>
+
+<ul>
+<li><a href="install.html#helloworld">The Obligatory First Program</a></li>
+
+</ul>
+
+<li><a href="firstexample.html">A First (Real) Example</a></li>
+
+<ul>
+
+<li><a href="firstexample.html#design">Design</a></li>
+
+<li><a href="firstexample.html#code">Code</a></li>
+
+<li><a href="firstexample.html#walkthrough">Step-by-Step Walkthrough</a></li>
+
+<li><a href="firstexample.html#missing">What's Missing</a></li>
+
+</ul>
+
+<li><a href="concepts.html">Tk Concepts</a></li>
+
+<ul>
+
+<li><a href="concepts.html#widgets">Widgets</a></li>
+
+<li><a href="concepts.html#geometry">Geometry Management</a></li>
+
+<li><a href="concepts.html#events">Event Handling</a></li>
+
+</ul>
+
+<li><a href="widgets.html">Basic Widgets</a></li>
+
+<ul>
+
+<li><a href="widgets.html#frame">Frame</a></li>
+
+<li><a href="widgets.html#label">Label</a></li>
+
+<li><a href="widgets.html#button">Button</a></li>
+
+<li><a href="widgets.html#checkbutton">Checkbutton</a></li>
+
+<li><a href="widgets.html#radiobutton">Radiobutton</a></li>
+
+<li><a href="widgets.html#entry">Entry</a></li>
+
+<li><a href="widgets.html#combobox">Combobox</a></li>
+
+</ul>
+
+<li><a href="grid.html">The Grid Geometry Manager</a></li>
+
+<ul>
+
+<li><a href="grid.html#colsrows">Columns and Rows</a></li>
+
+<li><a href="grid.html#span">Spanning Multiple Cells</a></li>
+
+<li><a href="grid.html#incell">Layout within the Cell</a></li>
+
+<li><a href="grid.html#resize">Handling Resize</a></li>
+
+<li><a href="grid.html#padding">Padding</a></li>
+
+<li><a href="grid.html#morefeatures">Additional Grid Features</a></li>
+
+<li><a href="grid.html#nestedlayout">Nested Layouts</a></li>
+
+</ul>
+
+<li><a href="morewidgets.html">More Widgets</a></li>
+
+<ul>
+
+<li><a href="morewidgets.html#listbox">Listbox</a></li>
+
+<li><a href="morewidgets.html#scrollbar">Scrollbar</a></li>
+
+<li><a href="morewidgets.html#text">Text</a></li>
+
+<li><a href="morewidgets.html#scale">Scale</a></li>
+
+<li><a href="morewidgets.html#spinbox">Spinbox</a></li>
+
+</ul>
+
+<li><a href="eventloop.html">Event Loop</a></li>
+
+<ul>
+
+<li><a href="eventloop.html#blocking">Blocking the Event Loop</a></li>
+
+<li><a href="eventloop.html#timer">One Step at a Time</a></li>
+
+<li><a href="eventloop.html#asyncio">Asynchronous I/O</a></li>
+
+<li><a href="eventloop.html#threads">Threads or Processes</a></li>
+
+<li><a href="eventloop.html#nested">Nested Event Processing</a></li>
+
+</ul>
+
+<li><a href="menus.html">Menus</a></li>
+
+<ul>
+
+<li><a href="menus.html#menubars">Menubars</a></li>
+
+<li><a href="menus.html#popupmenus">Contextual Menus</a></li>
+
+</ul>
+
+<li><a href="windows.html">Windows and Dialogs</a></li>
+
+<ul>
+
+<li><a href="windows.html#createdestroy">Creating and Destroying Windows</a></li>
+
+<li><a href="windows.html#wm">Window Behavior and Styles</a></li>
+
+<li><a href="windows.html#dialogs">Dialog Windows</a></li>
+
+</ul>
+
+<li><a href="complex.html">Organizing Complex Interfaces</a></li>
+
+<ul>
+
+<li><a href="complex.html#separator">Separator</a></li>
+
+<li><a href="complex.html#labelframe">Label Frames</a></li>
+
+<li><a href="complex.html#panedwindow">Paned Windows</a></li>
+
+<li><a href="complex.html#notebook">Notebook</a></li>
+
+</ul>
+
+<li><a href="fonts.html">Fonts, Colors, Images</a></li>
+
+<ul>
+
+<li><a href="fonts.html#fonts">Fonts</a></li>
+
+<li><a href="fonts.html#colors">Colors</a></li>
+
+<li><a href="fonts.html#images">Images</a></li>
+
+</ul>
+
+<li><a href="canvas.html">Canvas</a></li>
+
+<ul>
+
+<li><a href="canvas.html#creating">Creating Items</a></li>
+
+<li><a href="canvas.html#bindings">Event Bindings</a></li>
+
+<li><a href="canvas.html#tags">Tags</a></li>
+
+<li><a href="canvas.html#scrolling">Scrolling</a></li>
+
+</ul>
+
+<li><a href="text.html">Text</a></li>
+
+<ul>
+
+<li><a href="text.html#basics">The Basics</a></li>
+
+<li><a href="text.html#modifying">Modifying the Text in Code</a></li>
+
+<li><a href="text.html#tags">Formatting with Tags</a></li>
+
+<li><a href="text.html#bindings">Events and Bindings</a></li>
+
+<li><a href="text.html#selection">Selecting Text</a></li>
+
+<li><a href="text.html#marks">Marks</a></li>
+
+<li><a href="text.html#images">Images and Widgets</a></li>
+
+<li><a href="text.html#more">Even More</a></li>
+
+</ul>
+
+<li><a href="tree.html">Treeview</a></li>
+
+<ul>
+
+<li><a href="tree.html#adding">Adding Items to the Tree</a></li>
+
+<li><a href="tree.html#rearranging">Rearranging Items</a></li>
+
+<li><a href="tree.html#iteminfo">Displaying Information for each Item</a></li>
+
+<li><a href="tree.html#appearance">Item Appearance and Events</a></li>
+
+<li><a href="tree.html#display">Customizing the Display</a></li>
+
+</ul>
+
+<li><a href="styles.html">Styles and Themes</a></li>
+
+<ul>
+
+<li><a href="styles.html#usetheme">Using Existing Themes</a></li>
+
+<li><a href="styles.html#usingstyles">Using Styles</a></li>
+
+<li><a href="styles.html#insidestyle">What's Inside a Style?</a></li>
+
+<li><a href="styles.html#styleoptions">Manipulating Styles</a></li>
+
+</ul>
+
+</ol>
+
+
+    <script src="../../code.jquery.com/jquery-3.4.1.min.js" integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh" crossorigin="anonymous"></script>
+    <script src="../../stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+    <script src="../tkdocs.js"></script>
+    <script type='text/javascript'>setDefaultLang()</script>
+</body>
+
+<!-- Mirrored from tkdocs.com/tutorial/index.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 07:05:12 GMT -->
+</html>
+
+
+

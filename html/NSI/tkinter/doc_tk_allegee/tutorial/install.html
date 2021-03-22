@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+
+<!-- Mirrored from tkdocs.com/tutorial/install.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 07:05:12 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>TkDocs Tutorial - Installing Tk</title>
+    <meta http-equiv="Content-Language" content="English" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="Installing Tk: Part of a Modern Tk Tutorial for Python, Tcl, Ruby, and Perl" />
+    <meta name="keywords" content="TkDocs, Tk, Tkinter, Tkx, GUI, Tcl, Python, Perl, Ruby" />	
+  
+   <link rel="stylesheet" href="../../stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <link rel="stylesheet" href="../../maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">  
+    <link rel="stylesheet" type="text/css" href="../tkc.css" media="screen,print" /> 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="../../external.html?link=https://www.googletagmanager.com/gtag/js?id=UA-2043168-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-2043168-3');
+</script>
+
+
+</head>
+<body>
+
+<div class="container-fluid">
+
+
+<div class=tutorial>
+<nav><ul class="pagination justify-content-center"><li class="page-item"><a class="page-link" href="index.html">Previous: Content</a></li><li class="page-item"><a class="page-link" href="index.html">Contents</a></li><li class="page-item"><a class="page-link" href="onepage.html">Tutoriel complet en une page</a></li><li class="page-item"><a class="page-link" href="firstexample.html">Next: A First (Real) Example</a></li></ul></nav>
+
+
+ <a name="helloworld"></a><h2>The Obligatory First Program</h2>
+
+<p>To make sure that everything actually did work, let's try to run a "Hello World"
+program in Tk.  While for something this short, you could just type it in directly
+to the interpreter, instead use your favorite text editor to put it in a file.</p>
+
+<div class=python>
+<pre>from tkinter import *
+from tkinter import ttk
+root = Tk()
+ttk.Button(root, text="Hello World").grid()
+root.mainloop()
+</pre>
+<p>Save this to a file named "hello.py".  From a command prompt, type:</p>
+<pre>
+% <b>python hello.py</b>
+</pre>
+
+<div class=tip><p>Couldn't find hello.py?  You might be looking in the wrong directory.  Try providing
+the full path to hello.py.</p></div>
+
+</div>
+
+
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/hello_all.png' alt='screen shot'><br />
+Our first program. Some work left to do before the IPO.</p>
+
+
+    <script src="../../code.jquery.com/jquery-3.4.1.min.js" integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh" crossorigin="anonymous"></script>
+    <script src="../../stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+    <script src="../tkdocs.js"></script>
+    <script type='text/javascript'>setDefaultLang()</script>
+</body>
+
+<!-- Mirrored from tkdocs.com/tutorial/install.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 07:05:14 GMT -->
+</html>
+
+
+

@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+
+<!-- Mirrored from tkdocs.com/tutorial/concepts.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 07:05:18 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>TkDocs Tutorial - Tk Concepts</title>
+    <meta http-equiv="Content-Language" content="English" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="Tk Concepts: Part of a Modern Tk Tutorial for Python, Tcl, Ruby, and Perl" />
+    <meta name="keywords" content="TkDocs, Tk, Tkinter, Tkx, GUI, Tcl, Python, Perl, Ruby" />	
+  
+   <link rel="stylesheet" href="../../stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <link rel="stylesheet" href="../../maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">  
+    <link rel="stylesheet" type="text/css" href="../tkc.css" media="screen,print" /> 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="../../external.html?link=https://www.googletagmanager.com/gtag/js?id=UA-2043168-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-2043168-3');
+</script>
+
+
+</head>
+<body>
+
+<div class="container-fluid">
+
+
+<div class=tutorial>
+<nav><ul class="pagination justify-content-center"><li class="page-item"><a class="page-link" href="firstexample.html">Previous: A First (Real) Example</a></li><li class="page-item"><a class="page-link" href="index.html">Contents</a></li><li class="page-item"><a class="page-link" href="onepage.html">Tutoriel complet en une page</a></li><li class="page-item"><a class="page-link" href="widgets.html">Next: Basic Widgets</a></li></ul></nav>
+<h1>Tk Concepts</h1>
+
+
+<p>With your first example behind you, you now have a basic idea of what a Tk program looks like
+and the type of code you need to write to make it work. In this chapter, we'll step back and look at three broad concepts
+that you need to know to understand Tk: widgets, geometry management, and event handling.</p>
+
+
+ <a name="widgets"></a><h2>Widgets</h2>
+
+<p>Widgets are all the things that you see onscreen.  In our example, we had a button, an entry, a few labels,
+and a frame.  Others are things like checkboxes, tree views, scrollbars, text areas, and so on.  Widgets
+are  often referred to as "controls." You'll also sometimes see them referred to as "windows," particularly
+in Tk's documentation. This is a holdover from its X11 roots (under that terminology, both your toplevel application window and
+things like a button would be called windows).</p>
+
+<p>Here is an example showing some of Tk's widgets, which we'll cover individually shortly.</p>
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/w_several_all.png' alt='screen shot'><br />
+Several Tk Widgets.</p>
+
+
+<h3>Widget Classes</h3>
+
+<p>Widgets are objects, instances of classes that represent buttons, frames, and so on.  When you want to create a widget, the first
+thing you'll need to do is identify the specific class of the widget you'd like to instantiate.  
+This tutorial and the <a href="../../external.html?link=https://tkdocs.com/widgets/index.html">widget roundup</a> will help with that.</p>
+
+
+<h3>Creating Widgets</h3>
+
+
+<div class=python>
+<p>Each separate widget is a Python object.  When instantiating a widget, you must pass its parent as a
+parameter to the widget class.  The <em>only</em> exception is the "root" window,
+which is the toplevel window that will contain everything else.  That is automatically created when you instantiate <code>Tk</code>.
+It does not have a parent.  For example:</p>
+<pre>
+root = Tk()
+content = ttk.Frame(root)
+button = ttk.Button(content)
+</pre>
+
+<p>Whether or not you save the widget object in a variable is entirely up to you, depending on
+whether you'll need to refer to it later.  Because the object is inserted into the widget
+hierarchy, it won't be garbage collected even if you don't keep your own reference to it.</p>
+</div>
+
+
+<h3>Configuration Options</h3>
+
+<p>All widgets have several <em>configuration options</em>. These control how the widget is displayed or how it behaves.</p>
+
+<p>The available options for a widget depend upon the widget class, of course. There is a lot of consistency 
+between different widget classes, so options that do pretty much the same thing tend to be named the same.
+For example, both a button and a label have a <code>text</code> option to adjust the text that the widget displays, while a
+scrollbar would not have a <code>text</code> option since it's not needed.  Similarly, the
+button has a <code>command</code> option telling it what to do when pushed, while a label, which holds just
+static text, does not.</p>
+
+<p>Configuration options can be set when the widget is first created by specifying their names and
+values as optional parameters.  Later, you can retrieve the current values of those options, 
+and with a very small number of exceptions, change them at any time. </p>
+
+<p>If you're not sure what configuration options a widget supports, you can ask the widget to describe them.  This gives you
+a long list of all its options. </p>
+
+<p>This is all best illustrated with the following interactive dialog with the interpreter.</p>
+
+<div class=python><pre>
+% <b>python</b>
+&gt;&gt;&gt; <b>from tkinter import *</b>
+&gt;&gt;&gt; <b>from tkinter import ttk</b>
+&gt;&gt;&gt; <b>root = Tk()</b>
+<em>create a button, passing two options:</em>
+&gt;&gt;&gt; <b>button = ttk.Button(root, text="Hello", command="buttonpressed")</b>
+&gt;&gt;&gt; <b>button.grid()</b>
+<em>check the current value of the text option:</em>
+&gt;&gt;&gt; <b>button['text']</b>
+'Hello'
+<em>change the value of the text option:</em>
+&gt;&gt;&gt; <b>button['text'] = 'goodbye'</b>
+<em>another way to do the same thing:</em>
+&gt;&gt;&gt; <b>button.configure(text='goodbye')</b>
+<em>check the current value of the text option:</em>
+&gt;&gt;&gt; <b>button['text']</b>
+'goodbye'
+<em>get all information about the text option:</em>
+&gt;&gt;&gt; <b>button.configure('text')</b>
+('text', 'text', 'Text', '', 'goodbye')
+<em>get information on all options for this widget:</em>
+&gt;&gt;&gt; <b>button.configure()</b>
+{'cursor': ('cursor', 'cursor', 'Cursor', '', ''), 'style': ('style', 'style', 'Style', '', ''), 
+'default': ('default', 'default', 'Default', &lt;index object at 0x00DFFD10&gt;, &lt;index object at 0x00DFFD10&gt;), 
+'text': ('text', 'text', 'Text', '', 'goodbye'), 'image': ('image', 'image', 'Image', '', ''), 
+'class': ('class', '', '', '', ''), 'padding': ('padding', 'padding', 'Pad', '', ''), 
+'width': ('width', 'width', 'Width', '', ''), 
+'state': ('state', 'state', 'State', &lt;index object at 0x0167FA20&gt;, &lt;index object at 0x0167FA20&gt;), 
+'command': ('command', 'command' , 'Command', '', 'buttonpressed'), 
+'textvariable': ('textvariable', 'textVariable', 'Variable', '', ''), 
+'compound': ('compound', 'compound', 'Compound', &lt;index object at 0x0167FA08&gt;, &lt;index object at 0x0167FA08&gt;), 
+'underline': ('underline', 'underline', 'Underline', -1, -1), 
+'takefocus': ('takefocus', 'takeFocus', 'TakeFocus', '', 'ttk::takefocus')}
+</pre></div>
+
+<p>As you can see, for each option, Tk will show you the name of the option and its
+current value (along with three other attributes which you won't normally need to worry about).</p>
+  
+<h3>Widget Introspection</h3>
+
+<p>Tk exposes a treasure trove of information about each and every widget that your application can take advantage of. 
+  Much of it is available via the <code>winfo</code> facility; see the see the <a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/winfo.htm"><code>winfo</code></a> command reference 
+  for full details.</p>
+  
+
+<p>This short example traverses the widget hierarchy, using each widget's <code>winfo_children</code> method to identify any child widgets
+  that need to examined. For each widget, we print some basic information, including it's class (button, frame, etc.), it's width and height,
+  and it's position relative to it's parent.</p>
+
+<div class=python><pre>def print_hierarchy(w, depth=0):
+    print('  '*depth + w.winfo_class() + ' w=' + str(w.winfo_width()) + ' h=' + str(w.winfo_height()) + ' x=' + str(w.winfo_x()) + ' y=' + str(w.winfo_y()))
+    for i in w.winfo_children():
+        print_hierarchy(i, depth+1)
+print_hierarchy(root)
+</pre></div>
+
+
+<p>The following are some of the most useful methods:</p>
+<dl class="row ml-sm-1">
+  <dt class="col-lg-3 col-xl-2 font-weight-normal"><code>winfo_class</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">a class identifying the type of widget, e.g. <code>TButton</code> for a themed button</dd>
+  <dt class="col-lg-3 col-xl-2 font-weight-normal"><code>winfo_children</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">a list of widgets that are the direct children of a widget in the hierarchy</dd>
+  <dt class="col-lg-3 col-xl-2 font-weight-normal"><code>winfo_parent</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">parent of the widget in the hierarchy</dd>
+  <dt class="col-lg-3 col-xl-2 font-weight-normal"><code>winfo_toplevel</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">the toplevel window containing this widget</dd>
+  <dt class="col-lg-3 col-xl-2 font-weight-normal"><code>winfo_width, winfo_height</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">current width and height of the widget; not accurate until appears onscreen</dd>
+  <dt class="col-lg-3 col-xl-2 font-weight-normal"><code>winfo_reqwidth, winfo_reqheight</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">the width and height the widget requests of the geometry manager (more on this shortly)</dd>
+  <dt class="col-lg-3 col-xl-2 font-weight-normal"><code>winfo_x, winfo_y</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">the position of the top-left corner of the widget relative to its parent</dd>
+  <dt class="col-lg-3 col-xl-2 font-weight-normal"><code>winfo_rootx, winfo_rooty</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">the position of the top-left corner of the widget relative to the entire screen</dd>
+  <dt class="col-lg-3 col-xl-2 font-weight-normal"><code>winfo_vieweable</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">whether the widget is displayed or hidden (all its ancestors in the hierarchy must be viewable for it to be viewable)</dd>  
+</dl>
+
+
+ <a name="geometry"></a><h2>Geometry Management</h2>
+
+<p>If you've been running code interactively, you've probably that just by creating widgets, they didn't appear
+onscreen.  Placing widgets onscreen, and precisely <em>where</em> they are placed, is a separate step called <em>geometry management</em>.</p>
+
+<p>In our example, positioning each widget was accomplished by the <code>grid</code> command. We specified the column and row we
+wanted each widget to go in, how things were to be aligned within the grid, etc.  Grid is an example of a
+<em>geometry manager</em> (of which there are several in Tk, grid being the most useful). 
+For now, we'll look at geometry management in general; we'll talk about grid in a later chapter.</p>
+
+<p>A geometry manager's job is to figure out exactly where those widgets are going to be put.  This turns out to be a complex
+optimization problem, and a good geometry manager relies on quite sophisticated algorithms.  A good geometry
+manager provides the flexibility, power, and ease of use that makes programmers happy. It also makes it easy to create good looking user interface layouts without needing to jump through hoops. Tk's <code>grid</code> is, without
+a doubt, one of the absolute best.  A poor geometry manager... well, all the Java programmers who have suffered
+through "GridBagLayout" please raise their hands.</p>
+
+<div class=upgrade><p>
+We'll go into more detail in a later chapter, but <code>grid</code> was introduced several years after Tk became popular.
+Before that, an older geometry manager named <code>pack</code> was most commonly used. It's very powerful, but is much harder to use,
+and makes it extremely difficult to create layouts that look appealing today. Unfortunately, much of the example Tk code and documentation out
+there uses <code>pack</code> instead of <code>grid</code> (a good clue to how current it is). The widespread use of <code>pack</code> is one major reason that so many Tk user interfaces look terrible. Start new code with <code>grid</code>, and upgrade old code when you can.
+</p></div>
+
+<h3>The Problem</h3>
+
+<p>The problem for a geometry manager is to take all the different widgets the program creates, plus the program's instructions
+for where in the window each should go (explicitly, or more often, relative to other widgets),
+and then actually position them in the window.</p>
+
+<p>In doing so, the geometry manager has to balance multiple constraints. Consider these situations:</p>
+
+<ul>
+<li> The widgets may have a <em>natural</em> size, e.g., the natural width of a label would depend on the text 
+it displays and the font used to display it. What if the application window containing all these different widgets isn't big enough to 
+	 accommodate them? The geometry manager must decide which widgets to shrink to fit, by how much, etc.</li>
+<li> If the application window is bigger than the natural size of all the widgets, how is the extra space used?  Is 
+	 extra space placed between each widget, and if so, how is that space distributed?  Is it used to make certain widgets
+	 larger than they normally want to be, such as a text entry growing to fill a wider window? Which widgets should grow?</li>
+<li> If the application window is resized, how does the size and position of each widgets inside it change?  Will certain areas
+	 (e.g., a text entry area) expand or shrink while other parts stay the same size, or is the area distributed 
+	 differently?  Do certain widgets have a minimum size that you want to avoid going below? A maximum size? Does the window
+   itself have a minimum or maximum size?</li>
+<li> How can widgets in different parts of the user interface be aligned with each other? How much space should be left between them?
+  This is needed to present a clean layout and comply with platform-specific user interface guidelines.</li>
+<li> For a complex user interface, which may have many frames nested in other frames nested in the window (etc.), 
+	 how can all the above be accomplished, trading off the conflicting demands of different parts of the entire
+	 user interface?</li>
+</ul>
+
+<h3>How it Works</h3>
+
+<p>Geometry management in Tk relies on the concept of <em>master</em> and <em>slave</em> widgets.  A master is a widget,
+typically a toplevel application window or a frame, which contains other widgets, called slaves.  You can think of
+a geometry manager taking control of the master widget and deciding how all the slave widgets will be displayed within.</p>
+
+
+<p>Your program tells the geometry manager what slaves to manage within the master, i.e., via calling <code>grid</code>. Your program also 
+  provides hints as to how it would like each slave to be displayed, e.g., via the <code>column</code> and <code>row</code> options. 
+  You can also provide other things to the geometry manager. For example, we used <code>columnconfigure</code> and <code>rowconfigure</code> to indicate
+the columns and rows we'd like to expand if there is extra space available in the window.  It's worth noting that all these
+parameters and hints are specific to <code>grid</code>; other geometry managers would use different ones.</p>
+
+
+<p>The geometry manager takes all the information about the slaves in the master, as well as information about how large the master
+is. It then asks each slave widget for its natural size, i.e., how large it would ideally like to be displayed. The geometry manager's internal algorithm calculates the area each slave will be allocated (if any!).  The slave is then
+responsible for rendering itself within that particular rectangle.  And of course, any time the size of the master changes
+(e.g., because the toplevel window was resized), the natural size of a slave changes (e.g., because we've changed the
+text in a label), or any of the geometry manager parameters change (e.g., like <code>row</code>, <code>column</code>, or <code>sticky</code>) we repeat
+the whole thing.</p>
+
+<p>This all works recursively as well.  In our example, we had a content frame inside the toplevel application window, and then several
+other widgets inside the content frame.  We, therefore, had to manage the geometry for two different masters.  At the
+outer level, the toplevel window was the master, and the content frame was its slave.  At the inner level, the content
+frame was the master, with each of the other widgets being slaves.  Notice that the same widget, e.g., the content frame, 
+can be both a master and a slave!  As we saw previously, this widget hierarchy can be nested much more deeply.</p>
+
+
+
+ <a name="events"></a><h2>Event Handling</h2>
+
+<p>Tk, as with most other user interface toolkits, runs an <em>event loop</em> that receives events from the
+operating system.  These are things like button presses, keystrokes, mouse movement, window resizing, and so on.</p>
+
+<p>Generally, Tk takes care of managing this event loop for you.  It will figure out what widget the event applies
+to (did a user click on this button?  if a key was pressed, which textbox had the focus?), and dispatch it
+accordingly.  Individual widgets know how to respond to events; for example, a button might change color when
+the mouse moves over it, and revert back when the mouse leaves.</p>
+
+<div class=tip><p>
+It's critical in event-driven applications that the event loop not be <em>blocked</em>.
+The event loop should run continuously, normally executing dozens of steps per second. At every step, it processes an event. 
+If your program is performing a long operation, it can potentially
+block the event loop. In that case, no events would be processed, no drawing would be done, and it
+would appear as if your application is frozen. There are many ways to avoid this happening, mostly related to the
+structure of your application. We'll discuss this in more detail in a later chapter.
+</p></div>
+
+
+<h3>Command Callbacks</h3>
+
+<p>You often want your program to handle some event in a particular way, e.g., do something when a button is 
+pushed.  For those events that are most frequently customized (what good is a button without something
+happening when you press it?), the widget will allow you to specify a <em>callback</em> as a widget configuration option.
+We saw this in the example with the <code>command</code> option of the button.</p>
+
+<div class=python><pre>
+def calculate(*args):
+    ...
+
+ttk.Button(mainframe, text="Calculate", command=calculate)
+</pre></div>
+
+
+
+<p>Callbacks in Tk tend to be simpler than in user interface toolkits used with compiled languages (where a callback must 
+be a procedure with a certain set of parameters or an object method with a certain signature).
+Instead, the callback is just an ordinary bit of code that the interpreter evaluates.  While it can be as complicated
+as you want to make it, most of the time, you'll just want your callback to call some other procedure.</p>
+
+
+<h3>Binding to Events</h3>
+
+<p>For events that don't have a widget-specific command callback associated with them, you can use Tk's <code>bind</code> to capture any
+event, and then (like with callbacks) execute an arbitrary piece of code.  </p>
+
+<p>Here's a (silly) example showing a label responding to different events. When an event occurs, a description of the
+  event is displayed in the label.</p>
+
+<div class=python><pre>from tkinter import *
+from tkinter import ttk
+root = Tk()
+l =ttk.Label(root, text="Starting...")
+l.grid()
+l.bind('&lt;Enter&gt;', lambda e: l.configure(text='Moved mouse inside'))
+l.bind('&lt;Leave&gt;', lambda e: l.configure(text='Moved mouse outside'))
+l.bind('&lt;ButtonPress-1&gt;', lambda e: l.configure(text='Clicked left mouse button'))
+l.bind('&lt;3&gt;', lambda e: l.configure(text='Clicked right mouse button'))
+l.bind('&lt;Double-1&gt;', lambda e: l.configure(text='Double clicked'))
+l.bind('&lt;B3-Motion&gt;', lambda e: l.configure(text='right button drag to %d,%d' % (e.x, e.y)))
+root.mainloop()
+</pre>	
+</div>
+
+
+<p>The first two bindings are pretty straightforward, just watching for simple events.
+An <code>&lt;Enter&gt;</code> event means the mouse has moved over top the widget, while the <code>&lt;Leave&gt;</code> event is 
+generated when the mouse moves outside the widget to a different one.</p>
+
+<p>The next binding looks for a mouse click, specifically a <code>&lt;ButtonPress-1&gt;</code> event. Here, 
+the <code>&lt;ButtonPress&gt;</code> is the actual event, but the <code>-1</code> is an <em>event detail</em> specifying the left (main)
+mouse button on the mouse. The binding will only trigger when a <code>&lt;ButtonPress&gt;</code> event is generated involving 
+the main mouse button. If another mouse button was clicked, this binding would ignore it.</p>
+
+<p>This next binding looks for a <code>&lt;3&gt;</code> event. This is actually a shorthand for <code>&lt;ButtonPress-3&gt;</code>.
+It will respond to events generated when the right mouse button is clicked. The next binding, <code>&lt;Double-1&gt;</code>
+(shorthand for <code>&lt;Double-ButtonPress-1&gt;</code>) adds another modifier,
+<code>Double</code>, and so will respond to the left mouse button being double clicked.</p>
+
+<p>The last binding also uses a modifier: capture mouse movement (<code>Motion</code>), but only when the right 
+mouse button (<code>B3</code>) is held down.  This binding also shows an example of how to use <em>event
+parameters</em>. Many events, such as mouse clicks or movement carry additional information like the current position of the
+mouse.  Tk provides access to these parameters in Tcl callback scripts through the use of <em>percent substitutions</em>.  
+These percent substitutions let you capture them so they can be used in your script.</p>
+
+
+<div class=python>
+<p>Tkinter abstracts away these percent substitutions and instead encapsulates all the event parameters in an <em>event object.</em>
+  Above, we used the <code>x</code> and <code>y</code> fields to retrieve the mouse position. We'll see percent substitutions used
+  later in another context, entry widget validation.</p>  
+  
+<div class=fyi><p>What's with the <code>lambda</code> expressions?
+Tkinter expects you to provide a function as the event callback, whose first argument is an event object
+representing the event that triggered the callback.  It's sometimes not worth the bother of defining regular
+named functions for one-off trivial callbacks such as in this example. Instead, we've just used Python's anonymous
+functions via <code>lambda</code>. In real applications, you'll almost always use a regular function, such as the
+<code>calculate</code> function in our feet to meters example, or a method of an object.</p></div>
+</div>
+
+<h3>Multiple Bindings for an Event</h3>
+
+<p>We've just seen how event bindings can be set up for an individual widget. When a matching event is received by that
+  widget, the binding will trigger. But that's not all you can do.</p>
+  
+<p>Your binding can capture not just a single event, but a short sequence of events. The <code>&lt;Double-1&gt;</code> binding 
+  triggers when two mouse clicks occur in a short time. You can do the same thing to capture two keys pressed in a row,
+  e.g., <code>&lt;KeyPress-A&gt;&lt;KeyPress-B&gt;</code> or simply <code>&lt;ab&gt;</code>.</p>
+
+<p>You can also set up an event binding on a toplevel window. When a matching event occurs anywhere in that window, the
+  binding will be triggered.  In our example, we set up a binding for the Return key on the main application
+  toplevel window. If the Return key was pressed when any widget in the toplevel window had the focus, that binding would fire.</p>
+
+<p>Less commonly, you can create event bindings that are triggered when a matching event occurs anywhere in the application,
+  or even for events received by any widget of a given class, e.g., all buttons.</p>
+  
+
+<div class=fyi><p>
+More than one binding can fire for an event.  This keeps event handlers concise and limited in scope, meaning more modular code. 
+For example, the behavior of each widget class in Tk is itself defined with script-level event bindings. These stay separate from event bindings in your application.
+Event bindings can also be changed or deleted. They can be modified to alter event handling
+for widgets of a certain class or parts of your application. You can reorder, extend, or change the sequence 
+of event bindings that will be triggered for each widget; 
+see the <a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/bindtags.htm"><code>bindtags</code></a> command reference if you're curious.
+
+</p></div>
+
+
+
+<h3>Available Events</h3>
+
+<p>The most commonly used events are described below, along with the circumstances when they are generated. 
+  Some are generated on some platforms and not others. 
+For a complete description of all the different event names, 
+modifiers, and the different event parameters that are available with each, the best place to look is the 
+<a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/bind.htm"><code>bind</code></a> command reference.</p>
+
+
+<dl class="row ml-sm-1">
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>&lt;Activate&gt;</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">Window has become active.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>&lt;Deactivate&gt;</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">Window has been deactivated.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>&lt;MouseWheel&gt;</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">Scroll wheel on mouse has been moved.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>&lt;KeyPress&gt;</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">Key on keyboard has been pressed down.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>&lt;KeyRelease&gt;</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">Key has been released.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>&lt;ButtonPress&gt;</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">A mouse button has been pressed.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>&lt;ButtonRelease&gt;</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">A mouse button has been released.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>&lt;Motion&gt;</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">Mouse has been moved.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>&lt;Configure&gt;</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">Widget has changed size or position.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>&lt;Destroy&gt;</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">Widget is being destroyed.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>&lt;FocusIn&gt;</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">Widget has been given keyboard focus.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>&lt;FocusOut&gt;</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">Widget has lost keyboard focus.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>&lt;Enter&gt;</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">Mouse pointer enters widget.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>&lt;Leave&gt;</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">Mouse pointer leaves widget.</dd>
+</dl>
+
+<p>Event detail for mouse events are the button that was pressed, e.g. <code>1</code>, <code>2</code>, or <code>3</code>.
+For keyboard events, it's the specific key, e.g. <code>A</code>, <code>9</code>, <code>space</code>, <code>plus</code>,
+<code>comma</code>, <code>equal</code>. A complete list can be found in the
+<a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/keysyms.htm"><code>keysyms</code></a> command reference.</p>
+
+
+<p>Event modifiers for include, e.g. <code>B1</code> or <code>Button1</code> to signify the main mouse button being held down,
+  <code>Double</code> or <code>Triple</code> for sequences of the same event. Key modifiers for when keys on the keyboard are 
+  held down inline <code>Control</code>, <code>Shift</code>, <code>Alt</code>, <code>Option</code>, and <code>Command</code>.</p>
+
+
+<h3>Virtual Events</h3>
+
+<p>The events we've seen so far are low-level operating system events like mouse clicks and window resizes.
+Many widgets also generate higher level or semantic events called <em>virtual events</em>. These are indicated
+by double angle brackets around the event name, e.g., <code>&lt;&lt;foo&gt;&gt;</code>.</p>
+
+<div class=ruby>
+As we've mentioned, Ruby/Tk strips away the (single) angle brackets from regular event names. Virtual events use
+a single set of angle brackets, e.g., <code>&lt;foo&gt;</code>.
+</div>
+
+<p>For example, a listbox widget will
+generate a <code>&lt;&lt;ListboxSelect&gt;&gt;</code> virtual event whenever its selection changes. The same virtual event is generated
+whether a user clicked on an item, moved to it using the arrow keys, or some other way.  Virtual events
+avoid the problem of setting up multiple, possibly platform-specific event bindings to capture
+common changes.  The available virtual events for a widget will be listed in the documentation
+for the widget class.</p>
+
+<p>Tk also defines virtual events for common operations that are triggered in different ways for different platforms.
+  These include <code>&lt;&lt;Cut&gt;&gt;</code>, <code>&lt;&lt;Copy&gt;&gt;</code> and <code>&lt;&lt;Paste&gt;&gt;</code>.</p>
+  
+<p>You can define your own virtual events, which can be specific to your application. This can be a useful way
+  to keep platform-specific details isolated in a single module, while you use the virtual event throughout your
+  application. Your own code can generate virtual events that work in exactly the same way that virtual events generated
+  by Tk do.</p>
+
+<div class=python><pre><em>root</em>.event_generate("&lt;&lt;MyOwnEvent&gt;&gt;")</pre></div>
+
+
+    <script src="../../code.jquery.com/jquery-3.4.1.min.js" integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh" crossorigin="anonymous"></script>
+    <script src="../../stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+    <script src="../tkdocs.js"></script>
+    <script type='text/javascript'>setDefaultLang()</script>
+</body>
+
+<!-- Mirrored from tkdocs.com/tutorial/concepts.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 07:05:21 GMT -->
+</html>
+
+
+

@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+
+<!-- Mirrored from tkdocs.com/tutorial/firstexample.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 07:05:14 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>TkDocs Tutorial - A First (Real) Example</title>
+    <meta http-equiv="Content-Language" content="English" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="A First (Real) Example: Part of a Modern Tk Tutorial for Python, Tcl, Ruby, and Perl" />
+    <meta name="keywords" content="TkDocs, Tk, Tkinter, Tkx, GUI, Tcl, Python, Perl, Ruby" />	
+  
+   <link rel="stylesheet" href="../../stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <link rel="stylesheet" href="../../maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">  
+    <link rel="stylesheet" type="text/css" href="../tkc.css" media="screen,print" /> 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="../../external.html?link=https://www.googletagmanager.com/gtag/js?id=UA-2043168-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-2043168-3');
+</script>
+
+
+</head>
+<body>
+
+
+<div class="container-fluid">
+
+<div class=tutorial>
+<nav><ul class="pagination justify-content-center"><li class="page-item"><a class="page-link" href="install.html">Previous: Installing Tk</a></li><li class="page-item"><a class="page-link" href="index.html">Contents</a></li><li class="page-item"><a class="page-link" href="onepage.html">Tutoriel complet en une page</a></li><li class="page-item"><a class="page-link" href="concepts.html">Next: Tk Concepts</a></li></ul></nav>
+<h1>A First (Real) Example</h1>
+
+
+<p>With that out of the way, let's try a slightly more substantial example, which will give you an
+initial feel for what the code behind a real Tk program looks like.</p>
+
+ <a name="design"></a><h2>Design</h2>
+
+<p>We'll create a simple GUI tool to convert a distance in feet to the equivalent
+distance in meters.   If we were to sketch this out, it might look something like this:</p>
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/calcsketch.png' alt='screen shot'><br />
+A sketch of our feet to meters conversion program.</p>
+
+<p>So it looks like we have a short text entry widget that will let us type in the number of
+feet. A "Calculate" button will get the value out of that entry, perform the
+calculation, and  put the result in a label below the entry.
+We've also got three static labels ("feet," "is equivalent to," and "meters"),
+which help our user figure out how to work the application.</p>
+
+<p>The next thing we need to do is look at the layout. The widgets that we've included seem to be naturally divided into a grid with three columns and three rows. In terms of layout, things seem to naturally divide into three columns and three rows, as illustrated below:</p>
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/calcgrid.png' alt='screen shot'><br />
+The layout of our user interface, which follows a 3 x 3 grid.</p>
+
+
+ <a name="code"></a><h2>Code</h2>
+
+<div class=python>
+<p>Now here is the Python code needed to create this entire application using Tkinter.</p>
+<pre>from tkinter import *
+from tkinter import ttk
+
+def calculate(*args):
+    try:
+        value = float(feet.get())
+        meters.set(int(0.3048 * value * 10000.0 + 0.5)/10000.0)
+    except ValueError:
+        pass
+
+root = Tk()
+root.title("Feet to Meters")
+
+mainframe = ttk.Frame(root, padding="3 3 12 12")
+mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
+root.columnconfigure(0, weight=1)
+root.rowconfigure(0, weight=1)
+
+feet = StringVar()
+feet_entry = ttk.Entry(mainframe, width=7, textvariable=feet)
+feet_entry.grid(column=2, row=1, sticky=(W, E))
+
+meters = StringVar()
+ttk.Label(mainframe, textvariable=meters).grid(column=2, row=2, sticky=(W, E))
+
+ttk.Button(mainframe, text="Calculate", command=calculate).grid(column=3, row=3, sticky=W)
+
+ttk.Label(mainframe, text="feet").grid(column=3, row=1, sticky=W)
+ttk.Label(mainframe, text="is equivalent to").grid(column=1, row=2, sticky=E)
+ttk.Label(mainframe, text="meters").grid(column=3, row=2, sticky=W)
+
+for child in mainframe.winfo_children(): 
+    child.grid_configure(padx=5, pady=5)
+
+feet_entry.focus()
+root.bind("&lt;Return&gt;", calculate)
+
+root.mainloop()
+</pre>
+</div>
+
+<div class=fyi><p>As we'll see in the next chapter, there's another, more object-oriented way to do exactly the same thing.
+Are we surprised?</p></div>
+</div>
+
+
+<p>And the resulting user interface:</p>
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/f2m_all.png' alt='screen shot'><br />
+Screenshot of our completed feet to meters user interface.</p>
+
+<h3>A Note on Coding Style</h3>
+
+
+<p>Each of the languages included in this tutorial has a variety of coding styles and conventions
+available to choose from, which help determine conventions for variable and function naming,
+procedural, functional or object-oriented styles, and so on. </p>
+
+<p>Because the focus on this tutorial is Tk, this tutorial will keep things as simple
+as possible, generally using a very direct coding style, rather than wrapping
+up most of our code in procedures, modules, objects, classes and so on.  As much as 
+possible, you'll also see the same names for objects, variables, etc. used across the
+languages for each example.</p>
+
+ <a name="walkthrough"></a><h2>Step-by-Step Walkthrough</h2>
+
+<p>Let's take a closer look at that code, piece by piece.  For now, all we're trying to do is get a
+basic understanding of the types of things we need to do to create a user interface in Tk, and
+roughly what those things look like. We'll go into details later.</p>
+
+<h3>Incorporating Tk</h3>
+
+<p>Our program starts by incorporating Tk.</p>
+
+<div class=python>
+<pre>
+from tkinter import *
+from tkinter import ttk
+</pre>
+<p>These two lines tell Python that our program needs two modules. The first, <code>tkinter</code>, is the 
+standard binding to Tk. When imported, it loads the Tk library on your system.
+The second, <code>ttk</code>, is a submodule of <code>tkinter</code>. It implements Python's binding to the 
+newer "themed widgets" that were added to Tk in 8.5.  </p>
+
+<div class=tip><p>Notice that we've imported everything (<code>*</code>) from the tkinter module. That way, we can call tkinter functions etc. without
+prefixing them with the module name. This is standard Tkinter practice.  
+</p><p>
+However, because we've imported just <code>ttk</code>
+itself, we'll need to prefix anything inside that submodule.  For example, calling <code>Entry(...)</code>
+would refer to the <code>Entry</code> class inside the <code>tkinter</code> module (classic widgets). We'd need <code>ttk.Entry(...)</code> to use the <code>Entry</code> class inside <code>ttk</code> (themed widgets).  
+</p><p>
+As you'll see, several classes are defined in both modules.
+Sometimes you will need one or the other, depending on the context.  Explicitly requiring the <code>ttk</code> prefix facilitates this, and will be the style used
+in this tutorial.</p></div>
+</div>
+
+<h3>Setting up the Main Application Window</h3>
+
+<p>Next, the following code sets up the main application window, giving it the title "Feet to Meters."</p>
+
+<div class=python><pre>root = Tk()
+root.title("Feet to Meters")
+</pre>
+</div>
+
+<h3>Creating a Content Frame</h3>
+
+<p>Next, we create a frame widget, which will hold the contents of our user interface.</p>
+
+<div class=python><pre>
+mainframe = ttk.Frame(root, padding="3 3 12 12")
+mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
+root.columnconfigure(0, weight=1)
+root.rowconfigure(0, weight=1)	
+</pre>
+</div>
+
+
+<p>After the frame is created, <code>grid</code> places it directly inside our main application window.
+The <code>columnconfigure/rowconfigure</code> bits tell Tk that the frame should expand to fill any extra space
+if the window is resized.</p>
+
+<div class=upgrade><p>Why do we put a frame inside the main window?
+  Strictly speaking, we could just put the other widgets in our interface directly into the main
+application window, without the intervening content frame. That's what you'll see in older Tk programs. 
+</p><p>
+However, the main window isn't itself part of the newer "themed" widgets. Its background color doesn't match the themed widgets we
+will put inside it.  Using a "themed" frame widget to hold the content ensures that the
+background is correct. This is illustrated below.
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/innerfrm.png' alt='screen shot'><br />
+Placing a themed frame inside a window.</p>
+
+<p>On macOS, where this problem is most prominent, you can also set the window's background color (via its <code>background</code>
+  configuration option) to the predefined color <code>systemWindowHeaderBackground</code>.
+</p></div>
+
+<h3>Creating the Entry Widget</h3>
+
+<p>The first widget we'll create is the entry where we can input the number of feet that we want to convert.</p>
+  
+<div class=python><pre>feet = StringVar()
+feet_entry = ttk.Entry(mainframe, width=7, textvariable=feet)
+feet_entry.grid(column=2, row=1, sticky=(W, E))
+</pre></div>
+
+<p>We need to do two things: create the widget itself, and then place it onscreen.</p>
+  
+<p>When we create a widget, we need to specify its <em>parent</em>, which is the widget that this widget will be placed inside.
+In this case, we want our entry placed inside the content frame. Our entry, and other widgets we'll create shortly, are said to be
+<em>children</em> of the content frame. In Tcl and Perl, the widget name is used to specify the parent-child relationship, i.e. <code>.c.feet</code> is a child of <code>.c</code>. In Python and Ruby, the <code><em>parent</em></code> is passed as the first parameter when instantiating a widget object.
+</p>
+
+<p>When we create a widget, we can optionally provide it with certain <em>configuration options</em>. 
+Here, we specify how wide we want the entry to appear, i.e. 7 characters. 
+We also assign it a mysterious <code>textvariable</code>; we'll see what that does shortly.</p>
+
+<p>When widgets are created, they don't automatically show up on the screen, because Tk doesn't know
+how you want them to be placed relative to other widgets.  That's what the <code>grid</code> part does.
+Remember the layout grid when we sketched out our application? Widgets are placed in the appropriate
+column (1, 2, or 3), and row (also 1, 2, or 3).</p>
+
+<p>The <code>sticky</code> option to grid describes how the widget should
+line up within the grid cell, using compass directions.  So <code>w</code> (west) means to anchor the widget
+to the left side of the cell, <code>we</code> (west-east) means to attach it to both the left and right sides,
+and so on. Python also defines constants for these directional strings, which you can provide as a list, e.g. <code>W</code> or <code>(W, E)</code>.</p>
+  
+  
+<h3>Creating the Remaining Widgets</h3>
+  
+<p>We then do exactly the same thing for the remaining widgets. We have one label that will display the resulting number of meters that we calculate. We have a "Calculate" button that is pressed to perform the calculation. Finally, we have three static text labels to
+  make it clear how to use the application. For each of these widgets, we first create it and then place it onscreen in
+  the appropriate cell in the grid.</p>
+  
+<div class=python><pre>
+meters = StringVar()
+ttk.Label(mainframe, textvariable=meters).grid(column=2, row=2, sticky=(W, E))
+
+ttk.Button(mainframe, text="Calculate", command=calculate).grid(column=3, row=3, sticky=W)
+
+ttk.Label(mainframe, text="feet").grid(column=3, row=1, sticky=W)
+ttk.Label(mainframe, text="is equivalent to").grid(column=1, row=2, sticky=E)
+ttk.Label(mainframe, text="meters").grid(column=3, row=2, sticky=W)
+</pre></div>
+
+
+
+<h3>Adding Some Polish</h3>
+
+<p>We then put a few finishing touches on our user interface.</p>
+
+<div class=python><pre>for child in mainframe.winfo_children(): 
+    child.grid_configure(padx=5, pady=5)
+feet_entry.focus()
+root.bind("&lt;Return&gt;", calculate)
+</pre></div>
+
+
+<p>The first part walks through all of the widgets that are contained within our content frame,
+and adds a little bit of padding around each, so they aren't so scrunched together.
+(We could have added these options to each <code>grid</code> call when we first put the widgets
+onscreen, but this is a nice shortcut.)</p>
+
+<p>The second part tells Tk to put the focus on our entry widget.  That way, the cursor will
+start in that field, so users don't have to click in it before starting to type.</p>
+
+<p>The third line tells Tk that if a user presses the Return key (Enter on Windows) it should call our calculate routine, 
+the same as if they pressed the Calculate button.</p>
+
+<h3>Performing the Calculation</h3>
+
+<p>Speaking of which, here we define our calculate procedure. It's called when a user presses
+the Calculate button or hits the Return key.  It performs the feet to meters calculation.</p>
+
+<div class=python><pre>def calculate(*args):
+    try:
+        value = float(feet.get())
+        meters.set(int(0.3048 * value * 10000.0 + 0.5)/10000.0)
+    except ValueError:
+        pass
+</pre></div>
+
+
+<p>As you can clearly see, this routine takes the number of feet from our entry widget, does the calculation, 
+and places the result in our label widget.</p>
+
+<p>Say what?  It doesn't look like we're doing anything with those widgets!  Here's where
+the magic <code>textvariable</code> options we specified when creating the widgets come into play.  
+We specified the global variable <code>feet</code> as the textvariable for the entry, which means
+that anytime the entry changes, Tk will <em>automatically</em> update the global variable <code>feet</code>.
+Similarly, if we explicitly change the value of a textvariable associated with a widget
+(as we're doing for <code>meters</code> which is attached to our label), the widget will automatically
+be updated with the current contents of the variable. 
+ 
+For Python, the only caveat is that these variables must be an instance of the <code>StringVar</code> class. 
+Slick.</p>
+
+<h3>Start the Event Loop</h3>
+
+<p>Finally, we need to tell Tk to enter its event loop, which is necessary for everything to appear onscreen and allow users to
+interact with it.</p>
+
+<div class=python><pre>root.mainloop()</pre>
+</div>
+
+
+
+ <a name="missing"></a><h2>What's Missing</h2>
+
+<p>We've now seen how to create widgets, put them onscreen, and respond to users interacting with them. It's certainly not fancy, could probably do with some error checking, but it's a fully-functional GUI application.</p>
+
+<p>It's also worth examing what we <em>didn't</em> have to include in our Tk program to make
+it work.  For example:</p>
+<ul>
+<li> we didn't have to worry about redrawing the screen as things changed
+<li> we didn't have to worry about parsing and dispatching events, hit detection, or handling events on each widget
+<li> we didn't have to provide a lot of options when we created widgets; the defaults seemed
+	 to take care of most things, and so we only had to change things like the text the button displayed
+<li> we didn't have to write complex code to get and set the values of simple widgets; we just attached them to variables
+<li> we didn't have to worry about what happens when users close the window or resizes it
+<li> we didn't need to write extra code to get this all to work cross-platform
+</ul>
+
+<div class=python>
+  <h3>One More Thing...</h3>
+<p>As this tutorial emphasizes Tkinter, our examples use standalone script code, global variables, and simple functions. In practice, you'll likely organize
+  anything beyond the simplest scripts in functions or classes. There are different ways to do this: using modules, creating classes for different parts of
+  the user interface, inheriting from Tkinter classes, etc.</p>
+<p> Often though, you just want to do something simple to encapsulate your data rather than putting everything into the global variable space. Here is the 
+  feet to meters example, rewritten to encapsulate the main code into a class. Note the use of <code>self</code> on callbacks (which execute at the global scope)
+  and <code>StringVar</code>'s.</p>
+<pre>from tkinter import *
+from tkinter import ttk
+
+class FeetToMeters:
+
+    def __init__(self, root):
+
+        root.title("Feet to Meters")
+
+        mainframe = ttk.Frame(root, padding="3 3 12 12")
+        mainframe.grid(column=0, row=0, sticky=(N, W, E, S))
+        root.columnconfigure(0, weight=1)
+        root.rowconfigure(0, weight=1)
+       
+        self.feet = StringVar()
+        feet_entry = ttk.Entry(mainframe, width=7, textvariable=self.feet)
+        feet_entry.grid(column=2, row=1, sticky=(W, E))
+        self.meters = StringVar()
+
+        ttk.Label(mainframe, textvariable=self.meters).grid(column=2, row=2, sticky=(W, E))
+        ttk.Button(mainframe, text="Calculate", command=self.calculate).grid(column=3, row=3, sticky=W)
+
+        ttk.Label(mainframe, text="feet").grid(column=3, row=1, sticky=W)
+        ttk.Label(mainframe, text="is equivalent to").grid(column=1, row=2, sticky=E)
+        ttk.Label(mainframe, text="meters").grid(column=3, row=2, sticky=W)
+
+        for child in mainframe.winfo_children(): 
+            child.grid_configure(padx=5, pady=5)
+
+        feet_entry.focus()
+        root.bind("&lt;Return&gt;", self.calculate)
+        
+    def calculate(self, *args):
+        try:
+            value = float(self.feet.get())
+            self.meters.set(int(0.3048 * value * 10000.0 + 0.5)/10000.0)
+        except ValueError:
+            pass
+
+root = Tk()
+FeetToMeters(root)
+root.mainloop()</pre>
+</div>
+
+    <script src="../../code.jquery.com/jquery-3.4.1.min.js" integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh" crossorigin="anonymous"></script>
+    <script src="../../stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+    <script src="../tkdocs.js"></script>
+    <script type='text/javascript'>setDefaultLang()</script>
+</body>
+
+<!-- Mirrored from tkdocs.com/tutorial/firstexample.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 07:05:18 GMT -->
+</html>
+
+
+

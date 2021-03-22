@@ -1,0 +1,703 @@
+<!doctype html>
+<html lang="en">
+
+<!-- Mirrored from tkdocs.com/tutorial/widgets.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 07:05:21 GMT -->
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>TkDocs Tutorial - Basic Widgets</title>
+    <meta http-equiv="Content-Language" content="English" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="description" content="Basic Widgets: Part of a Modern Tk Tutorial for Python, Tcl, Ruby, and Perl" />
+    <meta name="keywords" content="TkDocs, Tk, Tkinter, Tkx, GUI, Tcl, Python, Perl, Ruby" />	
+  
+   <link rel="stylesheet" href="../../stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <link rel="stylesheet" href="../../maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">  
+    <link rel="stylesheet" type="text/css" href="../tkc.css" media="screen,print" /> 
+
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="../../external.html?link=https://www.googletagmanager.com/gtag/js?id=UA-2043168-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-2043168-3');
+</script>
+
+
+</head>
+<body>
+
+<div class="container-fluid">
+
+<div class=tutorial>
+<nav><ul class="pagination justify-content-center"><li class="page-item"><a class="page-link" href="concepts.html">Previous: Tk Concepts</a></li><li class="page-item"><a class="page-link" href="index.html">Contents</a></li><li class="page-item"><a class="page-link" href="onepage.html">Tutoriel complet en une page</a></li><li class="page-item"><a class="page-link" href="grid.html">Next: The Grid Geometry Manager</a></li></ul></nav>
+<h1>Basic Widgets</h1>
+
+
+<p>This chapter introduces the basic Tk widgets that you'll find in just about any user interface:
+frames, labels, buttons, checkbuttons, radiobuttons, entries, and comboboxes.  By the end,
+you'll know how to use all the widgets you'd ever need for a typical fill-in-the-form
+type of user interface.</p>
+
+<p>You'll find it easiest to read this chapter (and those following that discuss more widgets) in order.  Because
+there is so much commonality between many widgets, we'll introduce certain concepts when describing one
+widget that will also apply to a widget we describe later.  Rather than going over the same ground multiple times,
+we'll refer back to when the concept was first introduced.</p>
+
+<p>At each widget is introduced, we'll 
+refer to the <a href="../../external.html?link=https://tkdocs.com/widgets/index.html">widget roundup</a> page for the specific widget, as well as the 
+<a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/contents.htm">Tk reference manual page</a>. 
+
+As a reminder, this tutorial highlights the <em>most useful parts</em> of Tk and how to use
+them to build effective modern user interfaces. The reference documentation, which details <em>everything</em> that can be
+done in Tk, serves a very different purpose.</p>
+
+
+
+ <a name="frame"></a><h2>Frame</h2>
+
+<ul class=menu>
+<li><a href="../../external.html?link=https://tkdocs.com/widgets/frame.html">Widget Roundup</a></li>
+<li><a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/ttk_frame.htm">Reference Manual</a></li>
+</ul>
+
+<p>A <b>frame</b> is a widget that displays as a simple rectangle.  Frames help to organize your user interface, often
+  both visually and at the coding level. Frames often act as master widgets for a geometry manager like <code>grid</code>, 
+  which manages the slave widgets contained within the frame.</p>
+
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/w_frame_all.png' alt='screen shot'><br />
+Frame widgets.</p>
+
+<div class=python><p>Frames are created using the <code><b>ttk.Frame</b></code> class:</p><pre>frame = ttk.Frame(<em>parent</em>)</pre></div>
+
+<p>Frames can take several different configuration options, which can alter how they are displayed.</p>
+
+<h4>Requested Size</h4>
+
+<p>Typically, the size of a frame is determined by the size and layout of any widgets within it
+  In turn, this is controlled by the geometry manager that manages the contents of the frame itself). </p>
+
+<p>If, for some reason, you want an empty frame that does not contain other widgets, you can instead 
+explicitly set its size using the 
+<code>width</code> and/or <code>height</code> configuration options (otherwise, you'll end up with a
+very small frame indeed).  </p>
+
+<p>Screen distances such as width and height are usually specified as a number of pixels screen.  
+You can also specify them via one of several suffixes.  For example, <code>350</code> means
+350 pixels, <code>350c</code> means 350 centimeters, <code>350m</code> means 350 millimeters, <code>350i</code> means 350 inches, and <code>350p</code> means 350 printer's points (1/72 inch).</p>
+
+<h4>Padding</h4>
+
+<p>The <code>padding</code> configuration option is used to request extra space around the inside of
+the widget. If you're putting other widgets inside the frame, there will be a bit of a
+margin all the way around.  You can specify the same padding for all sides, different horizontal and
+vertical padding, or padding for each side separately.</p>
+
+<div class=python><pre>
+f['padding'] = 5           <em># 5 pixels on all sides</em>
+f['padding'] = (5,10)      <em># 5 on left and right, 10 on top and bottom</em>
+f['padding'] = (5,7,10,12) <em># left: 5, top: 7, right: 10, bottom: 12</em>
+</pre></div>
+
+<h4>Borders</h4>
+
+<p>You can display a border around a frame widget to visually separate it from its surroundings.
+  You'll see this often used to make a part of the user interface look sunken or raised.  To do this,
+you need to set the <code>borderwidth</code> configuration option (which defaults to 0, i.e., no border),
+and the <code>relief</code> option, which specifies the visual appearance of the border. This can be one of:
+<code>flat</code> (default), <code>raised</code>, <code>sunken</code>, <code>solid</code>, <code>ridge</code>, or <code>groove</code>.</p>
+
+<div class=python><pre>frame['borderwidth'] = 2
+frame['relief'] = 'sunken'</pre></div>
+<h4>Changing Styles</h4>
+
+<p>Frames have a <code>style</code> configuration option, which is common to all of the themed widgets.
+This lets you control many other aspects of their appearance or behavior.  This is a bit more
+advanced, so we won't go into it in too much detail right now. But here's a quick example of creating a "Danger"
+frame with a red background and a raised border.</p>
+
+<div class=python><pre>s = ttk.Style()
+s.configure('Danger.TFrame', background='red', borderwidth=5, relief='raised')
+ttk.Frame(root, width=200, height=200, style='Danger.TFrame').grid()</pre></div>
+
+ <a name="label"></a><h2>Label</h2>
+
+<ul class=menu>
+<li><a href="../../external.html?link=https://tkdocs.com/widgets/label.html">Widget Roundup</a></li>
+<li><a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/ttk_label.htm">Reference Manual</a></li>
+</ul>
+
+<p>A <b>label</b> is a widget that displays text or images, typically that users will just
+view but not otherwise interact with.  Labels are used for to identify
+controls or other parts of the user interface, provide textual feedback or results, etc.</p>
+
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/w_label_all.png' alt='screen shot'><br />
+Label widgets.</p>
+
+
+<div class=python><p>Labels are created using the <code><b>ttk.Label</b></code> class. Often, the text or image the label will display are 
+specified via configuration options at the same time:</p>
+	<pre>label = ttk.Label(<em>parent</em>, text='Full name:')</pre></div>
+<p>Like frames, labels can take several different configuration options, which can alter how they are displayed.</p>
+
+
+<h4>Displaying Text</h4>
+
+<p>The <code>text</code> configuration option (shown above when creating the label) is the most commonly used, particularly when
+the label is purely decorative or explanatory.  You can change what text is displayed by modifying this configuration option.
+This can be done at any time, not only when first creating the label.</p>
+
+<p>You can also have the widget monitor a variable in your script. Anytime the variable changes, the label will
+display the new value of the variable. This is done with the <code>textvariable</code> option:</p>
+
+<div class=python><pre>resultsContents = StringVar()
+label['textvariable'] = resultsContents
+resultsContents.set('New value to display')</pre>
+<p>Tkinter only allows you to attach widgets to an instance of the <code>StringVar</code> class, and not arbitrary Python variables.
+This class contains all the
+logic to watch for changes and communicate them back and forth between the variable and Tk.  Use the <code>get</code> and <code>set</code> methods
+to read or write the current value of the variable.</p>
+</div>
+<h4>Displaying Images</h4>
+
+<p>Labels can also display an image instead of text. If you just want an image displayed in your
+user interface, this is normally the way to do it.  We'll go into images in more detail in a later chapter,
+but for now, let's assume you want to display a GIF stored in a file on disk.  This
+is a two-step process. First, you will create an image "object." Then, you can tell the label to use that object
+via its <code>image</code> configuration option:</p>
+
+<div class=python><pre>image = PhotoImage(file='myimage.gif')
+label['image'] = image</pre></div>
+
+<p>Labels can also display both an image and text at the same time. You'll often see this in toolbar buttons. To do so, use the 
+<code>compound</code> configuration option.  The default value is <code>none</code>, meaning display
+only the image if present; if there is no image, display the text specified by the <code>text</code> or
+<code>textvariable</code> options.  Other possible values for the <code>compound</code> option are: <code>text</code> (text only), <code>image</code> (image only),
+<code>center</code> (text in the center of image), <code>top</code> (image above text), <code>left</code>, <code>bottom</code>, and <code>right</code>.</p>
+
+
+<h4>Fonts, Colors, and More</h4>
+
+<p>Like with frames, you normally don't want to change things like fonts and colors directly.
+If you need to change them (e.g., to create a special type of label), the preferred method would be to
+create a new style, which is then used by the widget with the <code>style</code> option.</p>
+
+<p>Unlike most themed widgets, the label widget also provides explicit widget-specific configuration options
+as an alternative. Again, you should use these only in special one-off cases when using a style
+didn't necessarily make sense.</p>
+
+<p>You can specify the font used to display the label's text using the <code>font</code> configuration
+option.  While we'll go into fonts in more detail in a later chapter, here are the names of some
+predefined fonts you can use:</p>
+
+<dl class="row ml-sm-1">
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>TkDefaultFont</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">Default for all GUI items not otherwise specified.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>TkTextFont</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">Used for entry widgets, listboxes, etc.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>TkFixedFont</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">A standard fixed-width font.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>TkMenuFont</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">The font used for menu items.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>TkHeadingFont</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">A font for column headings in lists and tables.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>TkCaptionFont</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">A font for window and dialog caption bars.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>TkSmallCaptionFont</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">Smaller captions for subwindows or tool dialogs.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>TkIconFont</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">A font for icon captions.</dd>
+<dt class="col-lg-3 col-xl-2 font-weight-normal"><code>TkTooltipFont</code><span class="d-none d-lg-inline">:</span></dt><dd class="col-lg-9 col-xl-10">A font for tooltips.</dd>
+</dl>
+
+<div class=python><pre>label['font'] = "TkDefaultFont"</pre></div>
+<p>The foreground (text) and background color of the label can also be changed via the <code>foreground</code> and
+<code>background</code> configuration options.  Colors are covered in detail later, but you can specify them as either
+color names (e.g., <code>red</code>) or hex RGB codes (e.g., <code>#ff340a</code>).</p>
+
+<p>Labels also accept the <code>relief</code> configuration option discussed for frames to make them appear sunken or raised.</p>
+
+
+<h4>Layout</h4>
+
+<p>While the overall layout of the label (i.e., where it is positioned within the user interface,
+and how large it is) is determined by the geometry manager, several options can
+help you control how the label will be displayed within the rectangle the geometry manager gives it.</p>
+
+<p>If the box given to the label is larger than the label requires for its contents, you can use
+the <code>anchor</code> option to specify what edge or corner the label should be attached to,
+which would leave any empty space in the opposite edge or corner.  Possible values are
+specified as compass directions: <code>n</code> (north, or top edge), <code>ne</code>, (north-east, or top right corner),
+<code>e</code>, <code>se</code>, <code>s</code>, <code>sw</code>, <code>w</code>, <code>nw</code> or <code>center</code>.  </p>
+
+
+<h4>Multi-line Labels</h4>
+
+<p>Labels can display more than one line of text.  To do so, embed carriage
+returns (<code>\n</code>) in the <code>text</code> (or <code>textvariable</code>) string.  Labels can also 
+automatically wrap your text into multiple lines via the <code>wraplength</code> option,
+which specifies the maximum length of a line (in pixels, centimeters, etc.).</p>
+
+<p>You can also control how the text is justified via the <code>justify</code> option. It
+can have the values <code>left</code>, <code>center</code>, or <code>right</code>.  If you have only a single line of text, you
+probably want the <code>anchor</code> option instead.</p>
+
+
+ <a name="button"></a><h2>Button</h2>
+
+<ul class=menu>
+<li><a href="../../external.html?link=https://tkdocs.com/widgets/button.html">Widget Roundup</a></li>
+<li><a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/ttk_button.htm">Reference Manual</a></li>
+</ul>
+
+<p>A <b>button</b>, unlike a frame or label, is very much there to interact with. Users press a button to perform an action.  Like labels, they can display text or images, but accept additional options to change their behavior.</p>
+
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/w_button_all.png' alt='screen shot'><br />
+Button widgets.</p>
+
+
+<div class=python><p>Buttons are created using the <code><b>ttk.Button</b></code> class:</p>
+		<pre>button = ttk.Button(<em>parent</em>, text='Okay', command=submitForm)</pre></div>
+<p>Typically, their contents and command callback are specified at the same time. As with other widgets, buttons can take several different configuration options, including the standard <code>style</code> option,
+which can alter their appearance and behavior.</p>
+
+
+<h4>Text or Image</h4>
+
+<p>Buttons take the same <code>text</code>, <code>textvariable</code> (rarely used), <code>image</code>, and <code>compound</code>
+configuration options as labels. These control whether the button displays text and/or an image.</p>
+
+<p>Buttons have a <code>default</code> configuration option. If specified as <code>active</code>, this tells Tk that the 
+button is the default button in the user interface; otherwise it is <code>normal</code>. Default buttons are invoked
+if users hit the Return or Enter key).  Some platforms and styles will draw this default button with
+a different border or highlight.  Note that setting this option doesn't create an event binding that will make the Return or Enter key
+activate the button; that you have to do yourself.</p>
+
+
+<h4>The Command Callback</h4>
+
+<p>The <code>command</code> option connects the button's action and your application.
+When a user presses the button, the script provided by the option is evaluated by the interpreter.</p>
+
+<p>You can also ask the button to invoke the command callback from your application.  That way, you don't
+need to repeat the command to be invoked several times in your program. If you change the command attached to the
+button, you don't need to change it elsewhere too. Sounds like a useful way to add that event binding on our default
+button, doesn't it?</p>
+
+<div class=python><pre>action = ttk.Button(root, text="Action", default="active", command=myaction)
+root.bind('&lt;Return&gt;', lambda e: action.invoke())</pre></div>
+
+<div class=tip><p>Standard behavior for dialog boxes and many other windows on most platforms is to set up a binding on
+  the window for the Return key (<code>&lt;Return&gt;</code> or <code>&lt;Key-Return&gt;</code>) to invoke the active button if it exists,
+  as we've done here. If there is a "Close" or "Cancel" button, create a binding to the Escape key (<code>&lt;Key-Escape&gt;</code>).
+  On macOS, you should additionally bind the Enter key on the keyboard (<code>&lt;KP_Enter&gt;</code>) to the active
+  button, and Command-period (<code>&lt;Command-.&gt;</code>) to the close or cancel button.</p></div>
+
+<h4>Button State</h4>
+
+<p>Buttons and many other widgets start off in a normal state. A button will respond to mouse movements, can be pressed, and
+will invoke its command callback. Buttons can also be put into
+a disabled state, where the button is greyed out, does not respond to mouse movements, and cannot be pressed.  
+Your program would disable the button when its command is not applicable at a given point in time.</p>
+
+<p>All themed widgets maintain an internal state, represented as a series of binary flags.  Each flag can either be set (on) or cleared (off).
+You can set or clear these different flags, and check the current setting using the <code>state</code> and <code>instate</code> methods.  
+Buttons make use of the <code>disabled</code> flag to control whether or not users can press the button.  For example:</p>
+
+
+<div class=python><pre>
+b.state(['disabled'])          <em># set the disabled flag</em>
+b.state(['!disabled'])         <em># clear the disabled flag</em>
+b.instate(['disabled'])        <em># true if disabled, else false</em>
+b.instate(['!disabled'])       <em># true if not disabled, else false</em>
+b.instate(['!disabled'], cmd)  <em># execute 'cmd' if not disabled</em>
+</pre>
+<div class=tip><p>Note that these commands accept an <b>array</b> of state flags as their argument.</p></div>
+</div>
+
+
+<p>The full list of state flags available to themed widgets is: <code>active</code>, <code>disabled</code>, <code>focus</code>, <code>pressed</code>, <code>selected</code>,
+<code>background</code>, <code>readonly</code>, <code>alternate</code>, and <code>invalid</code>.  These are described in the
+<a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/ttk_widget.htm">themed widget reference</a>. While all widgets have the same set of state flags, not all states
+are meaningful for all widgets.  It's also possible to get fancy in the <code>state</code> and <code>instate</code> methods
+and specify multiple state flags at the same time.
+</p>
+
+<div class=upgrade><p>The <code>state</code> and <code>instate</code> methods replace the older <code>state</code> configuration option (which took the values <code>normal</code> or
+<code>disabled</code>).  
+</p><p>
+That configuration option is actually still available for themed widgets in Tk 8.5, but "write-only," which means that
+changing the option calls the appropriate <code>state</code> command.  It's mainly intended as a convenience so you can
+specify a widget should be disabled when you first create it. However, any changes made using the new <code>state</code>
+command do not update the configuration option.  To avoid confusion, you should update your code to 
+use the new state flags for all themed widgets.</p></div>	
+
+
+
+ 
+ <a name="checkbutton"></a><h2>Checkbutton</h2>
+
+<ul class=menu>
+<li><a href="../../external.html?link=https://tkdocs.com/widgets/checkbutton.html">Widget Roundup</a></li>
+<li><a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/ttk_checkbutton.htm">Reference Manual</a></li>
+</ul>
+
+<p>A <b>checkbutton</b> widget is like a regular button that also holds a binary value of some kind (i.e., a toggle).  
+When pressed, a checkbutton flips the toggle and then invokes its callback.
+Checkbutton widgets are frequently used to allow users to turn an option on or off.</p>
+
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/w_checkbutton_all.png' alt='screen shot'><br />
+Checkbutton widgets.</p>
+
+
+<div class=python><p>Checkbuttons are created using the <code><b>ttk.Checkbutton</b></code> class. Typically, their contents and behavior are specified at the same time:</p>
+		<pre>measureSystem = StringVar()
+check = ttk.Checkbutton(<em>parent</em>, text='Use Metric', 
+	    command=metricChanged, variable=measureSystem,
+	    onvalue='metric', offvalue='imperial')</pre></div>
+
+<p>Checkbuttons use many of the same options as regular buttons but add a few more.  The <code>text</code>, <code>textvariable</code>,
+<code>image</code>, and <code>compound</code> configuration options control the display of the label (next to the checkbox itself). 
+Similarly, the <code>command</code> option lets you specify a command to be called every time a user toggles the checkbutton; and the 
+<code>invoke</code> method will also execute the same command.
+The <code>state</code> and <code>instate</code> methods allow you to manipulate the <code>disabled</code> state flag to enable or disable the checkbutton.  </p>
+
+<h4>Widget Value</h4>
+
+<p>Unlike regular buttons, checkbuttons also hold a value.  We've seen before how the <code>textvariable</code> option can link
+the label of a widget to a variable in your program. The <code>variable</code> option for checkbuttons behaves similarly, except
+it links a variable to current value of the widget. The variable is updated whenever the widget is toggled.  By default, 
+checkbuttons use a value of <code>1</code> when the widget is checked, and <code>0</code> when not checked. These can be changed to 
+something else using the <code>onvalue</code> and <code>offvalue</code> options.</p>
+
+<p>A checkbutton doesn't automatically set (or create) the linked variable. Therefore, your program needs to initialize it 
+to the appropriate starting value.</p>
+
+<p>What happens when the linked variable contains neither the <code>onvalue</code> or the <code>offvalue</code> (or even doesn't exist)?  In that case,
+the checkbutton is put into a special "tristate" or indeterminate mode. When in this mode, the checkbox might display a single dash, instead of 
+being empty or holding a checkmark.  Internally, the state flag <code>alternate</code> is set, which you can inspect
+via the <code>instate</code> method:</p>
+
+<div class=python><pre>check.instate(['alternate'])</pre></div>
+
+<div class=python>
+<p>While we've been using an instance of the <code>StringVar</code> class, Tkinter provides other
+variable classes that can hold booleans, integers, or floating-point numbers. You can always
+use a <code>StringVar</code> (because the Tcl API that Tkinter uses is string-based) but can choose one of the others if 
+the data that will be stored in it fits the type. All are subclasses of the base class <code>Variable</code>.
+</p><p>
+We saw in the feet to meters example that you can call the <code>get</code> method of a <code>Variable</code> to retrieve its value or
+the <code>set</code> method to provide a new value. You can also supply an initial value when you instantiate it.</p>
+<pre>
+s = StringVar(value="abc")   <em># default value is ''</em>
+b = BooleanVar(value=True)   <em># default is False</em>
+i = IntVar(value=10)         <em># default is 0</em>
+d = DoubleVar(value=10.5)    <em># default is 0.0</em>
+</pre>
+</div>
+
+
+
+
+ <a name="radiobutton"></a><h2>Radiobutton</h2>
+
+<ul class=menu>
+<li><a href="../../external.html?link=https://tkdocs.com/widgets/radiobutton.html">Widget Roundup</a></li>
+<li><a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/ttk_radiobutton.htm">Reference Manual</a></li>
+</ul>
+
+<p>A <b>radiobutton</b> widget lets you choose between one of several mutually exclusive choices.
+Unlike a checkbutton, they are not limited to just two options.  Radiobuttons are always used 
+together in a set, where multiple radiobutton widgets are tied to a single choice or preference.
+They are appropriate to use when the number of options is relatively small, e.g., 3-5.</p>
+
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/w_radiobutton_all.png' alt='screen shot'><br />
+Radiobutton widgets.</p>
+
+
+<div class=python><p>Radiobuttons are created using the <code><b>ttk.Radiobutton</b></code> class. Typically, you'll create and initialize several of them at once:</p>
+	<pre>phone = StringVar()
+home = ttk.Radiobutton(<em>parent</em>, text='Home', variable=phone, value='home')
+office = ttk.Radiobutton(<em>parent</em>, text='Office', variable=phone, value='office')
+cell = ttk.Radiobutton(<em>parent</em>, text='Mobile', variable=phone, value='cell')</pre></div>
+
+<p>Radiobuttons share most of the same configuration options as checkbuttons.  One exception is that the 
+<code>onvalue</code> and <code>offvalue</code> options are replaced with a single <code>value</code> option.
+Each radiobutton in the set will have the same linked variable, but a different value. 
+When the variable holds the matching value, that radiobutton will visually indicate it is selected. 
+If it doesn't match, the radiobutton will be unselected.  
+If the linked variable doesn't exist, or you don't specify one with the <code>variable</code> option,
+radiobuttons also display as "tristate" or indeterminate. This can be checked via the <code>alternate</code> state flag.</p>
+
+
+
+ <a name="entry"></a><h2>Entry</h2>
+
+<ul class=menu>
+<li><a href="../../external.html?link=https://tkdocs.com/widgets/entry.html">Widget Roundup</a></li>
+<li><a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/ttk_entry.htm">Reference Manual</a></li>
+</ul>
+
+<p>An <b>entry</b> widget presents users with a single line text field where they can
+type in a string value.  These can be just about anything: a name, a city, a password, social 
+security number, etc.</p>
+
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/w_entry_all.png' alt='screen shot'><br />
+Entry widgets.</p>
+
+
+<div class=python><p>Entries are created using the <code><b>ttk.Entry</b></code> class:</p>
+	<pre>username = StringVar()
+name = ttk.Entry(<em>parent</em>, textvariable=username)</pre></div>
+
+<p>A <code>width</code> configuration option may be specified to provide the number of
+characters wide the entry should be. This allows you, for example, to display a shorter
+entry for a zip or postal code.</p>
+
+<h4>Entry Contents</h4>
+
+<p>We've seen how checkbutton and radiobutton widgets have a value associated with them.
+Entries do as well, and that value is usually accessed through a linked variable
+specified by the <code>textvariable</code> configuration option. </p>
+
+<div class=tip><p>Unlike the various buttons, entries don't have a text or image beside them to
+identify them. Use a separate label widget for that.</p></div>
+
+<p>You can also get or change the value of the entry widget without going
+through the linked variable.  The <code>get</code> method returns the current value, and
+the <code>delete</code> and <code>insert</code> methods let you change the contents, e.g.</p>
+
+<div class=python><pre>print('current value is %s' % name.get())
+name.delete(0,'end')          <em># delete between two indices, 0-based</em>
+name.insert(0, 'your name')   <em># insert new text at a given index</em></pre></div>
+
+<h4>Watching for Changes</h4>
+
+<p>Entry widgets don't have a <code>command</code> option to invoke a
+callback whenever the entry is changed.  To watch for changes, you should watch
+for changes to the linked variable. See also "Validation", below.</p>
+
+<div class=python>
+<pre>
+def it_has_been_written(*args):
+    ...
+username.trace_add("write", it_has_been_written)
+</pre>
+
+</div>
+
+<p>You'll be fine if you stick with simple uses of <code>trace_add</code> like that shown above. You might want to know that
+this is a small part of a much more complex system for observing variables and invoking callbacks when they are read, written,
+or deleted. You can trigger multiple callbacks, add or delete them (<code>trace_remove</code>), and introspect 
+them (<code>trace_info</code>).</p>
+
+<div class=upgrade><p>These methods also replace a now-deprecated set of older methods (<code>trace</code>, <code>trace_variable</code>, <code>trace_vdelete</code>,
+and <code>trace_vinfo</code>) that should not be used.</p></div>
+
+<div class=python>Tkinter allows you to watch for changes on a <code>StringVar</code> (or any subclass of <code>Variable</code>).
+  Both the older and newer tracing tools are a very thin (and not terribly Pythonic) front end to Tcl's <a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TclCmd/trace.htm"><code>trace</code></a> command.</p>
+
+</div>
+
+
+<h4>Passwords</h4>
+
+<p>Entries can be used for passwords, where the actual contents are displayed as a bullet or other symbol.
+To do this, set the <code>show</code> configuration option to the character you'd like to display.</p>
+
+<div class=python><pre>passwd = ttk.Entry(<em>parent</em>, textvariable=password, show="*")</pre></div>
+
+<h4>Widget States</h4>
+
+<p>Like the various buttons, entries can also be put into a disabled state via the <code>state</code> command (and queried
+with <code>instate</code>).  Entries can also use the state flag <code>readonly</code>; if set, users cannot change the entry,
+though they can still select the text in it (and copy it to the clipboard).  There is also an <code>invalid</code>
+state, set if the entry widget fails validation, which leads us to...</p>
+
+<h3>Validation</h3>
+
+<p>Users can type any text they like into an entry widget. However, if you'd like to restrict what they can type into the
+  entry, you can do so with <em>validation</em>. For example, an entry might only accept an integer or a valid zip or
+  postal code.</p>
+  
+<p>Your program can specify what makes an entry valid or invalid, as well as when to check its validity. As we'll see soon, the two 
+  are related. We'll start with a simple example, an entry that can only hold an integer up to five digits long. </p>
+  
+<p>The validation criteria is specified via an entry's <code>validatecommand</code> configuration option. You supply a piece of
+  code whose job is to validate the entry. It functions like a widget callback or event binding, except that it returns
+  a value (whether or not the entry is valid). We'll arrange to validate the entry on any keystroke, which 
+  is specified by providing a value of <code>key</code> to the <code>validate</code> configuration option.</p> 
+  
+<div class=python><pre>import re
+def check_num(newval):
+    return re.match('^[0-9]*$', newval) is not None and len(newval) &lt;= 5
+check_num_wrapper = (root.register(check_num), '%P')
+
+num = StringVar()
+e = ttk.Entry(root, textvariable=num, validate='key', validatecommand=check_num_wrapper)
+e.grid(column=0, row=0, sticky='we')
+</pre></div>
+
+  
+<p>A few things are worth noting. First, as with event bindings, we can access more information about the conditions that 
+  triggered the validation via <em>percent substitutions.</em> We used one of these here:
+  <code>%P</code> is the new value of the entry <em>if</em> the validation passes. We'll use a simple regular expression and a length
+  check to determine if the change is valid. To reject the change, our validation command can 
+  return a false value, and the entry will remain unchanged.</p>
+
+<div class=python>
+<p>Taking advantage of these percent substitutions requires a bit of gymnastics. You'll recall that Tkinter abstracts away percent 
+  substitutions in event binding callbacks. There, all of the event parameters are wrapped into an event object which is always passed to the
+  callback. There's not an equivalent abstraction for validation callbacks. Instead, we have to choose which percent substitutions 
+  we're interested in. The <code>register</code> method (which can be called on any widget, not just 
+  <code>root</code>) creates a Tcl procedure which will call our Python function. The percent substitutions we've chosen will be
+  passed to it as parameters.</p>
+</div> 
+
+<p>Let's extend our example so that the entry will accept a US zip code, formatted as "#####" or "#####-####" ("#" can be any digit).
+We'll still do some validation on each keystroke (only allowing entry of numbers or a hyphen). However, We can no longer fully validate 
+the entry on every keystroke; if they've just typed the first digit, it's not valid yet. So full validation will
+only happen when the entry loses focus (e.g., a user tabs away from it). Tk refers to this as <em>revalidation</em>, in contrast
+  with <em>prevalidation</em> (accepting changes on each keystroke).</p>
+
+<p>How should we respond to errors? Let's add a message reminding users of the format. It will appear if they type a wrong key or tab away
+from the entry when it's not holding a valid zip code. We'll remove the message when they return to the entry or type a valid key.
+We'll also add a (dummy) button to "process" the zip code, which will be disabled 
+unless the zip entry is valid. Finally, we'll also add a "name" entry so you can tab away from the zip entry.</p>
+
+<div class=python><pre>import re
+errmsg = StringVar()
+formatmsg = "Zip should be ##### or #####-####"
+
+def check_zip(newval, op):
+    errmsg.set('')
+    valid = re.match('^[0-9]{5}(\-[0-9]{4})?$', newval) is not None
+    btn.state(['!disabled'] if valid else ['disabled'])
+    if op=='key':
+        ok_so_far = re.match('^[0-9\-]*$', newval) is not None and len(newval) &lt;= 10
+        if not ok_so_far:
+            errmsg.set(formatmsg)
+        return ok_so_far
+    elif op=='focusout':
+        if not valid:
+            errmsg.set(formatmsg)
+    return valid
+check_zip_wrapper = (root.register(check_zip), '%P', '%V')
+
+zip = StringVar()
+f = ttk.Frame(root)
+f.grid(column=0, row=0)
+ttk.Label(f, text='Name:').grid(column=0, row=0, padx=5, pady=5)
+ttk.Entry(f).grid(column=1, row=0, padx=5, pady=5)
+ttk.Label(f, text='Zip:').grid(column=0, row=1, padx=5, pady=5)
+e = ttk.Entry(f, textvariable=zip, validate='all', validatecommand=check_zip_wrapper)
+e.grid(column=1, row=1, padx=5, pady=5)
+btn = ttk.Button(f, text="Process")
+btn.grid(column=2, row=1, padx=5, pady=5)
+btn.state(['disabled'])
+msg = ttk.Label(f, font='TkSmallCaptionFont', foreground='red', textvariable=errmsg)
+msg.grid(column=1, row=2, padx=5, pady=5, sticky='w')
+</pre></div>
+
+<p>Notice that the <code>validate</code> configuration option has been changed from <code>key</code> to <code>all</code>.
+That arranges for the <code>validatecommand</code> callback to be invoked on not only keystrokes but other triggers.
+The trigger is passed to the callback using the <code>%V</code> percent substitution.
+The callback differentiated between <code>key</code> and <code>focusout</code> triggers (you can also check for <code>focusin</code>).</p>
+
+<div class=fyi><p>There's a few more things to know about validation. First, if your <code>validatecommand</code> ever generates an error 
+(or doesn't return a boolean), validation will be disabled for that widget. Your callback can modify the entry, e.g.,
+change its textvariable. You can ask the widget to validate at any time by calling
+it's <code>validate</code> method, which returns true if validation passes (the <code>%V</code> substitution is set to <code>forced</code>).
+</p><p>
+There is an <code>invalidcommand</code> configuration option (which works like <code>validatecommand</code>) that is called whenever 
+validation fails. You can use it to accomplish nasty things like forcing the focus back on the widget that didn't validate. 
+In practice, it's rarely used. As mentioned earlier, the entry's <code>invalid</code> state flag (which can be checked via
+the <code>instate invalid</code> method) is automatically updated as validation succeeds or fails.
+</p><p>
+Other percent substitutions allow you to get the entry's contents prior to editing (<code>%s</code>), differentiate between insert and delete (<code>%d</code>), where an insert or delete occurs (<code>%i</code>), what is being inserted or deleted (<code>%S</code>), the
+current setting of the <code>validate</code> option (<code>%v</code>) and the name of the widget (<code>%W</code>).
+</p></div>
+
+
+
+
+ <a name="combobox"></a><h2>Combobox</h2>
+
+<ul class=menu>
+<li><a href="../../external.html?link=https://tkdocs.com/widgets/combobox.html">Widget Roundup</a></li>
+<li><a href="../../external.html?link=https://tcl.tk/man/tcl8.6/TkCmd/ttk_combobox.htm">Reference Manual</a></li>
+</ul>
+
+<p>A <b>combobox</b> widget combines an entry with a list of choices.  This lets users
+either choose from a set of values you've provided (e.g., typical settings), but also put in their
+own value (e.g., for less common cases).</p>
+
+
+<p class=picture>
+<img class='border-0 img-fluid' src='../images/w_combobox_all.png' alt='screen shot'><br />
+Combobox widgets.</p>
+
+
+<div class=python><p>Comboboxes are created using the <code><b>ttk.Combobox</b></code> class:</p>
+		<pre>countryvar = StringVar()
+country = ttk.Combobox(<em>parent</em>, textvariable=countryvar)</pre></div>
+
+<p>Like entries, the <code>textvariable</code> option links a variable in your program to the
+current value of the combobox.  As with other widgets, you should initialize
+the linked variable in your own code. </p>
+
+<p>A combobox will generate a <code>&lt;&lt;ComboboxSelected&gt;&gt;</code> virtual event that you can bind to whenever its value changes.
+  (You could also trace changes on the <code>textvariable</code>, as we've seen in the previous few widgets we covered.
+  Binding to the event is more straightforward, and so tends to be our preferred choice.)</p>
+
+<div class=python><pre>country.bind('&lt;&lt;ComboboxSelected&gt;&gt;', <em>function</em>)</pre></div>
+
+<h4>Predefined Values</h4>
+
+<p>You can provide a list of values that users can choose from using the <code>values</code> configuration
+option:</p>
+
+<div class=python><pre>country['values'] = ('USA', 'Canada', 'Australia')</pre></div>
+
+<p>If set, the <code>readonly</code> state flag will restrict users to making choices only from the list
+of predefined values, but not be able to enter their own (though if the current value of the
+combobox is not in the list, it won't be changed).  </p>
+
+<div class=python><pre>country.state(["readonly"])</pre></div>
+
+<div class=tip><p>If you're using the combobox in <code>readonly</code> mode, I'd recommend
+that when the value changes (i.e., on a <code>&lt;&lt;ComboboxSelected&gt;&gt;</code> event), that
+you call the <code>selection_clear</code> method. It looks a bit odd visually 
+without doing that.</p></div>
+
+
+<p>You can also get the current value using the <code>get</code> method, and change the current value using the <code>set</code> 
+method (which takes a single argument, the new value).</p>
+
+<p>As a complement to the <code>get</code> and <code>set</code> methods, you can also use the <code>current</code> method to determine
+which item in the predefined values list is selected. Call <code>current</code> with no arguments; it will
+return a 0-based index into the list, or -1 if the current value is not in the list. You can select
+an item in the list by calling <code>current</code> with a single 0-based index argument.</p>
+
+<div class=tip><p>Want to associate some other value with each item in the list so that your program can use one value internally,
+but it gets displayed in the combobox as something else?  You'll want to have a look at
+the section entitled "Keeping Extra Item Data" when we get to the discussion of listboxes in a couple of 
+chapters from now.</p></div>
+
+
+    <script src="../../code.jquery.com/jquery-3.4.1.min.js" integrity="sha384-vk5WoKIaW/vJyUAd9n/wmopsmNhiy+L2Z+SBxGYnUkunIxVxAv/UtMOhba/xskxh" crossorigin="anonymous"></script>
+    <script src="../../stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script>
+    <script src="../tkdocs.js"></script>
+    <script type='text/javascript'>setDefaultLang()</script>
+</body>
+
+<!-- Mirrored from tkdocs.com/tutorial/widgets.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 07:05:28 GMT -->
+</html>
+
+
+
