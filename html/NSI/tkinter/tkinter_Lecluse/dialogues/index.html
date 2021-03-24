@@ -1,75 +1,51 @@
 <!doctype html>
 <html lang="fr">
-  
-<!-- Mirrored from www.lecluse.fr/info/tkinter/dialogues/ by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 09:47:06 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+
+
 <head>
-    <!-- Meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-  <meta name="description" content="">
-  <meta name="author" content="Olivier Lecluse">
-  <meta name="keywords" content="" />
+  <!-- Meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Initiation à TKinter">
+  <meta name="author" content="Olivier Lecluse, Ronan Jahier">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+
+  <title>Les dialogues — Informatique au lycée</title>
+  <!-- mise en forme Ronan -->
+  <link rel="stylesheet" type="text/css" href="../css/prism.css" />
+
+</head>
+
+<body>
+  <div class="container-fluid px-0 mx-0 ">
 
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="../../../lib/bootstrap.min28ce.css?h=edd9ab49" crossorigin="anonymous">
 
-    <!-- pygment css -->
-    <link rel="stylesheet" href="../../../static/pygments.css">
-
-    <!-- CSS Perso (aussi peu que possible) -->
-    <link rel="stylesheet" href="../../../static/stylede76.css?h=6a07b163">
-
-    <!-- Favicon. Généré avec https://realfavicongenerator.net-->
-    <link rel="shortcut icon" href="../../../static/faviconbc83.png?h=d0368017">
-    <link rel="apple-touch-icon" sizes="180x180" href="../../../static/apple-touch-icon1f4a.png?h=342cd989">
-    <link rel="icon" type="image/png" sizes="32x32" href="../../../static/favicon-32x32958a.png?h=8463c428">
-    <link rel="icon" type="image/png" sizes="16x16" href="../../../static/favicon-16x163a82.png?h=c42cde43">
-    <link rel="manifest" href="../../../static/siteb3e9.webmanifest?h=15130c91">
-    <link rel="mask-icon" href="../../../static/safari-pinned-tab2651.svg?h=c53cf56c" color="#5bbad5">
-    <link rel="shortcut icon" href="../../../static/faviconbc83.png?h=d0368017">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="msapplication-config" content="../../../static/browserconfig3568.xml?h=974aea18">
-    <meta name="theme-color" content="#ffffff">
-
-    <link rel="alternate" type="application/atom+xml" title="Lecluse — Blog" href="../../../blog/feed.xml">
-
-    <title>Les dialogues — Informatique au lycée</title>
-
-    <!-- Metadata et Open graph protocol -->
-<meta name="author" content="Olivier Lecluse" />
-  </head>
-  <body>
-    <!-- Mathjax -->
-    <script src="../../../static/mathjax7873.js?h=c8d3bd96"></script>
-    <script src="../../../../cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJaxb198.js?config=TeX-MML-AM_CHTML"></script>
-
-    <div class="container-fluid px-0 mx-0 ">
-      
+    <article>
+      <div class="row mx-0">
+        <div class="col-sm-8 offset-sm-2">
+          <h1>Les dialogues</h1>
 
 
-<article>
-<div class="row mx-0">
-  <div class="col-sm-8 offset-sm-2">
-    <h1>Les dialogues</h1>
-
-    
-  </div>
-</div>
+        </div>
+      </div>
 
 
-<div class="row mx-0">
-  <div class="col-sm-8 offset-sm-2">
-    <p>Revenons sur la notion de boîtes de dialogue que nous avons brièvement rencontré au début de nos activités. Dans cet exemple, nous en verrons de différents type avec des situations illustrant leur utilisation.</p>
-<p>Le programme suivant illustre l’utilisation de 3 types de boîtes de dialogue parmi les plus courantes. Il existe plusieurs boîtes de message :</p>
-<ul>
-<li>les alertes (<code class="language-python">messagebox</code>),</li>
-<li>celles qui demandent une info (<code class="language-python">simpledialog</code>),</li>
-<li>celles qui permettent de choisir un fichier (<code class="language-python">filedialog</code>)</li>
-</ul>
-<div class="hll"><pre><span></span><span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+      <div class="row mx-0">
+        <div class="col-sm-8 offset-sm-2">
+          <p>Revenons sur la notion de boîtes de dialogue que nous avons brièvement rencontré au début de nos activités.
+            Dans cet exemple, nous en verrons de différents type avec des situations illustrant leur utilisation.</p>
+          <p>Le programme suivant illustre l’utilisation de 3 types de boîtes de dialogue parmi les plus courantes. Il
+            existe plusieurs boîtes de message :</p>
+          <ul>
+            <li>les alertes (<code class="language-python">messagebox</code>),</li>
+            <li>celles qui demandent une info (<code class="language-python">simpledialog</code>),</li>
+            <li>celles qui permettent de choisir un fichier (<code class="language-python">filedialog</code>)</li>
+          </ul>
+          <div class="hll">
+            <pre><span></span><span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
 <span class="kn">from</span> <span class="nn">tkinter.messagebox</span> <span class="kn">import</span> <span class="n">showinfo</span>          <span class="c1"># Les alertes</span>
 <span class="kn">from</span> <span class="nn">tkinter.simpledialog</span> <span class="kn">import</span> <span class="n">askstring</span>       <span class="c1"># demande d&#39;infos</span>
 <span class="kn">from</span> <span class="nn">tkinter.filedialog</span> <span class="kn">import</span> <span class="n">askopenfilename</span>   <span class="c1"># dialogue fichiers</span>
@@ -109,15 +85,26 @@
 <span class="n">bouton3</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
 
 <span class="n">mon_app</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
-</pre></div>
-<p>Vous avez-vu avec quelle simplicité ces dialogues se manipulent. Pour chaque type de dialogue, voici les méyhodes les plus utiles :</p>
-<ul>
-<li>Méthodes de <code class="language-python">messagebox :</code>showinfo<code class="language-python">,</code>showwarning<code class="language-python">,</code>showerror<code class="language-python">,</code>askquestion<code class="language-python">,</code>askokcancel<code class="language-python">,</code>askyesno<code class="language-python">,</code>askretrycancel`</li>
-<li>Méthodes de <code class="language-python">simpledialog</code> : <code class="language-python">askstring</code>, <code class="language-python">askinteger</code> et <code class="language-python">askfloat</code></li>
-<li>Méthodes de <code class="language-python">filedialog</code> : <code class="language-python">askopenfilename</code> et <code class="language-python">asksaveasfilename</code></li>
-</ul>
-<h2 id="dialogue-de-choix-de-couleur">Dialogue de choix de couleur</h2><p>Il existe un autre type de dialogue destiné à choisir une couleur. Voici comment il fonctionne :</p>
-<div class="hll"><pre><span></span><span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+</pre>
+          </div>
+          <p>Vous avez-vu avec quelle simplicité ces dialogues se manipulent. Pour chaque type de dialogue, voici les
+            méyhodes les plus utiles :</p>
+          <ul>
+            <li>Méthodes de <code class="language-python">messagebox :</code>showinfo<code
+                class="language-python">,</code>showwarning<code class="language-python">,</code>showerror<code
+                class="language-python">,</code>askquestion<code class="language-python">,</code>askokcancel<code
+                class="language-python">,</code>askyesno<code class="language-python">,</code>askretrycancel`</li>
+            <li>Méthodes de <code class="language-python">simpledialog</code> : <code
+                class="language-python">askstring</code>, <code class="language-python">askinteger</code> et <code
+                class="language-python">askfloat</code></li>
+            <li>Méthodes de <code class="language-python">filedialog</code> : <code
+                class="language-python">askopenfilename</code> et <code class="language-python">asksaveasfilename</code>
+            </li>
+          </ul>
+          <h2 id="dialogue-de-choix-de-couleur">Dialogue de choix de couleur</h2>
+          <p>Il existe un autre type de dialogue destiné à choisir une couleur. Voici comment il fonctionne :</p>
+          <div class="hll">
+            <pre><span></span><span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
 <span class="kn">from</span> <span class="nn">tkinter.colorchooser</span> <span class="kn">import</span> <span class="n">askcolor</span>
 
 <span class="c1"># Affiche la fenetre de sélection de couleur du système</span>
@@ -138,15 +125,21 @@
 <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">mon_app</span><span class="p">,</span> <span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;Quitter&#39;</span><span class="p">,</span> <span class="n">command</span> <span class="o">=</span> <span class="n">mon_app</span><span class="o">.</span><span class="n">destroy</span><span class="p">,</span><span class="n">fg</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">RIGHT</span><span class="p">,</span> <span class="n">padx</span> <span class="o">=</span> <span class="mi">10</span><span class="p">)</span>
 
 <span class="n">mon_app</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
-</pre></div>
-<h2 id="a-vous-de-jouer">A vous de jouer</h2><p>Reprendre l'application dessin réalisée précédemment et ajouter un bouton permettant de choisir la couleur avec laquelle vous allez dessiner.</p>
-<p>Au moment de quitter, demander un message de confirmation avant de quitter.</p>
-<p>Indication : pour récupérer la couleur sous forme exploitable par TKinter, vous exploiterez la réponde du dialogue sous la forme (R,V,B) avec une ligne du type :</p>
-<pre><code class="language-python">couleur="#%02x%02x%02x" % (128, 192, 200)
+</pre>
+          </div>
+          <h2 id="a-vous-de-jouer">A vous de jouer</h2>
+          <p>Reprendre l'application dessin réalisée précédemment et ajouter un bouton permettant de choisir la couleur
+            avec laquelle vous allez dessiner.</p>
+          <p>Au moment de quitter, demander un message de confirmation avant de quitter.</p>
+          <p>Indication : pour récupérer la couleur sous forme exploitable par TKinter, vous exploiterez la réponde du
+            dialogue sous la forme (R,V,B) avec une ligne du type :</p>
+          <pre><code class="language-python">couleur="#%02x%02x%02x" % (128, 192, 200)
 </code></pre>
-<p>Voici le résultat attendu :
-<img src="../../../../external.html?link=https://postimg.cc/ZWPLcqWy" alt=""></p>
-<div class="hll"><pre><span></span><span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+          <p>Voici le résultat attendu :
+            <img src="../../../../external.html?link=https://postimg.cc/ZWPLcqWy" alt="">
+          </p>
+          <div class="hll">
+            <pre><span></span><span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
 <span class="kn">from</span> <span class="nn">tkinter.colorchooser</span> <span class="kn">import</span> <span class="n">askcolor</span>
 <span class="kn">from</span> <span class="nn">tkinter.messagebox</span> <span class="kn">import</span> <span class="n">askokcancel</span>
 
@@ -212,38 +205,35 @@
 <span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">mon_app</span><span class="p">,</span> <span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;Quitter&#39;</span><span class="p">,</span> <span class="n">command</span> <span class="o">=</span> <span class="n">quitter</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">side</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">LEFT</span><span class="p">)</span>
 
 <span class="n">mon_app</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
-</pre></div>
+</pre>
+          </div>
+
+        </div>
+      </div>
+
+
+    </article>
+
 
   </div>
-</div>
 
-
-<div class="row mx-0">
-  <div class="col-sm-8 offset-sm-2">
-    
-
+  <div class="form-group">
+    &nbsp;
   </div>
-</div>
-</article>
+  <footer class="text-center footer" id="footer">
+    <hr>
+    <a href="https://www.lecluse.fr/info/tkinter/">Visitez le site original d'Olivier Lécluse.</a><br>
+    <img src="../../../licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Licence Creative Commons BY-SA 4.0"> — Olivier
+    Lecluse — 2020
+  </footer>
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+        <!-- Ajout de Ronan-->
+        <script src="../js/prism.js"></script>
+</body>
 
 
-    </div>
-
-    <div class="form-group">
-      &nbsp;
-    </div>
-    <footer class="text-center footer" id="footer">
-      <hr>
-      <a href="https://www.lecluse.fr/info/tkinter/">Visitez le site original d'Olivier Lécluse.</a><br>
-      <img src="../../../licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Licence Creative Commons BY-SA 4.0"> — Olivier Lecluse — 2020
-    </footer>
-
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="../../../lib/jquery-3.2.1.slim.min3437.js?h=9e89d151"></script>
-    <script src="../../../lib/popper.min9b3f.js?h=c3b977aa"></script>
-    <script src="../../../lib/bootstrap.mine680.js?h=5ef2c15b"></script>
-  </body>
-
-<!-- Mirrored from www.lecluse.fr/info/tkinter/dialogues/ by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 09:47:07 GMT -->
 </html>
