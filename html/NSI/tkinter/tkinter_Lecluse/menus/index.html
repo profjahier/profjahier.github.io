@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="fr">
+  
+<!-- Mirrored from www.lecluse.fr/info/tkinter/menus/ by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 09:47:07 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+    <!-- Meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    
+  <meta name="description" content="">
+  <meta name="author" content="Olivier Lecluse">
+  <meta name="keywords" content="" />
+
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="../../../lib/bootstrap.min28ce.css?h=edd9ab49" crossorigin="anonymous">
+
+    <!-- pygment css -->
+    <link rel="stylesheet" href="../../../static/pygments.css">
+
+    <!-- CSS Perso (aussi peu que possible) -->
+    <link rel="stylesheet" href="../../../static/stylede76.css?h=6a07b163">
+
+    <!-- Favicon. Généré avec https://realfavicongenerator.net-->
+    <link rel="shortcut icon" href="../../../static/faviconbc83.png?h=d0368017">
+    <link rel="apple-touch-icon" sizes="180x180" href="../../../static/apple-touch-icon1f4a.png?h=342cd989">
+    <link rel="icon" type="image/png" sizes="32x32" href="../../../static/favicon-32x32958a.png?h=8463c428">
+    <link rel="icon" type="image/png" sizes="16x16" href="../../../static/favicon-16x163a82.png?h=c42cde43">
+    <link rel="manifest" href="../../../static/siteb3e9.webmanifest?h=15130c91">
+    <link rel="mask-icon" href="../../../static/safari-pinned-tab2651.svg?h=c53cf56c" color="#5bbad5">
+    <link rel="shortcut icon" href="../../../static/faviconbc83.png?h=d0368017">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="../../../static/browserconfig3568.xml?h=974aea18">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel="alternate" type="application/atom+xml" title="Lecluse — Blog" href="../../../blog/feed.xml">
+
+    <title>Les menus déroulants — Informatique au lycée</title>
+
+    <!-- Metadata et Open graph protocol -->
+<meta name="author" content="Olivier Lecluse" />
+  </head>
+  <body>
+    <!-- Mathjax -->
+    <script src="../../../static/mathjax7873.js?h=c8d3bd96"></script>
+    <script src="../../../../cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJaxb198.js?config=TeX-MML-AM_CHTML"></script>
+
+    <div class="container-fluid px-0 mx-0 ">
+      
+
+
+<article>
+<div class="row mx-0">
+  <div class="col-sm-8 offset-sm-2">
+    <h1>Les menus déroulants</h1>
+
+    
+  </div>
+</div>
+
+
+<div class="row mx-0">
+  <div class="col-sm-8 offset-sm-2">
+    <p>La pluspart des interfaces graphiques que vous connaissez sont équipées de menus déroulants. Nous allons voir dans cet exemple comment en ajouter avec TKinter.</p>
+<p>Tout d'abord, voici l'exemple :</p>
+<div class="hll"><pre><span></span><span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+
+<span class="n">mon_app</span><span class="o">=</span><span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">()</span>
+<span class="n">mon_app</span><span class="o">.</span><span class="n">geometry</span><span class="p">(</span><span class="s2">&quot;200x50&quot;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">chtitre</span><span class="p">(</span><span class="n">choix</span><span class="p">):</span>
+    <span class="n">mon_app</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">choix</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">chcolor</span><span class="p">(</span><span class="n">choix</span><span class="p">):</span>
+    <span class="n">mon_app</span><span class="o">.</span><span class="n">tk_setPalette</span><span class="p">(</span><span class="n">choix</span><span class="p">)</span>
+
+<span class="c1"># Creation de la barre de menu:</span>
+<span class="n">menu1</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Menu</span><span class="p">(</span><span class="n">mon_app</span><span class="p">)</span>
+
+<span class="c1"># Creation du sous-menu fichier:</span>
+<span class="n">fichier</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Menu</span><span class="p">(</span><span class="n">menu1</span><span class="p">,</span> <span class="n">tearoff</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+
+<span class="c1"># Nomme &quot;Fichier&quot; l&#39;entete a la racine du menu &quot;fichier&quot;:</span>
+<span class="n">menu1</span><span class="o">.</span><span class="n">add_cascade</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Fichier&quot;</span><span class="p">,</span> <span class="n">menu</span> <span class="o">=</span> <span class="n">fichier</span><span class="p">)</span>
+
+<span class="c1"># Inscrit &quot;Quitter&quot; dans ce menu et l&#39;associe a la commande gestionnaire</span>
+<span class="n">fichier</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Quitter&quot;</span><span class="p">,</span> <span class="n">command</span> <span class="o">=</span> <span class="n">mon_app</span><span class="o">.</span><span class="n">destroy</span><span class="p">)</span>
+
+<span class="c1"># Creation du sous-menu cascad:</span>
+<span class="n">cascad</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Menu</span><span class="p">(</span><span class="n">menu1</span><span class="p">,</span> <span class="n">tearoff</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">menu1</span><span class="o">.</span><span class="n">add_cascade</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Cascade&quot;</span><span class="p">,</span> <span class="n">menu</span> <span class="o">=</span> <span class="n">cascad</span><span class="p">)</span>
+
+<span class="c1"># Creation du sous-menu &quot;Titre&quot; (de cascad)</span>
+<span class="n">titre</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Menu</span><span class="p">(</span><span class="n">cascad</span><span class="p">,</span> <span class="n">tearoff</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cascad</span><span class="o">.</span><span class="n">add_cascade</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Titre&quot;</span><span class="p">,</span> <span class="n">menu</span> <span class="o">=</span> <span class="n">titre</span><span class="p">)</span>
+<span class="n">titre</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Menu Demo&quot;</span><span class="p">,</span> <span class="n">command</span> <span class="o">=</span> <span class="k">lambda</span> <span class="p">:</span> <span class="n">chtitre</span><span class="p">(</span><span class="s1">&#39;Menu Demo&#39;</span><span class="p">))</span>
+<span class="n">titre</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Test&quot;</span><span class="p">,</span> <span class="n">command</span> <span class="o">=</span> <span class="k">lambda</span> <span class="p">:</span> <span class="n">chtitre</span><span class="p">(</span><span class="s1">&#39;Test&#39;</span><span class="p">))</span>
+
+<span class="c1"># Creation du sous-menu &quot;Couleur&quot; (de cascad)</span>
+<span class="n">color</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Menu</span><span class="p">(</span><span class="n">cascad</span><span class="p">,</span><span class="n">tearoff</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span>
+<span class="n">cascad</span><span class="o">.</span><span class="n">add_cascade</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Couleur&quot;</span><span class="p">,</span> <span class="n">menu</span> <span class="o">=</span> <span class="n">color</span><span class="p">)</span>
+<span class="n">color</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;bleu&quot;</span><span class="p">,</span> <span class="n">command</span> <span class="o">=</span> <span class="k">lambda</span> <span class="p">:</span> <span class="n">chcolor</span><span class="p">(</span><span class="s1">&#39;blue&#39;</span><span class="p">))</span>
+<span class="n">color</span><span class="o">.</span><span class="n">add_command</span><span class="p">(</span><span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;rouge&quot;</span><span class="p">,</span> <span class="n">command</span> <span class="o">=</span> <span class="k">lambda</span> <span class="p">:</span> <span class="n">chcolor</span><span class="p">(</span><span class="s1">&#39;red&#39;</span><span class="p">))</span>
+
+<span class="c1"># Affiche le menu</span>
+<span class="n">mon_app</span><span class="o">.</span><span class="n">config</span><span class="p">(</span><span class="n">menu</span> <span class="o">=</span> <span class="n">menu1</span><span class="p">)</span>
+<span class="n">mon_app</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
+</pre></div>
+<p>L’argument <code class="language-python">tearoff=0</code> permet de rendre le menu non détachable</p>
+<p>Remarquez la présence du <code class="language-python">lambda</code> dans l’appel de la fonction</p>
+<div class="hll"><pre><span></span><span class="k">lambda</span> <span class="p">:</span> <span class="n">chcolor</span><span class="p">(</span><span class="err">’</span><span class="n">blue</span><span class="err">’</span><span class="p">)</span><span class="o">.</span>
+</pre></div>
+<p>Un simple <code class="language-python">chcolor(’blue’)</code> ne marcherait pas car la fonction à appeler par le menu ne doit pas contenir de paramètres. 
+Vous avez ici une astuce permettant de passer outre cette contrainte.</p>
+<p>Pour le reste, lire attentivement les commentaires dans le code. Vous apprendrez à manipuler les deux commandes principales :</p>
+<ul>
+<li><code class="language-python">add_cascade</code> pour ajouter un sous-menu</li>
+<li><code class="language-python">add_command</code> pour ajouter une commande appelant une fonction</li>
+</ul>
+
+  </div>
+</div>
+
+
+<div class="row mx-0">
+  <div class="col-sm-8 offset-sm-2">
+    
+
+  </div>
+</div>
+</article>
+
+
+    </div>
+
+    <div class="form-group">
+      &nbsp;
+    </div>
+
+    <footer class="text-center footer" id="footer">
+      <hr>
+      <a href="https://www.lecluse.fr/info/tkinter/">Visitez le site original d'Olivier Lécluse.</a><br>
+      <img src="../../../licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Licence Creative Commons BY-SA 4.0"> — Olivier Lecluse — 2020
+    </footer>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="../../../lib/jquery-3.2.1.slim.min3437.js?h=9e89d151"></script>
+    <script src="../../../lib/popper.min9b3f.js?h=c3b977aa"></script>
+    <script src="../../../lib/bootstrap.mine680.js?h=5ef2c15b"></script>
+  </body>
+
+<!-- Mirrored from www.lecluse.fr/info/tkinter/menus/ by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 09:47:07 GMT -->
+</html>

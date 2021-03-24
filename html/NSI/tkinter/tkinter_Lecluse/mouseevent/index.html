@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="fr">
+
+<!-- Mirrored from www.lecluse.fr/info/tkinter/mouseevent/ by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 09:47:01 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+
+<head>
+  <!-- Meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Olivier Lecluse, Ronan Jahier">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="../../../lib/bootstrap.min28ce.css?h=edd9ab49" crossorigin="anonymous">
+  <!-- pygment css -->
+  <link rel="stylesheet" href="../../../static/pygments.css">
+  <!-- CSS Perso (aussi peu que possible) -->
+  <link rel="stylesheet" href="../../../static/stylede76.css?h=6a07b163">
+  <title>Evénements souris — Informatique au lycée</title>
+
+  <!-- mise en forme Ronan -->
+  <!-- <link rel="stylesheet" type="text/css" href="../css/style.css" /> -->
+  <link rel="stylesheet" type="text/css" href="../css/prism.css" />
+</head>
+
+<body>
+  <div class="container-fluid px-0 mx-0 ">
+
+
+    <article>
+      <div class="row mx-0">
+        <div class="col-sm-8 offset-sm-2">
+          <h1>Evénements souris</h1>
+        </div>
+      </div>
+
+      <div class="row mx-0">
+        <div class="col-sm-8 offset-sm-2">
+          <p>Dans cet exemple, on dessine un carré sur un Canvas à l’endroit du clic de la souris. Pour cela, on utilise
+            l’événement associé au clic gauche de la souris :</p>
+          <p><img src="canvas.png" alt="canva"></p>
+          <pre><code class="language-python">
+
+import tkinter as tk
+
+# Constantes
+LARGEUR = 480
+HAUTEUR = 320
+
+def clic(event):
+    """ Gestion de l'événement clic gauche sur la zone graphique """
+    # position du pointeur de la souris
+    X = event.x
+    Y = event.y
+    # on dessine un carré
+    r = 20
+    surface_dessin.create_rectangle(X-r, Y-r, X+r, Y+r, outline='black', fill='green')
+
+def effacer():
+    """ Efface la zone graphique """
+    surface_dessin.delete(tk.ALL)
+
+# Création de la fenêtre principale (main window)
+mon_app = tk.Tk()
+mon_app.title('Cercle')
+
+# Création d'un widget Canvas (zone graphique)
+surface_dessin = tk.Canvas(mon_app, width=LARGEUR, height=HAUTEUR, bg='white')
+surface_dessin.grid(row=0, column=0, columnspan=2)
+
+# La méthode bind() permet de lier un événement avec une fonction :
+# un clic gauche sur la surface provoquera l'appel de la fonction clic()
+surface_dessin.bind('&ltButton-1&gt', clic)
+
+# Création d'un widget Button (bouton effacer)
+tk.Button(mon_app, text='Effacer', command=effacer).grid(row=1, column=0, sticky='ew')
+
+# Création d'un widget Button (bouton Quitter)
+tk.Button(mon_app, text='Quitter', command=mon_app.destroy).grid(row=1, column=1, sticky='ew')
+
+
+mon_app.mainloop()        </code></pre>
+
+          <h2 id="capture-du-clic-de-souris">Capture du clic de souris</h2>
+          <p>Pour réaliser cet exemple, nous devons</p>
+          <ul>
+            <li>appeler une fonction de notre choix lorsqu'un clic de souris est effectué</li>
+            <li>récupérer les coordonnées sur le Canvas du clic de souris</li>
+          </ul>
+          <p>La première action est réalisée par la ligne :</p>
+          <pre><code class="language-python">
+            surface_dessin.bind('&ltButton-1&gt', clic)
+          </code></pre>
+          <p>Cette nouvelle méthode <code class="language-python">bind()</code> permet d'associer un événement à une
+            fonction, ici, la fonction <code class="language-python">clic()</code>.</p>
+          <p>L'événement que nous souhaitons capturer est <code class="language-python">&lt;Button-1&gt;</code>. Cet
+            événement est prédéfini dans <em>Tkinter</em> et correspond à un clic gauche de souris.</p>
+          <p>La fonction <code class="language-python">clic()</code> qui récupère le clic de souris prend un paramètre
+            <code class="language-python">event</code> qui est généré automatiquement par <em>Tkinter</em>.
+            <code class="language-python">event</code> est un objet qui possède deux propriétés intéressantes pour notre
+            problème :
+            <code class="language-python">event.x</code> et <code class="language-python">event.y</code> qui sont les
+            coordonnées de la souris sur la surface.
+          </p>
+          <h2 id="a-vous-de-jouer">A vous de jouer</h2>
+          <p>Vous allez réaliser votre premier logiciel de dessin ! L'idée est de dessiner une ligne lorsque le bouton
+            de la souris reste enfoncé. Voici ce que vous devrez obtenir :<br>
+            <img src="dessin2.png" alt="dessin exemple">
+          </p>
+          <h3 id="quelques-indications">Quelques indications</h3>
+          <p>Pour réaliser cet exercice, vous aurez besoin de détecter un nouvel événement sur le Canvas : le
+            déplacement de la souris avec le bouton enfoncé.
+            Le nom Tkinter pour cet événement est <code class="language-python">&lt;B1-Motion&gt;</code>. Son
+            utilisation est identique à celui de l'exemple.</p>
+          <p>Pour dessiner, vous utiliserez la méthode <code class="language-python">create_line(x1, y1, x2, y2)</code> de
+            Canvas où A(x1, y1) est l'origine du segment et B(x2, y2) est l'extrémité du segment.</p>
+          <p>Du coup, vous aurez probablement besoin de mémoriser en plus de la position actuelle de la souris, sa
+            position antérieure afin de tracer le segment entre les deux positions.
+            Peut-être aurez-vous besoin de recourir à des <em>variables globales</em>.</p>
+          <h3 id="solution-possible">Solution possible</h3>
+          <pre><code class="language-python">
+            import tkinter as tk
+
+            # Constantes
+            LARGEUR = 480
+            HAUTEUR = 320
+            
+            # Variables globales
+            old_x, old_y = 0, 0
+            
+            def clic(event):
+                """ Gestion de l'événement clic gauche sur la zone graphique """
+                global old_x, old_y
+                # position du pointeur de la souris
+                old_x = event.x
+                old_y = event.y
+            
+            def drag(event):
+                global old_x, old_y
+                x = event.x
+                y = event.y
+                surface_dessin.create_line(old_x, old_y, x, y, fill='green')
+                old_x = event.x
+                old_y = event.y
+            
+            def effacer():
+                """ Efface la zone graphique """
+                surface_dessin.delete(tk.ALL)
+            
+            # Création de la fenêtre principale (main window)
+            mon_app = tk.Tk()
+            mon_app.title('Dessiner')
+            
+            # Création d'un widget Canvas (zone graphique)
+            surface_dessin = tk.Canvas(mon_app, width=LARGEUR, height=HAUTEUR, bg='white')
+            surface_dessin.grid(row=0, column=0, columnspan=2)
+            
+            # La méthode bind() permet de lier un événement avec une fonction :
+            # un clic gauche sur la surface provoquera l'appel de la fonction clic()
+            surface_dessin.bind('&ltButton-1&gt', clic)
+            surface_dessin.bind('&ltB1-Motion&gt', drag)
+            
+            # Création d'un widget Button (bouton effacer)
+            tk.Button(mon_app, text='Effacer', command=effacer).grid(row=1, column=0, sticky='ew')
+            # Création d'un widget Button (bouton Quitter)
+            tk.Button(mon_app, text='Quitter', command=mon_app.destroy).grid(row=1, column=1, sticky='ew')
+            
+            mon_app.mainloop()
+          </code></pre>
+
+        </div>
+      </div>
+
+
+      <div class="row mx-0">
+        <div class="col-sm-8 offset-sm-2">
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="form-group">
+    &nbsp;
+  </div>
+
+  <footer class="text-center footer" id="footer">
+    <hr>
+    <a href="https://www.lecluse.fr/info/tkinter/">Visitez le site original d'Olivier Lécluse.</a><br>
+    <img src="../../../licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Licence Creative Commons BY-SA 4.0"> — Olivier
+    Lecluse — 2020
+  </footer>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="../../../lib/jquery-3.2.1.slim.min3437.js?h=9e89d151"></script>
+  <script src="../../../lib/popper.min9b3f.js?h=c3b977aa"></script>
+  <script src="../../../lib/bootstrap.mine680.js?h=5ef2c15b"></script>
+  <!-- Ajout de Ronan-->
+  <script src="../js/prism.js"></script>
+</body>
+
+<!-- Mirrored from www.lecluse.fr/info/tkinter/mouseevent/ by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 09:47:03 GMT -->
+
+</html>

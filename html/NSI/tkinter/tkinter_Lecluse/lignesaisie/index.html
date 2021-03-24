@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="fr">
+
+<!-- Mirrored from www.lecluse.fr/info/tkinter/lignesaisie/ by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 09:46:58 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+
+<head>
+  <!-- Meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Olivier Lecluse, Ronan Jahier">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="../../../lib/bootstrap.min28ce.css?h=edd9ab49" crossorigin="anonymous">
+  <!-- pygment css -->
+  <link rel="stylesheet" href="../../../static/pygments.css">
+  <!-- CSS Perso (aussi peu que possible) -->
+  <link rel="stylesheet" href="../../../static/stylede76.css?h=6a07b163">
+  <title>Ligne de saisie — Informatique au lycée</title>
+
+  <!-- mise en forme Ronan -->
+  <!-- <link rel="stylesheet" type="text/css" href="../css/style.css" /> -->
+  <link rel="stylesheet" type="text/css" href="../css/prism.css" />
+</head>
+
+<body>
+
+  <div class="container-fluid px-0 mx-0 ">
+
+    <article>
+      <div class="row mx-0">
+        <div class="col-sm-8 offset-sm-2">
+          <h1>Ligne de saisie</h1>
+        </div>
+      </div>
+
+      <div class="row mx-0">
+        <div class="col-sm-8 offset-sm-2">
+          <p>Il s'agit dans cet exemple d'améliorer l'interaction avec l'utilisateur en prroposant un champ de saisie de
+            texte. Nous aurons ainsi un équivalent de la commande <strong><em>input</em></strong> en mode non graphique.
+          </p>
+          <p>Le programme proposé dans cet exemple va simuler un formulaire de saisie de mot de passe :
+            <img src="saisie.png" alt="entrer mdp">
+          </p>
+          <p>Ce sera aussi l'occasion de découvrir les boîtes de dialogue qui sont des fenêtres toute faites pour un
+            usage précis. Ici, nous afficherons un messsage en cas de mot de passe incorrect :
+            <img src="saisie_b.png" alt="pop up">
+          </p>
+          <p>Mais tout de suite, regardons le programme. Je vous laisse analyser le code pour trouver le mot de passe !
+          </p>
+          <pre><code class="language-python">
+            import tkinter as tk
+            import tkinter.messagebox as msgb # boîte de dialogue
+            
+            def verification():
+                if mot_de_passe.get() == 'python':
+                    # le mot de passe est bon :
+                    # on affiche une boîte de dialogue puis on ferme la fenêtre
+                    msgb.showinfo('Résultat','Mot de passe correct.\nAu revoir !')
+                    mon_app.destroy()
+                else:
+                    # le mot de passe est incorrect : on affiche une boîte de dialogue
+                    msgb.showwarning('Résultat','Mot de passe incorrect.\nVeuillez recommencer !')
+                    mot_de_passe.set('')
+            
+            # Création de la fenêtre principale (main window)
+            mon_app = tk.Tk()
+            mon_app.title('Identification requise')
+            
+            # Création d'un widget Label (texte 'Mot de passe')
+            texte1 = tk.Label(mon_app, text='Mot de passe ')
+            texte1.grid(row=0, column=0)
+            
+            # Création d'un widget Entry (champ de saisie)
+            mot_de_passe = tk.StringVar()
+            ligne_saisie = tk.Entry(mon_app, textvariable=mot_de_passe, show='*', bg='bisque', fg='maroon')
+            ligne_saisie.focus_set()
+            ligne_saisie.grid(row=0, column=1)
+            
+            # Création d'un widget Button (bouton Valider)
+            tk.Button(mon_app, text='Valider', command=verification).grid(row=0, column=2)
+            
+            mon_app.mainloop()
+            </code></pre>
+
+          <h2 id="fonctionnement-du-champ-de-saisie-texte">Fonctionnement du champ de saisie texte</h2>
+          <p>Le champ de saisie du mot de passe se déclare au moyen de la commande suivante :</p>
+          <pre><code class="language-python">
+            ligne_saisie = tk.Entry(mon_app, textvariable=mot_de_passe, show='*', bg='bisque', fg='maroon')
+          </code></pre>
+          <p>La réponse viendra se positionner dans la variable <em>mot_de_passe</em> qui est un objet
+            <em>StringVar()</em> comme on peut s'en douter à présent (c'est en effet un texte qui sera modifié par
+            l'utilisateur).
+          </p>
+          <p>Une petite subtilité dans cet exemple est le paramètre <code class="language-python">show='*'</code> :
+            Celui-ci permet d'afficher des "*" au lieu du mot de passe en clair.</p>
+          <p>La ligne suivante mérite aussi une petite explication :</p>
+          <pre><code class="language-python">
+            ligne_saisie.focus_set()
+            </code></pre>
+          <p>Celle-ci permet en effet de positionner le curseur dans le champ de saisie afin qu'il n'y ait pas besoin de
+            cliquer dedans avant de commencer à écrire.</p>
+          <p>La récupération de la saisie de l'utilisateur se fait au moyen de l'appel à la méthode : <code
+              class="language-python">mot_de_passe.get()</code></p>
+          <h2 id="explication-sur-les-dialogues">Explication sur les dialogues</h2>
+          <p>Une fenêtre s'affiche avec un message et un bouton <strong><em>OK</em></strong> une fois le mot de passe
+            saisi. Cette fenêtre est en quelque sorte <em>préfabriquée</em>. C'est ce qu'on appelle un dialogue.</p>
+          <p>Tkinter possède beaucoup de dialogues prédéfinis :</p>
+          <ul>
+            <li>pour afficher des messages d'alerte</li>
+            <li>pour sélectionner des couleurs</li>
+            <li>pour sélectionner des fichiers dans le disque dur</li>
+            <li>etc...</li>
+          </ul>
+          <p>Pour utiliser cette foncitonnalité de dialogue d'alerte, nous commencerons par importer la librarie idoine
+            :</p>
+          <pre><code class="language-python">
+            import tkinter.messagebox as msgb
+              </code></pre>
+          <p>Ensuite, l'affichage d'un message se fait par la simple commande :</p>
+          <pre><code class="language-python">
+            msgb.showinfo('Résultat','Mot de passe correct.\nAu revoir !')
+            </code></pre>
+          <p>Cela affiche la fenêtre avec le label et le bouton avec une commande aussi simple qu'un
+            <strong><em>print</em></strong>. magique ! Remarquez au passage le caractère <strong><em>\n</em></strong>
+            permettant de passer à la ligne dans le message.
+          </p>
+          <p>La commande</p>
+          <pre><code class="language-python">
+            msgb.showwarning('Résultat','Mot de passe incorrect.\nVeuillez recommencer !')
+            </code></pre>
+          <p>est d'usage similaire. Elle affiche un panneau d'avertissement en plus.</p>
+
+        </div>
+      </div>
+
+
+      <div class="row mx-0">
+        <div class="col-sm-8 offset-sm-2">
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <div class="form-group">
+    &nbsp;
+  </div>
+
+  <footer class="text-center footer" id="footer">
+    <hr>
+    <a href="https://www.lecluse.fr/info/tkinter/">Visitez le site original d'Olivier Lécluse.</a><br>
+    <img src="../../../licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Licence Creative Commons BY-SA 4.0"> — Olivier
+    Lecluse — 2020
+  </footer>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="../../../lib/jquery-3.2.1.slim.min3437.js?h=9e89d151"></script>
+  <script src="../../../lib/popper.min9b3f.js?h=c3b977aa"></script>
+  <script src="../../../lib/bootstrap.mine680.js?h=5ef2c15b"></script>
+  <!-- Ajout de Ronan-->
+  <script src="../js/prism.js"></script>
+</body>
+
+<!-- Mirrored from www.lecluse.fr/info/tkinter/lignesaisie/ by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 09:47:00 GMT -->
+
+</html>

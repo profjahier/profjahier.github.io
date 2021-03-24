@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+  <!-- Meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Olivier Lecluse, Ronan Jahier">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="../../../lib/bootstrap.min28ce.css?h=edd9ab49" crossorigin="anonymous">
+  <!-- pygment css -->
+  <link rel="stylesheet" href="../../../static/pygments.css">
+  <!-- CSS Perso (aussi peu que possible) -->
+  <link rel="stylesheet" href="../../../static/stylede76.css?h=6a07b163">
+  <title>Hello world — Informatique au lycée</title>
+
+  <!-- mise en forme Ronan -->
+  <!-- <link rel="stylesheet" type="text/css" href="../css/style.css" /> -->
+  <link rel="stylesheet" type="text/css" href="../css/prism.css" />
+</head>
+
+<body>
+  <!-- Mathjax -->
+  <script src="../../../static/mathjax7873.js?h=c8d3bd96"></script>
+  <script
+    src="../../../../cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/MathJaxb198.js?config=TeX-MML-AM_CHTML"></script>
+
+  <div class="container-fluid px-0 mx-0 ">
+
+    <article>
+      <div class="row mx-0">
+        <div class="col-sm-8 offset-sm-2">
+          <h1>Hello world</h1>
+        </div>
+      </div>
+
+
+      <div class="row mx-0">
+        <div class="col-sm-8 offset-sm-2">
+
+          <h2 id="premier-contact">Premier contact</h2>
+          <p>Dans l'exemple qui suit, nous allons créer une fenêtre très simple, et y ajouter deux composants graphiques
+            (widgets) typiques : un bout de texte (ou label) et un bouton (ou button).</p>
+
+          <pre><code class="language-python">
+            import tkinter as tk
+
+            # Creation de la fenetre graphique
+            mon_app = tk.Tk()
+            
+            # Creation des composants de la fenetre (widgets)
+            texte = tk.Label(mon_app, text='Bonjour tout le monde !', fg='red')
+            texte.grid(row=0, column=0)
+            
+            bouton = tk.Button(mon_app, text='Quitter', command = mon_app.destroy)
+            bouton.grid(row=1, column=0)
+            
+            # Lancement de l'application (boucle principale)
+            mon_app.mainloop()
+          </code></pre>
+
+          <p>Lancez le programme python, vous devriez obtenir ceci : <img src="hw1.png" alt="mon_app"></p>
+          <h2 id="explications">Explications</h2>
+          <p>La première ligne de notre exemple :
+            <code class="language-python">import tkinter as tk</code> consiste à importer le module <em>tkinter</em>.
+            Pour accéder aux fonctionnalités de ce module (<em>propriétés</em> et <em>méthodes</em>) il faudra faire
+            précéder le nom de la commande du préfixe <code class="language-python">tk.</code>
+          </p>
+          <p>À la deuxième ligne de notre exemple : <code class="language-python">mon_app = tk.Tk()</code>, nous créons
+            notre <em>objet</em>
+            application qui prend la forme d'une fenêtre graphique.</p>
+          <p>À la troisième ligne : <code
+              class="language-python">texte = tk.Label(mon_app, text='Bonjour tout le monde !', fg='red')</code>
+            nous créons un autre objet (un <strong>widget</strong>), cette fois à partir de la classe <em>Label()</em>.
+            Comme son nom l'indique, cette classe définit toutes sortes d'étiquettes. En fait, il s'agit tout simplement
+            de fragments de texte quelconques, utilisables pour afficher des informations et des messages divers à
+            l'intérieur d'une fenêtre. Nous fournissons un certain nombre d'arguments dans des parenthèses :</p>
+          <p>Le premier argument transmis (<em>mon_app</em>), indique que le nouveau widget que nous sommes en train de
+            créer sera contenu dans un autre widget préexistant, que nous désignons comme le <strong>parent</strong> (On
+            pourra dire aussi que l'objet <em>texte</em> est un <strong>enfant</strong> de l'objet <em>mon_app</em>).
+            dans cet exemple, le widget <code class="language-python">texte</code> est un enfant de notre fenêtre
+            application.</p>
+          <p>Les deux arguments suivants servent à préciser la forme exacte que doit prendre notre widget. Ce sont en
+            effet deux options de création, chacune fournie sous la forme d'une chaîne de caractères : d'abord le texte
+            de l'étiquette, ensuite sa couleur d'avant-plan (ou <em>foreground</em>, en abrégé <code
+              class="language-python">fg</code>).
+            Ainsi le texte que nous voulons afficher est bien défini, et il doit apparaître coloré en rouge.
+            Nous pourrions encore préciser bien d'autres caractéristiques : la police à utiliser, ou la couleur
+            d'arrière-plan, par exemple.</p>
+          <p>À la quatrième ligne de notre exemple : <code class="language-python">texte.grid(row=0, column=0)</code> nous activons la
+            méthode du gestionnaire de positionnement
+            <code class="language-python">grid()</code>.
+            Celle-ci permet de disposer les widgets dans la fenêtre parent. Il ne faut pas oublier d'invoquer cette
+            méthode
+            sinon le widget n'apparaîtra pas sur notre fenêtre application puisque <em>TKinter</em> ne saura pas
+            comment disposer notre texte dans la fenêtre.
+          </p>
+          <p>À la cinquième ligne : <code
+              class="language-python">bouton = tk.Button(mon_app text='Quitter', command = mon_app.destroy)</code>
+            nous créons notre second widget enfant : un <strong>bouton</strong>.
+            Pour cela, nous créons une variable <code class="language-python">bouton</code> en invoquant la commande
+            <em>TKinter</em>
+            <code class="language-python">tk.Button()</code>
+            avec certain nombre d'arguments : Étant donné qu'il s'agit cette fois d'un objet interactif,
+            nous devons préciser avec l'option <strong>command</strong> ce qui devra se passer lorsque l'utilisateur
+            effectuera un clic sur le bouton.
+            Dans ce cas précis, nous appellerons <code class="language-python">mon_app.destroy()</code>, ce qui devrait
+            provoquer l'effacement
+            de la fenêtre.
+          </p>
+          <p>La sixième ligne appèle la méthode <code class="language-python">bouton.grid(row=1, column=0)</code> pour placer le bouton
+            dans notre fenêtre
+            application. Il est placé comme le widget label dans la colonne n°0 (column=0), mais à la ligne n°1 (row=1).</p>
+          <p>Pour finir, nous donnons vie à notre application par la ligne <code
+              class="language-python">mon_app.mainloop()</code>. C'est elle
+            qui
+            provoque le démarrage du réceptionnaire d'<strong>événements</strong> associé à la fenêtre.
+            Comme son nom l'indique, <em>mainloop</em> est une boucle qui « tournera » en permanence
+            en tâche de fond, dans l'attente de messages émis par le système d'exploitation de
+            l'ordinateur. Celui-ci interroge en effet sans cesse son environnement,
+            notamment au niveau des périphériques d'entrée (souris, clavier, etc.).
+            Lorsqu'un événement quelconque est détecté, divers messages décrivant cet événement
+            sont expédiés aux programmes qui souhaitent en être avertis.</p>
+          <p>Pour vous convaincre de l'utilité de la <em>mainloop</em>,
+            essayez de relancer le programme précédent en retirant la dernière ligne. Que se passe t-il ?</p>
+          <h2 id="programmes-pilotes-par-evenements">Programmes pilotés par événements</h2>
+          <p>Dans les programmes que vous avez réalisé jusqu'à présent, l'éxécution se déroulait de manièrre linéaire du
+            début à la fin. Souvent, vous commencez par initialiser des variables, puis vous exécutez une ou plusieurs
+            actions dans un ordre bien défini et enfin, vous affichez le résultat de votre travail.</p>
+          <p>Dans le cas d’un programme qui utilise une interface graphique, par contre, l’organisation interne est
+            différente. On dit d’un tel programme qu’il est piloté par les événements. Après sa phase d’initialisation,
+            un programme de ce type se met en quelque sorte « en attente », et passe la main à un autre logiciel, lequel
+            est plus ou moins intimement intégré au système d’exploitation de l’ordinateur et « tourne » en permanence.
+            <img  src="prog_evt.png" alt="programmation événementielle">
+          </p>
+          <p>Ce réceptionnaire d’événements scrute sans cesse tous les périphériques (clavier, souris, etc.) et réagit
+            immédiatement lorsqu’un événement y est détecté. Un tel événement peut être une action quelconque de
+            l’utilisateur : déplacement de la souris, appui sur une touche, etc., mais aussi un événement externe ou un
+            automatisme (top d’horloge, par ex.) Lorsqu’il détecte un événement, le réceptionnaire envoie un message
+            spécifique au programme, lequel doit être conçu pour réagir en conséquence.
+            Dans le cas d’un programme avec interface graphique, l’ordre dans lequel les fonctions sont appelées n’est
+            plus inscrit nulle part dans le programme. Ce sont les événements qui pilotent !</p>
+          <p>En vous aidant du programme donné au début de ce classeur, réalisez une application d'apparence semblable à
+            ceci :
+            <img src="hw2.png" alt="programmation événementielle">
+          </p>
+          <p>Voici une solution possible</p>
+          
+          <pre><code class="language-python">
+            import tkinter as tk
+
+            # Creation de la fenetre graphique
+            mon_app = tk.Tk()
+            
+            # Creation des composants de la fenetre (widgets)
+            texte1 = tk.Label(mon_app, text='Bonjour tout le monde !', fg='blue')
+            texte1.grid(row=0, column=0)
+            
+            texte2 = tk.Label(mon_app, text="La NSI c'est super !!! !", bg='red')
+            texte2.grid(row=1, column=0)
+            bouton = tk.Button(mon_app, text='Au revoir', command = mon_app.destroy)
+            bouton.grid(row=2, column=0)
+            
+            # Lancement de l'application (boucle principale)
+            mon_app.mainloop()
+          </code></pre>
+
+        </div>
+      </div>
+
+
+      <div class="row mx-0">
+        <div class="col-sm-8 offset-sm-2">
+
+
+        </div>
+      </div>
+    </article>
+
+
+  </div>
+
+  <div class="form-group">
+    &nbsp;
+  </div>
+  <footer class="text-center footer" id="footer">
+    <hr>
+    <a href="https://www.lecluse.fr/info/tkinter/">Visitez le site original d'Olivier Lécluse.</a><br>
+    <img src="../../../licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Licence Creative Commons BY-SA 4.0"> — Olivier
+    Lecluse — 2020
+  </footer>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="../../../lib/jquery-3.2.1.slim.min3437.js?h=9e89d151"></script>
+  <script src="../../../lib/popper.min9b3f.js?h=c3b977aa"></script>
+  <script src="../../../lib/bootstrap.mine680.js?h=5ef2c15b"></script>
+
+  <!-- Ajout de Ronan-->
+  <script src="../js/prism.js"></script>
+</body>
+
+
+
+<!-- Mirrored from www.lecluse.fr/info/tkinter/helloworld/ by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 09:46:55 GMT -->
+
+</html>

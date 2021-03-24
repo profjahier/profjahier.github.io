@@ -1,0 +1,206 @@
+<!doctype html>
+<html lang="fr">
+
+<!-- Mirrored from www.lecluse.fr/info/tkinter/kbdevent/ by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 09:47:03 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+
+<head>
+  <!-- Meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Olivier Lecluse, Ronan Jahier">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="../../../lib/bootstrap.min28ce.css?h=edd9ab49" crossorigin="anonymous">
+  <!-- pygment css -->
+  <link rel="stylesheet" href="../../../static/pygments.css">
+  <!-- CSS Perso (aussi peu que possible) -->
+  <link rel="stylesheet" href="../../../static/stylede76.css?h=6a07b163">
+  <title>Evénements clavier — Informatique au lycée</title>
+
+  <!-- mise en forme Ronan -->
+  <!-- <link rel="stylesheet" type="text/css" href="../css/style.css" /> -->
+  <link rel="stylesheet" type="text/css" href="../css/prism.css" />
+</head>
+
+<body>
+  <div class="container-fluid px-0 mx-0 ">
+
+    <article>
+      <div class="row mx-0">
+        <div class="col-sm-8 offset-sm-2">
+          <h1>Evénements clavier</h1>
+        </div>
+      </div>
+
+      <div class="row mx-0">
+        <div class="col-sm-8 offset-sm-2">
+          <p>Dans cette activité, nous allons déplacer un pion sur une surface Canvas en utilisant les touches du
+            clavier pour le diriger.</p>
+          <p><img src="surface.png" alt="surface"></p>
+          <p>Mais tout de suite, regardons le programme :</p>
+
+          <pre><code class="language-python">
+            import tkinter as tk
+
+            # Variables globales
+            
+            ## Constantes
+            LARGEUR = 480
+            HAUTEUR = 320
+            ## Position initiale du pion
+            pos_x = 230
+            pos_y = 150
+            
+            def clavier(event):
+                """ Gestion de l'événement Appui sur une touche du clavier """
+                global pos_x, pos_y
+                touche = event.char
+                # déplacement vers le haut
+                if touche == 'a':
+                    pos_y -= 20
+                # déplacement vers le bas
+                if touche == 'q':
+                    pos_y += 20
+                # déplacement vers la droite
+                if touche == 'm':
+                    pos_x += 20
+                # déplacement vers le haut
+                if touche == 'l':
+                    pos_x -= 20
+                # on dessine le pion à sa nouvelle position
+                surface_dessin.coords(pion, pos_x-10, pos_y-10, pos_x+10, pos_y+10)
+                # Création de la fenêtre principale
+            
+            # Création de la fenêtre principale (main window)
+            mon_app = tk.Tk()
+            mon_app.title('Clavier événement')
+            
+            # Création d'un widget Canvas (zone graphique)
+            surface_dessin = tk.Canvas(mon_app, width=LARGEUR, height=HAUTEUR, bg='white')
+            surface_dessin.grid(row=0, column=0)
+            surface_dessin.focus_set()
+            
+            # Création du pion sur la surface
+            pion = surface_dessin.create_oval(pos_x-10, pos_y-10, pos_x+10, pos_y+10, width=2, fill='red')
+            
+            # La méthode bind() permet de lier un événement avec une fonction :
+            # un appui clavier provoquera l'appel de la fonction clavier()
+            surface_dessin.bind('&ltKey&gt', clavier)
+            
+            # Création d'un widget Button (bouton Quitter)
+            tk.Button(mon_app, text = 'Quitter', command = mon_app.destroy).grid(row=1, column=0)
+            
+            mon_app.mainloop()
+          </code></pre>
+          <h2 id="explications">Explications</h2>
+          <p>Tout d'abord, les coordonnées du pion sont stockées dans les variables globales <code
+              class="language-python">pos_x</code> et <code class="language-python">pos_y</code>.
+            La fonction <code class="language-python">clavier()</code> a pour rôle de les actualiser en fonction de la
+            touche qui a été pressée.</p>
+          <p>Pour associer l'appel de la fonction <code class="language-python">Clavier()</code> lorsqu'une touche est
+            pressée, le principe est le même que pour le clic de souris :
+            on appelle la méthode <code class="language-python">bind()</code> associée à la surface de dessin.
+            L'événement qui nous intéresse ici est désigné par <code class="language-python">&lt;Key&gt;</code>.</p>
+          <p>Une petite subtilité ici cependant : pour que la surface capture les événements clavier, il faut qu'elle
+            soit sélectionnée (qu'elle ait le <em>focus</em> comme on dit).
+            On lui donne le focus grâce à la commande</p>
+
+            <pre><code class="language-python">
+              surface_dessin.focus_set()
+            </code></pre>
+          <p>Nous avons déjà rencontré cette méthode lorsque l'on voulait passer le contrôle à un champ de saisie, le
+            principe est ici le même.</p>
+          <p>La dernière chose qu'il reste à voir, c'est comment modifier les coordonnées de notre pion lorsque les
+            variables <code class="language-python">pos_x</code> et <code class="language-python">pos_y</code> ont été
+            ajustées. Cela se fait par l'appel :</p>
+
+            <pre><code class="language-python">
+              surface_dessin.coords(pion, pos_x-10, pos_y-10, pos_x+10, pos_y+10)
+            </code></pre>
+          <p><code class="language-python">pion</code> est une variable globale créée par la commande <code
+              class="language-python">create_oval()</code>.</p>
+          <h2 id="a-vous-de-jouer">A vous de jouer</h2>
+          <p>Dans l'exemple ci-dessus, il n'y a pas de limite au déplacement du pion, même lorsque ce dernier sort du
+            Canvas. Modifier le programme afin que s'il sort d'un coté de la fenêtre, il réapparaisse de l'autre, un peu
+            comme dans le jeu du PacMan.</p>
+          <h3 id="une-solution">Une solution</h3>
+
+          <pre><code class="language-python">
+            import tkinter as tk
+
+            # Variables globales
+            
+            ## Constantes
+            LARGEUR = 480
+            HAUTEUR = 320
+            ## Position initiale du pion
+            pos_x = 230
+            pos_y = 150
+            
+            def clavier(event):
+                """ Gestion de l'événement Appui sur une touche du clavier """
+                global pos_x, pos_y
+                touche = event.char
+                # déplacement vers le haut
+                if touche == 'a':
+                    pos_y = (pos_y - 20) % HAUTEUR
+                # déplacement vers le bas
+                if touche == 'q':
+                    pos_y = (pos_y + 20) % HAUTEUR
+                # déplacement vers la droite
+                if touche == 'm':
+                    pos_x = (pos_x + 20) % LARGEUR
+                # déplacement vers le haut
+                if touche == 'l':
+                    pos_x = (pos_x - 20) % LARGEUR
+                # on dessine le pion à sa nouvelle position
+                surface_dessin.coords(pion, pos_x-10, pos_y-10, pos_x+10, pos_y+10)
+                # Création de la fenêtre principale
+            
+            # Création de la fenêtre principale (main window)
+            mon_app = tk.Tk()
+            mon_app.title('Clavier événement')
+            
+            # Création d'un widget Canvas (zone graphique)
+            surface_dessin = tk.Canvas(mon_app, width=LARGEUR, height=HAUTEUR, bg='white')
+            surface_dessin.grid(row=0, column=0)
+            surface_dessin.focus_set()
+            
+            # Création du pion sur la surface
+            pion = surface_dessin.create_oval(pos_x-10, pos_y-10, pos_x+10, pos_y+10, width=2, fill='red')
+            
+            # La méthode bind() permet de lier un événement avec une fonction :
+            # un appui clavier provoquera l'appel de la fonction clavier()
+            surface_dessin.bind('&ltKey&gt', clavier)
+            
+            # Création d'un widget Button (bouton Quitter)
+            tk.Button(mon_app, text = 'Quitter', command = mon_app.destroy).grid(row=1, column=0)
+            
+            mon_app.mainloop()
+          </code></pre>
+
+        </div>
+      </div>
+    </article>
+  </div>
+
+  <footer class="text-center footer" id="footer">
+    <hr>
+    <a href="https://www.lecluse.fr/info/tkinter/">Visitez le site original d'Olivier Lécluse.</a><br>
+    <img src="../../../licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Licence Creative Commons BY-SA 4.0"> — Olivier
+    Lecluse — 2020
+  </footer>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="../../../lib/jquery-3.2.1.slim.min3437.js?h=9e89d151"></script>
+  <script src="../../../lib/popper.min9b3f.js?h=c3b977aa"></script>
+  <script src="../../../lib/bootstrap.mine680.js?h=5ef2c15b"></script>
+  <!-- Ajout de Ronan-->
+  <script src="../js/prism.js"></script>
+</body>
+
+<!-- Mirrored from www.lecluse.fr/info/tkinter/kbdevent/ by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 09:47:04 GMT -->
+
+</html>

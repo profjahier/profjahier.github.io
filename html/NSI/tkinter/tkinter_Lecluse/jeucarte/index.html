@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="fr">
+
+<!-- Mirrored from www.lecluse.fr/info/tkinter/jeucarte/ by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 09:47:04 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+
+<head>
+  <!-- Meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Olivier Lecluse, Ronan Jahier">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="../../../lib/bootstrap.min28ce.css?h=edd9ab49" crossorigin="anonymous">
+  <!-- pygment css -->
+  <link rel="stylesheet" href="../../../static/pygments.css">
+  <!-- CSS Perso (aussi peu que possible) -->
+  <link rel="stylesheet" href="../../../static/stylede76.css?h=6a07b163">
+  <title>Jeu de carte — Informatique au lycée</title>
+
+
+  <!-- mise en forme Ronan -->
+  <!-- <link rel="stylesheet" type="text/css" href="../css/style.css" /> -->
+  <link rel="stylesheet" type="text/css" href="../css/prism.css" />
+</head>
+
+<body>
+
+  <div class="container-fluid px-0 mx-0 ">
+
+
+    <article>
+      <div class="row mx-0">
+        <div class="col-sm-8 offset-sm-2">
+          <h1>Jeu de carte</h1>
+        </div>
+      </div>
+
+      <div class="row mx-0">
+        <div class="col-sm-8 offset-sm-2">
+          <p>Le programme suivant dessine une carte sur un canvas. Un clic gauche avec la souris sur la carte retourne
+            celle-ci.</p>
+          <p><img src="jeu_carte.png" alt="jeu de cartes"></p>
+          <p>Voici le programme. Pour le tester, vous aurez besoin de copier les fichiers <em>carte&ltnumero&gt.png</em> dans
+            le même dossier que le fichier python contenant le programme.</p>
+            <pre><code class="language-python">  
+              import tkinter as tk
+
+              # Variables globales
+              LARGEUR, HAUTEUR = 292, 296
+              no_image = 1 # No de carte
+              
+              def change_carte(event):
+                  """Changement de carte si clic sur la carte"""
+                  global no_image, imgtk
+                  # On verifie que le clic a eu lieu sur la carte
+                  if 50 < event.x < 242 and 10 < event.y < 286:
+                      no_image = no_image % 8 + 1 # echange du no de carte
+                      imgtk = tk.PhotoImage(file="carte" + str(no_image) + ".png")
+                      # On charge la nouvelle image
+                      surface_dessin.itemconfigure(ma_carte, image=imgtk)
+              
+              # Création de la fenêtre principale (main window)
+              mon_app = tk.Tk()
+              mon_app.title('Jeu de carte')
+              
+              # Création d'un widget Canvas (zone graphique)
+              surface_dessin = tk.Canvas(mon_app, width=LARGEUR, height=HAUTEUR, bg='white')
+              surface_dessin.grid(row=0, column=0)
+              # La méthode bind() permet de lier un événement avec une fonction :
+              # un clic gauche sur la surface provoquera l'appel de la fonction clic()
+              surface_dessin.bind('&ltButton-1&gt', change_carte)
+              
+              # Bouton quitter
+              tk.Button(mon_app, text = 'Quitter', command = mon_app.destroy).grid(row=1, column=0)
+              
+              # Placement de l'image initiale designee par "ma_carte" sur le canvas
+              imgtk = tk.PhotoImage(file="carte1.png")
+              ma_carte = surface_dessin.create_image((50, 10), image=imgtk, anchor="nw")
+              
+              mon_app.mainloop()</code></pre>
+          <h2 id="affichage-d-un-fichier-gif-sur-un-canvas">Affichage d'un fichier image sur un Canvas</h2>
+          <p>L'affichage d'un fichier <em>.png</em> sur un Canvas se fait simplement à l'aide de ces deux lignes :</p>
+          <pre><code class="language-python">
+            imgtk = tk.PhotoImage(file="carte1.png")
+            ma_carte = surface_dessin.create_image((50, 10), image=imgtk, anchor="nw")
+          </code></pre>
+          <p>La première ligne charge l'image en mémoire dans la variable <code
+              class="language-python">imgtk</code>, et la seconde se charge de son affichage sur la surface
+            graphique aux coordonnées indiquées.
+            Le paramètre <code class="language-python">anchor</code> sert à indiquer que les coordonnées donées sont
+            celles du coin supérieur gauche.</p>
+          <p>Dans le reste du programme, l'objet image sur la surface graphique sera accessible via la variable <code
+              class="language-python">ma_carte</code>.</p>
+          <h2 id="retournement-de-la-carte">Retournement de la carte</h2>
+          <p>Pour retourner la carte, on doit reconfigurer l'objet <code class="language-python">ma_carte</code> afin de
+            modifier son attribut image sur l'autre face de l'image. Cela se fait gràce à la méthode <code
+              class="language-python">itemconfigure()</code> de la surface graphique :</p>
+              <pre><code class="language-python">
+                surface_dessin.itemconfigure(ma_carte, image=imgtk)
+              </code></pre>
+          <p>Le reste de la fonction <code class="language-python">change_carte()</code> se charge d'alterner les images.
+            On utilise pour cela une petite astuce utilisant l'opération modulo :</p>
+            <pre><code class="language-python">
+              no_image = no_image % 8 + 1 # echange du no de carte
+            </code></pre>
+          <p>Pour finir, on s'assure de ne retourner la carte que si le clic a été fait dans la zone de la carte.
+            Comme on connaît les coordonnées du clic, un test d'intervalle pour les coordonnées se charge de cette
+            vérification.</p>
+        </div>
+      </div>
+
+    </article>
+  </div>
+
+
+  <footer class="text-center footer" id="footer">
+    <hr>
+    <a href="https://www.lecluse.fr/info/tkinter/">Visitez le site original d'Olivier Lécluse.</a><br>
+    <img src="../../../licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Licence Creative Commons BY-SA 4.0"> — Olivier
+    Lecluse — 2020
+  </footer>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="../../../lib/jquery-3.2.1.slim.min3437.js?h=9e89d151"></script>
+  <script src="../../../lib/popper.min9b3f.js?h=c3b977aa"></script>
+  <script src="../../../lib/bootstrap.mine680.js?h=5ef2c15b"></script>
+  <!-- Ajout de Ronan-->
+  <script src="../js/prism.js"></script>
+</body>
+
+<!-- Mirrored from www.lecluse.fr/info/tkinter/jeucarte/ by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 09:47:05 GMT -->
+
+</html>

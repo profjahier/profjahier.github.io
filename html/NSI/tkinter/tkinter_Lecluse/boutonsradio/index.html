@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="fr">
+
+<!-- Mirrored from www.lecluse.fr/info/tkinter/boutonsradio/ by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 09:46:57 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+
+<head>
+  <!-- Meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Olivier Lecluse, Ronan Jahier">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="../../../lib/bootstrap.min28ce.css?h=edd9ab49" crossorigin="anonymous">
+  <!-- pygment css -->
+  <link rel="stylesheet" href="../../../static/pygments.css">
+  <!-- CSS Perso (aussi peu que possible) -->
+  <link rel="stylesheet" href="../../../static/stylede76.css?h=6a07b163">
+  <title>Texte variable — Informatique au lycée</title>
+
+  <!-- mise en forme Ronan -->
+  <!-- <link rel="stylesheet" type="text/css" href="../css/style.css" /> -->
+  <link rel="stylesheet" type="text/css" href="../css/prism.css" />
+  <title>Boutons Radio — Informatique au lycée</title>
+</head>
+
+<body>
+
+  <div class="container-fluid px-0 mx-0 ">
+
+    <article>
+      <div class="row mx-0">
+        <div class="col-sm-8 offset-sm-2">
+          <h1>Boutons Radio</h1>
+        </div>
+      </div>
+
+
+      <div class="row mx-0">
+        <div class="col-sm-8 offset-sm-2">
+          <p>Le programme ci-dessous illustre l’utilisation des boutons radio pour créer un questionnaire type QCM. Un
+            bouton radio est un bouton rond que l'on peut cocher pour indiquer un choix. Observez le résultat attendu :
+          </p>
+          <p><img src="radio.png" alt="boutons radio"></p>
+          <pre><code class="language-python">
+            import tkinter as tk
+
+            def reponse():
+                texte_qst.set('Votre réponse est -> ' + texte_rep.get())
+            
+            def autre_question():
+                texte_choixA.set("Quatre pattes")
+                texte_choixB.set("Huit pattes")
+                texte_choixC.set("Six pattes")
+                texte_qst.set("Combien avait-il de pattes ?")
+                texte_rep.set("")
+            
+            mon_app = tk.Tk()
+            mon_app.title('Questionnaire')
+            
+            texte_qst = tk.StringVar() # texte variable acceuillant la question
+            texte_qst.set("Quelle est la couleur du cheval blanc d'Henry IV ?")
+            
+            texte_rep = tk.StringVar() # texte variable accueillant la réponse
+            
+            # Création d'un widget Label
+            tk.Label(mon_app, textvariable=texte_qst, fg='red', bg='white').grid(row=0, column=0, columnspan=3)
+            
+            # Création des textes pour les réponses
+            texte_choixA = tk.StringVar()
+            texte_choixB = tk.StringVar()
+            texte_choixC = tk.StringVar()
+            texte_choixA.set("Blanc")
+            texte_choixB.set("Gris")
+            texte_choixC.set("Vert")
+            
+            # Création des boutons radio
+            tk.Radiobutton(mon_app, textvariable=texte_choixA, value="A", variable=texte_rep).grid(row=1, column=0, sticky='w')
+            tk.Radiobutton(mon_app, textvariable=texte_choixB, value="B", variable=texte_rep).grid(row=2, column=0, sticky='w')
+            tk.Radiobutton(mon_app, textvariable=texte_choixC, value="C", variable=texte_rep).grid(row=3, column=0, sticky='w')
+            
+            # Création des boutons
+            tk.Button(mon_app, text='Répondre', command=reponse).grid(row=4, column=0, sticky='ew')
+            tk.Button(mon_app, text='Autre',    command=autre_question).grid(row=4, column=1, sticky='ew')
+            tk.Button(mon_app, text='Quitter',  command=mon_app.destroy).grid(row=4, column=2, sticky='ew')
+            
+            mon_app.mainloop()
+          </code></pre>
+          <h2 id="explications">Explications</h2>
+          <p>Attardons nous sur la nouveauté de cet exemple : les radio-bouttons. On les déclare par une ligne de ce
+            type :</p>
+          <pre><code class="language-python">
+            tk.Radiobutton(mon_app, textvariable=texte_choixA, value="A", variable=texte_rep).grid(row=1, column=0, sticky='w')
+            </code></pre>
+
+          <ul>
+            <li>Les textes variables <code class="language-python">texte_choixA</code> etc... servent à faire varier les
+              intitulés des réponses en fonction des questions.</li>
+            <li>la réponse se fait au moyen d'un texte variable : <code class="language-python">texte_rep</code></li>
+            <li>Pour griser les boutons et ne pas proposer de réponse par défaut, on positionne la réponse à ""</li>
+          </ul>
+          <p>On remarque que pour éviter la création de variables inutiles et alléger un peu le code, on peut appeler la
+            méthode <code class="language-python">.grid()</code> immédiatement après la création du widget.</p>
+          <p>Le reste est à présent classique. Les commentaires disséminés dans le programme doivent vous permettre de
+            comprendre cet exemple.</p>
+
+        </div>
+      </div>
+
+
+      <div class="row mx-0">
+        <div class="col-sm-8 offset-sm-2">
+
+
+        </div>
+      </div>
+    </article>
+
+
+  </div>
+
+  <div class="form-group">
+    &nbsp;
+  </div>
+
+  <footer class="text-center footer" id="footer">
+    <hr>
+    <a href="https://www.lecluse.fr/info/tkinter/">Visitez le site original d'Olivier Lécluse.</a><br>
+    <img src="../../../licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Licence Creative Commons BY-SA 4.0"> — Olivier
+    Lecluse — 2020
+  </footer>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="../../../lib/jquery-3.2.1.slim.min3437.js?h=9e89d151"></script>
+  <script src="../../../lib/popper.min9b3f.js?h=c3b977aa"></script>
+  <script src="../../../lib/bootstrap.mine680.js?h=5ef2c15b"></script>
+  <!-- Ajout de Ronan-->
+  <script src="../js/prism.js"></script>
+</body>
+
+<!-- Mirrored from www.lecluse.fr/info/tkinter/boutonsradio/ by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 09:46:58 GMT -->
+
+</html>

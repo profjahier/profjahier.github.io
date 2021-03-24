@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="fr">
+
+<!-- Mirrored from www.lecluse.fr/info/tkinter/jeucarte/ by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 09:47:04 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+
+<head>
+  <!-- Meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="author" content="Olivier Lecluse, Ronan Jahier">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="../../../lib/bootstrap.min28ce.css?h=edd9ab49" crossorigin="anonymous">
+  <!-- pygment css -->
+  <link rel="stylesheet" href="../../../static/pygments.css">
+  <!-- CSS Perso (aussi peu que possible) -->
+  <link rel="stylesheet" href="../../../static/stylede76.css?h=6a07b163">
+  <title>Jeu de carte — Informatique au lycée</title>
+
+
+  <!-- mise en forme Ronan -->
+  <!-- <link rel="stylesheet" type="text/css" href="../css/style.css" /> -->
+  <link rel="stylesheet" type="text/css" href="../css/prism.css" />
+</head>
+
+<body>
+
+  <div class="container-fluid px-0 mx-0 ">
+
+
+    <article>
+      <div class="row mx-0">
+        <div class="col-sm-8 offset-sm-2">
+          <h1>Jeu de carte</h1>
+
+
+        </div>
+      </div>
+
+      <pre><code class="language-python">
+  texte_de = tk.StringVar()
+</code></pre>
+
+      <div class="row mx-0">
+        <div class="col-sm-8 offset-sm-2">
+          <p>Le programme suivant dessine une carte sur un canvas. Un clic gauche avec la souris sur la carte retourne
+            celle-ci.</p>
+          <p><img src="../../../../external.html?link=https://postimg.cc/HcYs3yxH" alt=""></p>
+          <p>Voici le programme. Pour le tester, vous aurez besoin de copier les fichiers carte1.gif et carte2.gif dans
+            le même dossier que le fichier python contenant le programme.</p>
+          <div class="hll">
+            <pre><span></span><span class="kn">import</span> <span class="nn">tkinter</span> <span class="k">as</span> <span class="nn">tk</span>
+
+<span class="c1"># Variables globales</span>
+<span class="n">LARGEUR</span><span class="p">,</span> <span class="n">HAUTEUR</span> <span class="o">=</span> <span class="mi">240</span><span class="p">,</span> <span class="mi">240</span>
+<span class="n">no_image</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># No de carte</span>
+
+<span class="k">def</span> <span class="nf">change_carte</span><span class="p">(</span><span class="n">event</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Changement de carte si clic sur la carte&quot;&quot;&quot;</span>
+    <span class="k">global</span> <span class="n">no_image</span><span class="p">,</span> <span class="n">image_gif</span>
+    <span class="c1"># On verifie que le clic a eu lieu sur la carte</span>
+    <span class="k">if</span> <span class="mi">50</span> <span class="o">&lt;</span> <span class="n">event</span><span class="o">.</span><span class="n">x</span> <span class="o">&lt;</span> <span class="mi">195</span> <span class="ow">and</span> <span class="mi">10</span> <span class="o">&lt;</span> <span class="n">event</span><span class="o">.</span><span class="n">y</span> <span class="o">&lt;</span> <span class="mi">210</span><span class="p">:</span>
+        <span class="n">no_image</span> <span class="o">=</span> <span class="n">no_image</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span> <span class="c1"># echange du no de carte</span>
+        <span class="n">image_gif</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">PhotoImage</span><span class="p">(</span><span class="n">file</span> <span class="o">=</span> <span class="s2">&quot;carte&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">no_image</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;.gif&quot;</span><span class="p">)</span>
+        <span class="c1"># On charge la nouvelle image</span>
+        <span class="n">surface_dessin</span><span class="o">.</span><span class="n">itemconfigure</span><span class="p">(</span><span class="n">ma_carte</span><span class="p">,</span> <span class="n">image</span> <span class="o">=</span> <span class="n">image_gif</span><span class="p">)</span>
+
+<span class="c1"># Création de la fenêtre principale (main window)</span>
+<span class="n">mon_app</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Tk</span><span class="p">()</span>
+<span class="n">mon_app</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s1">&#39;Jeu de carte&#39;</span><span class="p">)</span>
+
+<span class="c1"># Création d&#39;un widget Canvas (zone graphique)</span>
+<span class="n">surface_dessin</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">Canvas</span><span class="p">(</span><span class="n">mon_app</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="n">LARGEUR</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">HAUTEUR</span><span class="p">,</span> <span class="n">bg</span> <span class="o">=</span> <span class="s1">&#39;white&#39;</span><span class="p">)</span>
+<span class="n">surface_dessin</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">padx</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">pady</span> <span class="o">=</span><span class="mi">5</span> <span class="p">)</span>
+
+<span class="c1"># La méthode bind() permet de lier un événement avec une fonction :</span>
+<span class="c1"># un clic gauche sur la surface provoquera l&#39;appel de la fonction clic()</span>
+<span class="n">surface_dessin</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="s1">&#39;&lt;Button-1&gt;&#39;</span><span class="p">,</span> <span class="n">change_carte</span><span class="p">)</span>
+<span class="n">surface_dessin</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="n">padx</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span> <span class="n">pady</span> <span class="o">=</span> <span class="mi">5</span><span class="p">)</span>
+<span class="n">image_gif</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">PhotoImage</span><span class="p">(</span><span class="n">file</span> <span class="o">=</span> <span class="s2">&quot;carte1.gif&quot;</span><span class="p">)</span>
+
+<span class="c1"># Bouton quitter</span>
+<span class="n">tk</span><span class="o">.</span><span class="n">Button</span><span class="p">(</span><span class="n">mon_app</span><span class="p">,</span> <span class="n">text</span> <span class="o">=</span> <span class="s1">&#39;Quitter&#39;</span><span class="p">,</span> <span class="n">command</span> <span class="o">=</span> <span class="n">mon_app</span><span class="o">.</span><span class="n">destroy</span><span class="p">)</span><span class="o">.</span><span class="n">pack</span><span class="p">()</span>
+
+<span class="c1"># Placement de l&#39;image initiale designee par &quot;ma_carte&quot; sur le canvas</span>
+<span class="n">ma_carte</span> <span class="o">=</span> <span class="n">surface_dessin</span><span class="o">.</span><span class="n">create_image</span><span class="p">((</span><span class="mi">50</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">image</span> <span class="o">=</span> <span class="n">image_gif</span><span class="p">,</span> <span class="n">anchor</span> <span class="o">=</span> <span class="s2">&quot;nw&quot;</span><span class="p">)</span>
+
+<span class="n">mon_app</span><span class="o">.</span><span class="n">mainloop</span><span class="p">()</span>
+</pre>
+          </div>
+          <h2 id="affichage-d-un-fichier-gif-sur-un-canvas">Affichage d'un fichier gif sur un Canvas</h2>
+          <p>L'affichage d'un fichier <em>.gif</em> sur un Canvas se fait simplement à l'aide de ces deux lignes :</p>
+          <div class="hll">
+            <pre><span></span><span class="n">image_gif</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">PhotoImage</span><span class="p">(</span><span class="n">file</span> <span class="o">=</span> <span class="s2">&quot;carte1.gif&quot;</span><span class="p">)</span>
+<span class="n">ma_carte</span> <span class="o">=</span> <span class="n">surface_dessin</span><span class="o">.</span><span class="n">create_image</span><span class="p">((</span><span class="mi">50</span><span class="p">,</span> <span class="mi">10</span><span class="p">),</span> <span class="n">image</span> <span class="o">=</span> <span class="n">image_gif</span><span class="p">,</span> <span class="n">anchor</span> <span class="o">=</span> <span class="s2">&quot;nw&quot;</span><span class="p">)</span>
+</pre>
+          </div>
+          <p>La première ligne charge l'image en mémoire dans la variable <code
+              class="language-python">image_gif</code>, et la seconde se charge de son affichage sur la surface
+            graphique aux coordonnées indiquées.
+            Le paramètre <code class="language-python">anchor</code> sert à indiquer que les coordonnées donées sont
+            celles du coin supérieur gauche.</p>
+          <p>Dans le reste du programme, l'objet image sur la surface graphique sera accessible via la variable <code
+              class="language-python">ma_carte</code>.</p>
+          <h2 id="retournement-de-la-carte">Retournement de la carte</h2>
+          <p>Pour retourner la carte, on doit reconfigurer l'objet <code class="language-python">ma_carte</code> afin de
+            modifier son attribut image sur l'autre face de l'image. Cela se fait gràce à la méthode <code
+              class="language-python">itemconfigure()</code> de la surface graphique :</p>
+          <div class="hll">
+            <pre><span></span><span class="n">surface_dessin</span><span class="o">.</span><span class="n">itemconfigure</span><span class="p">(</span><span class="n">ma_carte</span><span class="p">,</span> <span class="n">image</span> <span class="o">=</span> <span class="n">image_gif</span><span class="p">)</span>
+</pre>
+          </div>
+          <p>Le reste de la fonction <code class="language-python">change_carte()</code>se charge d'alterner l'image
+            <code class="language-python">carte1.gif</code> ou <code class="language-python">carte2.gif</code>.
+            On utilise pour cela une petite astuce utilisant l'opération modulo :</p>
+          <div class="hll">
+            <pre><span></span><span class="n">no_image</span> <span class="o">=</span> <span class="n">no_image</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">1</span> 
+<span class="n">image_gif</span> <span class="o">=</span> <span class="n">tk</span><span class="o">.</span><span class="n">PhotoImage</span><span class="p">(</span><span class="n">file</span> <span class="o">=</span> <span class="s2">&quot;carte&quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">no_image</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;.gif&quot;</span><span class="p">)</span>
+</pre>
+          </div>
+          <p>Pour finir, on s'assure de ne retourner la carte que si le clic a été fait dans la zone de la carte.
+            Comme on connaît les coordonnées du clic, un test d'intervalle pour les coordonnées se charge de cette
+            vérification.</p>
+
+        </div>
+      </div>
+
+
+      <div class="row mx-0">
+        <div class="col-sm-8 offset-sm-2">
+
+
+        </div>
+      </div>
+    </article>
+
+
+  </div>
+
+  <div class="form-group">
+    &nbsp;
+  </div>
+
+  <footer class="text-center footer" id="footer">
+    <hr>
+    <a href="https://www.lecluse.fr/info/tkinter/">Visitez le site original d'Olivier Lécluse.</a><br>
+    <img src="../../../licensebuttons.net/l/by-sa/4.0/80x15.png" alt="Licence Creative Commons BY-SA 4.0"> — Olivier
+    Lecluse — 2020
+  </footer>
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="../../../lib/jquery-3.2.1.slim.min3437.js?h=9e89d151"></script>
+  <script src="../../../lib/popper.min9b3f.js?h=c3b977aa"></script>
+  <script src="../../../lib/bootstrap.mine680.js?h=5ef2c15b"></script>
+  <!-- Ajout de Ronan-->
+  <script src="../js/prism.js"></script>
+</body>
+
+<!-- Mirrored from www.lecluse.fr/info/tkinter/jeucarte/ by HTTraQt Website Copier/1.x [Karbofos 2012-2017] dim., 21 mars 2021 09:47:05 GMT -->
+
+</html>

@@ -1,0 +1,139 @@
+*{
+    box-sizing: border-box;
+}
+
+body{
+    background-color: rgb(238, 231, 222);
+    color: rgb(6, 11, 41);
+    padding: 25px;
+    width:90%;
+    margin:auto;
+}
+
+h1{
+    background-color: rgb(212, 96, 50);
+    text-align: center;
+    padding: 20px;
+    width:90%;
+    margin:auto;
+    border-bottom: solid 3px  rgb(6, 11, 41);
+    margin-bottom: 30px;
+    border-radius: 0 25px 0 25px;
+}
+
+h2{
+    margin-top: 50px;
+    padding-bottom: 10px;
+    border-bottom: solid 2px rgb(212, 96, 50);
+    width:70%;
+    padding-left: 30px;
+    border-radius: 0 0 0 15px;
+}
+
+h3{
+    color : rgb(212, 96, 50);
+    font-style: oblique;
+    margin-top: 10px;
+    margin-left: 50px;;
+    padding-bottom: 5px;
+    margin-top: 30px;
+    font-size: 1.3em;
+}
+
+h4{
+    color: rgb(172, 86, 0);
+}
+
+
+code{
+    background-color: black;
+    color: white;
+    padding: 3px;
+}
+
+a{  
+    text-decoration: none;
+}
+
+.menu-block{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.menu-block  a{
+    display: block;
+    justify-content: space-between;
+    align-items: center;
+    width: 300px;
+    height: 120px;
+    text-align: center;
+    background-color: rgb(212, 96, 50);
+    color: rgb(6, 11, 41);
+    margin-bottom: 20px;
+    padding: 30px;
+    border-radius: 10px;
+    font-size: 1.3em;
+}
+
+li{
+    margin-bottom: 10px;
+}
+
+nav{
+    margin-left: 20px;
+}
+
+table.programme{
+    border-collapse: collapse;
+}
+
+table.programme td, th{
+    border: solid 1px black;
+    width : 400px;
+    padding:5px;
+}
+table.programme th{
+    color: white;
+    background-color: cadetblue;
+}
+
+
+ol.E3C li {
+    list-style-type: upper-alpha;
+    margin-top: 7px;
+    padding-left: 15px;
+}
+ol.E3C:before {
+    content: "Réponses";
+    font-weight: bold;
+}
+
+ul.E3C > li{
+    list-style-type: none;
+    margin-bottom: 50px;
+}
+
+li.OK {
+    background-color: rgb(212, 96, 50);
+  /*  width:40%; */
+    padding:2px;
+    border-radius: 3px;;
+}
+
+.correctionE3C{
+    background-color: rgb(212, 96, 50);
+    padding-left:15px;
+    padding-right:15px;
+    padding : 3px 20px 3px 20px;
+}
+
+.codeE3C{
+    white-space: pre;
+}
+
+.source{
+    font-size: 0.7em;
+    font-style: italic;
+}
