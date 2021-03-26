@@ -4,6 +4,8 @@
 <head>
   <!-- Meta tags -->
   <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="../../../../../css/style2.css" />
+  <link rel="icon" type="image/gif" href="../../../../../img/favicon.gif">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Initiation à TKinter">
   <meta name="author" content="Olivier Lecluse, Ronan Jahier">
@@ -75,7 +77,7 @@
                 class="language-python">nouveau_lance()</code> est appelée</li>
             <li>Le texte du label est modifié. Cela nécessite une petite explication ...</li>
           </ul>
-          <h3 id="modification-du-texte-d-un-objet">Modification du texte d'un objet</h3>
+          <h3 class="alert-info" id="modification-du-texte-d-un-objet">Modification du texte d'un objet</h3>
           <p>Sous Tkinter, le texte d'un <em>Label</em> est <strong>déterminé au moment de sa création</strong> et il
             n'y a plus moyen de le modifier par la suite. Or dans cet exemple, nous voulons bien sur modifier le texte.
             Nous utilisons donc pour cela un nouvel objet de Tkinter : le <strong><em>StringVar()</em></strong>. La
@@ -104,7 +106,7 @@
           texte_de.set('Résultat -> ' + str(nb))
           </code></pre>
 
-        <h3 id="appel-d-une-fonction-python-par-un-bouton">Appel d'une fonction Python par un bouton</h3>
+        <h3 class="alert-info" id="appel-d-une-fonction-python-par-un-bouton">Appel d'une fonction Python par un bouton</h3>
         <p>Dans cet exemple, l'appui sur le bouton <em>Lancer</em> appelle une fonction que nous avons élaboré
           nous-même. Il est en effet très simple avec <em>Tkinter</em> de relier l'appui sur un bouton avec l'appel
           d'une fonction :</p>
@@ -113,7 +115,7 @@
           bouton_lancer = tk.Button(mon_app, text ='Lancer', command=nouveau_lance)
           </code></pre>
 
-        <h3 id="disposition-a-l-horizontal">Gestionnaire de positionnement</h3>
+        <h3 class="alert-info" id="disposition-a-l-horizontal">Gestionnaire de positionnement</h3>
         <p>Le bouton Quitter est positionné à la deuxième ligne (row=1) et commence dans la 1ère colonne (column=0) pour
           s'étendre sur 2 colonne (columnspan=2) ; la dernière option <code class="language-python">sticky='ew'</code>
           force le bouton à occuper tout l'espace des 2 colonnes en largeur ("d'est en ouest"):</p>
@@ -123,7 +125,7 @@
           </code></pre>
 
 
-        <h2 id="a-vous-de-jouer">A vous de jouer</h2>
+        <h2 class="alert-secondary" id="a-vous-de-jouer">A vous de jouer</h2>
         <p>Modifier cette application afin d'afficher le nombre de 6 qui ont été tirés et le nombre de coups au total.
           Vous pouvez vous inspirer de l'illustration suivante :
           <img src="lancer_de2.png" alt="appli finale">

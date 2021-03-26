@@ -5,6 +5,8 @@
 <head>
   <!-- Meta tags -->
   <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="../../../../../css/style2.css" />
+  <link rel="icon" type="image/gif" href="../../../../../img/favicon.gif">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Initiation à TKinter">
   <meta name="author" content="Olivier Lecluse, Ronan Jahier">
@@ -27,7 +29,7 @@
     <article>
       <div class="row mx-0">
         <div class="col-sm-8 offset-sm-2">
-          <h1>Jeu de carte</h1>
+          <h1 class="alert-primary">Jeu de carte</h1>
         </div>
       </div>
 
@@ -75,7 +77,7 @@
               
               mon_app.mainloop()</code></pre>
               <p><a href="https://replit.com/@profjahier/jeucarte#main.py" target="_blank">Tester avec repl.it</a></p>
-          <h2 id="affichage-d-un-fichier-gif-sur-un-canvas">Affichage d'un fichier image sur un Canvas</h2>
+          <h2 class="alert-secondary" id="affichage-d-un-fichier-gif-sur-un-canvas">Affichage d'un fichier image sur un Canvas</h2>
           <p>L'affichage d'un fichier <em>.png</em> sur un Canvas se fait simplement à l'aide de ces deux lignes :</p>
           <pre><code class="language-python">
             imgtk = tk.PhotoImage(file="carte1.png")
@@ -88,7 +90,7 @@
             celles du coin supérieur gauche.</p>
           <p>Dans le reste du programme, l'objet image sur la surface graphique sera accessible via la variable <code
               class="language-python">ma_carte</code>.</p>
-          <h2 id="retournement-de-la-carte">Retournement de la carte</h2>
+          <h2 class="alert-secondary" id="retournement-de-la-carte">Retournement de la carte</h2>
           <p>Pour retourner la carte, on doit reconfigurer l'objet <code class="language-python">ma_carte</code> afin de
             modifier son attribut image sur l'autre face de l'image. Cela se fait gràce à la méthode <code
               class="language-python">itemconfigure()</code> de la surface graphique :</p>

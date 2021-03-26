@@ -5,6 +5,8 @@
 <head>
   <!-- Meta tags -->
   <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="../../../../../css/style2.css" />
+  <link rel="icon" type="image/gif" href="../../../../../img/favicon.gif">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Initiation à TKinter">
   <meta name="author" content="Olivier Lecluse, Ronan Jahier">
@@ -23,7 +25,7 @@
     <article>
       <div class="row mx-0">
         <div class="col-sm-8 offset-sm-2">
-          <h1>Evénements clavier</h1>
+          <h1  class="alert-primary">Evénements clavier</h1>
         </div>
       </div>
 
@@ -88,7 +90,7 @@
             mon_app.mainloop()
           </code></pre>
           <p><a href="https://replit.com/@profjahier/evtclavier#main.py" target="_blank">Tester avec repl.it</a></p>
-          <h2 id="explications">Explications</h2>
+          <h2 class="alert-secondary" id="explications">Explications</h2>
           <p>Tout d'abord, les coordonnées du pion sont stockées dans les variables globales <code
               class="language-python">pos_x</code> et <code class="language-python">pos_y</code>.
             La fonction <code class="language-python">clavier()</code> a pour rôle de les actualiser en fonction de la
@@ -115,7 +117,7 @@
             </code></pre>
           <p><code class="language-python">pion</code> est une variable globale créée par la commande <code
               class="language-python">create_oval()</code>.</p>
-          <h2 id="a-vous-de-jouer">A vous de jouer</h2>
+          <h2 class="alert-secondary" id="a-vous-de-jouer">A vous de jouer</h2>
           <p>Dans l'exemple ci-dessus, il n'y a pas de limite au déplacement du pion, même lorsque ce dernier sort du
             Canvas. Modifier le programme afin que s'il sort d'un coté de la fenêtre, il réapparaisse de l'autre, un peu
             comme dans le jeu du PacMan.</p>

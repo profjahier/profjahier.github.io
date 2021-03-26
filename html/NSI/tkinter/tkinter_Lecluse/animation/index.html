@@ -4,6 +4,8 @@
 <head>
   <!-- Meta tags -->
   <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="../../../../../css/style2.css" />
+  <link rel="icon" type="image/gif" href="../../../../../img/favicon.gif">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Initiation à TKinter">
   <meta name="author" content="Olivier Lecluse, Ronan Jahier">
@@ -24,7 +26,7 @@
     <article>
       <div class="row mx-0">
         <div class="col-sm-8 offset-sm-2">
-          <h1>Animation</h1>
+          <h1 class="alert-primary">Animation</h1>
         </div>
       </div>
 
@@ -127,7 +129,7 @@ mon_app.mainloop()
             Notre programme est figé car plus aucun événement n'est traité : il devient sourd aux événements extérieurs.
           </p>
           <p><strong><em>Règle à retenir : ne jamais bloquer la mainloop !!!! </em></strong></p>
-          <h2 id="comment-ne-pas-figer-le-programme">Comment ne pas figer le programme ?</h2>
+          <h2 class="alert-secondary" class="alert-secondary" id="comment-ne-pas-figer-le-programme">Comment ne pas figer le programme ?</h2>
           <p>Il faut obligatoirement rendre la main à notre <strong>mainloop</strong> à intervalles réguliers afin
             qu'elle puisse traiter les événements comme l'appui sur les boutons.
             Pour ce faire, nous ferons appel à la méthode <code class="language-python">after()</code> de notre fenêtre
@@ -165,7 +167,7 @@ mon_app.mainloop()
             n'a pas été passé.
             Cela revient au final à une boucle tant que sauf que la <strong>mainloop</strong> reprend la main
             régulièrement et donc notre programme répond aux demandes de l'utilisateur.</p>
-          <h2 id="a-vous-de-jouer">A vous de jouer !</h2>
+          <h2 class="alert-secondary" class="alert-secondary" id="a-vous-de-jouer">A vous de jouer !</h2>
           <p>En guise d'entrainement, vous allez écrire un programme en vous basant sur l'exercice précédent qui
             affichait des carrés verts à l'emplacement du clic de souris. Sauf que cette fois-ci, vous allez les faire
             tomber par terre avec une jolie animation !</p>

@@ -8,6 +8,8 @@
 <head>
   <!-- Meta tags -->
   <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="../../../../../css/style2.css" />
+  <link rel="icon" type="image/gif" href="../../../../../img/favicon.gif">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Initiation à TKinter">
   <meta name="author" content="Olivier Lecluse, Ronan Jahier">
@@ -27,7 +29,7 @@
     <article>
       <div class="row mx-0">
         <div class="col-sm-8 offset-sm-2">
-          <h1>Ligne de saisie</h1>
+          <h1 class="alert-primary">Ligne de saisie</h1>
         </div>
       </div>
 
@@ -81,7 +83,7 @@
             </code></pre>
             <p><a href="https://replit.com/@profjahier/lignesaisie#main.py" target="_blank">Tester avec repl.it</a></p>
 
-          <h2 id="fonctionnement-du-champ-de-saisie-texte">Fonctionnement du champ de saisie texte</h2>
+          <h2 class="alert-secondary" id="fonctionnement-du-champ-de-saisie-texte">Fonctionnement du champ de saisie texte</h2>
           <p>Le champ de saisie du mot de passe se déclare au moyen de la commande suivante :</p>
           <pre><code class="language-python">
             ligne_saisie = tk.Entry(mon_app, textvariable=mot_de_passe, show='*', bg='bisque', fg='maroon')
@@ -100,7 +102,7 @@
             cliquer dedans avant de commencer à écrire.</p>
           <p>La récupération de la saisie de l'utilisateur se fait au moyen de l'appel à la méthode : <code
               class="language-python">mot_de_passe.get()</code></p>
-          <h2 id="explication-sur-les-dialogues">Explication sur les dialogues</h2>
+          <h2 class="alert-secondary" id="explication-sur-les-dialogues">Explication sur les dialogues</h2>
           <p>Une fenêtre s'affiche avec un message et un bouton <strong><em>OK</em></strong> une fois le mot de passe
             saisi. Cette fenêtre est en quelque sorte <em>préfabriquée</em>. C'est ce qu'on appelle un dialogue.</p>
           <p>Tkinter possède beaucoup de dialogues prédéfinis :</p>

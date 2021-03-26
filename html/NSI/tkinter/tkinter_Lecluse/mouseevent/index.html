@@ -4,6 +4,8 @@
 <head>
   <!-- Meta tags -->
   <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="../../../../../css/style2.css" />
+  <link rel="icon" type="image/gif" href="../../../../../img/favicon.gif">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Initiation à TKinter">
   <meta name="author" content="Olivier Lecluse, Ronan Jahier">
@@ -24,7 +26,7 @@
     <article>
       <div class="row mx-0">
         <div class="col-sm-8 offset-sm-2">
-          <h1>Evénements souris</h1>
+          <h1 class="alert-primary">Evénements souris</h1>
         </div>
       </div>
 
@@ -76,7 +78,7 @@ tk.Button(mon_app, text='Quitter', command=mon_app.destroy).grid(row=1, column=1
 mon_app.mainloop()        </code></pre>
 <p><a href="https://replit.com/@profjahier/evtsouris#main.py" target="_blank">Tester avec repl.it</a></p>
 
-          <h2 id="capture-du-clic-de-souris">Capture du clic de souris</h2>
+          <h2 class="alert-secondary" id="capture-du-clic-de-souris">Capture du clic de souris</h2>
           <p>Pour réaliser cet exemple, nous devons</p>
           <ul>
             <li>appeler une fonction de notre choix lorsqu'un clic de souris est effectué</li>
@@ -97,7 +99,7 @@ mon_app.mainloop()        </code></pre>
             <code class="language-python">event.x</code> et <code class="language-python">event.y</code> qui sont les
             coordonnées de la souris sur la surface.
           </p>
-          <h2 id="a-vous-de-jouer">A vous de jouer</h2>
+          <h2 class="alert-secondary" id="a-vous-de-jouer">A vous de jouer</h2>
           <p>Vous allez réaliser votre premier logiciel de dessin ! L'idée est de dessiner une ligne lorsque le bouton
             de la souris reste enfoncé. Voici ce que vous devrez obtenir :<br>
             <img src="dessin2.png" alt="dessin exemple">
