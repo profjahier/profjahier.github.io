@@ -4,14 +4,19 @@
 <head>
     <title>profjahier- Doc tkinter</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="../../../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../../css/style2.css" />
     <link rel="stylesheet" type="text/css" href="../../../css/prism.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 </head>
 
 <body>
+  <main class="container">
 
-  <h1>Tutoriel : connaître la position de la souris dans un Canvas</h1>
-  <h2>Plan du tuto</h2>
+  <h1 class="alert-primary">Tutoriel : connaître la position de la souris dans un Canvas</h1>
+  <h2 class="alert-secondary">Plan du tuto</h2>
   <p>Dans ce tuto, on va voir pas mal de choses !</p>
   <ol>
       <li>Créer un Canvas</li>
@@ -20,7 +25,7 @@
       <li>Bonus : créer un grille dans un Canvas et repérer une case désignée par la souris</li>
   </ol>
 
-  <h2>Étape 1 : Création du Canvas</h2>
+  <h2 class="alert-secondary">Étape 1 : Création du Canvas</h2>
   <p><a href="http://tkinter.fdex.eu/doc/caw.html">Doc française</a>, <a href="https://anzeljg.github.io/rin2/book2/2405/docs/tkinter/canvas.html">Doc anglaise similaire</a>, <a href="https://tkdocs.com/tutorial/canvas.html">Doc anglaise tk/ttk</a>, <a href="http://www.tcl.tk/man/tcl8.6/TkCmd/canvas.htm">Doc Tcl</a>. </p>
   <p>Petite remarque péliminaire : le widget Canvas n'existe pas en version ttk : c'est donc un widget tk.</p>
   <p>Ses propriétés de base sont sa largeur (width) et hauteur (height). On peut aussi définir sa couleur avec la propriété bg.</p>
@@ -40,7 +45,7 @@
   </code></pre>
 
 
-  <h2>Étape 2 : Détection de la position de la souris</h2>
+  <h2 class="alert-secondary">Étape 2 : Détection de la position de la souris</h2>
   
   <p>Il faut attacher un gestionnaire d'événement au Canvas pour capter le clic de la souris (clic gauche par exemple) : pour cela on utilise la méthode bind. Cette méthode prend comme paramètres la nature de l'événement à surveiller et la fonction à appeler  lorsque l'événement est déclenché (fonction dite Callback).</p>
   <p>Lorsque l'événement est déclenché, un objet 'evenement' est généré et passé comme paramètre à la fonction Callback. J'ai l'habitude, comme d'autres, de le nommer evt. Cet objet possède des propriétés qui dépendent de l'événement déclenché : par exemple dans le cas d'un clic de souris, evt.x et evt.y sont les cordonnées horizontale et verticale de la souris lors du clic (Attention : l'origine du repère est le coin supérieur gauche du Canvas).</p>
@@ -72,7 +77,7 @@ can.bind("&lt;Button-1&gt;", afficher_position)
 appli.mainloop()
   </code></pre>
 
-  <h2>Étape 3 : Ajout de barres de défilement</h2>
+  <h2 class="alert-secondary">Étape 3 : Ajout de barres de défilement</h2>
   <p>Il est possible d'avoir un Canvas plus grand que l'espace affiché dans la fenêtre de l'application. Dans ce cas, on doit définir une option scrollregion au Canvas. scrollregion prend des données sous la forme d'un tuple de 4 valeurs (xi, yi, xf, yf) définissant les coordonnées des coins supérieur gauche et inférieur droit accessibles dans le Canvas.</p>
   <p>Pour continuer à pouvoir visualiser l'intégralité du Canvas, il faut alors lui associer des barres de défilement horizontale et verticale (leur orientation est définie par la propriété orient qui peut valoir tk.HORIZONTAL ou tk.VERTICAL). Le processus complet est un peu délicat. Les barres de défilement (Scrollbar) sont des widgets a priori indépendants : il faut donc créer une "liaison" avec le Canvas. Cela se fait en 2 étapes :</p>
   <li>Indiquer d'une part au Canvas que ses options xscrollcommand et yscrollcommand sont liées à l'état des barres de défilement (propriété set des barres).</li>
@@ -120,7 +125,7 @@ can.bind("&lt;Button-1&gt;", afficher_position)
 appli.mainloop()
   </code></pre>
 
-  <h2>Étape 4 : Distinguer la position de la souris dans la zone visible du Canvas ou dans  tout l'espace défini par scrollregion</h2>
+  <h2 class="alert-secondary">Étape 4 : Distinguer la position de la souris dans la zone visible du Canvas ou dans  tout l'espace défini par scrollregion</h2>
   <p>Par défaut, l'événement clic souris détecte la position de la souris dans la zone visible du Canvas, or la plupart du temps, on préfèrera connaître la position réelle de la souris au sein de l'intégralité du Canvas (tout l'espace défini par scrollregion).</p>
   <p>La solution repose dans l'utilisation des méthodes canvasx et canvasy du Canvas quirecalculent la position cherchée de la souris.</p>
   <p>Observez l'exemple suivant où on a ajouté un nouveau label pour distinguer les 2 positions accessibles.</p>
@@ -170,7 +175,7 @@ appli.mainloop()
   </code></pre>
   <p>Exécuter ce code dans le navigateur avec <a href="https://repl.it/@profjahier/canvassouris">repl.it</a>.</p>
 
-  <h2>Étape 5 : Cadeau bonus : détecter la position de la souris dans une case de grille dessinée dans le Canvas</h2>
+  <h2 class="alert-secondary">Étape 5 : Cadeau bonus : détecter la position de la souris dans une case de grille dessinée dans le Canvas</h2>
   <p>Beaucoup de petits jeux sont développés lorsqu'on débute dans la programmation, et beaucoup nécessitent une grille (ex : puissance 4, démineur, tictactoe, sudoku...). On aura alors souvent besoin d'accéder à la case désignée par un clic de souris.</p>
   <p>On suppose donc que l'on dessine une grille dans un Canvas dont la dimension est un multiple du nombres de cases dans la grille. Les paramètres utilisés sont les suivants :</p>
   <ul>
@@ -241,8 +246,13 @@ appli.mainloop()
 
   <p>Exécuter ce code dans le navigateur avec <a href="https://repl.it/@profjahier/grillesouris">repl.it</a>.</p>
 
-    <script src="../../../js/prism.js"></script>
-    <script src="../../../js/generalites.js"></script>
+</main>
+<script src="../../../js/prism.js"></script>
+<!-- <script src="../../../js/generalites.js"></script> -->
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+  crossorigin="anonymous"></script>
 
 </body>
 

@@ -4,13 +4,18 @@
 <head>
     <title>profjahier- Doc tkinter</title>
     <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="../../../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../../../css/style2.css" />
     <link rel="stylesheet" type="text/css" href="../../../css/prism.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 </head>
 
 <body>
 
-  <h1>Création d'une barre de menus</h1>
+  <main class="container">
+  <h1 class="alert-primary">Création d'une barre de menus</h1>
   <p>Pour créer une barre de menus principale, c’est à dire sous le bord supérieur de la fenêtre de l’application, la démarche à suivre est  :</p>
   <ol>
     <li>Créer un widget Menu en utilisant la fenêtre principale comme premier argument du constructeur et le passer à l’option 'menu' de la fenêtre principale.</li>
@@ -39,12 +44,17 @@ menuBar.add_cascade(label='Fichier', menu=menuFichier)
 menuBar.add_cascade(label='Aide', menu=menuAide)
   </code></pre>
 
-  <h2>Compléments et détails</h2>
+  <h2 class="alert-secondary">Compléments et détails</h2>
   <p><a href="http://tkinter.fdex.eu/doc/menw.html" target="_blank">Menu</a>  (TKinter pour ISN - Étienne FLORENT)
   </p>
 
-  <script src="../../../js/prism.js"></script>
-  <script src="../../../js/generalites.js"></script>
+</main>
+<script src="../../../js/prism.js"></script>
+<!-- <script src="../../../js/generalites.js"></script> -->
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+  crossorigin="anonymous"></script>
 </body>
 
 </html>
