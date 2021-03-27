@@ -9,111 +9,125 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 </head>
 
 <body>
   <main class="container">
-  <h1 class="alert-primary">Doc tkinter (ébauche brute...)</h1>
+    <h1 class="alert-primary">Doc tkinter (ébauche brute...)</h1>
 
+    <div class="col">
+      <nav class="nav">
+        <a href="https://profjahier.github.io/" class="btn btn-secondary">Profjahier</a>
+        <a href="#" class="btn btn-light"></a>
+        <a href="https://profjahier.github.io/html/NSI/index.html" class="btn btn-secondary">NSI</a>
+        <a href="#" class="btn btn-light"></a>
+      </nav>
+      <hr>
+    </div>
 
-  <h2 class="alert-secondary">Brève intro</h2>
-  <p><strong>tkinter</strong> est un module python écrit pour développer des interfaces graphiques. C'est un
-    implémentation de l'interface plus générale <strong>Tk</strong> (développée au départ pour le langage tcl).
-    L'évolution actuelle de Tk préconise d'utiliser le sous module <strong> tkinter.ttk</strong> pour pouvoir utiliser
-    des widgets avec thème et style (themed widgets) pour donner un aspect visuel plus moderne.
-    On peut comparer les "themed widgets" à une page web mise en forme avec un fichier css. Il est possible d'utiliser
-    en parallèle les widgets "classiques" de tkinter et les "modernes" de ttk
-    (attention dans ce cas à l'<em>espace des noms</em>. Par défaut, ttk supplante les widgets classiques).</p>
+    <h2 class="alert-secondary">Brève intro</h2>
+    <p><strong>tkinter</strong> est un module python écrit pour développer des interfaces graphiques. C'est un
+      implémentation de l'interface plus générale <strong>Tk</strong> (développée au départ pour le langage tcl).
+      L'évolution actuelle de Tk préconise d'utiliser le sous module <strong> tkinter.ttk</strong> pour pouvoir utiliser
+      des widgets avec thème et style (themed widgets) pour donner un aspect visuel plus moderne.
+      On peut comparer les "themed widgets" à une page web mise en forme avec un fichier css. Il est possible d'utiliser
+      en parallèle les widgets "classiques" de tkinter et les "modernes" de ttk
+      (attention dans ce cas à l'<em>espace des noms</em>. Par défaut, ttk supplante les widgets classiques).</p>
 
-  <h2 class="alert-secondary">Doc complète (liens externes)</h2>
-  <p>Voici des docs vraiment utiles et parfois complètes et complexes :</p>
-  <ul>
-    <li><a href="http://tkinter.fdex.eu/index.html" target="_blank">TKinter pour ISN - Étienne FLORENT</a> :
-      <strong>SUPER</strong> doc en français,
-      traduction (partielle, ne contient pas les <em>themed widgets ttk</em>) d'une doc plus complète encore en Anglais.
-    </li>
-    <li><a href="doc_EFlorent_allegee/index.html" target="_blank">TKinter pour ISN - Étienne FLORENT - version
-        allégée</a> : C'est la même doc que j'ai un peu allégée (de façon assez arbitraire...). Je pense que pour la
-      plupart des projets, cette version un peu light suffit largement, mais bien entendu, la référence intégrale
-      ci-dessus reste la source complète et pourrait se révéler utile parfois !
-    </li>
-    <li><a href="https://anzeljg.github.io/rin2/book2/2405/docs/tkinter/index.html" target="_blank">Tkinter 8.5
-        reference: a GUI for Python</a> :
-      La doc source précédente (en Anglais, donc) : contient tout ! donc c'est un peu long...(<a
-        href="../../../docs/tkinter-doc.pdf">version pdf</a>)</li>
-    <li><a href="https://tkdocs.com/tutorial/index.html" target="_blank">Documentation Tk</a> : Anglais. C'est la doc de
-      Tk, donc très bien aussi pour comprendre la philosophie de Tk et
-      et son utilisation avec d'autres langages (Tcl, Perl, Ruby). On peut sélectionner la doc spécifique pour python
-      (onglet de droite, sélectionner <em>Show</em> Python). C'est très complet et intéressant si on a un peu de
-      temps...</li>
-    <li><a href="doc_tk_allegee/tutorial/index.html" target="_blank">Documentation Tk un petit peu allégée</a> : Anglais. C'est la même doc que le lien précédent avec quelques éléments en moins.</li>
-    <li><a href="https://docs.python.org/fr/3.8/library/tk.html" target="_blank">Doc officielle de Python</a> : pas
-      indispensable, mais n'oublions pas que cette doc existe. </li>
-      <li><a href="tkinter_Lecluse/index.html">Tutoriels O. Lécluse</a> : Quelques tutoriels pour découvrir Tkinter. <a href="https://www.lecluse.fr/info/tkinter/" target="_blank">Site original d'Olivier Lécluse</a></li>
-    <!--<li>  <li><a href="http://effbot.org/tkinterbook/" target="_blank">An Introduction to Tkinter (Work in Progress)</a>  : En Anglais, dernière maj en 2005 (mais bien quand même).</li>
+    <h2 class="alert-secondary">Doc complète (liens externes)</h2>
+    <p>Voici des docs vraiment utiles et parfois complètes et complexes :</p>
+    <ul>
+      <li><a href="http://tkinter.fdex.eu/index.html" target="_blank">TKinter pour ISN - Étienne FLORENT</a> :
+        <strong>SUPER</strong> doc en français,
+        traduction (partielle, ne contient pas les <em>themed widgets ttk</em>) d'une doc plus complète encore en
+        Anglais.
+      </li>
+      <li><a href="doc_EFlorent_allegee/index.html" target="_blank">TKinter pour ISN - Étienne FLORENT - version
+          allégée</a> : C'est la même doc que j'ai un peu allégée (de façon assez arbitraire...). Je pense que pour la
+        plupart des projets, cette version un peu light suffit largement, mais bien entendu, la référence intégrale
+        ci-dessus reste la source complète et pourrait se révéler utile parfois !
+      </li>
+      <li><a href="https://anzeljg.github.io/rin2/book2/2405/docs/tkinter/index.html" target="_blank">Tkinter 8.5
+          reference: a GUI for Python</a> :
+        La doc source précédente (en Anglais, donc) : contient tout ! donc c'est un peu long...(<a
+          href="../../../docs/tkinter-doc.pdf">version pdf</a>)</li>
+      <li><a href="https://tkdocs.com/tutorial/index.html" target="_blank">Documentation Tk</a> : Anglais. C'est la doc
+        de
+        Tk, donc très bien aussi pour comprendre la philosophie de Tk et
+        et son utilisation avec d'autres langages (Tcl, Perl, Ruby). On peut sélectionner la doc spécifique pour python
+        (onglet de droite, sélectionner <em>Show</em> Python). C'est très complet et intéressant si on a un peu de
+        temps...</li>
+      <li><a href="doc_tk_allegee/tutorial/index.html" target="_blank">Documentation Tk un petit peu allégée</a> :
+        Anglais. C'est la même doc que le lien précédent avec quelques éléments en moins.</li>
+      <li><a href="https://docs.python.org/fr/3.8/library/tk.html" target="_blank">Doc officielle de Python</a> : pas
+        indispensable, mais n'oublions pas que cette doc existe. </li>
+      <li><a href="tkinter_Lecluse/index.html">Tutoriels O. Lécluse</a> : Quelques tutoriels pour découvrir Tkinter. <a
+          href="https://www.lecluse.fr/info/tkinter/" target="_blank">Site original d'Olivier Lécluse</a></li>
+      <!--<li>  <li><a href="http://effbot.org/tkinterbook/" target="_blank">An Introduction to Tkinter (Work in Progress)</a>  : En Anglais, dernière maj en 2005 (mais bien quand même).</li>
 
   <li><a href="http://thinkingtkinter.sourceforge.net/" target="_blank">Tkinter 8.5 reference: a GUI for Python</a> : à creuser aussi </li> -->
 
 
-  </ul>
-  <p>Remarque : connaître sa version de tcl/tk utilisé pour tkinter :</p>
-  <pre><code class="language-python">
+    </ul>
+    <p>Remarque : connaître sa version de tcl/tk utilisé pour tkinter :</p>
+    <pre><code class="language-python">
 import tkinter
 tkinter.Tcl().eval('info patchlevel')
 tkinter._test()
   </code></pre>
 
 
-  <h2 class="alert-secondary">Import du module tkinter</h2>
-  <p>On supposera dans toute cette doc que le module tkinter est importé de la manière suivante :</p>
-  <pre><code class="language-python">
+    <h2 class="alert-secondary">Import du module tkinter</h2>
+    <p>On supposera dans toute cette doc que le module tkinter est importé de la manière suivante :</p>
+    <pre><code class="language-python">
 import tkinter as tk
 import tkinter.ttk as ttk
   </code></pre>
-  <p>Ainsi, toutes les classes ou méthodes du module seront appelées en commençant par tk.nom_de_methode.</p>
+    <p>Ainsi, toutes les classes ou méthodes du module seront appelées en commençant par tk.nom_de_methode.</p>
 
-  <h2 class="alert-secondary">Au programme...</h2>
-  <ul>
-    <li><a href="creation_fenetre.html">Fenêtre principale</a> (Tk)</li>
-    <li><a href="toplevel.html">Fenêtres supplémentaires</a> (Toplevel)</li>
-    <li><a href="barre_menu.html">Barre de menu</a> (Menubar)</li>
-    <li><a href="menu.html">Menu</a> (Menu)</li>
-    <li><a href="bouton_radio.html">Bouton radio</a> (Radiobutton)</li>
-    <li><a href="variable_controle.html">Variables de contrôle</a> (IntVar, DoubleVar et StringVar)</li>
-    <li><a href="image.html">Images</a></li>
-  </ul>
+    <h2 class="alert-secondary">Au programme...</h2>
+    <ul>
+      <li><a href="creation_fenetre.html">Fenêtre principale</a> (Tk)</li>
+      <li><a href="toplevel.html">Fenêtres supplémentaires</a> (Toplevel)</li>
+      <li><a href="barre_menu.html">Barre de menu</a> (Menubar)</li>
+      <li><a href="menu.html">Menu</a> (Menu)</li>
+      <li><a href="bouton_radio.html">Bouton radio</a> (Radiobutton)</li>
+      <li><a href="variable_controle.html">Variables de contrôle</a> (IntVar, DoubleVar et StringVar)</li>
+      <li><a href="image.html">Images</a></li>
+    </ul>
 
-  <h2 class="alert-secondary">Tutoriels</h2>
-  <ul>
-    <li><a href="tuto_canvas_position_souris.html">Canvas : détecter la postion de la souris</a> : créer un Canvas,
-      ajouter des barres de défilement, détecter la position de la souris sur le Canvas ou dans une grille dessinée dans
-      le Canvas.</li>
-  </ul>
-  <h2 class="alert-secondary">Themed Widgets ttk</h2>
-  <ul>
-    <li><a href="theme.html">Utiliser un thème</a> (Tk)</li>
-  </ul>
-
-
-  <h2 class="alert-secondary">Modules complémentaires</h2>
-  <p>Peuvent être utiles quand nécessaires...<a href="modules_complementaires.html">Voir cette liste</a>.</p>
-  <p>Le sous-module <strong>tkinter.ttk</strong> permet d'ajouter de nouveaux widgets, mais modifie légèrement
-    l'utilisations des widgets de base.
-    <a href="https://tkdocs.com/tutorial/index.html" target="_blank">Voir cette doc par exemple</a>
-    .
-  </p>
+    <h2 class="alert-secondary">Tutoriels</h2>
+    <ul>
+      <li><a href="tuto_canvas_position_souris.html">Canvas : détecter la postion de la souris</a> : créer un Canvas,
+        ajouter des barres de défilement, détecter la position de la souris sur le Canvas ou dans une grille dessinée
+        dans
+        le Canvas.</li>
+    </ul>
+    <h2 class="alert-secondary">Themed Widgets ttk</h2>
+    <ul>
+      <li><a href="theme.html">Utiliser un thème</a> (Tk)</li>
+    </ul>
 
 
-        <!-- <script src="../../js/generalites.js"></script> -->
-        <script src="../../../js/prism.js"></script>
-        <!-- Option 1: Bootstrap Bundle with Popper -->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-            crossorigin="anonymous"></script>
+    <h2 class="alert-secondary">Modules complémentaires</h2>
+    <p>Peuvent être utiles quand nécessaires...<a href="modules_complementaires.html">Voir cette liste</a>.</p>
+    <p>Le sous-module <strong>tkinter.ttk</strong> permet d'ajouter de nouveaux widgets, mais modifie légèrement
+      l'utilisations des widgets de base.
+      <a href="https://tkdocs.com/tutorial/index.html" target="_blank">Voir cette doc par exemple</a>
+      .
+    </p>
 
 
-    </main>
+    <!-- <script src="../../js/generalites.js"></script> -->
+    <script src="../../../js/prism.js"></script>
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+      crossorigin="anonymous"></script>
+
+
+  </main>
 </body>
 
 </html>

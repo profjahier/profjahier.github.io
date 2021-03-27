@@ -30,6 +30,19 @@
         </div>
       </div>
 
+      <div class="row">
+        <div class="col-sm-8 offset-sm-2">
+          <nav class="nav">
+            <a href="https://profjahier.github.io/" class="btn btn-secondary">Profjahier</a>
+            <a href="#" class="btn btn-light"></a>
+            <a href="https://profjahier.github.io/html/NSI/index.html" class="btn btn-secondary">NSI</a>
+            <a href="#" class="btn btn-light"></a>
+            <a href="https://profjahier.github.io/html/NSI/tkinter/index.html" class="btn btn-secondary">DocTkinter</a>
+          </nav>
+          <hr>
+        </div>
+      </div>
+      
       <div class="row mx-0">
         <div class="col-sm-8 offset-sm-2">
           <p>L'activité suivante va consister à animer une bille sur une surface graphique. On peut en première approche
@@ -85,7 +98,8 @@ tk.Button(mon_app, text='Arreter', width=8, command=stop_it).grid(row=1, column=
 # demarrage du receptionnaire d'evenements (boucle principale) :
 mon_app.mainloop()
           </code></pre>
-          <p><a href="https://replit.com/@profjahier/animation#main.py" target="_blank">Tester avec repl.it</a> (version complète et fonctionnelle)</p>
+          <p><a href="https://replit.com/@profjahier/animation#main.py" target="_blank">Tester avec repl.it</a> (version
+            complète et fonctionnelle)</p>
           <p>L'application prend forme mais rien ne bouge ! c'est normal, nous avons fait l'im<strong>pass</strong>e sur
             la fonction <code class="language-python">move()</code> chargée du mouvement.</p>
           <h3 class="alert-info" id="approche-naive">Approche naïve</h3>
@@ -129,7 +143,8 @@ mon_app.mainloop()
             Notre programme est figé car plus aucun événement n'est traité : il devient sourd aux événements extérieurs.
           </p>
           <p><strong><em>Règle à retenir : ne jamais bloquer la mainloop !!!! </em></strong></p>
-          <h2 class="alert-secondary" class="alert-secondary" id="comment-ne-pas-figer-le-programme">Comment ne pas figer le programme ?</h2>
+          <h2 class="alert-secondary" class="alert-secondary" id="comment-ne-pas-figer-le-programme">Comment ne pas
+            figer le programme ?</h2>
           <p>Il faut obligatoirement rendre la main à notre <strong>mainloop</strong> à intervalles réguliers afin
             qu'elle puisse traiter les événements comme l'appui sur les boutons.
             Pour ce faire, nous ferons appel à la méthode <code class="language-python">after()</code> de notre fenêtre
@@ -140,7 +155,7 @@ mon_app.mainloop()
             par des appels réguliers à la fonction <code class="language-python">move()</code>
             grâce à la méthode <code class="language-python">after()</code>. Voici comment on procède :</p>
 
-            <pre><code class="language-python">
+          <pre><code class="language-python">
               def move():
                 "deplacement de la balle"
                 global x1, y1, dx, dy, flag
@@ -160,7 +175,8 @@ mon_app.mainloop()
                 if flag >0:
                     surface_dessin.after(50,move)
             </code></pre>
-          <p>Remplacez la fonction <code class="language-python">move()</code> défectueuse par cette nouvelle fonction et
+          <p>Remplacez la fonction <code class="language-python">move()</code> défectueuse par cette nouvelle fonction
+            et
             retestez votre programme. C'est sans danger, cette fois-ci ça marche !</p>
           <p>La fonction <code class="language-python">move()</code> ne monopolise plus le programme mais effectue un
             petit déplacement, puis oblige le programme à la rappeler au bout de 50 milliseconde si l'ordre d'arrêter
@@ -171,7 +187,7 @@ mon_app.mainloop()
           <p>En guise d'entrainement, vous allez écrire un programme en vous basant sur l'exercice précédent qui
             affichait des carrés verts à l'emplacement du clic de souris. Sauf que cette fois-ci, vous allez les faire
             tomber par terre avec une jolie animation !</p>
-          <h3 class="alert-info"  id="solution-proposee">Solution proposée</h3>
+          <h3 class="alert-info" id="solution-proposee">Solution proposée</h3>
 
           <pre><code class="language-python"> 
             import tkinter as tk
@@ -262,10 +278,10 @@ mon_app.mainloop()
     Lecluse — 2020
   </footer>
 
-    <!-- Option 1: Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-        crossorigin="anonymous"></script>
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+    crossorigin="anonymous"></script>
   <!-- Ajout de Ronan-->
   <script src="../js/prism.js"></script>
 </body>
