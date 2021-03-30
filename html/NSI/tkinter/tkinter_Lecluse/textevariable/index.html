@@ -44,7 +44,6 @@
         </div>
       </div>
       
-
       <div class="row">
         <div class="col">
           <p>Nous allons élaborer dans ce classeur un programme simulant le lancer d'un dé à 6 faces :</p>
@@ -64,13 +63,13 @@
             mon_app.title('Dé à 6 faces')
             
             # Création d'un widget Button (bouton Lancer)
-            bouton_lancer = tk.Button(mon_app, text = 'Lancer', command = nouveau_lance)
+            bouton_lancer = tk.Button(mon_app, text='Lancer', command=nouveau_lance)
             
             # Positionnement du widget avec la méthode grid()
             bouton_lancer.grid(row=0, column=0)
             
             # Création d'un widget Button (bouton Quitter)
-            bouton_quitter = tk.Button(mon_app, text ='Quitter', command = mon_app.destroy)
+            bouton_quitter = tk.Button(mon_app, text='Quitter', command=mon_app.destroy)
             bouton_quitter.grid(row=1, column=0, columnspan=2, sticky='ew')
             
             # Objet texte variable pour actualiser le texte du label
@@ -81,7 +80,7 @@
             nouveau_lance()
             
             # Création d'un widget Label dont le texte est variable
-            label_resultat = tk.Label(mon_app, textvariable = texte_de, fg = 'red', bg = 'white')
+            label_resultat = tk.Label(mon_app, textvariable=texte_de, fg='red', bg='white')
             label_resultat.grid(row=0, column=1)
             mon_app.mainloop()
           </code></pre>
@@ -186,7 +185,7 @@
           nouveau_lance()
           
           # Création d'un widget Label dont le texte est variable
-          label_resultat = tk.Label(mon_app, textvariable = texte_de, fg='red', bg='white')
+          label_resultat = tk.Label(mon_app, textvariable=texte_de, fg='red', bg='white')
           label_resultat.grid(column=1, row=0, padx=5)
           label_stat = tk.Label(mon_app, textvariable=texte_stats, fg='blue', bg='white')
           label_stat.grid(row=0, column=2)

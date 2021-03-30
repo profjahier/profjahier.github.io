@@ -49,7 +49,6 @@
 
   <div class="row ">
     <div class="col">
-
       <h2 class="alert-secondary" id="premier-contact">Premier contact</h2>
       <p>Dans l'exemple qui suit, nous allons créer une fenêtre très simple, et y ajouter deux composants graphiques
         (widgets) typiques : un bout de texte (ou label) et un bouton (ou button).</p>
@@ -64,7 +63,7 @@
             texte = tk.Label(mon_app, text='Bonjour tout le monde !', fg='red')
             texte.grid(row=0, column=0)
             
-            bouton = tk.Button(mon_app, text='Quitter', command = mon_app.destroy)
+            bouton = tk.Button(mon_app, text='Quitter', command=mon_app.destroy)
             bouton.grid(row=1, column=0)
             
             # Lancement de l'application (boucle principale)
@@ -140,13 +139,13 @@
       <p>Pour vous convaincre de l'utilité de la <em>mainloop</em>,
         essayez de relancer le programme précédent en retirant la dernière ligne. Que se passe t-il ?</p>
       <h2 class="alert-secondary" id="programmes-pilotes-par-evenements">Programmes pilotés par événements</h2>
-      <p>Dans les programmes que vous avez réalisé jusqu'à présent, l'éxécution se déroulait de manièrre linéaire du
+      <p>Dans les programmes que vous avez réalisés jusqu'à présent, l'éxécution se déroulait de manièrre linéaire du
         début à la fin. Souvent, vous commencez par initialiser des variables, puis vous exécutez une ou plusieurs
         actions dans un ordre bien défini et enfin, vous affichez le résultat de votre travail.</p>
       <p>Dans le cas d’un programme qui utilise une interface graphique, par contre, l’organisation interne est
         différente. On dit d’un tel programme qu’il est piloté par les événements. Après sa phase d’initialisation,
         un programme de ce type se met en quelque sorte « en attente », et passe la main à un autre logiciel, lequel
-        est plus ou moins intimement intégré au système d’exploitation de l’ordinateur et « tourne » en permanence.
+        est plus ou moins intimement intégré au système d’exploitation de l’ordinateur et « tourne » en permanence.<br>
         <img src="prog_evt.png" alt="programmation événementielle">
       </p>
       <p>Ce réceptionnaire d’événements scrute sans cesse tous les périphériques (clavier, souris, etc.) et réagit
@@ -160,7 +159,7 @@
         ceci :
         <img src="hw2.png" alt="programmation événementielle">
       </p>
-      <p>Voici une solution possible</p>
+      <p>Voici une solution possible :</p>
 
       <pre><code class="language-python">
             import tkinter as tk
@@ -172,9 +171,9 @@
             texte1 = tk.Label(mon_app, text='Bonjour tout le monde !', fg='blue')
             texte1.grid(row=0, column=0)
             
-            texte2 = tk.Label(mon_app, text="La NSI c'est super !!! !", bg='red')
+            texte2 = tk.Label(mon_app, text="La NSI c'est super !!!", bg='red')
             texte2.grid(row=1, column=0)
-            bouton = tk.Button(mon_app, text='Au revoir', command = mon_app.destroy)
+            bouton = tk.Button(mon_app, text='Au revoir', command=mon_app.destroy)
             bouton.grid(row=2, column=0)
             
             # Lancement de l'application (boucle principale)
