@@ -15,7 +15,6 @@ h1{
     color : white; */
     text-align: center;
     padding: 20px;
-    /* width:90%; */
     margin:auto;
     border-bottom: solid 3px  rgb(6, 11, 41); 
     margin-bottom: 30px;
@@ -25,7 +24,6 @@ h1{
 h2{
     margin-top: 50px;
     padding-bottom: 10px;
-    /* width:70%; */
     padding-left: 30px;
     border-radius: 0 0 0 15px;
 }
