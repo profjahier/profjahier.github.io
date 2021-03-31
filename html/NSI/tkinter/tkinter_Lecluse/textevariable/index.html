@@ -4,7 +4,6 @@
 <head>
   <!-- Meta tags -->
   <meta charset="utf-8">
-  <link rel="stylesheet" type="text/css" href="../../../../../css/style2.css" />
   <link rel="icon" type="image/gif" href="../../../../../img/favicon.gif">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Initiation à TKinter">
@@ -12,6 +11,7 @@
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="../../../../../css/style2.css" />
   <title>Texte variable — Informatique au lycée</title>
 
   <!-- mise en forme Ronan -->
@@ -43,7 +43,7 @@
           <hr>
         </div>
       </div>
-      
+
       <div class="row">
         <div class="col">
           <p>Nous allons élaborer dans ce classeur un programme simulant le lancer d'un dé à 6 faces :</p>
@@ -101,52 +101,54 @@
           <pre><code class="language-python">
             texte_de = tk.StringVar()
           </code></pre>
-          
-        <p>permet de créer un objet <strong>StringVar</strong> accessible par la variable <code
-            class="language-python">texte_de</code>.</p>
-        <p>Nous indiquons ensuite lors de la création du <em>Label</em> que son texte sera variable et que son contenu
-          sera accessible par la
-          variable <code class="language-python">texte_de</code> :</p>
 
-        <pre><code class="language-python">
+          <p>permet de créer un objet <strong>StringVar</strong> accessible par la variable <code
+              class="language-python">texte_de</code>.</p>
+          <p>Nous indiquons ensuite lors de la création du <em>Label</em> que son texte sera variable et que son contenu
+            sera accessible par la
+            variable <code class="language-python">texte_de</code> :</p>
+
+          <pre><code class="language-python">
           label_resultat = tk.Label(mon_app, textvariable=texte_de, fg='red', bg='white')
           </code></pre>
 
-        <p>La dernière chose qu'il nous reste à apprendre, c'est modifier le texte de cet objet <em>StringVar</em>.
-          Cela est réalisé par l'appel de la méthode <code class="language-python">set</code> sur l'objet
-          <em>texte_de</em> :
-        </p>
+          <p>La dernière chose qu'il nous reste à apprendre, c'est modifier le texte de cet objet <em>StringVar</em>.
+            Cela est réalisé par l'appel de la méthode <code class="language-python">set</code> sur l'objet
+            <em>texte_de</em> :
+          </p>
 
-        <pre><code class="language-python">
+          <pre><code class="language-python">
           texte_de.set('Résultat -> ' + str(nb))
           </code></pre>
 
-        <h3 class="alert-info" id="appel-d-une-fonction-python-par-un-bouton">Appel d'une fonction Python par un bouton</h3>
-        <p>Dans cet exemple, l'appui sur le bouton <em>Lancer</em> appelle une fonction que nous avons élaboré
-          nous-même. Il est en effet très simple avec <em>Tkinter</em> de relier l'appui sur un bouton avec l'appel
-          d'une fonction :</p>
+          <h3 class="alert-info" id="appel-d-une-fonction-python-par-un-bouton">Appel d'une fonction Python par un
+            bouton</h3>
+          <p>Dans cet exemple, l'appui sur le bouton <em>Lancer</em> appelle une fonction que nous avons élaboré
+            nous-même. Il est en effet très simple avec <em>Tkinter</em> de relier l'appui sur un bouton avec l'appel
+            d'une fonction :</p>
 
-        <pre><code class="language-python">
+          <pre><code class="language-python">
           bouton_lancer = tk.Button(mon_app, text ='Lancer', command=nouveau_lance)
           </code></pre>
 
-        <h3 class="alert-info" id="disposition-a-l-horizontal">Gestionnaire de positionnement</h3>
-        <p>Le bouton Quitter est positionné à la deuxième ligne (row=1) et commence dans la 1ère colonne (column=0) pour
-          s'étendre sur 2 colonne (columnspan=2) ; la dernière option <code class="language-python">sticky='ew'</code>
-          force le bouton à occuper tout l'espace des 2 colonnes en largeur ("d'est en ouest"):</p>
+          <h3 class="alert-info" id="disposition-a-l-horizontal">Gestionnaire de positionnement</h3>
+          <p>Le bouton Quitter est positionné à la deuxième ligne (row=1) et commence dans la 1ère colonne (column=0)
+            pour
+            s'étendre sur 2 colonne (columnspan=2) ; la dernière option <code class="language-python">sticky='ew'</code>
+            force le bouton à occuper tout l'espace des 2 colonnes en largeur ("d'est en ouest"):</p>
 
-        <pre><code class="language-python">
+          <pre><code class="language-python">
           bouton_quitter.grid(row=1, column=0, columnspan=2, sticky='ew')
           </code></pre>
 
 
-        <h2 class="alert-secondary" id="a-vous-de-jouer">A vous de jouer</h2>
-        <p>Modifier cette application afin d'afficher le nombre de 6 qui ont été tirés et le nombre de coups au total.
-          Vous pouvez vous inspirer de l'illustration suivante :
-          <img src="lancer_de2.png" alt="appli finale">
-        </p>
+          <h2 class="alert-secondary" id="a-vous-de-jouer">A vous de jouer</h2>
+          <p>Modifier cette application afin d'afficher le nombre de 6 qui ont été tirés et le nombre de coups au total.
+            Vous pouvez vous inspirer de l'illustration suivante :
+            <img src="lancer_de2.png" alt="appli finale">
+          </p>
 
-        <pre><code class="language-python">
+          <pre><code class="language-python">
           import tkinter as tk
           from random import randint
           
@@ -191,11 +193,11 @@
           label_stat.grid(row=0, column=2)
           mon_app.mainloop()
           </code></pre>
-      </div>
+        </div>
 
-  </div>
-</article>
-</main>
+      </div>
+    </article>
+  </main>
 
 
 

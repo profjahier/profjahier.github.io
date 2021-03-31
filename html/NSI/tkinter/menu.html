@@ -2,25 +2,40 @@
 <html lang="fr">
 
 <head>
-    <title>profjahier- Doc tkinter</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="../../../css/style2.css" />
-    <link rel="stylesheet" type="text/css" href="../../../css/prism.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <title>profjahier- Doc tkinter</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="../../../css/prism.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="../../../css/style2.css" />
 </head>
 
 <body>
   <main class="container">
-  <h1 class="alert-primary">Création d'un menu</h1>
-  <p>Avant de créer un menu, il faut d'abord créer un widget <strong>Menubutton</strong> (Boutton de menu) qui permet de faire apparaitre le menu.<br/>
-  Ce Menubutton est un enfant de la fenêtre principale de l'application.</p>
-  <p>On peut ensuite créer un widget <strong>Menu</strong> qui doit être un enfant du Menubutton précédemment créé, et qui contiendra les choix du menu.</p>
-  <p>Enfin, il faut associer le paramètre "menu" du Menubutton au widget Menu. Cette opération ne peut être faite qu'une fois que le Menu existe.</p>
+    <h1 class="alert-primary">Création d'un menu</h1>
 
-  <pre><code class="language-python">
+    <div class="col">
+      <nav class="nav">
+        <a href="../../index.html" class="btn btn-secondary">Profjahier</a>
+        <a href="#" class="btn btn-light"></a>
+        <a href="../../NSI/index.html" class="btn btn-secondary">NSI</a>
+        <a href="#" class="btn btn-light"></a>
+        <a href="index.html" class="btn btn-secondary">Doc Tkinter</a>
+      </nav>
+      <hr>
+    </div>
+
+    <p>Avant de créer un menu, il faut d'abord créer un widget <strong>Menubutton</strong> (Boutton de menu) qui permet
+      de faire apparaitre le menu.<br />
+      Ce Menubutton est un enfant de la fenêtre principale de l'application.</p>
+    <p>On peut ensuite créer un widget <strong>Menu</strong> qui doit être un enfant du Menubutton précédemment créé, et
+      qui contiendra les choix du menu.</p>
+    <p>Enfin, il faut associer le paramètre "menu" du Menubutton au widget Menu. Cette opération ne peut être faite
+      qu'une fois que le Menu existe.</p>
+
+    <pre><code class="language-python">
 interface= tk.Tk()
 
 boutton_de_menu = tk.Menubutton(interface, text="titre du menu")
@@ -33,29 +48,32 @@ boutton_de_menu.pack()
   </code></pre>
 
 
-  <h2 class="alert-secondary">Widget Menu</h2>
-  <p>Les choix affichés sur un menu peuvent être:</p>
-  <ul>
-    <li>Une simple commande: une chaîne de caractères (ou une image) que l’utilisateur peut sélectionner pour réaliser une certaine opération.</li>
-    <li>Une « cascade »: une chaîne de caractères ou une image que l’utilisateur peut sélectionner pour faire apparaître un sous menu.</li>
-    <li>Un choix à cocher «checkbutton» (voir Checkbutton - Cases à cocher).</li>
-    <li>Un groupe de boutons radio «radiobutton» (voir Radiobutton - Boutons radio).</li>
-  </ul>
+    <h2 class="alert-secondary">Widget Menu</h2>
+    <p>Les choix affichés sur un menu peuvent être:</p>
+    <ul>
+      <li>Une simple commande: une chaîne de caractères (ou une image) que l’utilisateur peut sélectionner pour réaliser
+        une certaine opération.</li>
+      <li>Une « cascade »: une chaîne de caractères ou une image que l’utilisateur peut sélectionner pour faire
+        apparaître un sous menu.</li>
+      <li>Un choix à cocher «checkbutton» (voir Checkbutton - Cases à cocher).</li>
+      <li>Un groupe de boutons radio «radiobutton» (voir Radiobutton - Boutons radio).</li>
+    </ul>
 
-  <h2 class="alert-secondary">Compléments et détails</h2>
-  <p><a href="http://tkinter.fdex.eu/doc/menw.html" target="_blank">Menu</a>  (TKinter pour ISN - Étienne FLORENT)
-    <br/>
-    <a href="http://tkinter.fdex.eu/doc/menbw.html" target="_blank">Menubutton</a>  (TKinter pour ISN - Étienne FLORENT)
-  </p>
+    <h2 class="alert-secondary">Compléments et détails</h2>
+    <p><a href="http://tkinter.fdex.eu/doc/menw.html" target="_blank">Menu</a> (TKinter pour ISN - Étienne FLORENT)
+      <br />
+      <a href="http://tkinter.fdex.eu/doc/menbw.html" target="_blank">Menubutton</a> (TKinter pour ISN - Étienne
+      FLORENT)
+    </p>
 
-  
-</main>
-<script src="../../../js/prism.js"></script>
-<!-- <script src="../../../js/generalites.js"></script> -->
-<!-- Option 1: Bootstrap Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-  integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-  crossorigin="anonymous"></script>
+
+  </main>
+  <script src="../../../js/prism.js"></script>
+  <!-- <script src="../../../js/generalites.js"></script> -->
+  <!-- Option 1: Bootstrap Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+    crossorigin="anonymous"></script>
 </body>
 
 </html>

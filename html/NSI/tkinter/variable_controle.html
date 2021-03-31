@@ -2,26 +2,41 @@
 <html lang="fr">
 
 <head>
-    <title>profjahier- Doc tkinter</title>
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="../../../css/style2.css" />
-    <link rel="stylesheet" type="text/css" href="../../../css/prism.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <title>profjahier- Doc tkinter</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="../../../css/prism.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="../../../css/style2.css" />
 </head>
 
 <body>
   <main class="container">
-  <h1 class="alert-primary">Variables de contrôle</h1>
-  <p>Les variables de contrôle (<strong>IntVar</strong>, <strong>DoubleVar</strong> et <strong>StringVar</strong>) permettent de rendre dynamique certains affichages de tkinter (numérique ou chaine de caractères).</p>
-  <p>Un exemple classique est d'associer une StringVar à l'affichage d'un <em>Label</em>.
-    À la place de l'option <em>text</em> du Label, on utilisera l'option <strong>textvariable</strong> avec comme valeur le nom de la StringVar (définie ailleurs dans le code du programme).
-  </p>
-  <p>On définit la valeur d'une variable de contrôle avec sa méthode <strong>set()</strong>, et on récupère son contenu avec sa méthode <strong>get()</strong>.</p>
+    <h1 class="alert-primary">Variables de contrôle</h1>
 
-  <pre><code class="language-python">
+    <div class="col">
+      <nav class="nav">
+        <a href="../../index.html" class="btn btn-secondary">Profjahier</a>
+        <a href="#" class="btn btn-light"></a>
+        <a href="../../NSI/index.html" class="btn btn-secondary">NSI</a>
+        <a href="#" class="btn btn-light"></a>
+        <a href="index.html" class="btn btn-secondary">Doc Tkinter</a>
+      </nav>
+      <hr>
+    </div>
+
+    <p>Les variables de contrôle (<strong>IntVar</strong>, <strong>DoubleVar</strong> et <strong>StringVar</strong>)
+      permettent de rendre dynamique certains affichages de tkinter (numérique ou chaine de caractères).</p>
+    <p>Un exemple classique est d'associer une StringVar à l'affichage d'un <em>Label</em>.
+      À la place de l'option <em>text</em> du Label, on utilisera l'option <strong>textvariable</strong> avec comme
+      valeur le nom de la StringVar (définie ailleurs dans le code du programme).
+    </p>
+    <p>On définit la valeur d'une variable de contrôle avec sa méthode <strong>set()</strong>, et on récupère son
+      contenu avec sa méthode <strong>get()</strong>.</p>
+
+    <pre><code class="language-python">
 from random import choice
 
 def modifStatus():
@@ -50,18 +65,20 @@ tk.Button(interface, text="incrémenter le compteur", command=compteurIncremente
 
   </code></pre>
 
-  <p>Les autres utilisations quasi-obligatoires sont couplées à l'utilisation des widgets :</p>
-  <ul>
-    <li><strong>Entry</strong> : pour récupérer le texte saisi par l'utilisateur avec une StringVar</li>
-    <li><strong>Radiobutton</strong> : un groupe de boutons radio doit partager une variable de contrôle commune (<a href="
+    <p>Les autres utilisations quasi-obligatoires sont couplées à l'utilisation des widgets :</p>
+    <ul>
+      <li><strong>Entry</strong> : pour récupérer le texte saisi par l'utilisateur avec une StringVar</li>
+      <li><strong>Radiobutton</strong> : un groupe de boutons radio doit partager une variable de contrôle commune (<a
+          href="
       bouton_radio.html">Radiobutton</a>)</li>
-    <li><strong>Scale</strong> : pour récupérer la valeur du curseur</li>
+      <li><strong>Scale</strong> : pour récupérer la valeur du curseur</li>
 
-    <h2 class="alert-secondary">Compléments et détails</h2>
-    <p><a href="http://tkinter.fdex.eu/doc/ctrvar.html" target="_blank">Variabels de contrôle</a> (TKinter pour ISN - Étienne FLORENT)
-    </p>
+      <h2 class="alert-secondary">Compléments et détails</h2>
+      <p><a href="http://tkinter.fdex.eu/doc/ctrvar.html" target="_blank">Variabels de contrôle</a> (TKinter pour ISN -
+        Étienne FLORENT)
+      </p>
 
-  
+
   </main>
   <script src="../../../js/prism.js"></script>
   <!-- <script src="../../../js/generalites.js"></script> -->
