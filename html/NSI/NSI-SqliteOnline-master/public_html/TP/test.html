@@ -1,0 +1,34 @@
+<p>classe = [
+{ "nom" : "Pierre", "notes": [14,15,12]},
+{ "nom" : "Anne", "notes": [13,12]},
+{ "nom" : "Jacques", "notes": [18,19,19]},
+{ "nom" : "Yasmine", "notes": [13,18,17]},
+{ "nom" : "Inès", "notes": [11,12]},
+{ "nom" : "Ludwig", "notes": [7,10,13]},
+]
+</p>
+<div class='question py'>
+    Affichez la deuxième note de Yasmine.
+    <pre class='response'>print(classe[3]['notes'][2])</pre>
+</div>
+<div class='question py'>
+    Affichez la deuxième note de Yasmine.
+    <pre class='response'>print(classe[3]['notes'][2])</pre>
+</div>
+<div class='question py'>
+    Quelle ordre de grandeur peuvent atteindre les bases de données actuelles ?
+    <pre class='response'>def notes(nom):
+  for eleve in classe:
+	if(eleve['nom']==nom):
+	  return eleve['notes']
+  return []
+
+print(notes('Jacques'))</pre>
+</div>
+
+<div class='question text'>
+    Dans la vidéo, on parle de RGPD, précisez l'acronyme et préciser quel est ce règlement ?
+    <pre class='response'>Le Règlement Général sur la Protection des Données définie le cadre européen 
+concernant le stockage, le traitement et la circulation des données à caractère 
+personnel. Ce texte s'applique pour l’ensemble des résidents de l’Union européenne.</pre>
+</div>
