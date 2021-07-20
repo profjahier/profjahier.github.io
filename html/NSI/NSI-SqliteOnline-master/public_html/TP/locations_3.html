@@ -107,8 +107,16 @@ JOIN Agences ON Locations.depart=Agences.id
 WHERE vehicule='AB-224-BA'</pre>
 </div>
 <div class='question'>
-    Affichez les dates des locations ainsi que les noms des agences et des villes de
-    départ et de retour des locations du véhicule immatriculé AB-224-BA dans l'ordre chronologique.
+    <strong>Question bonus gratuite</strong> : Affichez les dates des locations ainsi que les noms des agences et des villes de départ et de retour des locations du véhicule immatriculé AB-224-BA dans l'ordre chronologique.<br>
+    Voici la réponse pour information :<br>
+    <em>
+        SELECT Locations.date, depart.nom, depart.ville, retour.nom, retour.ville<br>
+FROM Locations <br>
+JOIN Agences as depart ON Locations.depart=depart.id<br>
+JOIN Agences as retour ON Locations.retour=retour.id<br>
+WHERE vehicule='AB-224-BA' ORDER BY Locations.date
+    </em>
+
 
     <pre class='response'>SELECT Locations.date, depart.nom, depart.ville, retour.nom,retour.ville
 FROM Locations 

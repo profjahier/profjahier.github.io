@@ -98,7 +98,10 @@ WHERE nom LIKE '%Renault%'</pre>
     A 0.35€ du kilomètre, cela fait un paquet d'argent !
     Visualisez alors les marques, les modèles et les immatriculations des vehicules avec en plus les recettes moyennes
     par mois. Cette moyenne sera arrondie à l'entier le plus proche et devra être renommée recette
-    dans le tableau résultat.
+    dans le tableau résultat.<br>
+    Et gentillement, je vous donne la réponse ! Saurez-vous la recopier correctement... ?<br>
+    <em>SELECT nom, immatriculation, ROUND(0.35*kilometrage/age) AS recette
+        FROM Vehicules</em>
     <pre class='response'>SELECT nom, immatriculation, ROUND(0.35*kilometrage/age) AS recette
 FROM Vehicules</pre>
 </div>

@@ -79,21 +79,9 @@
 </div>
 
 <div class='question'>
-    Listez les noms des agences du département du Morbihan ainsi que
-    les codes postaux en utilisant la fonction SUBSTR(str,first,nb) dans un WHERE.
-    <pre class='response'>SELECT nom, code FROM Agences WHERE SUBSTR(code,1,2) = '56'</pre>
-</div>
-
-<div class='question'>
     Listez les villes du département du Morbihan hébergeant au moins une agence. Attention,
     une ville ne doit apparaître qu'une seule fois.
     <pre class='response'>SELECT DISTINCT ville FROM Agences WHERE code LIKE '56%'</pre>
-</div>
-
-<div class='question'>
-    Listez les noms des agences en Bretagne ('56','29','35','22') ainsi que les codes postaux
-    en utilisant la fonction SUBSTR(str,first,nb) et la directive IN (element1,element2,element3,...)
-    <pre class='response'>SELECT nom, code FROM Agences WHERE SUBSTR(code,1,2) IN ('56','29','35','22')</pre>
 </div>
 
 <div class='question'>

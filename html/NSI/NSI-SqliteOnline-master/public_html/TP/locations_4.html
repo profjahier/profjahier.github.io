@@ -2,12 +2,14 @@
     ces questions.</p>
 <p>Cette base de données concerne une agence de location de voitures.</p>
 
+<p><strong>Avertissement : </strong>Certaines questions sont assez difficiles (n°11 et 12) et vont au-delà de ce qu'on pourrait exiger au BAC mais elles restent instructives (vous pouvez toujours cliquer sur Abandonner et vous contentez de lire la réponse en essayant de la comprendre). Par ailleurs, elles conservent un intérêt pour le scénario et sont nécessaires pour aller jusqu'au bout de ce TP. Ne lâchez pas l'affaire complètement, des questions plus simples reviennent ensuite !</p>
+
 <h2>Gestion du Réseau (épisode 4/4)</h2>
 <p>Une Renault Twingo immatriculée DF-269-EF arrive à l'agence. Vous devez donc remettre
     votre analyse à plus tard et mettre à jour votre base de données. </p>
 <div class='question'>
-    Affichez les locations de ce véhicule dans l'ordre chronologique inverse. Notez bien la clef de la dernière
-    location, vous en aurez besoin plus tard.
+    Affichez les locations de ce véhicule dans l'ordre chronologique inverse. <strong>Notez bien la clef de la dernière
+    location</strong> , vous en aurez besoin plus tard.
     <pre class='response'>SELECT * from Locations WHERE vehicule='DF-269-EF' ORDER BY date DESC</pre>
 </div>
 <div class='question'>
