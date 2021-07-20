@@ -109,3 +109,14 @@ INSERT INTO "RelationLivreTheme" ("IdLivre","IdTheme") VALUES (1,2),
  (12,3),
  (13,4),
  (13,8);
+ 
+ 
+ select * from livre;select * from auteur;select * from theme;select * from langue;select * from Relationlivretheme;
+ 
+ SELECT DISTINCT
+Titre as "Livre", NomAuteur as "Nom", PrenomAuteur as "Prénom", AnneeNaissance as "Né en", Langue, AnneePubli as "Publié en"
+FROM RelationLivreTheme
+JOIN Livre ON Livre.IdLivre = RelationLivreTheme.IdLivre
+JOIN Auteur ON Auteur.IdAuteur = Livre.IdAuteur
+JOIN Langue ON Langue.IdLangue = Auteur.IdLangue
+ORDER BY Titre;

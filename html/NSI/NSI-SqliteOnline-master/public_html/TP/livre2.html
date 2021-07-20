@@ -1,0 +1,18 @@
+<p>Telecharger le <a href="soccer.pdf"><strong>schéma relationnel</strong></a> de la base avant de vous lancer dans ces questions.<br><img src="schema-relationnel.png"></p>
+<p>Cette  base de données concerne des livres et des écrivains.</p>
+<p>Vous serez guidés dans ce TP pour découvrir la syntaxe du langage SQL.</p>
+<p>La base de données est désormais "complète". Vous pouvez consulter l'état des Tables ci-dessous.</p>
+
+<h2>Partie 2</h2>
+
+<div class='question sql'>
+    <h3>Petit Bilan avant de commencer.</h3>
+    Entrez la commande suivante <pre>SELECT DISTINCT
+        Titre, NomAuteur, PrenomAuteur, AnneeNaissance, Langue, AnneePubli
+        FROM RelationLivreTheme
+        JOIN Livre ON Livre.IdLivre = RelationLivreTheme.IdLivre
+        JOIN Auteur ON Auteur.IdAuteur = Livre.IdAuteur
+        JOIN Langue ON Langue.IdLangue = Auteur.IdLangue;</pre> pour visualiser de façon plus 'agréable' les infos que nous possédons sur les llivres.
+</div>
+
+<h3>Et voilà, c'est fini : beau travail. Vous pouvez poursuivre en autonomie avec 2 autres TP online qui sont proposés sur mon site.</h3>

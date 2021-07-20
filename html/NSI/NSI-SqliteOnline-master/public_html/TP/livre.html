@@ -1,0 +1,28 @@
+<p>Telecharger le <a href="soccer.pdf"><strong>schéma relationnel</strong></a> de la base avant de vous lancer dans ces questions.<br><img src="schema-relationnel.png"></p>
+<p>Cette  base de données concerne des livres et des écrivains.</p>
+<p>Vous serez guidés dans ce TP pour découvrir la syntaxe du langage SQL.</p>
+
+<h2>Partie 1</h2>
+<div class='question sql'>
+    <h3>Lire le contenu d'une table : requête de sélection SELECT.</h3>
+    Entrez la commande suivante <pre>SELECT * FROM Langue;</pre> pour visualiser le contenu de la relation Langue.
+    <pre class='response'>N'oubliez pas le point-virgule à la fin !</pre>
+</div>
+<div class='question sql'>
+    <h3>Insérer des données : requête d'insertion INSERT.</h3>
+    Voici comment on a entré les données que vous venez de visualiser.
+    <pre>INSERT INTO Langue VALUES (1, "Anglais"), (2, "Français");
+    </pre> 
+    Sur le même modèle, ajouter les langues Espagnol et Allemand.
+    <pre class='response'>INSERT INTO Langue VALUES (3, "Espagnol"), (4, "Allemand");</pre>
+</div>
+<div class='question sql'>
+    <h3>Contrainte de relation.</h3>
+    Entrer la commande suivante
+    <pre>INSERT INTO Langue VALUES (2, "Turc");</pre> 
+    Expliquer le message d'erreur.
+    <pre class='response'>La clef primaire 2 existe déjà (pour le Français) : impossible d'avoir 2 clefs primaires identiques...</pre>
+</div>
+
+
+<p><a href="https://profjahier.github.io/html/NSI/NSI-SqliteOnline-master/public_html/tp.html?html=livre2&db=livre_complet">Passer à la deuxième partie.</a></p>
