@@ -1,0 +1,53 @@
+<p>Telecharger le <a href="soccer.pdf"><strong>schéma relationnel</strong></a> de la base avant de vous lancer dans ces questions.</p>
+<p>Cette  base de données concerne le championnat de France de football 2015-2016.</p>
+
+<h2>Quelques statistiques sur le championnat 2015-2016</h2>
+<div class='question sql'>
+    Vérifiez qu'il y avait 20 équipes à participer au championnat.
+    <pre class='response'>SELECT COUNT(*) FROM Team;</pre>
+</div>
+<div class='question sql'>
+    Déterminez la date de création la plus ancienne de ces clubs.
+    <pre class='response'>SELECT MIN(birthday) FROM Team;</pre>
+</div>
+<div class='question sql'>
+    Déterminez le nom du ou des clubs créés à cette date.
+    <pre class='response'>SELECT name FROM Team WHERE birthday=1881;</pre>
+</div>
+<div class='question sql'>
+    Affichez dans l'ordre de leur création, le plus ancien d'abord, le nom et la date de création des clubs ayant
+    disputé ce championnat. Vous utiliserez un ORDER BY.
+    <pre class='response'>SELECT name, birthday FROM Team ORDER BY birthday;</pre>
+</div>
+<div class='question sql'>
+    Vérifiez qu'il y a bien eu 380 matchs disputés.
+    <pre class='response'>SELECT COUNT(*) FROM Match;</pre>
+</div>
+<div class='question sql'>
+    Vérifiez qu'il y a bien eu 66 penaltys marqués.
+    <pre class='response'>SELECT COUNT(*) FROM Event WHERE type='penalty';</pre>
+</div>
+<div class='question sql'>
+    Et que 78 cartons rouges ont été distribués.
+    <pre class='response'>SELECT COUNT(*) FROM Event WHERE type='red';</pre>
+</div>
+<div class='question sql'>
+    Vérifiez qu'il y a bien eu 93 penaltys sifflés. Vous utiliserez un WHERE OR. 
+    <pre class='response'>SELECT COUNT(*) FROM Event WHERE type='penalty' OR type='miss';</pre>
+</div>
+<div class='question sql'>
+    Affichez les 10 cartons rouges obtenus le plus rapidement durant un match. Vous utiliserez un ORDER BY.
+    POur n'afficher que 10 résultats, il faut ajouter la clause LIMIT=10 à la fin de la requête. <br>
+    ATTENTION : Vous noterez bien l'identifiant du joueur et celui de l'équipe associée au carton rouge le plus rapide.
+    <pre class='response'>SELECT * FROM Event WHERE type='red' ORDER BY time LIMIT 10;</pre>
+</div>
+<div class='question sql'>
+    Déterminez le nom de ce joueur.
+    <pre class='response'>SELECT name FROM Player WHERE id=392;</pre>
+</div>
+<div class='question sql'>
+    Ainsi que le nom de son club.
+    <pre class='response'>SELECT name FROM Team WHERE id=18;</pre>
+</div>
+
+<p><a href="https://profjahier.github.io/html/NSI/NSI-SqliteOnline-master/public_html/tp.html?html=foot2&db=soccer">Passer au 2ème TP de cette série.</a></p>
