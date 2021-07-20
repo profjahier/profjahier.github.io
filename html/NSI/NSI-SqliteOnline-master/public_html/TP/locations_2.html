@@ -1,14 +1,34 @@
-<h2>La relation Vehicules</h2>
+<p>Telecharger le <a href="locations.pdf"><strong>schéma relationnel</strong></a> de la base avant de vous lancer dans
+    ces questions.</p>
+<p>Cette base de données concerne une agence de location de voitures.</p>
+
+<h2>La relation Vehicules (épisode 2/4)</h2>
 
 <p>Les véhicules de votre flotte sont également représentés dans votre base
-    de données. Les informations sont regroupées dans la relation Vehicules dont 
+    de données. Les informations sont regroupées dans la relation Vehicules dont
     les caractéristiques sont précisées ci-dessous:</p>
 
 <table>
-    <tr><td>immatriculation</td><td>TEXT</td><td>de la forme XX-000-XX, la clef primaire</td></tr>
-    <tr><td>nom</td><td>TEXT</td><td>la marque et le modèle</td></tr>
-    <tr><td>kilometrage</td><td>INT</td><td>le kilométrage de ce véhicule</td></tr>
-    <tr><td>age</td><td>TEXT</td><td>indiqué en mois</td></tr>
+    <tr>
+        <td>immatriculation</td>
+        <td>TEXT</td>
+        <td>de la forme XX-000-XX, la clef primaire</td>
+    </tr>
+    <tr>
+        <td>nom</td>
+        <td>TEXT</td>
+        <td>la marque et le modèle</td>
+    </tr>
+    <tr>
+        <td>kilometrage</td>
+        <td>INT</td>
+        <td>le kilométrage de ce véhicule</td>
+    </tr>
+    <tr>
+        <td>age</td>
+        <td>TEXT</td>
+        <td>indiqué en mois</td>
+    </tr>
 </table>
 
 <div class='question'>
@@ -16,21 +36,21 @@
     <pre class='response'>SELECT COUNT(*) FROM Vehicules</pre>
 </div>
 
-<p>Perso, je trouve que ça ne fait pas beaucoup de véhicules 
+<p>Perso, je trouve que ça ne fait pas beaucoup de véhicules
     à louer par agence mais je sais que vous venez juste de
     lancer votre petite entreprise. Regardons alors comment évoluent
     les acquisitions de véhicules. </p>
 
 <div class='question'>
     Vous avez eu la bonne idée de mémoriser pour vos
-    véhicules le nombre de mois de présence dans l'agence (attribut age). 
+    véhicules le nombre de mois de présence dans l'agence (attribut age).
     Déterminez le nombre de mois minimum et maximum de vos véhicules.
     <pre class='response'>SELECT MIN(age), MAX(age) FROM Vehicules</pre>
 </div>
 
 <div class='question'>
     Votre flotte n'est pas très importante mais plutôt récente.
-    Quels sont la marque et le modèle de votre dernière acquisition qui date de trois 
+    Quels sont la marque et le modèle de votre dernière acquisition qui date de trois
     mois ?
     <pre class='response'>SELECT nom FROM Vehicules WHERE age=3</pre>
 </div>
@@ -41,7 +61,7 @@
 </div>
 
 <div class='question'>
-    Regardons maintenant le kilométrage 
+    Regardons maintenant le kilométrage
     maximum de vos véhicules.
     <pre class='response'>SELECT MAX(kilometrage) FROM Vehicules</pre>
 </div>
@@ -60,15 +80,15 @@
 
 <div class='question'>
     Il semble que vos véhicules soient très sollicités. Dans votre
-    base de données vous avez le kilométrage du véhicule ainsi que le nombre de 
+    base de données vous avez le kilométrage du véhicule ainsi que le nombre de
     mois de présence dans l'agence. Listez votre flotte en indiquant
-    uniquement le modèle, son immatriculation et le nombre moyen de kilomètres 
-    parcourus par mois. 
+    uniquement le modèle, son immatriculation et le nombre moyen de kilomètres
+    parcourus par mois.
     <pre class='response'>SELECT nom, immatriculation, kilometrage/age FROM Vehicules</pre>
 </div>
 
 <div class='question'>
-    Déterminez l'immatriculation de la voiture de marque Renault ayant le nombre moyen de kilomètres parcourus par 
+    Déterminez l'immatriculation de la voiture de marque Renault ayant le nombre moyen de kilomètres parcourus par
     mois le plus important en utilisant la fonction MAX.
     <pre class='response'>SELECT immatriculation, MAX(kilometrage/age) FROM Vehicules 
 WHERE nom LIKE '%Renault%'</pre>
@@ -76,29 +96,31 @@ WHERE nom LIKE '%Renault%'</pre>
 
 <div class='question'>
     A 0.35€ du kilomètre, cela fait un paquet d'argent !
-    Visualisez alors les marques, les modèles et les immatriculations des vehicules avec en plus les recettes moyennes 
-    par mois. Cette moyenne sera arrondie à l'entier le plus proche et devra être renommée recette 
+    Visualisez alors les marques, les modèles et les immatriculations des vehicules avec en plus les recettes moyennes
+    par mois. Cette moyenne sera arrondie à l'entier le plus proche et devra être renommée recette
     dans le tableau résultat.
     <pre class='response'>SELECT nom, immatriculation, ROUND(0.35*kilometrage/age) AS recette
 FROM Vehicules</pre>
 </div>
 
 <div class='question'>
-    Votre entreprise est vraiment florissante. Mais quelles sont les voitures les plus rentables ? 
-    Listez les marques, les modèles et les immatriculations des vehicules  dans l'ordre décroissant de cette rentabilité.
+    Votre entreprise est vraiment florissante. Mais quelles sont les voitures les plus rentables ?
+    Listez les marques, les modèles et les immatriculations des vehicules dans l'ordre décroissant de cette rentabilité.
     <pre class='response'>SELECT nom, immatriculation, ROUND(0.35*kilometrage/age) AS recette 
 FROM Vehicules ORDER BY recette DESC</pre>
 </div>
 
-<p>La voiture la moins rentable 
-    est la Citroën C5 immatriculée AE-478-DD. Cela ne vous étonne 
-    pas car c'est votre voiture de fonction dont vous vous êtes réservé la 
+<p>La voiture la moins rentable
+    est la Citroën C5 immatriculée AE-478-DD. Cela ne vous étonne
+    pas car c'est votre voiture de fonction dont vous vous êtes réservé la
     jouissance exclusive. Par contre,
     ce qui vous étonne c'est qu'elle rapporterait quand même 113€ par mois !</p>
 
-<p>Oups, vous venez de vous rendre compte que vous avez fait n'importe quoi. 
+<p>Oups, vous venez de vous rendre compte que vous avez fait n'importe quoi.
     Vous avez acheté d'occasion la
-    totalité des véhicules (sauf votre C5) et le kilométrage actuel ne donne 
-    guère d'information sur la rentabilité de votre entreprise. Il faudrait 
+    totalité des véhicules (sauf votre C5) et le kilométrage actuel ne donne
+    guère d'information sur la rentabilité de votre entreprise. Il faudrait
     plutôt analyser l'historique des locations.</p>
 
+
+<p><a href="https://profjahier.github.io/html/NSI/NSI-SqliteOnline-master/public_html/tp.html?html=locations_3&db=locations">Passer au 3ème TP de cette série.</a></p>
