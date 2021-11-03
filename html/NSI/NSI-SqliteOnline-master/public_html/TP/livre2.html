@@ -1,5 +1,5 @@
 <p>On rappelle ci-dessous le <strong>schéma relationnel</strong> de la base.<br><img src="schema-relationnel.png"></p>
-<p>Cette  base de données concerne des livres et des écrivains.</p>
+<p>Cette base de données concerne des livres et des écrivains.</p>
 <p>Vous serez guidés dans ce TP pour découvrir la syntaxe du langage SQL.</p>
 <p>La base de données est désormais "complète". Vous pouvez consulter l'état des Tables ci-dessous.</p>
 
@@ -7,12 +7,170 @@
 
 <div class='question sql'>
     <h3>Petit Bilan avant de commencer.</h3>
-    Entrez la commande suivante <pre>SELECT DISTINCT
+    Entrez la commande suivante
+    <pre>SELECT DISTINCT
         Titre, NomAuteur, PrenomAuteur, AnneeNaissance, Langue, AnneePubli
         FROM RelationLivreTheme
         JOIN Livre ON Livre.IdLivre = RelationLivreTheme.IdLivre
         JOIN Auteur ON Auteur.IdAuteur = Livre.IdAuteur
-        JOIN Langue ON Langue.IdLangue = Auteur.IdLangue;</pre> pour visualiser de façon plus 'agréable' les infos que nous possédons sur les llivres.
+        JOIN Langue ON Langue.IdLangue = Auteur.IdLangue;</pre> pour visualiser de façon plus 'agréable' les infos que
+    nous possédons sur les llivres.
 </div>
 
-<h3>Et voilà, c'est fini : beau travail. Vous pouvez poursuivre en autonomie avec 2 autres TP online qui sont proposés sur mon site.</h3>
+<div class='question sql'>
+    <h3>Découvrir les requêtes d'interrogation SELECT (1/8).</h3>
+    <p>Supposons que l’on veuille lister seulement les noms et prénoms des auteurs nés avant 1900, on
+        utilisera une clause WHERE condition.</p>
+    <p>Recopier la commande suivante pour l'exemple :</p>
+    <pre>SELECT NomAuteur, PrenomAuteur FROM Auteur WHERE AnneeNaissance &lt; 1900;</pre>
+</div>
+
+
+<div class='question sql'>
+    <h3>Découvrir les requêtes d'interrogation SELECT (2/8).</h3>
+    <p>Pour obtenir les auteurs prénommés Jules.</p>
+    <p>Recopier la commande suivante pour l'exemple :</p>
+    <pre>SELECT NomAuteur, PrenomAuteur FROM Auteur WHERE PrenomAuteur = "Jules";</pre>
+</div>
+
+<div class='question sql'>
+    <h3>Découvrir les requêtes d'interrogation SELECT (3/8).</h3>
+    <p>Il est possible de croiser plusieurs critères à l’aide d’opérateurs booléens : AND et OR.
+    </p>
+    <p>La liste des auteurs français nés après 1900 s'obtient par exemple avec la commande suivante :</p>
+    <pre>SELECT NomAuteur, PrenomAuteur FROM Auteur
+            WHERE IdLangue = 2 AND AnneeNaissance > 1900;</pre>
+</div>
+
+<div class='question sql'>
+    <h3>Découvrir les requêtes d'interrogation SELECT (4/8).</h3>
+    <h4>COUNT : compter le nombre de réponses d’une requête</h4>
+    <p>Exemple : pour savoir combien il y a d’auteurs nés entre 1900 et 1915 :</p>
+    <pre>SELECT COUNT(*) FROM Auteur WHERE AnneeNaissance &gt; 1900 AND AnneeNaissance &lt;1915;/pre>
+</div>
+
+<div class='question sql'>
+    <h3>Découvrir les requêtes d'interrogation SELECT (5/8).</h3>
+    <h4>Trier les réponses : ORDER BY</h4>
+        <p>Nous allons lister tous les auteurs par ordre croissant d’année de naissance :</p>
+        <pre>SELECT * FROM Auteur ORDER BY AnneeNaissance;</pre>
+</div>
+
+<div class='question sql'>
+    <h3>Découvrir les requêtes d'interrogation SELECT (6/8).</h3>
+    <h4>Trier les réponses : ORDER BY</h4>
+    <p>Et par ordre décroissant, on ajoute DESC à la fin de la requête :</p>
+    <pre>SELECT * FROM Auteur ORDER BY AnneeNaissance DESC;</pre>
+</div>
+
+<div class='question sql'>
+    <h3>Découvrir les requêtes d'interrogation SELECT (7/8).</h3>
+    <h4>Le problème des doublons</h4>
+    <p>Observer la présence de doublons en listant les années de publication des livres rangées par ordre croissant :
+    </p>
+    <pre>SELECT AnneePubli FROM Livre ORDER BY AnneePubli;</pre>
+</div>
+
+<div class='question sql'>
+    <h3>Découvrir les requêtes d'interrogation SELECT (8/8).</h3>
+    <h4>Éliminer les doublons : SELECT DISTINCT</h4>
+    <p>Voici la solution au problème des doublons :</p>
+    <pre>SELECT DISTINCT AnneePubli FROM Livre ORDER BY AnneePubli;</pre>
+</div>
+
+<div class='question sql'>
+    <h3>Défi n°1 (partie A).</h3>
+    <p>Donner la liste de tous les titres des livres écrits entre 1920 et 1950.</p>
+    <pre class='response'>SELECT Titre FROM Livre
+            WHERE AnneePubli &gt; 1920 AND AnneePubli &lt; 1950;</pre>
+</div>
+
+<div class='question sql'>
+    <h3>Défi n°1 (partie B).</h3>
+    <p>Chercher le nombre de livres écrits entre 1920 et 1950.</p>
+    <pre class='response'>SELECT COUNT(*) FROM Livre
+            WHERE AnneePubli &gt; 1920 AND AnneePubli &lt; 1950;</pre>
+</div>
+
+
+
+<div class='question sql'>
+    <h3>Découvrir les jointures JOIN (1/2).</h3>
+    <p>Jusqu’à présent, nos requêtes ne portaient que sur une seule table. Néanmoins notre liste de
+        livres comporte des données en provenance de plusieurs tables simultanément. Nous allons voir
+        comment effectuer des requêtes pour croiser des données en provenance de plusieurs tables.</p>
+    <p>Exécutez la requête suivante :</p>
+    <pre>SELECT * FROM Langue, Auteur;</pre>
+    Comme on peut le constater cette requête est peu pertinente car elle affiche toutes les données de
+    chacune des tables sans effectuer de correspondances. La clef de jointure apparaît pourtant ici
+    clairement : il s’agit de idLangue qui doit permettre de recouper les informations entre les deux
+    tables : il est en effet inutile d’afficher les données pour lesquelles les langues ne correspondent
+    pas entre les deux tables.</p>
+</div>
+
+<div class='question sql'>
+    <h3>Découvrir les jointures JOIN ON (2/2).</h3>
+    <p>La jointure consiste à croiser les données de plusieurs tables pour les présenter sous forme
+        d’un seul tableau. On va utiliser ce mécanisme pour afficher clairement la langue de l’auteur
+        plutôt qu’un numéro qui n’est pas forcément très parlant. Nous utiliserons pour cela l’opérateur
+        JOIN ... ON :</p>
+    </p>
+    <pre>SELECT NomAuteur, PrenomAuteur, Langue
+            FROM Auteur JOIN Langue ON Auteur.IdLangue = Langue.IdLangue;</pre>
+
+    <p> <em>Remarque</em> : on retrouve la syntaxe de la notation de programmation objet avec le point qui
+        sépare le nom d’une relation et le nom d’un attribut de cette relation.
+    </p>
+</div>
+
+<div class='question sql'>
+    <h3>Défi n°2 (partie A).</h3>
+    <p>En croisant la table Livre avec la table Auteur, afficher une liste dont les attributs sont Titre, Prenom, Nom et
+        Annee Publi, triée du plus récent au plus ancien.</p>
+    <pre class='response'>SELECT Titre, PrenomAuteur, NomAuteur, AnneePubli FROM Livre JOIN Auteur
+        ON Livre.IdAuteur = Auteur.IdAuteur
+        ORDER BY AnneePubli;</pre>
+</div>
+
+<div class='question sql'>
+    <h3>Défi n°2 (partie B).</h3>
+    <p>En croisant la table Livre avec la table Auteur, afficher une liste dont les attributs sont Titre, Prenom, Nom et
+        Annee Publi écrits en Français (IdLangue = 2).</p>
+    <pre class='response'>SELECT Titre, PrenomAuteur, NomAuteur, AnneePubli FROM Livre JOIN Auteur
+        ON Livre.IdAuteur = Auteur.IdAuteur
+        WHERE IdLangue = 2;</pre>
+</div>
+
+<div class='question sql'>
+    <h3>Le cas des relations de n à n .</h3>
+    <p>Parfois il arrive que les données à collecter se trouvent dans plus que deux relations : c’est le
+        cas des Thèmes pour les livres qui nécessitent l’analyse de 3 tables : Livre et Thème bien sûr,
+        mais aussi la table RelationLivreTheme.<br>
+        Observer et étudier la requête ci-dessous :</p>
+    <pre>SELECT Titre, Intitule FROM Livre
+        JOIN RelationLivreTheme ON Livre.IdLivre = RelationLivreTheme.IdLivre
+        JOIN Theme ON Theme.IdTheme = RelationLivreTheme.IdTheme;</pre>
+
+    <p>Le principe est d’enchaîner deux jointures JOIN ... ON en utilisant la table de Relation au
+        milieu. En effet, la requête se lit de la gauche vers la droite et on ne peut faire de jointure que
+        si on a une clef étrangère en commun, ce qui n’est par exemple pas le cas entre Livre et Thème.
+    </p>
+</div>
+
+<div class='question sql'>
+    <h3>Défi n°3.</h3>
+    <p>Écrire une requête permettant d’obtenir une liste dont les attributs sont Titre, Nom et Langue
+        triée par ordre croissant de date de naissance de l’auteur.</p>
+    <pre class='response'>SELECT Titre, NomAuteur, Langue FROM Livre 
+        JOIN Auteur ON Livre.IdAuteur = Auteur.IdAuteur
+        JOIN Langue ON Auteur.IdLangue = Langue.IdLangue
+        ORDER BY Auteur.AnneeNaissance;</pre>
+</div>
+
+
+
+<h3>Et voilà, c'est fini avec cet outil !</h3>
+<p><strong>le travail du TP se poursuit</strong> avec un autre outil online.</p>
+<p>Connectez-vous au site <a href="https://sqliteonline.com/" target="_blank">sqliteonline.com</a> et ouvrez dans cette interface Web la base <em>livres-fin_partie_1</em>. Ce site propose d’exécuter des requêtes SQL sans installation.</p> 
+<p>La dernière partie du TP concerne les requêtes de mise à jour (UPDATE) et d'effacement (DELETE).</p>
+<p>Vous pourrez aussi poursuivre votre découverte de SQL <strong>en autonomie</strong>  avec les 2 autres TP online qui sont proposés sur mon site.</p>
