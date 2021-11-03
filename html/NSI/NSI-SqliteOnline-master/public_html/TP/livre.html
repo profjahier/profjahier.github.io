@@ -24,5 +24,91 @@
     <pre class='response'>La clef primaire 2 existe déjà (pour le Français) : impossible d'avoir 2 clefs primaires identiques...</pre>
 </div>
 
+<div class='question sql'>
+    <h3>Compléter la relation Auteur.</h3>
+    <p>Compléter la table Auteur afin que celle-ci reflète les informations suivantes (penser à
+        revoir le schéma de la table) :<br><img src="table_auteur.png"></p>
+    <pre class='response'>INSERT INTO Auteur VALUES
+        (8, "Boulle", "Pierre", 2, 1912),
+        (9, "Van Vogt", "Alfred Elton", 1, 1912),
+        (10, "Verne", "Jules", 2, 1828)
+        ;</pre>
+</div>
 
+<div class='question sql'>
+    <h3>Compléter la relation Livre.</h3>
+    <p>Ajouter les 3 livres manquants à la table Livre: "La planète des singes", "Le monde des A" et "De la
+        Terre à la Lune". (les informations nécessaires sont résumées dans le tableau présenté en début de TP)</p>
+    <p>Aurait-on pu créer ces livres avant d’avoir complété la table Auteur ? Justifier.</p>
+    <pre class='response'>INSERT INTO Livre VALUES
+        (14, "La planète des singes", 8, 1963),
+        (15, "Le monde des A", 9, 1945),
+        (16, "De la Terre à la Lune", 10, 1865)
+        ;
+    <br>On ne pouvait pas créer ces livres avant d'avoir complété la relation Auteur car sinon nous n'aurions pas su quelle valeur de clef étrangère donner aux auteurs.</pre>
+</div>
+
+<div class='question sql'>
+    <h3>Compléter la relation Theme (1/2).</h3>
+    <p>Afficher le contenu de la table Theme avec une requête SELECT.</p>
+    <pre class='response'>SELECT * FROM Theme;</pre>
+</div>
+
+<div class='question sql'>
+    <h3>Compléter la relation Theme (2/2).</h3>
+    <p>Trouver le thème qui a été oublié, et l’ajouter à la table.</p>
+    <pre class='response'>INSERT INTO Theme VALUES (10, "Intelligence artificielle");
+    </pre>
+</div>
+
+<div class='question sql'>
+    <h3>Compléter une dernière relation (1/3).</h3>
+    <p>Observer le schéma de la table RelationLivreTheme et afficher son contenu avec une
+        requête SELECT.</p>
+        <pre class='response'>SELECT * FROM RelationLivreTheme;</pre>
+</div>
+
+<div class='question sql'>
+    <h3>Compléter une dernière relation (2/3).</h3>
+    <p>Ajouter à cette table les enregistrements nécessaires pour que les Livres qui font référence au thème "Intelligence artificielle" soient correctement pris en compte.</p>
+        <pre class='response'>INSERT INTO RelationLivreTheme VALUES
+            (9, 10),
+            (10, 10),
+            (15, 10)
+            ;</pre>
+</div>
+
+<div class='question sql'>
+    <h3>Compléter une dernière relation (3/3).</h3>
+    <p>Enfin, ajouter à cette table les enregistrements décrivant les thèmes des 3 livres ajoutés
+        plus tôt.</p>
+        <pre class='response'>INSERT INTO RelationLivreTheme VALUES
+            (14, 1),
+            (14, 4),
+            (15, 1),
+            (16, 1),
+            (16, 9)
+            ;</pre>
+</div>
+
+<div class='question sql'>
+    <h3>Contrôle du travail jusqu’à présent (1/2).</h3>
+    <p>Vérifier que les livres sont bien associés aux bons thèmes en recopiant la commande suivante
+        (explications de cette requête plus tard...) :</p>
+        <pre>SELECT Titre, Intitule FROM RelationLivreTheme
+        JOIN Livre ON Livre.IdLivre = RelationLivreTheme.IdLivre
+        JOIN Theme ON Theme.IdTheme = RelationLivreTheme.IdTheme;</pre>
+</div>
+
+<div class='question sql'>
+    <h3>Contrôle du travail jusqu’à présent (2/2).</h3>
+    <p>Vérifier les autres informations sur les livres en recopiant la commande suivante
+        (explications de cette requête plus tard...) :</p>
+        <pre>SELECT DISTINCT
+            Titre, NomAuteur, PrenomAuteur, AnneeNaissance, Langue, AnneePubli
+            FROM RelationLivreTheme
+            JOIN Livre ON Livre.IdLivre = RelationLivreTheme.IdLivre
+            JOIN Auteur ON Auteur.IdAuteur = Livre.IdAuteur
+            JOIN Langue ON Langue.IdLangue = Auteur.IdLangue;</pre>
+</div>
 <p><a href="https://profjahier.github.io/html/NSI/NSI-SqliteOnline-master/public_html/tp.html?html=livre2&db=livre_complet">Passer à la deuxième partie.</a></p>
