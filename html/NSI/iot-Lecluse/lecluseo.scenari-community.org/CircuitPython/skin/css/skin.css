@@ -1,0 +1,159 @@
+/** SKIN OVERLOADS ************************************************************/
+
+/*	Extension MS	*/
+div#scDepotStack {
+    position: fixed;
+    top: 15px;
+    left: 0;
+    color: #ffffff;
+    padding-left: 200px;
+}
+div#scDepotStack a{
+  color: white;
+  text-decoration:none;
+}
+div#scDepotStack a:hover{
+  text-decoration:underline;
+}
+
+/* Skin MS */
+body.default  {
+    background-color: #f3f3f3;
+    height: calc(100% - 45px);
+    margin: 45px 0 0;
+    box-shadow: 0 0 5px #777 inset;
+	font:12px Tahoma,Arial,sans-serif;
+}
+
+body.default::before {
+    content: "";
+    background: #94739d url("../img/tpl/logoMyScenari.png") no-repeat scroll 30px 3px / auto 40px;
+    height: 45px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+}
+
+h2, h3, h4 {
+    color: #94739d;
+}
+
+.home section.article, .emeraude.home section.article {
+    background-color: rgba(148,115,157,0.7);
+    margin: 10% 15% 0;
+    border-radius: 20px;
+    padding: 10px;
+}
+.home section.article .hBk_co .logo {
+    border: 8px solid #e0dcd8;
+    box-shadow: none;
+    border-radius: 20px;
+}
+.home section.article .hBk_co .logo img {
+    border-radius: 15px;
+}
+.home #navigation a {
+    background: rgba(224,220,216,0.7) url(../img/tpl/next.png) no-repeat right;
+    color: #fd7400;
+    padding-right: 35px;
+    border-radius: 15px;
+}
+
+.default #header, .sco #header {
+    position: static;
+	padding: 1em;
+	box-sizing: border-box;
+}
+.default #header h1, .sco #header h1 {
+    color: #94739d;
+    text-align: left;
+    font-size: 2.1em;
+    padding: 0;
+}
+
+.default #root, .sco #root {
+    top: 45px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.default #document, .sco #document {
+    flex-direction: row;
+	margin-top: 0;
+}
+.default #content {
+    border-top: 8px solid #e0dcd8;
+    border-bottom: 8px solid #e0dcd8;
+    border-right: 8px solid #e0dcd8;
+    border-radius: 0 20px 20px 0;
+}
+.default .zen_true #content {
+    border-left: 8px solid #e0dcd8;
+    border-radius: 20px;
+}
+.default #toolbox {
+    border-top: 8px solid #e0dcd8;
+    border-bottom: 8px solid #e0dcd8;
+    border-left: 8px solid #e0dcd8;
+    border-radius: 20px 0 0 20px;
+}
+.default #tools .anc_yes .lbl {
+    background-color: transparent;
+}
+.default #menu .mnu .sel_yes > .lbl .item span, .default #content ul.plan .sel_yes > span {
+    background-color: #fd7400;
+}
+ .default #menu .mnu li {
+    background-image: linear-gradient(to right, #fd7400 0%,rgba(0,0,0,0) 100%);
+}
+
+.default #navigation {
+    align-self: flex-end;
+    flex: 0 0 60px;
+}
+
+section.article > .hBk_ti, .sco section.article > .mainContent_ti {
+    background-image: linear-gradient(to right, #94739d 0%,rgba(0,0,0,0) 100%);
+}
+
+.default #footer, .sco #footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+	padding-right: 75px;
+}
+.legalInfo {
+    color: #94739d;
+}
+#footer > a {
+    position: static;
+    margin-left: 5px;
+}
+
+.subWindow_win{
+	border-color:#94739d;
+}
+.subWindow_ti {
+    background-color: #94739d;
+}
+
+/* Emeraude */
+.emeraude .zen_true #toolbox{
+	display:none;
+}
+.emeraude.default #navigation a.btnZen {
+    position: static;
+    height: 40px;
+    background: url(../img/tpl/buttons.svg) no-repeat top;
+    background-size: 100%;
+    width: 40px;
+    padding-left: 40px;
+}
+.emeraude.default .zen_true #navigation a.btnZen {
+    background-position: 0 -240px;
+}
+.emeraude.default .zen_false #navigation a.btnZen {
+    background-color: transparent;
+    border-radius: 0;
+    background-position: 0 -160px;
+}

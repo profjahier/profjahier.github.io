@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="fr">
+ 
+<!-- Mirrored from lecluseo.scenari-community.org/CircuitPython/co/g_scudFigherFull.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] mer., 24 août 2022 06:42:22 GMT -->
+<head>
+  <meta http-equiv="x-ua-compatible" content="IE=EDGE">
+  <title>scudFighter - Listing complet</title>
+  <meta charset="UTF-8">
+  <meta name="generator" content="SCENARI 5.0.2 / Opale 3.7.001">
+  <meta name="revision" content="2020-02-19 14:55">
+  <link rel="start" href="module_Micropython.html" title="Rendre les objets intelligents gr&acirc;ce &agrave; Python">
+  <meta name="author" content="Olivier L&eacute;cluse
+Creative Common BY-NC-SA
+">
+  <meta name="date" content="2 F&eacute;vrier 2019">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../lib-md/w_scImgMgr/scImgMgr.css">
+  <link rel="stylesheet" type="text/css" href="../lib-md/w_scCodeMgr/scCodeMgr.css">
+  <script type="text/JavaScript">
+/*0*/ var scServices = {id:"k6tfv97s"};
+/*1*/ window.scLoadParams = {destUri:"/co/g_scudFigherFull.html", pathToRoot:"../"};
+</script>
+  <script type="text/JavaScript" src="../lib-sc/scCoLib.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scTiLib.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scSiLib.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scPaLib.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scTooltipMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scDynUiMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/s_assmnt.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scMapMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scDragMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scAssmntMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/s_scSearch/scSearch.js"></script>
+  <script type="text/JavaScript" src="../lib-md/w_mathjax/mathjaxMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/w_tplMgr/tplMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/w_scCodeMgr/scCodeMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/w_scMediaMgr/scMediaMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/w_scImgMgr/scImgMgr.js"></script>
+  <script type="text/JavaScript">
+/*0*/ try{if(window.opener && window.opener.scServices && window.opener.scServices.id == scServices.id) scServices = window.opener.scServices; else if(window.parent && window.parent.scServices && window.parent.scServices.id == scServices.id) scServices = window.parent.scServices;}catch(e){}
+scCodeMgr.registerCode("des:div.code");
+
+scImgMgr.registerAdaptedImage("ide:content/des:img");
+
+scImgMgr.registerGallery("des:div.galFra");
+
+scImgMgr.registerSvg("des:svg");
+scImgMgr.registerZoom("des:a.svgZoom",{type:"svg",svgMax:1,toolbar:1,titlePath:"par:/nsi:/des:span.capTi"});
+
+scImgMgr.registerZoom("des:a.imgZoom",{toolbar:1,mag:1,titlePath:"par:/nsi:/des:span.capTi"});
+
+</script>
+  <link type="text/css" rel="stylesheet" href="../skin/css/main.css" media="all">
+  <link type="text/css" rel="stylesheet" href="../skin/css/skin.css" media="all">
+  <link type="text/css" rel="stylesheet" href="../skin/css/print.css" media="print">
+  <script type="text/javascript">try{
+	if(window.frameElement.setSubWindowTitle) window.frameElement.setSubWindowTitle(document.title);
+}catch(e){}
+</script>
+ </head>
+ <body class="subWin ref">
+  <div id="root"><header id="header" role="banner"><nav role="navigation"><ul id="accessibility"><li class="waiContent"><a href="#content"><span>contenu</span></a></li></ul></nav></header><main id="main" role="main"><div id="document"><div id="content" tabindex="-1"><div class="scroller"><hr class="hidden"><section class="hBk article expUc"><h2 class="hBk_ti"><span>scudFighter - Listing complet</span></h2><div class="hBk_co "><div class="iBk info"><h3 class="iBk_ti"><span>Le programme complet</span></h3><div class="iBk_co "><div class="rBk listing"><div><div class="code"><div class="code-form "><div class="CodeMirror-static cm-s-default" data-lang="text/x-python"><div class="CodeMirror-code"><div class="CodeMirror-line"><div class="CodeMirror-linenumber">1</div><pre><span class="cm-comment"># The MIT License (MIT)</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">2</div><pre><span class="cm-comment"># Copyright (c) 2016 British Broadcasting Corporation.</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">3</div><pre><span class="cm-comment"># This software is provided by Lancaster University by arrangement with the BBC.</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">4</div><pre><span class="cm-comment"># Permission is hereby granted, free of charge, to any person obtaining a</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">5</div><pre><span class="cm-comment"># copy of this software and associated documentation files (the "Software"),</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">6</div><pre><span class="cm-comment"># to deal in the Software without restriction, including without limitation</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">7</div><pre><span class="cm-comment"># the rights to use, copy, modify, merge, publish, distribute, sublicense,</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">8</div><pre><span class="cm-comment"># and/or sell copies of the Software, and to permit persons to whom the</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">9</div><pre><span class="cm-comment"># Software is furnished to do so, subject to the following conditions:</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">10</div><pre><span class="cm-comment"># The above copyright notice and this permission notice shall be included in</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">11</div><pre><span class="cm-comment"># all copies or substantial portions of the Software.</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">12</div><pre><span class="cm-comment"># THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">13</div><pre><span class="cm-comment"># IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">14</div><pre><span class="cm-comment"># FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">15</div><pre><span class="cm-comment"># THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">16</div><pre><span class="cm-comment"># LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">17</div><pre><span class="cm-comment"># FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">18</div><pre><span class="cm-comment"># DEALINGS IN THE SOFTWARE.</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">19</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">20</div><pre><span class="cm-comment"># Olivier Lecluse</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">21</div><pre><span class="cm-comment"># Avril 2019</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">22</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">23</div><pre><span class="cm-keyword">from</span> <span class="cm-variable">microbit</span> <span class="cm-keyword">import</span> <span class="cm-operator">*</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">24</div><pre><span class="cm-keyword">from</span> <span class="cm-variable">time</span> <span class="cm-keyword">import</span> <span class="cm-variable">ticks_us</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">25</div><pre><span class="cm-keyword">import</span> <span class="cm-variable">radio</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">26</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">27</div><pre><span class="cm-variable">radio</span>.<span class="cm-property">on</span>()</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">28</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">29</div><pre><span class="cm-variable">SCUDFRIENDCOLOR</span>=<span class="cm-number">4</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">30</div><pre><span class="cm-variable">SCUDENMYCOLOR</span>=<span class="cm-number">6</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">31</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">32</div><pre><span class="cm-variable">speed</span>=<span class="cm-number">1</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">33</div><pre><span class="cm-variable">accel</span>=<span class="cm-number">0.2</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">34</div><pre><span class="cm-variable">score</span>=<span class="cm-number">0</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">35</div><pre><span class="cm-variable">position</span>=<span class="cm-number">2</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">36</div><pre><span class="cm-variable">scuds</span> = []</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">37</div><pre><span class="cm-variable">lastLoop</span> = <span class="cm-variable">ticks_us</span>()</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">38</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">39</div><pre><span class="cm-keyword">def</span> <span class="cm-def">position_move</span>(<span class="cm-variable">p</span>):</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">40</div><pre>    <span class="cm-keyword">global</span> <span class="cm-variable">position</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">41</div><pre>    <span class="cm-variable">display</span>.<span class="cm-property">set_pixel</span>(<span class="cm-variable">position</span>,<span class="cm-number">4</span>,<span class="cm-number">0</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">42</div><pre>    <span class="cm-variable">position</span> += <span class="cm-variable">p</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">43</div><pre>    <span class="cm-variable">position</span> = <span class="cm-builtin">max</span>(<span class="cm-builtin">min</span>(<span class="cm-number">4</span>,<span class="cm-variable">position</span>),<span class="cm-number">0</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">44</div><pre>    <span class="cm-variable">display</span>.<span class="cm-property">set_pixel</span>(<span class="cm-variable">position</span>,<span class="cm-number">4</span>,<span class="cm-number">9</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">45</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">46</div><pre><span class="cm-keyword">def</span> <span class="cm-def">fire</span>():</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">47</div><pre>    <span class="cm-variable">scuds</span>.<span class="cm-property">append</span>((<span class="cm-variable">position</span>,<span class="cm-number">3</span>,<span class="cm-operator">-</span><span class="cm-number">1</span>))</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">48</div><pre>    <span class="cm-variable">display</span>.<span class="cm-property">set_pixel</span>(<span class="cm-variable">position</span>,<span class="cm-number">3</span>,<span class="cm-variable">SCUDFRIENDCOLOR</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">49</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">50</div><pre><span class="cm-keyword">def</span> <span class="cm-def">process_fire</span>():</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">51</div><pre>    <span class="cm-variable">setpos</span>=<span class="cm-builtin">set</span>()</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">52</div><pre>    <span class="cm-variable">removeScuds</span>=<span class="cm-builtin">set</span>()</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">53</div><pre>    <span class="cm-keyword">for</span> <span class="cm-variable">i</span>,<span class="cm-variable">s</span> <span class="cm-keyword">in</span> <span class="cm-builtin">enumerate</span>(<span class="cm-variable">scuds</span>):</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">54</div><pre>        <span class="cm-variable">display</span>.<span class="cm-property">set_pixel</span>(<span class="cm-variable">s</span>[<span class="cm-number">0</span>],<span class="cm-builtin">max</span>(<span class="cm-number">0</span>,<span class="cm-variable">s</span>[<span class="cm-number">1</span>]),<span class="cm-number">0</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">55</div><pre>        <span class="cm-variable">s1</span> = (<span class="cm-variable">s</span>[<span class="cm-number">0</span>],<span class="cm-variable">s</span>[<span class="cm-number">1</span>]<span class="cm-operator">+</span><span class="cm-variable">s</span>[<span class="cm-number">2</span>],<span class="cm-variable">s</span>[<span class="cm-number">2</span>]) <span class="cm-comment"># nouvelle position</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">56</div><pre>        <span class="cm-variable">s2</span> = (<span class="cm-variable">s1</span>[<span class="cm-number">0</span>],<span class="cm-variable">s1</span>[<span class="cm-number">1</span>],<span class="cm-operator">-</span><span class="cm-variable">s1</span>[<span class="cm-number">2</span>])  <span class="cm-comment"># missile en collision eventuelle</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">57</div><pre>        <span class="cm-keyword">if</span> <span class="cm-variable">s2</span> <span class="cm-keyword">in</span> <span class="cm-variable">setpos</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">58</div><pre>            <span class="cm-comment"># collision  :autodestruction des 2 scuds</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">59</div><pre>            <span class="cm-variable">removeScuds</span>.<span class="cm-property">add</span>(<span class="cm-variable">s1</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">60</div><pre>            <span class="cm-variable">removeScuds</span>.<span class="cm-property">add</span>(<span class="cm-variable">s2</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">61</div><pre>            <span class="cm-variable">removeScuds</span>.<span class="cm-property">add</span>(<span class="cm-variable">s</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">62</div><pre>            <span class="cm-variable">removeScuds</span>.<span class="cm-property">add</span>((<span class="cm-variable">s</span>[<span class="cm-number">0</span>],<span class="cm-variable">s</span>[<span class="cm-number">1</span>],<span class="cm-operator">-</span><span class="cm-variable">s</span>[<span class="cm-number">2</span>]))</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">63</div><pre>        <span class="cm-keyword">else</span> :</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">64</div><pre>            <span class="cm-keyword">if</span> <span class="cm-number">0</span><span class="cm-operator">&lt;</span>=<span class="cm-variable">s1</span>[<span class="cm-number">1</span>]<span class="cm-operator">&lt;</span><span class="cm-number">4</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">65</div><pre>                <span class="cm-variable">setpos</span>.<span class="cm-property">add</span>(<span class="cm-variable">s1</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">66</div><pre>                <span class="cm-comment"># deplacement du scud</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">67</div><pre>                <span class="cm-variable">display</span>.<span class="cm-property">set_pixel</span>(<span class="cm-variable">s1</span>[<span class="cm-number">0</span>],<span class="cm-variable">s1</span>[<span class="cm-number">1</span>],<span class="cm-variable">SCUDFRIENDCOLOR</span> <span class="cm-keyword">if</span> <span class="cm-variable">s1</span>[<span class="cm-number">2</span>]<span class="cm-operator">&lt;</span><span class="cm-number">0</span> <span class="cm-keyword">else</span> <span class="cm-variable">SCUDENMYCOLOR</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">68</div><pre>                <span class="cm-variable">scuds</span>[<span class="cm-variable">i</span>]=<span class="cm-variable">s1</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">69</div><pre>            <span class="cm-keyword">elif</span> <span class="cm-variable">s1</span>[<span class="cm-number">1</span>]==<span class="cm-number">4</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">70</div><pre>                <span class="cm-variable">removeScuds</span>.<span class="cm-property">add</span>(<span class="cm-variable">s</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">71</div><pre>                <span class="cm-keyword">if</span> <span class="cm-variable">s1</span>[<span class="cm-number">0</span>] == <span class="cm-variable">position</span> :</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">72</div><pre>                    <span class="cm-variable">perdu</span>()</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">73</div><pre>            <span class="cm-keyword">else</span> :</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">74</div><pre>                <span class="cm-variable">removeScuds</span>.<span class="cm-property">add</span>(<span class="cm-variable">s</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">75</div><pre>                <span class="cm-comment"># envoi radio</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">76</div><pre>                <span class="cm-variable">radio</span>.<span class="cm-property">send</span>(<span class="cm-builtin">str</span>(<span class="cm-variable">s</span>[<span class="cm-number">0</span>]))</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">77</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">78</div><pre>    <span class="cm-comment"># Nettoyage de la liste des scuds</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">79</div><pre>    <span class="cm-keyword">for</span> <span class="cm-variable">sr</span> <span class="cm-keyword">in</span> <span class="cm-variable">removeScuds</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">80</div><pre>        <span class="cm-variable">display</span>.<span class="cm-property">set_pixel</span>(<span class="cm-variable">sr</span>[<span class="cm-number">0</span>],<span class="cm-builtin">max</span>(<span class="cm-number">0</span>,<span class="cm-variable">sr</span>[<span class="cm-number">1</span>]),<span class="cm-number">0</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">81</div><pre>        <span class="cm-keyword">try</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">82</div><pre>            <span class="cm-variable">scuds</span>.<span class="cm-property">remove</span>(<span class="cm-variable">sr</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">83</div><pre>        <span class="cm-keyword">except</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">84</div><pre>            <span class="cm-keyword">pass</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">85</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">86</div><pre><span class="cm-keyword">def</span> <span class="cm-def">refresh</span>():</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">87</div><pre>    <span class="cm-comment"># On redessine l'affichage</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">88</div><pre>    <span class="cm-variable">display</span>.<span class="cm-property">clear</span>()</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">89</div><pre>    <span class="cm-variable">display</span>.<span class="cm-property">set_pixel</span>(<span class="cm-variable">position</span>,<span class="cm-number">4</span>,<span class="cm-number">9</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">90</div><pre>    <span class="cm-keyword">for</span> <span class="cm-variable">s</span> <span class="cm-keyword">in</span> <span class="cm-variable">scuds</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">91</div><pre>        <span class="cm-variable">display</span>.<span class="cm-property">set_pixel</span>(<span class="cm-variable">s</span>[<span class="cm-number">0</span>],<span class="cm-builtin">max</span>(<span class="cm-number">0</span>,<span class="cm-variable">s</span>[<span class="cm-number">1</span>]),<span class="cm-variable">SCUDFRIENDCOLOR</span> <span class="cm-keyword">if</span> <span class="cm-variable">s</span>[<span class="cm-number">2</span>]<span class="cm-operator">&lt;</span><span class="cm-number">0</span> <span class="cm-keyword">else</span> <span class="cm-variable">SCUDENMYCOLOR</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">92</div><pre>    </pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">93</div><pre><span class="cm-keyword">def</span> <span class="cm-def">perdu</span>():</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">94</div><pre>    <span class="cm-keyword">global</span> <span class="cm-variable">speed</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">95</div><pre>    <span class="cm-variable">speed</span> += <span class="cm-variable">accel</span> <span class="cm-comment"># Le jeu s'accelere !</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">96</div><pre>    </pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">97</div><pre>    <span class="cm-comment"># envoi radio "HIT"</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">98</div><pre>    <span class="cm-variable">radio</span>.<span class="cm-property">send</span>(<span class="cm-string">"HIT"</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">99</div><pre>    </pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">100</div><pre>    <span class="cm-comment"># animation</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">101</div><pre>    <span class="cm-variable">display</span>.<span class="cm-property">clear</span>()</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">102</div><pre>    <span class="cm-variable">anim</span> = [</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">103</div><pre>    <span class="cm-variable">Image</span>(<span class="cm-string">"99999:90009:90009:90009:99999"</span>),</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">104</div><pre>    <span class="cm-variable">Image</span>(<span class="cm-string">"00000:06660:06060:06660:00000"</span>),</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">105</div><pre>    <span class="cm-variable">Image</span>(<span class="cm-string">"00000:00000:00300:00000:00000"</span>),</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">106</div><pre>    <span class="cm-variable">Image</span>(<span class="cm-string">"00000:06660:06060:06660:00000"</span>),</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">107</div><pre>    <span class="cm-variable">Image</span>(<span class="cm-string">"99999:90009:90009:90009:99999"</span>)]</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">108</div><pre>    <span class="cm-variable">display</span>.<span class="cm-property">show</span>(<span class="cm-variable">anim</span>, <span class="cm-variable">delay</span>=<span class="cm-number">100</span>, <span class="cm-variable">loop</span>=<span class="cm-keyword">False</span>, <span class="cm-variable">wait</span>=<span class="cm-keyword">True</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">109</div><pre>    <span class="cm-variable">refresh</span>()</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">110</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">111</div><pre><span class="cm-keyword">def</span> <span class="cm-def">gagne</span>():</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">112</div><pre>    <span class="cm-keyword">global</span> <span class="cm-variable">speed</span>,<span class="cm-variable">score</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">113</div><pre>    <span class="cm-variable">speed</span> += <span class="cm-variable">accel</span> <span class="cm-comment"># Le jeu s'accelere !</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">114</div><pre>    <span class="cm-variable">score</span> += <span class="cm-number">1</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">115</div><pre>    <span class="cm-comment"># animation</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">116</div><pre>    <span class="cm-variable">display</span>.<span class="cm-property">clear</span>()</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">117</div><pre>    <span class="cm-variable">display</span>.<span class="cm-property">scroll</span>(<span class="cm-variable">score</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">118</div><pre>    <span class="cm-variable">sleep</span>(<span class="cm-number">500</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">119</div><pre>    <span class="cm-variable">refresh</span>()</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">120</div><pre>    </pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">121</div><pre><span class="cm-keyword">def</span> <span class="cm-def">process_button</span>():</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">122</div><pre>    <span class="cm-comment"># Gesion des boutons</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">123</div><pre>    <span class="cm-variable">ba</span> = <span class="cm-variable">button_a</span>.<span class="cm-property">was_pressed</span>()</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">124</div><pre>    <span class="cm-variable">bb</span> = <span class="cm-variable">button_b</span>.<span class="cm-property">was_pressed</span>()</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">125</div><pre>    <span class="cm-keyword">if</span> <span class="cm-variable">ba</span> <span class="cm-keyword">and</span> <span class="cm-variable">bb</span> :</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">126</div><pre>        <span class="cm-variable">fire</span>()</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">127</div><pre>    <span class="cm-keyword">else</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">128</div><pre>        <span class="cm-keyword">if</span> <span class="cm-variable">ba</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">129</div><pre>            <span class="cm-variable">position_move</span>(<span class="cm-operator">-</span><span class="cm-number">1</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">130</div><pre>        <span class="cm-keyword">if</span> <span class="cm-variable">bb</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">131</div><pre>            <span class="cm-variable">position_move</span>(<span class="cm-number">1</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">132</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">133</div><pre><span class="cm-keyword">def</span> <span class="cm-def">process_radio</span>():</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">134</div><pre>    <span class="cm-keyword">global</span> <span class="cm-variable">lastLoop</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">135</div><pre>    <span class="cm-comment"># gestion des messages radio</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">136</div><pre>    <span class="cm-variable">incoming</span> = <span class="cm-variable">radio</span>.<span class="cm-property">receive</span>()</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">137</div><pre>    <span class="cm-keyword">if</span> <span class="cm-variable">incoming</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">138</div><pre>        <span class="cm-keyword">if</span> <span class="cm-variable">incoming</span> == <span class="cm-string">"HIT"</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">139</div><pre>            <span class="cm-variable">gagne</span>()</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">140</div><pre>        <span class="cm-keyword">elif</span> <span class="cm-builtin">len</span>(<span class="cm-variable">incoming</span>)==<span class="cm-number">1</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">141</div><pre>            <span class="cm-comment"># arrivee d'un missile</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">142</div><pre>            <span class="cm-variable">lastLoop</span>=<span class="cm-number">0</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">143</div><pre>            <span class="cm-variable">scuds</span>.<span class="cm-property">append</span>((<span class="cm-builtin">int</span>(<span class="cm-variable">incoming</span>),<span class="cm-operator">-</span><span class="cm-number">1</span>,<span class="cm-number">1</span>))</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">144</div><pre>            <span class="cm-variable">display</span>.<span class="cm-property">set_pixel</span>(<span class="cm-builtin">int</span>(<span class="cm-variable">incoming</span>),<span class="cm-number">0</span>,<span class="cm-variable">SCUDENMYCOLOR</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">145</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">146</div><pre><span class="cm-variable">display</span>.<span class="cm-property">set_pixel</span>(<span class="cm-variable">position</span>,<span class="cm-number">4</span>,<span class="cm-number">9</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">147</div><pre><span class="cm-keyword">while</span> <span class="cm-keyword">True</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">148</div><pre>    <span class="cm-variable">delay</span> = <span class="cm-number">1000000</span><span class="cm-operator">/</span><span class="cm-variable">speed</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">149</div><pre>    </pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">150</div><pre>    <span class="cm-variable">process_button</span>()</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">151</div><pre>    <span class="cm-variable">process_radio</span>()</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">152</div><pre>    </pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">153</div><pre>    <span class="cm-comment"># Gestion du timing</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">154</div><pre>    <span class="cm-variable">loop</span> = <span class="cm-variable">ticks_us</span>()</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">155</div><pre>    <span class="cm-keyword">if</span>(<span class="cm-variable">loop</span><span class="cm-operator">-</span><span class="cm-variable">lastLoop</span> <span class="cm-operator">&lt;</span> <span class="cm-variable">delay</span>):</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">156</div><pre>        <span class="cm-comment"># attente 200ms pour la detection tir</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">157</div><pre>        <span class="cm-variable">sleep</span>(<span class="cm-builtin">min</span>((<span class="cm-variable">loop</span><span class="cm-operator">-</span><span class="cm-variable">lastLoop</span>)<span class="cm-operator">//</span><span class="cm-number">1000</span>,<span class="cm-number">200</span>))</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">158</div><pre>    <span class="cm-keyword">else</span> :</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">159</div><pre>        <span class="cm-variable">lastLoop</span> = <span class="cm-variable">loop</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">160</div><pre>        <span class="cm-variable">process_fire</span>()</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">161</div><pre></pre></div></div></div></div><pre class="code-raw noIndex " style="display:none;"># The MIT License (MIT)
+# Copyright (c) 2016 British Broadcasting Corporation.
+# This software is provided by Lancaster University by arrangement with the BBC.
+# Permission is hereby granted, free of charge, to any person obtaining a
+# copy of this software and associated documentation files (the "Software"),
+# to deal in the Software without restriction, including without limitation
+# the rights to use, copy, modify, merge, publish, distribute, sublicense,
+# and/or sell copies of the Software, and to permit persons to whom the
+# Software is furnished to do so, subject to the following conditions:
+# The above copyright notice and this permission notice shall be included in
+# all copies or substantial portions of the Software.
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL
+# THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
+# DEALINGS IN THE SOFTWARE.
+
+# Olivier Lecluse
+# Avril 2019
+
+from microbit import *
+from time import ticks_us
+import radio
+
+radio.on()
+
+SCUDFRIENDCOLOR=4
+SCUDENMYCOLOR=6
+
+speed=1
+accel=0.2
+score=0
+position=2
+scuds = []
+lastLoop = ticks_us()
+
+def position_move(p):
+    global position
+    display.set_pixel(position,4,0)
+    position += p
+    position = max(min(4,position),0)
+    display.set_pixel(position,4,9)
+
+def fire():
+    scuds.append((position,3,-1))
+    display.set_pixel(position,3,SCUDFRIENDCOLOR)
+
+def process_fire():
+    setpos=set()
+    removeScuds=set()
+    for i,s in enumerate(scuds):
+        display.set_pixel(s[0],max(0,s[1]),0)
+        s1 = (s[0],s[1]+s[2],s[2]) # nouvelle position
+        s2 = (s1[0],s1[1],-s1[2])  # missile en collision eventuelle
+        if s2 in setpos:
+            # collision  :autodestruction des 2 scuds
+            removeScuds.add(s1)
+            removeScuds.add(s2)
+            removeScuds.add(s)
+            removeScuds.add((s[0],s[1],-s[2]))
+        else :
+            if 0&lt;=s1[1]&lt;4:
+                setpos.add(s1)
+                # deplacement du scud
+                display.set_pixel(s1[0],s1[1],SCUDFRIENDCOLOR if s1[2]&lt;0 else SCUDENMYCOLOR)
+                scuds[i]=s1
+            elif s1[1]==4:
+                removeScuds.add(s)
+                if s1[0] == position :
+                    perdu()
+            else :
+                removeScuds.add(s)
+                # envoi radio
+                radio.send(str(s[0]))
+
+    # Nettoyage de la liste des scuds
+    for sr in removeScuds:
+        display.set_pixel(sr[0],max(0,sr[1]),0)
+        try:
+            scuds.remove(sr)
+        except:
+            pass
+
+def refresh():
+    # On redessine l'affichage
+    display.clear()
+    display.set_pixel(position,4,9)
+    for s in scuds:
+        display.set_pixel(s[0],max(0,s[1]),SCUDFRIENDCOLOR if s[2]&lt;0 else SCUDENMYCOLOR)
+    
+def perdu():
+    global speed
+    speed += accel # Le jeu s'accelere !
+    
+    # envoi radio "HIT"
+    radio.send("HIT")
+    
+    # animation
+    display.clear()
+    anim = [
+    Image("99999:90009:90009:90009:99999"),
+    Image("00000:06660:06060:06660:00000"),
+    Image("00000:00000:00300:00000:00000"),
+    Image("00000:06660:06060:06660:00000"),
+    Image("99999:90009:90009:90009:99999")]
+    display.show(anim, delay=100, loop=False, wait=True)
+    refresh()
+
+def gagne():
+    global speed,score
+    speed += accel # Le jeu s'accelere !
+    score += 1
+    # animation
+    display.clear()
+    display.scroll(score)
+    sleep(500)
+    refresh()
+    
+def process_button():
+    # Gesion des boutons
+    ba = button_a.was_pressed()
+    bb = button_b.was_pressed()
+    if ba and bb :
+        fire()
+    else:
+        if ba:
+            position_move(-1)
+        if bb:
+            position_move(1)
+
+def process_radio():
+    global lastLoop
+    # gestion des messages radio
+    incoming = radio.receive()
+    if incoming:
+        if incoming == "HIT":
+            gagne()
+        elif len(incoming)==1:
+            # arrivee d'un missile
+            lastLoop=0
+            scuds.append((int(incoming),-1,1))
+            display.set_pixel(int(incoming),0,SCUDENMYCOLOR)
+
+display.set_pixel(position,4,9)
+while True:
+    delay = 1000000/speed
+    
+    process_button()
+    process_radio()
+    
+    # Gestion du timing
+    loop = ticks_us()
+    if(loop-lastLoop &lt; delay):
+        # attente 200ms pour la detection tir
+        sleep(min((loop-lastLoop)//1000,200))
+    else :
+        lastLoop = loop
+        process_fire()
+</pre></div></div></div></div></div></div></section></div></div></div></main><footer id="footer" role="contentinfo" tabindex="-1"><hr class="hidden"></footer></div>
+  <script type="text/JavaScript" src="../skin/js/skin.js"></script>
+  <script type="text/javascript">tplMgr.init();scCodeMgr.init();scMediaMgr.init("ide:content/chi:div/chi:section/des:.mediaPlayer",{processYoutubeUrls :true});scImgMgr.init();</script>
+ </body>
+
+<!-- Mirrored from lecluseo.scenari-community.org/CircuitPython/co/g_scudFigherFull.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] mer., 24 août 2022 06:42:22 GMT -->
+</html>

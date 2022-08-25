@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+ 
+<!-- Mirrored from lecluseo.scenari-community.org/CircuitPython/co/g_blink.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] mer., 24 août 2022 06:38:43 GMT -->
+<head>
+  <meta http-equiv="x-ua-compatible" content="IE=EDGE">
+  <title>Premier programme : blink ! [Rendre les objets intelligents grâce à Python]</title>
+  <meta charset="UTF-8">
+  <meta name="generator" content="SCENARI 5.0.2 / Opale 3.7.001">
+  <meta name="revision" content="2020-02-19 14:55">
+  <link rel="start" href="module_Micropython.html" title="Rendre les objets intelligents gr&acirc;ce &agrave; Python">
+  <meta name="author" content="Olivier L&eacute;cluse
+Creative Common BY-NC-SA
+">
+  <meta name="keywords" content>
+  <meta name="date" content="2 F&eacute;vrier 2019">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../lib-md/w_scImgMgr/scImgMgr.css">
+  <link rel="stylesheet" type="text/css" href="../lib-md/w_scCodeMgr/scCodeMgr.css">
+  <script type="text/JavaScript">
+/*0*/ var scServices = {id:"k6tfv97s"};
+/*1*/ window.scLoadParams = {destUri:"/co/g_blink.html", pathToRoot:"../"};
+</script>
+  <script type="text/JavaScript" src="../lib-sc/scCoLib.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scSiLib.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scTiLib.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scPaLib.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scMapMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scTooltipMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scDynUiMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/s_assmnt.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scDragMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scAssmntMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/w_mathjax/mathjaxMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/s_scSearch/scSearch.js"></script>
+  <script type="text/JavaScript" src="../lib-md/w_tplMgr/tplMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/w_scCodeMgr/scCodeMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/w_searchMgr/searchMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/w_scMediaMgr/scMediaMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/w_scImgMgr/scImgMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/w_outMgr/outMgr.js"></script>
+  <script type="text/JavaScript">
+
+/*0*/ try{if(window.opener && window.opener.scServices && window.opener.scServices.id == scServices.id) scServices = window.opener.scServices; else if(window.parent && window.parent.scServices && window.parent.scServices.id == scServices.id) scServices = window.parent.scServices;}catch(e){}
+scCodeMgr.registerCode("des:div.code");
+
+scImgMgr.registerAdaptedImage("ide:content/des:img");
+
+scImgMgr.registerGallery("des:div.galFra");
+
+scImgMgr.registerSvg("des:svg");
+scImgMgr.registerZoom("des:a.svgZoom",{type:"svg",svgMax:1,toolbar:1,titlePath:"par:/nsi:/des:span.capTi"});
+
+scImgMgr.registerZoom("des:a.imgZoom",{toolbar:1,mag:1,titlePath:"par:/nsi:/des:span.capTi"});
+
+</script>
+  <link type="text/css" rel="stylesheet" href="../skin/css/main.css" media="all">
+  <link type="text/css" rel="stylesheet" href="../skin/css/skin.css" media="all">
+  <link type="text/css" rel="stylesheet" href="../skin/css/print.css" media="print">
+  <script type="text/JavaScript">
+outMgr.declareOutline("module_Micropython.txt");
+	</script> </head>
+ <body class="default module expUc">
+  <div id="root"><header id="header" role="banner"><h1><span>Rendre les objets intelligents grâce à Python</span></h1><nav role="navigation"><ul id="accessibility"><li class="waiContent"><a href="#content"><span>contenu</span></a></li><li class="waiMenu"><a href="#menu"><span>menu</span></a></li><li class="waiNav"><a href="#navigation"><span>navigation</span></a></li><li class="waiTools"><a href="#tools"><span>outils</span></a></li></ul></nav></header><main id="main" role="main"><div id="document"><div id="content" tabindex="-1"><div class="scroller"><hr class="hidden"><section class="hBk article expUc"><h2 class="hBk_ti"><span>Premier programme : blink !</span></h2><div class="hBk_co "><div class="iBk info"><div class="iBk_co "><div class="rBk "><p>Pour débuter sous circuitPython, nous allons bien sûr faire clignoter une LED ! Mais avant cela, regardons la structure d'un programme sous micropython en partant d'un exemple sous Arduino. Un programme vide sous arduino ressemble à ceci :</p></div><div class="rBk listing"><div><div class="code"><div class="code-form "><div class="CodeMirror-static cm-s-default" data-lang="text/x-c++src"><div class="CodeMirror-code"><div class="CodeMirror-line"><div class="CodeMirror-linenumber">1</div><pre><span class="cm-meta">#include blablabla</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">2</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">3</div><pre><span class="cm-comment">// déclaration des variables globales</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">4</div><pre><span class="cm-variable-3">int</span> <span class="cm-variable">maVariable</span>;</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">5</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">6</div><pre><span class="cm-variable-3">void</span> <span class="cm-def">setup</span>() {</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">7</div><pre>  <span class="cm-comment">// code pour l'initialisation</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">8</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">9</div><pre>}</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">10</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">11</div><pre><span class="cm-variable-3">void</span> <span class="cm-def">loop</span>() {</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">12</div><pre>  <span class="cm-comment">// boucle infinie qui contient le programme principal</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">13</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">14</div><pre>}</pre></div></div></div></div><pre class="code-raw noIndex " style="display:none;">#include blablabla
+
+// déclaration des variables globales
+int maVariable;
+
+void setup() {
+  // code pour l'initialisation
+
+}
+
+void loop() {
+  // boucle infinie qui contient le programme principal
+
+}</pre></div></div></div><div class="rBk "><p>Le code équivalent sous circuitPython sera le suivant :</p></div><div class="rBk listing"><div><div class="code"><div class="code-form "><div class="CodeMirror-static cm-s-default" data-lang="text/x-python"><div class="CodeMirror-code"><div class="CodeMirror-line"><div class="CodeMirror-linenumber">1</div><pre><span class="cm-keyword">import</span> <span class="cm-variable">blablabla</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">2</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">3</div><pre><span class="cm-comment"># déclaration des variables globales</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">4</div><pre><span class="cm-variable">maVariable</span> = <span class="cm-number">0</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">5</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">6</div><pre><span class="cm-comment"># initialisation des divers composants du programme</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">7</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">8</div><pre><span class="cm-keyword">while</span> <span class="cm-keyword">True</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">9</div><pre>    <span class="cm-comment"># boucle infinie qui contient le programme principal</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">10</div><pre>    ...</pre></div></div></div></div><pre class="code-raw noIndex " style="display:none;">import blablabla
+
+# déclaration des variables globales
+maVariable = 0
+
+# initialisation des divers composants du programme
+
+while True:
+    # boucle infinie qui contient le programme principal
+    ...</pre></div></div></div></div></div><div class="remark pBk"><h3 class="remark_ti pBk_ti"><span><i class="type"><span>Remarque</span></i><span class="hidden"> : </span><span class="title"></span></span></h3><div class="remark_co pBk_co"><div class="rBk "><p>Il n'y a cependant aucune contrainte forçant le programme principal à se trouver dans une boucle infinie. Un programme circuitPython peut très bien lire la valeur d'un capteur, afficher un message et se terminer ainsi.</p></div></div></div><div class="method pBk"><h3 class="method_ti pBk_ti"><span><i class="type"><span>Méthode</span></i><span class="hidden"> : </span><span class="title">Le programme blink</span></span></h3><div class="method_co pBk_co"><div class="rBk "><p>Je ne reprends pas ici le programme blink de l'Arduino, mais on voit que le programme circuitPython est très similaire.</p></div><div class="rBk listing"><div><div class="code"><div class="code-form "><div class="CodeMirror-static cm-s-default" data-lang="text/x-python"><div class="CodeMirror-code"><div class="CodeMirror-line"><div class="CodeMirror-linenumber">1</div><pre><span class="cm-keyword">import</span> <span class="cm-variable">time</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">2</div><pre><span class="cm-keyword">import</span> <span class="cm-variable">digitalio</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">3</div><pre><span class="cm-keyword">import</span> <span class="cm-variable">board</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">4</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">5</div><pre><span class="cm-comment"># déclaration des variables globales</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">6</div><pre><span class="cm-variable">led</span> = <span class="cm-variable">digitalio</span>.<span class="cm-property">DigitalInOut</span>(<span class="cm-variable">board</span>.<span class="cm-property">D13</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">7</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">8</div><pre><span class="cm-comment"># initialisation des divers composants du programme</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">9</div><pre><span class="cm-variable">led</span>.<span class="cm-property">direction</span> = <span class="cm-variable">digitalio</span>.<span class="cm-property">Direction</span>.<span class="cm-property">OUTPUT</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">10</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">11</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">12</div><pre><span class="cm-keyword">while</span> <span class="cm-keyword">True</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">13</div><pre>    <span class="cm-variable">time</span>.<span class="cm-property">sleep</span>(<span class="cm-number">1</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">14</div><pre>    <span class="cm-variable">led</span>.<span class="cm-property">value</span> = <span class="cm-keyword">True</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">15</div><pre>    <span class="cm-variable">time</span>.<span class="cm-property">sleep</span>(<span class="cm-number">1</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">16</div><pre>    <span class="cm-variable">led</span>.<span class="cm-property">value</span> = <span class="cm-keyword">False</span></pre></div></div></div></div><pre class="code-raw noIndex " style="display:none;">import time
+import digitalio
+import board
+
+# déclaration des variables globales
+led = digitalio.DigitalInOut(board.D13)
+
+# initialisation des divers composants du programme
+led.direction = digitalio.Direction.OUTPUT
+
+
+while True:
+    time.sleep(1)
+    led.value = True
+    time.sleep(1)
+    led.value = False</pre></div></div></div><div class="rBk "><p>La librairie <strong class="txt_emp_is ">digitalio</strong> permet de gérer ce qui à rapport avec les entrées sorties numériques. On y trouve entre autre :</p><ul class="txt_il "><li class="txt_ili "><p><code class="txt_code_is ">DigitalInOut</code> prend en paramètre la broche à contrôler</p></li><li class="txt_ili "><p><code class="txt_code_is ">Direction</code> peut valoir <code class="txt_code_is ">Direction.INPUT</code> ou <code class="txt_code_is ">Direction.OUTPUT</code></p></li><li class="txt_ili "><p><code class="txt_code_is ">Pull</code> utilisé pour les <a class="txt_ul ucLnk subLnk" target="_blank" role="button" href="g_button_1.html" onclick="scDynUiMgr.displaySubWindow(this,&quot;g_button_1.html&quot;,&quot;subWindow&quot;,{CLOSEBTNTI :'Fermer'});return false;" onkeyup="scDynUiMgr.handleBtnKeyUp(event);" onkeydown="scDynUiMgr.handleBtnKeyDwn(event);" id="i0" title="Entr&eacute;e num&eacute;rique (nouvelle fen&ecirc;tre)"><span>entrées numériques</span></a> pour configurer la broche en pull-up (<code class="txt_code_is ">Pull.UP</code>) ou pull-down(<code class="txt_code_is ">Pull.DOWN</code>).</p></li></ul></div><div class="rBk "><p>La librairie <strong class="txt_emp_is ">board</strong> pemet de référencer clairement les broches de la carte utilisée. Celle-ci dépend donc de la carte et son contenu varie d'une carte à l'autre. Le <strong class="txt_emp_is ">board</strong> d'une <i class="txt_spec_is ">CPX</i> permettra d'atteindre les broches mais aussi les différents capteurs. Le board de ma carte Metro M4 express contient 'A0', 'A1', 'A2', 'A3', 'A4', 'A5', 'D0', 'D1', 'D10', 'D11', 'D12', 'D13', 'D2', 'D3', 'D4', 'D5', 'D6', 'D7', 'D8', 'D9', 'I2C', 'LED_RX', 'LED_TX', 'MISO', 'MOSI', 'NEOPIXEL', 'RX', 'SCK', 'SCL', 'SDA', 'SPI', 'TX', 'UART' qui sont en fait toutes les broches accessibles sur cette carte en particulier.</p></div><div class="rBk "><p>La librairie <strong class="txt_emp_is ">time</strong> gère tout ce qui a trait au temps. On en a pratiquement toujours besoin.</p><ul class="txt_il "><li class="txt_ili "><p>La méthode <code class="txt_code_is ">sleep</code> est l'équivalent de la fonction <code class="txt_code_is ">delay</code> en Arduino, mais attention, le temps passé en paramètre est exprimé en secondes ! On peut bien sûr utiliser des nombres décimaux pour avoir des fractions de secondes.</p></li><li class="txt_ili "><p>La méthode <code class="txt_code_is ">monotonic</code> est l'équivalent de la fonction Arduino <code class="txt_code_is ">millis()</code>. Elle donne le temps passé depuis le démarrage de la carte. Ce temps est exprimé également en secondes. Pour plus de précision, on peut utiliser <code class="txt_code_is ">monotonic_ns</code> en nanosecondes ! On en verra un exemple juste après.</p></li></ul></div><div class="rBk res"><figure role="group" class="resInFlow jpeg"><div class="resInFlow_co "><img src="../res/IMG_0423.JPG" width="494" height="371" alt></div></figure></div></div></div></div></section></div></div><div id="navigation" tabindex="-1"><hr class="hidden"><nav class="pageTurner" role="navigation"><ul><li><a rel="prev" href="g_intro.html" target="_self" class="btnNav prev" title="Pr&eacute;c&eacute;dent (Pourquoi utiliser circuitPython&nbsp;?)"><span>Précédent</span></a></li><li><a rel="next" href="g_button.html" target="_self" class="btnNav next" title="Suivant (Entr&eacute;e num&eacute;rique)"><span>Suivant</span></a></li></ul></nav></div></div><div id="toolbox"><nav id="menu" class="pageSelector" role="navigation" tabindex="-1" aria-label="menu principal"><hr class="hidden"><ul class="mnu static" data-totalPages="80"><li class="sel_no anc_no type_l  dpt_0 intro"><div class="lbl type_l" id="module_Micropython_1.html"><a href="module_Micropython_1.html" target="_self" class="item"><span>Introduction</span></a></div></li><li class="sel_no anc_no type_b  type_b_c dpt_0 courseUa"><div class="lbl type_b" id="AA_circuitPython.html"><a href="AA_circuitPython.html" target="_self" class="item"><span>Adafruit ? CircuitPython ?</span></a></div></li><li class="sel_no anc_no type_b  type_b_c dpt_0 courseUa"><div class="lbl type_b" id="AA_edublocks.html"><a href="AA_edublocks.html" target="_self" class="item"><span>Découverte de CircuitPython avec edublocks</span></a></div></li><li class="sel_no anc_yes type_b  dpt_0 courseUa"><div class="lbl type_b" id="AA_circuitPython_1.html"><a href="AA_circuitPython_1.html" target="_self" class="item" type="up"><span>de l'Arduino vers CircuitPython</span></a></div><ul class="sub mnu_open"><li class="sel_no anc_no type_l  dpt_1 intro"><div class="lbl type_l" id="AA_circuitPython_2.html"><a href="AA_circuitPython_2.html" target="_self" class="item"><span>Introduction</span></a></div></li><li class="sel_no anc_no type_l  dpt_1 expUc"><div class="lbl type_l" id="g_intro.html"><a href="g_intro.html" target="_self" class="item"><span>Pourquoi utiliser circuitPython ?</span></a></div></li><li class="sel_yes anc_no type_l  dpt_1 expUc"><div class="lbl type_l" id="g_blink.html"><span class="item"><span>Premier programme : blink !</span></span></div></li><li class="sel_no anc_no type_l  dpt_1 expUc"><div class="lbl type_l" id="g_button.html"><a href="g_button.html" target="_self" class="item"><span>Entrée numérique</span></a></div></li><li class="sel_no anc_no type_l  dpt_1 expUc"><div class="lbl type_l" id="g_analogIn.html"><a href="g_analogIn.html" target="_self" class="item"><span>Entrées - sorties analogiques</span></a></div></li><li class="sel_no anc_no type_l  dpt_1 expUc"><div class="lbl type_l" id="g_PWM.html"><a href="g_PWM.html" target="_self" class="item"><span>Modulation en largeur l'impulsion - PWM</span></a></div></li></ul></li><li class="sel_no anc_no type_b  type_b_c dpt_0 courseUa"><div class="lbl type_b" id="AA_mu.html"><a href="AA_mu.html" target="_self" class="item"><span>projets CPX</span></a></div></li><li class="sel_no anc_no type_b  type_b_c dpt_0 courseUa"><div class="lbl type_b" id="AA_autresProjets.html"><a href="AA_autresProjets.html" target="_self" class="item"><span>Projets divers autour de CircuitPython</span></a></div></li><li class="sel_no anc_no type_b  type_b_c dpt_0 courseUa"><div class="lbl type_b" id="AA_displayio.html"><a href="AA_displayio.html" target="_self" class="item"><span>Graphisme sous CircuitPython - utilisation de displayio</span></a></div></li><li class="sel_no anc_no type_b  type_b_c dpt_0 courseUa"><div class="lbl type_b" id="aa_gameConsole.html"><a href="aa_gameConsole.html" target="_self" class="item"><span>Fabriquer sa console de jeu - Niveau avancé</span></a></div></li><li class="sel_no anc_no type_b  type_b_c dpt_0 ueDiv"><div class="lbl type_b" id="module_Micropython_2.html"><a href="module_Micropython_2.html" target="_self" class="item"><span>Objets connectés (IoT) - MicroPython sur ESP8266 et ESP32</span></a></div></li><li class="sel_no anc_no type_b  type_b_c dpt_0 ueDiv"><div class="lbl type_b" id="module_Micropython_3.html"><a href="module_Micropython_3.html" target="_self" class="item"><span>Micropython sur la carte BBC micro::bit</span></a></div></li></ul></nav><div id="tools" tabindex="-1"><hr class="hidden"><nav class="headingSelector" role="navigation"><ul class="mnu"><li class="anc_no home" data-position="uncle"><div class="lbl"><a href="module_Micropython.html" target="_self" class="item" type="index" title="Page d'accueil du module"><span>Accueil</span></a></div></li><li class="anc_yes module" data-position="ancestor"><div class="lbl"><span class="item"><span>Module</span></span></div></li></ul></nav></div></div></main><footer id="footer" role="contentinfo" tabindex="-1"><hr class="hidden"><a id="linkSp" target="_blank" href="../../../external.html?link=https://www.scenari.org/" title="R&eacute;alis&eacute; avec Scenari (nouvelle fen&ecirc;tre)"><span><img alt="R&eacute;alis&eacute; avec Scenari (nouvelle fen&ecirc;tre)" src="../skin/img/tpl/scBtn.png"></span></a></footer></div>
+  <script type="text/JavaScript" src="../skin/js/skin.js"></script>
+  <script type="text/javascript">tplMgr.init();scCodeMgr.init();scMediaMgr.init("ide:content/chi:div/chi:section/des:.mediaPlayer",{processYoutubeUrls :true});scImgMgr.init();outMgr.init();</script>
+ </body>
+
+<!-- Mirrored from lecluseo.scenari-community.org/CircuitPython/co/g_blink.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] mer., 24 août 2022 06:38:45 GMT -->
+</html>

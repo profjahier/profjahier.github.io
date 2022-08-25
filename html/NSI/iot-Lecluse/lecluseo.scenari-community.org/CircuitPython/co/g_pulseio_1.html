@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="fr">
+ 
+<!-- Mirrored from lecluseo.scenari-community.org/CircuitPython/co/g_pulseio_1.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] mer., 24 août 2022 06:40:53 GMT -->
+<head>
+  <meta http-equiv="x-ua-compatible" content="IE=EDGE">
+  <title>Le module pulseio, sortie PWM - Niveau facile</title>
+  <meta charset="UTF-8">
+  <meta name="generator" content="SCENARI 5.0.2 / Opale 3.7.001">
+  <meta name="revision" content="2020-02-19 14:55">
+  <link rel="start" href="module_Micropython.html" title="Rendre les objets intelligents gr&acirc;ce &agrave; Python">
+  <meta name="author" content="Olivier L&eacute;cluse
+Creative Common BY-NC-SA
+">
+  <meta name="date" content="2 F&eacute;vrier 2019">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../lib-md/w_scImgMgr/scImgMgr.css">
+  <link rel="stylesheet" type="text/css" href="../lib-md/w_scCodeMgr/scCodeMgr.css">
+  <script type="text/JavaScript">
+/*0*/ var scServices = {id:"k6tfv97s"};
+/*1*/ window.scLoadParams = {destUri:"/co/g_pulseio_1.html", pathToRoot:"../"};
+</script>
+  <script type="text/JavaScript" src="../lib-sc/scCoLib.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scTiLib.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scSiLib.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scPaLib.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scTooltipMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scDynUiMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/s_assmnt.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scMapMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scDragMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scAssmntMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/s_scSearch/scSearch.js"></script>
+  <script type="text/JavaScript" src="../lib-md/w_mathjax/mathjaxMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/w_tplMgr/tplMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/w_scCodeMgr/scCodeMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/w_scMediaMgr/scMediaMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/w_scImgMgr/scImgMgr.js"></script>
+  <script type="text/JavaScript">
+/*0*/ try{if(window.opener && window.opener.scServices && window.opener.scServices.id == scServices.id) scServices = window.opener.scServices; else if(window.parent && window.parent.scServices && window.parent.scServices.id == scServices.id) scServices = window.parent.scServices;}catch(e){}
+scCodeMgr.registerCode("des:div.code");
+
+scImgMgr.registerAdaptedImage("ide:content/des:img");
+
+scImgMgr.registerGallery("des:div.galFra");
+
+scImgMgr.registerSvg("des:svg");
+scImgMgr.registerZoom("des:a.svgZoom",{type:"svg",svgMax:1,toolbar:1,titlePath:"par:/nsi:/des:span.capTi"});
+
+scImgMgr.registerZoom("des:a.imgZoom",{toolbar:1,mag:1,titlePath:"par:/nsi:/des:span.capTi"});
+
+</script>
+  <link type="text/css" rel="stylesheet" href="../skin/css/main.css" media="all">
+  <link type="text/css" rel="stylesheet" href="../skin/css/skin.css" media="all">
+  <link type="text/css" rel="stylesheet" href="../skin/css/print.css" media="print">
+  <script type="text/javascript">try{
+	if(window.frameElement.setSubWindowTitle) window.frameElement.setSubWindowTitle(document.title);
+}catch(e){}
+</script>
+ </head>
+ <body class="subWin ref">
+  <div id="root"><header id="header" role="banner"><nav role="navigation"><ul id="accessibility"><li class="waiContent"><a href="#content"><span>contenu</span></a></li></ul></nav></header><main id="main" role="main"><div id="document"><div id="content" tabindex="-1"><div class="scroller"><hr class="hidden"><section class="hBk article expUc"><h2 class="hBk_ti"><span>Le module pulseio, sortie PWM - Niveau facile</span></h2><div class="hBk_co "><div class="iBk info"><h3 class="iBk_ti"><span>Quelques mots sur le module pulseio</span></h3><div class="iBk_co "><div class="rBk "><p>le module pulseio est utilisé sous CircuitPython pour tout ce qui est lié aux impulsions. La documentation de ce module se trouve ici :</p><p><a class="op_txt_ul" target="_blank" href="../../../external.html?link=https://circuitpython.readthedocs.io/en/3.x/shared-bindings/pulseio/__init__.html" rel="noopener" title="https://circuitpython.readthedocs.io/en/3.x/shared-bindings/pulseio/__init__.html (nouvelle fen&ecirc;tre)"><span>https://circuitpython.readthedocs.io/en/3.x/shared-bindings/pulseio/__init__.html</span></a></p></div><div class="rBk "><p>Ce module contient 3 librairies :</p><ul class="txt_il "><li class="txt_ili "><p>PWMOut : pour générer une sortie PWM</p></li></ul><ul class="txt_il "><li class="txt_ili "><p>PulseIn : pour lire une série d'impulsions. Utilisé par exemple pour lire un signal infrarouge.</p></li><li class="txt_ili "><p>PulseOut : pour générer un train d'impulsions. Utilisé par exemple pour envoyer un signal infrarouge.</p></li></ul></div></div></div><section class="hBk expUcDiv"><h3 class="hBk_ti"><span>Générer une sortie pwm</span></h3><div class="hBk_co "><div class="iBk info"><h4 class="iBk_ti"><span>Qu'est-ce que le PWM</span></h4><div class="iBk_co "><div class="rBk "><p>La modulation à largeur d'impulsions (Pulse Width Modulation) permet de générer un signal carré de fréquence donnée. Le rapport entre le temps où le signal est haut sur une période est appelé rapport cyclique (duty cycle). Plus ce rapport est élevé, plus la charge connectée sur la broche reçoit d'énergie. En jouant sur ce rapport cyclique, le PWM permet de faire varier l'intensité d'une LED, la vitesse d'un moteur ou bien de contrôler l'angle de rotation d'un servo moteur.</p></div></div></div><div class="example pBk"><h4 class="example_ti pBk_ti"><span><i class="type"><span>Exemple</span></i><span class="hidden"> : </span><span class="title">Fabriquer un signal de 1MHz avec un rapport cyclique de 50 %</span></span></h4><div class="example_co pBk_co"><div class="rBk listing"><div><div class="code"><div class="code-form "><div class="CodeMirror-static cm-s-default" data-lang="text/x-python"><div class="CodeMirror-code"><div class="CodeMirror-line"><div class="CodeMirror-linenumber">1</div><pre><span class="cm-keyword">import</span> <span class="cm-variable">pulseio</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">2</div><pre><span class="cm-keyword">import</span> <span class="cm-variable">time</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">3</div><pre><span class="cm-keyword">import</span> <span class="cm-variable">board</span> </pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">4</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">5</div><pre><span class="cm-variable">pwm</span> = <span class="cm-variable">pulseio</span>.<span class="cm-property">PWMOut</span>(<span class="cm-variable">board</span>.<span class="cm-property">A3</span>, <span class="cm-variable">frequency</span>=<span class="cm-number">1000000</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">6</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">7</div><pre><span class="cm-variable">pwm</span>.<span class="cm-property">duty_cycle</span> = <span class="cm-number">2</span> <span class="cm-operator">**</span> <span class="cm-number">16</span> <span class="cm-operator">//</span> <span class="cm-number">2</span> <span class="cm-comment"># 65536 correspond à 100%, 32768 correspond à 50% etc...</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">8</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">9</div><pre><span class="cm-keyword">while</span> <span class="cm-keyword">True</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">10</div><pre>    <span class="cm-keyword">pass</span></pre></div></div></div></div><pre class="code-raw noIndex " style="display:none;">import pulseio
+import time
+import board 
+
+pwm = pulseio.PWMOut(board.A3, frequency=1000000)
+
+pwm.duty_cycle = 2 ** 16 // 2 # 65536 correspond à 100%, 32768 correspond à 50% etc...
+
+while True:
+    pass</pre></div></div></div><div class="rBk "><p>Le code ci-dessus produit la sortie suivante sur la broche A3 de la carte CPX. On voit que le signal est très propre, même à la fréquence élevée de 1MHz.</p></div><div class="rBk res"><figure role="group" class="resInFlow png"><div class="resInFlow_co "><a href="../res/SDS00002.png" class="imgZoom" target="_blank" onclick="scImgMgr.loading(); return false;" title="Cliquez pour agrandir (nouvelle fen&ecirc;tre)"><img src="../res/SDS00002_1.png" width="630" height="378" alt></a></div></figure></div></div></div></div></section><section class="hBk expUcDiv"><h3 class="hBk_ti"><span>Faire clignoter une LED progressivement</span></h3><div class="hBk_co "><div class="iBk info"><div class="iBk_co "><div class="rBk "><p>Pour faire un allumage en douceur d'une LED, on va la piloter par un signal PWM dont on va faire varier le rapport cyclique. Plus celui-ci sera proche de 65535, plus la LED sera lumineuse, plus celui-ci sera proche de 0, moins celle-ci brillera.</p><p>Une fréquence de 1000Hz sera suffisante pour que l'effet de persistance rétinienne nous masque le clignotement de la LED.</p></div><div class="rBk "><div class="txtRes "><div class="img lft "><figure role="group" class="resInFlow jpeg"><div class="resInFlow_co "><img src="../res/IMG_0405.JPG" width="300" height="300" alt></div></figure></div><div class="txt "><p>Nous utiliserons une LED branchée en série avec une résistance de 220 ohms sur la broche A3. Les pinces crocodiles sont parfaitement adaptées pour ce montage.</p></div></div></div></div></div><div class="method pBk"><h4 class="method_ti pBk_ti"><span><i class="type"><span>Méthode</span></i><span class="hidden"> : </span><span class="title">Voici le programme</span></span></h4><div class="method_co pBk_co"><div class="rBk listing"><div><div class="code"><div class="code-form "><div class="CodeMirror-static cm-s-default" data-lang="text/x-python"><div class="CodeMirror-code"><div class="CodeMirror-line"><div class="CodeMirror-linenumber">1</div><pre><span class="cm-keyword">import</span> <span class="cm-variable">pulseio</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">2</div><pre><span class="cm-keyword">import</span> <span class="cm-variable">time</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">3</div><pre><span class="cm-keyword">import</span> <span class="cm-variable">board</span> </pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">4</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">5</div><pre><span class="cm-variable">pwm</span> = <span class="cm-variable">pulseio</span>.<span class="cm-property">PWMOut</span>(<span class="cm-variable">board</span>.<span class="cm-property">A3</span>, <span class="cm-variable">frequency</span>=<span class="cm-number">1000</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">6</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">7</div><pre><span class="cm-variable">pwm</span>.<span class="cm-property">duty_cycle</span> = <span class="cm-number">2</span> <span class="cm-operator">**</span> <span class="cm-number">16</span> <span class="cm-operator">//</span> <span class="cm-number">2</span> <span class="cm-comment"># 65536 correspond à 100%, 32768 correspond à 50% etc...</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">8</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">9</div><pre><span class="cm-keyword">while</span> <span class="cm-keyword">True</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">10</div><pre>    <span class="cm-keyword">for</span> <span class="cm-variable">d</span> <span class="cm-keyword">in</span> <span class="cm-builtin">range</span>(<span class="cm-number">0</span>,<span class="cm-number">2</span><span class="cm-operator">**</span><span class="cm-number">16</span><span class="cm-operator">-</span><span class="cm-number">1</span>,<span class="cm-number">2</span><span class="cm-operator">**</span><span class="cm-number">3</span>):</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">11</div><pre>        <span class="cm-variable">pwm</span>.<span class="cm-property">duty_cycle</span>=<span class="cm-variable">d</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">12</div><pre>    </pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">13</div><pre>    <span class="cm-keyword">for</span> <span class="cm-variable">d</span> <span class="cm-keyword">in</span> <span class="cm-builtin">range</span>(<span class="cm-number">2</span><span class="cm-operator">**</span><span class="cm-number">16</span><span class="cm-operator">-</span><span class="cm-number">1</span>,<span class="cm-number">0</span>,<span class="cm-operator">-</span><span class="cm-number">2</span><span class="cm-operator">**</span><span class="cm-number">3</span>):</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">14</div><pre>        <span class="cm-variable">pwm</span>.<span class="cm-property">duty_cycle</span>=<span class="cm-variable">d</span></pre></div></div></div></div><pre class="code-raw noIndex " style="display:none;">import pulseio
+import time
+import board 
+
+pwm = pulseio.PWMOut(board.A3, frequency=1000)
+
+pwm.duty_cycle = 2 ** 16 // 2 # 65536 correspond à 100%, 32768 correspond à 50% etc...
+
+while True:
+    for d in range(0,2**16-1,2**3):
+        pwm.duty_cycle=d
+    
+    for d in range(2**16-1,0,-2**3):
+        pwm.duty_cycle=d</pre></div></div></div></div></div><div class="complement pBk"><h4 class="complement_ti pBk_ti"><span><i class="type"><span>Complément</span></i><span class="hidden"> : </span><span class="title">utiliser la LED rouge interne</span></span></h4><div class="complement_co pBk_co"><div class="rBk "><p>Il est tout à fait possible de remplacer la LED externe sur la broche A3 par la LED rouge interne à la CPX. Il suffit pour cela de remplacer<code class="txt_code_is "> board.A3</code> par<code class="txt_code_is "> board.D13</code></p></div></div></div></div></section></div></section></div></div></div></main><footer id="footer" role="contentinfo" tabindex="-1"><hr class="hidden"></footer></div>
+  <script type="text/JavaScript" src="../skin/js/skin.js"></script>
+  <script type="text/javascript">tplMgr.init();scCodeMgr.init();scMediaMgr.init("ide:content/chi:div/chi:section/des:.mediaPlayer",{processYoutubeUrls :true});scImgMgr.init();</script>
+ </body>
+
+<!-- Mirrored from lecluseo.scenari-community.org/CircuitPython/co/g_pulseio_1.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] mer., 24 août 2022 06:40:53 GMT -->
+</html>

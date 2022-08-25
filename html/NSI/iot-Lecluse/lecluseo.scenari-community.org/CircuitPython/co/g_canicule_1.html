@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="fr">
+ 
+<!-- Mirrored from lecluseo.scenari-community.org/CircuitPython/co/g_canicule_1.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] mer., 24 août 2022 06:42:18 GMT -->
+<head>
+  <meta http-equiv="x-ua-compatible" content="IE=EDGE">
+  <title>Alerte canicule ! - niveau facile</title>
+  <meta charset="UTF-8">
+  <meta name="generator" content="SCENARI 5.0.2 / Opale 3.7.001">
+  <meta name="revision" content="2020-02-19 14:55">
+  <link rel="start" href="module_Micropython.html" title="Rendre les objets intelligents gr&acirc;ce &agrave; Python">
+  <meta name="author" content="Olivier L&eacute;cluse
+Creative Common BY-NC-SA
+">
+  <meta name="date" content="2 F&eacute;vrier 2019">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../lib-md/w_scImgMgr/scImgMgr.css">
+  <link rel="stylesheet" type="text/css" href="../lib-md/w_scCodeMgr/scCodeMgr.css">
+  <script type="text/JavaScript">
+/*0*/ var scServices = {id:"k6tfv97s"};
+/*1*/ window.scLoadParams = {destUri:"/co/g_canicule_1.html", pathToRoot:"../"};
+</script>
+  <script type="text/JavaScript" src="../lib-sc/scCoLib.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scTiLib.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scSiLib.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scPaLib.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scTooltipMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scDynUiMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/s_assmnt.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scMapMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scDragMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scAssmntMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/s_scSearch/scSearch.js"></script>
+  <script type="text/JavaScript" src="../lib-md/w_mathjax/mathjaxMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/w_tplMgr/tplMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/w_scCodeMgr/scCodeMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/w_scMediaMgr/scMediaMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/w_scImgMgr/scImgMgr.js"></script>
+  <script type="text/JavaScript">
+/*0*/ try{if(window.opener && window.opener.scServices && window.opener.scServices.id == scServices.id) scServices = window.opener.scServices; else if(window.parent && window.parent.scServices && window.parent.scServices.id == scServices.id) scServices = window.parent.scServices;}catch(e){}
+scCodeMgr.registerCode("des:div.code");
+
+scImgMgr.registerAdaptedImage("ide:content/des:img");
+
+scImgMgr.registerGallery("des:div.galFra");
+
+scImgMgr.registerSvg("des:svg");
+scImgMgr.registerZoom("des:a.svgZoom",{type:"svg",svgMax:1,toolbar:1,titlePath:"par:/nsi:/des:span.capTi"});
+
+scImgMgr.registerZoom("des:a.imgZoom",{toolbar:1,mag:1,titlePath:"par:/nsi:/des:span.capTi"});
+
+</script>
+  <link type="text/css" rel="stylesheet" href="../skin/css/main.css" media="all">
+  <link type="text/css" rel="stylesheet" href="../skin/css/skin.css" media="all">
+  <link type="text/css" rel="stylesheet" href="../skin/css/print.css" media="print">
+  <script type="text/javascript">try{
+	if(window.frameElement.setSubWindowTitle) window.frameElement.setSubWindowTitle(document.title);
+}catch(e){}
+</script>
+ </head>
+ <body class="subWin ref">
+  <div id="root"><header id="header" role="banner"><nav role="navigation"><ul id="accessibility"><li class="waiContent"><a href="#content"><span>contenu</span></a></li></ul></nav></header><main id="main" role="main"><div id="document"><div id="content" tabindex="-1"><div class="scroller"><hr class="hidden"><section class="hBk article expUc"><h2 class="hBk_ti"><span>Alerte canicule ! - niveau facile</span></h2><div class="hBk_co "><div class="iBk info"><div class="iBk_co "><div class="rBk "><p>Dans ce mini-projet, nous allons lire régulièrement la température grâce au capteur de température intégré à la carte microbit, et afficher une alerte à l'écran si la température atteint un niveau trop élevé.</p></div><div class="rBk "><p>Dans cet exemple simple nous mettrons en pratique l'utilisation de capteurs et d'actionneurs et interagirons avec l'utilisateur par le biais des boutons. Le projet commencera par une première version très simple puis évoluera petit à petit avec de nouvelles fonctionnalités.</p></div></div></div><div class="method pBk"><h3 class="method_ti pBk_ti"><span><i class="type"><span>Méthode</span></i><span class="hidden"> : </span><span class="title">Première version</span></span></h3><div class="method_co pBk_co"><div class="rBk "><p>Nous allons commencer par interroger le capteur et afficher l'alerte si la température dépasse la valeur inscrite dans la variable seuil. Voici le code de cette première version :</p></div><div class="rBk listing"><div><div class="code"><div class="code-form "><div class="CodeMirror-static cm-s-default" data-lang="text/x-python"><div class="CodeMirror-code"><div class="CodeMirror-line"><div class="CodeMirror-linenumber">1</div><pre><span class="cm-comment"># Mini projet : alerte canicule</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">2</div><pre><span class="cm-comment"># Olivier Lecluse 11/2019</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">3</div><pre><span class="cm-comment"># Version 1</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">4</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">5</div><pre><span class="cm-keyword">from</span> <span class="cm-variable">microbit</span> <span class="cm-keyword">import</span> <span class="cm-operator">*</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">6</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">7</div><pre><span class="cm-comment"># Variables globales</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">8</div><pre><span class="cm-variable">seuil</span> = <span class="cm-number">20</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">9</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">10</div><pre><span class="cm-comment"># Boucle principale</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">11</div><pre><span class="cm-keyword">while</span> <span class="cm-keyword">True</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">12</div><pre>    <span class="cm-keyword">if</span> <span class="cm-variable">temperature</span>() <span class="cm-operator">&gt;</span> <span class="cm-variable">seuil</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">13</div><pre>        <span class="cm-variable">display</span>.<span class="cm-property">show</span>(<span class="cm-variable">Image</span>.<span class="cm-property">SAD</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">14</div><pre>    <span class="cm-keyword">else</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">15</div><pre>        <span class="cm-variable">display</span>.<span class="cm-property">show</span>(<span class="cm-variable">Image</span>.<span class="cm-property">HAPPY</span>)</pre></div></div></div></div><pre class="code-raw noIndex " style="display:none;"># Mini projet : alerte canicule
+# Olivier Lecluse 11/2019
+# Version 1
+
+from microbit import *
+
+# Variables globales
+seuil = 20
+
+# Boucle principale
+while True:
+    if temperature() &gt; seuil:
+        display.show(Image.SAD)
+    else:
+        display.show(Image.HAPPY)</pre></div></div></div></div></div><div class="method pBk"><h3 class="method_ti pBk_ti"><span><i class="type"><span>Méthode</span></i><span class="hidden"> : </span><span class="title">Seconde version</span></span></h3><div class="method_co pBk_co"><div class="rBk "><p>Nous pouvons regretter de ne pas connaître la température. Dans cette seconde version, nous allons faire appel à l'accéléromètre intégré à la carte afin de détecter si la carte a été secouée. Si une secousse a été enregistrée, alors la température sera affichée à l'écran.</p></div><div class="rBk "><p><i class="txt_spec_is ">Indication </i>: La détection de secousse de la carte est très simple à faire puis qu'il suffit de tester la condition <i class="txt_spec_is "><code class="txt_code_is ">accelerometer.was_gesture("shake")</code></i>.</p></div><div class="rBk listing"><div><div class="code"><div class="code-form "><div class="CodeMirror-static cm-s-default" data-lang="text/x-python"><div class="CodeMirror-code"><div class="CodeMirror-line"><div class="CodeMirror-linenumber">1</div><pre><span class="cm-comment"># Mini projet : alerte canicule</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">2</div><pre><span class="cm-comment"># Olivier Lecluse 11/2019</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">3</div><pre><span class="cm-comment"># Version 2</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">4</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">5</div><pre><span class="cm-keyword">from</span> <span class="cm-variable">microbit</span> <span class="cm-keyword">import</span> <span class="cm-operator">*</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">6</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">7</div><pre><span class="cm-comment"># Variables globales</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">8</div><pre><span class="cm-variable">seuil</span> = <span class="cm-number">20</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">9</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">10</div><pre><span class="cm-comment"># Boucle principale</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">11</div><pre><span class="cm-keyword">while</span> <span class="cm-keyword">True</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">12</div><pre>    <span class="cm-variable">temp</span> = <span class="cm-variable">temperature</span>()</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">13</div><pre>    <span class="cm-keyword">if</span> <span class="cm-variable">temp</span> <span class="cm-operator">&gt;</span> <span class="cm-variable">seuil</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">14</div><pre>        <span class="cm-variable">display</span>.<span class="cm-property">show</span>(<span class="cm-variable">Image</span>.<span class="cm-property">SAD</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">15</div><pre>    <span class="cm-keyword">else</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">16</div><pre>        <span class="cm-variable">display</span>.<span class="cm-property">show</span>(<span class="cm-variable">Image</span>.<span class="cm-property">HAPPY</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">17</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">18</div><pre>    <span class="cm-comment"># Detection de la secousse</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">19</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">20</div><pre>    <span class="cm-keyword">if</span> <span class="cm-variable">accelerometer</span>.<span class="cm-property">was_gesture</span>(<span class="cm-string">"shake"</span>):</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">21</div><pre>        <span class="cm-variable">display</span>.<span class="cm-property">show</span>(<span class="cm-variable">temp</span>)</pre></div></div></div></div><pre class="code-raw noIndex " style="display:none;"># Mini projet : alerte canicule
+# Olivier Lecluse 11/2019
+# Version 2
+
+from microbit import *
+
+# Variables globales
+seuil = 20
+
+# Boucle principale
+while True:
+    temp = temperature()
+    if temp &gt; seuil:
+        display.show(Image.SAD)
+    else:
+        display.show(Image.HAPPY)
+
+    # Detection de la secousse
+
+    if accelerometer.was_gesture("shake"):
+        display.show(temp)</pre></div></div></div></div></div><div class="complement pBk"><h3 class="complement_ti pBk_ti"><span><i class="type"><span>Complément</span></i><span class="hidden"> : </span><span class="title"></span></span></h3><div class="complement_co pBk_co"><div class="rBk "><p>L'utilisation des <i class="txt_spec_is ">gestes</i> sur la carte micro:bit est très simple comme on vient de le voir. Elle est aussi très pratique car elle évite de devoir faire appel aux boutons (il n'y en a que 2 sur la carte). Les gestes détectables par la cartes sont en comparaison assez nombreux ce qui offre des opportunités intéressantes en termes d'Interface Homme-Machine.</p><p>Les gestes reconnus sont : up, down, left, right, face up, face down, freefall, 3g, 6g, 8g, shake</p></div></div></div><div class="method pBk"><h3 class="method_ti pBk_ti"><span><i class="type"><span>Méthode</span></i><span class="hidden"> : </span><span class="title">Troisième version</span></span></h3><div class="method_co pBk_co"><div class="rBk "><p>A présent, nous allons vouloir modifier la valeur du seuil d'alerte afin de le régler au degré près. Puisque nous n'avons pas encore utilisé les boutons ceux-ci sont disponibles. Nous allons donc utiliser le bouton A pour diminuer le seuil d'un degré, et le bouton B pour augmenter le seuil d'un degré. Le nouveau seuil sera alors affiché.</p><p>Voici le code correspondant à cette 3ème version</p></div><div class="rBk listing"><div><div class="code"><div class="code-form "><div class="CodeMirror-static cm-s-default" data-lang="text/x-python"><div class="CodeMirror-code"><div class="CodeMirror-line"><div class="CodeMirror-linenumber">1</div><pre><span class="cm-comment"># Mini projet : alerte canicule</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">2</div><pre><span class="cm-comment"># Olivier Lecluse 11/2019</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">3</div><pre><span class="cm-comment"># Version 3</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">4</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">5</div><pre><span class="cm-keyword">from</span> <span class="cm-variable">microbit</span> <span class="cm-keyword">import</span> <span class="cm-operator">*</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">6</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">7</div><pre><span class="cm-comment"># Variables globales</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">8</div><pre><span class="cm-variable">seuil</span> = <span class="cm-number">20</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">9</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">10</div><pre><span class="cm-comment"># Boucle principale</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">11</div><pre><span class="cm-keyword">while</span> <span class="cm-keyword">True</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">12</div><pre>    <span class="cm-variable">temp</span> = <span class="cm-variable">temperature</span>()</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">13</div><pre>    <span class="cm-keyword">if</span> <span class="cm-variable">temp</span> <span class="cm-operator">&gt;</span> <span class="cm-variable">seuil</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">14</div><pre>        <span class="cm-variable">display</span>.<span class="cm-property">show</span>(<span class="cm-variable">Image</span>.<span class="cm-property">SAD</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">15</div><pre>    <span class="cm-keyword">else</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">16</div><pre>        <span class="cm-variable">display</span>.<span class="cm-property">show</span>(<span class="cm-variable">Image</span>.<span class="cm-property">HAPPY</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">17</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">18</div><pre>    <span class="cm-comment"># Detection de la secousse</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">19</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">20</div><pre>    <span class="cm-keyword">if</span> <span class="cm-variable">accelerometer</span>.<span class="cm-property">was_gesture</span>(<span class="cm-string">"shake"</span>):</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">21</div><pre>        <span class="cm-variable">display</span>.<span class="cm-property">show</span>(<span class="cm-variable">temp</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">22</div><pre>    </pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">23</div><pre>    <span class="cm-comment"># Reglage du seuil</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">24</div><pre>    <span class="cm-keyword">if</span> <span class="cm-variable">button_a</span>.<span class="cm-property">was_pressed</span>():</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">25</div><pre>        <span class="cm-variable">seuil</span> += <span class="cm-number">1</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">26</div><pre>        <span class="cm-variable">display</span>.<span class="cm-property">show</span>(<span class="cm-variable">seuil</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">27</div><pre>    <span class="cm-keyword">if</span> <span class="cm-variable">button_b</span>.<span class="cm-property">was_pressed</span>():</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">28</div><pre>        <span class="cm-variable">seuil</span> -= <span class="cm-number">1</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">29</div><pre>        <span class="cm-variable">display</span>.<span class="cm-property">show</span>(<span class="cm-variable">seuil</span>)</pre></div></div></div></div><pre class="code-raw noIndex " style="display:none;"># Mini projet : alerte canicule
+# Olivier Lecluse 11/2019
+# Version 3
+
+from microbit import *
+
+# Variables globales
+seuil = 20
+
+# Boucle principale
+while True:
+    temp = temperature()
+    if temp &gt; seuil:
+        display.show(Image.SAD)
+    else:
+        display.show(Image.HAPPY)
+
+    # Detection de la secousse
+
+    if accelerometer.was_gesture("shake"):
+        display.show(temp)
+    
+    # Reglage du seuil
+    if button_a.was_pressed():
+        seuil += 1
+        display.show(seuil)
+    if button_b.was_pressed():
+        seuil -= 1
+        display.show(seuil)</pre></div></div></div></div></div><div class="complement pBk"><h3 class="complement_ti pBk_ti"><span><i class="type"><span>Complément</span></i><span class="hidden"> : </span><span class="title">Pour aller plus loin</span></span></h3><div class="complement_co pBk_co"><div class="rBk "><p>Nous avons donc vu 3 déclinaisons possibles autour de la problématique de détection d'un seuil de température, de la plus simple à la plus élaborée. Ce projet modeste est réalisable par des élèves de seconde dans le cadre de l'enseignement SNT.</p></div><div class="rBk "><p>Il est possible d'approfondir encore davantage la question pour des élèves désireux d'aller plus loin ou très à l'aise avec la programmation et les possibilités offertes par la carte. On peut citer quelques évolutions possibles :</p><ul class="txt_il "><li class="txt_ili "><p>Déclencher une alerte sonore en cas de dépassement de la température seuil. On pourra se référer à la page dédiée à la <a class="txt_ul ucLnk subLnk" target="_blank" role="button" href="g_son_1.html" onclick="scDynUiMgr.displaySubWindow(this,&quot;g_son_1.html&quot;,&quot;subWindow&quot;,{CLOSEBTNTI :'Fermer'});return false;" onkeyup="scDynUiMgr.handleBtnKeyUp(event);" onkeydown="scDynUiMgr.handleBtnKeyDwn(event);" title="la gestion du son (nouvelle fen&ecirc;tre)"><span>gestion du son</span></a> sur micro:bit</p></li><li class="txt_ili "><p>Calculer la température moyenne sur une période (une heure, une journée)</p></li><li class="txt_ili "><p>Déclencher un ventilateur en cas de dépassement de seuil afin de réguler la température (par exemple en commandant un relais)</p></li><li class="txt_ili "><p>Envoyer une notification par radio à une seconde carte distante en cas de dépassement de seuil</p></li><li class="txt_ili "><p>Mettre en place plusieurs capteurs communiquant par radio et afficher les capteurs qui sont en surchauffe</p></li></ul></div></div></div></div></section></div></div></div></main><footer id="footer" role="contentinfo" tabindex="-1"><hr class="hidden"></footer></div>
+  <script type="text/JavaScript" src="../skin/js/skin.js"></script>
+  <script type="text/javascript">tplMgr.init();scCodeMgr.init();scMediaMgr.init("ide:content/chi:div/chi:section/des:.mediaPlayer",{processYoutubeUrls :true});scImgMgr.init();</script>
+ </body>
+
+<!-- Mirrored from lecluseo.scenari-community.org/CircuitPython/co/g_canicule_1.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] mer., 24 août 2022 06:42:18 GMT -->
+</html>

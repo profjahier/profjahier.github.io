@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="fr">
+ 
+<!-- Mirrored from lecluseo.scenari-community.org/CircuitPython/co/g_X3A.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] mer., 24 août 2022 06:42:22 GMT -->
+<head>
+  <meta http-equiv="x-ua-compatible" content="IE=EDGE">
+  <title>Corrigé situation A sans LED : Améliorer la robustesse du dispositif</title>
+  <meta charset="UTF-8">
+  <meta name="generator" content="SCENARI 5.0.2 / Opale 3.7.001">
+  <meta name="revision" content="2020-02-19 14:55">
+  <link rel="start" href="module_Micropython.html" title="Rendre les objets intelligents gr&acirc;ce &agrave; Python">
+  <meta name="author" content="Olivier L&eacute;cluse
+Creative Common BY-NC-SA
+">
+  <meta name="date" content="2 F&eacute;vrier 2019">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../lib-md/w_scImgMgr/scImgMgr.css">
+  <link rel="stylesheet" type="text/css" href="../lib-md/w_scCodeMgr/scCodeMgr.css">
+  <script type="text/JavaScript">
+/*0*/ var scServices = {id:"k6tfv97s"};
+/*1*/ window.scLoadParams = {destUri:"/co/g_X3A.html", pathToRoot:"../"};
+</script>
+  <script type="text/JavaScript" src="../lib-sc/scCoLib.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scTiLib.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scSiLib.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scPaLib.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scTooltipMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scDynUiMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/s_assmnt.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scMapMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scDragMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scAssmntMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/s_scSearch/scSearch.js"></script>
+  <script type="text/JavaScript" src="../lib-md/w_mathjax/mathjaxMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/w_tplMgr/tplMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/w_scCodeMgr/scCodeMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/w_scMediaMgr/scMediaMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/w_scImgMgr/scImgMgr.js"></script>
+  <script type="text/JavaScript">
+/*0*/ try{if(window.opener && window.opener.scServices && window.opener.scServices.id == scServices.id) scServices = window.opener.scServices; else if(window.parent && window.parent.scServices && window.parent.scServices.id == scServices.id) scServices = window.parent.scServices;}catch(e){}
+scCodeMgr.registerCode("des:div.code");
+
+scImgMgr.registerAdaptedImage("ide:content/des:img");
+
+scImgMgr.registerGallery("des:div.galFra");
+
+scImgMgr.registerSvg("des:svg");
+scImgMgr.registerZoom("des:a.svgZoom",{type:"svg",svgMax:1,toolbar:1,titlePath:"par:/nsi:/des:span.capTi"});
+
+scImgMgr.registerZoom("des:a.imgZoom",{toolbar:1,mag:1,titlePath:"par:/nsi:/des:span.capTi"});
+
+</script>
+  <link type="text/css" rel="stylesheet" href="../skin/css/main.css" media="all">
+  <link type="text/css" rel="stylesheet" href="../skin/css/skin.css" media="all">
+  <link type="text/css" rel="stylesheet" href="../skin/css/print.css" media="print">
+  <script type="text/javascript">try{
+	if(window.frameElement.setSubWindowTitle) window.frameElement.setSubWindowTitle(document.title);
+}catch(e){}
+</script>
+ </head>
+ <body class="subWin ref">
+  <div id="root"><header id="header" role="banner"><nav role="navigation"><ul id="accessibility"><li class="waiContent"><a href="#content"><span>contenu</span></a></li></ul></nav></header><main id="main" role="main"><div id="document"><div id="content" tabindex="-1"><div class="scroller"><hr class="hidden"><section class="hBk article expUc"><h2 class="hBk_ti"><span>Corrigé situation A sans LED : Améliorer la robustesse du dispositif</span></h2><div class="hBk_co "><div class="method pBk"><h3 class="method_ti pBk_ti"><span><i class="type"><span>Méthode</span></i><span class="hidden"> : </span><span class="title">Code feu Maître</span></span></h3><div class="method_co pBk_co"><div class="rBk listing"><div><div class="code"><div class="code-form "><div class="CodeMirror-static cm-s-default" data-lang="text/x-python"><div class="CodeMirror-code"><div class="CodeMirror-line"><div class="CodeMirror-linenumber">1</div><pre><span class="cm-keyword">from</span> <span class="cm-variable">microbit</span> <span class="cm-keyword">import</span> <span class="cm-operator">*</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">2</div><pre><span class="cm-keyword">import</span> <span class="cm-variable">radio</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">3</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">4</div><pre><span class="cm-variable">radio</span>.<span class="cm-property">config</span>(<span class="cm-variable">group</span>=<span class="cm-number">2</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">5</div><pre><span class="cm-variable">radio</span>.<span class="cm-property">on</span>()</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">6</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">7</div><pre><span class="cm-variable">DUREE</span> = <span class="cm-number">10</span>  <span class="cm-comment"># 10 secondes</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">8</div><pre><span class="cm-variable">attente</span> = <span class="cm-variable">DUREE</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">9</div><pre><span class="cm-variable">feuRouge</span> = <span class="cm-keyword">True</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">10</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">11</div><pre><span class="cm-keyword">def</span> <span class="cm-def">afficheRouge</span>():</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">12</div><pre>    <span class="cm-keyword">for</span> <span class="cm-variable">x</span> <span class="cm-keyword">in</span> <span class="cm-builtin">range</span>(<span class="cm-number">3</span>,<span class="cm-number">5</span>):</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">13</div><pre>        <span class="cm-keyword">for</span> <span class="cm-variable">y</span> <span class="cm-keyword">in</span> <span class="cm-builtin">range</span>(<span class="cm-number">2</span>):</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">14</div><pre>            <span class="cm-variable">display</span>.<span class="cm-property">set_pixel</span>(<span class="cm-variable">x</span>,<span class="cm-variable">y</span>,<span class="cm-number">9</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">15</div><pre>    <span class="cm-keyword">for</span> <span class="cm-variable">x</span> <span class="cm-keyword">in</span> <span class="cm-builtin">range</span>(<span class="cm-number">3</span>,<span class="cm-number">5</span>):</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">16</div><pre>        <span class="cm-keyword">for</span> <span class="cm-variable">y</span> <span class="cm-keyword">in</span> <span class="cm-builtin">range</span>(<span class="cm-number">3</span>,<span class="cm-number">5</span>):</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">17</div><pre>            <span class="cm-variable">display</span>.<span class="cm-property">set_pixel</span>(<span class="cm-variable">x</span>,<span class="cm-variable">y</span>,<span class="cm-number">0</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">18</div><pre><span class="cm-keyword">def</span> <span class="cm-def">afficheOrange</span>():</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">19</div><pre>    <span class="cm-keyword">for</span> <span class="cm-variable">x</span> <span class="cm-keyword">in</span> <span class="cm-builtin">range</span>(<span class="cm-number">3</span>,<span class="cm-number">5</span>):</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">20</div><pre>        <span class="cm-keyword">for</span> <span class="cm-variable">y</span> <span class="cm-keyword">in</span> <span class="cm-builtin">range</span>(<span class="cm-number">2</span>):</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">21</div><pre>            <span class="cm-variable">display</span>.<span class="cm-property">set_pixel</span>(<span class="cm-variable">x</span>,<span class="cm-variable">y</span>,<span class="cm-number">0</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">22</div><pre>    <span class="cm-keyword">for</span> <span class="cm-variable">x</span> <span class="cm-keyword">in</span> <span class="cm-builtin">range</span>(<span class="cm-number">3</span>,<span class="cm-number">5</span>):</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">23</div><pre>        <span class="cm-keyword">for</span> <span class="cm-variable">y</span> <span class="cm-keyword">in</span> <span class="cm-builtin">range</span>(<span class="cm-number">3</span>,<span class="cm-number">5</span>):</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">24</div><pre>            <span class="cm-variable">display</span>.<span class="cm-property">set_pixel</span>(<span class="cm-variable">x</span>,<span class="cm-variable">y</span>,<span class="cm-number">4</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">25</div><pre><span class="cm-keyword">def</span> <span class="cm-def">afficheAttente</span>(<span class="cm-variable">attente</span>):</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">26</div><pre>    <span class="cm-keyword">for</span> <span class="cm-variable">x</span> <span class="cm-keyword">in</span> <span class="cm-builtin">range</span>(<span class="cm-number">2</span>):</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">27</div><pre>        <span class="cm-keyword">for</span> <span class="cm-variable">y</span> <span class="cm-keyword">in</span> <span class="cm-builtin">range</span>(<span class="cm-number">5</span>):</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">28</div><pre>            <span class="cm-variable">display</span>.<span class="cm-property">set_pixel</span>(<span class="cm-variable">x</span>,<span class="cm-variable">y</span>, <span class="cm-number">0</span> <span class="cm-keyword">if</span> <span class="cm-number">5</span><span class="cm-operator">*</span><span class="cm-variable">x</span><span class="cm-operator">+</span><span class="cm-variable">y</span> <span class="cm-operator">&gt;</span>= <span class="cm-variable">attente</span> <span class="cm-keyword">else</span> <span class="cm-number">9</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">29</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">30</div><pre><span class="cm-keyword">while</span> <span class="cm-keyword">True</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">31</div><pre>    <span class="cm-comment"># Arrivee du vehicule prioritaire au feu maitre</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">32</div><pre>    <span class="cm-keyword">if</span> <span class="cm-variable">button_a</span>.<span class="cm-property">was_pressed</span>():</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">33</div><pre>        <span class="cm-variable">feuRouge</span> = <span class="cm-keyword">False</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">34</div><pre>        <span class="cm-variable">attente</span> = <span class="cm-variable">DUREE</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">35</div><pre>        <span class="cm-variable">radio</span>.<span class="cm-property">send</span>(<span class="cm-string">"ROUGE"</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">36</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">37</div><pre>    <span class="cm-comment"># Traitement des messages en provenance de l'esclave</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">38</div><pre>    <span class="cm-variable">incoming</span> = <span class="cm-variable">radio</span>.<span class="cm-property">receive</span>()</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">39</div><pre>    <span class="cm-comment"># Arrivee du vehicule priopritaire au feu esclave</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">40</div><pre>    <span class="cm-keyword">if</span> <span class="cm-variable">incoming</span> == <span class="cm-string">"PRIO"</span> :</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">41</div><pre>        <span class="cm-variable">feuRouge</span> = <span class="cm-keyword">True</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">42</div><pre>        <span class="cm-variable">attente</span> = <span class="cm-variable">DUREE</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">43</div><pre>        <span class="cm-variable">radio</span>.<span class="cm-property">send</span>(<span class="cm-string">"VERT"</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">44</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">45</div><pre>    <span class="cm-comment"># Affichage Rouge / Orange</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">46</div><pre>    <span class="cm-keyword">if</span> <span class="cm-variable">feuRouge</span> :</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">47</div><pre>        <span class="cm-variable">afficheRouge</span>()</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">48</div><pre>    <span class="cm-keyword">else</span> :</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">49</div><pre>        <span class="cm-variable">afficheOrange</span>()</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">50</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">51</div><pre>    <span class="cm-comment"># Gestion de l'attente</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">52</div><pre>    <span class="cm-variable">sleep</span>(<span class="cm-number">1000</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">53</div><pre>    <span class="cm-variable">attente</span> -= <span class="cm-number">1</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">54</div><pre>    <span class="cm-variable">afficheAttente</span>(<span class="cm-variable">attente</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">55</div><pre>    <span class="cm-variable">radio</span>.<span class="cm-property">send</span>(<span class="cm-builtin">str</span>(<span class="cm-variable">attente</span>))</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">56</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">57</div><pre>    <span class="cm-comment"># Alternance du feu</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">58</div><pre>    <span class="cm-keyword">if</span> <span class="cm-variable">attente</span> == <span class="cm-number">0</span> :</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">59</div><pre>        <span class="cm-variable">attente</span>=<span class="cm-variable">DUREE</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">60</div><pre>        <span class="cm-variable">feuRouge</span> = <span class="cm-keyword">not</span> <span class="cm-variable">feuRouge</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">61</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">62</div><pre>    <span class="cm-comment"># Robustesse du dispositif :</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">63</div><pre>    <span class="cm-comment"># Le maitre envoie l'etat du feu a l'esclave</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">64</div><pre>    <span class="cm-comment"># toutes les secondes</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">65</div><pre>    <span class="cm-keyword">if</span> <span class="cm-variable">feuRouge</span> :</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">66</div><pre>        <span class="cm-variable">radio</span>.<span class="cm-property">send</span>(<span class="cm-string">"VERT"</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">67</div><pre>    <span class="cm-keyword">else</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">68</div><pre>        <span class="cm-variable">radio</span>.<span class="cm-property">send</span>(<span class="cm-string">"ROUGE"</span>)</pre></div></div></div></div><pre class="code-raw noIndex " style="display:none;">from microbit import *
+import radio
+
+radio.config(group=2)
+radio.on()
+
+DUREE = 10  # 10 secondes
+attente = DUREE
+feuRouge = True
+
+def afficheRouge():
+    for x in range(3,5):
+        for y in range(2):
+            display.set_pixel(x,y,9)
+    for x in range(3,5):
+        for y in range(3,5):
+            display.set_pixel(x,y,0)
+def afficheOrange():
+    for x in range(3,5):
+        for y in range(2):
+            display.set_pixel(x,y,0)
+    for x in range(3,5):
+        for y in range(3,5):
+            display.set_pixel(x,y,4)
+def afficheAttente(attente):
+    for x in range(2):
+        for y in range(5):
+            display.set_pixel(x,y, 0 if 5*x+y &gt;= attente else 9)
+
+while True:
+    # Arrivee du vehicule prioritaire au feu maitre
+    if button_a.was_pressed():
+        feuRouge = False
+        attente = DUREE
+        radio.send("ROUGE")
+
+    # Traitement des messages en provenance de l'esclave
+    incoming = radio.receive()
+    # Arrivee du vehicule priopritaire au feu esclave
+    if incoming == "PRIO" :
+        feuRouge = True
+        attente = DUREE
+        radio.send("VERT")
+
+    # Affichage Rouge / Orange
+    if feuRouge :
+        afficheRouge()
+    else :
+        afficheOrange()
+
+    # Gestion de l'attente
+    sleep(1000)
+    attente -= 1
+    afficheAttente(attente)
+    radio.send(str(attente))
+
+    # Alternance du feu
+    if attente == 0 :
+        attente=DUREE
+        feuRouge = not feuRouge
+
+    # Robustesse du dispositif :
+    # Le maitre envoie l'etat du feu a l'esclave
+    # toutes les secondes
+    if feuRouge :
+        radio.send("VERT")
+    else:
+        radio.send("ROUGE")</pre></div></div></div></div></div><div class="method pBk"><h3 class="method_ti pBk_ti"><span><i class="type"><span>Méthode</span></i><span class="hidden"> : </span><span class="title">Code feu Esclave</span></span></h3><div class="method_co pBk_co"><div class="rBk listing"><div><div class="code"><div class="code-form "><div class="CodeMirror-static cm-s-default" data-lang="text/x-python"><div class="CodeMirror-code"><div class="CodeMirror-line"><div class="CodeMirror-linenumber">1</div><pre><span class="cm-keyword">from</span> <span class="cm-variable">microbit</span> <span class="cm-keyword">import</span> <span class="cm-operator">*</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">2</div><pre><span class="cm-keyword">from</span> <span class="cm-variable">time</span> <span class="cm-keyword">import</span> <span class="cm-variable">ticks_ms</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">3</div><pre><span class="cm-keyword">import</span> <span class="cm-variable">radio</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">4</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">5</div><pre><span class="cm-variable">radio</span>.<span class="cm-property">config</span>(<span class="cm-variable">group</span>=<span class="cm-number">2</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">6</div><pre><span class="cm-variable">radio</span>.<span class="cm-property">on</span>()</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">7</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">8</div><pre><span class="cm-variable">lastTransm</span> = <span class="cm-variable">ticks_ms</span>()  <span class="cm-comment"># derniere transmission du maitre</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">9</div><pre><span class="cm-variable">feuRouge</span> = <span class="cm-keyword">True</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">10</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">11</div><pre><span class="cm-keyword">def</span> <span class="cm-def">afficheRouge</span>():</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">12</div><pre>    <span class="cm-keyword">for</span> <span class="cm-variable">x</span> <span class="cm-keyword">in</span> <span class="cm-builtin">range</span>(<span class="cm-number">3</span>,<span class="cm-number">5</span>):</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">13</div><pre>        <span class="cm-keyword">for</span> <span class="cm-variable">y</span> <span class="cm-keyword">in</span> <span class="cm-builtin">range</span>(<span class="cm-number">2</span>):</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">14</div><pre>            <span class="cm-variable">display</span>.<span class="cm-property">set_pixel</span>(<span class="cm-variable">x</span>,<span class="cm-variable">y</span>,<span class="cm-number">9</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">15</div><pre>    <span class="cm-keyword">for</span> <span class="cm-variable">x</span> <span class="cm-keyword">in</span> <span class="cm-builtin">range</span>(<span class="cm-number">3</span>,<span class="cm-number">5</span>):</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">16</div><pre>        <span class="cm-keyword">for</span> <span class="cm-variable">y</span> <span class="cm-keyword">in</span> <span class="cm-builtin">range</span>(<span class="cm-number">3</span>,<span class="cm-number">5</span>):</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">17</div><pre>            <span class="cm-variable">display</span>.<span class="cm-property">set_pixel</span>(<span class="cm-variable">x</span>,<span class="cm-variable">y</span>,<span class="cm-number">0</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">18</div><pre><span class="cm-keyword">def</span> <span class="cm-def">afficheOrange</span>():</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">19</div><pre>    <span class="cm-keyword">for</span> <span class="cm-variable">x</span> <span class="cm-keyword">in</span> <span class="cm-builtin">range</span>(<span class="cm-number">3</span>,<span class="cm-number">5</span>):</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">20</div><pre>        <span class="cm-keyword">for</span> <span class="cm-variable">y</span> <span class="cm-keyword">in</span> <span class="cm-builtin">range</span>(<span class="cm-number">2</span>):</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">21</div><pre>            <span class="cm-variable">display</span>.<span class="cm-property">set_pixel</span>(<span class="cm-variable">x</span>,<span class="cm-variable">y</span>,<span class="cm-number">0</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">22</div><pre>    <span class="cm-keyword">for</span> <span class="cm-variable">x</span> <span class="cm-keyword">in</span> <span class="cm-builtin">range</span>(<span class="cm-number">3</span>,<span class="cm-number">5</span>):</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">23</div><pre>        <span class="cm-keyword">for</span> <span class="cm-variable">y</span> <span class="cm-keyword">in</span> <span class="cm-builtin">range</span>(<span class="cm-number">3</span>,<span class="cm-number">5</span>):</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">24</div><pre>            <span class="cm-variable">display</span>.<span class="cm-property">set_pixel</span>(<span class="cm-variable">x</span>,<span class="cm-variable">y</span>,<span class="cm-number">4</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">25</div><pre><span class="cm-keyword">def</span> <span class="cm-def">afficheAttente</span>(<span class="cm-variable">attente</span>):</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">26</div><pre>    <span class="cm-variable">display</span>.<span class="cm-property">set_pixel</span>(<span class="cm-number">2</span>,<span class="cm-number">3</span>,<span class="cm-number">0</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">27</div><pre>    <span class="cm-keyword">for</span> <span class="cm-variable">x</span> <span class="cm-keyword">in</span> <span class="cm-builtin">range</span>(<span class="cm-number">2</span>):</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">28</div><pre>        <span class="cm-keyword">for</span> <span class="cm-variable">y</span> <span class="cm-keyword">in</span> <span class="cm-builtin">range</span>(<span class="cm-number">5</span>):</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">29</div><pre>            <span class="cm-variable">display</span>.<span class="cm-property">set_pixel</span>(<span class="cm-variable">x</span>,<span class="cm-variable">y</span>, <span class="cm-number">0</span> <span class="cm-keyword">if</span> <span class="cm-number">5</span><span class="cm-operator">*</span><span class="cm-variable">x</span><span class="cm-operator">+</span><span class="cm-variable">y</span> <span class="cm-operator">&gt;</span>= <span class="cm-variable">attente</span> <span class="cm-keyword">else</span> <span class="cm-number">9</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">30</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">31</div><pre><span class="cm-keyword">while</span> <span class="cm-keyword">True</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">32</div><pre>    <span class="cm-comment"># Traitement des messages du maitre</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">33</div><pre>    <span class="cm-variable">incoming</span> = <span class="cm-variable">radio</span>.<span class="cm-property">receive</span>()</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">34</div><pre>    <span class="cm-keyword">if</span> <span class="cm-variable">incoming</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">35</div><pre>        <span class="cm-keyword">if</span> <span class="cm-variable">incoming</span> == <span class="cm-string">"VERT"</span> :</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">36</div><pre>            <span class="cm-variable">feuRouge</span> = <span class="cm-keyword">False</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">37</div><pre>            <span class="cm-variable">lastTransm</span> = <span class="cm-variable">ticks_ms</span>()  <span class="cm-comment"># message recu</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">38</div><pre>        <span class="cm-keyword">elif</span> <span class="cm-variable">incoming</span> == <span class="cm-string">"ROUGE"</span> :</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">39</div><pre>            <span class="cm-variable">feuRouge</span> = <span class="cm-keyword">True</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">40</div><pre>            <span class="cm-variable">lastTransm</span> = <span class="cm-variable">ticks_ms</span>()  <span class="cm-comment"># message recu</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">41</div><pre>        <span class="cm-keyword">elif</span> <span class="cm-builtin">len</span>(<span class="cm-variable">incoming</span>) ==<span class="cm-number">1</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">42</div><pre>            <span class="cm-variable">afficheAttente</span>(<span class="cm-builtin">int</span>(<span class="cm-variable">incoming</span>))</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">43</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">44</div><pre>    <span class="cm-comment"># Mise en securite si le maitre plante</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">45</div><pre>    <span class="cm-keyword">if</span> <span class="cm-variable">ticks_ms</span>() <span class="cm-operator">-</span> <span class="cm-variable">lastTransm</span> <span class="cm-operator">&gt;</span> <span class="cm-number">2000</span> :</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">46</div><pre>        <span class="cm-comment"># Plus de deux secondes sans nouvelles du maitre</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">47</div><pre>        <span class="cm-variable">feuRouge</span> = <span class="cm-keyword">True</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">48</div><pre>        <span class="cm-variable">display</span>.<span class="cm-property">clear</span>()</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">49</div><pre>        <span class="cm-variable">display</span>.<span class="cm-property">show</span>(<span class="cm-variable">Image</span>.<span class="cm-property">SAD</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">50</div><pre>    <span class="cm-keyword">else</span> :</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">51</div><pre>        <span class="cm-comment"># Arrivee vehicule prioritaire</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">52</div><pre>        <span class="cm-keyword">if</span> <span class="cm-variable">button_a</span>.<span class="cm-property">was_pressed</span>():</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">53</div><pre>            <span class="cm-variable">radio</span>.<span class="cm-property">send</span>(<span class="cm-string">"PRIO"</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">54</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">55</div><pre>        <span class="cm-comment"># Affichage Rouge / Orange</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">56</div><pre>        <span class="cm-keyword">if</span> <span class="cm-variable">feuRouge</span> :</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">57</div><pre>            <span class="cm-variable">afficheRouge</span>()</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">58</div><pre>        <span class="cm-keyword">else</span> :</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">59</div><pre>            <span class="cm-variable">afficheOrange</span>()</pre></div></div></div></div><pre class="code-raw noIndex " style="display:none;">from microbit import *
+from time import ticks_ms
+import radio
+
+radio.config(group=2)
+radio.on()
+
+lastTransm = ticks_ms()  # derniere transmission du maitre
+feuRouge = True
+
+def afficheRouge():
+    for x in range(3,5):
+        for y in range(2):
+            display.set_pixel(x,y,9)
+    for x in range(3,5):
+        for y in range(3,5):
+            display.set_pixel(x,y,0)
+def afficheOrange():
+    for x in range(3,5):
+        for y in range(2):
+            display.set_pixel(x,y,0)
+    for x in range(3,5):
+        for y in range(3,5):
+            display.set_pixel(x,y,4)
+def afficheAttente(attente):
+    display.set_pixel(2,3,0)
+    for x in range(2):
+        for y in range(5):
+            display.set_pixel(x,y, 0 if 5*x+y &gt;= attente else 9)
+
+while True:
+    # Traitement des messages du maitre
+    incoming = radio.receive()
+    if incoming:
+        if incoming == "VERT" :
+            feuRouge = False
+            lastTransm = ticks_ms()  # message recu
+        elif incoming == "ROUGE" :
+            feuRouge = True
+            lastTransm = ticks_ms()  # message recu
+        elif len(incoming) ==1:
+            afficheAttente(int(incoming))
+
+    # Mise en securite si le maitre plante
+    if ticks_ms() - lastTransm &gt; 2000 :
+        # Plus de deux secondes sans nouvelles du maitre
+        feuRouge = True
+        display.clear()
+        display.show(Image.SAD)
+    else :
+        # Arrivee vehicule prioritaire
+        if button_a.was_pressed():
+            radio.send("PRIO")
+
+        # Affichage Rouge / Orange
+        if feuRouge :
+            afficheRouge()
+        else :
+            afficheOrange()</pre></div></div></div></div></div></div></section></div></div></div></main><footer id="footer" role="contentinfo" tabindex="-1"><hr class="hidden"></footer></div>
+  <script type="text/JavaScript" src="../skin/js/skin.js"></script>
+  <script type="text/javascript">tplMgr.init();scCodeMgr.init();scMediaMgr.init("ide:content/chi:div/chi:section/des:.mediaPlayer",{processYoutubeUrls :true});scImgMgr.init();</script>
+ </body>
+
+<!-- Mirrored from lecluseo.scenari-community.org/CircuitPython/co/g_X3A.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] mer., 24 août 2022 06:42:22 GMT -->
+</html>

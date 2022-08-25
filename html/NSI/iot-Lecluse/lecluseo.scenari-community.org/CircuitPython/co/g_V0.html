@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+ 
+<!-- Mirrored from lecluseo.scenari-community.org/CircuitPython/co/g_V0.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] mer., 24 août 2022 06:42:22 GMT -->
+<head>
+  <meta http-equiv="x-ua-compatible" content="IE=EDGE">
+  <title>Corrigé V0</title>
+  <meta charset="UTF-8">
+  <meta name="generator" content="SCENARI 5.0.2 / Opale 3.7.001">
+  <meta name="revision" content="2020-02-19 14:55">
+  <link rel="start" href="module_Micropython.html" title="Rendre les objets intelligents gr&acirc;ce &agrave; Python">
+  <meta name="author" content="Olivier L&eacute;cluse
+Creative Common BY-NC-SA
+">
+  <meta name="date" content="2 F&eacute;vrier 2019">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="../lib-md/w_scImgMgr/scImgMgr.css">
+  <link rel="stylesheet" type="text/css" href="../lib-md/w_scCodeMgr/scCodeMgr.css">
+  <script type="text/JavaScript">
+/*0*/ var scServices = {id:"k6tfv97s"};
+/*1*/ window.scLoadParams = {destUri:"/co/g_V0.html", pathToRoot:"../"};
+</script>
+  <script type="text/JavaScript" src="../lib-sc/scCoLib.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scTiLib.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scSiLib.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scPaLib.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scTooltipMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scDynUiMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/s_assmnt.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scMapMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scDragMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-sc/scAssmntMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/s_scSearch/scSearch.js"></script>
+  <script type="text/JavaScript" src="../lib-md/w_mathjax/mathjaxMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/w_tplMgr/tplMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/w_scCodeMgr/scCodeMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/w_scMediaMgr/scMediaMgr.js"></script>
+  <script type="text/JavaScript" src="../lib-md/w_scImgMgr/scImgMgr.js"></script>
+  <script type="text/JavaScript">
+/*0*/ try{if(window.opener && window.opener.scServices && window.opener.scServices.id == scServices.id) scServices = window.opener.scServices; else if(window.parent && window.parent.scServices && window.parent.scServices.id == scServices.id) scServices = window.parent.scServices;}catch(e){}
+scCodeMgr.registerCode("des:div.code");
+
+scImgMgr.registerAdaptedImage("ide:content/des:img");
+
+scImgMgr.registerGallery("des:div.galFra");
+
+scImgMgr.registerSvg("des:svg");
+scImgMgr.registerZoom("des:a.svgZoom",{type:"svg",svgMax:1,toolbar:1,titlePath:"par:/nsi:/des:span.capTi"});
+
+scImgMgr.registerZoom("des:a.imgZoom",{toolbar:1,mag:1,titlePath:"par:/nsi:/des:span.capTi"});
+
+</script>
+  <link type="text/css" rel="stylesheet" href="../skin/css/main.css" media="all">
+  <link type="text/css" rel="stylesheet" href="../skin/css/skin.css" media="all">
+  <link type="text/css" rel="stylesheet" href="../skin/css/print.css" media="print">
+  <script type="text/javascript">try{
+	if(window.frameElement.setSubWindowTitle) window.frameElement.setSubWindowTitle(document.title);
+}catch(e){}
+</script>
+ </head>
+ <body class="subWin ref">
+  <div id="root"><header id="header" role="banner"><nav role="navigation"><ul id="accessibility"><li class="waiContent"><a href="#content"><span>contenu</span></a></li></ul></nav></header><main id="main" role="main"><div id="document"><div id="content" tabindex="-1"><div class="scroller"><hr class="hidden"><section class="hBk article expUc"><h2 class="hBk_ti"><span>Corrigé V0</span></h2><div class="hBk_co "><div class="iBk info"><div class="iBk_co "><div class="rBk listing"><div><div class="code"><div class="code-form "><div class="CodeMirror-static cm-s-default" data-lang="text/x-python"><div class="CodeMirror-code"><div class="CodeMirror-line"><div class="CodeMirror-linenumber">1</div><pre><span class="cm-keyword">from</span> <span class="cm-variable">microbit</span> <span class="cm-keyword">import</span> <span class="cm-operator">*</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">2</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">3</div><pre><span class="cm-variable">DUREE</span> = <span class="cm-number">10</span>  <span class="cm-comment"># 10 secondes</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">4</div><pre><span class="cm-variable">attente</span> = <span class="cm-variable">DUREE</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">5</div><pre><span class="cm-variable">feuRouge</span> = <span class="cm-keyword">True</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">6</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">7</div><pre><span class="cm-keyword">def</span> <span class="cm-def">afficheRouge</span>():</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">8</div><pre>    <span class="cm-variable">pin1</span>.<span class="cm-property">write_digital</span>(<span class="cm-number">1</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">9</div><pre>    <span class="cm-variable">pin0</span>.<span class="cm-property">write_digital</span>(<span class="cm-number">0</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">10</div><pre><span class="cm-keyword">def</span> <span class="cm-def">afficheOrange</span>():</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">11</div><pre>    <span class="cm-variable">pin1</span>.<span class="cm-property">write_digital</span>(<span class="cm-number">0</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">12</div><pre>    <span class="cm-variable">pin0</span>.<span class="cm-property">write_digital</span>(<span class="cm-number">1</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">13</div><pre><span class="cm-keyword">def</span> <span class="cm-def">afficheAttente</span>(<span class="cm-variable">attente</span>):</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">14</div><pre>    <span class="cm-variable">display</span>.<span class="cm-property">show</span>(<span class="cm-builtin">str</span>(<span class="cm-variable">attente</span>))</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">15</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">16</div><pre><span class="cm-keyword">while</span> <span class="cm-keyword">True</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">17</div><pre>    <span class="cm-comment"># Affichage Rouge / Orange</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">18</div><pre>    <span class="cm-keyword">if</span> <span class="cm-variable">feuRouge</span> :</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">19</div><pre>        <span class="cm-variable">afficheRouge</span>()</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">20</div><pre>    <span class="cm-keyword">else</span> :</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">21</div><pre>        <span class="cm-variable">afficheOrange</span>()</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">22</div><pre>    </pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">23</div><pre>    <span class="cm-comment"># Gestion de l'attente</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">24</div><pre>    <span class="cm-variable">sleep</span>(<span class="cm-number">1000</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">25</div><pre>    <span class="cm-variable">attente</span> -= <span class="cm-number">1</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">26</div><pre>    <span class="cm-variable">afficheAttente</span>(<span class="cm-variable">attente</span>)</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">27</div><pre></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">28</div><pre>    <span class="cm-comment"># Alternance du feu</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">29</div><pre>    <span class="cm-keyword">if</span> <span class="cm-variable">attente</span> == <span class="cm-number">0</span>:</pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">30</div><pre>        <span class="cm-variable">feuRouge</span> = <span class="cm-keyword">not</span> <span class="cm-variable">feuRouge</span></pre></div><div class="CodeMirror-line"><div class="CodeMirror-linenumber">31</div><pre>        <span class="cm-variable">attente</span> = <span class="cm-variable">DUREE</span></pre></div></div></div></div><pre class="code-raw noIndex " style="display:none;">from microbit import *
+
+DUREE = 10  # 10 secondes
+attente = DUREE
+feuRouge = True
+
+def afficheRouge():
+    pin1.write_digital(1)
+    pin0.write_digital(0)
+def afficheOrange():
+    pin1.write_digital(0)
+    pin0.write_digital(1)
+def afficheAttente(attente):
+    display.show(str(attente))
+
+while True:
+    # Affichage Rouge / Orange
+    if feuRouge :
+        afficheRouge()
+    else :
+        afficheOrange()
+    
+    # Gestion de l'attente
+    sleep(1000)
+    attente -= 1
+    afficheAttente(attente)
+
+    # Alternance du feu
+    if attente == 0:
+        feuRouge = not feuRouge
+        attente = DUREE</pre></div></div></div></div></div></div></section></div></div></div></main><footer id="footer" role="contentinfo" tabindex="-1"><hr class="hidden"></footer></div>
+  <script type="text/JavaScript" src="../skin/js/skin.js"></script>
+  <script type="text/javascript">tplMgr.init();scCodeMgr.init();scMediaMgr.init("ide:content/chi:div/chi:section/des:.mediaPlayer",{processYoutubeUrls :true});scImgMgr.init();</script>
+ </body>
+
+<!-- Mirrored from lecluseo.scenari-community.org/CircuitPython/co/g_V0.html by HTTraQt Website Copier/1.x [Karbofos 2012-2017] mer., 24 août 2022 06:42:22 GMT -->
+</html>

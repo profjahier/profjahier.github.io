@@ -1,0 +1,34 @@
+/* ===== PRINTS ===== */
+html{
+	position:static;
+	overflow:auto;
+}
+
+.default #root, .sco #root{
+	position:static;
+	display:block;
+}
+
+#accessibility, .default #toolbox, .default #navigation{
+	display:none;
+}
+
+.default #main, .default #document{
+	display:block;
+}
+
+.default #header{
+	margin:0;
+}
+
+.default > #root{
+	background-color:transparent;
+}
+
+.default #root, .default #toolbox, .default #main, .default #menu, .default #menu > ul.mnu{
+	overflow:auto;
+}
+
+.default .scroller{
+	position:static;
+}
