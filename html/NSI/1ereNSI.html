@@ -32,7 +32,32 @@
             consultées avec intérêt (<em>en toute objectivité et modestie, bien entendu !</em>).</p>
         -->
         <h2 class="alert-secondary">Programme de 1ère NSI</h2>
+        <!--
+        <div class="dropdown">
+            <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropright">Sur cette
+                page... </button>
+            <div class="dropdown-menu">
+                <a href="#P01" class="dropdown-item">P01 - Représentation des données : types et valeurs de base</a>
+                <a href="#P02" class="dropdown-item">P02 - Représentation des données : types construits</a>
+                <a href="#P03" class="dropdown-item">P03 - Traitement de données en table</a>
+                <a href="#P04" class="dropdown-item">P04 - Interactions entre l’homme et la machine sur le Web</a>
+                <a href="#P05" class="dropdown-item">P05 - Architectures matérielles et systèmes d’exploitation</a>
+                <a href="#P06" class="dropdown-item">P06 - Langages et programmation</a>
+                <a href="#P07" class="dropdown-item">P07 - Algorithmique</a>
+            </div>
+        </div>
+    -->
+
         <p><a href="../../docs/1ere-NSI-programme.pdf">Programme officiel + commentaires.</a></p>
+        <ul>
+            <li><a href="#P01">P01 - Représentation des données : types et valeurs de base</a></li>
+            <li><a href="#P02">P02 - Représentation des données : types construits</a></li>
+            <li><a href="#P03">P03 - Traitement de données en table</a></li>
+            <li><a href="#P04">P04 - Interactions entre l’homme et la machine sur le Web</a></li>
+            <li><a href="#P05">P05 - Architectures matérielles et systèmes d’exploitation</a></li>
+            <li><a href="#P06">P06 - Langages et programmation</a></li>
+            <li><a href="#P07">P07 - Algorithmique</a></li>
+        </ul>
 
         <h3 class="alert-info">TP transverses : Langage de programmation / Structures de données / Algorithmique</h3>
         <p>ATTENTION : ces TP sont très denses !</p>
@@ -48,7 +73,7 @@
             </li>
         </ul>
 
-        <h3 class="alert-info">P01 - Représentation des données : types et valeurs de base</h3>
+        <h3 class="alert-info" id="P01">P01 - Représentation des données : types et valeurs de base</h3>
         <ul>
             <li><a href="../../docs/P1-1-binaire-entiers.pdf">Écriture d'un entier positif dans une base b &ge; 2</a>
                 (<a href="../../docs/P1-1-binaire-entiers-TD.pdf">exercices</a>)
@@ -63,18 +88,25 @@
                     href="../../simcirjs/cimcirjs.html">simulateur de circuits logiques</a> (<a
                     href="../../docs/P1-4-boolens-TD.pdf">exercices</a>).</li>
             <li><a href="../../docs/P1-5-texte.pdf">Représentation d'un texte en machine.</a> + manipulation de texte en
-                Python. </a> (<a href="../../docs/P1-5-texte-TD.pdf">exercices</a>)
+                Python. </a> (<a href="../../docs/P1-5-texte-TD.pdf">exercices</a>)<br>
+                Compléments vidéos : <a
+                    href="https://www.youtube.com/watch?v=q_F4ffWPUzE&list=PL2CXLryTKuwwlCGfgpApOTmMn7_dbtwWa&index=2">FunMOOC
+                    encodage</a>, <a
+                    href="https://www.youtube.com/watch?v=2q8DM-_AxaI&list=PL2CXLryTKuwwlCGfgpApOTmMn7_dbtwWa&index=3">FunMOOC
+                    chaines 1/2</a>, <a
+                    href="https://www.youtube.com/watch?v=LjjCFDCbHhQ&list=PL2CXLryTKuwwlCGfgpApOTmMn7_dbtwWa&index=4">FunMOOC
+                    chaines 2/2</a>
             </li>
         </ul>
 
-        <h3 class="alert-info">P02 - Représentation des données : types construits</h3>
+        <h3 class="alert-info" id="P02">P02 - Représentation des données : types construits</h3>
         <ul>
             <li><a href="../../docs/P2-1-puplets.pdf">p-uplets</a></li>
             <li><a href="../../docs/P2-2-tableaux.pdf">Tableaux indexés</a></li>
             <li><a href="../../docs/P2-3-dictionnaires.pdf">p-uplets nommés et dictionnaires</a></li>
         </ul>
 
-        <h3 class="alert-info">P03 - Traitement de données en table</h3>
+        <h3 class="alert-info" id="P03">P03 - Traitement de données en table</h3>
         <ul>
             <li><a href="../../docs/projet-lecture_csv.pdf">Projet préliminaire</a> : déchiffrage d'un fichier CSV (à la
                 main).</li>
@@ -97,7 +129,7 @@
             </li>
         </ul>
 
-        <h3 class="alert-info">P04 - Interactions entre l’homme et la machine sur le Web</h3>
+        <h3 class="alert-info" id="P04">P04 - Interactions entre l’homme et la machine sur le Web</h3>
         <ul>
             <li><a href="../../docs/P4-1-TP01.pdf">TP01 découverte page Web / IHM</a> (<a
                     href="../../docs/exemple.zip">archive annexe</a>)</li>
@@ -143,17 +175,18 @@
             </li>
         </ul>
 
-        <h3 class="alert-info">P06 - Langages et programmation</h3>
+        <h3 class="alert-info" id="P06">P06 - Langages et programmation</h3>
         <ul>
             <li><a href="../../docs/P6-1-constructions_elementaires.pdf">Constructions élémentaires</a></li>
             <li><a href="../../docs/P6-2-diversite_langages.pdf">Diversité des langages</a> : illustration en Python, C,
                 OCaml, Haskell.</li>
-            <li><a href="../../docs/P6-3-4-programmer_bien.pdf">Spécification et mise au point de programmes</a> + voir le <a
+            <li><a href="../../docs/P6-3-4-programmer_bien.pdf">Spécification et mise au point de programmes</a> + voir
+                le <a
                     href="https://notebook.basthon.fr/?from=https://profjahier.github.io/notebooks/P7-2-Tris-specification.ipynb">TP
                     sur les tris</a> présentant ces notions.</li>
         </ul>
 
-        <h3 class="alert-info">P07 - Algorithmique</h3>
+        <h3 class="alert-info" id="P07">P07 - Algorithmique</h3>
         <ul>
             <li><a href="../../docs/P7-1-parcours-tableau.pdf">Parcours séquentiel de tableaux</a></li>
             <li><a href="../../docs/P7-2-algo-tris.pdf">Tri par sélection et tri par insertion (cours)</a> - animation
@@ -185,7 +218,7 @@
         <p><a href="../../simcirjs/cimcirjs.html">Simcirjs</a> : simulateur de circuit logique (version épurée pour 1ère
             NSI).</p>
 
-
+        <!--
         <h2 class="alert-secondary">Projets</h2>
         <ul>
             <li><a href="tictactoe/index.html">Projet Tic Tac Toe en ligne (Javascript)</a> : Présentation du jeu et de
@@ -203,7 +236,7 @@
             <li><a href="E3C1.html">Sujet n°1</a></li>
             <li><a href="E3C2.html">Sujet n°2</a></li>
         </ul>
-
+    -->
         <!-- <script src="../../js/generalites.js"></script> -->
         <script src="../../../js/prism.js"></script>
         <!-- Option 1: Bootstrap Bundle with Popper -->
