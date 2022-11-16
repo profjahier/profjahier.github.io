@@ -1,0 +1,464 @@
+@font-face {
+font-family: term;
+src: url(terminal-grotesque-webfont.eot);
+src: url(terminal-grotesque-webfont.eot?#iefix) format("embedded-opentype"), url(terminal-grotesque-webfont.woff2)
+format("woff2"), url(terminal-grotesque-webfont.woff) format("woff"), url(terminal-grotesque-webfont.ttf)
+format("truetype"), url(terminal-grotesque-webfont.svg#terminal_grotesqueregular) format("svg");
+font-weight: 400;
+font-style: normal
+}
+
+body {
+overflow-x: hidden;
+color: #efefef;
+background: #000;
+font-family: sans-serif;
+font-size: 1.4rem;
+font-stretch: condensed;
+position: absolute;
+width: 100%
+}
+
+#term {
+font-family: term
+}
+
+.color-ok {
+color: #90ee90
+}
+
+.color-ko {
+color: red
+}
+
+.color-pass {
+color: orange
+}
+
+.color-cmd {
+color: #7fff00
+}
+
+.color-room {
+color: orange
+}
+
+.color-people {
+color: #db7093
+}
+
+.color-item {
+color: #f0f
+}
+
+.color-item.color-executable {
+color: #8a2be2
+}
+
+.mesg {
+color: grey
+}
+
+.notifications {
+position: fixed;
+z-index: 0;
+right: 0;
+top: 0
+}
+
+.inmsg {
+display: inline-block
+}
+
+.badge {
+position: relative;
+text-align: center;
+font-family: inherit
+}
+
+.badge-title {
+font-size: 1.2em
+}
+
+.badge img {
+width: 16ch
+}
+
+.badge-desc {
+opacity: 1;
+-webkit-animation: disappear 1s 2s forwards;
+animation: disappear 1s 2s forwards
+}
+
+.notification {
+padding: 1rem
+}
+
+.disappear {
+opacity: 1;
+-webkit-animation: disappear 2s forwards;
+animation: disappear 2s forwards
+}
+
+@-webkit-keyframes disappear {
+to {
+opacity: 0
+}
+}
+
+@keyframes disappear {
+to {
+opacity: 0
+}
+}
+
+.badge-desc {
+position: absolute;
+top: 100%;
+left: 0
+}
+
+.badge-title {
+position: absolute;
+top: 50%;
+left: 50%;
+-webkit-transform: translate(-50%, -50%);
+transform: translate(-50%, -50%);
+color: #000
+}
+
+.hashtag {
+color: indigo
+}
+
+.flash:after {
+content: "";
+position: fixed;
+width: 100%;
+height: 100%;
+top: 0;
+left: 0;
+-webkit-animation: flash .6s;
+animation: flash .6s;
+background: #fff
+}
+
+@-webkit-keyframes flash {
+0% {
+opacity: 0
+}
+
+to {
+opacity: 1
+}
+}
+
+@keyframes flash {
+0% {
+opacity: 0
+}
+
+to {
+opacity: 1
+}
+}
+
+.msg,
+button {
+border: none;
+font-size: inherit;
+font-family: inherit
+}
+
+.msg pre {
+display: inline
+}
+
+#term .passinput .input-wrapper {
+opacity: 1%
+}
+
+#term .passinput .input-wrapper input {
+max-width: 40ch
+}
+
+.choicebox {
+border: 10px solid #efefef;
+padding: 1.4rem;
+position: relative;
+z-index: 10;
+box-sizing: border-box
+}
+
+.choicebox:after,
+.choicebox:before {
+content: "";
+display: block;
+position: absolute;
+z-index: -1;
+border: 4px solid #22b14c;
+box-sizing: border-box
+}
+
+.choicebox:before {
+width: calc(100% + 8px);
+height: calc(100% - 8px);
+left: -4px;
+top: 4px
+}
+
+.choicebox:after {
+height: calc(100% + 8px);
+width: calc(100% - 8px);
+top: -4px;
+left: 4px
+}
+
+.ghost-monitor,
+.visually-hidden {
+position: absolute;
+left: -1000vw;
+top: 0
+}
+
+.img-container {
+position: relative;
+z-index: 0;
+width: 100%;
+height: 100%
+}
+
+.img-container .layers {
+position: relative;
+display: inline-block
+}
+
+.reverseY {
+-webkit-transform: scaleY(-1);
+transform: scaleY(-1)
+}
+
+.reverseX {
+-webkit-transform: scaleX(-1);
+transform: scaleX(-1)
+}
+
+.reverseY.reverseX {
+-webkit-transform: scale(-1);
+transform: scale(-1)
+}
+
+.img-container .layers .main {
+position: relative
+}
+
+.layers.room-cage .people:nth-child(n+2) {
+position: absolute;
+bottom: 0
+}
+
+.layers.room-cage .people:nth-child(2) {
+left: -4rem;
+z-index: -1
+}
+
+.layers.room-cage .people:nth-child(3) {
+left: 4rem;
+z-index: -1
+}
+
+.layers .covering {
+z-index: 1
+}
+
+.layer.item:not(.large) {
+width: 50%;
+height: 50%
+}
+
+.img-container .layers .background,
+.img-container .layers .foreground,
+.img-container .livelayer {
+position: absolute;
+bottom: 0;
+left: 0;
+width: 100%;
+display: -webkit-box;
+display: flex;
+-webkit-box-align: end;
+align-items: end
+}
+
+.img-container .layers .background {
+z-index: -1
+}
+
+.img-container .layers .foreground {
+z-index: 1
+}
+
+.epicfromright {
+overflow: hidden
+}
+
+.epicfromright .layers {
+position: relative;
+left: 100%
+}
+
+.epicfromright.loaded .layers {
+-webkit-animation: a 1.4s ease-out forwards;
+animation: a 1.4s ease-out forwards
+}
+
+.msg img {
+float: left
+}
+
+#term .input-container {
+position: relative;
+background: #000;
+bottom: 0;
+left: 0;
+width: 100%
+}
+
+#term .input-div {
+padding: 0
+}
+
+#term,
+#term .input-div {
+margin: auto;
+max-width: 80ch;
+background: #000;
+box-sizing: border-box
+}
+
+#term {
+padding: 1rem;
+position: relative
+}
+
+fieldset {
+border: none
+}
+
+img {
+display: block;
+max-width: 100%
+}
+
+.screen:not(:last-of-type) .layers {
+-webkit-animation: fromfull 2s 1s forwards;
+animation: fromfull 2s 1s forwards
+}
+
+.msg>img {
+max-width: 12ch
+}
+
+@-webkit-keyframes fromfull {
+0% {
+max-width: 100%
+}
+
+to {
+max-width: 12ch
+}
+}
+
+@keyframes fromfull {
+0% {
+max-width: 100%
+}
+
+to {
+max-width: 12ch
+}
+}
+
+@media (max-width:800px) {
+:not(.battlescene)>.img-container .main img {
+min-width: 80%
+}
+}
+
+.contribute:before {
+content: "<<"; display: block; background: #000; position: absolute; left: -2rem; width: 100%; height: 100% }
+    .contribute a { display: block; color: pink; text-align: center; position: relative; z-index: 2 } .contribute {
+    padding: 1rem; margin: 0; position: fixed; right: -20ch; top: 2em; background: #000; border: 1px dashed pink; width:
+    20ch; -webkit-transition: all .6s ease-in; transition: all .6s ease-in } .contribute:hover { right: 0 } #term
+    .input:before { content: "$ " ; position: absolute; left: 0; top: 0 } #term .input { line-height: 2; position:
+    relative; margin: 0; padding-left: 2ch } #term input { display: inline-block; background: none; border: none;
+    max-width: 100%; font-size: inherit; font-family: inherit; color: inherit; outline: none; z-index: 99 } .suggest {
+    flex-wrap: wrap } .belt, .suggest { display: -webkit-box; display: flex } .belt { margin: 0 0 1rem } .belt button {
+    padding: 1ch; margin: 0 } .suggest button { color: grey } .suggest button.select { background: #fff; color: #000 }
+    .key { color: #f4f4f4; border: none } .key, button { background: none } button { -webkit-transition: color .6s;
+    transition: color .6s; position: relative; height: 3rem } button span { position: relative; z-index: 1 }
+    button:before { content: " " ; display: block; position: absolute; width: 100%; height: 0; top: 50%; left: 0;
+    background: #000; -webkit-transition: all .5s; transition: all .5s } button:hover:before { background: #fff; height:
+    3rem; top: 0; -webkit-transition: all .4s; transition: all .4s } button:hover { color: #000 } .tree { text-align:
+    center } #term .choice input { display: none } .choice input:checked+.selectpointer { background: #22b14c } .choice
+    input:checked~label { color: #22b14c } .selectpointer { position: relative; background: #494949; display:
+    inline-block; height: .3ch; width: .3ch; top: -.4ch; margin-right: .6ch } .selectpointer:after,
+    .selectpointer:before { content: "" ; display: block; position: absolute; background: inherit }
+    .selectpointer:before { top: -100%; left: -100%; height: 300%; width: 100% } .selectpointer:after { top: -200%;
+    left: -200%; height: 500%; width: 100% } .branch { display: -webkit-box; display: flex; -webkit-box-pack: center;
+    justify-content: center } .branch * { margin: 3px 0; padding: 3px } .branchtitle { text-align: center }
+    .screen:not(:last-of-type) { opacity: .6 } @-webkit-keyframes a { 0% { -webkit-transform: translateX(-50%)
+    rotate(-45deg); transform: translateX(-50%) rotate(-45deg); left: 100% } 20% { -webkit-transform: translateX(-50%)
+    rotate(-1turn); transform: translateX(-50%) rotate(-1turn); left: 0 } 40% { -webkit-transform: translateX(-50%)
+    rotate(-1turn); transform: translateX(-50%) rotate(-1turn); left: 0 } 50% { -webkit-transform: translateX(-50%)
+    rotate(0deg); transform: translateX(-50%) rotate(0deg); bottom: 10px; left: 25% } to { -webkit-transform:
+    translateX(-50%) rotate(1turn); transform: translateX(-50%) rotate(1turn); bottom: 0; left: 50% } } @keyframes a {
+    0% { -webkit-transform: translateX(-50%) rotate(-45deg); transform: translateX(-50%) rotate(-45deg); left: 100% }
+    20% { -webkit-transform: translateX(-50%) rotate(-1turn); transform: translateX(-50%) rotate(-1turn); left: 0 } 40%
+    { -webkit-transform: translateX(-50%) rotate(-1turn); transform: translateX(-50%) rotate(-1turn); left: 0 } 50% {
+    -webkit-transform: translateX(-50%) rotate(0deg); transform: translateX(-50%) rotate(0deg); bottom: 10px; left: 25%
+    } to { -webkit-transform: translateX(-50%) rotate(1turn); transform: translateX(-50%) rotate(1turn); bottom: 0;
+    left: 50% } } @-webkit-keyframes slidein { 0% { left: 100% } to { left: 0 } } @keyframes slidein { 0% { left: 100% }
+    to { left: 0 } } input[disabled="" ] { opacity: 0 } .mystory { font-size: 1.5em; font-family: term } .megaprompt {
+    font-size: 4.5vw; font-family: term } .megaprompt>* {
+    margin: auto;
+    display: block;
+    padding: 1em;
+    box-sizing: border-box
+    }
+
+    #term .megaprompt input {
+    background: #fff;
+    color: #000
+    }
+
+    .battlescene .red {
+    background: red
+    }
+
+    .battlescene .big img {
+    width: 150%;
+    max-width: unset
+    }
+
+    .battlescene-container {
+    z-index: 999;
+    background: #000;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    -webkit-animation: slidein 1.4s ease-out forwards;
+    animation: slidein 1.4s ease-out forwards
+    }
+
+    .battlescene {
+    position: relative;
+    padding: 0 1rem;
+    margin: auto;
+    max-width: 80ch
+    }
+
+    .battlescene .img-container .layers {
+    position: absolute
+    }
