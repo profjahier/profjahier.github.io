@@ -1,7 +1,7 @@
 function setup() {
   
 
-  img = loadImage('assets/chat.png');
+  img = loadImage('assets/chat.webp');
   var canvas1 = createCanvas(710, 400, WEBGL); // 1ère ligne obligatoire !
   canvas1.parent('sketch1');
   /* dispose le canvas dans le div avec id='sketch1'
