@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>PEP 8 – Style Guide for Python Code | peps.python.org</title>
+    <link rel="canonical" href="https://peps.python.org/pep-0008/">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <link rel="stylesheet" href="mq.css" type="text/css">
+    <link rel="stylesheet" href="pygments.css" type="text/css" media="(prefers-color-scheme: light)" id="pyg-light">
+    <link rel="stylesheet" href="pygments_dark.css" type="text/css" media="(prefers-color-scheme: dark)" id="pyg-dark">
+</head>
+
+<body>
+    <section id="pep-page-section">
+
+        <article>
+            <section id="pep-content">
+                <h1 class="page-title">PEP 8 – Style Guide for Python Code</h1>
+                <hr class="docutils" />
+                <section id="introduction">
+                    <h2><a class="toc-backref" href="#introduction" role="doc-backlink">Introduction</a></h2>
+                    <p>Ce document donne des conventions de "codage" en Python. </p>
+                    <p>Ce document n'est qu'un <strong>extrait</strong> du <a
+                            href="https://peps.python.org/pep-0008/">document officiel</a> complet et en Anglais.</p>
+                </section>
+                <section id="code-lay-out">
+                    <h2><a class="toc-backref" href="#code-lay-out" role="doc-backlink">Présentation du code</a></h2>
+                    <section id="indentation">
+                        <h3><a class="toc-backref" href="#indentation" role="doc-backlink">Indentation</a></h3>
+                        <p>Utiliser 4 espaces par niveau d'indentation.</p>
+                        <div class="good highlight-default notranslate">
+                            <div class="highlight">
+                                <pre><span></span><span class="c1"># Correct:</span>
+<span class="c1"># Aligned with opening delimiter.</span>
+<span class="n">foo</span> <span class="o">=</span> <span class="n">long_function_name</span><span class="p">(</span><span class="n">var_one</span><span class="p">,</span> <span class="n">var_two</span><span class="p">,</span>
+                         <span class="n">var_three</span><span class="p">,</span> <span class="n">var_four</span><span class="p">)</span>
+
+<span class="c1"># Add 4 spaces (an extra level of indentation) to distinguish arguments from the rest.</span>
+<span class="k">def</span> <span class="nf">long_function_name</span><span class="p">(</span>
+        <span class="n">var_one</span><span class="p">,</span> <span class="n">var_two</span><span class="p">,</span> <span class="n">var_three</span><span class="p">,</span>
+        <span class="n">var_four</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">var_one</span><span class="p">)</span>
+
+<span class="c1"># Hanging indents should add a level.</span>
+<span class="n">foo</span> <span class="o">=</span> <span class="n">long_function_name</span><span class="p">(</span>
+    <span class="n">var_one</span><span class="p">,</span> <span class="n">var_two</span><span class="p">,</span>
+    <span class="n">var_three</span><span class="p">,</span> <span class="n">var_four</span><span class="p">)</span>
+</pre>
+                            </div>
+                        </div>
+
+                        <div class="bad highlight-default notranslate">
+                            <div class="highlight">
+                                <pre><span></span><span class="c1"># Wrong:</span>
+
+<span class="c1"># Arguments on first line forbidden when not using vertical alignment.</span>
+<span class="n">foo</span> <span class="o">=</span> <span class="n">long_function_name</span><span class="p">(</span><span class="n">var_one</span><span class="p">,</span> <span class="n">var_two</span><span class="p">,</span>
+    <span class="n">var_three</span><span class="p">,</span> <span class="n">var_four</span><span class="p">)</span>
+
+<span class="c1"># Further indentation required as indentation is not distinguishable.</span>
+<span class="k">def</span> <span class="nf">long_function_name</span><span class="p">(</span>
+    <span class="n">var_one</span><span class="p">,</span> <span class="n">var_two</span><span class="p">,</span> <span class="n">var_three</span><span class="p">,</span>
+    <span class="n">var_four</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">var_one</span><span class="p">)</span>
+</pre>
+                            </div>
+                        </div>
+                        <p>La règle des 4 espaces est optionnelle si l'instruction s'étend sur plusieurs lignes.</p>
+                        <p>Optionnel:</p>
+                        <div class="good highlight-default notranslate">
+                            <div class="highlight">
+                                <pre><span></span><span class="c1"># Hanging indents *may* be indented to other than 4 spaces.</span>
+<span class="n">foo</span> <span class="o">=</span> <span class="n">long_function_name</span><span class="p">(</span>
+  <span class="n">var_one</span><span class="p">,</span> <span class="n">var_two</span><span class="p">,</span>
+  <span class="n">var_three</span><span class="p">,</span> <span class="n">var_four</span><span class="p">)</span>
+</pre>
+                            </div>
+                        </div>
+                        <p>La parenthèse/accolade/crochet fermante des constructions sur plusieurs lignes peut au choix
+                            s'aligner sur le 1er caractère (non blanc) de la dernière ligne, comme dans :</p>
+                        <div class="good highlight-default notranslate">
+                            <div class="highlight">
+                                <pre><span></span><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span>
+    <span class="p">]</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">some_function_that_takes_arguments</span><span class="p">(</span>
+    <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre>
+                            </div>
+                        </div>
+                        <p>ou bien s'aligner sous le 1er caractère de la ligne qui a commencé l'instruction multiligne,
+                            comme dans :</p>
+                        <div class="good highlight-default notranslate">
+                            <div class="highlight">
+                                <pre><span></span><span class="n">my_list</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span>
+<span class="p">]</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">some_function_that_takes_arguments</span><span class="p">(</span>
+    <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">,</span>
+<span class="p">)</span>
+</pre>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="tabs-or-spaces">
+                        <h3><a class="toc-backref" href="#tabs-or-spaces" role="doc-backlink">Tabulations ou espaces
+                                ?</a></h3>
+                        <p>Les espaces sont préférés. </p>
+                        <p>Les tabulations ne doivent être utilisées que si l'ensemble du code les utilise.</p>
+                        <p>En aucun cas, on ne mélange tabulations et espaces.</p>
+                    </section>
+                    <section id="imports">
+                        <h3><a class="toc-backref" href="#imports" role="doc-backlink">Imports</a></h3>
+                        <ul>
+                            <li>Les imports devraient être sur des lignes séparés :<div
+                                    class="good highlight-default notranslate">
+                                    <div class="highlight">
+                                        <pre><span></span><span class="c1"># Correct:</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+</pre>
+                                    </div>
+                                </div>
+                                <div class="bad highlight-default notranslate">
+                                    <div class="highlight">
+                                        <pre><span></span><span class="c1"># Wrong:</span>
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">os</span>
+</pre>
+                                    </div>
+                                </div>
+                                <p>Cependant, on tolère ceci :</p>
+                                <div class="good highlight-default notranslate">
+                                    <div class="highlight">
+                                        <pre><span></span><span class="c1"># Correct:</span>
+<span class="kn">from</span> <span class="nn">subprocess</span> <span class="kn">import</span> <span class="n">Popen</span><span class="p">,</span> <span class="n">PIPE</span>
+</pre>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>Les imports se font au début du code.<p>Ils doivent être groupés selon l'ordre suivant :
+                                </p>
+                                <ol class="arabic simple">
+                                    <li>Import de la Standard library.</li>
+                                    <li>Imports des Related third party.</li>
+                                    <li>Imports des Local application/library specific.</li>
+                                </ol>
+                            </li>
+                            </div>
+                            <li>Les imports avec "Wildcard" [le caractère *] (<code
+                                    class="docutils literal notranslate"><span class="pre">from</span> <span class="pre">&lt;module&gt;</span> <span class="pre">import</span> <span class="pre">*</span></code>)
+                                devraient être évités, car cela risque de perturber l'espace de nommage.
+                            </li>
+                        </ul>
+                    </section>
+                </section>
+                <section id="string-quotes">
+                    <h2><a class="toc-backref" href="#string-quotes" role="doc-backlink">Guillemets (quotes) des chaînes
+                            de caractères</a></h2>
+                    <p>En Python, les simples ou doubles guillemets sont équivalents pour les chaînes de caractères.
+                        Cette PEP n'émet aucune recommandation à ce sujet. Choisissez une règle, et n'en changez pas.
+                    </p>
+                    <p>Pour les chaînes à triples guillemets (ex : docstring), utilisez toujours les guillemets
+                        doubles</a>.</p>
+                </section>
+                <section id="whitespace-in-expressions-and-statements">
+                    <h2><a class="toc-backref" href="#whitespace-in-expressions-and-statements"
+                            role="doc-backlink">Espaces dans les expressions et déclarations</a></h2>
+                    <section id="pet-peeves">
+                        <h3><a class="toc-backref" href="#pet-peeves" role="doc-backlink">Manies agaçantes</a></h3>
+                        <p>Évitez les espaces supplémentaires dans les situations suivantes :</p>
+                        <ul>
+                            <li>Immédiatement entre parenthèses, accolades ou crochets :<div
+                                    class="good highlight-default notranslate">
+                                    <div class="highlight">
+                                        <pre><span></span><span class="c1"># Correct:</span>
+<span class="n">spam</span><span class="p">(</span><span class="n">ham</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="p">{</span><span class="n">eggs</span><span class="p">:</span> <span class="mi">2</span><span class="p">})</span>
+</pre>
+                                    </div>
+                                </div>
+                                <div class="bad highlight-default notranslate">
+                                    <div class="highlight">
+                                        <pre><span></span><span class="c1"># Wrong:</span>
+<span class="n">spam</span><span class="p">(</span> <span class="n">ham</span><span class="p">[</span> <span class="mi">1</span> <span class="p">],</span> <span class="p">{</span> <span class="n">eggs</span><span class="p">:</span> <span class="mi">2</span> <span class="p">}</span> <span class="p">)</span>
+</pre>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>Entre une virgule terminale et une parenthèse fermante:<div
+                                    class="good highlight-default notranslate">
+                                    <div class="highlight">
+                                        <pre><span></span><span class="c1"># Correct:</span>
+<span class="n">foo</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,)</span>
+</pre>
+                                    </div>
+                                </div>
+                                <div class="bad highlight-default notranslate">
+                                    <div class="highlight">
+                                        <pre><span></span><span class="c1"># Wrong:</span>
+<span class="n">bar</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">)</span>
+</pre>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>Immédiatement avant une virgule, un point-virgule ou deux-points :<div
+                                    class="good highlight-default notranslate">
+                                    <div class="highlight">
+                                        <pre><span></span><span class="c1"># Correct:</span>
+<span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">4</span><span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">);</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span>
+</pre>
+                                    </div>
+                                </div>
+                                <div class="bad highlight-default notranslate">
+                                    <div class="highlight">
+                                        <pre><span></span><span class="c1"># Wrong:</span>
+<span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">4</span> <span class="p">:</span> <span class="nb">print</span><span class="p">(</span><span class="n">x</span> <span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="p">;</span> <span class="n">x</span> <span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span> <span class="p">,</span> <span class="n">x</span>
+</pre>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>Cependant, dans une tranche (slice) les deux-points se comportent comme un opérateur
+                                binaire, et devraient avoir le même espacement avant et après. Exception :
+                                quand un paramètre de tranche est omis, l'espace est omis :<div
+                                    class="good highlight-default notranslate">
+                                    <div class="highlight">
+                                        <pre><span></span><span class="c1"># Correct:</span>
+<span class="n">ham</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">9</span><span class="p">],</span> <span class="n">ham</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">9</span><span class="p">:</span><span class="mi">3</span><span class="p">],</span> <span class="n">ham</span><span class="p">[:</span><span class="mi">9</span><span class="p">:</span><span class="mi">3</span><span class="p">],</span> <span class="n">ham</span><span class="p">[</span><span class="mi">1</span><span class="p">::</span><span class="mi">3</span><span class="p">],</span> <span class="n">ham</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">9</span><span class="p">:]</span>
+<span class="n">ham</span><span class="p">[</span><span class="n">lower</span><span class="p">:</span><span class="n">upper</span><span class="p">],</span> <span class="n">ham</span><span class="p">[</span><span class="n">lower</span><span class="p">:</span><span class="n">upper</span><span class="p">:],</span> <span class="n">ham</span><span class="p">[</span><span class="n">lower</span><span class="p">::</span><span class="n">step</span><span class="p">]</span>
+<span class="n">ham</span><span class="p">[</span><span class="n">lower</span><span class="o">+</span><span class="n">offset</span> <span class="p">:</span> <span class="n">upper</span><span class="o">+</span><span class="n">offset</span><span class="p">]</span>
+<span class="n">ham</span><span class="p">[:</span> <span class="n">upper_fn</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">:</span> <span class="n">step_fn</span><span class="p">(</span><span class="n">x</span><span class="p">)],</span> <span class="n">ham</span><span class="p">[::</span> <span class="n">step_fn</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span>
+<span class="n">ham</span><span class="p">[</span><span class="n">lower</span> <span class="o">+</span> <span class="n">offset</span> <span class="p">:</span> <span class="n">upper</span> <span class="o">+</span> <span class="n">offset</span><span class="p">]</span>
+</pre>
+                                    </div>
+                                </div>
+                                <div class="bad highlight-default notranslate">
+                                    <div class="highlight">
+                                        <pre><span></span><span class="c1"># Wrong:</span>
+<span class="n">ham</span><span class="p">[</span><span class="n">lower</span> <span class="o">+</span> <span class="n">offset</span><span class="p">:</span><span class="n">upper</span> <span class="o">+</span> <span class="n">offset</span><span class="p">]</span>
+<span class="n">ham</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span> <span class="mi">9</span><span class="p">],</span> <span class="n">ham</span><span class="p">[</span><span class="mi">1</span> <span class="p">:</span><span class="mi">9</span><span class="p">],</span> <span class="n">ham</span><span class="p">[</span><span class="mi">1</span><span class="p">:</span><span class="mi">9</span> <span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">ham</span><span class="p">[</span><span class="n">lower</span> <span class="p">:</span> <span class="p">:</span> <span class="n">step</span><span class="p">]</span>
+<span class="n">ham</span><span class="p">[</span> <span class="p">:</span> <span class="n">upper</span><span class="p">]</span>
+</pre>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>Immédiatement avant la parenthèse ouvrante d'une liste d'arguments d'un appel de
+                                fonction :<div class="good highlight-default notranslate">
+                                    <div class="highlight">
+                                        <pre><span></span><span class="c1"># Correct:</span>
+<span class="n">spam</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre>
+                                    </div>
+                                </div>
+                                <div class="bad highlight-default notranslate">
+                                    <div class="highlight">
+                                        <pre><span></span><span class="c1"># Wrong:</span>
+<span class="n">spam</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</pre>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>Immédiatement avant la parenthèse ouvrante d'un indice ou d'une tranche :<div
+                                    class="good highlight-default notranslate">
+                                    <div class="highlight">
+                                        <pre><span></span><span class="c1"># Correct:</span>
+<span class="n">dct</span><span class="p">[</span><span class="s1">&#39;key&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lst</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+</pre>
+                                    </div>
+                                </div>
+                                <div class="bad highlight-default notranslate">
+                                    <div class="highlight">
+                                        <pre><span></span><span class="c1"># Wrong:</span>
+<span class="n">dct</span> <span class="p">[</span><span class="s1">&#39;key&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">lst</span> <span class="p">[</span><span class="n">index</span><span class="p">]</span>
+</pre>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>Plus d'un espace autour de l'opérateur d'affectation pour s'aligner avec un autre :<div
+                                    class="good highlight-default notranslate">
+                                    <div class="highlight">
+                                        <pre><span></span><span class="c1"># Correct:</span>
+<span class="n">x</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">2</span>
+<span class="n">long_variable</span> <span class="o">=</span> <span class="mi">3</span>
+</pre>
+                                    </div>
+                                </div>
+                                <div class="bad highlight-default notranslate">
+                                    <div class="highlight">
+                                        <pre><span></span><span class="c1"># Wrong:</span>
+<span class="n">x</span>             <span class="o">=</span> <span class="mi">1</span>
+<span class="n">y</span>             <span class="o">=</span> <span class="mi">2</span>
+<span class="n">long_variable</span> <span class="o">=</span> <span class="mi">3</span>
+</pre>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                    <section id="other-recommendations">
+                        <h3><a class="toc-backref" href="#other-recommendations" role="doc-backlink">Autres
+                                recommandations</a></h3>
+                        <ul>
+                            <li>Évitez partout les espaces trainant (en fin de ligne).</li>
+                            <li>Entourez toujours ces opérateurs binaires d'un espace : affectation (<code
+                                    class="docutils literal notranslate"><span class="pre">=</span></code>),
+                                incrémentation
+                                (<code class="docutils literal notranslate"><span class="pre">+=</span></code>, <code
+                                    class="docutils literal notranslate"><span class="pre">-=</span></code>
+                                etc.), comparaisons (<code
+                                    class="docutils literal notranslate"><span class="pre">==</span></code>, <code
+                                    class="docutils literal notranslate"><span class="pre">&lt;</span></code>, <code
+                                    class="docutils literal notranslate"><span class="pre">&gt;</span></code>, <code
+                                    class="docutils literal notranslate"><span class="pre">!=</span></code>, <code
+                                    class="docutils literal notranslate"><span class="pre">&lt;&gt;</span></code>, <code
+                                    class="docutils literal notranslate"><span class="pre">&lt;=</span></code>,
+                                <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code>, <code
+                                    class="docutils literal notranslate"><span class="pre">in</span></code>, <code
+                                    class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">in</span></code>,
+                                <code class="docutils literal notranslate"><span class="pre">is</span></code>, <code
+                                    class="docutils literal notranslate"><span class="pre">is</span> <span class="pre">not</span></code>),
+                                booléens (<code
+                                    class="docutils literal notranslate"><span class="pre">and</span></code>,
+                                <code class="docutils literal notranslate"><span class="pre">or</span></code>, <code
+                                    class="docutils literal notranslate"><span class="pre">not</span></code>).
+                            </li>
+                            <li>Si des opérateurs avec differentes prioritiés sont utilisés, on peut ajouter un espace
+                                autour des opérateurs avec la(les) plus basse(s) priorité(s). Faites selon votre
+                                jugement ; cependant, n'utilisez jamais plus d'un espace, avec toujours le même espace
+                                autour d'un opérateur binaire :<div class="good highlight-default notranslate">
+                                    <div class="highlight">
+                                        <pre><span></span><span class="c1"># Correct:</span>
+<span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="n">submitted</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">hypot2</span> <span class="o">=</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="o">*</span><span class="n">y</span>
+<span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">a</span><span class="o">-</span><span class="n">b</span><span class="p">)</span>
+</pre>
+                                    </div>
+                                </div>
+                                <div class="bad highlight-default notranslate">
+                                    <div class="highlight">
+                                        <pre><span></span><span class="c1"># Wrong:</span>
+<span class="n">i</span><span class="o">=</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span>
+<span class="n">submitted</span> <span class="o">+=</span><span class="mi">1</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="n">hypot2</span> <span class="o">=</span> <span class="n">x</span> <span class="o">*</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="o">*</span> <span class="n">y</span>
+<span class="n">c</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">a</span> <span class="o">-</span> <span class="n">b</span><span class="p">)</span>
+</pre>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>Pas d'espace autour du signe égal <code
+                                    class="docutils literal notranslate"><span class="pre">=</span></code> quand il est
+                                utilisé pour désigner un argument de fonction :<div
+                                    class="good highlight-default notranslate">
+                                    <div class="highlight">
+                                        <pre><span></span><span class="c1"># Correct:</span>
+<span class="k">def</span> <span class="nf">complex</span><span class="p">(</span><span class="n">real</span><span class="p">,</span> <span class="n">imag</span><span class="o">=</span><span class="mf">0.0</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">magic</span><span class="p">(</span><span class="n">r</span><span class="o">=</span><span class="n">real</span><span class="p">,</span> <span class="n">i</span><span class="o">=</span><span class="n">imag</span><span class="p">)</span>
+</pre>
+                                    </div>
+                                </div>
+                                <div class="bad highlight-default notranslate">
+                                    <div class="highlight">
+                                        <pre><span></span><span class="c1"># Wrong:</span>
+<span class="k">def</span> <span class="nf">complex</span><span class="p">(</span><span class="n">real</span><span class="p">,</span> <span class="n">imag</span> <span class="o">=</span> <span class="mf">0.0</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">magic</span><span class="p">(</span><span class="n">r</span> <span class="o">=</span> <span class="n">real</span><span class="p">,</span> <span class="n">i</span> <span class="o">=</span> <span class="n">imag</span><span class="p">)</span>
+</pre>
+                                    </div>
+                                </div>
+
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                </section>
+                <section id="comments">
+                    <h2><a class="toc-backref" href="#comments" role="doc-backlink">Commentaires</a></h2>
+                    <p>Les commentaires qui contredisent le code sont pires qu'aucun commentaire. Faites une priorité de
+                        mettre à jour les commentaires lorsuqe le code change !</p>
+                    <p>Les comments doivent être des phrases compètes. Le 1er mmot commence par une majuscule (sauf si
+                        c'est un identifiant).</p>
+                    <p>Les commentaires en bloc sont un ou plusieurs paragraphes construits avec des phrases complètes,
+                        terminant par un point. </p>
+                    <p>Progammeurs Python de pays non anglophones : svp écrivez vos commentaires en Anglais, à moins que
+                        vous soyez certains à 120% que le code ne sera pas lu par quelqu'un qui ne parle pas votre
+                        langue.</p>
+                    <section id="block-comments">
+                        <h3><a class="toc-backref" href="#block-comments" role="doc-backlink">Commentaires en bloc</a>
+                        </h3>
+                        <p>Les commentaires en bloc s'appliquent en général à tout ou partie du code qui les suit, et
+                            sont indentés comme ce code. Chaque ligne du bloc commence avec <code
+                                class="docutils literal notranslate"><span class="pre">#</span></code> et un simple
+                            espace.</p>
+                        <p>Les paragraphes du bloc sont séparés par une ligne conentant uniquement <code
+                                class="docutils literal notranslate"><span class="pre">#</span></code>.</p>
+                    </section>
+                    <section id="inline-comments">
+                        <h3><a class="toc-backref" href="#inline-comments" role="doc-backlink">Commentaires en ligne</a>
+                        </h3>
+                        <p>Utilisez les commentaires en ligne avec parcimonie.</p>
+                        <p>Un commentaire en ligne est sur la même ligne qu'une déclaration.
+                            Les commentaires en ligne doivent être séparés par au moins deux espaces de la déclaration.
+                            Ils commencent avec # et un simple espace.</p>
+                        <p>Les commentaires en ligne sont inutiles et perturbants s'ils déclarent des évidences. Ne
+                            faites pas ceci :</p>
+                        <div class="bad highlight-default notranslate">
+                            <div class="highlight">
+                                <pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>                 <span class="c1"># Increment x</span>
+</pre>
+                            </div>
+                        </div>
+                        <p>Mais parfois, c'est utile :</p>
+                        <div class="good highlight-default notranslate">
+                            <div class="highlight">
+                                <pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>                 <span class="c1"># Compensate for border</span>
+</pre>
+                            </div>
+                        </div>
+                    </section>
+                    <section id="documentation-strings">
+                        <h3><a class="toc-backref" href="#documentation-strings" role="doc-backlink">Chaînes de
+                                Documentation (docstring)</a></h3>
+                        <p>Les conventions pour écrire de bonnes docstring sont décrites dans la <a
+                                class="pep reference internal" href="https://peps.python.org/pep-0257/"
+                                title="PEP 257 – Docstring Conventions">PEP 257</a>.</p>
+                        <ul>
+                            <li>Écrivez une docstrings pour chaque fonction, classe, ou
+                                methodes publiques. Le commentaire de docstring doit commencer après la ligne<code
+                                    class="docutils literal notranslate"><span class="pre">def</span></code>.</li>
+                            <li>La <a class="pep reference internal" href="../pep-0257/"
+                                    title="PEP 257 – Docstring Conventions">PEP 257</a> décrit les bonnes
+                                conventions. Retenons que le plus important est que les <code
+                                    class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;</span></code>
+                                qui terminent une docstring multiligne doivent être sur une ligne séparée :<div
+                                    class="good highlight-default notranslate">
+                                    <div class="highlight">
+                                        <pre><span></span><span class="sd">&quot;&quot;&quot;Return a foobang</span>
+
+<span class="sd">Optional plotz says to frobnicate the bizbaz first.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+</pre>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>Pour les docstrings sur une seule ligne, conservez les <code
+                                    class="docutils literal notranslate"><span class="pre">&quot;&quot;&quot;</span></code>
+                                fermants sur la même ligne :<div class="good highlight-default notranslate">
+                                    <div class="highlight">
+                                        <pre><span></span><span class="sd">&quot;&quot;&quot;Return an ex-parrot.&quot;&quot;&quot;</span>
+</pre>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </section>
+                </section>
+                <section id="naming-conventions">
+                    <h2><a class="toc-backref" href="#naming-conventions" role="doc-backlink">Conventions de nommage</a>
+                    </h2>
+                    <section id="overriding-principle">
+                        <h3><a class="toc-backref" href="#overriding-principle" role="doc-backlink">Principe
+                                primordial</a></h3>
+                        <p>Les noms choisis doivent traduire l'usage plutôt que l'implémentation.</p>
+                    </section>
+                    <section id="descriptive-naming-styles">
+                        <h3><a class="toc-backref" href="#descriptive-naming-styles" role="doc-backlink">Descriptive:
+                                Naming Styles</a></h3>
+                        <p>Il y a de nombreux styles de nommage. Il est pratique de reconnaître ces styles,
+                            indépendamment de ce pour quoi ils sont utilisés. </p>
+                        <p>Les styles de nommage suivants sont couramment distingués :</p>
+                        <ul>
+                            <li><code class="docutils literal notranslate"><span class="pre">b</span></code> (single
+                                lowercase letter)</li>
+                            <li><code class="docutils literal notranslate"><span class="pre">B</span></code> (single
+                                uppercase letter)</li>
+                            <li><code class="docutils literal notranslate"><span class="pre">lowercase</span></code>
+                            </li>
+                            <li><code
+                                    class="docutils literal notranslate"><span class="pre">lower_case_with_underscores</span></code>
+                            </li>
+                            <li><code class="docutils literal notranslate"><span class="pre">UPPERCASE</span></code>
+                            </li>
+                            <li><code
+                                    class="docutils literal notranslate"><span class="pre">UPPER_CASE_WITH_UNDERSCORES</span></code>
+                            </li>
+                            <li><code
+                                    class="docutils literal notranslate"><span class="pre">CapitalizedWords</span></code>
+                                (ou CamelCase – ainsi nommmé à cause de l'allure bosselée de ses lettres).</p>
+                            </li>
+                            <li><code class="docutils literal notranslate"><span class="pre">mixedCase</span></code>
+                                (diffère du CapitalizedWords par la minuscule de la 1ère lettre)</li>
+                            <li><code
+                                    class="docutils literal notranslate"><span class="pre">Capitalized_Words_With_Underscores</span></code>
+                                (affreux !)</li>
+                        </ul>
+
+                        <p>Par ailleurs, l'usage d'underscore (simple ou double) en début ou fin de nom correspondent à
+                            des usages particuliers (comme par exemple) :</p>
+                        <ul>
+                            <li><code
+                                    class="docutils literal notranslate"><span class="pre">single_trailing_underscore_</span></code>:
+                                utilisés pour éviter les conflts de noms avec les mots-clefs de Python, ex. :<div
+                                    class="good highlight-default notranslate">
+                                    <div class="highlight">
+                                        <pre><span></span><span class="n">tkinter</span><span class="o">.</span><span class="n">Toplevel</span><span class="p">(</span><span class="n">master</span><span class="p">,</span> <span class="n">class_</span><span class="o">=</span><span class="s1">&#39;ClassName&#39;</span><span class="p">)</span>
+</pre>
+                                    </div>
+                                </div>
+                            </li>
+                            <li><code
+                                    class="docutils literal notranslate"><span class="pre">__double_leading_and_trailing_underscore__</span></code>:
+                                objets “magiques” ou
+                                attributs cachés.
+                                Ex. <code class="docutils literal notranslate"><span class="pre">__init__</span></code>,
+                                <code class="docutils literal notranslate"><span class="pre">__import__</span></code> ou
+                                <code class="docutils literal notranslate"><span class="pre">__file__</span></code>.
+                            </li>
+                        </ul>
+                    </section>
+                    <section id="prescriptive-naming-conventions">
+                        <h3><a class="toc-backref" href="#prescriptive-naming-conventions"
+                                role="doc-backlink">Prescriptions sur les conventions de nommage</a></h3>
+                        <section id="names-to-avoid">
+                            <h4><a class="toc-backref" href="#names-to-avoid" role="doc-backlink">Noms à éviter</a>
+                            </h4>
+                            <p>Ne jamais utiliséer seul le caractère ‘l’ (lowercase letter el), ou ‘O’ (uppercase
+                                letter oh), ou ‘I’ (uppercase letter eye) comme nom de variable. Avec certaines polices,
+                                ces caractères sont confondus avec les chiffres 1 ou 0. </p>
+                        </section>
+                        <section id="ascii-compatibility">
+                            <h4><a class="toc-backref" href="#ascii-compatibility" role="doc-backlink"> Compatibilité
+                                    ASCII</a></h4>
+                            <p>Les identifiants choisis doivent être compatibles avec l'encodage ASCII.
+                            </p>
+                        </section>
+                        <section id="class-names">
+                            <h4><a class="toc-backref" href="#class-names" role="doc-backlink">Noms de Classes</a></h4>
+                            <p>Les noms de classes doivent suivre la convention CapWords.</p>
+                        </section>
+                        <section id="function-and-variable-names">
+                            <h4><a class="toc-backref" href="#function-and-variable-names" role="doc-backlink">Noms des
+                                    fonctions et variables</a></h4>
+                            <p>Les noms de fonctions sont en minuscules, avec les mmots séparés par des underscore.</p>
+                            <p>Les noms de variables suivent ces mêmes conventions.</p>
+                        </section>
+                        <section id="function-and-method-arguments">
+                            <h4><a class="toc-backref" href="#function-and-method-arguments"
+                                    role="doc-backlink">Paramètres des fonctions et méthodes</a></h4>
+                            <p>Toujours utiliser <code
+                                    class="docutils literal notranslate"><span class="pre">self</span></code> pour le
+                                1er paramètre des méthodes d'instance.</p>
+                            <p>Toujours utiliser <code
+                                    class="docutils literal notranslate"><span class="pre">cls</span></code>
+                                pour le 1er paramètre des méthodes de classe.</p>
+                        </section>
+                        <section id="constants">
+                            <h4><a class="toc-backref" href="#constants" role="doc-backlink">Constantes</a></h4>
+                            <p>Les constantes sont générallement écrites en lettres capitales avec des underscore entre les mots. Ex :
+                                <code class="docutils literal notranslate"><span class="pre">MAX_OVERFLOW</span></code>
+                                ou <code class="docutils literal notranslate"><span class="pre">TOTAL</span></code>.
+                            </p>
+                        </section> 
+                    </section>
+                </section>
+                <section id="programming-recommendations">
+                    <h2><a class="toc-backref" href="#programming-recommendations" role="doc-backlink">       Recommandations de programmation</a></h2>
+                    <ul> 
+                        <li>Les comparaisons à des singletons comme None doivent être faites avec
+                            <code class="docutils literal notranslate"><span class="pre">is</span></code> ou <code
+                                class="docutils literal notranslate"><span class="pre">is</span> <span class="pre">not</span></code>,
+                            jamais avec l'opérateur d'égalité. 
+                        </li>
+                        <li>Utilisez <code
+                                class="docutils literal notranslate"><span class="pre">is</span> <span class="pre">not</span></code>
+                            plutôt que <code
+                                class="docutils literal notranslate"><span class="pre">not</span> <span class="pre">...</span> <span class="pre">is</span></code>.
+                            Bien que les deux soient fonctionnellement identiques, la 1ère façon est plus lisible et préférée :<div class="good highlight-default notranslate">
+                                <div class="highlight">
+                                    <pre><span></span><span class="c1"># Correct:</span>
+<span class="k">if</span> <span class="n">foo</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</pre>
+                                </div>
+                            </div>
+                            <div class="bad highlight-default notranslate">
+                                <div class="highlight">
+                                    <pre><span></span><span class="c1"># Wrong:</span>
+<span class="k">if</span> <span class="ow">not</span> <span class="n">foo</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+</pre>
+                                </div>
+                            </div>
+                        </li>   
+                        <li>Soyez consistants dans les déclarations return. Soit toutes les déclarations return renvoient une expression, ou alors aucune. Si une déclaration return renvoie une expression, alors toute déclaration return où aucune valeur n'est renvoyée doit explicitement indiquer  <code
+                                class="docutils literal notranslate"><span class="pre">return</span>
+<span class="pre">None</span></code>, et une déclaration return explicite doit être présente à la fin de la fonction  :<div class="good highlight-default notranslate">
+                                <div class="highlight">
+                                    <pre><span></span><span class="c1"># Correct:</span>
+
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+
+<span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre>
+                                </div>
+                            </div>
+                            <div class="bad highlight-default notranslate">
+                                <div class="highlight">
+                                    <pre><span></span><span class="c1"># Wrong:</span>
+
+<span class="k">def</span> <span class="nf">foo</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">bar</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">return</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre>
+                                </div>
+                            </div>
+                        </li>
+                        <li>Utilisez <code
+                                class="docutils literal notranslate"><span class="pre">''.startswith()</span></code> et
+                            <code class="docutils literal notranslate"><span class="pre">''.endswith()</span></code>
+                            au lieu d'un "slicing" pour contôler un préfixe ou un suffixe.<p>startswith() et endswith() sont plus propres et moins sujets aux erreurs :</p>
+                            <div class="good highlight-default notranslate">
+                                <div class="highlight">
+                                    <pre><span></span><span class="c1"># Correct:</span>
+<span class="k">if</span> <span class="n">foo</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;bar&#39;</span><span class="p">):</span>
+</pre>
+                                </div>
+                            </div>
+                            <div class="bad highlight-default notranslate">
+                                <div class="highlight">
+                                    <pre><span></span><span class="c1"># Wrong:</span>
+<span class="k">if</span> <span class="n">foo</span><span class="p">[:</span><span class="mi">3</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;bar&#39;</span><span class="p">:</span>
+</pre>
+                                </div>
+                            </div>
+                        </li>
+                        <li>Les comparaisons de type d'un objet doivent être faites avec la fonction  isinstance() au lieu de comparer les types directement :<div class="good highlight-default notranslate">
+                                <div class="highlight">
+                                    <pre><span></span><span class="c1"># Correct:</span>
+<span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">obj</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+</pre>
+                                </div>
+                            </div>
+                            <div class="bad highlight-default notranslate">
+                                <div class="highlight">
+                                    <pre><span></span><span class="c1"># Wrong:</span>
+<span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">obj</span><span class="p">)</span> <span class="ow">is</span> <span class="nb">type</span><span class="p">(</span><span class="mi">1</span><span class="p">):</span>
+</pre>
+                                </div>
+                            </div>
+                        </li> 
+                        <li>Ne comparez les valeurs booléenes à True ou False en utilisant <code
+                                class="docutils literal notranslate"><span class="pre">==</span></code>:<div
+                                class="good highlight-default notranslate">
+                                <div class="highlight">
+                                    <pre><span></span><span class="c1"># Correct:</span>
+<span class="k">if</span> <span class="n">greeting</span><span class="p">:</span>
+</pre>
+                                </div>
+                            </div>
+                            <div class="bad highlight-default notranslate">
+                                <div class="highlight">
+                                    <pre><span></span><span class="c1"># Wrong:</span>
+<span class="k">if</span> <span class="n">greeting</span> <span class="o">==</span> <span class="kc">True</span><span class="p">:</span>
+</pre>
+                                </div>
+                            </div>
+                            <p>Pire:</p>
+                            <div class="bad highlight-default notranslate">
+                                <div class="highlight">
+                                    <pre><span></span><span class="c1"># Wrong:</span>
+<span class="k">if</span> <span class="n">greeting</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+</pre>
+                                </div>
+                            </div>
+                        </li> 
+                    </ul>  
+                </section>
+        </article>
+        <nav id="pep-sidebar">
+            <h2>Sommaire</h2>
+            <ul>
+                <li><a class="reference internal" href="#introduction">Introduction</a></li>
+                <li><a class="reference internal" href="#code-lay-out">Présentation du Code</a>
+                    <ul>
+                        <li><a class="reference internal" href="#indentation">Indentation</a></li>
+                        <li><a class="reference internal" href="#tabs-or-spaces">Tabulations ou espaces ?</a></li>
+                        <li><a class="reference internal" href="#imports">Imports</a></li>
+                    </ul>
+                </li>
+                <li><a class="reference internal" href="#string-quotes">Guillemets et chaînes de caractères</a></li>
+                <li><a class="reference internal" href="#whitespace-in-expressions-and-statements">Espaces dans les
+                        expressions et déclarations</a>
+                    <ul>
+                        <li><a class="reference internal" href="#pet-peeves">Manies agaçantes</a></li>
+                        <li><a class="reference internal" href="#other-recommendations">Autres recommandations</a></li>
+                    </ul>
+                </li>
+                <li><a class="reference internal" href="#comments">Commentaires</a>
+                    <ul>
+                        <li><a class="reference internal" href="#block-comments">Commentaires en bloc</a></li>
+                        <li><a class="reference internal" href="#inline-comments">Commentaires en ligne</a></li>
+                        <li><a class="reference internal" href="#documentation-strings">Chaînes de Documentation
+                                (docstring)</a></li>
+                    </ul>
+                </li>
+                <li><a class="reference internal" href="#naming-conventions">Conventions de nommage</a>
+                    <ul>
+                        <li><a class="reference internal" href="#overriding-principle">Overriding Principle</a></li>
+                        <li><a class="reference internal" href="#descriptive-naming-styles">Descriptive: Naming
+                                Styles</a></li>
+                        <li><a class="reference internal" href="#prescriptive-naming-conventions">Prescriptions sur les
+                                conventions de nommage</a>
+                            <ul>
+                                <li><a class="reference internal" href="#names-to-avoid">Noms à éviter</a></li>
+                                <li><a class="reference internal" href="#ascii-compatibility">Compatibilité ASCII </a>
+                                </li>
+                                <li><a class="reference internal" href="#class-names">Nom des Classes</a></li>
+                                <li><a class="reference internal" href="#function-and-variable-names">Noms des fonctions
+                                        et variables</a></li>
+                                <li><a class="reference internal" href="#function-and-method-arguments">Paramètres des
+                                        fonctions et méthodes </a></li> 
+                                <li><a class="reference internal" href="#constants">Constantes</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><a class="reference internal" href="#programming-recommendations">Recommandations de programmation</a></li>
+
+            </ul>
+
+        </nav>
+    </section>
+</body>
+
+</html>
