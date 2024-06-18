@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>Chimie</title>
+    <meta charset="UTF8">
+    <link rel="stylesheet" href="ChemDoodle/ChemDoodleWeb.css" type="text/css">
+    <link rel="stylesheet" href="css/style1.css" type="text/css">
+    <script type="text/javascript" src="ChemDoodle/ChemDoodleWeb.js"></script>
+
+    <!--these two are required by the ChemDoodle Web Components library-->
+    <link rel="stylesheet" href="ChemDoodle/ChemDoodleWeb.css" type="text/css">
+    <script type="text/javascript" src="ChemDoodle/ChemDoodleWeb.js"></script>
+    <!--these two are required by the SketcherCanvas plugin-->
+    <link rel="stylesheet" href="ChemDoodle/uis/jquery-ui-1.11.4.custom.css" type="text/css">
+    <script type="text/javascript" src="ChemDoodle/uis/ChemDoodleWeb-uis.js"></script>
+
+    <!-- Ma banque perso de molécules -->
+    <script type="text/javascript" src="molecules/banque_molecules.js"></script>
+
+
+
+</head>
+
+<body>
+
+
+    <h1>Test de Chemdoodle Web Components</h1>
+    <p>Voir leur site <a href="https://web.chemdoodle.com/">ChemDoodle Web Components</a></p>
+
+    <h2>Tableau périodique</h2>
+    <script>
+        // initialize component
+        var ptCanvas = new ChemDoodle.PeriodicTableCanvas('ptCanvas', 40);
+	// and you are done! Of course, you can modify and extend it to change the rendering and functionality.
+    </script>
+
+    <h2>Viewer 2D</h2>
+    <script>
+        let visu1 = new ChemDoodle.ViewerCanvas('visu1', 200, 200);
+        visu1.styles.atoms_displayTerminalCarbonLabels_2D = true;
+        caffeine.scaleToAverageBondLength(30);
+        visu1.loadMolecule(caffeine);
+    </script>
+
+    <script>
+        let visualiseur = new ChemDoodle.ViewerCanvas('visu2', 200, 200);
+        visualiseur.styles.bonds_width_2D = 1;
+        visualiseur.styles.bonds_saturationWidthAbs_2D = 2.6;
+        visualiseur.styles.bonds_hashSpacing_2D = 2.5;
+        visualiseur.styles.atoms_font_size_2D = 10;
+        visualiseur.styles.atoms_font_families_2D = ['Helvetica', 'Arial', 'sans-serif'];
+        visualiseur.styles.atoms_displayTerminalCarbonLabels_2D = true;
+        caffeine.scaleToAverageBondLength(15);
+        visualiseur.loadMolecule(caffeine);
+    </script>
+
+
+
+
+
+
+    <h2>Viewer 3D</h2>
+    <script>
+        let visu3d_1 = new ChemDoodle.ViewerCanvas3D('visu3', 200, 200);
+        let ethanol = ChemDoodle.readMOL(ethanolMolFile, 1);
+        visu3d_1.loadMolecule(ethanol);
+    </script>
+
+
+    <h2>Transform Canvas 3D</h2>
+
+    <p>Test ici</p>
+    <script>let transformer3d = new ChemDoodle.TransformCanvas3D('transformer3d', 400, 400);
+        transformer3d.styles.set3DRepresentation('Ball and Stick');
+        transformer3d.styles.backgroundColor = 'white';
+        // let oleine3d = ChemDoodle.readMOL(oleineMolFile3d, 1); 
+        transformer3d.loadMolecule(ethanol); 
+    </script>
+    <br>
+    <button
+        onclick="let oleine3d = ChemDoodle.readMOL(oleineMolFile3d, 1); transformer3d.loadMolecule(oleine3d);">oléine
+        3D</button>
+    <button onclick="let oleine = ChemDoodle.readMOL(oleineMolFile, 1); transformer3d.loadMolecule(oleine);">oléine
+        2D</button>
+    <button
+        onclick="let ethanol = ChemDoodle.readMOL(ethanolMolFile, 1); transformer3d.loadMolecule(ethanol);">éthanol</button>
+
+    <p>The TransformerCanvas3D component allows to move, rotate and scale a molecule in 3D. Controls are as follows:
+        rotate by clicking and dragging, translate by holding the alt key and clicking and dragging, scale using the
+        mouse wheel. </p>
+
+    <p>
+        For convenience, there is a Styles.set3DRepresentation() function that takes a string and sets up the Styles to
+        a preset 3D representation. This is shown by example on the TransformCanvas3D page. The allowed values are:
+
+        'Ball and Stick' - Atom spheres are scaled to a percentage of the vdW diameter, and bonds are easily visible,
+        with multiple bond orders supported.
+        'Stick' - Atom spheres are not seen, but the connectivity of a structure is clearer. Thick bonds connect atoms,
+        but multiple bond orders are not shown.
+        'van der Waals Spheres' - Atom spheres are the size of their vdW diameter. Bonds are not visible.
+        'Wireframe' - This is very similar to 'Ball and Stick', except that the sizes of the atom spheres and bond
+        cylinders are much smaller. Really shows off molecule topology.
+        'Line' - Atoms are not shown, while bonds are represented by simple constant width lines. Multiple bond orders
+        are supported.
+        Also notice that when using the ChemDoodle.readMOL() function below, we pass in an additional parameter of 1.
+        This is a multiplier to the coordinates in the MOLFile. Since 3D coordinates are in Ängstroms, not bond lengths,
+        Canvas3D takes the coordinates as is for an Ängstrom space.
+    </p>
+    <script>
+        let transformBallAndStick = new ChemDoodle.TransformCanvas3D('transformBallAndStick', 600, 600);
+        transformBallAndStick.styles.set3DRepresentation('Ball and Stick');
+        transformBallAndStick.styles.backgroundColor = 'black';
+        transformBallAndStick.loadMolecule(oleine3d, 1);
+    </script>
+
+
+    <script>
+        let transformStick = new ChemDoodle.TransformCanvas3D('transformStick', 250, 250);
+        transformStick.styles.set3DRepresentation('Stick');
+        transformStick.styles.backgroundColor = 'black';
+        transformStick.loadMolecule(oleine3d, 1);
+    </script>
+
+    <script>
+        let transformWireframe = new ChemDoodle.TransformCanvas3D('transformWireframe', 250, 250);
+        transformWireframe.styles.set3DRepresentation('Wireframe');
+        transformWireframe.styles.backgroundColor = 'black';
+        transformWireframe.loadMolecule(molecule_neutre, 1);
+    </script>
+
+    <script>
+        let transformLine = new ChemDoodle.TransformCanvas3D('transformLine', 250, 250);
+        transformLine.styles.set3DRepresentation('Line');
+        transformLine.styles.backgroundColor = 'black';
+        transformLine.loadMolecule(molecule_neutre, 1);
+    </script>
+
+    <h2>Sketcher 2D : molécule unique</h2>
+    <p>Plugin annexe un peu plus compliqué. <a
+            href="https://web.chemdoodle.com/tutorial/2d-structure-canvases/sketcher-canvas">Visiter la doc</a></p>
+
+
+
+    <script>
+        let options = { includeToolbar: true, oneMolecule: true, useServices: false };
+        let sketcher = new ChemDoodle.SketcherCanvas("Sketcher1", 600, 400, options);
+
+
+        // changes the default JMol color of hydrogen to black so it appears on white backgrounds
+        ChemDoodle.ELEMENT['H'].jmolColor = 'black';
+        // darkens the default JMol color of sulfur so it appears on white backgrounds
+        ChemDoodle.ELEMENT['S'].jmolColor = '#B9A130';
+        // sets terminal carbon labels to display
+        sketcher.styles.atoms_displayTerminalCarbonLabels_2D = true;
+        // sets atom labels to be colored by JMol colors, which are easy to recognize
+        sketcher.styles.atoms_useJMOLColors = true;
+        // enables overlap clear widths, so that some depth is introduced to overlapping bonds
+        sketcher.styles.bonds_clearOverlaps_2D = true;
+        // sets the shape color to improve contrast when drawing figures
+        sketcher.styles.shapes_color = 'c10000';
+
+        // because we do not load any content, we need to repaint the sketcher, otherwise we would just see an empty area with the toolbar
+        sketcher.repaint();
+        // however, you can instead use one of the Canvas.load... functions to pre-populate the canvas with content, then you don't need to call repaint
+        sketcher.loadMolecule(paracetamol, 1);
+
+    </script>
+
+    <script>
+        function envoyer_vers_visu() {
+            visu1.loadMolecule(sketcher.getMolecule());
+        }
+    </script>
+    <input type="button" value="Envoyer vers Visualiseur en haut de page" onclick="envoyer_vers_visu()" />
+
+    <h2>Sketcher 2D : outil complet</h2>
+    <p>Plugin annexe un peu plus compliqué. <a
+            href="https://web.chemdoodle.com/tutorial/2d-structure-canvases/sketcher-canvas">Visiter la doc</a></p>
+
+    <script>
+        let options2 = { includeToolbar: true, useServices: false };
+        let sketcher2 = new ChemDoodle.SketcherCanvas("Sketcher2", 600, 400, options2);
+
+        // sets terminal carbon labels to display
+        sketcher2.styles.atoms_displayTerminalCarbonLabels_2D = true;
+        // sets atom labels to be colored by JMol colors, which are easy to recognize
+        sketcher2.styles.atoms_useJMOLColors = true;
+        // enables overlap clear widths, so that some depth is introduced to overlapping bonds
+        sketcher2.styles.bonds_clearOverlaps_2D = true;
+        // sets the shape color to improve contrast when drawing figures
+        sketcher2.styles.shapes_color = 'c10000';
+        // because we do not load any content, we need to repaint the sketcher, otherwise we would just see an empty area with the toolbar
+        // however, you can instead use one of the Canvas.load... functions to pre-populate the canvas with content, then you don't need to call repaint
+        sketcher2.repaint();
+    </script>
+
+
+    <h2>Editeur 3D : pour faire des mesures</h2>
+    <script>
+        // initialized the EditorCanvas3D
+        let editor = new ChemDoodle.EditorCanvas3D('editor', 500, 300, options2);
+        // set the default representation to 'Ball and Stick'
+        editor.styles.set3DRepresentation('Ball and Stick');
+        // if you changed the scene and need it rebuild, you may also want to call setupScene() which is commented out here
+        // editor.setupScene();
+        // however, you can instead use one of the Canvas.load... functions to pre-populate the canvas with content, then you don't need to call repaint
+        editor.repaint();
+        editor.loadMolecule(molecule_neutre, 1);
+    </script>
+
+
+    <h2>Grabber</h2>
+    <p>Permet de rechercher des fichiers de molécules en ligne. Mais nécessite un accès à iChemLabs cloud services pour
+        fonctionner. Mais je crois qu'on peut demander un accès si on
+        est éducateur. A voir... <a href="https://www.ichemlabs.com/contact-us">Contact</a></p>
+    <!-- 
+    <script>
+        let molgrabber = new ChemDoodle.MolGrabberCanvas3D('molgrabber', 300, 300);
+        molgrabber.styles.set3DRepresentation('Stick');
+        molgrabber.styles.backgroundColor = 'black';
+        molgrabber.setSearchTerm('morphine');
+    </script>
+
+-->
+
+</body>
+
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <title>Chimie au lycée</title>
+    <meta charset="UTF8">
+    <link rel="stylesheet" href="css/style1.css" type="text/css">
+
+    <!--Nécessaire pours les ChemDoodle Web Components -->
+    <link rel="stylesheet" href="ChemDoodle/ChemDoodleWeb.css" type="text/css">
+    <script type="text/javascript" src="ChemDoodle/ChemDoodleWeb.js"></script>
+    <!--Nécessaire pour le SketcherCanvas et le EditorCanvas3D -->
+    <link rel="stylesheet" href="ChemDoodle/uis/jquery-ui-1.11.4.custom.css" type="text/css">
+    <script type="text/javascript" src="ChemDoodle/uis/ChemDoodleWeb-uis.js"></script>
+
+    <!-- Ma banque perso de molécules : chianes de carctère au format MDL MOL 
+    https://en.wikipedia.org/wiki/Chemical_table_file -->
+    <script type="text/javascript" src="molecules/banque_molecules.js"></script>
+</head>
+
+<body>
+
+
+    <h1>Visualiser des molécules au lycée</h1>
+    <script>
+        // paramétrage par défaut pour tous les Canvas de la page
+        ChemDoodle.DEFAULT_STYLES.atoms_font_families_2D = ['Helvetica', 'Arial', 'sans-serif'];
+        ChemDoodle.DEFAULT_STYLES.atoms_displayTerminalCarbonLabels_2D = true;
+        ChemDoodle.DEFAULT_STYLES.atoms_useJMOLColors = true;
+        ChemDoodle.ELEMENT['S'].jmolColor = '#B9A130';
+    </script>
+
+
+<h2>Tableau périodique</h2>
+
+<script>
+    let periodicTable = new ChemDoodle.PeriodicTableCanvas('pt', 30);
+
+    //save the old handler
+    periodicTable.oldMousemove = periodicTable.mousemove;
+    //define the new handler
+    periodicTable.mousemove = function (evt) {
+        //call the old handler
+        this.oldMousemove(evt);
+        //notice that you can use the "this" keyword in an object's function to access its variables
+        if (this.hovered != null) {
+            let e = this.getHoveredElement();
+            periodicTable.drawChildExtras = function (ctx) {
+                ctx.fillStyle = 'red'; 
+                ctx.textBaseline = 'bottom';
+                ctx.font = 'bold 16px sans-serif';
+                ctx.fillText(e.name, 6 * this.cellDimension, 1 * this.cellDimension);
+                ctx.font = 'bold 14px sans-serif';
+                ctx.fillText('Z = ' + e.atomicNumber, 6 * this.cellDimension, 2 * this.cellDimension);
+                if (e.mass > 0) {
+                    ctx.fillText('M = ' + e.mass + ' g/mol', 6 * this.cellDimension, 2.8 * this.cellDimension);
+                }
+            }
+        }
+        else {
+            periodicTable.drawChildExtras = function (ctx) {};
+        }
+    }
+    periodicTable.mouseout = function (evt) {
+        periodicTable.drawChildExtras = function (ctx) {};
+        this.repaint();
+    }
+
+    periodicTable.repaint();
+</script>
+
+<h2>Visualiseur 3D</h2>
+<p>Utiliser la molette pour zoomer. Appuyer sur Alt pour basculer en mode rotation ou translation.</p>
+<script>
+    let editeur = new ChemDoodle.EditorCanvas3D('editeur', 600, 400, {includeToolbar: true, useServices: false});
+    editeur.styles.set3DRepresentation('Ball and Stick');
+    // if you changed the scene and need it rebuild, you may also want to call setupScene() which is commented out here
+    // editor.setupScene();
+    editeur.repaint();
+    // however, you can instead use one of the Canvas.load... functions to pre-populate the canvas with content, then you don't need to call repaint
+    //editor.loadMolecule(molecule_neutre, 1);
+
+    function molecule_editeur() {
+        return editeur.getMolecule();
+    }
+</script>
+
+<br>
+<button onclick="editeur.loadMolecule(ChemDoodle.readMOL(eauMol, 1))">eau</button>
+<button onclick="editeur.loadMolecule(ChemDoodle.readMOL(methaneMol, 1))">méthane</button>
+<button onclick="editeur.loadMolecule(ChemDoodle.readMOL(ethanolMol, 1))">éthanol</button>
+<button onclick="editeur.loadMolecule(ChemDoodle.readMOL(acideMethanoiqueMol, 1))">acide méthanoïque</button>
+<button onclick="editeur.loadMolecule(ChemDoodle.readMOL(acideEthanoiqueMol, 1))">acide éthanoïque</button>
+<br>
+<button onclick="editeur.loadMolecule(ChemDoodle.readMOL(paracetamolMol, 1))">paracétamol</button>
+<button onclick="editeur.loadMolecule(ChemDoodle.readMOL(cafeineMol, 1))">caféine</button>
+<button onclick="editeur.loadMolecule(ChemDoodle.readMOL(oleineMol3d, 1))">oléine
+    3D</button>
+<button onclick="editeur.loadMolecule(ChemDoodle.readMOL(oleineMol, 1))">oléine
+    2D</button>
+
+
+    <h2>Constructeur de molécules 2D</h2>
+
+    <p>Utiliser la molette pour zoomer.</p>
+
+    <script>
+        // sketcher simplifié pour une seule molécule 
+        let sketcher = new ChemDoodle.SketcherCanvas("sketcher", 600, 400, {includeToolbar: true, oneMolecule: true, useServices: false});
+        // enables overlap clear widths, so that some depth is introduced to overlapping bonds
+        sketcher.styles.bonds_clearOverlaps_2D = true;
+        // sets the shape color to improve contrast when drawing figures
+        sketcher.styles.shapes_color = 'c10000';
+        // because we do not load any content, we need to repaint the sketcher, otherwise we would just see an empty area with the toolbar
+        sketcher.repaint();
+        // however, you can instead use one of the Canvas.load... functions to pre-populate the canvas with content, then you don't need to call repaint
+        // sletcher.loadMolecule(molecule_neutre, 1);
+
+        function molecule_sketcher() {
+            return sketcher.getMolecule();
+        }
+    </script>
+
+    <br>
+    <button onclick="sketcher.loadMolecule(ChemDoodle.readMOL(eauMol));">eau</button>
+    <button onclick="sketcher.loadMolecule(ChemDoodle.readMOL(methaneMol));">méthane</button>
+    <button onclick="sketcher.loadMolecule(ChemDoodle.readMOL(ethanolMol));">éthanol</button>
+    <button onclick="sketcher.loadMolecule(ChemDoodle.readMOL(acideMethanoiqueMol));">acide méthanoïque</button>
+    <button onclick="sketcher.loadMolecule(ChemDoodle.readMOL(acideEthanoiqueMol));">acide éthanoïque</button>
+    <br>
+    <button onclick="sketcher.loadMolecule(ChemDoodle.readMOL(paracetamolMol));">paracétamol</button>
+    <button onclick="sketcher.loadMolecule(ChemDoodle.readMOL(cafeineMol));">caféine</button>
+    <button onclick="sketcher.loadMolecule(ChemDoodle.readMOL(oleineMol3d));">oléine
+        3D</button>
+    <button onclick="sketcher.loadMolecule(ChemDoodle.readMOL(oleineMol));">oléine
+        2D</button>
+    <p>Page construite avec des <a href="https://web.chemdoodle.com/" target="_blank">ChemDoodle Web Components</a></p>
+
+</body>
+
+</html>
