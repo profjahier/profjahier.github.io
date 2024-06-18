@@ -40,7 +40,7 @@
                 if (molecularRepresentation && molecularRepresentation.indexOf("M  END") == -1 && molecularRepresentation.slice(0, 4) != "$RXN") {
                     var url = "https://cactus.nci.nih.gov/chemical/structure/";
                     url += encodeURI(molecularRepresentation);
-                    url += "/file?format=sdf";                   
+                    url += "/file?format=sdf";
                     $.ajax({
                         url: url,
                         crossDomain: true,
@@ -77,7 +77,7 @@
                         "representation": "iupac_name"
                     },
                     success: function (data) {
-                        document.JME.showInfo("IUPAC (English) : "+data);
+                        document.JME.showInfo("IUPAC (English) : " + data);
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         if (errorThrown.toUpperCase() != "NOT FOUND") {
@@ -90,6 +90,7 @@
             }
         }
 
+
         function convertToMolfile(molecularRepresentation) {
             if (molecularRepresentation && molecularRepresentation.indexOf("M  END") == -1 && molecularRepresentation.slice(0, 4) != "$RXN") {
                 $.ajax({
@@ -101,6 +102,30 @@
                     },
                     success: function (data) {
                         document.JME.readMolFile(data);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert("Ajax error: " + errorThrown);
+                    }
+                });
+            } else {
+                document.JME.readMolFile(molecularRepresentation);
+            }
+        }
+
+        function convert2Mol(molecularRepresentation) {
+            if (molecularRepresentation && molecularRepresentation.indexOf("M  END") == -1 && molecularRepresentation.slice(0, 4) != "$RXN") {
+                $.ajax({
+                    url: "https://cactus.nci.nih.gov/chemical/structure",
+                    crossDomain: true,
+                    data: {
+                        "string": molecularRepresentation,
+                        "representation": "sdf",
+                        "get3d": "true"
+
+                    },
+                    success: function (data) {
+                        document.JME.readMolFile(data)
+                        console.log(data);
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         alert("Ajax error: " + errorThrown);
@@ -147,7 +172,7 @@
             if (this.hovered != null) {
                 let e = this.getHoveredElement();
                 periodicTable.drawChildExtras = function (ctx) {
-                    ctx.fillStyle = 'red'; 
+                    ctx.fillStyle = 'red';
                     ctx.textBaseline = 'bottom';
                     ctx.font = 'bold 16px sans-serif';
                     ctx.fillText(e.name, 6 * this.cellDimension, 1 * this.cellDimension);
@@ -159,16 +184,16 @@
                 }
             }
             else {
-                periodicTable.drawChildExtras = function (ctx) {};
+                periodicTable.drawChildExtras = function (ctx) { };
             }
         }
         periodicTable.mouseout = function (evt) {
-            periodicTable.drawChildExtras = function (ctx) {};
+            periodicTable.drawChildExtras = function (ctx) { };
             this.repaint();
         }
         periodicTable.repaint();
     </script>
-    
+
     <h1>Visualiser des molécules au lycée</h1>
     <script>
         // paramétrage par défaut pour tous les Canvas Chemdoodle de la page
@@ -177,49 +202,144 @@
         ChemDoodle.DEFAULT_STYLES.atoms_useJMOLColors = true;
         ChemDoodle.ELEMENT['S'].jmolColor = '#B9A130';
     </script>
- 
-<h1>JSME + Chemical Identifier Resolver demo</h1>
-<h3>Recherche automatique du nom IUPAC officiel (English)</h3>
-<p>The name of the molecule in the editor is fetched from the NCI web service
-(https://cactus.nci.nih.gov/chemical/structure) after the structure in the editor has changed.</p>
 
-<p>
-Paste operation accepts molecule name, Inchi, smiles ... and is using the same service.
-</p>
-<div id="appletContainer"></div>    
+    <h1>JSME + Chemical Identifier Resolver demo</h1>
+    <h3>Recherche automatique du nom IUPAC officiel (English)</h3>
+    <p>The name of the molecule in the editor is fetched from the NCI web service
+        (https://cactus.nci.nih.gov/chemical/structure) after the structure in the editor has changed.</p>
+
+    <p>
+        Paste operation accepts molecule name, Inchi, smiles ... and is using the same service.
+    </p>
+    <div id="appletContainer"></div>
+
+    <br><br>
+    <button onclick="getMol3D()">Copier représentation 3D</button>
+    <br><br>
+    <button onclick="getNomIUPAC()">Chercher le nom IUPAC (English)</button>
+    <p id="nomIUPAC">Nomenclature officielle</p>
+    <br>
+    <button onclick="getNoms()">Chercher une listes de noms associés</button><button onclick="
+    document.querySelector('#noms').textContent = '';">Effacer</button>
+    <p id="noms">Liste des noms associés</p>
+
+    <h2>Visualiseur 3D</h2>
+
+    <p>Utiliser la molette pour zoomer. Appuyer sur Alt pour basculer en mode rotation ou translation.</p>
+    <script>
+        let editeur = new ChemDoodle.EditorCanvas3D('editeur', 600, 400, { includeToolbar: true, useServices: false });
+        editeur.styles.set3DRepresentation('Ball and Stick');
+        // if you changed the scene and need it rebuild, you may also want to call setupScene() which is commented out here
+        // editor.setupScene();
+        editeur.repaint();
+        // however, you can instead use one of the Canvas.load... functions to pre-populate the canvas with content, then you don't need to call repaint
+        //editor.loadMolecule(molecule_neutre, 1);
+
+        function molecule_editeur() {
+            return editeur.getMolecule();
+        }
+    </script>
+
+    <br>
+    <button onclick="editeur.loadMolecule(ChemDoodle.readMOL(eauMol, 1))">eau</button>
+    <button onclick="editeur.loadMolecule(ChemDoodle.readMOL(methaneMol, 1))">méthane</button>
+    <button onclick="editeur.loadMolecule(ChemDoodle.readMOL(ethanolMol, 1))">éthanol</button>
+    <button onclick="editeur.loadMolecule(ChemDoodle.readMOL(acideMethanoiqueMol, 1))">acide méthanoïque</button>
+    <button onclick="editeur.loadMolecule(ChemDoodle.readMOL(acideEthanoiqueMol, 1))">acide éthanoïque</button>
+    <br>
+    <button onclick="editeur.loadMolecule(ChemDoodle.readMOL(paracetamolMol, 1))">paracétamol</button>
+    <button onclick="editeur.loadMolecule(ChemDoodle.readMOL(cafeineMol, 1))">caféine</button>
+    <button onclick="editeur.loadMolecule(ChemDoodle.readMOL(oleineMol3d, 1))">oléine
+        3D</button>
+    <button onclick="editeur.loadMolecule(ChemDoodle.readMOL(oleineMol, 1))">oléine
+        2D</button>
 
 
-<h2>Visualiseur 3D</h2>
+    <script>
+    function getMol3D() { // fonction écrite par Ronan
+        var smiles = document.JME.smiles();
+        console.log(smiles);
+        if (smiles) {
+            $.ajax({
+                url: "https://cactus.nci.nih.gov/chemical/structure",
+                crossDomain: true,
+                data: {
+                    "string": smiles,
+                    "representation": "sdf",
+                    "get3d": "true"
+                },
+                success: function (data) {
+                    console.log(data); 
+                    editeur.loadMolecule(ChemDoodle.readMOL(data, 1));
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    if (errorThrown.toUpperCase() != "NOT FOUND") {
+                        alert("Ajax error: " + errorThrown);
+                    } else {
+                        document.JME.showInfo("Pas de réprésentation 3D");
+                    }
+                }
+            });
+        }
+    }
 
-<p>Utiliser la molette pour zoomer. Appuyer sur Alt pour basculer en mode rotation ou translation.</p>
-<script>
-    let editeur = new ChemDoodle.EditorCanvas3D('editeur', 600, 400, {includeToolbar: true, useServices: false});
-    editeur.styles.set3DRepresentation('Ball and Stick');
-    // if you changed the scene and need it rebuild, you may also want to call setupScene() which is commented out here
-    // editor.setupScene();
-    editeur.repaint();
-    // however, you can instead use one of the Canvas.load... functions to pre-populate the canvas with content, then you don't need to call repaint
-    //editor.loadMolecule(molecule_neutre, 1);
 
-    function molecule_editeur() {
-        return editeur.getMolecule();
+    function getNomIUPAC() { // fonction écrite par Ronan
+        var smiles = document.JME.smiles();
+        console.log(smiles);
+        if (smiles) {
+            $.ajax({
+                url: "https://cactus.nci.nih.gov/chemical/structure",
+                crossDomain: true,
+                data: {
+                    "string": smiles,
+                    "representation": "iupac_name", 
+                },
+                success: function (data) {
+                    console.log(data);
+                    document.querySelector("#nomIUPAC").textContent = data;
+                    editeur.loadMolecule(ChemDoodle.readMOL(data, 1));
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    if (errorThrown.toUpperCase() != "NOT FOUND") {
+                        alert("Ajax error: " + errorThrown);
+                    } else {
+                        document.JME.showInfo("Pas de réprésentation 3D");
+                    }
+                }
+            });
+        }
+    }
+
+
+    function getNoms() { // fonction écrite par Ronan
+        var smiles = document.JME.smiles();
+        console.log(smiles);
+        if (smiles) {
+            $.ajax({
+                url: "https://cactus.nci.nih.gov/chemical/structure",
+                crossDomain: true,
+                data: {
+                    "string": smiles,
+                    "representation": "names", 
+                },
+                success: function (data) {
+                    console.log(data);
+                    document.querySelector("#noms").textContent = data;
+                    editeur.loadMolecule(ChemDoodle.readMOL(data, 1));
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    if (errorThrown.toUpperCase() != "NOT FOUND") {
+                        alert("Ajax error: " + errorThrown);
+                    } else {
+                        document.JME.showInfo("Pas de réprésentation 3D");
+                    }
+                }
+            });
+        }
     }
 </script>
 
-<br>
-<button onclick="editeur.loadMolecule(ChemDoodle.readMOL(eauMol, 1))">eau</button>
-<button onclick="editeur.loadMolecule(ChemDoodle.readMOL(methaneMol, 1))">méthane</button>
-<button onclick="editeur.loadMolecule(ChemDoodle.readMOL(ethanolMol, 1))">éthanol</button>
-<button onclick="editeur.loadMolecule(ChemDoodle.readMOL(acideMethanoiqueMol, 1))">acide méthanoïque</button>
-<button onclick="editeur.loadMolecule(ChemDoodle.readMOL(acideEthanoiqueMol, 1))">acide éthanoïque</button>
-<br>
-<button onclick="editeur.loadMolecule(ChemDoodle.readMOL(paracetamolMol, 1))">paracétamol</button>
-<button onclick="editeur.loadMolecule(ChemDoodle.readMOL(cafeineMol, 1))">caféine</button>
-<button onclick="editeur.loadMolecule(ChemDoodle.readMOL(oleineMol3d, 1))">oléine
-    3D</button>
-<button onclick="editeur.loadMolecule(ChemDoodle.readMOL(oleineMol, 1))">oléine
-    2D</button>
-
-
 </body>
+
 </html>
