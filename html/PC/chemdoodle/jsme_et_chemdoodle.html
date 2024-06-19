@@ -40,17 +40,15 @@
                 if (molecularRepresentation && molecularRepresentation.indexOf("M  END") == -1 && molecularRepresentation.slice(0, 4) != "$RXN") {
                     var url = "https://cactus.nci.nih.gov/chemical/structure/";
                     url += encodeURI(molecularRepresentation);
-                    url += "/file?format=sdf";
+                    url += "/file?format=sdf&get3d=true";
                     $.ajax({
                         url: url,
                         crossDomain: true,
-
                         success: function (data) {
-                            console.log(data);
                             jsmeInstance.readGenericMolecularInput(data);
                         },
                         error: function (jqXHR, textStatus, errorThrown) {
-                            alert("Ajax error: " + textStatus);
+                            alert("Ajax error: " + textStatus + errorThrown);
                         }
                     });
                 } else {
@@ -58,7 +56,6 @@
                 }
 
             }
-
             jsmeApplet.setCallBack("BeforePaste", convertToMolfile2)
         }
 
@@ -81,15 +78,14 @@
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
                         if (errorThrown.toUpperCase() != "NOT FOUND") {
-                            alert("Ajax error: " + errorThrown);
+                            alert("Ajax error: " + textStatus + errorThrown);
                         } else {
-                            document.JME.showInfo("Name not found");
+                            document.JME.showInfo("molécule non reconnue dans la base de données");
                         }
                     }
                 });
             }
         }
-
 
         function convertToMolfile(molecularRepresentation) {
             if (molecularRepresentation && molecularRepresentation.indexOf("M  END") == -1 && molecularRepresentation.slice(0, 4) != "$RXN") {
@@ -104,40 +100,13 @@
                         document.JME.readMolFile(data);
                     },
                     error: function (jqXHR, textStatus, errorThrown) {
-                        alert("Ajax error: " + errorThrown);
+                        alert("Ajax error: " + textStatus + errorThrown);
                     }
                 });
             } else {
                 document.JME.readMolFile(molecularRepresentation);
             }
         }
-
-        function convert2Mol(molecularRepresentation) {
-            if (molecularRepresentation && molecularRepresentation.indexOf("M  END") == -1 && molecularRepresentation.slice(0, 4) != "$RXN") {
-                $.ajax({
-                    url: "https://cactus.nci.nih.gov/chemical/structure",
-                    crossDomain: true,
-                    data: {
-                        "string": molecularRepresentation,
-                        "representation": "sdf",
-                        "get3d": "true"
-
-                    },
-                    success: function (data) {
-                        document.JME.readMolFile(data)
-                        console.log(data);
-                    },
-                    error: function (jqXHR, textStatus, errorThrown) {
-                        alert("Ajax error: " + errorThrown);
-                    }
-                });
-            } else {
-                document.JME.readMolFile(molecularRepresentation);
-            }
-        }
-
-
-
     </script>
 
     <!--Nécessaire pours les ChemDoodle Web Components -->
@@ -154,11 +123,11 @@
 </head>
 
 <body>
-    <h2>Tableau périodique Chemdoodle adapté</h2>
-
+    <h2>Tableau périodique</h2>
+    <p>Réalisé avec les <a href="https://web.chemdoodle.com/" targe="_blank">Chemdoodle Web Components</a>.</p>
     <script>
         let periodicTable = new ChemDoodle.PeriodicTableCanvas('pt', 30);
-        /* J'ai rajouté une foncitonnalité pour le nom, Z et M apparaisse en haut du tableau
+        /* J'ai rajouté une fonctionnalité pour le nom, Z et M apparaisse en haut du tableau
         Pour cela : j'ai dû adapté le comportement de l'événement mousemove
         Il faut engegistrer le comportement par défaut, puis l'appeler, et enfin définir le comportement adapté nouveau
         */
@@ -194,7 +163,7 @@
         periodicTable.repaint();
     </script>
 
-    <h1>Visualiser des molécules au lycée</h1>
+    <h1>Éditeurs 2D/3D de molécules</h1>
     <script>
         // paramétrage par défaut pour tous les Canvas Chemdoodle de la page
         ChemDoodle.DEFAULT_STYLES.atoms_font_families_2D = ['Helvetica', 'Arial', 'sans-serif'];
@@ -203,18 +172,17 @@
         ChemDoodle.ELEMENT['S'].jmolColor = '#B9A130';
     </script>
 
-    <h1>JSME + Chemical Identifier Resolver demo</h1>
-    <h3>Recherche automatique du nom IUPAC officiel (English)</h3>
-    <p>The name of the molecule in the editor is fetched from the NCI web service
-        (https://cactus.nci.nih.gov/chemical/structure) after the structure in the editor has changed.</p>
+    <h2>Éditeur JSME + Chemical Identifier Resolver demo</h2>
+<p>Réalisé avec <a href="https://jsme-editor.github.io/" targe="_blank">l'éditeur JSME de Peter Ertl and Bruno Bienfait</a>.</p>
 
-    <p>
-        Paste operation accepts molecule name, Inchi, smiles ... and is using the same service.
-    </p>
+    <p>La recherche des noms (in English) se fait en interrogeant la base de données du groupe NCI/CADD et son outil
+        CACTUS, en particulier le <a href="https://cactus.nci.nih.gov/" target="_blank">Chemical Identifier
+            Resolver</a>.</p>
+
     <div id="appletContainer"></div>
 
     <br><br>
-    <button onclick="getMol3D()">Copier représentation 3D</button>
+    <button onclick="getMol3D()">Copier dans l'éditeur 3D de Chemddodle</button>
     <br><br>
     <button onclick="getNomIUPAC()">Chercher le nom IUPAC (English)</button>
     <p id="nomIUPAC">Nomenclature officielle</p>
@@ -224,8 +192,8 @@
     <p id="noms">Liste des noms associés</p>
 
     <h2>Visualiseur 3D</h2>
+    <p>Réalisé avec les <a href="https://web.chemdoodle.com/" targe="_blank">Chemdoodle Web Components</a>.</p>
 
-    <p>Utiliser la molette pour zoomer. Appuyer sur Alt pour basculer en mode rotation ou translation.</p>
     <script>
         let editeur = new ChemDoodle.EditorCanvas3D('editeur', 600, 400, { includeToolbar: true, useServices: false });
         editeur.styles.set3DRepresentation('Ball and Stick');
@@ -234,7 +202,6 @@
         editeur.repaint();
         // however, you can instead use one of the Canvas.load... functions to pre-populate the canvas with content, then you don't need to call repaint
         //editor.loadMolecule(molecule_neutre, 1);
-
         function molecule_editeur() {
             return editeur.getMolecule();
         }
@@ -256,89 +223,75 @@
 
 
     <script>
-    function getMol3D() { // fonction écrite par Ronan
-        var smiles = document.JME.smiles();
-        console.log(smiles);
-        if (smiles) {
-            $.ajax({
-                url: "https://cactus.nci.nih.gov/chemical/structure",
-                crossDomain: true,
-                data: {
-                    "string": smiles,
-                    "representation": "sdf",
-                    "get3d": "true"
-                },
-                success: function (data) {
-                    console.log(data); 
-                    editeur.loadMolecule(ChemDoodle.readMOL(data, 1));
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    if (errorThrown.toUpperCase() != "NOT FOUND") {
-                        alert("Ajax error: " + errorThrown);
-                    } else {
-                        document.JME.showInfo("Pas de réprésentation 3D");
+        function getMol3D() { // fonction écrite par Ronan
+            var smiles = document.JME.smiles();
+            if (smiles) {
+                $.ajax({
+                    url: "https://cactus.nci.nih.gov/chemical/structure",
+                    crossDomain: true,
+                    data: {
+                        "string": smiles,
+                        "representation": "sdf",
+                        "get3d": "true"
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        editeur.loadMolecule(ChemDoodle.readMOL(data, 1));
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert("Erreur de communication avec la base de donées");
                     }
-                }
-            });
+                });
+            }
         }
-    }
 
-
-    function getNomIUPAC() { // fonction écrite par Ronan
-        var smiles = document.JME.smiles();
-        console.log(smiles);
-        if (smiles) {
-            $.ajax({
-                url: "https://cactus.nci.nih.gov/chemical/structure",
-                crossDomain: true,
-                data: {
-                    "string": smiles,
-                    "representation": "iupac_name", 
-                },
-                success: function (data) {
-                    console.log(data);
-                    document.querySelector("#nomIUPAC").textContent = data;
-                    editeur.loadMolecule(ChemDoodle.readMOL(data, 1));
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    if (errorThrown.toUpperCase() != "NOT FOUND") {
-                        alert("Ajax error: " + errorThrown);
-                    } else {
-                        document.JME.showInfo("Pas de réprésentation 3D");
+        function getNomIUPAC() { // fonction écrite par Ronan
+            var smiles = document.JME.smiles();
+            console.log(smiles);
+            if (smiles) {
+                $.ajax({
+                    url: "https://cactus.nci.nih.gov/chemical/structure",
+                    crossDomain: true,
+                    data: {
+                        "string": smiles,
+                        "representation": "iupac_name",
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        document.querySelector("#nomIUPAC").textContent = data;
+                        editeur.loadMolecule(ChemDoodle.readMOL(data, 1));
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert("Erreur de communication avec la base de donées");
                     }
-                }
-            });
+                });
+            }
         }
-    }
 
 
-    function getNoms() { // fonction écrite par Ronan
-        var smiles = document.JME.smiles();
-        console.log(smiles);
-        if (smiles) {
-            $.ajax({
-                url: "https://cactus.nci.nih.gov/chemical/structure",
-                crossDomain: true,
-                data: {
-                    "string": smiles,
-                    "representation": "names", 
-                },
-                success: function (data) {
-                    console.log(data);
-                    document.querySelector("#noms").textContent = data;
-                    editeur.loadMolecule(ChemDoodle.readMOL(data, 1));
-                },
-                error: function (jqXHR, textStatus, errorThrown) {
-                    if (errorThrown.toUpperCase() != "NOT FOUND") {
-                        alert("Ajax error: " + errorThrown);
-                    } else {
-                        document.JME.showInfo("Pas de réprésentation 3D");
+        function getNoms() { // fonction écrite par Ronan
+            var smiles = document.JME.smiles();
+            console.log(smiles);
+            if (smiles) {
+                $.ajax({
+                    url: "https://cactus.nci.nih.gov/chemical/structure",
+                    crossDomain: true,
+                    data: {
+                        "string": smiles,
+                        "representation": "names",
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        document.querySelector("#noms").textContent = data;
+                        editeur.loadMolecule(ChemDoodle.readMOL(data, 1));
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        alert("Erreur de communication avec la base de donées");
                     }
-                }
-            });
+                });
+            }
         }
-    }
-</script>
+    </script>
 
 </body>
 
